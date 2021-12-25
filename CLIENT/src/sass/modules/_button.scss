@@ -1,0 +1,223 @@
+.button--add {
+  padding: $p-10;
+  margin: $m-10 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none !important;
+  text-align: center;
+  font-size: $body-1;
+
+  color: $tSecondary !important;
+  background: $green-1;
+
+  outline: none !important;
+  border: transparent;
+  border-radius: $lightRound;
+  transition: all 0.3s ease;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.button--edit {
+  padding: $p-10;
+  margin: 0 $m-10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none !important;
+  text-align: center;
+  font-size: $body-2;
+
+  color: $tSecondary !important;
+  background: $secondary;
+
+  outline: none !important;
+  border: transparent;
+  border-radius: $lightRound;
+  transition: all 0.3s ease;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.button--delete {
+  padding: $p-10;
+  margin: 0 $m-10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none !important;
+  text-align: center;
+  font-size: $body-2;
+
+  color: $tSecondary !important;
+  background: $red-1;
+
+  outline: none !important;
+  border: transparent;
+  border-radius: $lightRound;
+  transition: all 0.3s ease;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.button--page {
+  width: $w-10 * 3;
+  height: $h-10 * 3;
+
+  padding: $p-10;
+  margin: $m-10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none !important;
+  text-align: center;
+  font-size: $body-1;
+
+  color: $tPrimary !important;
+  background: transparent;
+
+  outline: none !important;
+  border: 1px solid $borderGrey;
+  border-radius: $lightRound;
+  transition: all 0.3s ease;
+  &:hover {
+    color: $tSecondary !important;
+    background: $secondary;
+    border-color: $secondary;
+  }
+}
+
+.button--round {
+  margin: 0 $m-10;
+  padding: $p-5 $p-10;
+
+  font-size: $body-2;
+  font-weight: $medium;
+  text-align: center;
+  text-decoration: none !important;
+
+  border: 1px solid $borderGrey;
+  border-radius: $lightRound;
+  background: $secondary;
+  color: $tPrimary;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+  outline: none !important;
+  cursor: pointer;
+  
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  &:hover {
+    color: $tSecondary;
+  }
+  &:hover::after {
+    transform: scale(0);
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: $primary;
+    transform: scale(1.5);
+    transition: all 0.5s ease;
+  }
+}
+
+.button--submit {
+  margin: 0 $m-10;
+  padding: $p-5 $p-10;
+
+  font-size: $body-2;
+  font-weight: $medium;
+  text-align: center;
+  text-decoration: none !important;
+
+  border: 1px solid $borderGrey;
+  border-radius: $lightRound;
+  background: $primary;
+  color: $tSecondary;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+  outline: none !important;
+  cursor: pointer;
+  
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  &:hover {
+    color: $tPrimary;
+  }
+  &:hover::after {
+    transform: scale(0);
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: $secondary;
+    transform: scale(1.5);
+    transition: all 0.5s ease;
+  }
+}
+
+.button--loading {
+  opacity: 0.5;
+  user-select: none;
+  pointer-events: none;
+}
+
+.button--active {
+  background: $secondary;
+  color: $tSecondary !important;
+}
+
+.button--disabled {
+  padding: $p-10;
+  margin: $m-10 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none !important;
+  text-align: center;
+  font-size: $body-1;
+
+  color: $tSecondary !important;
+  background: $grey;
+
+  opacity: 0.7;
+  outline: none !important;
+  user-select: none;
+  pointer-events: none;
+  
+  border: transparent;
+  border-radius: $lightRound;
+}

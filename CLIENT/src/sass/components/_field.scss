@@ -1,0 +1,85 @@
+.form__group {
+  margin: $m-10 * 2 0;
+  .group__field {
+    width: $w-100;
+    padding: $p-10;
+    border: 1px solid $borderGrey;
+    border-radius: $lightRound;
+    display: flex;
+    align-items: center;
+    position: relative;
+    .field__control {
+      width: $w-100 - 10;
+      font-size: $body-1;
+      color: $tPrimary;
+      background: transparent;
+      border: 0;
+      outline: none;
+      &:focus + .field__label,
+      &:not(:placeholder-shown) + .field__label {
+        top: 0;
+      }
+    }
+    .field__label {
+      font-size: $body-1;
+      padding: $p-5;
+      color: $tPrimary;
+      background: $primary;
+      user-select: none;
+      pointer-events: none;
+      position: absolute;
+      top: 50%;
+      left: 3%;
+      transform: translateY(-50%);
+      transition: all 0.3s ease;
+    }
+    .field__icon,
+    .field__error-icon {
+      width: $w-100 - 95;
+      color: $tPrimary;
+      text-align: center;
+      .fa-eye,
+      .fa-eye-slash {
+        cursor: pointer;
+      }
+    }
+    .field__error-icon {
+      color: $tRed;
+    }
+  }
+  .group__field--invalid {
+    border-color: $borderError !important;
+    animation: error 0.3s linear 1;
+  }
+  .group__error {
+    font-size: $body-1;
+    color: $tRed;
+    margin: $m-10 0;
+  }
+  .group__radio {
+    width: $w-100;
+    .radio__control {
+      width: $w-10 * 2;
+      height: $h-10 * 2;
+      margin-right: $m-10 * 2;
+    }
+  }
+}
+
+@keyframes error {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(2%);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(-2%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

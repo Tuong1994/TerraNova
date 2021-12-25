@@ -1,0 +1,32 @@
+export interface ICategory {
+  categoryId?: string;
+  name?: string;
+}
+
+export interface IProduct {
+  productId?: string;
+  name?: string;
+  image?: any;
+  price?: number;
+  description?: string;
+  totalCores?: string;
+  totalThreads?: string;
+  baseFrequency?: string;
+  cache?: string;
+  busSpeed?: string;
+  tdp?: string;
+  socket?: string;
+  chipset?: string;
+  ram?: string;
+  capacity?: string;
+  ramBus?: string;
+  type?: string;
+  size?: string;
+  graphicEngine?: string;
+  videoMemory?: string;
+  cudaCore?: string;
+  memoryInterface?: string;
+  model: string;
+  outputCapacity?: string;
+  Efficiency?: string;
+}

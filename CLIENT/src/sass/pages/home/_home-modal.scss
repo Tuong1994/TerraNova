@@ -1,0 +1,17 @@
+.body__content {
+  display: flex;
+  .content {
+    width: $w-100 - 50;
+    margin: $m-10 0;
+    display: inline-block;
+    &:nth-child(1) {
+      width: $w-100 - 70;
+    }
+  }
+}
+.footer__content {
+    font-size: $body-1;
+    font-style: italic;
+    line-height: 25px;
+    letter-spacing: 1px;
+}

@@ -1,0 +1,11 @@
+import { ELoadingActionTypes } from "../actionTypes/LoadingActionTypes";
+
+interface OPEN_BUTTON_LOADING {
+  type: ELoadingActionTypes.OPEN_BUTTON_LOADING;
+}
+
+interface CLOSE_BUTTON_LOADING {
+  type: ELoadingActionTypes.CLOSE_BUTTON_LOADING;
+}
+
+export type LoadingAction = OPEN_BUTTON_LOADING | CLOSE_BUTTON_LOADING

@@ -1,0 +1,8 @@
+.content-header {
+    padding: $p-10 * 2 0;
+    display: flex;
+    justify-content: space-between;
+    .content-header__title {
+        font-size: $h4;
+    }
+}

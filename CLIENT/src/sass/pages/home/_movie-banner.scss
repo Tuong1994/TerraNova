@@ -1,0 +1,54 @@
+.home__movie-banner {
+  width: $w-100;
+  height: $h-10 * 50;
+  padding: $p-10 * 10 $p-10 * 5;
+
+  background: url("../../../assets/img/movie_banner");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  z-index: 5;
+  overflow: hidden;
+  &::after {
+    content: "";
+    width: $w-100;
+    height: $h-100;
+    background: $RGBA-dark-1;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .movie-banner__wrapper {
+    position: relative;
+    z-index: 1;
+    .wrapper__text {
+      font-size: $h1;
+      font-weight: $medium;
+      color: $tSecondary;
+      text-align: center;
+      line-height: 80px;
+      opacity: 0;
+      transition: all 2s ease;
+      &:nth-child(2) {
+        font-size: $h3;
+      }
+    }
+    .wrapper__text-one {
+      transform: translateX(-100%);
+    }
+    .wrapper__text-two {
+      transform: translateX(100%);
+    }
+    .wrapper__text--active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}

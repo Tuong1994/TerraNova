@@ -1,0 +1,85 @@
+.admin-template {
+  .admin-template__menu {
+    @include respond(extraTablet) {
+      display: none;
+    }
+  }
+  .admin-template__content {
+    .content__header {
+      @include respond(extraTablet) {
+        display: none;
+      }
+    }
+    @include respond(extraTablet) {
+      width: $w-100;
+    }
+  }
+  .admin-template__responsive {
+    width: $w-100;
+    padding: $p-5 $p-10 * 3;
+    border-bottom: 1px solid $borderGrey;
+    background: $secondary;
+    position: sticky;
+    top: 0;
+    z-index: 9;
+    display: none;
+    .responsive {
+      width: $w-100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .responsive__logo {
+        color: $tSecondary;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid $borderWhite;
+        .logo__left {
+          font-size: $h2;
+          font-weight: $bold;
+          margin-right: $m-5;
+        }
+      }
+      .responsive__button {
+        width: $w-100;
+        display: flex;
+        justify-content: flex-end;
+        .button--page {
+          color: $tSecondary !important;
+        }
+      }
+      .responsive__menu {
+        background: $RGBA-dark-1;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 99;
+        .menu__wrapper {
+          width: $w-100 - 30;
+          height: $h-100;
+          background: $secondary;
+          .wrapper__link {
+            width: $w-100;
+            .link {
+              display: block;
+              padding: $p-10 $p-10 * 2;
+              margin: $m-10 0;
+              color: $tSecondary;
+              text-decoration: none;
+              .link__icon {
+                margin-right: $m-10;
+              }
+            }
+          }
+        }
+      }
+    }
+    @include respond(extraTablet) {
+      display: block;
+    }
+  }
+  @include respond(extraTablet) {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,39 @@
+.admin-template {
+  display: flex;
+  .admin-template__menu {
+    width: $w-100 - 80;
+    height: $h-100-vh;
+    background: $secondary;
+    position: sticky;
+    top: 0;
+  }
+  .admin-template__content {
+    width: $w-100 - 20;
+    .content__header {
+      padding: $p-10;
+      border-bottom: 1px solid $borderGrey;
+      .header__user {
+        display: flex;
+        justify-content: flex-end;
+        .user__link {
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+          .link__name {
+            color: $tPrimary;
+            margin-right: $m-10;
+          }
+          .link__img {
+            width: $w-10 * 3;
+            height: $h-10 * 3;
+            border-radius: $circle;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+    .content__wrapper {
+      padding: $p-10 * 2;
+    }
+  }
+}

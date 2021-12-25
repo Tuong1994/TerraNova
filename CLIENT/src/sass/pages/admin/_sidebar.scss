@@ -1,0 +1,63 @@
+.sidebar {
+  height: $h-100-vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .sidebar__menu {
+    overflow: auto;
+    /* width */
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: $secondary;
+      border-radius: $round;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: $lightBlue;
+      border-radius: $round !important;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+    .menu__link {
+      display: block;
+      margin-left: $m-10;
+      padding: $p-10 * 2 $p-10 * 3;
+      text-decoration: none;
+      border-top-left-radius: $round;
+      border-bottom-left-radius: $round;
+      color: $tSecondary;
+      font-size: $body-1;
+      transition: all 0.3s ease;
+      &:hover {
+        background: $primary;
+        color: $tPrimary;
+      }
+      .link__icon {
+        margin-right: $m-10;
+      }
+    }
+  }
+  .sidebar__setting {
+    .setting__link {
+      display: block;
+      text-decoration: none;
+      padding: $p-10 * 3;
+      color: $tSecondary;
+      transition: all 0.3s ease;
+      &:hover {
+        opacity: 0.5;
+      }
+      .link__icon {
+        margin-right: $m-10;
+      }
+    }
+  }
+}

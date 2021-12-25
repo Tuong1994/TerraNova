@@ -1,0 +1,184 @@
+.header__responsive {
+  width: $w-100;
+  height: $h-100;
+  background: $RGBA-dark-1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 999;
+  display: none;
+  .responsive__button {
+    font-size: $h6;
+    color: $tSecondary;
+    position: absolute;
+    top: 2%;
+    right: 5%;
+  }
+  .responsive__button--active {
+    animation: rotate 0.5s linear 1;
+  }
+  .responsive__wrapper {
+    width: $w-100 - 15;
+    height: $h-100;
+    padding: $p-10 * 5 0;
+    background: $secondary;
+    overflow: auto;
+    transform: translateX(-100%);
+    transition: all 0.5s ease;
+    .wrapper__login {
+      width: $w-100;
+      .login__wrapper,
+      .login__user {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        .user__info {
+          margin-right: $m-10;
+          padding: $p-5;
+          border-radius: $lightRound;
+          text-decoration: none;
+          font-size: $body-1;
+          color: $tSecondary;
+          border: 1px solid $borderWhite;
+          border-radius: $lightRound;
+          display: flex;
+          align-items: center;
+          transition: all 0.3s ease;
+          .info__avatar {
+            width: $w-10 * 2;
+            height: $h-10 * 2;
+            margin-right: $m-10;
+            border-radius: $circle;
+          }
+        }
+        .user__setting {
+          width: $w-100 - 50;
+          height: 0;
+          border-radius: $lightRound;
+          background: $primary;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          overflow: hidden;
+          position: absolute;
+          top: 110%;
+          left: 50%;
+          z-index: 9999;
+          transform: translateX(-50%);
+          transition: all 0.5s ease;
+          .setting__link {
+            display: block;
+            padding: $p-10;
+            font-size: $body-1;
+            text-decoration: none;
+            color: $tPrimary;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            &:hover {
+              background: $secondary;
+              color: $tSecondary;
+            }
+          }
+          .setting__link--loading {
+            display: flex;
+            align-items: center;
+            opacity: 0.5;
+            user-select: none;
+            pointer-events: none;
+          }
+          @include respond(phone) {
+            width: $w-100 - 40;
+          }
+          @include respond(smallPhone) {
+            width: $w-100 - 20;
+          }
+        }
+        .user__setting--active {
+          height: $h-10 * 8;
+        }
+        .wrapper__button {
+          margin: 0 $m-10;
+          padding: $p-5 $p-10;
+          font-weight: $medium;
+          text-align: center;
+          text-decoration: none;
+          color: $tSecondary;
+          background: $secondary;
+          border: 1px solid $borderGrey;
+          border-radius: $lightRound;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          &:nth-child(2) {
+            margin-right: $m-10 * 3;
+          }
+          @include respond(phone) {
+            font-size: $body-2;
+          }
+        }
+        .wrapper__carts {
+          color: $tSecondary;
+        }
+      }
+    }
+    .wrapper__line {
+      width: $w-100;
+      height: 2px;
+      background: $primary;
+      margin: $m-10 * 2 0;
+    }
+    .wrapper__menu {
+      width: $w-100;
+      .menu__list {
+        list-style: none;
+        .list__link {
+          display: block;
+          padding: $p-10 * 2;
+          text-decoration: none;
+          color: $tSecondary;
+          cursor: pointer;
+        }
+        .list__submenu {
+          height: 0;
+          margin-left: $m-10 * 2;
+          border-left: 1px solid $borderWhite;
+          overflow: auto;
+          transition: all 0.3s ease;
+          .submenu__list {
+            .list__link {
+            }
+          }
+        }
+        .list__submenu--active {
+          height: $h-10 * 20;
+        }
+        @include respond(phone) {
+          font-size: $body-1;
+        }
+      }
+    }
+  }
+  .responsive__wrapper--active {
+    transform: translateX(0);
+  }
+  @include respond(tablet) {
+    display: block;
+  }
+}
+
+.header__responsive--active {
+  opacity: 1;
+  visibility: visible;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}

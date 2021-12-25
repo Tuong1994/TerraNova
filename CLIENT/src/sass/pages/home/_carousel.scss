@@ -1,0 +1,153 @@
+.home__carousel {
+  display: flex;
+  height: $h-10 * 50;
+  .carousel__form {
+    width: $w-100 - 70;
+    padding: $p-10 * 3;
+    background: $secondary;
+    .form__title {
+      font-size: $h3;
+      font-weight: $medium;
+      text-align: center;
+      color: $tSecondary;
+      margin: $m-10 * 2 0;
+    }
+    .form__line {
+      width: $w-100 - 50;
+      height: 2px;
+      background: $primary;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .form__wrapper {
+      padding-top: $p-10 * 2;
+      .wrapper__field {
+        border-color: $borderWhite;
+      }
+      .wrapper__input {
+        color: $tSecondary;
+      }
+      .wrapper__label {
+        background: $secondary;
+        color: $tSecondary;
+      }
+      .wrapper__icon {
+        color: $tSecondary;
+      }
+      .wrapper__button {
+        width: $w-100;
+        display: flex;
+        justify-content: center;
+        .button--round {
+          font-size: $body-1;
+          padding: $p-10 $p-10 * 2;
+          color: $tPrimary !important;
+          &:hover {
+            color: $tSecondary !important;
+          }
+        }
+        .button--disabled {
+          font-size: $body-1;
+          padding: $p-10 $p-10 * 2;
+          color: $tPrimary !important;
+        }
+      }
+    }
+    @include respond(tablet) {
+      width: $w-100;
+    }
+  }
+  .carousel__slider {
+    width: $w-100 - 30;
+    height: $h-100;
+    .slider {
+      width: $w-100;
+      .slider__item {
+        width: $w-100;
+        height: $h-10 * 50;
+        background-repeat: no-repeat !important;
+        background-position: center !important;
+        background-size: cover !important;
+        .item__wrapper {
+          width: $w-100;
+          height: $h-100;
+          padding: $p-10 * 5;
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          &::after {
+            content: "";
+            width: $w-100;
+            height: $h-100;
+            background: $RGBA-dark-1;
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+          p {
+            font-size: $h3;
+            color: $tSecondary;
+            z-index: 1;
+            &:nth-child(1) {
+              font-size: $h1;
+              font-weight: $medium;
+            }
+          }
+        }
+      }
+      .slider__item-one {
+        background: url("../../../assets/img/pc_accessories.jpg");
+      }
+      .slider__item-two {
+        background: url("../../../assets/img/courses.jpg");
+      }
+      .slider__item-three {
+        background: url("../../../assets/img/movie.jpg");
+      }
+    }
+    @include respond(tablet) {
+      display: none;
+    }
+  }
+
+  .slick-arrow {
+    color: $tPrimary !important;
+    z-index: 99;
+    &::before {
+      font-size: $h3;
+    }
+  }
+  .slick-prev {
+    left: 5%;
+    color: $tPrimary;
+    &::before {
+      content: "◀";
+    }
+  }
+  .slick-next {
+    right: 5%;
+    color: $tPrimary;
+    &::before {
+      content: "▶";
+    }
+  }
+  .slick-dots {
+    bottom: 10%;
+    li {
+      width: $w-10 * 1.5;
+      height: $h-10 * 1.5;
+      background: $primary;
+      border-radius: $circle;
+      opacity: 0.5;
+      button {
+        &::before {
+          display: none;
+        }
+      }
+    }
+    .slick-active {
+      opacity: 1;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+.box {
+    width: $w-100;
+    padding: $p-10 * 2;
+    transition: all 0.3s ease;
+    &:hover {
+        background: $secondary;
+        color: $tSecondary;
+    }
+    .box__title {
+        font-weight: $semiBold;
+        margin-bottom: $m-10;
+    }
+}

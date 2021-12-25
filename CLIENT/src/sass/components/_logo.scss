@@ -1,0 +1,19 @@
+.logo {
+    padding: $p-10 * 3;
+    text-decoration: none !important;
+    color: $tSecondary !important;
+    .logo__wrapper {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid $borderWhite;
+      .wrapper__left {
+        font-size: $h1;
+        font-weight: $bold;
+        margin-right: $m-10;
+      }
+      .wrapper__right {
+        font-size: $h5;
+        letter-spacing: 2px;
+      }
+    }
+  }

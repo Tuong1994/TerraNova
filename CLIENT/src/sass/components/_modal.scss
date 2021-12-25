@@ -1,0 +1,84 @@
+.modal-container {
+  width: $w-100;
+  height: $h-100;
+  background: $RGBA-dark-1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  .modal-container__inner {
+    width: $w-100 - 55;
+    border-radius: $lightRound;
+    background: $secondary;
+    color: $tSecondary;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(70%);
+    transition: all 0.5s ease;
+    @include respond(extraTablet) {
+      width: $w-100 - 30;
+    }
+    @include respond(tablet) {
+      width: $w-100 - 15;
+    }
+    @include respond(phone) {
+      width: $w-100 - 10;
+    }
+  }
+  .modal-container__inner--active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+  }
+}
+
+.modal-container--active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal__header {
+  padding: $p-10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid $borderGrey;
+  .header__title {
+    width: $w-100;
+    font-size: $subtitle;
+    font-weight: $medium;
+    text-align: center;
+    @include respond(phone) {
+      font-size: $body-1;
+    }
+  }
+  .header__button {
+    cursor: pointer;
+  }
+}
+
+.modal__body {
+  padding: $p-10 * 2;
+  border-bottom: 1px solid $borderGrey;
+  @include respond(phone) {
+    padding: $p-10;
+    font-size: $body-2;
+  }
+}
+
+.modal__footer {
+  padding: $p-10 * 2;
+  @include respond(phone) {
+    padding: $p-10;
+    font-size: $body-2;
+  }
+}

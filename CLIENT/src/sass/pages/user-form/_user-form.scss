@@ -1,0 +1,168 @@
+.user-form {
+  padding: $p-10 * 10 $p-10 * 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  .user-form__logo {
+    padding: 0;
+    color: $tPrimary !important;
+    user-select: none;
+    pointer-events: none;
+    cursor: unset;
+    .logo__wrapper {
+      border: 0;
+      .wrapper__left {
+        font-size: $h1 + 100;
+        color: $tBlue;
+        animation: textRotate 3s linear infinite;
+      }
+      .wrapper__right {
+        font-size: $h1;
+      }
+    }
+    @include respond(extraTablet) {
+      display: none;
+    }
+  }
+  .user-form__line {
+    width: 4px;
+    height: $h-10 * 40;
+    background: $dark;
+    @include respond(laptop) {
+      height: $h-10 * 60;
+    }
+    @include respond(extraTablet) {
+      display: none;
+    }
+  }
+  .sign-in__form,
+  .sign-up__form {
+    width: $w-100 - 60;
+    padding: $p-10 * 2;
+    border: 1px solid $borderGrey;
+    border-radius: $lightRound;
+    .form__title {
+      font-size: $h3;
+      font-weight: $medium;
+      text-align: center;
+    }
+    .form__line {
+      width: $w-100;
+      height: 2px;
+      background: $grey;
+      margin: $m-10 * 2 0;
+    }
+    .form__wrapper {
+      .wrapper__button {
+        width: $w-100;
+        display: flex;
+        justify-content: center;
+        .button--submit {
+          padding: $p-10 $p-10 * 2;
+          font-size: $subtitle;
+        }
+        .button--disabled {
+          padding: $p-10 $p-10 * 2;
+          font-size: $subtitle;
+        }
+      }
+    }
+    @include respond(laptop) {
+      width: $w-100 - 40;
+    }
+    @include respond(extraTablet) {
+      width: $w-100;
+    }
+  }
+  .sign-up__form {
+    .form__wrapper {
+      .wrapper__title {
+        margin-top: $m-10 * 4;
+        font-weight: $medium;
+        font-size: $h6;
+      }
+      .wrapper__group {
+        display: flex;
+        justify-content: space-between;
+        .group__control {
+          width: $w-100 / 2.1;
+          @include respond(phone) {
+            width: $w-100;
+          }
+        }
+        .group__inner {
+          width: $w-100 / 2.1;
+          .inner__title {
+            font-size: $body-1;
+          }
+          .inner__control {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .control__item {
+              display: flex;
+            }
+            @include respond(phone) {
+              justify-content: space-evenly;
+            }
+          }
+          @include respond(phone) {
+            width: $w-100;
+          }
+        }
+        .group__button {
+          width: $w-100 / 2.1;
+          display: flex;
+          align-items: center;
+          .button--submit {
+            width: $w-100;
+            padding: $p-10 $p-10 * 2;
+            font-size: $body-1;
+            span {
+              display: block;
+              width: $w-100;
+              text-align: center;
+            }
+          }
+          .button--disabled {
+            width: $w-100;
+            padding: $p-10 $p-10 * 2;
+            font-size: $body-1;
+          }
+          @include respond(phone) {
+            width: $w-100;
+          }
+        }
+        @include respond(phone) {
+          flex-direction: column;
+        }
+      }
+    }
+  }
+  @include respond(laptop) {
+    padding: $p-10 * 5 $p-10 * 2;
+  }
+  @include respond(phone) {
+    padding: $p-10 * 5 $p-10;
+  }
+}
+
+@keyframes textRotate {
+  0% {
+    transform: rotateY(0);
+  }
+  20% {
+    transform: rotateY(0);
+  }
+  40% {
+    transform: rotateY(0);
+  }
+  60% {
+    transform: rotateY(0);
+  }
+  80% {
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}

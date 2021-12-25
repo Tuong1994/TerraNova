@@ -1,0 +1,95 @@
+.footer {
+  background: $dark;
+  padding: $p-10 * 5;
+  .footer__info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $borderWhite;
+    padding: $p-10 * 5 0;
+    .info__logo {
+      padding: 0;
+      .logo__wrapper {
+        border-bottom: 0;
+        .wrapper__left {
+          font-size: $h1;
+          color: $tBlue;
+        }
+        .wrapper__right {
+          font-size: $subtitle;
+          font-weight: $medium;
+        }
+      }
+      @include respond(tablet) {
+        margin-bottom: $m-10 * 2;
+      }
+    }
+    .info__partners {
+      .partners__title {
+        color: $tSecondary;
+        margin-bottom: $m-10 * 2;
+      }
+      .partners__list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        .list__logo {
+          width: $w-10 * 3;
+          height: $h-10 * 3;
+          box-shadow: 0 0 10px $primary;
+          margin: 0 $m-10;
+          border-radius: $circle;
+          object-fit: cover;
+          object-position: center;
+          @include respond(phone) {
+            margin: $m-10 $m-10 * 2;
+          }
+        }
+      }
+      @include respond(tablet) {
+        margin-bottom: $m-10 * 2;
+      }
+    }
+    .info__socials {
+      .socials__title {
+        color: $tSecondary;
+        margin-bottom: $m-10 * 2;
+      }
+      .socials__list {
+        .list__logo {
+          text-decoration: none;
+          color: $tSecondary;
+          font-size: $h4;
+          margin: 0 $m-10;
+          opacity: 1;
+          transition: all 0.3s ease;
+          &:hover {
+            opacity: 0.7;
+          }
+        }
+      }
+    }
+    @include respond(tablet) {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+  .footer__address {
+    color: $tSecondary;
+    padding: $p-10 * 5 0;
+    .address__name {
+      font-size: $subtitle;
+    }
+    .address__info {
+      list-style-type: square;
+      padding-left: $p-10 * 2;
+      .info__list {
+        font-size: $body-1;
+        margin: $m-10 0;
+      }
+    }
+  }
+  @include respond(phone) {
+    padding: $p-10 * 5 $p-10 * 2;
+  }
+}

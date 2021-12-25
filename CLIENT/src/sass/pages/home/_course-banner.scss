@@ -1,0 +1,95 @@
+.home__course-banner {
+  width: $w-100;
+  height: $h-10 * 50;
+  padding: $p-10 * 5;
+
+  background: url("../../../assets/img/course_banner.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
+  -moz-clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
+  margin-bottom: -5vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  position: relative;
+  z-index: 3;
+  overflow: hidden;
+  &::after {
+    content: "";
+    width: $w-100;
+    height: $h-100;
+    background: $RGBA-dark-1;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .course-banner__list {
+    position: relative;
+    z-index: 1;
+    .list {
+      list-style-type: square;
+      color: $tSecondary;
+      margin: $m-10 0;
+    }
+    .list--active-1 {
+      animation: translate 0.4s linear 1;
+    }
+    .list--active-2 {
+      animation: translate 0.8s linear 1;
+    }
+    .list--active-3 {
+      animation: translate 0.8s linear 1;
+    }
+    .list--active-4 {
+      animation: translate 1s linear 1;
+    }
+  }
+  .course-banner__content {
+    font-size: $h1;
+    line-height: 80px;
+    color: $tSecondary;
+    opacity: 0;
+    transform: translateX(50%);
+    transition: all 2s ease;
+    position: relative;
+    z-index: 1;
+    p {
+      &:nth-child(2) {
+        font-size: $h3;
+        @include respond(tablet) {
+          font-size: $h5;
+        }
+      }
+    }
+    @include respond(tablet) {
+      font-size: $h3;
+      line-height: 50px;
+    }
+  }
+  .course-banner__content--reveal {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  @include respond(tablet) {
+    flex-direction: column-reverse;
+    height: auto;
+  }
+}
+
+@keyframes translate {
+  from {
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

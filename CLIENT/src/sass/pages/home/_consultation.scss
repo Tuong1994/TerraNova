@@ -1,0 +1,98 @@
+.home__consultation {
+  width: $w-100;
+  padding: $p-10 * 10 $p-10 * 5;
+  background: $secondary;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
+  z-index: 1;
+  &::after,
+  &::before {
+    content: "";
+    width: $w-10 * 30;
+    height: $h-10 * 30;
+    border-radius: $circle;
+    position: absolute;
+    z-index: -1;
+  }
+  &::after {
+    background: $blue-2;
+    top: -8%;
+    right: -8%;
+  }
+  &::before {
+    background: $blue-1;
+    bottom: -8%;
+    left: -8%;
+    @include respond(laptop) {
+      display: none;
+    }
+  }
+  .consultation__form {
+    width: $w-100 - 60;
+    .form__title {
+      font-size: $h4;
+      color: $tSecondary;
+    }
+    .form__line {
+      width: $w-100 - 20;
+      height: 2px;
+      background: $primary;
+      margin: $m-10 * 3 0;
+    }
+    .form__wrapper {
+      .wrapper__field {
+        border-color: $borderWhite;
+      }
+      .wrapper__input {
+        color: $tSecondary;
+      }
+      .wrapper__label {
+        background: $secondary;
+        color: $tSecondary;
+      }
+      .wrapper__icon {
+        color: $tSecondary;
+      }
+      .wrapper__button {
+        display: flex;
+        justify-content: center;
+        .button--round {
+          padding: $p-10 $p-10 * 2;
+          font-size: $subtitle;
+          color: $tPrimary !important;
+          &:hover {
+            color: $tSecondary !important;
+          }
+        }
+        .button--disabled {
+          padding: $p-10 $p-10 * 2;
+          font-size: $subtitle;
+          color: $tPrimary !important;
+        }
+      }
+    }
+    @include respond(extraTablet) {
+      width: $w-100;
+    }
+  }
+  .consultation__logo {
+    cursor: unset;
+    .logo__wrapper {
+      border: 0;
+      .wrapper__left {
+        font-size: $h1 + 100;
+        margin-right: $m-10;
+      }
+      .wrapper__right {
+        font-size: $h1;
+      }
+    }
+  }
+  @include respond(extraTablet) {
+    flex-direction: column-reverse;
+    padding: $p-10 * 4 $p-10 * 2;
+  }
+}

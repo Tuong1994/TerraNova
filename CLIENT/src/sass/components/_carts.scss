@@ -1,0 +1,22 @@
+.carts {
+  position: relative;
+  .carts__icon {
+    text-decoration: none;
+    color: $tPrimary;
+    font-size: $subtitle;
+  }
+  .carts__total {
+    width: $w-10 * 1.5;
+    height: $h-10 * 1.5;
+    font-size: $body-2;
+    color: $tSecondary;
+    background: $red-1;
+    border-radius: $round;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -50%;
+    right: -50%;
+  }
+}
