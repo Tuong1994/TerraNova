@@ -1,5 +1,6 @@
 import React from "react";
 import * as yup from "yup";
+import * as FormControl from "../../../components/Fields";
 import { Formik, Form, Field } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
@@ -9,12 +10,11 @@ import { EModalActionTypes } from "../../../redux/actionTypes/ModalActionTypes";
 import { EUserActionTypes } from "../../../redux/actionTypes/UserActionTypes";
 import { EValidateMessage } from "../../../interfaces/validateMessage";
 import { phoneRegex } from "../../../configs/regex";
-import Button from "../../../components/Button/Button";
-import InputField from "../../../components/Fields/InputField/InputField";
-import Spinner from "../../../components/Spinner/Spinner";
+import Button from "../../../components/Button";
+import ButtonLoading from "../../../components/Loading/ButtonLoading";
 
 const ConsultationForm: React.FunctionComponent<{}> = (props) => {
-  const { isLoading } = useSelector(
+  const { buttonLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
   );
   const dispatch = useDispatch();
@@ -75,7 +75,7 @@ const ConsultationForm: React.FunctionComponent<{}> = (props) => {
               <Form>
                 <Field
                   name="name"
-                  component={InputField}
+                  component={FormControl.Input}
                   label="Name"
                   placeholder=" "
                   type="text"
@@ -87,7 +87,7 @@ const ConsultationForm: React.FunctionComponent<{}> = (props) => {
                 />
                 <Field
                   name="email"
-                  component={InputField}
+                  component={FormControl.Input}
                   label="Email"
                   placeholder=" "
                   type="text"
@@ -99,7 +99,7 @@ const ConsultationForm: React.FunctionComponent<{}> = (props) => {
                 />
                 <Field
                   name="phone"
-                  component={InputField}
+                  component={FormControl.Input}
                   label="Phone"
                   placeholder=" "
                   type="text"
@@ -118,13 +118,13 @@ const ConsultationForm: React.FunctionComponent<{}> = (props) => {
                     <Button
                       type="submit"
                       className={
-                        isLoading
+                        buttonLoading
                           ? "button--round button--loading"
                           : "button--round"
                       }
                       isDisabled={!isValid || isSubmitting}
                     >
-                      <Spinner />
+                      <ButtonLoading />
                       <span>Submit</span>
                     </Button>
                   )}

@@ -10,11 +10,11 @@ import { EUserActionTypes } from "../../../redux/actionTypes/UserActionTypes";
 import { EValidateMessage } from "../../../interfaces/validateMessage";
 import { phoneRegex } from "../../../configs/regex";
 import InputField from "../../../components/Fields/InputField/InputField";
-import Button from "../../../components/Button/Button";
-import Spinner from "../../../components/Spinner/Spinner";
+import Button from "../../../components/Button";
+import ButtonLoading from "../../../components/Loading/ButtonLoading";
 
 const CarouselForm: React.FunctionComponent<{}> = (props) => {
-  const { isLoading } = useSelector(
+  const { buttonLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
   );
   const dispatch = useDispatch();
@@ -117,13 +117,13 @@ const CarouselForm: React.FunctionComponent<{}> = (props) => {
                     <Button
                       type="submit"
                       className={
-                        isLoading
+                        buttonLoading
                           ? "button--round button--loading"
                           : "button--round"
                       }
                       isDisabled={!isValid || isSubmitting}
                     >
-                      <Spinner />
+                      <ButtonLoading />
                       <span>Submit</span>
                     </Button>
                   )}

@@ -1,16 +1,17 @@
 import React from "react";
+import * as customHook from "../../hooks/index";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ReducerState } from "../../redux/store";
 import { EUserActionTypes } from "../../redux/actionTypes/UserActionTypes";
-import Carts from "../Carts/Carts";
-import * as customHook from "../../hooks/index";
-import Spinner from "../Spinner/Spinner";
 import { ELoadingActionTypes } from "../../redux/actionTypes/LoadingActionTypes";
+import utils from "../../utils";
+import Carts from "../Carts";
+import ButtonLoading from "../Loading/ButtonLoading";
 
 const HeaderLogin: React.FunctionComponent<{}> = (props) => {
   const { account } = useSelector((state: ReducerState) => state.UserReducer);
-  const { isLoading } = useSelector(
+  const { buttonLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
   );
   const [isShow, setIsShow] = React.useState<boolean>(false);
@@ -33,17 +34,8 @@ const HeaderLogin: React.FunctionComponent<{}> = (props) => {
     }, 1000);
   };
 
-  const isEmpty = (obj: any) => {
-    for (let key in obj) {
-      if (obj.hasOwnProperty(key)) {
-        return true;
-      }
-    }
-    return false;
-  };
-
   const renderLoginInfo = () => {
-    if (isEmpty(account)) {
+    if (utils.checkObjectEmpty(account)) {
       return (
         <div className="login__user" ref={menuSettingRef}>
           <Link
@@ -74,13 +66,13 @@ const HeaderLogin: React.FunctionComponent<{}> = (props) => {
             </Link>
             <div
               className={
-                isLoading
+                buttonLoading
                   ? "setting__link setting__link--loading"
                   : "setting__link"
               }
               onClick={handleLogout}
             >
-              <Spinner />
+              <ButtonLoading />
               <span>Log out</span>
             </div>
           </div>

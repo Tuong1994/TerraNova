@@ -1,5 +1,6 @@
 import React from "react";
 import * as yup from "yup";
+import * as FormControl from "../../components/Fields";
 import { Formik, Form, Field } from "formik";
 import { IUser } from "../../models/User/IUser";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,14 +8,11 @@ import { ReducerState } from "../../redux/store";
 import { EValidateMessage } from "../../interfaces/validateMessage";
 import { phoneRegex, spaceRegex } from "../../configs/regex";
 import { signUp } from "../../redux/actionCreators/UserCreators";
-import InputField from "../../components/Fields/InputField/InputField";
-import Button from "../../components/Button/Button";
-import PasswordField from "../../components/Fields/PasswordField/PasswordField";
-import Spinner from "../../components/Spinner/Spinner";
-import RadioField from "../../components/Fields/RadioField/RadioField";
+import Button from "../../components/Button";
+import ButtonLoading from "../../components/Loading/ButtonLoading";
 
 const SignUpForm: React.FunctionComponent<{}> = (props) => {
-  const { isLoading } = useSelector(
+  const { buttonLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
   );
   const dispatch = useDispatch();
@@ -92,7 +90,7 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
             <Form className="form__wrapper">
               <Field
                 name="account"
-                component={InputField}
+                component={FormControl.Input}
                 label="Account"
                 placeholder=" "
                 type="text"
@@ -100,7 +98,7 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
               />
               <Field
                 name="password"
-                component={PasswordField}
+                component={FormControl.Password}
                 label="Password"
                 placeholder=" "
                 type="password"
@@ -108,7 +106,7 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
               />
               <Field
                 name="passwordConfirm"
-                component={PasswordField}
+                component={FormControl.Password}
                 label="Password Confirm"
                 placeholder=" "
                 type="password"
@@ -120,7 +118,7 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
               <div className="wrapper__group">
                 <Field
                   name="firstName"
-                  component={InputField}
+                  component={FormControl.Input}
                   label="First name"
                   placeholder=" "
                   type="text"
@@ -129,7 +127,7 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
                 />
                 <Field
                   name="lastName"
-                  component={InputField}
+                  component={FormControl.Input}
                   label="Last name"
                   placeholder=" "
                   type="text"
@@ -141,7 +139,7 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
               <div className="wrapper__group">
                 <Field
                   name="email"
-                  component={InputField}
+                  component={FormControl.Input}
                   label="Email"
                   placeholder=" "
                   type="text"
@@ -150,7 +148,7 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
                 />
                 <Field
                   name="phone"
-                  component={InputField}
+                  component={FormControl.Input}
                   label="Phone"
                   placeholder=" "
                   type="text"
@@ -162,7 +160,7 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
               <div className="wrapper__group">
                 <Field
                   name="address"
-                  component={InputField}
+                  component={FormControl.Input}
                   label="Address"
                   placeholder=" "
                   type="text"
@@ -170,7 +168,7 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
                 />
                 <Field
                   name="birthDay"
-                  component={InputField}
+                  component={FormControl.Input}
                   label="Birthday"
                   placeholder=" "
                   type="date"
@@ -185,14 +183,14 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
                     <Field
                       name="gender"
                       value="male"
-                      component={RadioField}
+                      component={FormControl.Radio}
                       label="Male"
                       groupClassName="control__item"
                     />
                     <Field
                       name="gender"
                       value="female"
-                      component={RadioField}
+                      component={FormControl.Radio}
                       label="Female"
                       groupClassName="control__item"
                     />
@@ -208,13 +206,13 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
                     <Button
                       type="submit"
                       className={
-                        isLoading
+                        buttonLoading
                           ? "button--submit button--loading"
                           : "button--submit"
                       }
                       isDisabled={!isValid || isSubmitting}
                     >
-                      <Spinner />
+                      <ButtonLoading />
                       <span>Sign Up</span>
                     </Button>
                   )}

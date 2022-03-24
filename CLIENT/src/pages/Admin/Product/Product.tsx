@@ -1,9 +1,9 @@
 import React from "react";
-import ContentHeader from "../../../components/ContentHeader/ContentHeader";
-import Table from "../../../components/Table/Table";
+import ContentHeader from "../../../components/ContentHeader";
+import Table from "../../../components/Table";
 import TableRow from "../../../components/Table/TableRow";
 import Card from "../../../components/Card/Card";
-import Pagination from "../../../components/Pagination/Pagination";
+import Pagination from "../../../components/Pagination";
 import pageTitleList from "../../../configs/pageTitleList";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
@@ -30,7 +30,7 @@ const Product: React.FunctionComponent<{}> = (props) => {
   const renderProductList = () => {
     if (productList) {
       const { productListPerPage } = productList;
-      return productListPerPage.map((product, index) => {
+      return productListPerPage?.map((product, index) => {
         return (
           <TableRow
             key={index}

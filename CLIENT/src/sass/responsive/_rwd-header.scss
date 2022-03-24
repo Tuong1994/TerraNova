@@ -148,12 +148,24 @@
           overflow: auto;
           transition: all 0.3s ease;
           .submenu__list {
-            .list__link {
+            list-style: none;
+            .list__inner {
+              height: 0;
+              overflow: auto;
+              padding-left: $p-10 * 2;
+              transition: all 0.3s ease;
+              .inner__list {
+                font-size: $body-2;
+                border-bottom: 1px solid $borderWhite;
+              }
+            }
+            .list__inner--active {
+              height: $h-10 * 30;
             }
           }
         }
         .list__submenu--active {
-          height: $h-10 * 20;
+          height: $h-10 * 30;
         }
         @include respond(phone) {
           font-size: $body-1;

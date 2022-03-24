@@ -2,15 +2,15 @@ import { EUserActionTypes } from "../actionTypes/UserActionTypes";
 
 interface CONSULTATION {
   type: EUserActionTypes.CONSULTATION;
-  payload?: any;
+  payload: any;
 }
 interface SIGN_IN {
   type: EUserActionTypes.SIGN_IN;
-  payload?: any;
+  payload: any;
 }
 interface SIGN_UP {
   type: EUserActionTypes.SIGN_UP;
-  payload?: any;
+  payload: any;
 }
 
 interface LOG_OUT {

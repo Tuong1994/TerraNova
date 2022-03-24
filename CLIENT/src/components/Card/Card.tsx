@@ -6,7 +6,9 @@ interface ICardProps {
 
 const Card: React.FunctionComponent<ICardProps> = (props) => {
   const { className } = props;
-  return <div className={`card ${className}`}>{props.children}</div>;
+  return (
+    <div className={`card ${className ? className : ""}`}>{props.children}</div>
+  );
 };
 
 export default Card;

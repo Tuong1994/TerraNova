@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Category extends Model {
     /**
@@ -9,26 +7,28 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({Category_Producer, Producer, Product, SubMenu}) {
+    static associate({ Category_Producer, Producer, Product }) {
       // define association here
       this.belongsToMany(Producer, {
         through: Category_Producer,
-        foreignKey: "producer_id"
-      })
-      this.hasMany(Product, {
-        foreignKey: "categoryId"
+        foreignKey: "category_id",
       });
-      this.belongsTo(SubMenu, {
-        foreignKey: "subMenuId"
-      })
+      this.hasMany(Product, {
+        foreignKey: "categoryId",
+        as: "productList",
+      });
     }
-  };
-  Category.init({
-    name: DataTypes.STRING,
-    subMenuId: DataTypes.STRING,
-  }, {
-    sequelize,
-    modelName: 'Category',
-  });
+  }
+  Category.init(
+    {
+      name: DataTypes.STRING,
+      active: DataTypes.BOOLEAN,
+      subMenuId: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: "Category",
+    }
+  );
   return Category;
 };

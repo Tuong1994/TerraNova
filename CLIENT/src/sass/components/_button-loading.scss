@@ -1,0 +1,19 @@
+.button-loading {
+  width: $w-10 * 1.5;
+  height: $h-10 * 1.5;
+  margin-right: $m-10;
+  display: inline-block;
+  border-radius: $circle;
+  border: 2px solid $grey;
+  border-top: 2px solid $secondary;
+  animation: spinner 2s linear infinite;
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

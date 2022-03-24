@@ -1,11 +1,8 @@
 .home__partners {
   width: $w-100;
-  height: $h-10 * 60;
+  height: auto;
   padding: $p-10 * 10 $p-10 * 5;
   background: $dark;
-
-  display: flex;
-  justify-content: space-between;
 
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
   -webkit-clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
@@ -14,119 +11,164 @@
 
   position: relative;
   z-index: 4;
-  .partners__card {
-    width: $w-100 / 3.5;
-    height: $h-10 * 40;
-    background: $dark;
-    border: transparent;
-    &:hover .card__inner {
-      transform: rotateY(180deg);
-    }
-    .card__inner {
+  .partners__title {
+    width: $w-100;
+    display: flex;
+    justify-content: center;
+    font-size: $h2;
+    font-weight: $medium;
+    color: $tSecondary;
+  }
+  .partners__slider {
+    width: $w-100;
+    height: $h-100;
+    padding: 0 $p-10 * 10;
+    z-index: 9;
+    .slider__item {
       width: $w-100;
       height: $h-100;
-      position: relative;
-      transition: all 0.5s ease;
-      transform-style: preserve-3d;
-      .inner__front,
-      .inner__back {
-        width: $w-100;
-        height: $h-100;
-        border: 1px solid $borderGrey;
-        border-radius: $lightRound;
-        overflow: hidden;
-        position: absolute;
-        top: 0;
-        left: 0;
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-      }
-      .inner__front {
+      padding: $p-10 * 5 0;
+      display: flex !important;
+      align-items: center;
+      justify-content: space-around;
+      .item__card {
+        width: $w-100 / 4;
+        height: $h-10 * 30;
         background: $dark;
-        .front__content {
+        border: transparent;
+        &:hover .card__inner {
+          transform: rotateY(180deg);
+        }
+        .card__inner {
           width: $w-100;
           height: $h-100;
           position: relative;
-          .content__img {
+          transition: all 0.5s ease;
+          transform-style: preserve-3d;
+          .inner__front,
+          .inner__back {
             width: $w-100;
             height: $h-100;
-            object-fit: cover;
-          }
-          .content__inner {
-            width: $w-100;
-            height: $h-100;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border: 1px solid $borderGrey;
+            border-radius: $lightRound;
+            overflow: hidden;
             position: absolute;
             top: 0;
             left: 0;
-            .inner__title {
-              font-size: $h1;
-              font-weight: $bold;
-              color: $tSecondary;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+          }
+          .inner__front {
+            background: $dark;
+            .front__content {
+              width: $w-100;
+              height: $h-100;
+              position: relative;
+              .content__img {
+                width: $w-100;
+                height: $h-100;
+                object-fit: cover;
+              }
+              .content__inner {
+                width: $w-100;
+                height: $h-100;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                top: 0;
+                left: 0;
+                .inner__title {
+                  font-size: $h3;
+                  font-weight: $bold;
+                  color: $tSecondary;
+                  @include respond(laptop) {
+                    font-size: $h5;
+                  }
+                }
+              }
+            }
+          }
+          .inner__back {
+            transform: rotateY(180deg);
+            background: $dark;
+            padding: $p-10 * 2;
+            color: $tSecondary;
+            text-align: justify;
+            overflow: auto;
+            /* width */
+            &::-webkit-scrollbar {
+              width: 8px;
+            }
+            /* Track */
+            &::-webkit-scrollbar-track {
+              background: $dark;
+            }
+            /* Handle */
+            &::-webkit-scrollbar-thumb {
+              background: $darkGrey;
+              border-radius: $round;
+            }
+            /* Handle on hover */
+            &::-webkit-scrollbar-thumb:hover {
+              background: $grey;
+            }
+            .back__title {
+              font-size: $h4;
+              text-align: center;
+              margin-bottom: $m-10 * 2;
+              @include respond(laptop) {
+                font-size: $h6;
+              }
+            }
+            p {
+              font-size: $body-2;
+              line-height: 20px;
             }
           }
         }
-      }
-      .inner__back {
-        transform: rotateY(180deg);
-        background: $dark;
-        padding: $p-10 * 2;
-        color: $tSecondary;
-        text-align: justify;
-        .back__title {
-          font-size: $h4;
-          text-align: center;
-          margin-bottom: $m-10 * 2;
-        }
-        p {
-          font-size: $body-1;
-          line-height: 20px;
+        @include respond(laptop) {
+          height: $h-10 * 25;
         }
       }
     }
     @include respond(laptop) {
-        width: $w-100 / 3.1;
-        height: $h-10 * 50;
-      }
-    @include respond(extraTablet) {
-      width: $w-100;
-      height: $h-10 * 50;
-      margin: $m-10 * 5 0;
-    }
-    @include respond(tablet) {
-      width: $w-100;
-      height: $h-10 * 50;
-      margin: $m-10 * 5 0;
+      padding: 0 $p-10 * 5;
     }
   }
-  .partners__card-one {
-    transform: translateY(10%);
+
+  .slick-arrow {
+    color: $tPrimary !important;
+    z-index: 99;
+    &::before {
+      font-size: $h3;
+    }
   }
-  .partners__card-two {
-    transform: translateY(0);
+  .slick-prev {
+    left: 5%;
+    color: $tPrimary;
+    &::before {
+      content: "◀";
+    }
+    @include respond(laptop) {
+      left: 2%;
+    }
   }
-  .partners__card-three {
-    transform: translateY(-10%);
+  .slick-next {
+    right: 5%;
+    color: $tPrimary;
+    &::before {
+      content: "▶";
+    }
+    @include respond(laptop) {
+      right: 2%;
+    }
   }
+
   @include respond(laptop) {
-    padding: $p-10 * 10 $p-10 * 2;
-    height: auto;
-  }
-  @include respond(extraTablet) {
-    padding: $p-10 * 10;
-    flex-direction: column;
-    height: auto;
+    padding: $p-10 * 10 $p-10;
   }
   @include respond(tablet) {
-    padding: $p-10 * 10 $p-10 * 5;
-    flex-direction: column;
-    height: auto;
-  }
-  @include respond(phone) {
-    padding: $p-10 * 2;
-    flex-direction: column;
-    height: auto;
+    display: none;
   }
 }

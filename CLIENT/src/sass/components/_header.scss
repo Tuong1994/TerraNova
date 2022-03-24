@@ -50,7 +50,6 @@
         font-size: $body-1;
         font-weight: $medium;
         color: $tPrimary;
-        cursor: pointer;
         transition: all 0.3s ease;
       }
       .list__dropdown {
@@ -81,7 +80,7 @@
       }
       .list__submenu {
         width: $w-10 * 100;
-        height: $h-10 * 50;
+        height: $h-10 * 55;
         border-radius: $lightRound;
         box-shadow: 0 0 10px $borderGrey;
         display: flex;
@@ -105,10 +104,18 @@
             text-decoration: none;
             color: $tSecondary;
             transition: all 0.3s ease;
+            user-select: none;
             &:hover {
               background: $primary;
               color: $tPrimary;
             }
+          }
+          .tabs__title--active {
+            background: $primary;
+            color: $tPrimary;
+          }
+          @include respond(laptop) {
+            width: $w-100 - 70;
           }
         }
         .submenu__content {
@@ -118,24 +125,53 @@
           .content__inner {
             width: $w-100;
             height: $h-100;
-            padding: $p-10 * 5 0;
             margin: $m-10 * 2 0;
+            padding: $p-10 * 5 0;
             position: absolute;
             top: 0;
             left: 0;
             opacity: 0;
             visibility: hidden;
             transition: all 0.5s ease;
-            .inner__link {
-              display: block;
-              text-decoration: none;
-              color: $tPrimary;
-              font-weight: $medium;
-              padding: $p-10 $p-10 * 5;
-              transition: all 0.5s ease;
-              &:hover {
+            .inner__subtabs {
+              margin-left: $m-10 * 2;
+              .subtabs__link {
+                display: block;
+                text-decoration: none;
+                font-weight: $medium;
+                color: $tPrimary;
+                padding: $p-10 $p-10 * 3;
+                border-top-left-radius: $round;
+                border-bottom-left-radius: $round;
+                transition: all 0.5s ease;
+                &:hover {
+                  background: $secondary;
+                  color: $tSecondary;
+                }
+              }
+              .subtabs__link--active {
                 background: $secondary;
                 color: $tSecondary;
+              }
+              .subtabs__content {
+                height: 0;
+                overflow: hidden;
+                padding: $p-5 $p-10 * 7;
+                display: flex;
+                transition: all 0.5s ease;
+                .content__link {
+                  display: block;
+                  padding: $p-10 $p-10 * 2;
+                  text-decoration: none;
+                  font-weight: $medium;
+                  font-size: $body-1;
+                  &:hover {
+                    color: $tPrimary;
+                  }
+                }
+              }
+              .subtabs__content--active {
+                height: $h-10 * 5;
               }
             }
           }
@@ -143,6 +179,9 @@
             opacity: 1;
             visibility: visible;
           }
+        }
+        @include respond(laptop) {
+          width: $w-10 * 80;
         }
       }
     }

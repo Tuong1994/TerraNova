@@ -2,12 +2,12 @@ import React from "react";
 import { createBrowserHistory } from "history";
 import { Router, Switch } from "react-router-dom";
 import { adminRoutes, homeRoutes } from "./configs/routes";
-import AdminTemplate from "./templates/Admin Template/AdminTemplate";
-import HomeTemplate from "./templates/Home Template/HomeTemplate.";
-import Toast from "./components/Toast/Toast";
+import AdminTemplate from "./templates/AdminTemplate";
+import HomeTemplate from "./templates/HomeTemplate";
+import PageLoading from "./components/Loading/PageLoading";
 import "./sass/main.scss";
 
-export const history = createBrowserHistory()
+export const history = createBrowserHistory();
 const App: React.FunctionComponent<{}> = (props) => {
   const renderAdminRoutes = () => {
     return adminRoutes.map((route, index) => {
@@ -21,7 +21,6 @@ const App: React.FunctionComponent<{}> = (props) => {
       );
     });
   };
-
   const renderHomeRoutes = () => {
     return homeRoutes.map((route, index) => {
       return (
@@ -41,7 +40,7 @@ const App: React.FunctionComponent<{}> = (props) => {
         <>
           {renderHomeRoutes()}
           {renderAdminRoutes()}
-          <Toast />
+          <PageLoading />
         </>
       </Switch>
     </Router>

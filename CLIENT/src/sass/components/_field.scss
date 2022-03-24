@@ -1,5 +1,6 @@
 .form__group {
   margin: $m-10 * 2 0;
+  position: relative;
   .group__field {
     width: $w-100;
     padding: $p-10;
@@ -8,6 +9,7 @@
     display: flex;
     align-items: center;
     position: relative;
+    cursor: pointer;
     .field__control {
       width: $w-100 - 10;
       font-size: $body-1;
@@ -18,6 +20,9 @@
       &:focus + .field__label,
       &:not(:placeholder-shown) + .field__label {
         top: 0;
+      }
+      .control__placeholder {
+        opacity: 0.5;
       }
     }
     .field__label {
@@ -61,8 +66,75 @@
     .radio__control {
       width: $w-10 * 2;
       height: $h-10 * 2;
-      margin-right: $m-10 * 2;
+      margin-right: $m-10 * 1.5;
     }
+  }
+  .group__calendar {
+    width: $w-100;
+    background: $primary;
+    border-radius: $lightRound;
+    box-shadow: 0 0 10px $darkGrey;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    z-index: 9999;
+    .calendar__date {
+      padding: $p-10;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      .date__next-btn,
+      .date__prev-btn {
+        padding: $p-5 $p-10 + 5;
+        border-radius: $lightRound;
+        font-size: $subtitle;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        &:hover {
+          color: $tSecondary;
+          background: $secondary;
+        }
+      }
+      .date__content {
+        font-size: $subtitle;
+      }
+    }
+  }
+  .group__option {
+    width: $w-100;
+    border-radius: $lightRound;
+    box-shadow: 0 0 15px $darkGrey;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    overflow: hidden;
+    background: $primary;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    .option__item {
+      padding: $p-10;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      &:hover {
+        background: $darkGrey;
+        color: $tSecondary;
+      }
+    }
+    .option__item--selected {
+      background: $darkGrey;
+      color: $tSecondary;
+    }
+    .option__nodata {
+      padding: $p-10;
+      text-align: center;
+    }
+  }
+  .group__option--active {
+    opacity: 1;
+    visibility: visible;
   }
 }
 

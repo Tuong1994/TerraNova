@@ -1,5 +1,5 @@
 import React from "react";
-import ContentHeader from "../../../components/ContentHeader/ContentHeader";
+import ContentHeader from "../../../components/ContentHeader";
 
 const ProductCustom: React.FunctionComponent<{}> = (props) => {
     return <div>

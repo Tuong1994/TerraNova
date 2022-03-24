@@ -2,9 +2,13 @@ export interface ICategory {
   categoryId?: string;
   name?: string;
 }
-
-export interface IProduct {
+export interface IProducer {
+  producerId?: string;
+  name?: string;
+}
+export interface IAccessories {
   productId?: string;
+  producerName?: string;
   name?: string;
   image?: any;
   price?: number;

@@ -1,6 +1,28 @@
 .card {
+  width: $w-100;
+  border-radius: $lightRound;
+  border-bottom: 1px solid $borderGrey;
+  overflow: auto;
+  .card__img {
     width: $w-100;
-    border-radius: $lightRound;
-    border-bottom: 1px solid $borderGrey;
-    overflow: auto;
+    height: $h-10 * 15;
+    .img {
+      width: $w-100;
+      height: $h-100;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+  .card__header {
+    width: $w-100;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .card__body {
+    width: $w-100;
+  }
+  .card__footer {
+    width: $w-100;
+  }
 }

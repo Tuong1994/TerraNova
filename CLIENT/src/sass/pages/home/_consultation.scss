@@ -79,16 +79,35 @@
     }
   }
   .consultation__logo {
-    cursor: unset;
-    .logo__wrapper {
-      border: 0;
-      .wrapper__left {
-        font-size: $h1 + 100;
-        margin-right: $m-10;
+    .logo__inner {
+      cursor: unset;
+      pointer-events: none;
+      user-select: none;
+      padding: 0;
+      .logo__wrapper {
+        .wrapper__left {
+          font-size: $h1 + 50;
+          margin-right: $m-10;
+        }
+        .wrapper__right {
+          font-size: $h2;
+        }
       }
-      .wrapper__right {
-        font-size: $h1;
+    }
+    .logo__content {
+      list-style-type: circle;
+      padding-left: $p-10 * 3;
+      .content__list {
+        margin: $m-10 0;
+        color: $tSecondary;
+        font-size: $subtitle;
+        @include respond(phone) {
+          font-size: $body-1;
+        }
       }
+    }
+    @include respond(extraTablet) {
+      margin-bottom: $m-10 * 2;
     }
   }
   @include respond(extraTablet) {

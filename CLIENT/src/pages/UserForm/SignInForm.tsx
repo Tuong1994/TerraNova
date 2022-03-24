@@ -1,21 +1,21 @@
 import React from "react";
 import * as yup from "yup";
+import * as FormControl from "../../components/Fields";
 import { Formik, Form, Field } from "formik";
 import { IUser } from "../../models/User/IUser";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../redux/store";
 import { EValidateMessage } from "../../interfaces/validateMessage";
 import { signIn } from "../../redux/actionCreators/UserCreators";
-import InputField from "../../components/Fields/InputField/InputField";
-import Button from "../../components/Button/Button";
-import PasswordField from "../../components/Fields/PasswordField/PasswordField";
-import Spinner from "../../components/Spinner/Spinner";
+import Button from "../../components/Button";
+import ButtonLoading from "../../components/Loading/ButtonLoading";
 
 const SignInForm: React.FunctionComponent<{}> = (props) => {
-  const { isLoading } = useSelector(
+  const { buttonLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
   );
   const dispatch = useDispatch();
+
   const initialValues = {
     account: "",
     password: "",
@@ -35,6 +35,7 @@ const SignInForm: React.FunctionComponent<{}> = (props) => {
       });
     }, 1000);
   };
+
   return (
     <div className="sign-in__form">
       <div className="form__title">Sign In</div>
@@ -50,7 +51,7 @@ const SignInForm: React.FunctionComponent<{}> = (props) => {
             <Form className="form__wrapper">
               <Field
                 name="account"
-                component={InputField}
+                component={FormControl.Input}
                 label="Account"
                 placeholder=" "
                 type="text"
@@ -58,12 +59,13 @@ const SignInForm: React.FunctionComponent<{}> = (props) => {
               />
               <Field
                 name="password"
-                component={PasswordField}
+                component={FormControl.Password}
                 label="Password"
                 placeholder=" "
                 type="password"
                 icon={<i className="fas fa-eye"></i>}
               />
+
               <div className="wrapper__button">
                 {!isValid ? (
                   <Button type="button" className="button--disabled">
@@ -73,13 +75,13 @@ const SignInForm: React.FunctionComponent<{}> = (props) => {
                   <Button
                     type="submit"
                     className={
-                      isLoading
+                      buttonLoading
                         ? "button--submit button--loading"
                         : "button--submit"
                     }
                     isDisabled={!isValid || isSubmitting}
                   >
-                    <Spinner />
+                    <ButtonLoading />
                     <span>Sign In</span>
                   </Button>
                 )}

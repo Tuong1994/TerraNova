@@ -1,0 +1,16 @@
+.nodata {
+  width: $w-100;
+  height: $h-10 * 40;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .nodata__icon {
+    font-size: $h2;
+    color: $tRed;
+  }
+  .nodata__content {
+    font-size: $h4;
+    margin: $m-10 * 2 0;
+  }
+}

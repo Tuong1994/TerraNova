@@ -14,6 +14,7 @@
   background: $green-1;
 
   outline: none !important;
+  cursor: pointer;
   border: transparent;
   border-radius: $lightRound;
   transition: all 0.3s ease;
@@ -38,6 +39,7 @@
   background: $secondary;
 
   outline: none !important;
+  cursor: pointer;
   border: transparent;
   border-radius: $lightRound;
   transition: all 0.3s ease;
@@ -62,6 +64,7 @@
   background: $red-1;
 
   outline: none !important;
+  cursor: pointer;
   border: transparent;
   border-radius: $lightRound;
   transition: all 0.3s ease;
@@ -89,6 +92,7 @@
   background: transparent;
 
   outline: none !important;
+  cursor: pointer;
   border: 1px solid $borderGrey;
   border-radius: $lightRound;
   transition: all 0.3s ease;

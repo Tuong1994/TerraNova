@@ -1,9 +1,16 @@
 import React from "react";
 
-const ModalBody: React.FunctionComponent<{}> = props => {
-    return <div className="modal__body">
-        {props.children}
-    </div>
+interface ModalBodyProps {
+  className?: string;
 }
+
+const ModalBody: React.FunctionComponent<ModalBodyProps> = (props) => {
+  const { className } = props;
+  return (
+    <div className={`modal__body ${className ? className : ""}`}>
+      {props.children}
+    </div>
+  );
+};
 
 export default ModalBody;

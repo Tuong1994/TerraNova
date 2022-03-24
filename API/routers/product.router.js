@@ -2,42 +2,68 @@ const express = require("express");
 const productRouter = express.Router();
 const {
   getProductList,
-  getProductDetail,
   createProduct,
   updateProduct,
   removeProduct,
-  getCategoryWithProducerAndProduct,
   getProducerAndProduct,
+  getProductByCategory,
+  getAccessoriesDetail,
+  getProductByProducer,
 } = require("../controllers/product.controller");
 const {
   checkProductId,
+  checkProducerId,
+  checkCategoryId,
 } = require("../middlewares/validations/check-exist.middleware");
 const {
   authenticate,
+  authorize,
 } = require("../middlewares/auths/check-verify.middleware");
-
-
-productRouter.get(
-  "/getCategoryWithProducerAndProduct",
-  getCategoryWithProducerAndProduct
-);
 
 productRouter.get("/getProducerAndProduct", getProducerAndProduct);
 
 productRouter.get("/getProductList", getProductList);
 
-productRouter.get("/getProductDetail", checkProductId, getProductDetail);
+productRouter.get(
+  "/getProductByProducer",
+  checkProducerId,
+  getProductByProducer
+);
 
-productRouter.post("/createProduct", authenticate, createProduct);
+productRouter.get(
+  "/getProductByCategory",
+  checkCategoryId,
+  getProductByCategory
+);
+
+productRouter.get(
+  "/getAccessoriesDetail",
+  checkProductId,
+  getAccessoriesDetail
+);
+
+productRouter.post(
+  "/createProduct",
+  authenticate,
+  authorize(["ADMIN"]),
+  createProduct
+);
 
 productRouter.put(
   "/updateProduct",
   authenticate,
+  authorize(["ADMIN"]),
   checkProductId,
   updateProduct
 );
 
-productRouter.delete("/removeProduct", checkProductId, removeProduct);
+productRouter.delete(
+  "/removeProduct",
+  authenticate,
+  authorize(["ADMIN"]),
+  checkProductId,
+  removeProduct
+);
 
 module.exports = {
   productRouter,

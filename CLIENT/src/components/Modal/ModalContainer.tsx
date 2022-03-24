@@ -5,12 +5,13 @@ import { EModalActionTypes } from "../../redux/actionTypes/ModalActionTypes";
 
 interface IModalContainerProps {
   isShowing: boolean;
+  className?: string;
 }
 
 const ModalContainer: React.FunctionComponent<IModalContainerProps> = (
   props
 ) => {
-  const { isShowing } = props;
+  const { isShowing, className } = props;
   const modalRef = React.useRef<any>(null);
   const dispatch = useDispatch();
   customHook.useOverFlow(isShowing);
@@ -33,14 +34,16 @@ const ModalContainer: React.FunctionComponent<IModalContainerProps> = (
     <div
       className={
         isShowing
-          ? "modal-container modal-container--active"
+          ? `modal-container modal-container--active`
           : "modal-container"
       }
     >
       <div
         className={
           isShowing
-            ? "modal-container__inner modal-container__inner--active"
+            ? `modal-container__inner modal-container__inner--active ${
+                className ? className : ""
+              }`
             : "modal-container__inner"
         }
         ref={modalRef}

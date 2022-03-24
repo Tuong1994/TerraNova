@@ -1,12 +1,16 @@
 import { IRoute } from "../interfaces/route";
-import Dashboard from "../pages/Admin/Dashboard/Dashboard";
+import Dashboard from "../pages/Admin/Dashboard";
 import Product from "../pages/Admin/Product/Product";
 import ProductCustom from "../pages/Admin/Product/ProductCustom";
-import Customer from "../pages/Admin/Customer/Customer";
-import Course from "../pages/Admin/Course/Course";
-import Order from "../pages/Admin/Order/Order";
-import Home from "../pages/Home/Home";
-import UserForm from "../pages/UserForm/UserForm";
+import Customer from "../pages/Admin/Customer";
+import Course from "../pages/Admin/Course";
+import Order from "../pages/Admin/Order";
+import Home from "../pages/Home";
+import UserForm from "../pages/UserForm";
+import AboutUs from "../pages/AboutUs";
+import Contact from "../pages/Contact";
+import ProductList from "../pages/Product/ProductList";
+import ProductDetail from "../pages/Product/ProductDetail";
 
 export const adminRoutes: IRoute[] = [
   {
@@ -63,6 +67,16 @@ export const homeRoutes: IRoute[] = [
     component: Home,
   },
   {
+    path: "/about",
+    exact: true,
+    component: AboutUs,
+  },
+  {
+    path: "/contact",
+    exact: true,
+    component: Contact,
+  },
+  {
     path: "/signIn",
     exact: true,
     component: UserForm,
@@ -72,4 +86,19 @@ export const homeRoutes: IRoute[] = [
     exact: true,
     component: UserForm,
   },
-]
+  {
+    path: "/productByCategory/:id",
+    exact: true,
+    component: ProductList,
+  },
+  {
+    path: "/productByProducer/:id",
+    exact: true,
+    component: ProductList,
+  },
+  {
+    path: "/productDetail/:id",
+    exact: true,
+    component: ProductDetail,
+  },
+];

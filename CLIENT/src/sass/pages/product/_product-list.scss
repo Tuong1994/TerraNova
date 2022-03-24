@@ -1,0 +1,110 @@
+.product-list {
+  padding: $p-10 * 5;
+  .product-list__title {
+    padding: $p-10;
+    font-size: $h5;
+    color: $tSecondary;
+    background: $secondary;
+    @include respond(phone) {
+      font-size: $h6;
+    }
+  }
+  .product-list__wrapper {
+    width: $w-100;
+    margin: 0 auto;
+    padding: $p-10 * 5 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    .wrapper__link {
+      display: block;
+      width: $w-100 / 5.3;
+      height: auto;
+      flex-grow: 1;
+      flex-shrink: 1;
+      margin: $m-5;
+      text-decoration: none;
+      color: $tPrimary;
+      .link__card {
+        width: $w-100;
+        padding: $p-10;
+        position: relative;
+        z-index: 1;
+        transition: all 0.5s ease;
+        &:hover {
+          color: $tSecondary;
+        }
+        &:hover .card__image img {
+          transform: scale(1.2, 1.2);
+        }
+        &:hover::after {
+          height: $h-100;
+        }
+        &::after {
+          content: "";
+          width: $w-100;
+          height: 0;
+          background: $secondary;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: -1;
+          transition: all 0.5s ease;
+        }
+        .card__image {
+          width: $w-100;
+          height: $h-10 * 20;
+          border-radius: $lightRound;
+          overflow: hidden;
+          .img {
+            transform: scale(1, 1);
+            transition: all 0.5s ease;
+          }
+        }
+        .card__content {
+          width: $w-100;
+          margin: $m-10 * 2 0;
+          font-weight: $medium;
+          .content__name {
+            font-size: $body-1;
+            margin-bottom: $m-10;
+          }
+          .content__price {
+            font-size: $body-1;
+            color: $tRed;
+          }
+        }
+        .card__features {
+          width: $w-100;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .button--round {
+            font-size: $body-1;
+            justify-content: center;
+          }
+          .features__rate {
+            font-size: $body-2;
+            color: $tYellow;
+          }
+        }
+      }
+      @include respond(laptop) {
+        width: $w-100 / 4.2;
+      }
+      @include respond(extraTablet) {
+        width: $w-100 / 3.2;
+      }
+      @include respond(phone) {
+        width: $w-100 / 2.1;
+      }
+      @include respond(smallPhone) {
+        width: $w-100;
+      }
+    }
+  }
+  @include respond(laptop) {
+    padding: $p-10 * 5 $p-10 * 2;
+  }
+}

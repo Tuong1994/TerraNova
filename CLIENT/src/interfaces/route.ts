@@ -4,3 +4,8 @@ export interface IRoute {
     component?: any,
     props?: any
 }
+
+export interface IRouteParams {
+    id?: string,
+    categoryName?: string,
+}

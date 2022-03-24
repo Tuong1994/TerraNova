@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../../../components/Logo/Logo";
+import Logo from "../../../components/Logo";
 import Menu from "./Menu";
 import Setting from "./Setting";
 

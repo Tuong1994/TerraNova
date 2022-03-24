@@ -1,4 +1,4 @@
-const { Category } = require("../models");
+const { Category, Producer } = require("../models");
 
 const getCategoryList = async (req, res) => {
   try {
@@ -26,7 +26,32 @@ const getCategoryDetail = async (req, res) => {
   }
 };
 
+const getCategoryWithProducer = async (req, res) => {
+  try {
+    const categoryAndProducerList = await Category.findAll({
+      attributes: [["id", "categoryId"], "name"],
+      include: [
+        {
+          model: Producer,
+          attributes: [
+            ["id", "producerId"],
+            "name"
+          ],
+          as: "producerList",
+          through: {
+            attributes: [],
+          },
+        },
+      ],
+    });
+    res.status(200).send(categoryAndProducerList);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   getCategoryList,
   getCategoryDetail,
+  getCategoryWithProducer,
 };

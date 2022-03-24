@@ -13,10 +13,12 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       this.belongsToMany(Category, {
         through: Category_Producer,
-        foreignKey: "category_id"
+        foreignKey: "producer_id",
+        as: "producerList"
       })
       this.hasMany(Product, {
-        foreignKey: "producerId"
+        foreignKey: "producerId",
+        as: "productList",
       })
     }
   };

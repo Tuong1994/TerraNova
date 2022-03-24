@@ -1,38 +1,4 @@
-const { User, Product } = require("../../models");
-
-const checkExist = (model) => async (req, res, next) => {
-  const { account } = req.body;
-  const { userId } = req.query;
-  try {
-    // if (account) {
-    //   const account = await model.findOne({
-    //     where: {
-    //       account,
-    //     },
-    //   });
-    //   if (!account) {
-    //     next();
-    //   } else {
-    //     res.status(403).send(`Account ${account} is already exist`);
-    //   }
-    // }
-
-    if (userId) {
-      const userId = await model.findOne({
-        where: {
-          id: userId,
-        },
-      });
-      if (userId) {
-        next();
-      } else {
-        res.status(404).send(`Id ${id} not found`);
-      }
-    }
-  } catch (error) {
-    res.status(500).send(error);
-  }
-};
+const { User, Product, Producer, Category } = require("../../models");
 
 const checkUserId = async (req, res, next) => {
   const { userId } = req.query;
@@ -86,7 +52,51 @@ const checkProductId = async (req, res, next) => {
       if (product) {
         next();
       } else {
-        res.status(404).send(`Product not found`);
+        res.status(404).send(`Product id not found`);
+      }
+    } else {
+      res.status(400).send("Bad request");
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const checkProducerId = async (req, res, next) => {
+  const { producerId } = req.query;
+  try {
+    if (producerId) {
+      const producer = await Producer.findOne({
+        where: {
+          id: producerId,
+        },
+      });
+      if (producer) {
+        next();
+      } else {
+        res.status(404).send("Producer id not found");
+      }
+    } else {
+      res.status(400).send("Bad request");
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const checkCategoryId = async (req, res, next) => {
+  const { categoryId } = req.query;
+  try {
+    if (categoryId) {
+      const category = await Category.findOne({
+        where: {
+          id: categoryId,
+        },
+      });
+      if(category) {
+        next()
+      } else {
+        res.status(404).send("Category id not found")
       }
     } else {
       res.status(400).send("Bad request");
@@ -97,8 +107,9 @@ const checkProductId = async (req, res, next) => {
 };
 
 module.exports = {
-  checkExist,
   checkUserId,
   checkAccount,
-  checkProductId
+  checkProductId,
+  checkProducerId,
+  checkCategoryId,
 };
