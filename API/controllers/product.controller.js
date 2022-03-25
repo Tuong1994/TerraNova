@@ -1,9 +1,8 @@
+const { Category, Producer, Product, sequelize } = require("../models");
 const {
-  Category,
-  Producer,
-  Product,
-  sequelize,
-} = require("../models");
+  getProductFieldByCategory,
+  getProductFieldByProducer,
+} = require("../interface/product");
 
 const getProducerAndProduct = async (req, res) => {
   try {
@@ -38,30 +37,30 @@ const getProductList = async (req, res) => {
       products.image,
       products.price,
 
-      computerdescs.totalCores,
-      computerdescs.totalThreads,
-      computerdescs.baseFrequency,
-      computerdescs.cache,
-      computerdescs.busSpeed,
-      computerdescs.tdp,
-      computerdescs.socket,
-      computerdescs.chipset,
-      computerdescs.ram,
-      computerdescs.capacity,
-      computerdescs.ramBus,
-      computerdescs.type,
-      computerdescs.size,
-      computerdescs.graphicEngine,
-      computerdescs.videoMemory,
-      computerdescs.cudaCore,
-      computerdescs.memoryInterface,
-      computerdescs.model,
-      computerdescs.outputCapacity,
-      computerdescs.Efficiency
+      pcspecs.totalCores,
+      pcspecs.totalThreads,
+      pcspecs.baseFrequency,
+      pcspecs.cache,
+      pcspecs.busSpeed,
+      pcspecs.tdp,
+      pcspecs.socket,
+      pcspecs.chipset,
+      pcspecs.ram,
+      pcspecs.capacity,
+      pcspecs.ramBus,
+      pcspecs.type,
+      pcspecs.size,
+      pcspecs.graphicEngine,
+      pcspecs.videoMemory,
+      pcspecs.cudaCore,
+      pcspecs.memoryInterface,
+      pcspecs.model,
+      pcspecs.outputCapacity,
+      pcspecs.Efficiency
 
       from products
-      inner join computerdescs
-      on computerdescs.productId = products.id
+      inner join pcspecs
+      on pcspecs.productId = products.id
     `);
     if (page) {
       let total = result.length;
@@ -84,6 +83,7 @@ const getProductByCategory = async (req, res) => {
   const { categoryId, page, limits } = req.query;
   const pageNumber = parseInt(page);
   const limitItem = parseInt(limits);
+
   try {
     const productListByCategory = await Category.findOne({
       where: {
@@ -98,12 +98,23 @@ const getProductByCategory = async (req, res) => {
         },
       ],
     });
+
+    const categoryDetail = await Category.findOne({
+      where: {
+        id: categoryId,
+      },
+    });
+
     if (page) {
-      let total = productListByCategory.productList.length;
+      const [result] = await sequelize.query(
+        getProductFieldByCategory(categoryId)
+      );
+      let total = result.length;
       let start = (pageNumber - 1) * limitItem;
       let end = start + limitItem;
-      let productList = productListByCategory.productList.slice(start, end);
-      let name = productListByCategory.name;
+      let productList = result.slice(start, end);
+      let name = categoryDetail.name;
+
       res.status(200).send({
         totalProduct: total,
         page: page,
@@ -120,28 +131,39 @@ const getProductByCategory = async (req, res) => {
 };
 
 const getProductByProducer = async (req, res) => {
-  const { categoryId, producerId } = req.query;
-  try {
-    const [result] = await sequelize.query(`
-      select 
-      products.id as productId, 
-      products.name,
-      products.image,
-      products.price
+  const { categoryId, producerId, page, limits } = req.query;
+  const pageNumber = parseInt(page);
+  const limitItem = parseInt(limits);
 
-	    from products
-      inner join categories 
-      on categories.id = products.categoryId
-      inner join producers
-      on producers.id = products.producerId
-	    where categories.id = "${categoryId}" and producers.id = "${producerId}";
-    `);
+  try {
+    const [result] = await sequelize.query(
+      getProductFieldByProducer(categoryId, producerId)
+    );
+
     const producerDetail = await Producer.findOne({
       where: {
         id: producerId,
       },
-      attributes: ["name"],
     });
+
+    if (page) {
+      const [result] = await sequelize.query(
+        getProductFieldByProducer(categoryId, producerId)
+      );
+      let total = result.length;
+      let start = (pageNumber - 1) * limitItem;
+      let end = start + limitItem;
+      let productList = result.slice(start, end);
+      res.status(200).send({
+        totalProduct: total,
+        page: page,
+        limits: limits,
+        producerName: producerDetail.name,
+        productListPerPage: productList,
+      });
+      return;
+    }
+
     res.status(200).send({
       producerName: producerDetail.name,
       productList: result,
@@ -154,7 +176,8 @@ const getProductByProducer = async (req, res) => {
 const getAccessoriesDetail = async (req, res) => {
   const { productId } = req.query;
   try {
-      const [result] = await sequelize.query(`
+    const [result] = await sequelize.query(
+      `
       select
       products.id as productId,
       products.name,
@@ -164,35 +187,37 @@ const getAccessoriesDetail = async (req, res) => {
 
       producers.name as producerName,
 
-      computerdescs.totalCores,
-      computerdescs.totalThreads,
-      computerdescs.baseFrequency,
-      computerdescs.cache,
-      computerdescs.busSpeed,
-      computerdescs.tdp,
-      computerdescs.socket,
-      computerdescs.chipset,
-      computerdescs.ram,
-      computerdescs.capacity,
-      computerdescs.ramBus,
-      computerdescs.type,
-      computerdescs.size,
-      computerdescs.graphicEngine,
-      computerdescs.videoMemory,
-      computerdescs.cudaCore,
-      computerdescs.memoryInterface,
-      computerdescs.model,
-      computerdescs.outputCapacity,
-      computerdescs.Efficiency
+      pcspecs.totalCores,
+      pcspecs.totalThreads,
+      pcspecs.baseFrequency,
+      pcspecs.cache,
+      pcspecs.busSpeed,
+      pcspecs.tdp,
+      pcspecs.socket,
+      pcspecs.chipset,
+      pcspecs.ram,
+      pcspecs.capacity,
+      pcspecs.ramBus,
+      pcspecs.type,
+      pcspecs.size,
+      pcspecs.graphicEngine,
+      pcspecs.videoMemory,
+      pcspecs.cudaCore,
+      pcspecs.memoryInterface,
+      pcspecs.model,
+      pcspecs.outputCapacity,
+      pcspecs.Efficiency
       from products
-      inner join computerdescs
-      on computerdescs.productId = products.id
+      inner join pcspecs
+      on pcspecs.productId = products.id
       inner join producers
       on producers.id = products.producerId
       where products.id = "${productId}"
-    `, {
-      model: Product,
-    });
+    `,
+      {
+        model: Product,
+      }
+    );
     res.status(200).send(result);
   } catch (error) {
     res.status(500).send(error);

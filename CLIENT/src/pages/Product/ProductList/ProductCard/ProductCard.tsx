@@ -1,7 +1,7 @@
 import React from "react";
 import * as Card from "../../../../components/Card";
 import { Link } from "react-router-dom";
-import { IAccessories } from "../../../../models/Product/IProduct";
+import { IAccessories } from "../../../../models/Product/";
 
 interface ProductCardProps {
   product: IAccessories;

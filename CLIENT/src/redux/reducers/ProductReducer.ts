@@ -1,13 +1,9 @@
 import { EProductActionTypes } from "../actionTypes/ProductActionTypes";
-import { ICategory, IAccessories } from "../../models/Product/IProduct";
+import { ICategory, IAccessories } from "../../models/Product";
 import { ProductAction } from "../actions/ProductAction";
 
 interface IStateDefault {
   categoryList: ICategory[];
-  productByProducer: {
-    producerName?: string;
-    productList: IAccessories[];
-  };
   productDetail: IAccessories;
   productList: {
     totalProduct?: number;
@@ -16,14 +12,20 @@ interface IStateDefault {
     productListPerPage?: IAccessories[];
     categoryId?: string;
     categoryName?: string;
+    producerName?: string;
   };
 }
 
 const stateDefault: IStateDefault = {
   categoryList: [],
-  productByProducer: {
+  productList: {
+    page: 1,
+    totalProduct: 10,
+    limits: 10,
+    productListPerPage: [],
+    categoryId: "",
+    categoryName: "",
     producerName: "",
-    productList: [],
   },
   productDetail: {
     productId: "",
@@ -53,14 +55,6 @@ const stateDefault: IStateDefault = {
     outputCapacity: "",
     Efficiency: "",
   },
-  productList: {
-    page: 1,
-    totalProduct: 10,
-    limits: 10,
-    productListPerPage: [],
-    categoryId: "",
-    categoryName: "",
-  },
 };
 
 export const ProductReducer = (state = stateDefault, action: ProductAction) => {
@@ -79,7 +73,7 @@ export const ProductReducer = (state = stateDefault, action: ProductAction) => {
     }
     case EProductActionTypes.GET_PRODUCT_BY_PRODUCER: {
       let newState = { ...state };
-      newState.productByProducer = action.payload;
+      newState.productList = action.payload;
       state = newState;
       return { ...state };
     }

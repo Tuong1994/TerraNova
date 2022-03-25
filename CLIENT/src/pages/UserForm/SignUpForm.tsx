@@ -2,7 +2,7 @@ import React from "react";
 import * as yup from "yup";
 import * as FormControl from "../../components/Fields";
 import { Formik, Form, Field } from "formik";
-import { IUser } from "../../models/User/IUser";
+import { IUser } from "../../models/User";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../redux/store";
 import { EValidateMessage } from "../../interfaces/validateMessage";

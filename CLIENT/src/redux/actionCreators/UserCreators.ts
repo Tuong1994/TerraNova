@@ -2,7 +2,7 @@ import axiosClient from "../../axios";
 import * as apiPath from "../../paths/index";
 import { ELoadingActionTypes } from "./../actionTypes/LoadingActionTypes";
 import { EUserActionTypes } from "../actionTypes/UserActionTypes";
-import { IUser } from "../../models/User/IUser";
+import { IUser } from "../../models/User";
 import { Dispatch } from "redux";
 import { ACCESSTOKEN, ACCOUNT } from "../../configs/setting";
 import { history } from "../../App";

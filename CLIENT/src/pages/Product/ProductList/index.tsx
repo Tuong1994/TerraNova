@@ -2,9 +2,10 @@ import React from "react";
 import * as customHook from "../../../hooks";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
-import { RouteComponentProps, Link } from "react-router-dom";
+import { RouteComponentProps } from "react-router-dom";
 import { IRouteParams } from "../../../interfaces/route";
-import { getProductByCategory } from "../../../redux/actionCreators/ProductCreators";
+import { getProductByCategory, getProductByProducer } from "../../../redux/actionCreators/ProductCreators";
+import { IQueryList } from "../../../interfaces/query";
 import Pagination from "../../../components/Pagination";
 import DataLoading from "../../../components/Loading/DataLoading";
 import NoData from "../../../components/NoData";
@@ -13,12 +14,14 @@ import ProductCard from "./ProductCard/ProductCard";
 const ProductList: React.FunctionComponent<
   RouteComponentProps<IRouteParams>
 > = (props) => {
-  const { productList, productByProducer } = useSelector(
+
+  const { productList } = useSelector(
     (state: ReducerState) => state.ProductReducer
   );
   const { page } = useSelector(
     (state: ReducerState) => state.PaginationReducer
   );
+
   const dispatch = useDispatch();
   const { limits, totalProduct } = productList;
   const path = props.match.path;
@@ -26,15 +29,32 @@ const ProductList: React.FunctionComponent<
   customHook.useLoading(productList);
 
   React.useEffect(() => {
-    const id = props.match.params.id;
-    let query = {
-      categoryId: id,
-      page: page,
-      limits: 10,
-    };
-    dispatch(getProductByCategory(query));
+    if (path.includes("productByCategory")) {
+      const id = props.match.params.id;
+      let query: IQueryList = {
+        categoryId: id,
+        page: page,
+        limits: 10,
+      };
+      dispatch(getProductByCategory(query));
+      
+    } else if (path.includes("productByProducer")) {
+      if(localStorage.getItem("query")) {
+        let ids: any = {};
+        let obj = localStorage.getItem("query");
+        ids = JSON.parse(obj || "");
+        if(ids) {
+          const query: IQueryList = {
+            categoryId: ids.categoryId,
+            producerId: ids.producerId 
+          }
+          dispatch(getProductByProducer(query));
+        }
+      }
+    }
   }, [page]);
 
+  // Show product by category
   const renderProductByCategory = () => {
     if (productList) {
       const { productListPerPage } = productList;
@@ -48,16 +68,21 @@ const ProductList: React.FunctionComponent<
     }
   };
 
+  // Show product by producer
   const renderProductByProducer = () => {
-    if (productByProducer && productByProducer.productList.length > 0) {
-      return productByProducer.productList.map((product, index) => {
-        return <ProductCard product={product} key={index} />;
-      });
-    } else {
-      return <NoData />;
+    if (productList) {
+      const { productListPerPage } = productList;
+      if (productListPerPage && productListPerPage.length > 0) {
+        return productListPerPage?.map((product, index) => {
+          return <ProductCard product={product} key={index} />;
+        });
+      } else {
+        return <NoData />;
+      }
     }
   };
 
+  // Show product list by path
   const renderProduct = () => {
     if (path.includes("productByCategory")) {
       return renderProductByCategory();
@@ -66,11 +91,12 @@ const ProductList: React.FunctionComponent<
     }
   };
 
+  // render title by path
   const renderTitle = () => {
     if (path.includes("productByCategory")) {
       return productList.categoryName;
     } else if (path.includes("productByProducer")) {
-      return `${productByProducer.producerName} PRODUCTS`;
+      return `${productList.producerName} PRODUCTS`;
     }
   };
 
@@ -83,6 +109,7 @@ const ProductList: React.FunctionComponent<
         <DataLoading />
         {renderProduct()}
       </div>
+
       <Pagination perPage={limits} total={totalProduct} />
     </div>
   );

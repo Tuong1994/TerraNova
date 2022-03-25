@@ -64,7 +64,7 @@ module.exports = {
       outputCapacity: {
         type: Sequelize.STRING,
       },
-      Efficiency: {
+      efficiency: {
         type: Sequelize.STRING,
       },
       productId: {

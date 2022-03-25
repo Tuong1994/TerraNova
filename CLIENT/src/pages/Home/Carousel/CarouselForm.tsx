@@ -3,7 +3,7 @@ import * as yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
-import { IUser } from "../../../models/User/IUser";
+import { IUser } from "../../../models/User/";
 import { ELoadingActionTypes } from "../../../redux/actionTypes/LoadingActionTypes";
 import { EModalActionTypes } from "../../../redux/actionTypes/ModalActionTypes";
 import { EUserActionTypes } from "../../../redux/actionTypes/UserActionTypes";

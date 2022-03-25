@@ -1,7 +1,7 @@
 import { ACCESSTOKEN, ACCOUNT } from "./../../configs/setting";
 import { UserAction } from "../actions/UserAction";
 import { EUserActionTypes } from "../actionTypes/UserActionTypes";
-import { IUser } from "../../models/User/IUser";
+import { IUser } from "../../models/User";
 
 interface IUserStateDefault {
   consultationDetail: {

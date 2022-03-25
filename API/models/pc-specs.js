@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
       memoryInterface: DataTypes.STRING,
       model: DataTypes.STRING,
       outputCapacity: DataTypes.STRING,
-      Efficiency: DataTypes.STRING,
+      efficiency: DataTypes.STRING,
       productId: DataTypes.STRING,
     },
     {

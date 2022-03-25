@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IOrder } from "../../../../models/Order/IOrder";
-import { IAccessories } from "../../../../models/Product/IProduct";
+import { IOrder } from "../../../../models/Order";
+import { IAccessories } from "../../../../models/Product";
 import { EOrderActionTypes } from "../../../../redux/actionTypes/OrderActionTypes";
 import { ReducerState } from "../../../../redux/store";
 

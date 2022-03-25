@@ -5,6 +5,9 @@ import { getProductByCategory, getProductByProducer } from "../../redux/actionCr
 import { ELoadingActionTypes } from "../../redux/actionTypes/LoadingActionTypes";
 import Menu from "./Menu";
 
+const _defaultCurrentPage = 1;
+const _defaultItemPerPage = 10;
+
 const HeaderMenu: React.FunctionComponent<{}> = (props) => {
   const dispatch = useDispatch();
 
@@ -14,8 +17,8 @@ const HeaderMenu: React.FunctionComponent<{}> = (props) => {
     });
     let query = {
       categoryId: id,
-      page: 1,
-      limits: 10,
+      page: _defaultCurrentPage,
+      limits: _defaultItemPerPage,
     };
     localStorage.setItem("categoryId", id);
     dispatch(getProductByCategory(query));
@@ -32,7 +35,9 @@ const HeaderMenu: React.FunctionComponent<{}> = (props) => {
     });
     let query = {
       categoryId: categoryId,
-      producerId: producerId
+      producerId: producerId,
+      page: _defaultCurrentPage,
+      limits: _defaultItemPerPage,
     };
     dispatch(getProductByProducer(query));
     setTimeout(() => {
