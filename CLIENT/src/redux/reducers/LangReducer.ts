@@ -1,4 +1,4 @@
-import { LangActionTypes } from "./../actionTypes/LangActionTypes";
+import { ELangActionTypes } from "./../actionTypes/LangActionTypes";
 import { LangAction } from "../actions/LangAction";
 
 interface ILangStateDefault {
@@ -6,18 +6,18 @@ interface ILangStateDefault {
 }
 
 const stateDefault: ILangStateDefault = {
-  lang: "",
+  lang: "ENG",
 };
 
 export const LangReducer = (state = stateDefault, action: LangAction) => {
   switch (action.type) {
-    case LangActionTypes.CHANGE_ENG: {
+    case ELangActionTypes.CHANGE_ENG: {
       let newState = { ...state };
       newState.lang = action.payload;
       state = newState;
       return { ...state };
     }
-    case LangActionTypes.CHANGE_VN: {
+    case ELangActionTypes.CHANGE_VN: {
       let newState = { ...state };
       newState.lang = action.payload;
       state = newState;

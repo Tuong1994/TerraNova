@@ -1,6 +1,13 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { ReducerState } from "../../../redux/store";
+import utils from "../../../utils";
 
 const Achievement: React.FunctionComponent<{}> = (props) => {
+  const { lang } = useSelector((state: ReducerState) => state.LangReducer);
+
+  const langs = utils.changeLang(lang);
+
   return (
     <div className="home__achievement">
       <div className="achievement__wrapper">
@@ -8,7 +15,7 @@ const Achievement: React.FunctionComponent<{}> = (props) => {
           <i className="far fa-building"></i>
         </div>
         <div className="wrapper__number">02</div>
-        <div className="wrapper__title">Branches</div>
+        <div className="wrapper__title">{langs?.home.achievement.branches}</div>
       </div>
 
       <div className="achievement__wrapper">
@@ -16,7 +23,7 @@ const Achievement: React.FunctionComponent<{}> = (props) => {
           <i className="fas fa-users"></i>
         </div>
         <div className="wrapper__number">15730</div>
-        <div className="wrapper__title">Customers</div>
+        <div className="wrapper__title">{langs?.home.achievement.customers}</div>
       </div>
 
       <div className="achievement__wrapper">
@@ -24,7 +31,7 @@ const Achievement: React.FunctionComponent<{}> = (props) => {
           <i className="fas fa-handshake"></i>
         </div>
         <div className="wrapper__number">08</div>
-        <div className="wrapper__title">Partners</div>
+        <div className="wrapper__title">{langs?.home.achievement.partners}</div>
       </div>
     </div>
   );

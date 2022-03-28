@@ -7,10 +7,11 @@ import { ReducerState } from "../../../../redux/store";
 
 interface IProductInfoProps {
   product: IAccessories;
+  langs: any;
 }
 
 const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
-  const { product } = props;
+  const { product, langs } = props;
 
   const { order } = useSelector((state: ReducerState) => state.OrderReducer);
   const [quanlity, setQuanlity] = React.useState<number>(0);
@@ -28,8 +29,8 @@ const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
       productName: product.name,
       quanlity: quanlity,
       price: product.price,
-    })
-  }, [product, quanlity])
+    });
+  }, [product, quanlity]);
 
   const handleIncrease = () => {
     setQuanlity(quanlity + 1);
@@ -44,18 +45,26 @@ const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
       type: EOrderActionTypes.ADD_STOCK,
       payload: stock,
     });
-  }
+  };
 
   return (
     <div className="content__info">
-      <h3 className="info__title">General information</h3>
+      <h3 className="info__title">{langs?.productDetail.generalInfo}</h3>
 
       <ul className="info__list">
-        <li className="list__content">Producer : <strong>{product.producerName}</strong></li>
-        <li className="list__content">Warranty : <strong>36 months</strong></li>
-        <li className="list__content">Status : <strong>new</strong></li>
         <li className="list__content">
-          Price : <span>{product.price?.toLocaleString()} VND</span>
+          {langs?.productDetail.producer} :{" "}
+          <strong>{product.producerName}</strong>
+        </li>
+        <li className="list__content">
+          {langs?.productDetail.warranty} : <strong>36 {langs?.time.months}</strong>
+        </li>
+        <li className="list__content">
+          {langs?.productDetail.status} : <strong>{langs?.status.new}</strong>
+        </li>
+        <li className="list__content">
+          {langs?.productDetail.price} :{" "}
+          <span>{product.price?.toLocaleString()} VND</span>
         </li>
       </ul>
 
@@ -77,7 +86,7 @@ const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
       </div>
 
       <div className="info__button" onClick={handleOrder}>
-        <div className="button--submit">Add to cart</div>
+        <div className="button--submit">{langs?.button.addToCart} </div>
       </div>
     </div>
   );

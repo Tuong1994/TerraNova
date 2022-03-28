@@ -94,15 +94,23 @@
         }
       }
     }
-    .content__relate {
+    .content__related {
       width: $w-100 - 70;
       height: $h-10 * 35;
       padding: $p-10;
-      .relate__item {
+      .related__title {
+        font-size: $subtitle;
+        font-weight: $semiBold;
+        padding: $p-10 0;
+        margin-bottom: $m-10;
+        border-bottom: 1px solid $borderGrey;
+      }
+      .related__item {
         width: $w-100;
         overflow: unset;
-        padding: $p-5;
+        padding: $p-10;
         margin: $m-10 0;
+        cursor: pointer;
         .item__inner {
           .inner__content {
             display: flex;
@@ -112,7 +120,17 @@
               height: $h-10 * 5;
               margin-right: $m-10;
             }
-            .content__name {
+            .content__info {
+              width: $w-100;
+              p {
+                &:first-child {
+                  margin-bottom: $m-10;
+                }
+                &:last-child {
+                  font-size: $body-1;
+                  font-weight: $semiBold;
+                }
+              }
             }
           }
         }

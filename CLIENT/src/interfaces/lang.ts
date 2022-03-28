@@ -1,4 +1,4 @@
-export enum langs {
+export enum ELangs {
     ENG = "ENG",
     VN = "VN",
 }

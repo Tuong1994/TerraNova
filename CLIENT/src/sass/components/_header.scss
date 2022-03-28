@@ -191,11 +191,10 @@
     }
   }
   .header__features {
-    width: $w-100 - 80;
+    width: $w-100 - 75;
     display: flex;
-    justify-content: space-between;
     .features__login {
-      width: $w-100;
+      width: $w-100 - 20;
       .login__wrapper,
       .login__user {
         display: flex;

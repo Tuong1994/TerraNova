@@ -12,12 +12,17 @@ import { phoneRegex } from "../../../configs/regex";
 import InputField from "../../../components/Fields/InputField/InputField";
 import Button from "../../../components/Button";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";
+import utils from "../../../utils";
 
 const CarouselForm: React.FunctionComponent<{}> = (props) => {
   const { buttonLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
   );
+  const { lang } = useSelector((state: ReducerState) => state.LangReducer);
   const dispatch = useDispatch();
+  
+  const langs = utils.changeLang(lang);
+
   const initialValues = {
     name: "",
     email: "",
@@ -60,7 +65,7 @@ const CarouselForm: React.FunctionComponent<{}> = (props) => {
   };
   return (
     <div className="carousel__form">
-      <h4 className="form__title">Consultation</h4>
+      <h4 className="form__title">{langs?.home.consultation.consultation}</h4>
       <div className="form__line"></div>
       <div className="form__wrapper">
         <Formik
@@ -75,7 +80,7 @@ const CarouselForm: React.FunctionComponent<{}> = (props) => {
                 <Field
                   name="name"
                   component={InputField}
-                  label="Name"
+                  label={langs?.home.consultation.name}
                   placeholder=" "
                   type="text"
                   icon={<i className="fas fa-user"></i>}
@@ -87,7 +92,7 @@ const CarouselForm: React.FunctionComponent<{}> = (props) => {
                 <Field
                   name="email"
                   component={InputField}
-                  label="Email"
+                  label={langs?.home.consultation.email}
                   placeholder=" "
                   type="text"
                   icon={<i className="fas fa-envelope"></i>}
@@ -99,7 +104,7 @@ const CarouselForm: React.FunctionComponent<{}> = (props) => {
                 <Field
                   name="phone"
                   component={InputField}
-                  label="Phone"
+                  label={langs?.home.consultation.phone}
                   placeholder=" "
                   type="text"
                   icon={<i className="fas fa-phone"></i>}
@@ -111,7 +116,7 @@ const CarouselForm: React.FunctionComponent<{}> = (props) => {
                 <div className="wrapper__button">
                   {!isValid ? (
                     <Button type="button" className="button--disabled">
-                      Submit
+                      {langs?.button.submit}
                     </Button>
                   ) : (
                     <Button
@@ -124,7 +129,7 @@ const CarouselForm: React.FunctionComponent<{}> = (props) => {
                       isDisabled={!isValid || isSubmitting}
                     >
                       <ButtonLoading />
-                      <span>Submit</span>
+                      <span>{langs?.button.submit}</span>
                     </Button>
                   )}
                 </div>

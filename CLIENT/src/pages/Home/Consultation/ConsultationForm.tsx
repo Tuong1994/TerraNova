@@ -12,12 +12,17 @@ import { EValidateMessage } from "../../../interfaces/validateMessage";
 import { phoneRegex } from "../../../configs/regex";
 import Button from "../../../components/Button";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";
+import utils from "../../../utils";
 
 const ConsultationForm: React.FunctionComponent<{}> = (props) => {
   const { buttonLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
   );
+  const { lang } = useSelector((state: ReducerState) => state.LangReducer);
   const dispatch = useDispatch();
+
+  const langs = utils.changeLang(lang);
+
   const initialValues = {
     name: "",
     email: "",
@@ -61,7 +66,7 @@ const ConsultationForm: React.FunctionComponent<{}> = (props) => {
 
   return (
     <div className="consultation__form">
-      <div className="form__title">Sign up for consultation</div>
+      <div className="form__title">{langs?.home.consultation.signUpConsultation}</div>
       <div className="form__line"></div>
       <div className="form__wrapper">
         <Formik
@@ -76,7 +81,7 @@ const ConsultationForm: React.FunctionComponent<{}> = (props) => {
                 <Field
                   name="name"
                   component={FormControl.Input}
-                  label="Name"
+                  label={langs?.home.consultation.name}
                   placeholder=" "
                   type="text"
                   icon={<i className="fas fa-user"></i>}
@@ -88,7 +93,7 @@ const ConsultationForm: React.FunctionComponent<{}> = (props) => {
                 <Field
                   name="email"
                   component={FormControl.Input}
-                  label="Email"
+                  label={langs?.home.consultation.email}
                   placeholder=" "
                   type="text"
                   icon={<i className="fas fa-envelope"></i>}
@@ -100,7 +105,7 @@ const ConsultationForm: React.FunctionComponent<{}> = (props) => {
                 <Field
                   name="phone"
                   component={FormControl.Input}
-                  label="Phone"
+                  label={langs?.home.consultation.phone}
                   placeholder=" "
                   type="text"
                   icon={<i className="fas fa-phone"></i>}
@@ -112,7 +117,7 @@ const ConsultationForm: React.FunctionComponent<{}> = (props) => {
                 <div className="wrapper__button">
                   {!isValid ? (
                     <Button type="button" className="button--disabled">
-                      Submit
+                      {langs?.button.submit}
                     </Button>
                   ) : (
                     <Button
@@ -125,7 +130,7 @@ const ConsultationForm: React.FunctionComponent<{}> = (props) => {
                       isDisabled={!isValid || isSubmitting}
                     >
                       <ButtonLoading />
-                      <span>Submit</span>
+                      <span>{langs?.button.submit}</span>
                     </Button>
                   )}
                 </div>

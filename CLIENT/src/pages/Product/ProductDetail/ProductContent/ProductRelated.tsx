@@ -3,12 +3,16 @@ import * as Card from "../../../../components/Card";
 import { useSelector, useDispatch } from "react-redux";
 import { ReducerState } from "../../../../redux/store";
 import { getProductByProducer } from "../../../../redux/actionCreators/ProductCreators";
-import { IAccessories } from "../../../../models/Product";
 import { IQueryList } from "../../../../interfaces/query";
+import { history } from "../../../../App";
 
-interface ProducRelatedProps {}
+interface ProducRelatedProps {
+  langs: any;
+  getProductDetail: (id?: string) => void;
+}
 
 const ProductRelated: React.FunctionComponent<ProducRelatedProps> = (props) => {
+  const { langs, getProductDetail } = props;
 
   const { productList } = useSelector(
     (state: ReducerState) => state.ProductReducer
@@ -37,7 +41,16 @@ const ProductRelated: React.FunctionComponent<ProducRelatedProps> = (props) => {
       if (productListPerPage && productListPerPage?.length > 0) {
         return productListPerPage?.map((product, index) => {
           return (
-            <Card.CardWrapper className="relate__item">
+            <Card.CardWrapper
+              className="related__item"
+              onClick={() => {
+                history.push(`/productDetail/${product?.productId}`);
+                document.location.reload();
+                setTimeout(() => {
+                  getProductDetail(product?.productId);
+                }, 1000);
+              }}
+            >
               <Card.Body key={index} className="item__inner">
                 <div className="inner__content">
                   <img
@@ -45,10 +58,10 @@ const ProductRelated: React.FunctionComponent<ProducRelatedProps> = (props) => {
                     src="../img/product_img.jpg"
                     alt="img"
                   />
-                  <div className="content__name">
+                  <div className="content__info">
                     <p>{product.name}</p>
                     <p>
-                      Price :{" "}
+                      {langs?.productDetail.price} :{" "}
                       <strong>{product.price?.toLocaleString()} VND</strong>
                     </p>
                   </div>
@@ -62,7 +75,8 @@ const ProductRelated: React.FunctionComponent<ProducRelatedProps> = (props) => {
   };
 
   return (
-    <Card.CardWrapper className="content__relate">
+    <Card.CardWrapper className="content__related">
+      <h3 className="related__title">{langs?.productDetail.related}</h3>
       {renderItem()}
     </Card.CardWrapper>
   );

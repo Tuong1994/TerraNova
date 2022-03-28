@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import * as customHook from "../../hooks";
-import { LangActionTypes } from "../../redux/actionTypes/LangActionTypes";
+import { ELangActionTypes } from "../../redux/actionTypes/LangActionTypes";
+import { ELoadingActionTypes } from "../../redux/actionTypes/LoadingActionTypes";
 
 interface TranslateProps {
   className?: string;
@@ -11,8 +12,21 @@ const Translate: React.FunctionComponent<TranslateProps> = (props) => {
   const { className } = props;
 
   const [showMenu, setShowMenu] = React.useState<boolean>(false);
+
   const menuRef = React.useRef(null);
-  const dispatch = useDispatch()
+
+  const dispatch = useDispatch();
+
+  const activeLoading = () => {
+    dispatch({
+      type: ELoadingActionTypes.OPEN_PAGE_LOADING,
+    });
+    setTimeout(() => {
+      dispatch({
+        type: ELoadingActionTypes.CLOSE_PAGE_LOADING,
+      });
+    }, 2000);
+  };
 
   customHook.useClickOutSide(menuRef, setShowMenu);
 
@@ -30,18 +44,34 @@ const Translate: React.FunctionComponent<TranslateProps> = (props) => {
             : "translate__menu"
         }
       >
-        <div className="menu__item" onClick={() => {
-          dispatch({
-            type: LangActionTypes.CHANGE_VN,
-            payload: "VN"
-          })
-        }}>VN</div>
-        <div className="menu__item" onClick={() => {
-          dispatch({
-            type: LangActionTypes.CHANGE_ENG,
-            payload: "ENG"
-          })
-        }}>ENG</div>
+        <div
+          className="menu__item"
+          onClick={() => {
+            activeLoading();
+            setTimeout(() => {
+              dispatch({
+                type: ELangActionTypes.CHANGE_VN,
+                payload: "VN",
+              });
+            }, 1000);
+          }}
+        >
+          VN
+        </div>
+        <div
+          className="menu__item"
+          onClick={() => {
+            activeLoading();
+            setTimeout(() => {
+              dispatch({
+                type: ELangActionTypes.CHANGE_ENG,
+                payload: "ENG",
+              });
+            }, 1000);
+          }}
+        >
+          ENG
+        </div>
       </div>
     </div>
   );

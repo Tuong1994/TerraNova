@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { headerMenuEng, headerMenuVN } from "../../configs/menuList";
-import { langs } from "../../interfaces/lang";
+import { ELangs } from "../../interfaces/lang";
 import {
   getProductByCategory,
   getProductByProducer,
@@ -56,7 +56,7 @@ const HeaderMenu: React.FunctionComponent<HeaderMenuProps> = (props) => {
   };
 
   const renderMenuData = () => {
-    if (lang === langs.ENG) {
+    if (lang === ELangs.ENG) {
       return headerMenuEng.map((menu: any, index: number) => {
         return (
           <Menu
@@ -67,7 +67,7 @@ const HeaderMenu: React.FunctionComponent<HeaderMenuProps> = (props) => {
           />
         );
       });
-    } else if (lang === langs.VN) {
+    } else if (lang === ELangs.VN) {
       return headerMenuVN.map((menu: any, index: number) => {
         return (
           <Menu

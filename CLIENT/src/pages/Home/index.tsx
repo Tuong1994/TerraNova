@@ -4,14 +4,14 @@ import * as Modal from "../../components/Modal";
 import { EModalTitle } from "../../interfaces/modalTitle";
 import { useSelector } from "react-redux";
 import { ReducerState } from "../../redux/store";
-import Carousel from "./Carousel/Carousel";
-import Categories from "./Categories/Categories";
+import Carousel from "./Carousel";
+import Categories from "./Categories";
 import PCBanner from "./Banner/PCBanner";
-import Partners from "./Partners/Partners";
+import Partners from "./Partners";
 import CourseBanner from "./Banner/CourseBanner";
-import Achievement from "./Achievement/Achievement";
+import Achievement from "./Achievement";
 import MovieBanner from "./Banner/MovieBanner";
-import Consultation from "./Consultation/Consultation";
+import Consultation from "./Consultation";
 
 const Home: React.FunctionComponent<{}> = (props) => {
   const { isShowing } = useSelector(

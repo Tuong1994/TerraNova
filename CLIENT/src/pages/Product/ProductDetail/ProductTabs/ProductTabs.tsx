@@ -4,10 +4,11 @@ import ProductSpecs from "./ProductSpecs";
 
 interface IProductTabsProps {
   product: IAccessories;
+  langs: any;
 }
 
 const ProductTabs: React.FunctionComponent<IProductTabsProps> = (props) => {
-  const { product } = props;
+  const { product, langs } = props;
   const [tabsActive, setTabsActive] = React.useState<number>(1);
   return (
     <div className="tabs__wrapper">
@@ -20,7 +21,7 @@ const ProductTabs: React.FunctionComponent<IProductTabsProps> = (props) => {
             setTabsActive(1);
           }}
         >
-          Specifications
+          {langs?.productDetail.specs}
         </div>
         <div
           className={
@@ -30,16 +31,28 @@ const ProductTabs: React.FunctionComponent<IProductTabsProps> = (props) => {
             setTabsActive(2);
           }}
         >
-          Comments
+          {langs?.productDetail.comments}
         </div>
         <div className="title__line"></div>
       </div>
-      
+
       <div className="wrapper__content">
-        <div className={tabsActive === 1 ? "content__inner content__inner--active" : "content__inner"}>
+        <div
+          className={
+            tabsActive === 1
+              ? "content__inner content__inner--active"
+              : "content__inner"
+          }
+        >
           <ProductSpecs product={product} />
         </div>
-        <div className={tabsActive === 2 ? "content__inner content__inner--active" : "content__inner"}></div>
+        <div
+          className={
+            tabsActive === 2
+              ? "content__inner content__inner--active"
+              : "content__inner"
+          }
+        ></div>
       </div>
     </div>
   );

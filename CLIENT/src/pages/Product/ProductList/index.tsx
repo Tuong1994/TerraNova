@@ -8,11 +8,13 @@ import {
   getProductByCategory,
   getProductByProducer,
 } from "../../../redux/actionCreators/ProductCreators";
+import {ELangs} from "../../../interfaces/lang";
 import { IQueryList } from "../../../interfaces/query";
 import Pagination from "../../../components/Pagination";
 import DataLoading from "../../../components/Loading/DataLoading";
 import NoData from "../../../components/NoData";
 import ProductCard from "./ProductCard";
+import utils from "../../../utils";
 
 const ProductList: React.FunctionComponent<
   RouteComponentProps<IRouteParams>
@@ -23,10 +25,12 @@ const ProductList: React.FunctionComponent<
   const { page } = useSelector(
     (state: ReducerState) => state.PaginationReducer
   );
+  const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
   const dispatch = useDispatch();
   const { limits, totalProduct } = productList;
   const path = props.match.path;
+  const langs = utils.changeLang(lang);
 
   customHook.useLoading(productList);
 
@@ -97,7 +101,11 @@ const ProductList: React.FunctionComponent<
     if (path.includes("productByCategory")) {
       return productList.categoryName;
     } else if (path.includes("productByProducer")) {
-      return `${productList.producerName} PRODUCTS`;
+      if(lang === ELangs.ENG) {
+        return `${productList.producerName} ${langs?.productList.title}`
+      } else if (lang === ELangs.VN) {
+        return `${langs?.productList.title} ${productList.producerName}`
+      }
     }
   };
 

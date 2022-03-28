@@ -1,9 +1,18 @@
 import React from "react";
 import * as customHook from "../../../hooks/index";
+import { useSelector } from "react-redux";
+import { ReducerState } from "../../../redux/store";
+import utils from "../../../utils";
 
 const MovieBanner: React.FunctionComponent<{}> = (props) => {
+  const { lang } = useSelector((state: ReducerState) => state.LangReducer);
+
   const [reveal, setReveal] = React.useState<boolean>(false);
+
   const bannerRef = React.useRef<any>(null);
+
+  const langs = utils.changeLang(lang);
+
   customHook.useReveal(bannerRef, setReveal);
 
   return (
@@ -16,7 +25,7 @@ const MovieBanner: React.FunctionComponent<{}> = (props) => {
               : "wrapper__text wrapper__text-one"
           }
         >
-          MOVIES
+          {langs?.home.banner.title_3}
         </p>
         <p
           className={
@@ -25,7 +34,7 @@ const MovieBanner: React.FunctionComponent<{}> = (props) => {
               : "wrapper__text wrapper__text-two"
           }
         >
-          Enjoys with your family
+          {langs?.home.banner.content_3}
         </p>
       </div>
     </div>

@@ -14,11 +14,14 @@ const HeaderLogin: React.FunctionComponent<{}> = (props) => {
   const { buttonLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
   );
+  const { lang } = useSelector((state: ReducerState) => state.LangReducer);
   const [isShow, setIsShow] = React.useState<boolean>(false);
-  const dispatch = useDispatch();
   const menuSettingRef = React.useRef<any>(null);
+  const dispatch = useDispatch();
 
   customHook.useClickOutSide(menuSettingRef, setIsShow);
+
+  const langs = utils.changeLang(lang);
 
   const handleLogout = () => {
     dispatch({
@@ -62,7 +65,7 @@ const HeaderLogin: React.FunctionComponent<{}> = (props) => {
             ref={menuSettingRef}
           >
             <Link to="/" className="setting__link">
-              Account setting
+              {langs?.headerMenu.accountSetting}
             </Link>
             <div
               className={
@@ -73,7 +76,7 @@ const HeaderLogin: React.FunctionComponent<{}> = (props) => {
               onClick={handleLogout}
             >
               <ButtonLoading />
-              <span>Log out</span>
+              <span>{langs?.headerMenu.logOut}</span>
             </div>
           </div>
         </div>
@@ -82,10 +85,10 @@ const HeaderLogin: React.FunctionComponent<{}> = (props) => {
       return (
         <div className="login__wrapper">
           <Link to="/signIn" className="button--round">
-            Sign in
+            {langs?.headerMenu.signIn}
           </Link>
           <Link to="/signUp" className="button--round">
-            Sign up
+            {langs?.headerMenu.signUp}
           </Link>
           <Carts />
         </div>
