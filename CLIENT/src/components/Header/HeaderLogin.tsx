@@ -93,7 +93,7 @@ const HeaderLogin: React.FunctionComponent<{}> = (props) => {
     }
   };
 
-  return <div className="header__login">{renderLoginInfo()}</div>;
+  return <div className="features__login">{renderLoginInfo()}</div>;
 };
 
 export default HeaderLogin;

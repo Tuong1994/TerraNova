@@ -4,17 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
 import { RouteComponentProps } from "react-router-dom";
 import { IRouteParams } from "../../../interfaces/route";
-import { getProductByCategory, getProductByProducer } from "../../../redux/actionCreators/ProductCreators";
+import {
+  getProductByCategory,
+  getProductByProducer,
+} from "../../../redux/actionCreators/ProductCreators";
 import { IQueryList } from "../../../interfaces/query";
 import Pagination from "../../../components/Pagination";
 import DataLoading from "../../../components/Loading/DataLoading";
 import NoData from "../../../components/NoData";
-import ProductCard from "./ProductCard/ProductCard";
+import ProductCard from "./ProductCard";
 
 const ProductList: React.FunctionComponent<
   RouteComponentProps<IRouteParams>
 > = (props) => {
-
   const { productList } = useSelector(
     (state: ReducerState) => state.ProductReducer
   );
@@ -37,17 +39,16 @@ const ProductList: React.FunctionComponent<
         limits: 10,
       };
       dispatch(getProductByCategory(query));
-      
     } else if (path.includes("productByProducer")) {
-      if(localStorage.getItem("query")) {
+      if (localStorage.getItem("query")) {
         let ids: any = {};
         let obj = localStorage.getItem("query");
         ids = JSON.parse(obj || "");
-        if(ids) {
+        if (ids) {
           const query: IQueryList = {
             categoryId: ids.categoryId,
-            producerId: ids.producerId 
-          }
+            producerId: ids.producerId,
+          };
           dispatch(getProductByProducer(query));
         }
       }
@@ -106,8 +107,10 @@ const ProductList: React.FunctionComponent<
         <h3>{renderTitle()}</h3>
       </div>
       <div className="product-list__wrapper">
-        <DataLoading />
-        {renderProduct()}
+        <div className="wrapper__inner">
+          <DataLoading />
+          {renderProduct()}
+        </div>
       </div>
 
       <Pagination perPage={limits} total={totalProduct} />

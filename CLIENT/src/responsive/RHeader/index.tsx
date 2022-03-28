@@ -1,6 +1,6 @@
 import React from "react";
 import * as customHooks from "../../hooks/index";
-import { headerMenu } from "../../configs/menuList";
+import { headerMenuEng } from "../../configs/menuList";
 import { EMenuName } from "../../interfaces/menu";
 import { EUserActionTypes } from "../../redux/actionTypes/UserActionTypes";
 import { ELoadingActionTypes } from "../../redux/actionTypes/LoadingActionTypes";
@@ -24,7 +24,6 @@ const RHeaderMenu: React.FunctionComponent<IRHeaderMenuProps> = (props) => {
 
   const [menuData, setMenuData] = React.useState<any>([]);
   const [subMenuData, setSubMenuData] = React.useState<boolean>(false);
-  const [menuTemplate, setMenuTemplate] = React.useState<any>(headerMenu);
   const [isShow, setIsShow] = React.useState<boolean>(false);
 
   const menuRef = React.useRef(null);
@@ -33,7 +32,7 @@ const RHeaderMenu: React.FunctionComponent<IRHeaderMenuProps> = (props) => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    setMenuData(headerMenu);
+    setMenuData(headerMenuEng);
   }, []);
 
   customHooks.useClickOutSide(menuRef, setShowMenu);

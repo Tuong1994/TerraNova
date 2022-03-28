@@ -1,3 +1,4 @@
+import { LangReducer } from './reducers/LangReducer';
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import { OrderReducer } from './reducers/OrderReducer';
 import { UserReducer } from "./reducers/UserReducer";
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   LoadingReducer,
   ModalReducer,
   OrderReducer,
+  LangReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(reduxThunk));

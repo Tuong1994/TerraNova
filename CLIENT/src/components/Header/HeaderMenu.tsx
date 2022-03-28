@@ -1,14 +1,22 @@
 import React from "react";
-import { useDispatch} from "react-redux";
-import { headerMenu } from "../../configs/menuList";
-import { getProductByCategory, getProductByProducer } from "../../redux/actionCreators/ProductCreators";
+import { useDispatch, useSelector } from "react-redux";
+import { headerMenuEng, headerMenuVN } from "../../configs/menuList";
+import { langs } from "../../interfaces/lang";
+import {
+  getProductByCategory,
+  getProductByProducer,
+} from "../../redux/actionCreators/ProductCreators";
 import { ELoadingActionTypes } from "../../redux/actionTypes/LoadingActionTypes";
+import { ReducerState } from "../../redux/store";
 import Menu from "./Menu";
 
 const _defaultCurrentPage = 1;
 const _defaultItemPerPage = 10;
 
-const HeaderMenu: React.FunctionComponent<{}> = (props) => {
+interface HeaderMenuProps {}
+
+const HeaderMenu: React.FunctionComponent<HeaderMenuProps> = (props) => {
+  const { lang } = useSelector((state: ReducerState) => state.LangReducer);
   const dispatch = useDispatch();
 
   const productByCategory = (id: string) => {
@@ -45,21 +53,35 @@ const HeaderMenu: React.FunctionComponent<{}> = (props) => {
         type: ELoadingActionTypes.CLOSE_PAGE_LOADING,
       });
     }, 2000);
-  }
-
-  const renderMenuData = () => {
-    return headerMenu.map((menu: any, index: number) => {
-      return (
-       <Menu key={index} menu={menu} getProductByCategory={productByCategory} getProductByProducer={productByProducer} />
-      );
-    });
   };
 
-  return (
-    <ul className="header__menu">
-      {renderMenuData()}
-    </ul>
-  );
+  const renderMenuData = () => {
+    if (lang === langs.ENG) {
+      return headerMenuEng.map((menu: any, index: number) => {
+        return (
+          <Menu
+            key={index}
+            menu={menu}
+            getProductByCategory={productByCategory}
+            getProductByProducer={productByProducer}
+          />
+        );
+      });
+    } else if (lang === langs.VN) {
+      return headerMenuVN.map((menu: any, index: number) => {
+        return (
+          <Menu
+            key={index}
+            menu={menu}
+            getProductByCategory={productByCategory}
+            getProductByProducer={productByProducer}
+          />
+        );
+      });
+    }
+  };
+
+  return <ul className="header__menu">{renderMenuData()}</ul>;
 };
 
 export default HeaderMenu;

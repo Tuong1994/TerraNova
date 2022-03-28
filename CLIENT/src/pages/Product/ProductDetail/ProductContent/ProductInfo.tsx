@@ -11,6 +11,7 @@ interface IProductInfoProps {
 
 const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
   const { product } = props;
+
   const { order } = useSelector((state: ReducerState) => state.OrderReducer);
   const [quanlity, setQuanlity] = React.useState<number>(0);
   const [stock, setStock] = React.useState<IOrder>({
@@ -48,14 +49,16 @@ const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
   return (
     <div className="content__info">
       <h3 className="info__title">General information</h3>
+
       <ul className="info__list">
-        <li className="list__content">Producer: {product.producerName}</li>
-        <li className="list__content">Warranty: 36 months</li>
-        <li className="list__content">Status: new</li>
+        <li className="list__content">Producer : <strong>{product.producerName}</strong></li>
+        <li className="list__content">Warranty : <strong>36 months</strong></li>
+        <li className="list__content">Status : <strong>new</strong></li>
         <li className="list__content">
-          Price: <span>${product.price?.toLocaleString()}</span>
+          Price : <span>{product.price?.toLocaleString()} VND</span>
         </li>
       </ul>
+
       <div className="info__quantily">
         <div
           className={
@@ -72,8 +75,9 @@ const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
           +
         </div>
       </div>
+
       <div className="info__button" onClick={handleOrder}>
-        <div className="button--submit">Order</div>
+        <div className="button--submit">Add to cart</div>
       </div>
     </div>
   );

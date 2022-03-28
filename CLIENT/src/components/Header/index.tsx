@@ -3,7 +3,8 @@ import Logo from "../Logo";
 import HeaderMenu from "./HeaderMenu";
 import HeaderLogin from "./HeaderLogin";
 import HeaderButton from "./HeaderButton";
-import RHeaderMenu from "../../responsive/RHeader/RHeaderMenu";
+import RHeaderMenu from "../../responsive/RHeader";
+import Translate from "../Translate";
 
 const Header: React.FunctionComponent<{}> = (props) => {
   const [showMenu, setShowMenu] = React.useState<boolean>(false);
@@ -25,12 +26,13 @@ const Header: React.FunctionComponent<{}> = (props) => {
   }, [props]);
 
   return (
-    <div
-      className={headerActive ? "header header--active" : "header"}
-    >
+    <div className={headerActive ? "header header--active" : "header"}>
       <Logo className="header__logo" />
       <HeaderMenu />
-      <HeaderLogin />
+      <div className="header__features">
+        <HeaderLogin />
+        <Translate className="features__translate" />
+      </div>
       <HeaderButton setShowMenu={setShowMenu} />
       <RHeaderMenu showMenu={showMenu} setShowMenu={setShowMenu} />
     </div>

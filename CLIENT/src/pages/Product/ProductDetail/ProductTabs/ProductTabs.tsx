@@ -34,11 +34,12 @@ const ProductTabs: React.FunctionComponent<IProductTabsProps> = (props) => {
         </div>
         <div className="title__line"></div>
       </div>
+      
       <div className="wrapper__content">
-        <div className="content__inner">
-          <ProductSpecs active={tabsActive} product={product} />
+        <div className={tabsActive === 1 ? "content__inner content__inner--active" : "content__inner"}>
+          <ProductSpecs product={product} />
         </div>
-        <div className="content__inner"></div>
+        <div className={tabsActive === 2 ? "content__inner content__inner--active" : "content__inner"}></div>
       </div>
     </div>
   );

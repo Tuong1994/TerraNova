@@ -1,33 +1,21 @@
 import React from "react";
 import { IAccessories } from "../../../../models/Product";
+import SpecsItem from "./SpecsItem";
 
 interface ProductSpecsProps {
-  product?: IAccessories;
-  active?: number;
+  product: IAccessories;
 }
 
-const ProductSpecs: React.FunctionComponent<
-  ProductSpecsProps
-> = (props) => {
-  const { active, product } = props;
-  console.log(product);
-  
-  return <div className="inner__specs">
+const ProductSpecs: React.FunctionComponent<ProductSpecsProps> = (props) => {
+  const { product } = props;
+
+  return (
+    <div className="inner__specs">
       <table className="specs__table">
-        <thead>
-          <tr>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <thead>
-          <tr>
-            <td></td>
-            <td></td>
-          </tr>
-        </thead>
+          <SpecsItem product={product} />
       </table>
-  </div>;
+    </div>
+  );
 };
 
 export default ProductSpecs;

@@ -5,7 +5,6 @@ import { EUserActionTypes } from "../actionTypes/UserActionTypes";
 import { IUser } from "../../models/User";
 import { Dispatch } from "redux";
 import { ACCESSTOKEN, ACCOUNT } from "../../configs/setting";
-import { history } from "../../App";
 
 export const signIn = (user: IUser) => {
   return (dispatch: Dispatch) => {

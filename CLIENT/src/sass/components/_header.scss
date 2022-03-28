@@ -9,6 +9,7 @@
   align-items: center;
   transition: all 0.5s ease;
   .header__logo {
+    width: $w-100 - 80;
     padding: 0;
     color: $tPrimary !important;
     .logo__wrapper {
@@ -189,71 +190,80 @@
       display: none;
     }
   }
-  .header__login {
-    .login__wrapper,
-    .login__user {
-      display: flex;
-      align-items: center;
-      position: relative;
-      .user__info {
-        margin-right: $m-10;
-        padding: $p-5;
-        border-radius: $lightRound;
-        text-decoration: none;
-        font-size: $body-1;
-        color: $tPrimary;
+  .header__features {
+    width: $w-100 - 80;
+    display: flex;
+    justify-content: space-between;
+    .features__login {
+      width: $w-100;
+      .login__wrapper,
+      .login__user {
         display: flex;
         align-items: center;
-        transition: all 0.3s ease;
-        &:hover {
-          box-shadow: 0 0 10px $grey;
-        }
-        .info__avatar {
-          width: $w-10 * 2;
-          height: $h-10 * 2;
+        position: relative;
+        .user__info {
           margin-right: $m-10;
-          border-radius: $circle;
-        }
-      }
-      .user__setting {
-        width: $w-100;
-        height: 0;
-        border-radius: $lightRound;
-        background: $secondary;
-        box-shadow: 0 0 10px $grey;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        overflow: hidden;
-        position: absolute;
-        top: 110%;
-        left: 0;
-        z-index: 9999;
-        transition: all 0.5s ease;
-        .setting__link {
-          display: block;
-          padding: $p-10;
-          font-size: $body-1;
+          padding: $p-5;
+          border-radius: $lightRound;
           text-decoration: none;
-          color: $tSecondary;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          &:hover {
-            background: $primary;
-            color: $tPrimary;
-          }
-        }
-        .setting__link--loading {
+          font-size: $body-1;
+          color: $tPrimary;
           display: flex;
           align-items: center;
-          opacity: 0.5;
-          user-select: none;
-          pointer-events: none;
+          transition: all 0.3s ease;
+          &:hover {
+            box-shadow: 0 0 10px $grey;
+          }
+          .info__avatar {
+            width: $w-10 * 2;
+            height: $h-10 * 2;
+            margin-right: $m-10;
+            border-radius: $circle;
+          }
+        }
+        .user__setting {
+          width: $w-100;
+          height: 0;
+          border-radius: $lightRound;
+          background: $secondary;
+          box-shadow: 0 0 10px $grey;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          overflow: hidden;
+          position: absolute;
+          top: 110%;
+          left: 0;
+          z-index: 9999;
+          transition: all 0.5s ease;
+          .setting__link {
+            display: block;
+            padding: $p-10;
+            font-size: $body-1;
+            text-decoration: none;
+            color: $tSecondary;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            &:hover {
+              background: $primary;
+              color: $tPrimary;
+            }
+          }
+          .setting__link--loading {
+            display: flex;
+            align-items: center;
+            opacity: 0.5;
+            user-select: none;
+            pointer-events: none;
+          }
+        }
+        .user__setting--active {
+          height: $h-10 * 8;
         }
       }
-      .user__setting--active {
-        height: $h-10 * 8;
-      }
+    }
+    .features__translate {
+      width: $w-100 - 80;
     }
     @include respond(tablet) {
       display: none;
@@ -272,5 +282,5 @@
   top: 0;
   z-index: 9999;
   height: $h-10 * 5;
-  color: $tSecondary;
+  // color: $tSecondary;
 }

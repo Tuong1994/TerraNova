@@ -53,7 +53,7 @@ const stateDefault: IStateDefault = {
     memoryInterface: "",
     model: "",
     outputCapacity: "",
-    Efficiency: "",
+    efficiency: "",
   },
 };
 

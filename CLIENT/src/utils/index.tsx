@@ -1,3 +1,5 @@
+import * as lang from "../translate";
+
 const utils = {
   checkObjectEmpty: (obj: any) => {
     for (let key in obj) {
@@ -6,6 +8,13 @@ const utils = {
       }
     }
     return false;
+  },
+  changeLang: (l: string) => {
+    if (l == "VN") {
+      return lang.VN;
+    } else if (l == "ENG") {
+      return lang.ENG;
+    }
   },
 };
 

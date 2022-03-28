@@ -2,6 +2,7 @@ const { Category, Producer, Product, sequelize } = require("../models");
 const {
   getProductFieldByCategory,
   getProductFieldByProducer,
+  getProductDetailField,
 } = require("../interface/product");
 
 const getProducerAndProduct = async (req, res) => {
@@ -174,46 +175,9 @@ const getProductByProducer = async (req, res) => {
 };
 
 const getAccessoriesDetail = async (req, res) => {
-  const { productId } = req.query;
+  const { productId, productType } = req.query;
   try {
-    const [result] = await sequelize.query(
-      `
-      select
-      products.id as productId,
-      products.name,
-      products.image,
-      products.price,
-      products.productType,
-
-      producers.name as producerName,
-
-      pcspecs.totalCores,
-      pcspecs.totalThreads,
-      pcspecs.baseFrequency,
-      pcspecs.cache,
-      pcspecs.busSpeed,
-      pcspecs.tdp,
-      pcspecs.socket,
-      pcspecs.chipset,
-      pcspecs.ram,
-      pcspecs.capacity,
-      pcspecs.ramBus,
-      pcspecs.type,
-      pcspecs.size,
-      pcspecs.graphicEngine,
-      pcspecs.videoMemory,
-      pcspecs.cudaCore,
-      pcspecs.memoryInterface,
-      pcspecs.model,
-      pcspecs.outputCapacity,
-      pcspecs.Efficiency
-      from products
-      inner join pcspecs
-      on pcspecs.productId = products.id
-      inner join producers
-      on producers.id = products.producerId
-      where products.id = "${productId}"
-    `,
+    const [result] = await sequelize.query(getProductDetailField(productId, productType),
       {
         model: Product,
       }

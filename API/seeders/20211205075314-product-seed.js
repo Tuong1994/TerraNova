@@ -1,5 +1,7 @@
 "use strict";
 
+const { productType } = require("../interface/product");
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     /**
@@ -21,6 +23,7 @@ module.exports = {
           price: 3500000,
           description:
             "Total Cores: 4 / Total Threads: 4 / Processor Base Frequency: 3.60 GHz / Cache: 6 MB Intel® Smart Cache / Bus Speed: 8 GT/s / TDP: 65W",
+          productType: productType.cpu,
           subMenuId: "SM_0001",
           categoryId: "cpu",
           producerId: "intel",
@@ -34,6 +37,7 @@ module.exports = {
           price: 5500000,
           description:
             "Total Cores: 6 / Total Threads: 6 / Max Turbo Frequency: 4.00 GHz / Intel® Turbo Boost Technology 2.0 Frequency: 4.00 GHz / Processor Base Frequency: 2.80 GHz / Cache: 9 MB Intel® Smart Cache / Bus Speed: 8 GT/s / TDP: 65W",
+          productType: productType.cpu,
           subMenuId: "SM_0001",
           categoryId: "cpu",
           producerId: "intel",
@@ -47,6 +51,7 @@ module.exports = {
           price: 9500000,
           description:
             "Total Cores: 6 / Total Threads: 12 / Max Turbo Frequency: 4.60 GHz / Intel® Turbo Boost Technology 2.0 Frequency: 4.60 GHz / Processor Base Frequency: 3.20 GHz / Cache: 12 MB Intel® Smart Cache / Bus Speed: 8 GT/s / TDP: 65W",
+          productType: productType.cpu,
           subMenuId: "SM_0001",
           categoryId: "cpu",
           producerId: "intel",
@@ -60,6 +65,7 @@ module.exports = {
           price: 3700000,
           description:
             "Total Cores: 4 / Total Threads: 4 / Max Turbo Frequency: 4.20 GHz / Intel® Turbo Boost Technology 2.0 Frequency: 4.20 GHz / Processor Base Frequency: 3.60 GHz / Cache: 6 MB Intel® Smart Cache / Bus Speed: 8 GT/s / TDP: 65W",
+          productType: productType.cpu,
           subMenuId: "SM_0001",
           categoryId: "cpu",
           producerId: "intel",
@@ -73,6 +79,7 @@ module.exports = {
           price: 5700000,
           description:
             "Total Cores: 6 / Total Threads: 6 / Max Turbo Frequency: 4.10 GHz / Intel® Turbo Boost Technology 2.0 Frequency: 4.10 GHz / Processor Base Frequency: 2.90 GHz / Cache: 9 MB Intel® Smart Cache / Bus Speed: 8 GT/s / TDP: 65W",
+          productType: productType.cpu,
           subMenuId: "SM_0001",
           categoryId: "cpu",
           producerId: "intel",
@@ -86,6 +93,7 @@ module.exports = {
           price: 9700000,
           description:
             "Total Cores: 8 / Total Threads: 8 / Max Turbo Frequency: 4.70 GHz / Intel® Turbo Boost Technology 2.0 Frequency: 4.70 GHz / Processor Base Frequency: 3.00 GHz / Cache: 12 MB Intel® Smart Cache / Bus Speed: 8 GT/s / TDP: 65W",
+          productType: productType.cpu,
           subMenuId: "SM_0001",
           categoryId: "cpu",
           producerId: "intel",
@@ -99,6 +107,7 @@ module.exports = {
           price: 380000,
           description:
             "Total Cores: 4 / Total Threads: 8 / Max Turbo Frequency: 4.40 GHz / Intel® Turbo Boost Technology 2.0 Frequency: 4.40 GHz / Processor Base Frequency: 3.70 GHz / Cache: 8 MB Intel® Smart Cache / Bus Speed: 8 GT/s / TDP: 65W",
+          productType: productType.cpu,
           subMenuId: "SM_0001",
           categoryId: "cpu",
           producerId: "intel",
@@ -112,6 +121,7 @@ module.exports = {
           price: 5800000,
           description:
             "Total Cores: 6 / Total Threads: 12 / Max Turbo Frequency: 4.30 GHz / Intel® Turbo Boost Technology 2.0 Frequency: 4.30 GHz / Processor Base Frequency: 2.90 GHz / Cache: 12 MB Intel® Smart Cache / Bus Speed: 8 GT/s / TDP: 65W",
+          productType: productType.cpu,
           subMenuId: "SM_0001",
           categoryId: "cpu",
           producerId: "intel",
@@ -125,6 +135,7 @@ module.exports = {
           price: 9800000,
           description:
             "Total Cores: 8 / Total Threads: 16 / Max Turbo Frequency: 4.80 GHz / Intel® Turbo Boost Technology 2.0 Frequency: 4.70 GHz / Processor Base Frequency: 2.90 GHz / Cache: 16 MB Intel® Smart Cache / Bus Speed: 8 GT/s / TDP: 65W",
+          productType: productType.cpu,
           subMenuId: "SM_0001",
           categoryId: "cpu",
           producerId: "intel",
@@ -138,6 +149,7 @@ module.exports = {
           price: 2300000,
           description:
             "Total Cores: 4 / Total Threads: 4 / Base Clock: 3.5GHz / Max Boost Clock: Up to 3.7GHz / Cache: 4 MB / CPU Socket: AM4 / TDP: 65W",
+          productType: productType.cpu,
           subMenuId: "SM_0001",
           categoryId: "cpu",
           producerId: "amd",
@@ -151,6 +163,7 @@ module.exports = {
           price: 4300000,
           description:
             "Total Cores: 4 / Total Threads: 8 / Base Clock: 3.6GHz / Max Boost Clock: Up to 3.9GHz / Cache: 4 MB / CPU Socket: AM4 / TDP: 65W",
+          productType: productType.cpu,
           subMenuId: "SM_0001",
           categoryId: "cpu",
           producerId: "amd",
@@ -164,6 +177,7 @@ module.exports = {
           price: 7300000,
           description:
             "Total Cores: 8 / Total Threads: 16 / Base Clock: 3.2GHz / Max Boost Clock: Up to 4.1GHz / Cache: 16 MB / CPU Socket: AM4 / TDP: 65W",
+          productType: productType.cpu,
           subMenuId: "SM_0001",
           categoryId: "cpu",
           producerId: "amd",
@@ -177,6 +191,7 @@ module.exports = {
           price: 2500000,
           description:
             "Total Cores: 4 / Total Threads: 4 / Base Clock: 3.6GHz / Max Boost Clock: Up to 4.0GHz / Cache: 4 MB / CPU Socket: AM4 / TDP: 65W",
+          productType: productType.cpu,
           subMenuId: "SM_0001",
           categoryId: "cpu",
           producerId: "amd",
@@ -190,6 +205,7 @@ module.exports = {
           price: 4500000,
           description:
             "Total Cores: 4 / Total Threads: 8 / Base Clock: 3.7GHz / Max Boost Clock: Up to 4.2GHz / Cache: 4 MB / CPU Socket: AM4 / TDP: 65W",
+          productType: productType.cpu,
           subMenuId: "SM_0001",
           categoryId: "cpu",
           producerId: "amd",
@@ -203,6 +219,7 @@ module.exports = {
           price: 7500000,
           description:
             "Total Cores: 8 / Total Threads: 16 / Base Clock: 3.6GHz / Max Boost Clock: Up to 4.4GHz / Cache: 32 MB / CPU Socket: AM4 / TDP: 65W",
+          productType: productType.cpu,
           subMenuId: "SM_0001",
           categoryId: "cpu",
           producerId: "amd",
@@ -218,6 +235,7 @@ module.exports = {
           price: 2500000,
           description:
             "Socket: 1151 for 8th Gen Processor / Chipset: H310 / Ram: Max 32GB DDR4 2666/2400/2133 MHz",
+          productType: productType.mainboard,
           producerId: "asus",
           subMenuId: "SM_0001",
           categoryId: "mainboard",
@@ -231,6 +249,7 @@ module.exports = {
           price: 3100000,
           description:
             "Socket: 1151 for 8th Gen Processor / Chipset: B360 / Ram: Max 64GB DDR4 2666/2400/2133 MHz",
+          productType: productType.mainboard,
           producerId: "asus",
           subMenuId: "SM_0001",
           categoryId: "mainboard",
@@ -244,6 +263,7 @@ module.exports = {
           price: 4100000,
           description:
             "Socket: 1151 for 8th Gen Processor / Chipset: H370 / Ram: Max 64GB DDR4 2666/2400/2133 MHz",
+          productType: productType.mainboard,
           producerId: "asus",
           subMenuId: "SM_0001",
           categoryId: "mainboard",
@@ -257,6 +277,7 @@ module.exports = {
           price: 7100000,
           description:
             "Socket: 1151 for 8th Gen Processor / Chipset: Z390 / Ram: Max 64GB DDR4 2666/2400/2133 MHz",
+          productType: productType.mainboard,
           producerId: "asus",
           subMenuId: "SM_0001",
           categoryId: "mainboard",
@@ -270,6 +291,7 @@ module.exports = {
           price: 1500000,
           description:
             "Socket: 1151 for 8th Gen Processor / Chipset: H310 / Ram: Max 32GB DDR4 2666/2400/2133 MHz",
+          productType: productType.mainboard,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "mainboard",
@@ -283,6 +305,7 @@ module.exports = {
           price: 3100000,
           description:
             "Socket: 1151 for 8th Gen Processor / Chipset: B360 / Ram: Max 64GB DDR4 2666/2400/2133 MHz",
+          productType: productType.mainboard,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "mainboard",
@@ -296,6 +319,7 @@ module.exports = {
           price: 3500000,
           description:
             "Socket: 1151 for 8th Gen Processor / Chipset: H370 / Ram: Max 64GB DDR4 2666/2400/2133 MHz",
+          productType: productType.mainboard,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "mainboard",
@@ -309,6 +333,7 @@ module.exports = {
           price: 5500000,
           description:
             "Socket: 1151 for 8th Gen Processor / Chipset: Z390 / Ram: Max 64GB DDR4 2666/2400/2133 MHz",
+          productType: productType.mainboard,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "mainboard",
@@ -322,6 +347,7 @@ module.exports = {
           price: 1400000,
           description:
             "Socket: 1151 for 8th Gen Processor / Chipset: H310 / Ram: Max 32GB DDR4 2666/2400/2133 MHz",
+          productType: productType.mainboard,
           producerId: "msi",
           subMenuId: "SM_0001",
           categoryId: "mainboard",
@@ -335,6 +361,7 @@ module.exports = {
           price: 2900000,
           description:
             "Socket: 1151 for 8th Gen Processor / Chipset: B360 / Ram: Max 64GB DDR4 2666/2400/2133 MHz",
+          productType: productType.mainboard,
           producerId: "msi",
           subMenuId: "SM_0001",
           categoryId: "mainboard",
@@ -348,6 +375,7 @@ module.exports = {
           price: 3500000,
           description:
             "Socket: 1151 for 8th Gen Processor / Chipset: H370 / Ram: Max 64GB DDR4 2666/2400/2133 MHz",
+          productType: productType.mainboard,
           producerId: "msi",
           subMenuId: "SM_0001",
           categoryId: "mainboard",
@@ -361,6 +389,7 @@ module.exports = {
           price: 5500000,
           description:
             "Socket: 1151 for 8th Gen Processor / Chipset: Z390 / Ram: Max 64GB DDR4 2666/2400/2133 MHz",
+          productType: productType.mainboard,
           producerId: "msi",
           subMenuId: "SM_0001",
           categoryId: "mainboard",
@@ -374,6 +403,7 @@ module.exports = {
           price: 1500000,
           description:
             "Socket: 1151 for 8th Gen Processor / Chipset: H310 / Ram: Max 32GB DDR4 2666/2400/2133 MHz",
+          productType: productType.mainboard,
           producerId: "asrock",
           subMenuId: "SM_0001",
           categoryId: "mainboard",
@@ -387,6 +417,7 @@ module.exports = {
           price: 2800000,
           description:
             "Socket: 1151 for 8th Gen Processor / Chipset: B360 / Ram: Max 64GB DDR4 2666/2400/2133 MHz",
+          productType: productType.mainboard,
           producerId: "asrock",
           subMenuId: "SM_0001",
           categoryId: "mainboard",
@@ -400,6 +431,7 @@ module.exports = {
           price: 3100000,
           description:
             "Socket: 1151 for 8th Gen Processor / Chipset: H370 / Ram: Max 64GB DDR4 2666/2400/2133 MHz",
+          productType: productType.mainboard,
           producerId: "asrock",
           subMenuId: "SM_0001",
           categoryId: "mainboard",
@@ -413,6 +445,7 @@ module.exports = {
           price: 4500000,
           description:
             "Socket: 1151 for 8th Gen Processor / Chipset: Z390 / Ram: Max 64GB DDR4 2666/2400/2133 MHz",
+          productType: productType.mainboard,
           producerId: "asrock",
           subMenuId: "SM_0001",
           categoryId: "mainboard",
@@ -427,6 +460,7 @@ module.exports = {
           image: null,
           price: 1500000,
           description: "Capacity: 8GB / Bus: 3200Mhz",
+          productType: productType.ram,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "ram",
@@ -439,6 +473,7 @@ module.exports = {
           image: null,
           price: 3000000,
           description: "Capacity: 8GB / Bus: 3200Mhz",
+          productType: productType.ram,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "ram",
@@ -451,6 +486,7 @@ module.exports = {
           image: null,
           price: 2200000,
           description: "Capacity: 16GB / Bus: 3400Mhz",
+          productType: productType.ram,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "ram",
@@ -463,6 +499,7 @@ module.exports = {
           image: null,
           price: 4400000,
           description: "Capacity: 16GB / Bus: 3400Mhz",
+          productType: productType.ram,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "ram",
@@ -477,6 +514,7 @@ module.exports = {
           image: null,
           price: 980000,
           description: "Type: HDD / Capacity: 1TB / Size: 3.5 inch",
+          productType: productType.hdd,
           producerId: "seagate",
           subMenuId: "SM_0001",
           categoryId: "hdd",
@@ -489,6 +527,7 @@ module.exports = {
           image: null,
           price: 1200000,
           description: "Type: HDD / Capacity: 2TB / Size: 3.5 inch",
+          productType: productType.hdd,
           producerId: "seagate",
           subMenuId: "SM_0001",
           categoryId: "hdd",
@@ -501,6 +540,7 @@ module.exports = {
           image: null,
           price: 990000,
           description: "Type: HDD / Capacity: 1TB / Size: 3.5 inch",
+          productType: productType.hdd,
           producerId: "seagate",
           subMenuId: "SM_0001",
           categoryId: "hdd",
@@ -513,6 +553,7 @@ module.exports = {
           image: null,
           price: 2100000,
           description: "Type: HDD / Capacity: 1TB / Size: 3.5 inch",
+          productType: productType.hdd,
           producerId: "seagate",
           subMenuId: "SM_0001",
           categoryId: "hdd",
@@ -525,6 +566,7 @@ module.exports = {
           image: null,
           price: 2300000,
           description: "Type: HDD / Capacity: 1TB / Size: 3.5 inch",
+          productType: productType.hdd,
           producerId: "seagate",
           subMenuId: "SM_0001",
           categoryId: "hdd",
@@ -539,6 +581,7 @@ module.exports = {
           image: null,
           price: 550000,
           description: "Type: SSD / Capacity: 120GB / Size: 2.5 inch",
+          productType: productType.ssd,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "ssd",
@@ -551,6 +594,7 @@ module.exports = {
           image: null,
           price: 850000,
           description: "Type: SSD / Capacity: 240GB / Size: 2.5 inch",
+          productType: productType.ssd,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "ssd",
@@ -563,6 +607,7 @@ module.exports = {
           image: null,
           price: 2200000,
           description: "Type: SSD / Capacity: 500GB / Size: 2.5 inch",
+          productType: productType.ssd,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "ssd",
@@ -575,6 +620,7 @@ module.exports = {
           image: null,
           price: 4500000,
           description: "Type: SSD / Capacity: 1TB / Size: 2.5 inch",
+          productType: productType.ssd,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "ssd",
@@ -587,6 +633,7 @@ module.exports = {
           image: null,
           price: 7300000,
           description: "Type: SSD / Capacity: 2TB / Size: 2.5 inch",
+          productType: productType.ssd,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "ssd",
@@ -602,6 +649,7 @@ module.exports = {
           price: 5500000,
           description:
             "Graphic Engine: NVIDIA® GeForce GTX 1050 Ti / Video Memory: 4GB GDDR5 / CUDA Core: 768 / Memory Interface: 128 bit",
+          productType: productType.vga,
           producerId: "asus",
           subMenuId: "SM_0001",
           categoryId: "vga",
@@ -615,6 +663,7 @@ module.exports = {
           price: 6300000,
           description:
             "Graphic Engine: NVIDIA® GeForce GTX 1060 / Video Memory: 6GB GDDR5 / CUDA Core: 1230 / Memory Interface: 128 bit",
+          productType: productType.vga,
           producerId: "asus",
           subMenuId: "SM_0001",
           categoryId: "vga",
@@ -628,6 +677,7 @@ module.exports = {
           price: 9500000,
           description:
             "Graphic Engine: NVIDIA® GeForce GTX 1070 / Video Memory: 8GB GDDR5 / CUDA Core: 1530 / Memory Interface: 128 bit",
+          productType: productType.vga,
           producerId: "asus",
           subMenuId: "SM_0001",
           categoryId: "vga",
@@ -641,6 +691,7 @@ module.exports = {
           price: 15500000,
           description:
             "Graphic Engine: NVIDIA® GeForce GTX 1080 / Video Memory: 12GB GDDR5 / CUDA Core: 1820 / Memory Interface: 128 bit",
+          productType: productType.vga,
           producerId: "asus",
           subMenuId: "SM_0001",
           categoryId: "vga",
@@ -654,6 +705,7 @@ module.exports = {
           price: 85000000,
           description:
             "Graphic Engine: NVIDIA® GeForce RTX 2060 / Video Memory: 6GB GDDR5 / CUDA Core: 1520 / Memory Interface: 128 bit",
+          productType: productType.vga,
           producerId: "asus",
           subMenuId: "SM_0001",
           categoryId: "vga",
@@ -667,6 +719,7 @@ module.exports = {
           price: 16500000,
           description:
             "Graphic Engine: NVIDIA® GeForce GTX 2070 / Video Memory: 8GB GDDR5 / CUDA Core: 1930 / Memory Interface: 128 bit",
+          productType: productType.vga,
           producerId: "asus",
           subMenuId: "SM_0001",
           categoryId: "vga",
@@ -680,6 +733,7 @@ module.exports = {
           price: 25500000,
           description:
             "Graphic Engine: NVIDIA® GeForce GTX 2080 / Video Memory: 12GB GDDR5 / CUDA Core: 2130 / Memory Interface: 128 bit",
+          productType: productType.vga,
           producerId: "asus",
           subMenuId: "SM_0001",
           categoryId: "vga",
@@ -693,6 +747,7 @@ module.exports = {
           price: 5400000,
           description:
             "Graphic Engine: NVIDIA® GeForce GTX 1050 Ti / Video Memory: 4GB GDDR5 / CUDA Core: 748 / Memory Interface: 128 bit",
+          productType: productType.vga,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "vga",
@@ -706,6 +761,7 @@ module.exports = {
           price: 6300000,
           description:
             "Graphic Engine: NVIDIA® GeForce GTX 1060 / Video Memory: 6GB GDDR5 / CUDA Core: 1250 / Memory Interface: 128 bit",
+          productType: productType.vga,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "vga",
@@ -719,6 +775,7 @@ module.exports = {
           price: 9400000,
           description:
             "Graphic Engine: NVIDIA® GeForce GTX 1070 / Video Memory: 8GB GDDR5 / CUDA Core: 1540 / Memory Interface: 128 bit",
+          productType: productType.vga,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "vga",
@@ -732,6 +789,7 @@ module.exports = {
           price: 15000000,
           description:
             "Graphic Engine: NVIDIA® GeForce GTX 1080 / Video Memory: 12GB GDDR5 / CUDA Core: 1830 / Memory Interface: 128 bit",
+          productType: productType.vga,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "vga",
@@ -745,6 +803,7 @@ module.exports = {
           price: 84000000,
           description:
             "Graphic Engine: NVIDIA® GeForce RTX 2060 / Video Memory: 6GB GDDR5 / CUDA Core: 1480 / Memory Interface: 128 bit",
+          productType: productType.vga,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "vga",
@@ -758,6 +817,7 @@ module.exports = {
           price: 15500000,
           description:
             "Graphic Engine: NVIDIA® GeForce GTX 2070 / Video Memory: 8GB GDDR5 / CUDA Core: 1910 / Memory Interface: 128 bit",
+          productType: productType.vga,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "vga",
@@ -771,6 +831,7 @@ module.exports = {
           price: 24500000,
           description:
             "Graphic Engine: NVIDIA® GeForce GTX 2080 / Video Memory: 12GB GDDR5 / CUDA Core: 2100 / Memory Interface: 128 bit",
+          productType: productType.vga,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "vga",
@@ -784,6 +845,7 @@ module.exports = {
           price: 5600000,
           description:
             "Graphic Engine: NVIDIA® GeForce GTX 1050 Ti / Video Memory: 4GB GDDR5 / CUDA Core: 820 / Memory Interface: 128 bit",
+          productType: productType.vga,
           producerId: "msi",
           subMenuId: "SM_0001",
           categoryId: "vga",
@@ -797,6 +859,7 @@ module.exports = {
           price: 6400000,
           description:
             "Graphic Engine: NVIDIA® GeForce GTX 1060 / Video Memory: 6GB GDDR5 / CUDA Core: 1330 / Memory Interface: 128 bit",
+          productType: productType.vga,
           producerId: "msi",
           subMenuId: "SM_0001",
           categoryId: "vga",
@@ -810,6 +873,7 @@ module.exports = {
           price: 9800000,
           description:
             "Graphic Engine: NVIDIA® GeForce GTX 1070 / Video Memory: 8GB GDDR5 / CUDA Core: 1580 / Memory Interface: 128 bit",
+          productType: productType.vga,
           producerId: "msi",
           subMenuId: "SM_0001",
           categoryId: "vga",
@@ -823,6 +887,7 @@ module.exports = {
           price: 15300000,
           description:
             "Graphic Engine: NVIDIA® GeForce GTX 1080 / Video Memory: 12GB GDDR5 / CUDA Core: 1920 / Memory Interface: 128 bit",
+          productType: productType.vga,
           producerId: "msi",
           subMenuId: "SM_0001",
           categoryId: "vga",
@@ -836,6 +901,7 @@ module.exports = {
           price: 83200000,
           description:
             "Graphic Engine: NVIDIA® GeForce RTX 2060 / Video Memory: 6GB GDDR5 / CUDA Core: 1550 / Memory Interface: 128 bit",
+          productType: productType.vga,
           producerId: "msi",
           subMenuId: "SM_0001",
           categoryId: "vga",
@@ -849,6 +915,7 @@ module.exports = {
           price: 16700000,
           description:
             "Graphic Engine: NVIDIA® GeForce GTX 2070 / Video Memory: 8GB GDDR5 / CUDA Core: 1970 / Memory Interface: 128 bit",
+          productType: productType.vga,
           producerId: "msi",
           subMenuId: "SM_0001",
           categoryId: "vga",
@@ -862,6 +929,7 @@ module.exports = {
           price: 25800000,
           description:
             "Graphic Engine: NVIDIA® GeForce GTX 2080 / Video Memory: 12GB GDDR5 / CUDA Core: 2230 / Memory Interface: 128 bit",
+          productType: productType.vga,
           producerId: "msi",
           subMenuId: "SM_0001",
           categoryId: "vga",
@@ -877,6 +945,7 @@ module.exports = {
           price: 1300000,
           description:
             "Model: P500B / Output Capacity: 500W / Efficiency:	Up to 85% at typical load",
+          productType: productType.psu,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "psu",
@@ -890,6 +959,7 @@ module.exports = {
           price: 1500000,
           description:
             "Model: P650B / Output Capacity: 650W / Efficiency:	Up to 85% at typical load",
+          productType: productType.psu,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "psu",
@@ -903,6 +973,7 @@ module.exports = {
           price: 1800000,
           description:
             "Model: P850B / Output Capacity: 850W / Efficiency:	Up to 85% at typical load",
+          productType: productType.psu,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "psu",
@@ -916,6 +987,7 @@ module.exports = {
           price: 2500000,
           description:
             "Model: P1000B / Output Capacity: 1000W / Efficiency:	Up to 85% at typical load",
+          productType: productType.psu,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "psu",
@@ -929,6 +1001,7 @@ module.exports = {
           price: 1600000,
           description:
             "Model: P500B / Output Capacity: 500W / Efficiency:	Up to 90% at typical load",
+          productType: productType.psu,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "psu",
@@ -942,6 +1015,7 @@ module.exports = {
           price: 1800000,
           description:
             "Model: P650B / Output Capacity: 650W / Efficiency:	Up to 90% at typical load",
+          productType: productType.psu,
           producerId: "gigabyte",
           subMenuId: "SM_0001",
           categoryId: "psu",

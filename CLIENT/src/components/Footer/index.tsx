@@ -13,30 +13,30 @@ const Footer: React.FunctionComponent<{}> = (props) => {
           <div className="partners__list">
             <img
               className="list__logo"
-              src="../img/gigabyte_logo.png"
+              src="../img/logo/gigabyte_logo.png"
               alt="gigabyte"
             />
-            <img className="list__logo" src="../img/asus_logo.jpg" alt="asus" />
-            <img className="list__logo" src="../img/msi_logo.png" alt="msi" />
+            <img className="list__logo" src="../img/logo/asus_logo.jpg" alt="asus" />
+            <img className="list__logo" src="../img/logo/msi_logo.png" alt="msi" />
             <img
               className="list__logo"
-              src="../img/asrock_logo.jpg"
+              src="../img/logo/asrock_logo.jpg"
               alt="asrock"
             />
             <img
               className="list__logo"
-              src="../img/kingston_logo.png"
+              src="../img/logo/kingston_logo.png"
               alt="kingston"
             />
             <img
               className="list__logo"
-              src="../img/western_logo.png"
+              src="../img/logo/western_logo.png"
               alt="western"
             />
-            <img className="list__logo" src="../img/lg_logo.jpg" alt="lg" />
+            <img className="list__logo" src="../img/logo/lg_logo.jpg" alt="lg" />
             <img
               className="list__logo"
-              src="../img/viewsonic_logo.png"
+              src="../img/logo/viewsonic_logo.png"
               alt="viewsonic"
             />
           </div>

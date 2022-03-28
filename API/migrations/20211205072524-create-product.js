@@ -19,6 +19,9 @@ module.exports = {
       description: {
         type: Sequelize.STRING
       },
+      productType: {
+        type: Sequelize.STRING
+      },
       subMenuId: {
         type: Sequelize.STRING
       },

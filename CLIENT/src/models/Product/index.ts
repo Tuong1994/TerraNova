@@ -1,3 +1,12 @@
+export enum EProductType {
+  cpu = "cpu",
+  mainboard = "mainboard",
+  ram = "ram",
+  vga = "vga",
+  hdd = "hdd",
+  ssd = "ssd",
+  psu = "psu",
+}
 export interface ICategory {
   categoryId?: string;
   name?: string;
@@ -32,5 +41,5 @@ export interface IAccessories {
   memoryInterface?: string;
   model: string;
   outputCapacity?: string;
-  Efficiency?: string;
+  efficiency?: string;
 }

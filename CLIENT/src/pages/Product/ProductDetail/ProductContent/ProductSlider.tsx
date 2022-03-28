@@ -6,15 +6,15 @@ const ProductSlider: React.FunctionComponent<{}> = (props) => {
   const imageList = [
     {
       id: 1,
-      src: "../img/aorus_logo.jpg",
+      src: "../img/logo/aorus_logo.jpg",
     },
     {
       id: 2,
-      src: "../img/rog-strix_logo.jpg",
+      src: "../img/logo/rog-strix_logo.jpg",
     },
     {
       id: 3,
-      src: "../img/phantom_logo.jpg",
+      src: "../img/logo/phantom_logo.jpg",
     },
   ];
   const setting = {

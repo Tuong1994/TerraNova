@@ -1,7 +1,9 @@
 import React from "react";
-import { EMenuName } from "../../interfaces/menu";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { ReducerState } from "../../redux/store";
 import SubMenu from "./SubMenu";
+import utils from "../../utils";
 
 interface MenuProps {
   menu: any;
@@ -11,11 +13,15 @@ interface MenuProps {
 
 const Menu: React.FunctionComponent<MenuProps> = (props) => {
   const { menu, getProductByCategory, getProductByProducer } = props;
+
+  const { lang } = useSelector((state: ReducerState) => state.LangReducer);
   const [tabActive, setTabActive] = React.useState<number>(-1);
   const [categoryActive, setCategoryActive] = React.useState<number>(-1);
 
+  const langs = utils.changeLang(lang);
+
   const renderSubMenu = (data: any) => {
-    if (data.name === EMenuName.product) {
+    if (data.name === langs?.headerMenu.product) {
       return (
         // Menu Product
         <SubMenu
@@ -28,7 +34,7 @@ const Menu: React.FunctionComponent<MenuProps> = (props) => {
           getProductByProducer={getProductByProducer}
         />
       );
-    } else if (data.name === EMenuName.course) {
+    } else if (data.name === langs?.headerMenu.course) {
       return (
         // Menu Course
         <ul className="list__dropdown">
@@ -49,16 +55,17 @@ const Menu: React.FunctionComponent<MenuProps> = (props) => {
   return (
     <div>
       <li className="menu__list" key={menu.menuId}>
-        {menu.name === EMenuName.product || menu.name === EMenuName.course ? (
+        {menu.name === langs?.headerMenu.product ||
+        menu.name === langs?.headerMenu.course ? (
           <span className="list__link">{menu.name}</span>
         ) : (
           <Link to={menu.path} className="list__link">
             {menu.name}
           </Link>
         )}
-        {menu.name === EMenuName.home ||
-        menu.name === EMenuName.aboutUs ||
-        menu.name === EMenuName.contact
+        {menu.name === langs?.headerMenu.home ||
+        menu.name === langs?.headerMenu.aboutUs ||
+        menu.name === langs?.headerMenu.contact
           ? null
           : renderSubMenu(menu)}
       </li>
