@@ -136,6 +136,12 @@ const EngLang = {
     seeMore: "See more",
     addToCart: "Add to cart"
   },
+  noData: {
+    product: "No product yet"
+  },
+  carts: {
+    slots: "slots"
+  }
 };
 
 export default EngLang;

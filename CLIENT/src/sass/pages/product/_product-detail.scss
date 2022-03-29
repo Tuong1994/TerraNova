@@ -87,6 +87,7 @@
         width: $w-100;
         .button--submit {
           width: $w-100;
+          margin: 0;
           padding: $p-10 $p-10 * 2;
           font-size: $subtitle;
           font-weight: $medium;
@@ -119,6 +120,7 @@
               width: $w-10 * 5;
               height: $h-10 * 5;
               margin-right: $m-10;
+              border-radius: $lightRound;
             }
             .content__info {
               width: $w-100;

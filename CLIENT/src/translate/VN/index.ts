@@ -137,6 +137,12 @@ const VnLang = {
     seeMore: "Xem thêm",
     addToCart: "Thêm vào giỏ hàng"
   },
+  noData: {
+    product: "Chưa có sản phẩm"
+  },
+  carts: {
+    slots: "sl"
+  }
 };
 
 export default VnLang;

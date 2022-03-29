@@ -1,51 +1,17 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { IOrder } from "../../../../models/Order";
 import { IAccessories } from "../../../../models/Product";
-import { EOrderActionTypes } from "../../../../redux/actionTypes/OrderActionTypes";
-import { ReducerState } from "../../../../redux/store";
 
 interface IProductInfoProps {
   product: IAccessories;
+  quanlity: number;
   langs: any;
+  handleIncrease: () => void;
+  handleDecrease: () => void;
+  handleOrder: () => void;
 }
 
 const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
-  const { product, langs } = props;
-
-  const { order } = useSelector((state: ReducerState) => state.OrderReducer);
-  const [quanlity, setQuanlity] = React.useState<number>(0);
-  const [stock, setStock] = React.useState<IOrder>({
-    productId: "",
-    productName: "",
-    quanlity: 0,
-    price: 0,
-  });
-  const dispatch = useDispatch();
-
-  React.useEffect(() => {
-    setStock({
-      productId: product.productId,
-      productName: product.name,
-      quanlity: quanlity,
-      price: product.price,
-    });
-  }, [product, quanlity]);
-
-  const handleIncrease = () => {
-    setQuanlity(quanlity + 1);
-  };
-
-  const handleDecrease = () => {
-    setQuanlity(quanlity - 1);
-  };
-
-  const handleOrder = () => {
-    dispatch({
-      type: EOrderActionTypes.ADD_STOCK,
-      payload: stock,
-    });
-  };
+  const { product, quanlity, langs, handleIncrease, handleDecrease, handleOrder } = props;
 
   return (
     <div className="content__info">
@@ -57,7 +23,8 @@ const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
           <strong>{product.producerName}</strong>
         </li>
         <li className="list__content">
-          {langs?.productDetail.warranty} : <strong>36 {langs?.time.months}</strong>
+          {langs?.productDetail.warranty} :{" "}
+          <strong>36 {langs?.time.months}</strong>
         </li>
         <li className="list__content">
           {langs?.productDetail.status} : <strong>{langs?.status.new}</strong>
@@ -86,7 +53,7 @@ const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
       </div>
 
       <div className="info__button" onClick={handleOrder}>
-        <div className="button--submit">{langs?.button.addToCart} </div>
+        <div className={quanlity <= 0 ? "button--submit button--disabled" : "button--submit"}>{langs?.button.addToCart} </div>
       </div>
     </div>
   );

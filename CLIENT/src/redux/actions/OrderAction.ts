@@ -5,4 +5,9 @@ interface ADD_STOCK {
     payload: any;
 }
 
-export type OrderAction = ADD_STOCK;
+interface REMOVE_STOCK {
+    type: EOrderActionTypes.REMOVE_STOCK;
+    payload: any;
+}
+
+export type OrderAction = ADD_STOCK | REMOVE_STOCK;

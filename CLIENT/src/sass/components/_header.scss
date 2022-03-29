@@ -260,6 +260,9 @@
           height: $h-10 * 8;
         }
       }
+      .login__wrapper {
+        justify-content: center;
+      }
     }
     .features__translate {
       width: $w-100 - 80;

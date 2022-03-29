@@ -1,11 +1,13 @@
-import React from "react";
+import React, { Reducer } from "react";
 import * as customHook from "../../../hooks/index";
 import { useDispatch, useSelector } from "react-redux";
 import { RouteComponentProps } from "react-router-dom";
 import { IRouteParams } from "../../../interfaces/route";
 import { getProductDetail } from "../../../redux/actionCreators/ProductCreators";
+import { EOrderActionTypes } from "../../../redux/actionTypes/OrderActionTypes";
 import { ReducerState } from "../../../redux/store";
 import { IQueryList } from "../../../interfaces/query";
+import { IOrder } from "../../../models/Order";
 import ProductSlider from "./ProductContent/ProductSlider";
 import ProductInfo from "./ProductContent/ProductInfo";
 import ProductRelated from "./ProductContent/ProductRelated";
@@ -20,6 +22,9 @@ const ProductDetail: React.FunctionComponent<
   );
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
+  const [stock, setStock] = React.useState<IOrder>({});
+  const [quanlity, setQuanlity] = React.useState<number>(0);
+
   const dispatch = useDispatch();
   const id = props.match.params.id;
 
@@ -30,6 +35,19 @@ const ProductDetail: React.FunctionComponent<
   React.useEffect(() => {
     _getProductDetail();
   }, []);
+
+  React.useEffect(() => {
+    if (quanlity > 0) {
+      setStock({
+        productId: productDetail.productId,
+        productName: productDetail.name,
+        quanlity: quanlity,
+        price: productDetail.price,
+      });
+    } else {
+      setStock({});
+    }
+  }, [productDetail, quanlity]);
 
   const _getProductDetail = (productId?: string) => {
     if (localStorage.getItem("query")) {
@@ -46,6 +64,23 @@ const ProductDetail: React.FunctionComponent<
     }
   };
 
+  const handleIncrease = () => {
+    setQuanlity(quanlity + 1);
+  };
+
+  const handleDecrease = () => {
+    setQuanlity(quanlity - 1);
+  };
+
+  const handleOrder = () => {
+    if (quanlity > 0) {
+      dispatch({
+        type: EOrderActionTypes.ADD_STOCK,
+        payload: stock,
+      });
+    }
+  };
+
   return (
     <div className="product-detail">
       <div className="product-detail__title">
@@ -53,7 +88,14 @@ const ProductDetail: React.FunctionComponent<
       </div>
       <div className="product-detail__content">
         <ProductSlider />
-        <ProductInfo product={productDetail} langs={langs} />
+        <ProductInfo
+          product={productDetail}
+          langs={langs}
+          quanlity={quanlity}
+          handleIncrease={handleIncrease}
+          handleDecrease={handleDecrease}
+          handleOrder={handleOrder}
+        />
         <ProductRelated langs={langs} getProductDetail={_getProductDetail} />
       </div>
       <div className="product-detail__tabs">
