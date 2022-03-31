@@ -34,7 +34,7 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
                   ? "tabs__title tabs__title--active"
                   : "tabs__title"
               }
-              key={subMenu.subMenuId || index}
+              key={subMenu.subMenuId}
               onMouseEnter={() => {
                 setTabActive(index);
               }}
@@ -56,14 +56,14 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
                   ? "content__inner content__inner--active"
                   : "content__inner"
               }
-              key={index}
+              key={subMemu.subMenuId}
             >
               {subMemu.categoryMenu?.map((category: any, index: number) => {
                 const categoryId = category.categoryId;
                 return (
                   <div
                     className="inner__subtabs"
-                    key={index}
+                    key={category.categoryId}
                     onMouseEnter={() => {
                       setCategoryActive(index);
                     }}
@@ -88,15 +88,15 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
                           ? "subtabs__content subtabs__content--active"
                           : "subtabs__content"
                       }
-                      key={index}
+                      key={category.categoryId}
                     >
                       {category.Producers.map(
-                        (producer: any, index: number) => {
+                        (producer: any) => {
                           return (
                             <Link
                               to={`/productByProducer/${producer.producerId}`}
                               className="content__link"
-                              key={index}
+                              key={producer.producerId}
                               onClick={() => {
                                 const query = {
                                   categoryId: categoryId,

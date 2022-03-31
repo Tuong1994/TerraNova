@@ -1,11 +1,14 @@
 export enum EProductType {
   cpu = "cpu",
-  mainboard = "mainboard",
   ram = "ram",
   vga = "vga",
   hdd = "hdd",
   ssd = "ssd",
   psu = "psu",
+  mainboard = "mainboard",
+  monitor = "monitor",
+  printer = "printer",
+  fax = "fax",
 }
 export interface ICategory {
   categoryId?: string;

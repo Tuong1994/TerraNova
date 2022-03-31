@@ -55,7 +55,7 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
         {orders?.length > 0 && (
           <div className="inner__link">
             {" "}
-            <Link to="/" className="link__content">
+            <Link to="/productCarts" className="link__content">
               {langs?.button.seeMore}
             </Link>
           </div>

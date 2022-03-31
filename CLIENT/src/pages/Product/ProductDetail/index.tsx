@@ -1,4 +1,4 @@
-import React, { Reducer } from "react";
+import React from "react";
 import * as customHook from "../../../hooks/index";
 import { useDispatch, useSelector } from "react-redux";
 import { RouteComponentProps } from "react-router-dom";
@@ -8,10 +8,12 @@ import { EOrderActionTypes } from "../../../redux/actionTypes/OrderActionTypes";
 import { ReducerState } from "../../../redux/store";
 import { IQueryList } from "../../../interfaces/query";
 import { IOrder } from "../../../models/Order";
+import { toast } from "react-toastify";
 import ProductSlider from "./ProductContent/ProductSlider";
 import ProductInfo from "./ProductContent/ProductInfo";
 import ProductRelated from "./ProductContent/ProductRelated";
-import ProductTabs from "./ProductTabs/ProductTabs";
+import ProductTabs from "./ProductTabs";
+import actions from "../../../configs/actions";
 import utils from "../../../utils";
 
 const ProductDetail: React.FunctionComponent<
@@ -73,12 +75,18 @@ const ProductDetail: React.FunctionComponent<
   };
 
   const handleOrder = () => {
-    if (quanlity > 0) {
-      dispatch({
-        type: EOrderActionTypes.ADD_STOCK,
-        payload: stock,
-      });
-    }
+    dispatch(actions.openButtonLoading);
+    setTimeout(() => {
+      if (quanlity > 0) {
+        let newStock = { ...stock };
+        dispatch({
+          type: EOrderActionTypes.ADD_STOCK,
+          payload: newStock,
+        });
+        toast.success(langs?.toastMessages.success.addToCart);
+      }
+      dispatch(actions.closeButtonLoading);
+    }, 500);
   };
 
   return (

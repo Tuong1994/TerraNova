@@ -5,13 +5,13 @@ import { Formik, Form, Field } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
 import { IUser } from "../../../models/User";
-import { ELoadingActionTypes } from "../../../redux/actionTypes/LoadingActionTypes";
 import { EModalActionTypes } from "../../../redux/actionTypes/ModalActionTypes";
 import { EUserActionTypes } from "../../../redux/actionTypes/UserActionTypes";
 import { EValidateMessage } from "../../../interfaces/validateMessage";
 import { phoneRegex } from "../../../configs/regex";
 import Button from "../../../components/Button";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";
+import actions from "../../../configs/actions";
 import utils from "../../../utils";
 
 const ConsultationForm: React.FunctionComponent<{}> = (props) => {
@@ -40,9 +40,7 @@ const ConsultationForm: React.FunctionComponent<{}> = (props) => {
       .required(EValidateMessage.required),
   });
   const handleSubmit = (values: IUser, action: any) => {
-    dispatch({
-      type: ELoadingActionTypes.OPEN_BUTTON_LOADING,
-    });
+    dispatch(actions.openButtonLoading);
     dispatch({
       type: EUserActionTypes.CONSULTATION,
       payload: values,
@@ -50,23 +48,21 @@ const ConsultationForm: React.FunctionComponent<{}> = (props) => {
     setTimeout(() => {
       action.resetForm({
         values: {
-          name: "",
-          email: "",
-          phone: "",
+          ...initialValues,
         },
       });
       dispatch({
         type: EModalActionTypes.OPEN_MODAL,
       });
-      dispatch({
-        type: ELoadingActionTypes.CLOSE_BUTTON_LOADING,
-      });
+      dispatch(actions.closeButtonLoading);
     }, 1000);
   };
 
   return (
     <div className="consultation__form">
-      <div className="form__title">{langs?.home.consultation.signUpConsultation}</div>
+      <div className="form__title">
+        {langs?.home.consultation.signUpConsultation}
+      </div>
       <div className="form__line"></div>
       <div className="form__wrapper">
         <Formik

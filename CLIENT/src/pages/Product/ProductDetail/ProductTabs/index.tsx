@@ -1,5 +1,6 @@
 import React from "react";
 import { IAccessories } from "../../../../models/Product";
+import ProductComment from "./ProductComment";
 import ProductSpecs from "./ProductSpecs";
 
 interface IProductTabsProps {
@@ -52,7 +53,9 @@ const ProductTabs: React.FunctionComponent<IProductTabsProps> = (props) => {
               ? "content__inner content__inner--active"
               : "content__inner"
           }
-        ></div>
+        >
+          <ProductComment />
+        </div>
       </div>
     </div>
   );

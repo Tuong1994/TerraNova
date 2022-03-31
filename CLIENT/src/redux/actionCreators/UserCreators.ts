@@ -1,16 +1,14 @@
 import axiosClient from "../../axios";
 import * as apiPath from "../../paths/index";
-import { ELoadingActionTypes } from "./../actionTypes/LoadingActionTypes";
 import { EUserActionTypes } from "../actionTypes/UserActionTypes";
 import { IUser } from "../../models/User";
 import { Dispatch } from "redux";
 import { ACCESSTOKEN, ACCOUNT } from "../../configs/setting";
+import actions from "../../configs/actions";
 
 export const signIn = (user: IUser) => {
   return (dispatch: Dispatch) => {
-    dispatch({
-      type: ELoadingActionTypes.OPEN_BUTTON_LOADING,
-    });
+    dispatch(actions.openButtonLoading);
     setTimeout(async () => {
       try {
         const result = await axiosClient.post(apiPath.userPaths.signIn, user);
@@ -20,13 +18,9 @@ export const signIn = (user: IUser) => {
           type: EUserActionTypes.SIGN_IN,
           payload: result.data.userInfo,
         });
-        dispatch({
-          type: ELoadingActionTypes.CLOSE_BUTTON_LOADING,
-        });
+        dispatch(actions.closeButtonLoading);
       } catch (error: any) {
-        dispatch({
-          type: ELoadingActionTypes.CLOSE_BUTTON_LOADING,
-        });
+        dispatch(actions.closeButtonLoading);
       }
     }, 1000);
   };
@@ -34,21 +28,14 @@ export const signIn = (user: IUser) => {
 
 export const signUp = (user: IUser) => {
   return (dispatch: Dispatch) => {
-    dispatch({
-      type: ELoadingActionTypes.OPEN_BUTTON_LOADING,
-    });
+    dispatch(actions.openButtonLoading);
     setTimeout(() => {
       try {
         axiosClient.post(apiPath.userPaths.signUp, user);
-        dispatch({
-          type: ELoadingActionTypes.CLOSE_BUTTON_LOADING,
-        });
+        dispatch(actions.closeButtonLoading);
         signIn(user);
       } catch (error) {
-        console.log(error);
-        dispatch({
-          type: ELoadingActionTypes.OPEN_BUTTON_LOADING,
-        });
+        dispatch(actions.closeButtonLoading);
       }
     }, 1000);
   };

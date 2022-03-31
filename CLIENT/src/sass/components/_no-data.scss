@@ -6,11 +6,10 @@
   align-items: center;
   justify-content: center;
   .nodata__icon {
-    font-size: $h2;
-    color: $tRed;
+    font-size: $h4;
   }
   .nodata__content {
-    font-size: $h4;
+    font-size: $h6;
     margin: $m-10 * 2 0;
   }
 }

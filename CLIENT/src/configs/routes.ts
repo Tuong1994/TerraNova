@@ -11,6 +11,7 @@ import AboutUs from "../pages/AboutUs";
 import Contact from "../pages/Contact";
 import ProductList from "../pages/Product/ProductList";
 import ProductDetail from "../pages/Product/ProductDetail";
+import ProductCarts from "../pages/Product/ProductCarts";
 
 export const adminRoutes: IRoute[] = [
   {
@@ -100,5 +101,10 @@ export const homeRoutes: IRoute[] = [
     path: "/productDetail/:id",
     exact: true,
     component: ProductDetail,
+  },
+  {
+    path: "/productCarts",
+    exact: true,
+    component: ProductCarts,
   },
 ];

@@ -57,10 +57,10 @@ const HeaderMenu: React.FunctionComponent<HeaderMenuProps> = (props) => {
 
   const renderMenuData = () => {
     if (lang === ELangs.ENG) {
-      return headerMenuEng.map((menu: any, index: number) => {
+      return headerMenuEng.map((menu: any) => {
         return (
           <Menu
-            key={index}
+            key={menu.menuId}
             menu={menu}
             getProductByCategory={productByCategory}
             getProductByProducer={productByProducer}
@@ -68,10 +68,10 @@ const HeaderMenu: React.FunctionComponent<HeaderMenuProps> = (props) => {
         );
       });
     } else if (lang === ELangs.VN) {
-      return headerMenuVN.map((menu: any, index: number) => {
+      return headerMenuVN.map((menu: any) => {
         return (
           <Menu
-            key={index}
+            key={menu.menuId}
             menu={menu}
             getProductByCategory={productByCategory}
             getProductByProducer={productByProducer}

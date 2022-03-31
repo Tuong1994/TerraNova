@@ -107,50 +107,17 @@ export const headerMenuEng = [
         active: false,
         categoryMenu: [
           {
-            categoryId: "vga",
-            name: "VGA - GRAPHICS CARD",
+            categoryId: "cpu",
+            name: lang?.ENG.headerMenu.cpu,
             active: false,
             Producers: [
-              { producerId: "gigabyte", name: "GIGABYTE" },
-              { producerId: "asus", name: "ASUS" },
-              { producerId: "msi", name: "MSI" },
-            ],
-          },
-          {
-            categoryId: "ssd",
-            name: "SSD",
-            active: false,
-            Producers: [
-              { producerId: "gigabyte", name: "GIGABYTE" },
-              { producerId: "samsung", name: "SAMSUNG" },
-              { producerId: "kingston", name: "KINGSTON" },
-              { producerId: "western", name: "WESTERN DIGITAL" },
-            ],
-          },
-          {
-            categoryId: "ram",
-            name: "RAM",
-            active: false,
-            Producers: [
-              { producerId: "gigabyte", name: "GIGABYTE" },
-              { producerId: "corsair", name: "CORSAIR" },
-              { producerId: "kingston", name: "KINGSTON" },
-            ],
-          },
-          {
-            categoryId: "psu",
-            name: "PSU - POWER SUPLLY UNIT",
-            active: false,
-            Producers: [
-              { producerId: "gigabyte", name: "GIGABYTE" },
-              { producerId: "deepcool", name: "DEEPCOOL" },
-              { producerId: "coolermaster", name: "COOLERMASTER" },
-              { producerId: "corsair", name: "CORSAIR" },
+              { producerId: "intel", name: "INTEL" },
+              { producerId: "amd", name: "AMD" },
             ],
           },
           {
             categoryId: "mainboard",
-            name: "MAINBOARD",
+            name: lang?.ENG.headerMenu.mainboard,
             active: false,
             Producers: [
               { producerId: "asus", name: "ASUS" },
@@ -160,8 +127,18 @@ export const headerMenuEng = [
             ],
           },
           {
+            categoryId: "ram",
+            name: lang?.ENG.headerMenu.ram,
+            active: false,
+            Producers: [
+              { producerId: "gigabyte", name: "GIGABYTE" },
+              { producerId: "corsair", name: "CORSAIR" },
+              { producerId: "kingston", name: "KINGSTON" },
+            ],
+          },
+          {
             categoryId: "hdd",
-            name: "HDD",
+            name: lang?.ENG.headerMenu.hdd,
             active: false,
             Producers: [
               { producerId: "seagate", name: "SEAGATE" },
@@ -169,12 +146,35 @@ export const headerMenuEng = [
             ],
           },
           {
-            categoryId: "cpu",
-            name: "CPU",
+            categoryId: "ssd",
+            name: lang?.ENG.headerMenu.ssd,
             active: false,
             Producers: [
-              { producerId: "intel", name: "INTEL" },
-              { producerId: "amd", name: "AMD" },
+              { producerId: "gigabyte", name: "GIGABYTE" },
+              { producerId: "samsung", name: "SAMSUNG" },
+              { producerId: "kingston", name: "KINGSTON" },
+              { producerId: "western", name: "WESTERN DIGITAL" },
+            ],
+          },
+          {
+            categoryId: "vga",
+            name: lang?.ENG.headerMenu.vga,
+            active: false,
+            Producers: [
+              { producerId: "gigabyte", name: "GIGABYTE" },
+              { producerId: "asus", name: "ASUS" },
+              { producerId: "msi", name: "MSI" },
+            ],
+          },
+          {
+            categoryId: "psu",
+            name: lang?.ENG.headerMenu.psu,
+            active: false,
+            Producers: [
+              { producerId: "gigabyte", name: "GIGABYTE" },
+              { producerId: "deepcool", name: "DEEPCOOL" },
+              { producerId: "coolermaster", name: "COOLERMASTER" },
+              { producerId: "corsair", name: "CORSAIR" },
             ],
           },
         ],
@@ -322,50 +322,17 @@ export const headerMenuVN = [
         active: false,
         categoryMenu: [
           {
-            categoryId: "vga",
-            name: "VGA - GRAPHICS CARD",
+            categoryId: "cpu",
+            name: lang?.VN.headerMenu.cpu,
             active: false,
             Producers: [
-              { producerId: "gigabyte", name: "GIGABYTE" },
-              { producerId: "asus", name: "ASUS" },
-              { producerId: "msi", name: "MSI" },
-            ],
-          },
-          {
-            categoryId: "ssd",
-            name: "SSD",
-            active: false,
-            Producers: [
-              { producerId: "gigabyte", name: "GIGABYTE" },
-              { producerId: "samsung", name: "SAMSUNG" },
-              { producerId: "kingston", name: "KINGSTON" },
-              { producerId: "western", name: "WESTERN DIGITAL" },
-            ],
-          },
-          {
-            categoryId: "ram",
-            name: "RAM",
-            active: false,
-            Producers: [
-              { producerId: "gigabyte", name: "GIGABYTE" },
-              { producerId: "corsair", name: "CORSAIR" },
-              { producerId: "kingston", name: "KINGSTON" },
-            ],
-          },
-          {
-            categoryId: "psu",
-            name: "PSU - POWER SUPLLY UNIT",
-            active: false,
-            Producers: [
-              { producerId: "gigabyte", name: "GIGABYTE" },
-              { producerId: "deepcool", name: "DEEPCOOL" },
-              { producerId: "coolermaster", name: "COOLERMASTER" },
-              { producerId: "corsair", name: "CORSAIR" },
+              { producerId: "intel", name: "INTEL" },
+              { producerId: "amd", name: "AMD" },
             ],
           },
           {
             categoryId: "mainboard",
-            name: "MAINBOARD",
+            name: lang?.VN.headerMenu.mainboard,
             active: false,
             Producers: [
               { producerId: "asus", name: "ASUS" },
@@ -375,8 +342,18 @@ export const headerMenuVN = [
             ],
           },
           {
+            categoryId: "ram",
+            name: lang?.VN.headerMenu.ram,
+            active: false,
+            Producers: [
+              { producerId: "gigabyte", name: "GIGABYTE" },
+              { producerId: "corsair", name: "CORSAIR" },
+              { producerId: "kingston", name: "KINGSTON" },
+            ],
+          },
+          {
             categoryId: "hdd",
-            name: "HDD",
+            name: lang?.VN.headerMenu.hdd,
             active: false,
             Producers: [
               { producerId: "seagate", name: "SEAGATE" },
@@ -384,12 +361,35 @@ export const headerMenuVN = [
             ],
           },
           {
-            categoryId: "cpu",
-            name: "CPU",
+            categoryId: "ssd",
+            name: lang?.VN.headerMenu.ssd,
             active: false,
             Producers: [
-              { producerId: "intel", name: "INTEL" },
-              { producerId: "amd", name: "AMD" },
+              { producerId: "gigabyte", name: "GIGABYTE" },
+              { producerId: "samsung", name: "SAMSUNG" },
+              { producerId: "kingston", name: "KINGSTON" },
+              { producerId: "western", name: "WESTERN DIGITAL" },
+            ],
+          },
+          {
+            categoryId: "vga",
+            name: lang?.VN.headerMenu.vga,
+            active: false,
+            Producers: [
+              { producerId: "gigabyte", name: "GIGABYTE" },
+              { producerId: "asus", name: "ASUS" },
+              { producerId: "msi", name: "MSI" },
+            ],
+          },
+          {
+            categoryId: "psu",
+            name: lang?.VN.headerMenu.psu,
+            active: false,
+            Producers: [
+              { producerId: "gigabyte", name: "GIGABYTE" },
+              { producerId: "deepcool", name: "DEEPCOOL" },
+              { producerId: "coolermaster", name: "COOLERMASTER" },
+              { producerId: "corsair", name: "CORSAIR" },
             ],
           },
         ],
@@ -457,4 +457,3 @@ export const headerMenuVN = [
     subMenu: [],
   },
 ];
-

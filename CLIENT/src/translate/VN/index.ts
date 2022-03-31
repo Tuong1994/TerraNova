@@ -7,8 +7,9 @@ const VnLang = {
     contact: "Liên hệ",
     computer: "Máy tính PC",
     electronics: "Đồ điện tử",
-    printer: "Máy in",
-    monitor: "Màn hình",
+    printer: "MÁY IN",
+    faxMachine: "MÁY FAX",
+    monitor: "MÀN HÌNH",
     cpu: "VI XỬ LÝ - CPU",
     ram: "BỘ NHỚ TẠM THỜI - RAM",
     hdd: "Ổ CỨNG - HDD",
@@ -16,7 +17,6 @@ const VnLang = {
     vga: "CARD ĐỒ HỌA - VGA",
     psu: "NGUỒN MÁY TÍNH - PSU",
     mainboard: "MAINBOARD",
-    faxMachine: "Máy fax",
     accessories: "Linh kiện",
     mindsetPrograming: "Lập trình Tư Duy",
     mobilePrograming: "Lập trình Mobile",
@@ -138,11 +138,24 @@ const VnLang = {
     addToCart: "Thêm vào giỏ hàng"
   },
   noData: {
+    data: "Không tìm thấy dữ liệu",
     product: "Chưa có sản phẩm"
   },
   carts: {
     slots: "sl"
-  }
+  },
+  toastMessages: {
+    success: {
+      addToCart: "Thêm vào giỏ hàng thành công",
+      signIn: "Đăng nhập thành công",
+      signUp: "Đăng ký thành công",
+    },
+    error: {
+      addToCart: "Thêm vào giỏ hàng thất bại",
+      signIn: "Đăng nhập thất bại",
+      signUp: "Đăng ký thành công",
+    },
+  },
 };
 
 export default VnLang;

@@ -1,5 +1,8 @@
 import React from "react";
 import { IAccessories } from "../../../../models/Product";
+import ButtonLoading from "../../../../components/Loading/ButtonLoading";
+import { useSelector } from "react-redux";
+import { ReducerState } from "../../../../redux/store";
 
 interface IProductInfoProps {
   product: IAccessories;
@@ -11,7 +14,18 @@ interface IProductInfoProps {
 }
 
 const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
-  const { product, quanlity, langs, handleIncrease, handleDecrease, handleOrder } = props;
+  const {
+    product,
+    quanlity,
+    langs,
+    handleIncrease,
+    handleDecrease,
+    handleOrder,
+  } = props;
+
+  const { buttonLoading } = useSelector(
+    (state: ReducerState) => state.LoadingReducer
+  );
 
   return (
     <div className="content__info">
@@ -52,8 +66,16 @@ const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
         </div>
       </div>
 
-      <div className="info__button" onClick={handleOrder}>
-        <div className={quanlity <= 0 ? "button--submit button--disabled" : "button--submit"}>{langs?.button.addToCart} </div>
+      <div className="info__button">
+        <div
+          className={
+            quanlity <= 0 || buttonLoading ? "button--submit button--disabled" : "button--submit"
+          }
+          onClick={handleOrder}
+        >
+          {buttonLoading && <ButtonLoading />}
+          <span>{langs?.button.addToCart}</span>
+        </div>
       </div>
     </div>
   );

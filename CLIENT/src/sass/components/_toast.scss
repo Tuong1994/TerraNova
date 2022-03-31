@@ -1,108 +1,75 @@
 .toast__wrapper {
-  width: $w-100 - 60;
-  padding: $p-10;
-
-  color: $tSecondary;
-  background: $primary;
-
-  border: 2px solid transparent;
-  border-radius: $lightRound;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  position: fixed;
-  left: 50%;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.5s ease;
-  transform: translateX(-50%);
-  z-index: 99999;
-  .wrapper__icon {
-    width: $w-10 * 3;
-    height: $h-10 * 3;
-    border-radius: $circle;
-    background: $RGBA-white-1;
+  overflow: hidden;
+  .wrapper__item {
+    width: $w-10 * 50;
+    height: $h-10 * 5;
+    margin: $m-10 0;
+    background: $primary;
+    border-radius: $lightRound;
+    box-shadow: 0 0 10px $borderGrey;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    animation: slideIn ease 0.3s, fadeOut ease 1s 3s forwards;
+    .item__line {
+      width: 8px;
+      height: 100%;
+      background: $dark;
+    }
+    .item__icon {
+      padding: 0 $p-10;
+    }
+    .item__title {
+      flex-grow: 1;
+    }
+    .item__close {
+      padding: 0 $p-10;
+      cursor: pointer;
+    }
   }
-  .wrapper__error {
-    background: $RGBA-red-1;
+  .wrapper__item--success {
+    background: $green-2;
+    color: $tSecondary;
+    .item__line {
+      background: $green-1;
+    }
+    .item__icon {
+      color: $green-1;
+    }
   }
-  .wrapper__success {
-    background: $RGBA-green-1;
+  .wrapper__item--error {
+    background: $red-1;
+    color: $tSecondary;
+    .item__line {
+      background: $red-2;
+    }
+    .item__icon {
+      color: $red-2;
+    }
+  }
+  .wrapper__item--warning {
+    background: $green-2;
+    color: $tSecondary;
+    .item__line {
+      background: $green-1;
+    }
   }
 }
 
-.toast__wrapper--active {
-  animation: animation 2s ease-in-out 1;
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-.toast__success {
-  border-color: $borderSuccess;
-  background: $green-2;
-}
-
-.toast__error {
-  border-color: $borderError;
-  background: $red-1;
-}
-
-@keyframes animation {
-  0% {
-    top: 0;
+@keyframes fadeOut {
+  to {
     opacity: 0;
-    visibility: hidden;
-  }
-  10% {
-    top: 18%;
-    opacity: 1;
-    visibility: visible;
-  }
-  20% {
-    top: 15%;
-    opacity: 1;
-    visibility: visible;
-  }
-  30% {
-    top: 15%;
-    opacity: 1;
-    visibility: visible;
-  }
-  40% {
-    top: 15%;
-    opacity: 1;
-    visibility: visible;
-  }
-  50% {
-    top: 15%;
-    opacity: 1;
-    visibility: visible;
-  }
-  60% {
-    top: 15%;
-    opacity: 1;
-    visibility: visible;
-  }
-  70% {
-    top: 15%;
-    opacity: 1;
-    visibility: visible;
-  }
-  80% {
-    top: 15%;
-    opacity: 0;
-    visibility: hidden;
-  }
-  90% {
-    top: 15%;
-    opacity: 0;
-    visibility: hidden;
-  }
-  100% {
-    opacity: 0;
-    visibility: hidden;
   }
 }

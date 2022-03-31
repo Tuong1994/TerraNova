@@ -15,8 +15,8 @@ const EngLang = {
     ram: "RAM",
     hdd: "HDD",
     ssd: "SSD",
-    vga: "VGA",
-    psu: "PSU",
+    vga: "VGA - GRAPHICS CARD",
+    psu: "PSU - POWER SUPLLY UNIT",
     mainboard: "MAINBOARD",
     mindsetPrograming: "Mindset Programing",
     mobilePrograming: "Mobile Programing",
@@ -91,7 +91,7 @@ const EngLang = {
     achievement: {
       branches: "Branches",
       customers: "Customers",
-      partners: "Partners"
+      partners: "Partners",
     },
   },
   productList: {
@@ -103,16 +103,18 @@ const EngLang = {
     warranty: "Warranty",
     status: "Status",
     price: "Price",
-    specs: "Specìfications",
+    specs: "Specifications",
     comments: "Comments",
-    related: "Related products"
+    related: "Related products",
   },
   footer: {
     partners: "Parters",
     socials: "Socials",
     company: "TERRA NOVA TRADING COMPANY",
-    address_1: "Branches 1: 102 Nguyen Dinh Chinh Str, Ward 15, District Phu Nhuan, HCMC",
-    address_2: "Branches 2: 12B Nguyen Huu Canh Str, Ward 19, District Binh Thanh, HCMC",
+    address_1:
+      "Branches 1: 102 Nguyen Dinh Chinh Str, Ward 15, District Phu Nhuan, HCMC",
+    address_2:
+      "Branches 2: 12B Nguyen Huu Canh Str, Ward 19, District Binh Thanh, HCMC",
   },
   time: {
     day: "day",
@@ -126,22 +128,35 @@ const EngLang = {
     Year: "Year",
     Days: "Days",
     Months: "Months",
-    Years: "Years"
+    Years: "Years",
   },
   status: {
-    new: "New"
+    new: "New",
   },
   button: {
     submit: "Submit",
     seeMore: "See more",
-    addToCart: "Add to cart"
+    addToCart: "Add to cart",
   },
   noData: {
-    product: "No product yet"
+    data: "No data founded",
+    product: "No product yet",
   },
   carts: {
-    slots: "slots"
-  }
+    slots: "slots",
+  },
+  toastMessages: {
+    success: {
+      addToCart: "Add to carts success",
+      signIn: "Sign in success",
+      signUp: "Sign up success",
+    },
+    error: {
+      addToCart: "Add to carts fail",
+      signIn: "Sign in fail",
+      signUp: "Sign up fail",
+    },
+  },
 };
 
 export default EngLang;

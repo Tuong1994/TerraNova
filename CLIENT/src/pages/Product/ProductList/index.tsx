@@ -8,8 +8,9 @@ import {
   getProductByCategory,
   getProductByProducer,
 } from "../../../redux/actionCreators/ProductCreators";
-import {ELangs} from "../../../interfaces/lang";
 import { IQueryList } from "../../../interfaces/query";
+import { ELangs } from "../../../interfaces/lang";
+import { EProductType } from "../../../models/Product";
 import Pagination from "../../../components/Pagination";
 import DataLoading from "../../../components/Loading/DataLoading";
 import NoData from "../../../components/NoData";
@@ -27,6 +28,7 @@ const ProductList: React.FunctionComponent<
   );
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
+  const id = props.match.params.id;
   const dispatch = useDispatch();
   const { limits, totalProduct } = productList;
   const path = props.match.path;
@@ -36,7 +38,6 @@ const ProductList: React.FunctionComponent<
 
   React.useEffect(() => {
     if (path.includes("productByCategory")) {
-      const id = props.match.params.id;
       let query: IQueryList = {
         categoryId: id,
         page: page,
@@ -64,8 +65,8 @@ const ProductList: React.FunctionComponent<
     if (productList) {
       const { productListPerPage } = productList;
       if (productListPerPage && productListPerPage.length > 0) {
-        return productListPerPage?.map((product, index) => {
-          return <ProductCard product={product} key={index} />;
+        return productListPerPage?.map((product) => {
+          return <ProductCard product={product} key={utils.uuid()} />;
         });
       } else {
         return <NoData />;
@@ -78,8 +79,8 @@ const ProductList: React.FunctionComponent<
     if (productList) {
       const { productListPerPage } = productList;
       if (productListPerPage && productListPerPage.length > 0) {
-        return productListPerPage?.map((product, index) => {
-          return <ProductCard product={product} key={index} />;
+        return productListPerPage?.map((product) => {
+          return <ProductCard product={product} key={utils.uuid()} />;
         });
       } else {
         return <NoData />;
@@ -96,15 +97,52 @@ const ProductList: React.FunctionComponent<
     }
   };
 
+  const renderTitleByParams = () => {
+    if (id) {
+      switch (id) {
+        case EProductType.cpu: {
+          return langs?.headerMenu.cpu;
+        }
+        case EProductType.mainboard: {
+          return langs?.headerMenu.mainboard;
+        }
+        case EProductType.ram: {
+          return langs?.headerMenu.ram;
+        }
+        case EProductType.hdd: {
+          return langs?.headerMenu.hdd;
+        }
+        case EProductType.ssd: {
+          return langs?.headerMenu.ssd;
+        }
+        case EProductType.vga: {
+          return langs?.headerMenu.vga;
+        }
+        case EProductType.psu: {
+          return langs?.headerMenu.psu;
+        }
+        case EProductType.monitor: {
+          return langs?.headerMenu.monitor;
+        }
+        case EProductType.printer: {
+          return langs?.headerMenu.printer;
+        }
+        case EProductType.fax: {
+          return langs?.headerMenu.faxMachine;
+        }
+      }
+    }
+  };
+
   // render title by path
   const renderTitle = () => {
     if (path.includes("productByCategory")) {
-      return productList.categoryName;
+      return productList.categoryName || renderTitleByParams();
     } else if (path.includes("productByProducer")) {
-      if(lang === ELangs.ENG) {
-        return `${productList.producerName} ${langs?.productList.title}`
+      if (lang === ELangs.ENG) {
+        return `${productList.producerName} ${langs?.productList.title}`;
       } else if (lang === ELangs.VN) {
-        return `${langs?.productList.title} ${productList.producerName}`
+        return `${langs?.productList.title} ${productList.producerName}`;
       }
     }
   };

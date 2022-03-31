@@ -4,7 +4,6 @@ import { Formik, Form, Field } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
 import { IUser } from "../../../models/User/";
-import { ELoadingActionTypes } from "../../../redux/actionTypes/LoadingActionTypes";
 import { EModalActionTypes } from "../../../redux/actionTypes/ModalActionTypes";
 import { EUserActionTypes } from "../../../redux/actionTypes/UserActionTypes";
 import { EValidateMessage } from "../../../interfaces/validateMessage";
@@ -12,6 +11,7 @@ import { phoneRegex } from "../../../configs/regex";
 import InputField from "../../../components/Fields/InputField/InputField";
 import Button from "../../../components/Button";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";
+import actions from "../../../configs/actions";
 import utils from "../../../utils";
 
 const CarouselForm: React.FunctionComponent<{}> = (props) => {
@@ -20,7 +20,7 @@ const CarouselForm: React.FunctionComponent<{}> = (props) => {
   );
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
   const dispatch = useDispatch();
-  
+
   const langs = utils.changeLang(lang);
 
   const initialValues = {
@@ -40,9 +40,7 @@ const CarouselForm: React.FunctionComponent<{}> = (props) => {
       .required(EValidateMessage.required),
   });
   const handleSubmit = (values: IUser, action: any) => {
-    dispatch({
-      type: ELoadingActionTypes.OPEN_BUTTON_LOADING,
-    });
+    dispatch(actions.openButtonLoading);
     dispatch({
       type: EUserActionTypes.CONSULTATION,
       payload: values,
@@ -50,19 +48,16 @@ const CarouselForm: React.FunctionComponent<{}> = (props) => {
     setTimeout(() => {
       action.resetForm({
         values: {
-          name: "",
-          email: "",
-          phone: "",
+          ...initialValues,
         },
       });
       dispatch({
         type: EModalActionTypes.OPEN_MODAL,
       });
-      dispatch({
-        type: ELoadingActionTypes.CLOSE_BUTTON_LOADING,
-      });
+      dispatch(actions.closeButtonLoading);
     }, 1000);
   };
+
   return (
     <div className="carousel__form">
       <h4 className="form__title">{langs?.home.consultation.consultation}</h4>

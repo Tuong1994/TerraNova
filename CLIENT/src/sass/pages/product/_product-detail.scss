@@ -98,13 +98,19 @@
     .content__related {
       width: $w-100 - 70;
       height: $h-10 * 35;
-      padding: $p-10;
+      padding: 0 $p-10;
+      position: relative;
       .related__title {
+        width: $w-100;
+        background: $primary;
         font-size: $subtitle;
         font-weight: $semiBold;
-        padding: $p-10 0;
+        padding: $p-10 * 2 0;
         margin-bottom: $m-10;
         border-bottom: 1px solid $borderGrey;
+        position: sticky;
+        top: 0;
+        z-index: 999;
       }
       .related__item {
         width: $w-100;
@@ -179,17 +185,26 @@
         }
       }
       .wrapper__content {
-        padding: $p-10 * 5;
+        width: $w-100;
+        height: $h-10 * 35;
         border: 1px solid $borderGrey;
         border-top: 0;
         border-bottom-left-radius: $lightRound;
         border-bottom-right-radius: $lightRound;
+        position: relative;
         .content__inner {
           width: $w-100;
+          height: $h-100;
+          padding: $p-10 * 5;
+          position: absolute;
+          top: 0;
+          left: 0;
           opacity: 0;
           visibility: hidden;
+          overflow: auto;
           transition: all 0.5s ease;
           .inner__specs {
+            width: $w-100;
             .specs__table {
               width: $w-100;
               .table__row {
@@ -201,6 +216,54 @@
                     font-weight: $semiBold;
                   }
                 }
+              }
+            }
+          }
+          .inner__comment {
+            width: $w-100;
+            .comment__item {
+              margin: $m-10 * 2 0;
+              padding: $p-10;
+              border: 1px solid $borderGrey;
+              border-radius: $lightRound;
+              .item__title {
+                padding: $p-10 0;
+                border-bottom: 1px solid $borderGrey;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .title__img {
+                  display: flex;
+                  align-items: center;
+                  img {
+                    width: $w-10 * 4;
+                    height: $h-10 * 4;
+                    margin-right: $m-10;
+                  }
+                  p {
+                    font-size: $body-1;
+                    font-weight: $semiBold;
+                  }
+                }
+                .title__icon {
+                  display: flex;
+                  align-items: center;
+                  .fa-solid {
+                    font-size: $subtitle;
+                    padding: 0 $p-5;
+                    opacity: 0.6;
+                    cursor: pointer;
+                    transition: all 0.5s ease;
+                    &:hover {
+                      opacity: 1;
+                    }
+                  }
+                }
+              }
+              .item__content {
+                padding: $p-10;
+                font-size: $body-1;
+                text-align: justify;
               }
             }
           }

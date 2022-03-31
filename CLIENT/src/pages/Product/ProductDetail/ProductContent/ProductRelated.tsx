@@ -5,6 +5,7 @@ import { ReducerState } from "../../../../redux/store";
 import { getProductByProducer } from "../../../../redux/actionCreators/ProductCreators";
 import { IQueryList } from "../../../../interfaces/query";
 import { history } from "../../../../App";
+import utils from "../../../../utils";
 
 interface ProducRelatedProps {
   langs: any;
@@ -39,9 +40,10 @@ const ProductRelated: React.FunctionComponent<ProducRelatedProps> = (props) => {
     if (productList) {
       const { productListPerPage } = productList;
       if (productListPerPage && productListPerPage?.length > 0) {
-        return productListPerPage?.map((product, index) => {
+        return productListPerPage?.map((product) => {
           return (
             <Card.CardWrapper
+              key={utils.uuid()}
               className="related__item"
               onClick={() => {
                 history.push(`/productDetail/${product?.productId}`);
@@ -51,7 +53,7 @@ const ProductRelated: React.FunctionComponent<ProducRelatedProps> = (props) => {
                 }, 1000);
               }}
             >
-              <Card.Body key={index} className="item__inner">
+              <Card.Body className="item__inner">
                 <div className="inner__content">
                   <img
                     className="content__img"
