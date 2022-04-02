@@ -34,7 +34,7 @@ const signIn = async (req, res) => {
           accessToken,
         });
       } else {
-        res.status(404).send("Password incorrect");
+        res.status(403).send("Password incorrect");
       }
     } else {
       res.status(404).send(`Account ${account} incorrect`);
@@ -57,7 +57,7 @@ const signUp = async (req, res) => {
     gender,
   } = req.body;
   try {
-    const userId ="User_" + (Math.floor(Math.random() * 100000)).toString();
+    const userId ="U_" + (Math.floor(Math.random() * 100000)).toString();
     const salt = bcryptjs.genSaltSync(10)
     const hashPassword = bcryptjs.hashSync(password, salt)
     const newUser = await User.create({

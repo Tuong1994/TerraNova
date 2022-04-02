@@ -47,6 +47,7 @@
           height: $h-10 * 3;
         }
         .item__content {
+          width: $w-100 - 35;
           font-size: $body-2;
           p {
             margin-bottom: $m-10 - 5;

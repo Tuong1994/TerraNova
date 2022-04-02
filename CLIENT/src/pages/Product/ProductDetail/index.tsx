@@ -25,7 +25,7 @@ const ProductDetail: React.FunctionComponent<
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
   const [stock, setStock] = React.useState<IOrder>({});
-  const [quanlity, setQuanlity] = React.useState<number>(0);
+  const [amount, setAmount] = React.useState<number>(0);
 
   const dispatch = useDispatch();
   const id = props.match.params.id;
@@ -39,27 +39,27 @@ const ProductDetail: React.FunctionComponent<
   }, []);
 
   React.useEffect(() => {
-    if (quanlity > 0) {
+    if (amount > 0) {
       setStock({
         productId: productDetail.productId,
         productName: productDetail.name,
-        quanlity: quanlity,
+        amount: amount,
         price: productDetail.price,
       });
     } else {
       setStock({});
     }
-  }, [productDetail, quanlity]);
+  }, [productDetail, amount]);
 
-  const _getProductDetail = (productId?: string) => {
-    if (localStorage.getItem("query")) {
-      let ids: any = {};
-      let obj = localStorage.getItem("query");
-      ids = JSON.parse(obj || "");
-      if (ids) {
+  const _getProductDetail = () => {
+    if (localStorage.getItem("productType")) {
+      let type: any = {};
+      let obj = localStorage.getItem("productType");
+      type = JSON.parse(obj || "");
+      if (type) {
         const query: IQueryList = {
-          productId: productId || id,
-          productType: ids.categoryId,
+          productId: id,
+          productType: type,
         };
         dispatch(getProductDetail(query));
       }
@@ -67,17 +67,17 @@ const ProductDetail: React.FunctionComponent<
   };
 
   const handleIncrease = () => {
-    setQuanlity(quanlity + 1);
+    setAmount(amount + 1);
   };
 
   const handleDecrease = () => {
-    setQuanlity(quanlity - 1);
+    setAmount(amount - 1);
   };
 
   const handleOrder = () => {
     dispatch(actions.openButtonLoading);
     setTimeout(() => {
-      if (quanlity > 0) {
+      if (amount > 0) {
         let newStock = { ...stock };
         dispatch({
           type: EOrderActionTypes.ADD_STOCK,
@@ -99,7 +99,7 @@ const ProductDetail: React.FunctionComponent<
         <ProductInfo
           product={productDetail}
           langs={langs}
-          quanlity={quanlity}
+          amount={amount}
           handleIncrease={handleIncrease}
           handleDecrease={handleDecrease}
           handleOrder={handleOrder}

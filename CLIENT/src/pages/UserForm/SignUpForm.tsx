@@ -1,21 +1,27 @@
 import React from "react";
 import * as yup from "yup";
 import * as FormControl from "../../components/Fields";
+import { Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { IUser } from "../../models/User";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../redux/store";
-import { EValidateMessage } from "../../interfaces/validateMessage";
 import { phoneRegex, spaceRegex } from "../../configs/regex";
 import { signUp } from "../../redux/actionCreators/UserCreators";
 import Button from "../../components/Button";
 import ButtonLoading from "../../components/Loading/ButtonLoading";
+import utils from "../../utils";
 
 const SignUpForm: React.FunctionComponent<{}> = (props) => {
   const { buttonLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
   );
+  const { lang } = useSelector((state: ReducerState) => state.LangReducer);
+
   const dispatch = useDispatch();
+
+  const langs = utils.changeLang(lang);
+
   const initialValues = {
     account: "",
     password: "",
@@ -34,50 +40,47 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
       .string()
       .min(2, "At least 2 character")
       .max(25, "At most 25 character")
-      .matches(spaceRegex, `Account ${EValidateMessage.whiteSpace}`)
-      .required(EValidateMessage.required),
-    password: yup.string().required(EValidateMessage.required),
+      .matches(spaceRegex, `Account ${langs?.validateMessages.whiteSpace}`)
+      .required(langs?.validateMessages.required),
+    password: yup.string().required(langs?.validateMessages.required),
     passwordConfirm: yup
       .string()
-      .oneOf([yup.ref("password")], EValidateMessage.password)
-      .required(EValidateMessage.required),
-    firstName: yup.string().required(EValidateMessage.required),
-    lastName: yup.string().required(EValidateMessage.required),
+      .oneOf([yup.ref("password")], langs?.validateMessages.password)
+      .required(langs?.validateMessages.required),
+    firstName: yup.string().required(langs?.validateMessages.required),
+    lastName: yup.string().required(langs?.validateMessages.required),
     email: yup
       .string()
-      .email(EValidateMessage.email)
-      .required(EValidateMessage.required),
+      .email(langs?.validateMessages.email)
+      .required(langs?.validateMessages.required),
     phone: yup
       .string()
       .max(10, "At most 10 character")
-      .matches(phoneRegex, EValidateMessage.phone)
-      .required(EValidateMessage.required),
-    address: yup.string().required(EValidateMessage.required),
-    birthDay: yup.string().required(EValidateMessage.date),
-    gender: yup.string().required(EValidateMessage.gender),
+      .matches(phoneRegex, langs?.validateMessages.phone)
+      .required(langs?.validateMessages.required),
+    address: yup.string().required(langs?.validateMessages.required),
+    birthDay: yup.string().required(langs?.validateMessages.date),
+    gender: yup.string().required(langs?.validateMessages.gender),
   });
   const handleSubmit = (values: IUser, action: any) => {
-    dispatch(signUp(values));
+    dispatch(
+      signUp(
+        values,
+        langs?.toastMessages.success.signUp,
+        langs?.toastMessages.error.signUp
+      )
+    );
     setTimeout(() => {
       action.resetForm({
         values: {
-          account: "",
-          password: "",
-          passwordConfirm: "",
-          firstName: "",
-          lastName: "",
-          email: "",
-          phone: "",
-          address: "",
-          birthDay: "",
-          gender: "",
+          ...initialValues,
         },
       });
     }, 1000);
   };
   return (
     <div className="sign-up__form">
-      <div className="form__title">Sign Up</div>
+      <div className="form__title">{langs?.form.signUp}</div>
       <div className="form__line"></div>
       <Formik
         initialValues={initialValues}
@@ -91,7 +94,7 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
               <Field
                 name="account"
                 component={FormControl.Input}
-                label="Account"
+                label={langs?.form.account}
                 placeholder=" "
                 type="text"
                 icon={<i className="fas fa-user"></i>}
@@ -99,7 +102,7 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
               <Field
                 name="password"
                 component={FormControl.Password}
-                label="Password"
+                label={langs?.form.password}
                 placeholder=" "
                 type="password"
                 icon={<i className="fas fa-eye"></i>}
@@ -107,19 +110,19 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
               <Field
                 name="passwordConfirm"
                 component={FormControl.Password}
-                label="Password Confirm"
+                label={langs?.form.passConfirm}
                 placeholder=" "
                 type="password"
                 icon={<i className="fas fa-eye"></i>}
               />
 
-              <h3 className="wrapper__title">Person Information</h3>
+              <h3 className="wrapper__title">{langs?.form.personalInfo}</h3>
 
               <div className="wrapper__group">
                 <Field
                   name="firstName"
                   component={FormControl.Input}
-                  label="First name"
+                  label={langs?.form.firstName}
                   placeholder=" "
                   type="text"
                   icon={<i className="fas fa-user"></i>}
@@ -128,7 +131,7 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
                 <Field
                   name="lastName"
                   component={FormControl.Input}
-                  label="Last name"
+                  label={langs?.form.lastName}
                   placeholder=" "
                   type="text"
                   icon={<i className="fas fa-user"></i>}
@@ -140,7 +143,7 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
                 <Field
                   name="email"
                   component={FormControl.Input}
-                  label="Email"
+                  label={langs?.form.email}
                   placeholder=" "
                   type="text"
                   icon={<i className="fas fa-envelope"></i>}
@@ -149,7 +152,7 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
                 <Field
                   name="phone"
                   component={FormControl.Input}
-                  label="Phone"
+                  label={langs?.form.phone}
                   placeholder=" "
                   type="text"
                   icon={<i className="fas fa-phone"></i>}
@@ -161,7 +164,7 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
                 <Field
                   name="address"
                   component={FormControl.Input}
-                  label="Address"
+                  label={langs?.form.address}
                   placeholder=" "
                   type="text"
                   groupClassName="group__control"
@@ -169,7 +172,7 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
                 <Field
                   name="birthDay"
                   component={FormControl.Input}
-                  label="Birthday"
+                  label={langs?.form.birthday}
                   placeholder=" "
                   type="date"
                   groupClassName="group__control"
@@ -178,20 +181,20 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
 
               <div className="wrapper__group">
                 <div className="group__inner">
-                  <div className="inner__title">Gender</div>
+                  <div className="inner__title">{langs?.form.gender}</div>
                   <div className="inner__control">
                     <Field
                       name="gender"
                       value="male"
                       component={FormControl.Radio}
-                      label="Male"
+                      label={langs?.form.male}
                       groupClassName="control__item"
                     />
                     <Field
                       name="gender"
                       value="female"
                       component={FormControl.Radio}
-                      label="Female"
+                      label={langs?.form.female}
                       groupClassName="control__item"
                     />
                   </div>
@@ -200,7 +203,7 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
                 <div className="group__button">
                   {!isValid ? (
                     <Button type="button" className="button--disabled">
-                      Sign Up
+                      {langs?.form.signUp}
                     </Button>
                   ) : (
                     <Button
@@ -213,7 +216,7 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
                       isDisabled={!isValid || isSubmitting}
                     >
                       <ButtonLoading />
-                      <span>Sign Up</span>
+                      <span>{langs?.form.signUp}</span>
                     </Button>
                   )}
                 </div>
@@ -222,6 +225,14 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
           );
         }}
       </Formik>
+      <div className="form__link">
+        <p>
+          {langs?.form.haveAcc} |{" "}
+          <Link className="link" to="/signIn">
+            {langs?.form.signIn}
+          </Link>
+        </p>
+      </div>
     </div>
   );
 };

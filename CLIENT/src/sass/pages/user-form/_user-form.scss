@@ -67,6 +67,16 @@
       margin: $m-10 * 2 0;
     }
     .form__wrapper {
+      .wrapper__link {
+        width: $w-100;
+        margin-bottom: $m-10 * 2;
+        display: flex;
+        justify-content: center;
+        font-size: $body-1;
+        .link {
+          font-style: italic;
+        }
+      }
       .wrapper__button {
         width: $w-100;
         display: flex;
@@ -150,6 +160,16 @@
         @include respond(phone) {
           flex-direction: column;
         }
+      }
+    }
+    .form__link {
+      width: $w-100;
+      margin-bottom: $m-10 * 2;
+      display: flex;
+      justify-content: center;
+      font-size: $body-1;
+      .link {
+        font-style: italic;
       }
     }
   }

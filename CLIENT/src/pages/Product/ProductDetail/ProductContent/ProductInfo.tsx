@@ -6,7 +6,7 @@ import { ReducerState } from "../../../../redux/store";
 
 interface IProductInfoProps {
   product: IAccessories;
-  quanlity: number;
+  amount: number;
   langs: any;
   handleIncrease: () => void;
   handleDecrease: () => void;
@@ -16,7 +16,7 @@ interface IProductInfoProps {
 const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
   const {
     product,
-    quanlity,
+    amount,
     langs,
     handleIncrease,
     handleDecrease,
@@ -52,7 +52,7 @@ const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
       <div className="info__quantily">
         <div
           className={
-            quanlity <= 0
+            amount <= 0
               ? "quantily__item button--delete button--disabled"
               : "quantily__item button--delete"
           }
@@ -60,7 +60,7 @@ const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
         >
           -
         </div>
-        <div className="quantily__item">{quanlity}</div>
+        <div className="quantily__item">{amount}</div>
         <div className="quantily__item button--add" onClick={handleIncrease}>
           +
         </div>
@@ -69,7 +69,7 @@ const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
       <div className="info__button">
         <div
           className={
-            quanlity <= 0 || buttonLoading ? "button--submit button--disabled" : "button--submit"
+            amount <= 0 || buttonLoading ? "button--submit button--disabled" : "button--submit"
           }
           onClick={handleOrder}
         >

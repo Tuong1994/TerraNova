@@ -110,7 +110,7 @@
         border-bottom: 1px solid $borderGrey;
         position: sticky;
         top: 0;
-        z-index: 999;
+        z-index: 99;
       }
       .related__item {
         width: $w-100;
@@ -221,6 +221,14 @@
           }
           .inner__comment {
             width: $w-100;
+            position: relative;
+            .comment__line {
+              width: $w-100;
+              height: 2px;
+              background: $grey;
+              margin: $m-10 0;
+              margin-bottom: $m-10 * 3;
+            }
             .comment__item {
               margin: $m-10 * 2 0;
               padding: $p-10;

@@ -1,9 +1,12 @@
 import React from "react";
 
-const TableCol: React.FunctionComponent<{}> = props => {
-    return <td>
-        {props.children}
-    </td>
+interface ITableColProps {
+  className?: string;
 }
+
+const TableCol: React.FunctionComponent<ITableColProps> = (props) => {
+  const { className } = props;
+  return <td className={`${className ? className : ""}`}>{props.children}</td>;
+};
 
 export default TableCol;

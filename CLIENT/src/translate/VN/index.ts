@@ -40,9 +40,6 @@ const VnLang = {
     consultation: {
       consultation: "Tư vấn",
       signUpConsultation: "Đăng ký tư vấn",
-      name: "Họ tên",
-      email: "Địa chỉ email",
-      phone: "Số điện thoại",
     },
     categories: {
       title_1: "Sản phẩm",
@@ -104,7 +101,7 @@ const VnLang = {
     price: "Giá",
     specs: "Thông số kỹ thuật",
     comments: "Bình luận",
-    related: "Sản phẩm liên quan"
+    related: "Sản phẩm liên quan",
   },
   footer: {
     partners: "Đối tác",
@@ -114,6 +111,13 @@ const VnLang = {
       "Chi nhánh 1: 102 Nguyễn Đình Chính, Phường 15, Quận Phú Nhuận, TP.HCM",
     address_2:
       "Chi nhánh 2: 12B Nguyễn Hữu Cảnh, Phường 19, Quận Bình Thạnh, TP.HCM",
+  },
+  productCarts: {
+    paymentType: "Chọn hình thức thanh toán",
+    payment: "Thanh toán",
+    cash: "Tiền mặt",
+    note: "Ghi chú",
+    vib: "Ngân hàng VIB",
   },
   time: {
     day: "ngày",
@@ -127,22 +131,24 @@ const VnLang = {
     Year: "Năm",
     Days: "Ngày",
     Months: "Tháng",
-    Years: "Năm"
+    Years: "Năm",
   },
   status: {
-    new: "Mới 100%"
+    new: "Mới 100%",
   },
   button: {
     submit: "Gửi",
     seeMore: "Xem thêm",
-    addToCart: "Thêm vào giỏ hàng"
+    addToCart: "Thêm vào giỏ hàng",
+    buyProduct: "Mua sản phẩm",
+    addProduct: "Tạo sản phẩm",
   },
   noData: {
     data: "Không tìm thấy dữ liệu",
-    product: "Chưa có sản phẩm"
+    product: "Chưa có sản phẩm",
   },
   carts: {
-    slots: "sl"
+    slots: "sl",
   },
   toastMessages: {
     success: {
@@ -152,9 +158,48 @@ const VnLang = {
     },
     error: {
       addToCart: "Thêm vào giỏ hàng thất bại",
-      signIn: "Đăng nhập thất bại",
-      signUp: "Đăng ký thành công",
+      signIn: "Tài khoản hoặc mật khẩu không đúng",
+      signUp: "Đăng ký thất bại",
     },
+  },
+  validateMessages: {
+    required: "Vui lòng không bỏ trống",
+    date: "Vui lòng chọn ngày",
+    phone: "Điện thoại không hợp lệ",
+    email: "Email không hợp lệ",
+    password: "Mật khẩu không đúng",
+    gender: "Vui lòng chọn giới tính",
+    whiteSpace: "Không được có khoảng trắng giữa các ký tự",
+  },
+  form: {
+    account: "Tài khoản",
+    password: "Mật khẩu",
+    passConfirm: "Xác nhận mật khẩu",
+    name: "Họ tên",
+    firstName: "Tên",
+    lastName: "Họ",
+    email: "Địa chỉ email",
+    phone: "Số điện thoại",
+    address: "Địa chỉ",
+    birthday: "Sinh nhật",
+    gender: "Giới tính",
+    male: "Nam",
+    female: "Nữ",
+    comment: "Ghi chú",
+    personalInfo: "Thông tin cá nhân",
+    signIn: "Đăng nhập",
+    signUp: "Đăng ký",
+    dontHaveAcc: "Bạn chưa có tài khoản?",
+    haveAcc: "Bạn đã có tài khoản?"
+  },
+  tableHeader: {
+    image: "Hình ảnh",
+    name: "Họ Tên",
+    productName: "Tên sản phẩm",
+    amount: "Số lượng",
+    price: "Giá",
+    features: "Chức năng",
+    description: "Mô tả",
   },
 };
 

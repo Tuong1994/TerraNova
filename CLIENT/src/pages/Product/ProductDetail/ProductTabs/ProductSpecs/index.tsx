@@ -1,5 +1,5 @@
 import React from "react";
-import { IAccessories } from "../../../../models/Product";
+import { IAccessories } from "../../../../../models/Product";
 import SpecsItem from "./SpecsItem";
 
 interface ProductSpecsProps {
@@ -12,7 +12,9 @@ const ProductSpecs: React.FunctionComponent<ProductSpecsProps> = (props) => {
   return (
     <div className="inner__specs">
       <table className="specs__table">
+        <tbody>
           <SpecsItem product={product} />
+        </tbody>
       </table>
     </div>
   );

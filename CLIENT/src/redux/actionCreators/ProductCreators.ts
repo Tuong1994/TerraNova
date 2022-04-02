@@ -4,6 +4,7 @@ import { EProductActionTypes } from "../actionTypes/ProductActionTypes";
 import { Dispatch } from "redux";
 import { getListQuery } from "../../configs/setting";
 import { IQueryList } from "../../interfaces/query";
+import { toast } from "react-toastify";
 
 export const getProductList = (query: IQueryList) => {
   return async (dispatch: Dispatch) => {
@@ -16,8 +17,8 @@ export const getProductList = (query: IQueryList) => {
         type: EProductActionTypes.GET_PRODUCT_LIST,
         payload: result.data,
       });
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      toast.error(error.response.data);
     }
   };
 };
@@ -33,8 +34,8 @@ export const getProductByCategory = (query: IQueryList) => {
         type: EProductActionTypes.GET_PRODUCT_BY_CATEGORY,
         payload: result.data,
       });
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      toast.error(error.response.data);
     }
   };
 };
@@ -50,8 +51,8 @@ export const getProductByProducer = (query: IQueryList) => {
         type: EProductActionTypes.GET_PRODUCT_BY_PRODUCER,
         payload: result.data,
       });
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      toast.error(error.response.data);
     }
   };
 };
@@ -67,8 +68,8 @@ export const getProductDetail = (query: IQueryList) => {
         type: EProductActionTypes.GET_PRODUCT_DETAIL,
         payload: result.data,
       });
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      toast.error(error.response.data);
     }
   };
 };

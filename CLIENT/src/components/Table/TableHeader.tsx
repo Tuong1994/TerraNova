@@ -1,7 +1,13 @@
 import React from "react";
 
-const TableHeader: React.FunctionComponent<{}> = (props) => {
-  return <tr>{props.children}</tr>;
+interface ITableHeaderProps {
+  className?: string;
+}
+
+const TableHeader: React.FunctionComponent<ITableHeaderProps> = (props) => {
+  const { className } = props;
+
+  return <tr className={`${className ? className : ""}`}>{props.children}</tr>;
 };
 
 export default TableHeader;

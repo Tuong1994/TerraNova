@@ -7,19 +7,25 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.STRING,
       },
-      productId: {
-        type: Sequelize.STRING,
-      },
-      productAmount: {
+      amount: {
         type: Sequelize.INTEGER,
       },
-      productName: {
+      totalPay: {
+        type: Sequelize.INTEGER,
+      },
+      paymentType: {
         type: Sequelize.STRING,
+      },
+      status: {
+        type: Sequelize.INTEGER,
+      },
+      note: {
+        type: Sequelize.STRING(2500),
+      },
+      productIds: {
+        type: Sequelize.JSON,
       },
       userId: {
-        type: Sequelize.STRING,
-      },
-      userAccount: {
         type: Sequelize.STRING,
       },
       createdAt: {

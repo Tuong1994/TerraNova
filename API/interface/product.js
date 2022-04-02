@@ -388,6 +388,7 @@ const getProductDetailField = (id, type) => {
 };
 
 module.exports = {
+  productType,
   getProductFieldByCategory,
   getProductFieldByProducer,
   getProductDetailField,

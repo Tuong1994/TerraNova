@@ -1,16 +1,17 @@
 import React from "react";
-import Button from "../Button";
+import { Link } from "react-router-dom";
 
 interface ITableNoDataProps {
-  title?: string;
+  title: string;
+  renderLink?:() => React.ReactNode;
 }
 
 const TableNoData: React.FunctionComponent<ITableNoDataProps> = (props) => {
-  const { title } = props;
+  const { title, renderLink } = props;
   return (
     <div className="table__nodata">
-      <p>No {title} yet</p>
-      <Button className="button--add" type="button">Add Products</Button>
+      <p>{title}</p>
+      {renderLink && renderLink()}
     </div>
   );
 };

@@ -5,11 +5,12 @@ const getOrderList = async (req, res) => {
     const orderList = await Order.findAll({
       attributes: [
         ["id", "orderId"],
-        "productId",
-        "productName",
-        "productAmount",
-        "userId",
-        "userAccount",
+        "amount",
+        "note",
+        "totalPay",
+        "paymentType",
+        "status",
+        "productIds",
       ],
     });
     res.status(200).send(orderList);
@@ -27,31 +28,38 @@ const getOrderDetail = async (req, res) => {
       },
       attributes: [
         ["id", "orderId"],
-        "productId",
-        "productName",
-        "productAmount",
-        "userId",
-        "userAccount",
+        "amount",
+        "note",
+        "totalPay",
+        "paymentType",
+        "status",
+        "productIds",
       ],
     });
-    res.status(200).send(orderDetail);
+    if (orderDetail) {
+      res.status(200).send(orderDetail);
+    } else {
+      res.status(404).send(`Order not found`);
+    }
   } catch (error) {
     res.status(500).send(error);
   }
 };
 
 const createOrder = async (req, res) => {
-  const { productId, productName, productAmount, userId, userAccount } =
+  const { amount, note, totalPay, paymentType, status, productIds, userId } =
     req.body;
-  const orderId = Math.floor(Math.random() * 9999).toString();
+  const orderId = "O_" + Math.floor(Math.random() * 999999999).toString();
   try {
     const newOrder = await Order.create({
-      id: `O_${orderId}`,
-      productId,
-      productName,
-      productAmount,
+      id: orderId,
+      amount,
+      note,
+      totalPay,
+      paymentType,
+      status,
+      productIds,
       userId,
-      userAccount,
     });
     res.status(200).send(newOrder);
   } catch (error) {
@@ -61,11 +69,11 @@ const createOrder = async (req, res) => {
 
 const updateOrder = async (req, res) => {
   const { orderId } = req.query;
-  const { productId, productName, productAmount, userId, userAccount } =
+  const { amount, note, totalPay, paymentType, status, productIds, userId } =
     req.body;
   try {
     await Order.update(
-      { productId, productName, productAmount, userId, userAccount },
+      { amount, note, totalPay, paymentType, status, productIds, userId },
       {
         where: {
           id: orderId,
@@ -79,18 +87,18 @@ const updateOrder = async (req, res) => {
 };
 
 const removeOrder = async (req, res) => {
-  const {orderId} = req.query;
+  const { orderId } = req.query;
   try {
     await Order.destroy({
       where: {
         id: orderId,
-      }
+      },
     });
-    res.status(200).send("Remove success")
+    res.status(200).send("Remove success");
   } catch (error) {
     res.status(500).send(error);
   }
-}
+};
 
 module.exports = {
   getOrderList,

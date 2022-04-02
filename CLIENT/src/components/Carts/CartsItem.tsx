@@ -38,13 +38,13 @@ const CartsItem: React.FunctionComponent<CartsItemProps> = (props) => {
             if (lang === ELangs.ENG) {
               return (
                 <p>
-                  <strong>{item.quanlity}</strong> {langs?.carts.slots}
+                  <strong>{item.amount}</strong> {langs?.carts.slots}
                 </p>
               );
             } else if (lang === ELangs.VN) {
               return (
                 <p>
-                  {langs?.carts.slots}: <strong>{item.quanlity}</strong>
+                  {langs?.carts.slots}: <strong>{item.amount}</strong>
                 </p>
               );
             }

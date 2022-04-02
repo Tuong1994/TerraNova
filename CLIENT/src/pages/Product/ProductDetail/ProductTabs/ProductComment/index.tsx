@@ -1,5 +1,6 @@
 import React from "react";
-import utils from "../../../../utils";
+import utils from "../../../../../utils";
+import CommentInput from "./CommentInput";
 
 const ProductComment: React.FunctionComponent<{}> = (props) => {
   const data = [
@@ -26,29 +27,33 @@ const ProductComment: React.FunctionComponent<{}> = (props) => {
     },
   ];
 
-  return (
-    <div className="inner__comment">
-      {data.map((comment) => {
-        return (
-          <div key={utils.uuid()} className="comment__item">
-            <div className="item__title">
-              <div className="title__img">
-                <img src={comment.avatar} alt={comment.account} />
-                <p>{comment.account}</p>
-              </div>
-              <div className="title__icon">
+  const renderComment = () => {
+    return data.map((comment) => {
+      return (
+        <div key={utils.uuid()} className="comment__item">
+          <div className="item__title">
+            <div className="title__img">
+              <img src={comment.avatar} alt={comment.account} />
+              <p>{comment.account}</p>
+            </div>
+            <div className="title__icon">
               <i className="fa-solid fa-thumbs-up"></i>
               <i className="fa-solid fa-thumbs-down"></i>
-              </div>
-            </div>
-            <div className="item__content">
-              <p>{comment.comment}</p>
             </div>
           </div>
-        );
-      })}
-    </div>
-  );
+          <div className="item__content">
+            <p>{comment.comment}</p>
+          </div>
+        </div>
+      );
+    });
+  };
+
+  return <div className="inner__comment">
+    <CommentInput />
+    <div className="comment__line"></div>
+    {renderComment()}
+  </div>;
 };
 
 export default ProductComment;

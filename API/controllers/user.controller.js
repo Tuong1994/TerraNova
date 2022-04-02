@@ -1,5 +1,5 @@
 const bcryptjs = require("bcryptjs");
-const { User } = require("../models");
+const { User, Order } = require("../models");
 
 const getUserList = async (req, res) => {
   try {
@@ -63,7 +63,7 @@ const createUser = async (req, res) => {
     role,
   } = req.body;
   try {
-    const userId = "User_" + Math.floor(Math.random() * 100000).toString();
+    const userId = "U_" + Math.floor(Math.random() * 999999999).toString();
     const salt = bcryptjs.genSaltSync(10);
     const hashPassword = bcryptjs.hashSync(password, salt);
     const newUser = await User.create({
@@ -140,10 +140,39 @@ const removeUser = async (req, res) => {
   }
 };
 
+const getUserWithOrder = async (req, res) => {
+  try {
+    const userList = await User.findAll({
+      attributes: [
+        ["id", "userId"],
+        "account",
+        "firstName",
+        "lastName",
+        "email",
+        "phone",
+        "address",
+        "birthDay",
+        "gender",
+        "role",
+      ],
+      include: [
+        {
+          model: Order,
+          as: "orderList"
+        },
+      ],
+    });
+    res.status(200).send(userList);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   getUserList,
   getUserDetail,
   createUser,
   updateUser,
   removeUser,
+  getUserWithOrder,
 };

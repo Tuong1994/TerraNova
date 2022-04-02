@@ -17,7 +17,6 @@
     tr {
       th {
         font-weight: $semiBold;
-        font-size: $subtitle;
       }
     }
   }
@@ -40,4 +39,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.carts-row {
+  .col__img {
+    width: $w-100;
+    display: flex;
+    justify-content: center;
+    img {
+      width: $w-10 * 4;
+      height: $h-10 * 4;
+    }
+  }
 }

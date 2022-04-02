@@ -1,31 +1,30 @@
 import React from "react";
 import { FieldProps } from "formik";
 
-interface IPasswordFieldProps extends FieldProps {
+interface InputFieldProps extends FieldProps {
   label?: string;
   placeholder?: string;
   type?: string;
   icon?: React.ReactNode;
   groupClassName?: string;
-  fieldClassName?: string;
-  inputClassName?: string;
   labelClassName?: string;
+  inputClassName?: string;
+  fieldClassName?: string;
   iconClassName?: string;
 }
 
-const PasswordField: React.FunctionComponent<IPasswordFieldProps> = (props) => {
-  const [showPassword, setShowPassword] = React.useState<boolean>(false);
+const InputField: React.FunctionComponent<InputFieldProps> = (props) => {
   const {
-    field,
     form,
+    field,
     label,
     placeholder,
     type,
     icon,
     groupClassName,
     fieldClassName,
-    labelClassName,
     inputClassName,
+    labelClassName,
     iconClassName,
   } = props;
   const { name } = field;
@@ -41,19 +40,22 @@ const PasswordField: React.FunctionComponent<IPasswordFieldProps> = (props) => {
       >
         <input
           {...field}
-          type={showPassword ? "text" : type}
+          type={type}
           placeholder={placeholder}
           className={`field__control ${inputClassName}`}
         />
-        <label className={`field__label ${labelClassName}`}>{label}</label>
-        <div
-          className={`field__icon ${iconClassName}`}
-          onClick={() => {
-            setShowPassword(!showPassword);
-          }}
-        >
-          {showPassword ? <i className="fas fa-eye-slash"></i> : icon}
-        </div>
+        {label && (
+          <label htmlFor={name} className={`field__label ${labelClassName}`}>
+            {label}
+          </label>
+        )}
+        {touched[name] && errors[name] ? (
+          <div className="field__error-icon">
+            <i className="fas fa-exclamation-triangle"></i>
+          </div>
+        ) : (
+          icon && <div className={`field__icon ${iconClassName}`}>{icon}</div>
+        )}
       </div>
       {touched[name] && errors[name] ? (
         <div className="group__error">{errors[name]}</div>
@@ -62,4 +64,4 @@ const PasswordField: React.FunctionComponent<IPasswordFieldProps> = (props) => {
   );
 };
 
-export default PasswordField;
+export default InputField;

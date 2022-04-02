@@ -1,23 +1,36 @@
 import React from "react";
 import TableNoData from "./TableNoData";
 import TableHeader from "./TableHeader";
-import TableRow from "./TableRow";
+import ProductAdminRow from "./ProductAdminRow";
+import CartsRow from "./CartsRow";
 export interface ITableHeader {
   title: string;
   width?: string;
   className?: string;
 }
 
-type TableRowType = typeof TableRow;
+type TableRowType = typeof ProductAdminRow | typeof CartsRow;
 interface ITableProps {
   headers: ITableHeader[];
+  headersClassName?: string;
   isNodata?: any;
-  children?: React.ReactComponentElement<TableRowType> | React.ReactComponentElement<TableRowType>[] | null
+  noDataTitle: string;
+  children?:
+    | React.ReactComponentElement<TableRowType>
+    | React.ReactComponentElement<TableRowType>[]
+    | null;
+  renderNoDataLink?: () => React.ReactNode;
 }
 
-
 const Table: React.FunctionComponent<ITableProps> = (props: ITableProps) => {
-  let { headers, isNodata, children } = props;
+  let {
+    headers,
+    headersClassName,
+    isNodata,
+    noDataTitle,
+    children,
+    renderNoDataLink,
+  } = props;
 
   const renderTableHeader = () => {
     return headers.map((header, index) => {
@@ -26,15 +39,15 @@ const Table: React.FunctionComponent<ITableProps> = (props: ITableProps) => {
   };
 
   const renderTable = () => {
-    if (isNodata || isNodata.length > 0) {
+    if (isNodata && isNodata?.length > 0) {
       return (
         <table className="table__wrapper">
           <thead className="wrapper__thead">
-            <TableHeader>{renderTableHeader()}</TableHeader>
+            <TableHeader className={headersClassName}>
+              {renderTableHeader()}
+            </TableHeader>
           </thead>
-          <tbody className="wrapper__tbody">
-            {children}
-          </tbody>
+          <tbody className="wrapper__tbody">{children}</tbody>
         </table>
       );
     } else {
@@ -45,7 +58,7 @@ const Table: React.FunctionComponent<ITableProps> = (props: ITableProps) => {
               <TableHeader>{renderTableHeader()}</TableHeader>
             </thead>
           </table>
-          <TableNoData title="Product" />
+          <TableNoData title={noDataTitle} renderLink={renderNoDataLink} />
         </>
       );
     }

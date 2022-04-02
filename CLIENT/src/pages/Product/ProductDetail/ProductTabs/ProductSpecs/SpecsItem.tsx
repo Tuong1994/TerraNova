@@ -1,5 +1,5 @@
 import React from "react";
-import { IAccessories } from "../../../../models/Product";
+import { IAccessories } from "../../../../../models/Product";
 
 interface SpecsItemProps {
   product: IAccessories;

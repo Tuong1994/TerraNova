@@ -21,6 +21,7 @@ export interface IProducer {
 export interface IAccessories {
   productId?: string;
   producerName?: string;
+  productType?: string;
   name?: string;
   image?: any;
   price?: number;

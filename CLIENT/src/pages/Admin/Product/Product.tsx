@@ -1,7 +1,7 @@
 import React from "react";
 import ContentHeader from "../../../components/ContentHeader";
 import Table from "../../../components/Table";
-import TableRow from "../../../components/Table/TableRow";
+import ProductAdminRow from "../../../components/Table/ProductAdminRow";
 import Card from "../../../components/Card/Card";
 import Pagination from "../../../components/Pagination";
 import pageTitleList from "../../../configs/pageTitleList";
@@ -9,19 +9,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
 import { getProductList } from "../../../redux/actionCreators/ProductCreators";
 import { Link } from "react-router-dom";
+import utils from "../../../utils";
 
 const Product: React.FunctionComponent<{}> = (props) => {
   const { productList } = useSelector(
     (state: ReducerState) => state.ProductReducer
   );
-
   const { page } = useSelector(
     (state: ReducerState) => state.PaginationReducer
-  );  
+  );
+  const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
   const { limits, totalProduct } = productList;
 
   const dispatch = useDispatch();
+
+  const langs = utils.changeLang(lang);
 
   React.useEffect(() => {
     dispatch(getProductList({ page: page, limits: 10 }));
@@ -32,7 +35,7 @@ const Product: React.FunctionComponent<{}> = (props) => {
       const { productListPerPage } = productList;
       return productListPerPage?.map((product, index) => {
         return (
-          <TableRow
+          <ProductAdminRow
             key={index}
             id={product.productId}
             name={product.name}
@@ -81,6 +84,12 @@ const Product: React.FunctionComponent<{}> = (props) => {
             },
           ]}
           isNodata={productList}
+          noDataTitle={langs?.noData.data || ""}
+          renderNoDataLink={() => (
+            <Link to="/admin" className="button--add" type="button">
+              {langs?.button.addProduct}
+            </Link>
+          )}
         >
           {renderProductList()}
         </Table>

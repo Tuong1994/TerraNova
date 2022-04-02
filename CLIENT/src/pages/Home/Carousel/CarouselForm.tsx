@@ -1,14 +1,14 @@
 import React from "react";
 import * as yup from "yup";
+import * as FormControl from "../../../components/Fields";
 import { Formik, Form, Field } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
 import { IUser } from "../../../models/User/";
 import { EModalActionTypes } from "../../../redux/actionTypes/ModalActionTypes";
 import { EUserActionTypes } from "../../../redux/actionTypes/UserActionTypes";
-import { EValidateMessage } from "../../../interfaces/validateMessage";
 import { phoneRegex } from "../../../configs/regex";
-import InputField from "../../../components/Fields/InputField/InputField";
+import InputField from "../../../components/Fields/InputField";
 import Button from "../../../components/Button";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";
 import actions from "../../../configs/actions";
@@ -29,15 +29,15 @@ const CarouselForm: React.FunctionComponent<{}> = (props) => {
     phone: "",
   };
   const validationSchema = yup.object().shape({
-    name: yup.string().required(EValidateMessage.required),
+    name: yup.string().required(langs?.validateMessages.required),
     email: yup
       .string()
-      .email(EValidateMessage.email)
-      .required(EValidateMessage.required),
+      .email(langs?.validateMessages.email)
+      .required(langs?.validateMessages.required),
     phone: yup
       .string()
-      .matches(phoneRegex, EValidateMessage.phone)
-      .required(EValidateMessage.required),
+      .matches(phoneRegex, langs?.validateMessages.phone)
+      .required(langs?.validateMessages.required),
   });
   const handleSubmit = (values: IUser, action: any) => {
     dispatch(actions.openButtonLoading);
@@ -74,8 +74,8 @@ const CarouselForm: React.FunctionComponent<{}> = (props) => {
               <Form>
                 <Field
                   name="name"
-                  component={InputField}
-                  label={langs?.home.consultation.name}
+                  component={FormControl.Input}
+                  label={langs?.form.name}
                   placeholder=" "
                   type="text"
                   icon={<i className="fas fa-user"></i>}
@@ -86,8 +86,8 @@ const CarouselForm: React.FunctionComponent<{}> = (props) => {
                 />
                 <Field
                   name="email"
-                  component={InputField}
-                  label={langs?.home.consultation.email}
+                  component={FormControl.Input}
+                  label={langs?.form.email}
                   placeholder=" "
                   type="text"
                   icon={<i className="fas fa-envelope"></i>}
@@ -98,8 +98,8 @@ const CarouselForm: React.FunctionComponent<{}> = (props) => {
                 />
                 <Field
                   name="phone"
-                  component={InputField}
-                  label={langs?.home.consultation.phone}
+                  component={FormControl.Input}
+                  label={langs?.form.phone}
                   placeholder=" "
                   type="text"
                   icon={<i className="fas fa-phone"></i>}

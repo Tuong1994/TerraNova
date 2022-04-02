@@ -2,7 +2,7 @@ import React from "react";
 import TableCol from "./TableCol";
 import { Link } from "react-router-dom";
 
-interface ITableRowProps {
+interface IProductAdminRowProps {
   id?: number | string;
   name?: string;
   image?: any;
@@ -10,7 +10,7 @@ interface ITableRowProps {
   description?: string;
 }
 
-const TableRow: React.FunctionComponent<ITableRowProps> = (props) => {
+const ProductAdminRow: React.FunctionComponent<IProductAdminRowProps> = (props) => {
   const { id, name, image, price, description } = props;
   return (
     <tr>
@@ -52,4 +52,4 @@ const TableRow: React.FunctionComponent<ITableRowProps> = (props) => {
   );
 };
 
-export default TableRow;
+export default ProductAdminRow;

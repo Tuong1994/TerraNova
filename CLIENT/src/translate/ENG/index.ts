@@ -40,9 +40,6 @@ const EngLang = {
     consultation: {
       consultation: "Consultation",
       signUpConsultation: "Sign up for Consulation",
-      name: "Name",
-      email: "Email",
-      phone: "Phone",
     },
     categories: {
       title_1: "Products",
@@ -116,6 +113,13 @@ const EngLang = {
     address_2:
       "Branches 2: 12B Nguyen Huu Canh Str, Ward 19, District Binh Thanh, HCMC",
   },
+  productCarts: {
+    paymentType: "Choose your payment type",
+    payment: "Payment",
+    cash: "Cash",
+    note: "Note",
+    vib: "VIB - Bank",
+  },
   time: {
     day: "day",
     month: "month",
@@ -137,6 +141,8 @@ const EngLang = {
     submit: "Submit",
     seeMore: "See more",
     addToCart: "Add to cart",
+    buyProduct: "Buy product",
+    addProduct: "Add product",
   },
   noData: {
     data: "No data founded",
@@ -153,9 +159,48 @@ const EngLang = {
     },
     error: {
       addToCart: "Add to carts fail",
-      signIn: "Sign in fail",
+      signIn: "Account or password incorrect",
       signUp: "Sign up fail",
     },
+  },
+  validateMessages: {
+    required: "Please fulfill this field",
+    date: "Please choose a date",
+    phone: "Phone is invalid",
+    email: "Email is invalid",
+    password: "Password is incorrect",
+    gender: "Please choose your gender",
+    whiteSpace: "should not have whitespace character",
+  },
+  form: {
+    account: "Account",
+    password: "Password",
+    passConfirm: "Password confirm",
+    name: "Name",
+    firstName: "First name",
+    lastName: "Last name",
+    email: "Email",
+    phone: "Phone",
+    address: "Address",
+    birthday: "Birthday",
+    gender: "Gender",
+    male: "Male",
+    female: "Female",
+    comment: "Comment",
+    personalInfo: "Personal information",
+    signIn: "Sign in",
+    signUp: "Sign up",
+    dontHaveAcc: "Don't have account?",
+    haveAcc: "Already have account?",
+  },
+  tableHeader: {
+    image: "Image",
+    name: "Name",
+    productName: "Name",
+    amount: "Amount",
+    price: "Price",
+    features: "Features",
+    description: "Description",
   },
 };
 

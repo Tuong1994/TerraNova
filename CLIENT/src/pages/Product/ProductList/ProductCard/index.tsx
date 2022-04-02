@@ -12,7 +12,13 @@ const ProductCard: React.FunctionComponent<ProductCardProps> = (props) => {
   const { product } = props;
 
   return (
-    <Link to={`/productDetail/${product.productId}`} className="inner__link">
+    <Link
+      to={`/productDetail/${product.productId}`}
+      className="inner__link"
+      onClick={() => {
+        localStorage.setItem("productType", JSON.stringify(product.productType));
+      }}
+    >
       <Card.CardWrapper className="link__card">
         <Card.Img
           className="card__image"
@@ -25,7 +31,9 @@ const ProductCard: React.FunctionComponent<ProductCardProps> = (props) => {
           ) : (
             <p className="content__name">{product.name}</p>
           )}
-          <p className="content__price">{product.price?.toLocaleString()} VND</p>
+          <p className="content__price">
+            {product.price?.toLocaleString()} VND
+          </p>
         </Card.Body>
         <Card.Footer className="card__features">
           {/* <div className="button--round">More details</div> */}

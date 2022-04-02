@@ -7,7 +7,6 @@ import { ReducerState } from "../../../redux/store";
 import { IUser } from "../../../models/User";
 import { EModalActionTypes } from "../../../redux/actionTypes/ModalActionTypes";
 import { EUserActionTypes } from "../../../redux/actionTypes/UserActionTypes";
-import { EValidateMessage } from "../../../interfaces/validateMessage";
 import { phoneRegex } from "../../../configs/regex";
 import Button from "../../../components/Button";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";
@@ -29,15 +28,15 @@ const ConsultationForm: React.FunctionComponent<{}> = (props) => {
     phone: "",
   };
   const validationSchema = yup.object().shape({
-    name: yup.string().required(EValidateMessage.required),
+    name: yup.string().required(langs?.validateMessages.required),
     email: yup
       .string()
-      .email(EValidateMessage.email)
-      .required(EValidateMessage.required),
+      .email(langs?.validateMessages.email)
+      .required(langs?.validateMessages.required),
     phone: yup
       .string()
-      .matches(phoneRegex, EValidateMessage.phone)
-      .required(EValidateMessage.required),
+      .matches(phoneRegex, langs?.validateMessages.phone)
+      .required(langs?.validateMessages.required),
   });
   const handleSubmit = (values: IUser, action: any) => {
     dispatch(actions.openButtonLoading);
@@ -77,7 +76,7 @@ const ConsultationForm: React.FunctionComponent<{}> = (props) => {
                 <Field
                   name="name"
                   component={FormControl.Input}
-                  label={langs?.home.consultation.name}
+                  label={langs?.form.name}
                   placeholder=" "
                   type="text"
                   icon={<i className="fas fa-user"></i>}
@@ -89,7 +88,7 @@ const ConsultationForm: React.FunctionComponent<{}> = (props) => {
                 <Field
                   name="email"
                   component={FormControl.Input}
-                  label={langs?.home.consultation.email}
+                  label={langs?.form.email}
                   placeholder=" "
                   type="text"
                   icon={<i className="fas fa-envelope"></i>}
@@ -101,7 +100,7 @@ const ConsultationForm: React.FunctionComponent<{}> = (props) => {
                 <Field
                   name="phone"
                   component={FormControl.Input}
-                  label={langs?.home.consultation.phone}
+                  label={langs?.form.phone}
                   placeholder=" "
                   type="text"
                   icon={<i className="fas fa-phone"></i>}

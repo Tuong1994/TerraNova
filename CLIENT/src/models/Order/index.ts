@@ -1,6 +1,6 @@
 export interface IOrder {
     productId?: string;
     productName?: string;
-    quanlity?: number;
+    amount?: number;
     price?: number;
 }

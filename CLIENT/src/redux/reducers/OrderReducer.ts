@@ -18,8 +18,8 @@ export const OrderReducer = (state = stateDefault, action: OrderAction) => {
         (item) => item.productId === action.payload.productId
       );
       if (index !== -1) {
-        newState.orders[index].quanlity = 0;
-        newState.orders[index].quanlity += action.payload.quanlity;
+        newState.orders[index].amount = 0;
+        newState.orders[index].amount += action.payload.amount;
       } else {
         newState.orders.push(action.payload);
       }

@@ -13,6 +13,7 @@ const ProductTabs: React.FunctionComponent<IProductTabsProps> = (props) => {
   const [tabsActive, setTabsActive] = React.useState<number>(1);
   return (
     <div className="tabs__wrapper">
+      {/* Tabs title */}
       <div className="wrapper__title">
         <div
           className={
@@ -36,7 +37,9 @@ const ProductTabs: React.FunctionComponent<IProductTabsProps> = (props) => {
         </div>
         <div className="title__line"></div>
       </div>
+      {/* Tabs title */}
 
+      {/* Tabs content */}
       <div className="wrapper__content">
         <div
           className={
@@ -57,6 +60,7 @@ const ProductTabs: React.FunctionComponent<IProductTabsProps> = (props) => {
           <ProductComment />
         </div>
       </div>
+      {/* Tabs content */}
     </div>
   );
 };

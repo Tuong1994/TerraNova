@@ -1,8 +1,9 @@
-import Date from "./DateField/DateField";
-import Input from "./InputField/InputField";
-import Password from "./PasswordField/PasswordField";
-import Radio from "./RadioField/RadioField";
-import Select from "./SelectField/SelectField";
+import Date from "./DateField";
+import Input from "./InputField";
+import Password from "./PasswordField";
+import Radio from "./RadioField";
+import Select from "./SelectField";
+import TextArea from "./TextAreaField";
 
 export {
     Date,
@@ -10,4 +11,5 @@ export {
     Password,
     Radio,
     Select,
+    TextArea,
 }

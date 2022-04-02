@@ -1,36 +1,46 @@
 import React from "react";
 import * as yup from "yup";
 import * as FormControl from "../../components/Fields";
+import { Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { IUser } from "../../models/User";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../redux/store";
-import { EValidateMessage } from "../../interfaces/validateMessage";
 import { signIn } from "../../redux/actionCreators/UserCreators";
 import Button from "../../components/Button";
 import ButtonLoading from "../../components/Loading/ButtonLoading";
+import utils from "../../utils";
 
 const SignInForm: React.FunctionComponent<{}> = (props) => {
   const { buttonLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
   );
+  const { lang } = useSelector((state: ReducerState) => state.LangReducer);
+
   const dispatch = useDispatch();
+
+  const langs = utils.changeLang(lang);
 
   const initialValues = {
     account: "",
     password: "",
   };
   const validationSchema = yup.object().shape({
-    account: yup.string().required(EValidateMessage.required),
-    password: yup.string().required(EValidateMessage.required),
+    account: yup.string().required(langs?.validateMessages.required),
+    password: yup.string().required(langs?.validateMessages.required),
   });
   const handleSubmit = (values: IUser, action: any) => {
-    dispatch(signIn(values));
+    dispatch(
+      signIn(
+        values,
+        langs?.toastMessages.success.signIn,
+        langs?.toastMessages.error.signIn
+      )
+    );
     setTimeout(() => {
       action.resetForm({
         values: {
-          account: "",
-          password: "",
+          ...initialValues,
         },
       });
     }, 1000);
@@ -38,7 +48,7 @@ const SignInForm: React.FunctionComponent<{}> = (props) => {
 
   return (
     <div className="sign-in__form">
-      <div className="form__title">Sign In</div>
+      <div className="form__title">{langs?.form.signIn}</div>
       <div className="form__line"></div>
       <Formik
         initialValues={initialValues}
@@ -52,7 +62,7 @@ const SignInForm: React.FunctionComponent<{}> = (props) => {
               <Field
                 name="account"
                 component={FormControl.Input}
-                label="Account"
+                label={langs?.form.account}
                 placeholder=" "
                 type="text"
                 icon={<i className="fas fa-user"></i>}
@@ -60,16 +70,25 @@ const SignInForm: React.FunctionComponent<{}> = (props) => {
               <Field
                 name="password"
                 component={FormControl.Password}
-                label="Password"
+                label={langs?.form.password}
                 placeholder=" "
                 type="password"
                 icon={<i className="fas fa-eye"></i>}
               />
 
+              <div className="wrapper__link">
+                <p>
+                  {langs?.form.dontHaveAcc} |{" "}
+                  <Link className="link" to="/signUp">
+                    {langs?.form.signUp}
+                  </Link>
+                </p>
+              </div>
+
               <div className="wrapper__button">
                 {!isValid ? (
                   <Button type="button" className="button--disabled">
-                    Sign In
+                    {langs?.form.signIn}
                   </Button>
                 ) : (
                   <Button
@@ -82,7 +101,7 @@ const SignInForm: React.FunctionComponent<{}> = (props) => {
                     isDisabled={!isValid || isSubmitting}
                   >
                     <ButtonLoading />
-                    <span>Sign In</span>
+                    <span>{langs?.form.signIn}</span>
                   </Button>
                 )}
               </div>
