@@ -7,6 +7,9 @@
   .pagination__content {
     font-size: $body-1;
     opacity: 0.8;
+    @include respond(phone) {
+      margin-bottom: $m-10;
+    }
   }
   .pagination__button {
     display: flex;
@@ -38,5 +41,10 @@
       pointer-events: none;
       opacity: 0.4;
     }
+  }
+  @include respond(phone) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 }
