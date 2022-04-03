@@ -25,9 +25,9 @@ userRouter.get("/getUserDetail", checkUserId, getUserDetail);
 
 userRouter.post(
   "/createUser",
-  // authenticate,
-  // authorize(["ADMIN"]),
-  // checkAccount,
+  authenticate,
+  authorize(["ADMIN"]),
+  checkAccount,
   createUser
 );
 
@@ -35,8 +35,8 @@ userRouter.put("/updateUser", authenticate, authorize(["ADMIN"]), updateUser);
 
 userRouter.delete(
   "/removeUser",
-  // authenticate,
-  // authorize(["ADMIN"]),
+  authenticate,
+  authorize(["ADMIN"]),
   removeUser
 );
 

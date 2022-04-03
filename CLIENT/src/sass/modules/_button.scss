@@ -88,18 +88,18 @@
   text-align: center;
   font-size: $body-1;
 
-  color: $tPrimary !important;
+  color: $tSecondary !important;
   background: transparent;
 
   outline: none !important;
   cursor: pointer;
   border: 1px solid $borderGrey;
-  border-radius: $lightRound;
+  border-radius: $circle;
   transition: all 0.3s ease;
   &:hover {
-    color: $tSecondary !important;
-    background: $secondary;
-    border-color: $secondary;
+    color: $tPrimary !important;
+    background: $primary;
+    border-color: $primary;
   }
 }
 
@@ -123,7 +123,7 @@
   overflow: hidden;
   outline: none !important;
   cursor: pointer;
-  
+
   transition: all 0.3s ease;
   position: relative;
   z-index: 1;
@@ -167,7 +167,7 @@
   overflow: hidden;
   outline: none !important;
   cursor: pointer;
-  
+
   transition: all 0.3s ease;
   position: relative;
   z-index: 1;
@@ -198,8 +198,8 @@
 }
 
 .button--active {
-  background: $secondary;
-  color: $tSecondary !important;
+  background: $primary;
+  color: $tPrimary !important;
 }
 
 .button--disabled {
@@ -221,7 +221,7 @@
   outline: none !important;
   user-select: none;
   pointer-events: none;
-  
+
   border: transparent;
   border-radius: $lightRound;
 }

@@ -10,35 +10,25 @@ interface IProductAdminRowProps {
   description?: string;
 }
 
-const ProductAdminRow: React.FunctionComponent<IProductAdminRowProps> = (props) => {
+const ProductAdminRow: React.FunctionComponent<IProductAdminRowProps> = (
+  props
+) => {
   const { id, name, image, price, description } = props;
   return (
     <tr>
       <TableCol>{id}</TableCol>
 
-      {name ? (
-        <TableCol>
-          <p>{name}</p>
-        </TableCol>
-      ) : null}
+      <TableCol>
+        <p>{name}</p>
+      </TableCol>
 
-      {price ? (
-        <TableCol>
-          <p>{price}</p>
-        </TableCol>
-      ) : null}
+      <TableCol>
+        <p>{price}</p>
+      </TableCol>
 
-      {image ? (
-        <TableCol>
-          <img src={image || "https://picsum.photos/200"} alt={name} />
-        </TableCol>
-      ) : null}
-
-      {description ? (
-        <TableCol>
-          <p>{description}</p>
-        </TableCol>
-      ) : null}
+      <TableCol>
+        <p>{description}</p>
+      </TableCol>
 
       <TableCol>
         <Link to="/admin" className="button--edit">

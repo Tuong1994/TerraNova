@@ -30,22 +30,22 @@ const InputField: React.FunctionComponent<InputFieldProps> = (props) => {
   const { name } = field;
   const { touched, errors } = form;
   return (
-    <div className={`form__group ${groupClassName}`}>
+    <div className={`form__group ${groupClassName ? groupClassName : ""}`}>
       <div
         className={
           touched[name] && errors[name]
-            ? `group__field group__field--invalid ${fieldClassName}`
-            : `group__field ${fieldClassName}`
+            ? `group__field group__field--invalid ${fieldClassName ? fieldClassName : ""}`
+            : `group__field ${fieldClassName ? fieldClassName : ""}`
         }
       >
         <input
           {...field}
           type={type}
           placeholder={placeholder}
-          className={`field__control ${inputClassName}`}
+          className={`field__control ${inputClassName ? inputClassName : ""}`}
         />
         {label && (
-          <label htmlFor={name} className={`field__label ${labelClassName}`}>
+          <label htmlFor={name} className={`field__label ${labelClassName ? labelClassName : ""}`}>
             {label}
           </label>
         )}
@@ -54,7 +54,7 @@ const InputField: React.FunctionComponent<InputFieldProps> = (props) => {
             <i className="fas fa-exclamation-triangle"></i>
           </div>
         ) : (
-          icon && <div className={`field__icon ${iconClassName}`}>{icon}</div>
+          icon && <div className={`field__icon ${iconClassName ? iconClassName : ""}`}>{icon}</div>
         )}
       </div>
       {touched[name] && errors[name] ? (

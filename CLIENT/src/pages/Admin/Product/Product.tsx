@@ -83,7 +83,7 @@ const Product: React.FunctionComponent<{}> = (props) => {
               title: "Features",
             },
           ]}
-          isNodata={productList}
+          isNodata={productList?.productListPerPage}
           noDataTitle={langs?.noData.data || ""}
           renderNoDataLink={() => (
             <Link to="/admin" className="button--add" type="button">

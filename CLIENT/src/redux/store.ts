@@ -1,3 +1,4 @@
+import { SideBarReducer } from './reducers/SideBarReducer';
 import { ToastReducer } from './reducers/ToastReducer';
 import { LangReducer } from './reducers/LangReducer';
 import { OrderReducer } from './reducers/OrderReducer';
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   OrderReducer,
   LangReducer,
   ToastReducer,
+  SideBarReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(reduxThunk));

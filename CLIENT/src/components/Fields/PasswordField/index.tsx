@@ -31,25 +31,31 @@ const PasswordField: React.FunctionComponent<IPasswordFieldProps> = (props) => {
   const { name } = field;
   const { touched, errors } = form;
   return (
-    <div className={`form__group ${groupClassName}`}>
+    <div className={`form__group ${groupClassName ? groupClassName : ""}`}>
       <div
         className={
           touched[name] && errors[name]
-            ? `group__field group__field--invalid ${fieldClassName}`
-            : `group__field ${fieldClassName}`
+            ? `group__field group__field--invalid ${
+                fieldClassName ? fieldClassName : ""
+              }`
+            : `group__field ${fieldClassName ? fieldClassName : ""}`
         }
       >
         <input
           {...field}
           type={showPassword ? "text" : type}
           placeholder={placeholder}
-          className={`field__control ${inputClassName}`}
+          className={`field__control ${inputClassName ? inputClassName : ""}`}
         />
         {label && (
-          <label className={`field__label ${labelClassName}`}>{label}</label>
+          <label
+            className={`field__label ${labelClassName ? labelClassName : ""}`}
+          >
+            {label}
+          </label>
         )}
         <div
-          className={`field__icon ${iconClassName}`}
+          className={`field__icon ${iconClassName ? iconClassName : ""}`}
           onClick={() => {
             setShowPassword(!showPassword);
           }}

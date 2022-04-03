@@ -8,137 +8,159 @@ const productType = {
   psu: "psu",
 };
 
+const productFields = {
+  cpu: `select 
+  products.id as productId,
+  products.name,
+  products.image,
+  products.price,
+  products.productType,
+  pcspecs.totalCores,
+  pcspecs.totalThreads,
+  pcspecs.baseFrequency,
+  pcspecs.cache,
+  pcspecs.busSpeed,
+  pcspecs.tdp`,
+  mainboard: `select 
+  products.id as productId,
+  products.name,
+  products.image,
+  products.price,
+  products.productType,
+  pcspecs.socket,
+  pcspecs.chipset,
+  pcspecs.ram`,
+  ram: `select 
+  products.id as productId,
+  products.name,
+  products.image,
+  products.price,
+  products.productType,
+  pcspecs.capacity,
+  pcspecs.ramBus`,
+  hdd: `select 
+  products.id as productId,
+  products.name,
+  products.image,
+  products.price,
+  products.productType,
+  pcspecs.type,
+  pcspecs.size`,
+  ssd: `select 
+  products.id as productId,
+  products.name,
+  products.image,
+  products.price,
+  products.productType,
+  pcspecs.type,
+  pcspecs.size`,
+  vga: `select 
+  products.id as productId,
+  products.name,
+  products.image,
+  products.price,
+  products.productType,
+  pcspecs.graphicEngine,
+  pcspecs.videoMemory,
+  pcspecs.cudaCore,
+  pcspecs.memoryInterface`,
+  psu: `select 
+  products.id as productId,
+  products.name,
+  products.image,
+  products.price,
+  products.productType,
+  pcspecs.model,
+  pcspecs.outputCapacity,
+  pcspecs.efficiency`,
+};
+
 const getProductFieldByCategory = (id) => {
   if (id == productType.cpu) {
-    return `select 
-        products.id as productId,
-        products.name,
-        products.image,
-        products.price,
-        products.productType,
-        pcspecs.totalCores,
-        pcspecs.totalThreads,
-        pcspecs.baseFrequency,
-        pcspecs.cache,
-        pcspecs.busSpeed,
-        pcspecs.tdp
+    return (
+      productFields.cpu +
+      `
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
         inner join categories
         on categories.id = products.categoryId
-        where categories.id = "${id}"`;
+        where categories.id = "${id}"`
+    );
   } else if (id == productType.mainboard) {
-    return `select 
-        products.id as productId,
-        products.name,
-        products.image,
-        products.price,
-        products.productType,
-        pcspecs.socket,
-        pcspecs.chipset,
-        pcspecs.ram
+    return (
+      productFields.mainboard +
+      `
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
         inner join categories
         on categories.id = products.categoryId
-        where categories.id = "${id}"`;
+        where categories.id = "${id}"`
+    );
   } else if (id === productType.ram) {
-    return `select 
-        products.id as productId,
-        products.name,
-        products.image,
-        products.price,
-        products.productType,
-        pcspecs.capacity,
-        pcspecs.ramBus
+    return (
+      productFields.ram +
+      `
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
         inner join categories
         on categories.id = products.categoryId
-        where categories.id = "${id}"`;
+        where categories.id = "${id}"`
+    );
   } else if (id == productType.hdd) {
-    return `select 
-        products.id as productId,
-        products.name,
-        products.image,
-        products.price,
-        products.productType,
-        pcspecs.type,
-        pcspecs.size
+    return (
+      productFields.hdd +
+      `
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
         inner join categories
         on categories.id = products.categoryId
-        where categories.id = "${id}"`;
+        where categories.id = "${id}"`
+    );
   } else if (id == productType.ssd) {
-    return `select 
-        products.id as productId,
-        products.name,
-        products.image,
-        products.price,
-        products.productType,
-        pcspecs.type,
-        pcspecs.size
+    return (
+      productFields.ssd +
+      `
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
         inner join categories
         on categories.id = products.categoryId
-        where categories.id = "${id}"`;
+        where categories.id = "${id}"`
+    );
   } else if (id == productType.vga) {
-    return `select 
-        products.id as productId,
-        products.name,
-        products.image,
-        products.price,
-        products.productType,
-        pcspecs.graphicEngine,
-        pcspecs.videoMemory,
-        pcspecs.cudaCore,
-        pcspecs.memoryInterface
+    return (
+      productFields.vga +
+      `
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
         inner join categories
         on categories.id = products.categoryId
-        where categories.id = "${id}"`;
+        where categories.id = "${id}"`
+    );
   } else if (id == productType.psu) {
-    return `select 
-        products.id as productId,
-        products.name,
-        products.image,
-        products.price,
-        products.productType,
-        pcspecs.model,
-        pcspecs.outputCapacity,
-        pcspecs.efficiency
+    return (
+      productFields.psu +
+      `
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
         inner join categories
         on categories.id = products.categoryId
-        where categories.id = "${id}"`;
+        where categories.id = "${id}"`
+    );
   }
 };
 
 const getProductFieldByProducer = (categoryId, producerId) => {
   if (categoryId == productType.cpu) {
-    return `select 
-        products.id as productId,
-        products.name,
-        products.image,
-        products.price,
-        products.productType,
-        pcspecs.totalCores,
-        pcspecs.totalThreads,
-        pcspecs.baseFrequency,
-        pcspecs.cache,
-        pcspecs.busSpeed,
-        pcspecs.tdp
+    return (
+      productFields.cpu +
+      `
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
@@ -146,17 +168,12 @@ const getProductFieldByProducer = (categoryId, producerId) => {
         on categories.id = products.categoryId
         inner join producers
         on producers.id = products.producerId
-        where categories.id = "${categoryId}" and producers.id = "${producerId}"`;
+        where categories.id = "${categoryId}" and producers.id = "${producerId}"`
+    );
   } else if (categoryId == productType.mainboard) {
-    return `select 
-        products.id as productId,
-        products.name,
-        products.image,
-        products.price,
-        products.productType,
-        pcspecs.socket,
-        pcspecs.chipset,
-        pcspecs.ram
+    return (
+      productFields.mainboard +
+      `
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
@@ -164,16 +181,12 @@ const getProductFieldByProducer = (categoryId, producerId) => {
         on categories.id = products.categoryId
         inner join producers
         on producers.id = products.producerId
-        where categories.id = "${categoryId}" and producers.id = "${producerId}"`;
+        where categories.id = "${categoryId}" and producers.id = "${producerId}"`
+    );
   } else if (categoryId === productType.ram) {
-    return `select 
-        products.id as productId,
-        products.name,
-        products.image,
-        products.price,
-        products.productType,
-        pcspecs.capacity,
-        pcspecs.ramBus
+    return (
+      productFields.ram +
+      `
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
@@ -181,16 +194,12 @@ const getProductFieldByProducer = (categoryId, producerId) => {
         on categories.id = products.categoryId
         inner join producers
         on producers.id = products.producerId
-        where categories.id = "${categoryId}" and producers.id = "${producerId}"`;
+        where categories.id = "${categoryId}" and producers.id = "${producerId}"`
+    );
   } else if (categoryId == productType.hdd) {
-    return `select 
-        products.id as productId,
-        products.name,
-        products.image,
-        products.price,
-        products.productType,
-        pcspecs.type,
-        pcspecs.size
+    return (
+      productFields.hdd +
+      `
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
@@ -198,16 +207,12 @@ const getProductFieldByProducer = (categoryId, producerId) => {
         on categories.id = products.categoryId
         inner join producers
         on producers.id = products.producerId
-        where categories.id = "${categoryId}" and producers.id = "${producerId}"`;
+        where categories.id = "${categoryId}" and producers.id = "${producerId}"`
+    );
   } else if (categoryId == productType.ssd) {
-    return `select 
-        products.id as productId,
-        products.name,
-        products.image,
-        products.price,
-        products.productType,
-        pcspecs.type,
-        pcspecs.size
+    return (
+      productFields.ssd +
+      `
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
@@ -215,18 +220,12 @@ const getProductFieldByProducer = (categoryId, producerId) => {
         on categories.id = products.categoryId
         inner join producers
         on producers.id = products.producerId
-        where categories.id = "${categoryId}" and producers.id = "${producerId}"`;
+        where categories.id = "${categoryId}" and producers.id = "${producerId}"`
+    );
   } else if (categoryId == productType.vga) {
-    return `select 
-        products.id as productId,
-        products.name,
-        products.image,
-        products.price,
-        products.productType,
-        pcspecs.graphicEngine,
-        pcspecs.videoMemory,
-        pcspecs.cudaCore,
-        pcspecs.memoryInterface
+    return (
+      productFields.vga +
+      `
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
@@ -234,17 +233,12 @@ const getProductFieldByProducer = (categoryId, producerId) => {
         on categories.id = products.categoryId
         inner join producers
         on producers.id = products.producerId
-        where categories.id = "${categoryId}" and producers.id = "${producerId}"`;
+        where categories.id = "${categoryId}" and producers.id = "${producerId}"`
+    );
   } else if (categoryId == productType.psu) {
-    return `select 
-        products.id as productId,
-        products.name,
-        products.image,
-        products.price,
-        products.productType,
-        pcspecs.model,
-        pcspecs.outputCapacity,
-        pcspecs.efficiency
+    return (
+      productFields.psu +
+      `
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
@@ -252,138 +246,134 @@ const getProductFieldByProducer = (categoryId, producerId) => {
         on categories.id = products.categoryId
         inner join producers
         on producers.id = products.producerId
-        where categories.id = "${categoryId}" and producers.id = "${producerId}"`;
+        where categories.id = "${categoryId}" and producers.id = "${producerId}"`
+    );
   }
 };
 
 const getProductDetailField = (id, type) => {
   if (type == productType.cpu) {
-    return `select 
-        products.id as productId,
-        products.name,
-        products.image,
-        products.price,
-        products.productType,
-        producers.name as producerName,
-        pcspecs.totalCores,
-        pcspecs.totalThreads,
-        pcspecs.baseFrequency,
-        pcspecs.cache,
-        pcspecs.busSpeed,
-        pcspecs.tdp
+    return (
+      productFields.cpu +
+      `
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
         inner join producers
         on producers.id = products.producerId
         where products.id = "${id}"
-    `;
+    `
+    );
   } else if (type == productType.mainboard) {
-    return `select 
-        products.id as productId,
-        products.name,
-        products.image,
-        products.price,
-        products.productType,
-        producers.name as producerName,
-        pcspecs.socket,
-        pcspecs.chipset,
-        pcspecs.ram
+    return (
+      productFields.mainboard +
+      `
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
         inner join producers
         on producers.id = products.producerId
         where products.id = "${id}"
-    `;
+    `
+    );
   } else if (type === productType.ram) {
-    return `select 
-        products.id as productId,
-        products.name,
-        products.image,
-        products.price,
-        products.productType,
-        producers.name as producerName,
-        pcspecs.capacity,
-        pcspecs.ramBus
+    return (
+      productFields.ram +
+      `
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
         inner join producers
         on producers.id = products.producerId
         where products.id = "${id}"
-    `;
+    `
+    );
   } else if (type == productType.hdd) {
-    return `select 
-        products.id as productId,
-        products.name,
-        products.image,
-        products.price,
-        products.productType,
-        producers.name as producerName,
-        pcspecs.type,
-        pcspecs.size
+    return (
+      productFields.hdd +
+      `
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
         inner join producers
         on producers.id = products.producerId
         where products.id = "${id}"
-    `;
+    `
+    );
   } else if (type == productType.ssd) {
-    return `select 
-        products.id as productId,
-        products.name,
-        products.image,
-        products.price,
-        products.productType,
-        producers.name as producerName,
-        pcspecs.type,
-        pcspecs.size
+    return (
+      productFields.ssd +
+      `
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
         inner join producers
         on producers.id = products.producerId
         where products.id = "${id}"
-    `;
+    `
+    );
   } else if (type == productType.vga) {
-    return `select 
-        products.id as productId,
-        products.name,
-        products.image,
-        products.price,
-        products.productType,
-        producers.name as producerName,
-        pcspecs.graphicEngine,
-        pcspecs.videoMemory,
-        pcspecs.cudaCore,
-        pcspecs.memoryInterface
+    return (
+      productFields.vga +
+      `
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
         inner join producers
         on producers.id = products.producerId
         where products.id = "${id}"
-    `;
+    `
+    );
   } else if (type == productType.psu) {
-    return `select 
-        products.id as productId,
-        products.name,
-        products.image,
-        products.price,
-        products.productType,
-        producers.name as producerName,
-        pcspecs.model,
-        pcspecs.outputCapacity,
-        pcspecs.efficiency
+    return (
+      productFields.psu +
+      `
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
         inner join producers
         on producers.id = products.producerId
         where products.id = "${id}"
-    `;
+    `
+    );
+  }
+};
+
+const getProductByFreeText = (id, freeText) => {
+  if (freeText) {
+    return ` select 
+   products.id as productId, 
+   products.name,
+   products.image,
+   products.price,
+
+   pcspecs.totalCores,
+   pcspecs.totalThreads,
+   pcspecs.baseFrequency,
+   pcspecs.cache,
+   pcspecs.busSpeed,
+   pcspecs.tdp,
+   pcspecs.socket,
+   pcspecs.chipset,
+   pcspecs.ram,
+   pcspecs.capacity,
+   pcspecs.ramBus,
+   pcspecs.type,
+   pcspecs.size,
+   pcspecs.graphicEngine,
+   pcspecs.videoMemory,
+   pcspecs.cudaCore,
+   pcspecs.memoryInterface,
+   pcspecs.model,
+   pcspecs.outputCapacity,
+   pcspecs.Efficiency
+
+   from products
+   inner join pcspecs
+   on pcspecs.productId = products.id
+   inner join categories
+   on products.categoryId = categories.id
+   where categories.id = "${id}" and products.name like "%${freeText}%"`;
   }
 };
 
@@ -392,4 +382,5 @@ module.exports = {
   getProductFieldByCategory,
   getProductFieldByProducer,
   getProductDetailField,
+  getProductByFreeText,
 };

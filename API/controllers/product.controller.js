@@ -3,6 +3,7 @@ const {
   getProductFieldByCategory,
   getProductFieldByProducer,
   getProductDetailField,
+  getProductByFreeText,
 } = require("../interface/product");
 
 const getProducerAndProduct = async (req, res) => {
@@ -30,6 +31,8 @@ const getProducerAndProduct = async (req, res) => {
 
 const getProductList = async (req, res) => {
   const { page, limits } = req.query;
+  const pageNumber = parseInt(page);
+  const itemPerPage = parseInt(limits);
   try {
     const [result] = await sequelize.query(`
       select 
@@ -65,14 +68,14 @@ const getProductList = async (req, res) => {
     `);
     if (page) {
       let total = result.length;
-      let start = (page - 1) * limits;
-      let end = start + limits;
+      let start = (pageNumber - 1) * itemPerPage;
+      let end = start + itemPerPage;
       const productListPerPage = result.slice(start, end);
       res.status(200).send({
         productListPerPage: productListPerPage,
         totalProduct: total,
-        page: page,
-        limits: limits,
+        page: pageNumber,
+        limits: itemPerPage,
       });
     }
   } catch (error) {
@@ -81,35 +84,25 @@ const getProductList = async (req, res) => {
 };
 
 const getProductByCategory = async (req, res) => {
-  const { categoryId, page, limits } = req.query;
+  const { categoryId, page, limits, freeText } = req.query;
   const pageNumber = parseInt(page);
   const limitItem = parseInt(limits);
 
   try {
-    const productListByCategory = await Category.findOne({
-      where: {
-        id: categoryId,
-      },
-      attributes: [["id", "categoryId"], "name"],
-      include: [
-        {
-          model: Product,
-          as: "productList",
-          attributes: [["id", "productId"], "name", "price", "image"],
-        },
-      ],
-    });
-
     const categoryDetail = await Category.findOne({
       where: {
         id: categoryId,
       },
     });
-
     if (page) {
-      const [result] = await sequelize.query(
-        getProductFieldByCategory(categoryId)
-      );
+      const selectedFields = () => {
+        if (freeText) {
+          return getProductByFreeText(categoryId, freeText);
+        } else {
+          return getProductFieldByCategory(categoryId);
+        }
+      };
+      const [result] = await sequelize.query(selectedFields());
       let total = result.length;
       let start = (pageNumber - 1) * limitItem;
       let end = start + limitItem;
@@ -123,24 +116,18 @@ const getProductByCategory = async (req, res) => {
         categoryName: name,
         productListPerPage: productList,
       });
-      return;
     }
-    res.status(200).send(productListByCategory);
   } catch (error) {
     res.status(500).send(error);
   }
 };
 
 const getProductByProducer = async (req, res) => {
-  const { categoryId, producerId, page, limits } = req.query;
+  const { categoryId, producerId, page, limits, freeText } = req.query;
   const pageNumber = parseInt(page);
   const limitItem = parseInt(limits);
 
   try {
-    const [result] = await sequelize.query(
-      getProductFieldByProducer(categoryId, producerId)
-    );
-
     const producerDetail = await Producer.findOne({
       where: {
         id: producerId,
@@ -148,9 +135,14 @@ const getProductByProducer = async (req, res) => {
     });
 
     if (page) {
-      const [result] = await sequelize.query(
-        getProductFieldByProducer(categoryId, producerId)
-      );
+      const selectedFields = () => {
+        if (freeText) {
+          return getProductByFreeText(categoryId, freeText);
+        } else {
+          return getProductFieldByProducer(categoryId, producerId);
+        }
+      };
+      const [result] = await sequelize.query(selectedFields());
       let total = result.length;
       let start = (pageNumber - 1) * limitItem;
       let end = start + limitItem;
@@ -162,13 +154,7 @@ const getProductByProducer = async (req, res) => {
         producerName: producerDetail.name,
         productListPerPage: productList,
       });
-      return;
     }
-
-    res.status(200).send({
-      producerName: producerDetail.name,
-      productList: result,
-    });
   } catch (error) {
     res.status(500).send(error);
   }
@@ -177,7 +163,8 @@ const getProductByProducer = async (req, res) => {
 const getAccessoriesDetail = async (req, res) => {
   const { productId, productType } = req.query;
   try {
-    const [result] = await sequelize.query(getProductDetailField(productId, productType),
+    const [result] = await sequelize.query(
+      getProductDetailField(productId, productType),
       {
         model: Product,
       }

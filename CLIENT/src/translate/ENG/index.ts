@@ -192,6 +192,7 @@ const EngLang = {
     signUp: "Sign up",
     dontHaveAcc: "Don't have account?",
     haveAcc: "Already have account?",
+    search: "Search",
   },
   tableHeader: {
     image: "Image",
@@ -202,6 +203,11 @@ const EngLang = {
     features: "Features",
     description: "Description",
   },
+  pagination: {
+    showing: "Showing",
+    of: "of",
+    results: "results"
+  }
 };
 
 export default EngLang;

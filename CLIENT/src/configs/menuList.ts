@@ -2,26 +2,31 @@ import * as lang from "../translate";
 
 export const adminMenu = [
   {
+    id: "admin",
     path: "/admin",
     name: "Dashboard",
     icon: "fas fa-chart-line",
   },
   {
+    id: "order",
     path: "/admin/order",
     name: "Order",
     icon: "fas fa-shopping-cart",
   },
   {
+    id: "customer",
     path: "/admin/customer",
     name: "Customer",
     icon: "fas fa-user",
   },
   {
+    id: "product",
     path: "/admin/product",
     name: "Product",
     icon: "fas fa-tag",
   },
   {
+    id: "course",
     path: "/admin/course",
     name: "Course",
     icon: "fas fa-book-open",

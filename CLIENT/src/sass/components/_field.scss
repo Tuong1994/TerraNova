@@ -136,6 +136,13 @@
     opacity: 1;
     visibility: visible;
   }
+  .group__search {
+    justify-content: space-between;
+    cursor: unset;
+    .fa-magnifying-glass {
+      opacity: 0.5;
+    }
+  }
 }
 
 @keyframes error {

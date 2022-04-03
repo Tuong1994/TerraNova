@@ -1,5 +1,6 @@
 import React from "react";
 import * as customHook from "../../../hooks";
+import * as FormControl from "../../../components/Fields";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
 import { RouteComponentProps } from "react-router-dom";
@@ -27,21 +28,29 @@ const ProductList: React.FunctionComponent<
     (state: ReducerState) => state.PaginationReducer
   );
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
+  const [freeText, setFreeText] = React.useState<string>("");
+  const typingRef = React.useRef<any>(null);
+  const dispatch = useDispatch();
 
   const id = props.match.params.id;
-  const dispatch = useDispatch();
-  const { limits, totalProduct } = productList;
   const path = props.match.path;
+
   const langs = utils.changeLang(lang);
+  const { limits, totalProduct } = productList;
 
   customHook.useLoading(productList);
 
   React.useEffect(() => {
+    _getProductList();
+  }, [page]);
+
+  const _getProductList = () => {
     if (path.includes("productByCategory")) {
       let query: IQueryList = {
         categoryId: id,
         page: page,
         limits: 10,
+        freeText: freeText,
       };
       dispatch(getProductByCategory(query));
     } else if (path.includes("productByProducer")) {
@@ -53,12 +62,25 @@ const ProductList: React.FunctionComponent<
           const query: IQueryList = {
             categoryId: ids.categoryId,
             producerId: ids.producerId,
+            freeText: freeText,
           };
           dispatch(getProductByProducer(query));
         }
       }
     }
-  }, [page]);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setFreeText(value);
+    if (typingRef.current !== null) {
+      clearTimeout(typingRef.current);
+    }
+
+    typingRef.current = setTimeout(() => {
+      _getProductList();
+    }, 1000);
+  };
 
   // Show product by category
   const renderProductByCategory = () => {
@@ -151,6 +173,9 @@ const ProductList: React.FunctionComponent<
     <div className="product-list">
       <div className="product-list__title">
         <h3>{renderTitle()}</h3>
+      </div>
+      <div className="product-list__search">
+        <FormControl.Search value={freeText} onChange={handleChange} groupClassName="search__input" />
       </div>
       <div className="product-list__wrapper">
         <div className="wrapper__inner">

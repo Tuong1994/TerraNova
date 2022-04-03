@@ -44,6 +44,10 @@
         margin-right: $m-10;
       }
     }
+    .menu__link--active {
+      background: $primary;
+      color: $tPrimary;
+    }
   }
   .sidebar__setting {
     .setting__link {

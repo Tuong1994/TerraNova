@@ -190,7 +190,8 @@ const VnLang = {
     signIn: "Đăng nhập",
     signUp: "Đăng ký",
     dontHaveAcc: "Bạn chưa có tài khoản?",
-    haveAcc: "Bạn đã có tài khoản?"
+    haveAcc: "Bạn đã có tài khoản?",
+    search: "Tìm kiếm",
   },
   tableHeader: {
     image: "Hình ảnh",
@@ -201,6 +202,11 @@ const VnLang = {
     features: "Chức năng",
     description: "Mô tả",
   },
+  pagination: {
+    showing: "Hiển thị",
+    of: "của",
+    results: "kết quả"
+  }
 };
 
 export default VnLang;
