@@ -1,4 +1,4 @@
-import * as apiPath from "../../paths/index";
+import * as apiPath from "../../paths";
 import axiosClient from "../../axios";
 import { EProductActionTypes } from "../actionTypes/ProductActionTypes";
 import { Dispatch } from "redux";

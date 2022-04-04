@@ -9,8 +9,9 @@ const getOrderList = async (req, res) => {
         "note",
         "totalPay",
         "paymentType",
+        "deliveryType",
         "status",
-        "productIds",
+        "products",
       ],
     });
     res.status(200).send(orderList);
@@ -32,8 +33,9 @@ const getOrderDetail = async (req, res) => {
         "note",
         "totalPay",
         "paymentType",
+        "deliveryType",
         "status",
-        "productIds",
+        "products",
       ],
     });
     if (orderDetail) {
@@ -47,8 +49,16 @@ const getOrderDetail = async (req, res) => {
 };
 
 const createOrder = async (req, res) => {
-  const { amount, note, totalPay, paymentType, status, productIds, userId } =
-    req.body;
+  const {
+    amount,
+    note,
+    totalPay,
+    paymentType,
+    deliveryType,
+    status,
+    products,
+    userId,
+  } = req.body;
   const orderId = "O_" + Math.floor(Math.random() * 999999999).toString();
   try {
     const newOrder = await Order.create({
@@ -57,8 +67,9 @@ const createOrder = async (req, res) => {
       note,
       totalPay,
       paymentType,
+      deliveryType,
       status,
-      productIds,
+      products,
       userId,
     });
     res.status(200).send(newOrder);
@@ -69,11 +80,19 @@ const createOrder = async (req, res) => {
 
 const updateOrder = async (req, res) => {
   const { orderId } = req.query;
-  const { amount, note, totalPay, paymentType, status, productIds, userId } =
+  const { amount, note, totalPay, paymentType, status, products, userId } =
     req.body;
   try {
     await Order.update(
-      { amount, note, totalPay, paymentType, status, productIds, userId },
+      {
+        amount,
+        note,
+        totalPay,
+        paymentType,
+        status,
+        products,
+        userId,
+      },
       {
         where: {
           id: orderId,

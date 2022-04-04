@@ -13,6 +13,7 @@ export const getListQuery = (query: IQueryList): string => {
     categoryId,
     producerId,
     productId,
+    cartsId,
     productType,
     freeText,
   } = query || ({} as IQueryList);
@@ -25,6 +26,7 @@ export const getListQuery = (query: IQueryList): string => {
   categoryId && (rs += `&categoryId=${categoryId}`);
   producerId && (rs += `&producerId=${producerId}`);
   productId && (rs += `&productId=${productId}`);
+  cartsId && (rs += `&cartsId=${cartsId}`)
   productType && (rs += `&productType=${productType}`);
   freeText && (rs += `&freeText=${freeText}`);
   return rs;

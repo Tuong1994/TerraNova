@@ -7,14 +7,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.STRING,
       },
-      amount: {
-        type: Sequelize.INTEGER,
-      },
       totalPay: {
         type: Sequelize.INTEGER,
       },
       paymentType: {
         type: Sequelize.STRING,
+      },
+      deliveryType: {
+        type: Sequelize.INTEGER,
       },
       status: {
         type: Sequelize.INTEGER,
@@ -22,7 +22,7 @@ module.exports = {
       note: {
         type: Sequelize.STRING(2500),
       },
-      productIds: {
+      products: {
         type: Sequelize.JSON,
       },
       userId: {

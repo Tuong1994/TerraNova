@@ -32,6 +32,23 @@ const axiosClient = {
     });
     return call;
   },
+
+  put: (apiPath: string, data: object = {}, query: string) => {
+    const call = axios({
+      url: apiPath + query,
+      method: EMethod.Put,
+      data: data,
+    })
+    return call;
+  },
+
+  delete: (apiPath: string, query: string) => {
+    const call = axios({
+      url: apiPath + query,
+      method: EMethod.Delete,
+    });
+    return call;
+  }
 };
 
 export default axiosClient;

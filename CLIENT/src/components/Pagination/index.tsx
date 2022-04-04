@@ -117,7 +117,7 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
   }
 
   let pageDecrementBtn: React.ReactNode | null = null;
-  if (pageNumber.length < maxPageNumber) {
+  if (pageNumber.length > maxPageNumber) {
     pageDecrementBtn = (
       <div onClick={handlePrevPage} className="button--page">
         ...

@@ -1,13 +1,12 @@
 import { EOrderActionTypes } from "../actionTypes/OrderActionTypes";
-
-interface ADD_STOCK {
-    type: EOrderActionTypes.ADD_STOCK;
+interface GET_ORDER_LIST {
+    type: EOrderActionTypes.GET_ORDER_LIST;
     payload: any;
 }
 
-interface REMOVE_STOCK {
-    type: EOrderActionTypes.REMOVE_STOCK;
+interface UPDATE_ORDER {
+    type: EOrderActionTypes.UPDATE_ORDER;
     payload: any;
 }
 
-export type OrderAction = ADD_STOCK | REMOVE_STOCK;
+export type OrderAction = GET_ORDER_LIST | UPDATE_ORDER;

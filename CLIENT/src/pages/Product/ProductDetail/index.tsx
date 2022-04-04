@@ -4,11 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { RouteComponentProps } from "react-router-dom";
 import { IRouteParams } from "../../../interfaces/route";
 import { getProductDetail } from "../../../redux/actionCreators/ProductCreators";
-import { EOrderActionTypes } from "../../../redux/actionTypes/OrderActionTypes";
 import { ReducerState } from "../../../redux/store";
 import { IQueryList } from "../../../interfaces/query";
-import { IOrder } from "../../../models/Order";
-import { toast } from "react-toastify";
+import { ICarts } from "../../../models/Carts";
+import {
+  createCarts,
+  updateCarts,
+} from "../../../redux/actionCreators/CartsCreators";
 import ProductSlider from "./ProductContent/ProductSlider";
 import ProductInfo from "./ProductContent/ProductInfo";
 import ProductRelated from "./ProductContent/ProductRelated";
@@ -22,9 +24,10 @@ const ProductDetail: React.FunctionComponent<
   const { productDetail } = useSelector(
     (state: ReducerState) => state.ProductReducer
   );
+  const { carts } = useSelector((state: ReducerState) => state.CartsReducer);
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
-  const [stock, setStock] = React.useState<IOrder>({});
+  const [stock, setStock] = React.useState<ICarts>({});
   const [amount, setAmount] = React.useState<number>(0);
 
   const dispatch = useDispatch();
@@ -43,8 +46,8 @@ const ProductDetail: React.FunctionComponent<
       setStock({
         productId: productDetail.productId,
         productName: productDetail.name,
-        amount: amount,
         price: productDetail.price,
+        amount: amount,
       });
     } else {
       setStock({});
@@ -78,12 +81,38 @@ const ProductDetail: React.FunctionComponent<
     dispatch(actions.openButtonLoading);
     setTimeout(() => {
       if (amount > 0) {
-        let newStock = { ...stock };
-        dispatch({
-          type: EOrderActionTypes.ADD_STOCK,
-          payload: newStock,
-        });
-        toast.success(langs?.toastMessages.success.addToCart);
+        if (carts && carts.length > 0) {
+          let index: any = carts.findIndex(
+            (i) => i.productId === productDetail.productId
+          );
+          if (index !== -1) {
+            let newStock = {
+              productId: carts[index].productId,
+              productName: carts[index].productName,
+              price: carts[index].price,
+              amount: carts[index].amount || 0 + amount,
+            };
+            const query: IQueryList = {
+              cartsId: carts[index]?.cartsId,
+            };
+            dispatch(
+              updateCarts(
+                newStock,
+                query,
+                langs?.toastMessages.success.updateCart,
+                langs?.toastMessages.error.updateCart
+              )
+            );
+          }
+        } else {
+          dispatch(
+            createCarts(
+              stock,
+              langs?.toastMessages.success.addToCart,
+              langs?.toastMessages.error.addToCart
+            )
+          );
+        }
       }
       dispatch(actions.closeButtonLoading);
     }, 500);

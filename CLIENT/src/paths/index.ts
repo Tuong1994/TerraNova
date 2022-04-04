@@ -1,9 +1,6 @@
-import { menuPaths } from './Menu/MenuPaths';
-import { userPaths } from './User/UserPaths';
-import { productPaths } from "./Product/ProductPaths";
+import { userPaths } from "./User";
+import { productPaths } from "./Product";
+import { orderPaths } from "./Order";
+import { cartsPaths } from "./Carts";
 
-export {
-    productPaths,
-    userPaths,
-    menuPaths,
-}
+export { productPaths, userPaths, orderPaths, cartsPaths };

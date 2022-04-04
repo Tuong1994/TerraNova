@@ -153,11 +153,15 @@ const VnLang = {
   toastMessages: {
     success: {
       addToCart: "Thêm vào giỏ hàng thành công",
+      updateCart: "Cập nhật thành công",
+      removeCart: "Xóa thành công",
       signIn: "Đăng nhập thành công",
       signUp: "Đăng ký thành công",
     },
     error: {
       addToCart: "Thêm vào giỏ hàng thất bại",
+      updateCart: "Cập nhật thất bại",
+      removeCart: "Xóa thất bại",
       signIn: "Tài khoản hoặc mật khẩu không đúng",
       signUp: "Đăng ký thất bại",
     },
@@ -192,6 +196,7 @@ const VnLang = {
     dontHaveAcc: "Bạn chưa có tài khoản?",
     haveAcc: "Bạn đã có tài khoản?",
     search: "Tìm kiếm",
+    note: "Ghi chú",
   },
   tableHeader: {
     image: "Hình ảnh",

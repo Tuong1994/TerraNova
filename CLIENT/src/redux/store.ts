@@ -2,6 +2,7 @@ import { SideBarReducer } from './reducers/SideBarReducer';
 import { ToastReducer } from './reducers/ToastReducer';
 import { LangReducer } from './reducers/LangReducer';
 import { OrderReducer } from './reducers/OrderReducer';
+import { CartsReducer } from './reducers/CartsReducer';
 import { UserReducer } from "./reducers/UserReducer";
 import { ModalReducer } from "./reducers/ModalReducer";
 import { PaginationReducer } from "./reducers/PaginationReducer";
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   LoadingReducer,
   ModalReducer,
   OrderReducer,
+  CartsReducer,
   LangReducer,
   ToastReducer,
   SideBarReducer,

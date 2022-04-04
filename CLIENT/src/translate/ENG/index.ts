@@ -154,11 +154,15 @@ const EngLang = {
   toastMessages: {
     success: {
       addToCart: "Add to carts success",
+      updateCart: "Update success",
+      removeCart: "Remove success",
       signIn: "Sign in success",
       signUp: "Sign up success",
     },
     error: {
       addToCart: "Add to carts fail",
+      updateCart: "Update fail",
+      removeCart: "Remove fail",
       signIn: "Account or password incorrect",
       signUp: "Sign up fail",
     },
@@ -193,6 +197,7 @@ const EngLang = {
     dontHaveAcc: "Don't have account?",
     haveAcc: "Already have account?",
     search: "Search",
+    note: "Note",
   },
   tableHeader: {
     image: "Image",

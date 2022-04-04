@@ -1,11 +1,12 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { ELangs } from "../../interfaces/lang";
-import { IOrder } from "../../models/Order";
-import { EOrderActionTypes } from "../../redux/actionTypes/OrderActionTypes";
+import { IQueryList } from "../../interfaces/query";
+import { ICarts } from "../../models/Carts";
+import { removeCarts } from "../../redux/actionCreators/CartsCreators";
 
 interface CartsItemProps {
-  item: IOrder;
+  item: ICarts;
   lang: any;
   langs: any;
 }
@@ -16,10 +17,16 @@ const CartsItem: React.FunctionComponent<CartsItemProps> = (props) => {
   const dispatch = useDispatch();
 
   const handleRemoveItem = () => {
-    dispatch({
-      type: EOrderActionTypes.REMOVE_STOCK,
-      payload: item,
-    });
+    const query: IQueryList = {
+      cartsId: item.cartsId,
+    };
+    dispatch(
+      removeCarts(
+        query,
+        langs?.toastMessages.success.removeCart,
+        langs?.toastMessages.error.removeCart
+      )
+    );
   };
 
   return (
@@ -31,7 +38,7 @@ const CartsItem: React.FunctionComponent<CartsItemProps> = (props) => {
         ) : (
           <p>{item.productName}</p>
         )}
-        
+
         <div className="content__inner">
           <p>{item.price?.toLocaleString()} VND</p>
           {(() => {

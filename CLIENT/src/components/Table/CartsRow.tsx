@@ -1,18 +1,42 @@
 import React from "react";
-import { IOrder } from "../../models/Order";
+import { useDispatch, useSelector } from "react-redux";
+import { ReducerState } from "../../redux/store";
+import { ICarts } from "../../models/Carts";
 import TableCol from "./TableCol";
+import utils from "../../utils";
+import { removeCarts } from "../../redux/actionCreators/CartsCreators";
+import { IQueryList } from "../../interfaces/query";
 
 interface ICartsRowProps {
-  item: IOrder;
+  item: ICarts;
 }
 
 const CartsRow: React.FunctionComponent<ICartsRowProps> = (props) => {
   const { item } = props;
 
+  const { lang } = useSelector((state: ReducerState) => state.LangReducer);
+
+  const dispatch = useDispatch();
+
+  const langs = utils.changeLang(lang);
+
+  const handleRemoveItem = () => {
+    const query: IQueryList = {
+      cartsId: item.cartsId,
+    };
+    dispatch(
+      removeCarts(
+        query,
+        langs?.toastMessages.success.removeCart,
+        langs?.toastMessages.error.removeCart
+      )
+    );
+  };
+
   return (
     <tr className="carts-row">
       <TableCol>
-        <div className="col__img">
+        <div className="col__item col__img">
           <img src="../img/product_img.jpg" alt="product" />
         </div>
       </TableCol>
@@ -20,18 +44,36 @@ const CartsRow: React.FunctionComponent<ICartsRowProps> = (props) => {
         <div className="col__item">{item.productName}</div>
       </TableCol>
       <TableCol>
-        <div className="col__item">{item.amount}</div>
+        <div className="col__item col__amount">
+          <div
+            className={`amount__button ${
+              item.amount == 1 ? "amount__button--disabled" : ""
+            }`}
+          >
+            <i className="fa-solid fa-minus"></i>
+          </div>
+
+          <div className="amount__content">{item.amount}</div>
+
+          <div className="amount__button">
+            <i className="fa-solid fa-plus"></i>
+          </div>
+        </div>
       </TableCol>
       <TableCol>
         {(() => {
           if (item.amount && item.price) {
-            return <div className="col__item">{item.price * item.amount}</div>;
+            return (
+              <div className="col__item">
+                {(item.price * item.amount).toLocaleString()} VND
+              </div>
+            );
           }
         })()}
       </TableCol>
       <TableCol>
         <div className="col__item">
-          <div className="button--delete">
+          <div className="button--delete" onClick={handleRemoveItem}>
             <i className="fa-solid fa-trash-can"></i>
           </div>
         </div>

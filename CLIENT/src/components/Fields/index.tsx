@@ -5,6 +5,7 @@ import Radio from "./RadioField";
 import Select from "./SelectField";
 import TextArea from "./TextAreaField";
 import Search from "./SearchInput";
+import Note from "./NoteField";
 
 export {
     Date,
@@ -13,5 +14,6 @@ export {
     Radio,
     Select,
     TextArea,
-    Search
+    Search,
+    Note
 }

@@ -51,4 +51,32 @@
       height: $h-10 * 4;
     }
   }
+  .col__amount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    div {
+      padding: 0 $p-5;
+    }
+    .amount__content {
+      font-weight: $semiBold;
+    }
+    .amount__button {
+      font-size: $body-1;
+      padding: $p-5;
+      margin: 0 $m-10;
+      border-radius: $lightRound;
+      transition: all 0.5s ease;
+      cursor: pointer;
+      &:hover {
+        background: $secondary;
+        color: $tSecondary;
+      }
+    }
+    .amount__button--disabled {
+      user-select: none;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+  }
 }
