@@ -3,16 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { EPaginationActionTypes } from "../../redux/actionTypes/PaginationActionTypes";
 import { ELoadingActionTypes } from "../../redux/actionTypes/LoadingActionTypes";
 import { ReducerState } from "../../redux/store";
+import actions from "../../configs/actions";
 import utils from "../../utils";
 
 interface IPaginationProps {
   perPage: any;
   total: any;
+  data?: any;
   isShowContent?: boolean;
 }
 
 const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
-  const { perPage, total, isShowContent } = props;
+  const { perPage, total, data, isShowContent } = props;
 
   const { page } = useSelector(
     (state: ReducerState) => state.PaginationReducer
@@ -21,35 +23,53 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
   const [pageNumberLimit, setPageNumberLimit] = React.useState<number>(5);
   const [minPageNumber, setMinPageNumber] = React.useState<number>(0);
   const [maxPageNumber, setMaxPageNumber] = React.useState<number>(5);
+  const [start, setStart] = React.useState<number>(0);
+  const [end, setEnd] = React.useState<number>(0);
 
   const dispatch = useDispatch();
 
   const langs = utils.changeLang(lang);
 
   const pageNumber: number[] = [];
-  const start = (page - 1) * perPage + 1;
-  const end = start + parseInt(perPage);
+
+  React.useEffect(() => {
+    setStart((page - 1) * perPage + 1);
+  }, [page, perPage]);
+
+  React.useEffect(() => {
+    setEnd(start + parseInt(perPage));
+  }, [start]);
 
   for (let i = 1; i <= Math.ceil(total / perPage); i++) {
     pageNumber.push(i);
   }
 
+  const handleDataLoading = () => {
+    dispatch(actions.openDataLoading);
+    if (utils.checkObjectEmpty(data) || data?.length > 0) {
+      setTimeout(() => {
+        dispatch(actions.closeDataLoading);
+      }, 4000);
+    }
+    setTimeout(() => {
+      dispatch(actions.closeDataLoading);
+    }, 1000);
+  };
+
+  // Hanlde click to change page
   const handleChangePage = (page: number) => {
+    window.scrollTo(0, 0);
+    handleDataLoading();
     dispatch({
       type: EPaginationActionTypes.CHANGE_PAGE,
       payload: page,
     });
-    dispatch({
-      type: ELoadingActionTypes.OPEN_DATA_LOADING,
-    });
-    setTimeout(() => {
-      dispatch({
-        type: ELoadingActionTypes.CLOSE_DATA_LOADING,
-      });
-    }, 1000);
   };
 
+  // Handle click to preve page
   const handlePrevPage = () => {
+    window.scrollTo(0, 0);
+    handleDataLoading();
     dispatch({
       type: EPaginationActionTypes.CHANGE_PAGE,
       payload: page - 1,
@@ -60,7 +80,10 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
     }
   };
 
+  // Handle click to next page
   const handleNextPage = () => {
+    window.scrollTo(0, 0);
+    handleDataLoading();
     dispatch({
       type: EPaginationActionTypes.CHANGE_PAGE,
       payload: page + 1,
@@ -71,6 +94,7 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
     }
   };
 
+  // Render page number list
   const renderPageNumber = () => {
     if (pageNumber.length > 1) {
       return pageNumber.map((i, index) => {
@@ -97,17 +121,20 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
     }
   };
 
+  // Render result content
   const renderContent = () => {
     return (
       <p>
-        {langs?.pagination.showing} {start} {end <= total && "-"}{" "}
-        {end <= total ? end : null} {langs?.pagination.of} {total}{" "}
-        {langs?.pagination.results}
+        {langs?.pagination.showing}{" "}
+        <span>{end == total ? start + 1 : start}</span> <span>-</span>{" "}
+        <span>{end <= total ? end : total - end + start + 10}</span>{" "}
+        <span>{langs?.pagination.of}</span> <span>{total}</span>{" "}
+        <span>{langs?.pagination.results}</span>
       </p>
     );
   };
 
-
+  // Right dots button
   let pageIncrementBtn: React.ReactNode | null = null;
   if (pageNumber.length > maxPageNumber) {
     pageIncrementBtn = (
@@ -117,6 +144,7 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
     );
   }
 
+  // Left dots button
   let pageDecrementBtn: React.ReactNode | null = null;
   if (pageNumber.length > maxPageNumber) {
     pageDecrementBtn = (
@@ -128,7 +156,9 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
 
   return (
     <div className="pagination">
-      <div className="pagination__content">{isShowContent ? renderContent() : ""}</div>
+      <div className="pagination__content">
+        {isShowContent ? renderContent() : ""}
+      </div>
 
       {total > 10 && (
         <div className="pagination__button">
@@ -139,15 +169,11 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
           >
             <i className="fa-solid fa-chevron-left"></i>
           </div>
-           {/* Prev Btn */}
-
+          {/* Prev Btn */}
           {pageDecrementBtn} {/* Left dots button */}
-
           {renderPageNumber()}
-
           {pageIncrementBtn} {/* Right dots button */}
-
-           {/* Next Btn */}
+          {/* Next Btn */}
           <div
             className={`button__next ${
               page >= pageNumber.length ? "button__disabled" : ""

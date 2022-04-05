@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { ELoadingActionTypes } from "../redux/actionTypes/LoadingActionTypes";
+import utils from "../utils";
 
 const useLoading = (data?: any) => {
   const dispatch = useDispatch();
@@ -8,7 +9,7 @@ const useLoading = (data?: any) => {
     dispatch({
       type: ELoadingActionTypes.OPEN_PAGE_LOADING,
     });
-    if (data) {
+    if (utils.checkObjectEmpty(data) || data?.length > 0) {
       setTimeout(() => {
         dispatch({
           type: ELoadingActionTypes.CLOSE_PAGE_LOADING,

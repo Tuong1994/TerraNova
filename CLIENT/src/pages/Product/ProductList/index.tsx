@@ -38,7 +38,7 @@ const ProductList: React.FunctionComponent<
   const langs = utils.changeLang(lang);
   const { limits, totalProduct } = productList;
 
-  customHook.useLoading(productList);
+  customHook.useLoading(productList?.productListPerPage);
 
   React.useEffect(() => {
     _getProductList();
