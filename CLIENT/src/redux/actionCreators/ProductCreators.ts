@@ -6,7 +6,7 @@ import { getListQuery } from "../../configs/setting";
 import { IQueryList } from "../../interfaces/query";
 import { toast } from "react-toastify";
 
-export const getProductList = (query: IQueryList) => {
+export const getProductList = (query: IQueryList, err?: string) => {
   return async (dispatch: Dispatch) => {
     try {
       const result = await axiosClient.get(
@@ -18,12 +18,12 @@ export const getProductList = (query: IQueryList) => {
         payload: result.data,
       });
     } catch (error: any) {
-      toast.error(error.response.data);
+      toast.error(err);
     }
   };
 };
 
-export const getProductByCategory = (query: IQueryList) => {
+export const getProductByCategory = (query: IQueryList, err?: string) => {
   return async (dispatch: Dispatch) => {
     try {
       const result = await axiosClient.get(
@@ -35,12 +35,12 @@ export const getProductByCategory = (query: IQueryList) => {
         payload: result.data,
       });
     } catch (error: any) {
-      toast.error(error.response.data);
+      toast.error(err);
     }
   };
 };
 
-export const getProductByProducer = (query: IQueryList) => {
+export const getProductByProducer = (query: IQueryList, err?: string) => {
   return async (dispatch: Dispatch) => {
     try {
       const result = await axiosClient.get(
@@ -52,12 +52,12 @@ export const getProductByProducer = (query: IQueryList) => {
         payload: result.data,
       });
     } catch (error: any) {
-      toast.error(error.response.data);
+      toast.error(err);
     }
   };
 };
 
-export const getProductDetail = (query: IQueryList) => {
+export const getProductDetail = (query: IQueryList, err?: string) => {
   return async (dispatch: Dispatch) => {
     try {
       const result = await axiosClient.get(
@@ -69,7 +69,7 @@ export const getProductDetail = (query: IQueryList) => {
         payload: result.data,
       });
     } catch (error: any) {
-      toast.error(error.response.data);
+      toast.error(err);
     }
   };
 };

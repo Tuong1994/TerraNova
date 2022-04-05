@@ -1,13 +1,14 @@
 import React from "react";
 import { IAccessories } from "../../../../models/Product";
-import ButtonLoading from "../../../../components/Loading/ButtonLoading";
 import { useSelector } from "react-redux";
 import { ReducerState } from "../../../../redux/store";
+import { ILangs } from "../../../../interfaces/lang";
+import ButtonLoading from "../../../../components/Loading/ButtonLoading";
 
 interface IProductInfoProps {
   product: IAccessories;
   amount: number;
-  langs: any;
+  langs: ILangs;
   handleIncrease: () => void;
   handleDecrease: () => void;
   handleOrder: () => void;
@@ -69,7 +70,9 @@ const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
       <div className="info__button">
         <div
           className={
-            amount <= 0 || buttonLoading ? "button--submit button--disabled" : "button--submit"
+            amount <= 0 || buttonLoading
+              ? "button--submit button--disabled"
+              : "button--submit"
           }
           onClick={handleOrder}
         >

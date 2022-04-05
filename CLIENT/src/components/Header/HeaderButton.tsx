@@ -10,7 +10,7 @@ const HeaderButton: React.FunctionComponent<IHeaderButtonProps> = (props) => {
     <div className="header__button" onClick={() => {
       setShowMenu(true);
     }}>
-      <div className="button--page">
+      <div className="button__menu">
         <i className="fa fa-bars"></i>
       </div>
     </div>

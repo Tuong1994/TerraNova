@@ -19,16 +19,17 @@ export const getOrderList = () => {
   };
 };
 
-export const createOrder = (data: IOrder) => {
+export const createOrder = (data: IOrder, success?: string, err?: string) => {
   return async (dispatch: Dispatch | any) => {
     try {
-      const result = await axiosClient.post(
+      await axiosClient.post(
         apiPath.orderPaths.createOrder,
         data
       );
       dispatch(getOrderList());
+      toast.success(success);
     } catch (error: any) {
-      toast.error(error.response.data);
+      toast.error(err);
     }
   };
 };

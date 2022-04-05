@@ -40,6 +40,13 @@ const EngLang = {
     consultation: {
       consultation: "Consultation",
       signUpConsultation: "Sign up for Consulation",
+      modal: {
+        title: "User Information",
+        name: "Name",
+        email: "Email",
+        phone: "Phone",
+        note: "Thank you for your interest, we have received your information, we will contact you soon. In the meantime, please visit our website for more information."
+      }
     },
     categories: {
       title_1: "Products",
@@ -114,11 +121,20 @@ const EngLang = {
       "Branches 2: 12B Nguyen Huu Canh Str, Ward 19, District Binh Thanh, HCMC",
   },
   productCarts: {
+    title: "General infomation",
     paymentType: "Choose your payment type",
     payment: "Payment",
     cash: "Cash",
     note: "Note",
     vib: "VIB - Bank",
+    price: "Price",
+    shipment: "Shipment",
+    total: "Total",
+    vat: "VAT 10%",
+    totalPay: "Total pay",
+    noShipment: "Received in store",
+    delivery: "Delivery",
+    receivedType: "Please choose recevied type",
   },
   time: {
     day: "day",
@@ -143,6 +159,8 @@ const EngLang = {
     addToCart: "Add to cart",
     buyProduct: "Buy product",
     addProduct: "Add product",
+    update: "Update",
+    payment: "Payment",
   },
   noData: {
     data: "No data founded",
@@ -153,18 +171,20 @@ const EngLang = {
   },
   toastMessages: {
     success: {
-      addToCart: "Add to carts success",
-      updateCart: "Update success",
-      removeCart: "Remove success",
-      signIn: "Sign in success",
-      signUp: "Sign up success",
+      addToCart: "Add to carts successed",
+      updateCart: "Update successed",
+      removeCart: "Remove successed",
+      createOrder: "Payment successed",
+      signIn: "Sign in successed",
+      signUp: "Sign up successed",
     },
     error: {
-      addToCart: "Add to carts fail",
-      updateCart: "Update fail",
-      removeCart: "Remove fail",
+      addToCart: "Add to carts failed",
+      updateCart: "Update failed",
+      removeCart: "Remove failed",
+      createOrder: "Payment failed",
       signIn: "Account or password incorrect",
-      signUp: "Sign up fail",
+      signUp: "Sign up failed",
     },
   },
   validateMessages: {
@@ -200,6 +220,7 @@ const EngLang = {
     note: "Note",
   },
   tableHeader: {
+    number: "No.",
     image: "Image",
     name: "Name",
     productName: "Name",
@@ -214,5 +235,7 @@ const EngLang = {
     results: "results"
   }
 };
+
+export type LangENG = typeof EngLang; 
 
 export default EngLang;

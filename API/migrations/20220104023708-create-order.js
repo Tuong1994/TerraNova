@@ -11,9 +11,12 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       paymentType: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
-      deliveryType: {
+      shipmentType: {
+        type: Sequelize.INTEGER,
+      },
+      shipmentFee: {
         type: Sequelize.INTEGER,
       },
       status: {

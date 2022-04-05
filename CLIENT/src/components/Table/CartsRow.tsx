@@ -1,11 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../redux/store";
+import { IQueryList } from "../../interfaces/query";
 import { ICarts } from "../../models/Carts";
+import { removeCarts } from "../../redux/actionCreators/CartsCreators";
 import TableCol from "./TableCol";
 import utils from "../../utils";
-import { removeCarts } from "../../redux/actionCreators/CartsCreators";
-import { IQueryList } from "../../interfaces/query";
 
 interface ICartsRowProps {
   item: ICarts;

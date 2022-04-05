@@ -40,6 +40,13 @@ const VnLang = {
     consultation: {
       consultation: "Tư vấn",
       signUpConsultation: "Đăng ký tư vấn",
+      modal: {
+        title: "Thông tin người dùng",
+        name: "Họ tên",
+        email: "Email",
+        phone: "Điện thoại",
+        note: "Cảm ơn bạn đã quan tâm, chúng tôi đã nhận được thông tin của bạn, chúng tôi sẽ liên lạc với bạn sớm nhất. Trong lúc đó, hãy tiếp tục ghé thăm website của chúng tôi để biết thêm thông tin."
+      }
     },
     categories: {
       title_1: "Sản phẩm",
@@ -113,11 +120,20 @@ const VnLang = {
       "Chi nhánh 2: 12B Nguyễn Hữu Cảnh, Phường 19, Quận Bình Thạnh, TP.HCM",
   },
   productCarts: {
+    title: "Thông tin chung",
     paymentType: "Chọn hình thức thanh toán",
     payment: "Thanh toán",
     cash: "Tiền mặt",
     note: "Ghi chú",
     vib: "Ngân hàng VIB",
+    price: "Giá",
+    shipment: "Phí giao hàng",
+    total: "Tổng cộng",
+    vat: "Thuế VAT 10%",
+    totalPay: "Thành tiền",
+    noShipment: "Nhận tại cửa hàng",
+    delivery: "Giao hàng tận nơi",
+    receivedType: "Chọn hình thức nhận hàng",
   },
   time: {
     day: "ngày",
@@ -142,6 +158,8 @@ const VnLang = {
     addToCart: "Thêm vào giỏ hàng",
     buyProduct: "Mua sản phẩm",
     addProduct: "Tạo sản phẩm",
+    update: "Cập nhật",
+    payment: "Thanh toán",
   },
   noData: {
     data: "Không tìm thấy dữ liệu",
@@ -155,6 +173,7 @@ const VnLang = {
       addToCart: "Thêm vào giỏ hàng thành công",
       updateCart: "Cập nhật thành công",
       removeCart: "Xóa thành công",
+      createOrder: "Thanh toán thành công",
       signIn: "Đăng nhập thành công",
       signUp: "Đăng ký thành công",
     },
@@ -162,6 +181,7 @@ const VnLang = {
       addToCart: "Thêm vào giỏ hàng thất bại",
       updateCart: "Cập nhật thất bại",
       removeCart: "Xóa thất bại",
+      createOrder: "Thanh toán thất bại",
       signIn: "Tài khoản hoặc mật khẩu không đúng",
       signUp: "Đăng ký thất bại",
     },
@@ -199,6 +219,7 @@ const VnLang = {
     note: "Ghi chú",
   },
   tableHeader: {
+    number: "STT",
     image: "Hình ảnh",
     name: "Họ Tên",
     productName: "Tên sản phẩm",
@@ -213,5 +234,7 @@ const VnLang = {
     results: "kết quả"
   }
 };
+
+export type LangVN = typeof VnLang; 
 
 export default VnLang;

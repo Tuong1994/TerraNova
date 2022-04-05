@@ -11,6 +11,7 @@ interface NoteFieldProps {
   inputClassName?: string;
   fieldClassName?: string;
   iconClassName?: string;
+  onChange?:(e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 const NoteField: React.FunctionComponent<NoteFieldProps> = (props) => {
@@ -23,6 +24,7 @@ const NoteField: React.FunctionComponent<NoteFieldProps> = (props) => {
     fieldClassName,
     inputClassName,
     labelClassName,
+    onChange
   } = props;
   return (
     <div className={`form__group ${groupClassName ? groupClassName : ""}`}>
@@ -32,6 +34,7 @@ const NoteField: React.FunctionComponent<NoteFieldProps> = (props) => {
           rows={rows || 5}
           placeholder={placeholder}
           className={`field__control ${inputClassName ? inputClassName : ""}`}
+          onChange={onChange}
         />
         {label && (
           <label

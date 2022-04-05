@@ -18,6 +18,12 @@
     justify-content: flex-start;
     .search__input {
       width: $w-100 - 70;
+      @include respond(extraTablet) {
+        width: $w-100 - 30;
+      }
+      @include respond(tablet) {
+        width: $w-100;
+      }
     }
   }
   .product-list__wrapper {

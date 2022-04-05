@@ -7,7 +7,7 @@ interface IStateDefault {
 }
 
 const stateDefault: IStateDefault = {
-  carts: [],
+  carts: []
 };
 
 export const CartsReducer = (state = stateDefault, action: CartsAction) => {

@@ -4,11 +4,7 @@ import { EUserActionTypes } from "../actionTypes/UserActionTypes";
 import { IUser } from "../../models/User";
 
 interface IUserStateDefault {
-  consultationDetail: {
-    name?: string;
-    email?: string;
-    phone?: string;
-  };
+  consultationDetail: IUser;
   account?: IUser | null;
 }
 

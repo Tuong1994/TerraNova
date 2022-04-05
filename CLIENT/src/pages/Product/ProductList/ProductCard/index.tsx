@@ -19,7 +19,7 @@ const ProductCard: React.FunctionComponent<ProductCardProps> = (props) => {
         localStorage.setItem("productType", JSON.stringify(product.productType));
       }}
     >
-      <Card.CardWrapper className="link__card">
+      <Card.Wrapper className="link__card">
         <Card.Img
           className="card__image"
           src="../img/product_img.jpg"
@@ -56,7 +56,7 @@ const ProductCard: React.FunctionComponent<ProductCardProps> = (props) => {
           </div>
           <SpecsContent product={product} />
         </Card.Footer>
-      </Card.CardWrapper>
+      </Card.Wrapper>
     </Link>
   );
 };

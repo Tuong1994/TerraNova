@@ -3,10 +3,11 @@ import * as customHooks from "../../hooks";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ReducerState } from "../../redux/store";
+import { getCartsList, removeCarts } from "../../redux/actionCreators/CartsCreators";
+import { IQueryList } from "../../interfaces/query";
 import { ICarts } from "../../models/Carts";
-import { getCartsList } from "../../redux/actionCreators/CartsCreators";
-import utils from "../../utils";
 import CartsItem from "./CartsItem";
+import utils from "../../utils";
 
 interface ICartsProps {
   className?: string;
@@ -31,6 +32,19 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
     dispatch(getCartsList());
   }, []);
 
+  const handleRemoveItem = (item: any) => {
+    const query: IQueryList = {
+      cartsId: item.cartsId,
+    };
+    dispatch(
+      removeCarts(
+        query,
+        langs?.toastMessages.success.removeCart,
+        langs?.toastMessages.error.removeCart
+      )
+    );
+  }
+
   return (
     <div className="carts" ref={cartsRef}>
       <div
@@ -49,7 +63,7 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
       >
         <div className="inner__list">
           {(() => {
-            if (carts?.length > 0) {
+            if (carts && carts?.length > 0) {
               return carts?.map((item: ICarts, index: number) => {
                 return (
                   <CartsItem
@@ -57,6 +71,7 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
                     item={item}
                     lang={lang}
                     langs={langs}
+                    removeCarts={handleRemoveItem}
                   />
                 );
               });
@@ -66,7 +81,7 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
           })()}
         </div>
 
-        {carts?.length > 0 && (
+        {carts && carts?.length > 0 && (
           <div className="inner__link">
             {" "}
             <Link to="/productCarts" className="link__content">

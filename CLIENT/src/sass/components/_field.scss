@@ -103,7 +103,7 @@
   .group__option {
     width: $w-100;
     border-radius: $lightRound;
-    box-shadow: 0 0 15px $darkGrey;
+    box-shadow: 0 0 15px $grey;
     position: absolute;
     top: 110%;
     left: 0;
@@ -115,16 +115,17 @@
     transition: all 0.3s ease;
     .option__item {
       padding: $p-10;
+      margin: $m-5 0;
       text-align: center;
       transition: all 0.3s ease;
       cursor: pointer;
       &:hover {
-        background: $darkGrey;
+        background: $secondary;
         color: $tSecondary;
       }
     }
     .option__item--selected {
-      background: $darkGrey;
+      background: $secondary;
       color: $tSecondary;
     }
     .option__nodata {

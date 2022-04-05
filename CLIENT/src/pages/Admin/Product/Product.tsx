@@ -64,24 +64,11 @@ const Product: React.FunctionComponent<{}> = (props) => {
       <Card>
         <Table
           headers={[
-            {
-              title: "No.",
-            },
-            {
-              title: "Name",
-            },
-            {
-              title: "Price",
-            },
-            // {
-            //   title: "Image",
-            // },
-            {
-              title: "Description",
-            },
-            {
-              title: "Features",
-            },
+            { title: langs?.tableHeader.number || "" },
+            { title: langs?.tableHeader.productName || "" },
+            { title: langs?.tableHeader.price || "" },
+            { title: langs?.tableHeader.description || "" },
+            { title: langs?.tableHeader.features || "" },
           ]}
           isNodata={productList?.productListPerPage}
           noDataTitle={langs?.noData.data || ""}
@@ -93,7 +80,12 @@ const Product: React.FunctionComponent<{}> = (props) => {
         >
           {renderProductList()}
         </Table>
-        <Pagination perPage={limits} total={totalProduct} />
+        
+        <Pagination
+          perPage={limits}
+          total={totalProduct}
+          isShowContent={true}
+        />
       </Card>
     </div>
   );

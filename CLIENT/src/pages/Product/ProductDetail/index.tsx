@@ -6,11 +6,11 @@ import { IRouteParams } from "../../../interfaces/route";
 import { getProductDetail } from "../../../redux/actionCreators/ProductCreators";
 import { ReducerState } from "../../../redux/store";
 import { IQueryList } from "../../../interfaces/query";
-import { ICarts } from "../../../models/Carts";
 import {
   createCarts,
   updateCarts,
 } from "../../../redux/actionCreators/CartsCreators";
+import { ICarts } from "../../../models/Carts";
 import ProductSlider from "./ProductContent/ProductSlider";
 import ProductInfo from "./ProductContent/ProductInfo";
 import ProductRelated from "./ProductContent/ProductRelated";
@@ -86,7 +86,7 @@ const ProductDetail: React.FunctionComponent<
             (i) => i.productId === productDetail.productId
           );
           if (index !== -1) {
-            let newStock = {
+            let newStock: ICarts = {
               productId: carts[index].productId,
               productName: carts[index].productName,
               price: carts[index].price,

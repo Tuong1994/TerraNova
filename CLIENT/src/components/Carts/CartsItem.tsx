@@ -1,33 +1,15 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { ELangs } from "../../interfaces/lang";
-import { IQueryList } from "../../interfaces/query";
+import { ELangs, ILangs } from "../../interfaces/lang";
 import { ICarts } from "../../models/Carts";
-import { removeCarts } from "../../redux/actionCreators/CartsCreators";
-
 interface CartsItemProps {
   item: ICarts;
-  lang: any;
-  langs: any;
+  lang: string;
+  langs: ILangs;
+  removeCarts: (i: ICarts) => void;
 }
 
 const CartsItem: React.FunctionComponent<CartsItemProps> = (props) => {
-  const { item, lang, langs } = props;
-
-  const dispatch = useDispatch();
-
-  const handleRemoveItem = () => {
-    const query: IQueryList = {
-      cartsId: item.cartsId,
-    };
-    dispatch(
-      removeCarts(
-        query,
-        langs?.toastMessages.success.removeCart,
-        langs?.toastMessages.error.removeCart
-      )
-    );
-  };
+  const { item, lang, langs, removeCarts } = props;
 
   return (
     <div className="list__item">
@@ -59,7 +41,7 @@ const CartsItem: React.FunctionComponent<CartsItemProps> = (props) => {
         </div>
       </div>
 
-      <div className="item__icon" onClick={handleRemoveItem}>
+      <div className="item__icon" onClick={() => removeCarts(item)}>
         <i className="fa fa-times"></i>
       </div>
     </div>

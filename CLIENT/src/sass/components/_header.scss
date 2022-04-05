@@ -273,6 +273,11 @@
   }
   .header__button {
     display: none;
+    .button__menu {
+      padding: $p-10;
+      border: 1px solid $borderGrey;
+      border-radius: $lightRound;
+    }
     @include respond(tablet) {
       display: block;
     }

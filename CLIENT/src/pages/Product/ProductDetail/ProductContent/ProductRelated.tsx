@@ -5,10 +5,11 @@ import { ReducerState } from "../../../../redux/store";
 import { getProductByProducer } from "../../../../redux/actionCreators/ProductCreators";
 import { IQueryList } from "../../../../interfaces/query";
 import { history } from "../../../../App";
+import { ILangs } from "../../../../interfaces/lang";
 import utils from "../../../../utils";
 
 interface ProducRelatedProps {
-  langs: any;
+  langs: ILangs;
   getProductDetail: (id?: string) => void;
 }
 
@@ -42,7 +43,7 @@ const ProductRelated: React.FunctionComponent<ProducRelatedProps> = (props) => {
       if (productListPerPage && productListPerPage?.length > 0) {
         return productListPerPage?.map((product) => {
           return (
-            <Card.CardWrapper
+            <Card.Wrapper
               key={utils.uuid()}
               className="related__item"
               onClick={() => {
@@ -69,7 +70,7 @@ const ProductRelated: React.FunctionComponent<ProducRelatedProps> = (props) => {
                   </div>
                 </div>
               </Card.Body>
-            </Card.CardWrapper>
+            </Card.Wrapper>
           );
         });
       }
@@ -77,10 +78,10 @@ const ProductRelated: React.FunctionComponent<ProducRelatedProps> = (props) => {
   };
 
   return (
-    <Card.CardWrapper className="content__related">
+    <Card.Wrapper className="content__related">
       <h3 className="related__title">{langs?.productDetail.related}</h3>
       {renderItem()}
-    </Card.CardWrapper>
+    </Card.Wrapper>
   );
 };
 

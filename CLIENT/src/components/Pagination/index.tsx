@@ -8,10 +8,11 @@ import utils from "../../utils";
 interface IPaginationProps {
   perPage: any;
   total: any;
+  isShowContent?: boolean;
 }
 
 const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
-  const { perPage, total } = props;
+  const { perPage, total, isShowContent } = props;
 
   const { page } = useSelector(
     (state: ReducerState) => state.PaginationReducer
@@ -127,7 +128,8 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
 
   return (
     <div className="pagination">
-      <div className="pagination__content">{renderContent()}</div>
+      <div className="pagination__content">{isShowContent ? renderContent() : ""}</div>
+
       {total > 10 && (
         <div className="pagination__button">
           {/* Prev Btn */}

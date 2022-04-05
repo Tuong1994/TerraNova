@@ -1,10 +1,11 @@
+import { ICarts } from "../Carts";
 export interface IOrder {
-    productId?: string;
-    productName?: string;
-    amount?: number;
-    note?: string;
-    totalPay?: number;
-    status?: number;
-    deliveryType?: number;
-    paymentType?: number;
+    note?: string,
+    paymentType?: number,
+    totalPay?: number,
+    status?: number,
+    shipmentType?: number,
+    shipmentFee?: number,
+    products?: ICarts[],
+    userId?: string;
 }

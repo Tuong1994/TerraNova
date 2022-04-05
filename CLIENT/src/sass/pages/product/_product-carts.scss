@@ -2,45 +2,77 @@
   padding: $p-10 * 5;
   .carts__card {
     padding: $p-10 * 2;
+    .cart__button {
+      width: $w-100;
+      padding: $p-10 0;
+      display: flex;
+      justify-content: flex-end;
+      .button__select {
+        width: $w-100 - 75;
+        margin: 0 $m-10;
+      }
+      .button--submit {
+        &:nth-child(2) {
+          margin-right: $m-10;
+        }
+      }
+    }
     .card__payment {
       width: $w-100;
       padding: $p-10 * 2 $p-10 * 5;
-      .payment__form {
-        width: $w-100;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        .form__note {
-          width: $w-100 - 35;
-          .note__input {
-            width: $w-100;
-          }
+      display: flex;
+      justify-content: space-between;
+      .payment__group {
+        width: $w-100 - 50;
+        margin: 0;
+        .group__input {
+          width: $w-100;
+          padding: $p-10 0;
         }
-        .form__payment {
-          width: $w-100 - 70;
-          padding: $p-10;
-          .payment__title {
+        .group__label {
+          font-size: $subtitle;
+        }
+      }
+      .payment__summary {
+        width: $w-100 - 60;
+        padding: $p-10;
+        .summary__header {
+          .header__title {
+            width: $w-100;
             font-size: $subtitle;
             font-weight: $semiBold;
             text-align: center;
-            padding-bottom: $p-10;
+            padding: $p-10 0;
+            border-bottom: 1px solid $borderGrey;
           }
-          .payment__radio {
-            display: flex;
-            align-items: center;
-            .radio__icon {
-              width: $w-10 * 4;
-              height: $h-10 * 4;
-              object-fit: cover;
-              margin: 0 $m-5;
+        }
+        .summary__body {
+          .body__list {
+            margin-left: $m-10 * 2;
+            padding: $p-10;
+            .list__item {
+              width: $w-100;
+              padding: $p-5;
+              list-style-type: disc;
+              .item__inner {
+                display: flex;
+                justify-content: space-between;
+                strong {
+                  font-weight: $semiBold;
+                }
+              }
+            }
+            &:last-child {
+              .list__item {
+                list-style: none;
+              }
             }
           }
-          .payment__button {
+          .body__line {
             width: $w-100;
-            padding-top: $p-10;
-            border-top: 1px solid $borderGrey;
-            display: flex;
-            justify-content: center;
+            height: 1px;
+            margin: $m-10 0;
+            background: $grey;
           }
         }
       }

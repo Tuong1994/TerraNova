@@ -2,16 +2,21 @@ import React from "react";
 import * as customHooks from "../../../hooks";
 
 interface ISelectFieldProps {
-  placeholder?: string;
   id?: any;
   label?: any;
   value?: any;
   option?: any;
+  placeholder?: string;
+  groupClassName?: string;
+  labelClassName?: string;
+  inputClassName?: string;
+  fieldClassName?: string;
+  iconClassName?: string;
   onChange?(item: any): void;
 }
 
 const SelectField: React.FunctionComponent<ISelectFieldProps> = (props) => {
-  const { placeholder, id, label, value, option, onChange } = props;
+  const { placeholder, id, label, value, option, groupClassName, labelClassName, inputClassName, fieldClassName, onChange } = props;
   const [isDropdown, setIsDropdown] = React.useState<boolean>(false);
   const [newValue, setNewValue] = React.useState<any>();
   const [freeText, setFreeText] = React.useState<string>("");
@@ -46,9 +51,9 @@ const SelectField: React.FunctionComponent<ISelectFieldProps> = (props) => {
   };
 
   return (
-    <div className="form__group">
+    <div className={`form__group ${groupClassName ? groupClassName : ""}`} ref={controlRef}>
       {/* Input */}
-      <div className="group__field">
+      <div className={`group__field ${fieldClassName ? fieldClassName : ""}`}>
         <input
           type="text"
           className="field__control"
@@ -78,15 +83,14 @@ const SelectField: React.FunctionComponent<ISelectFieldProps> = (props) => {
         className={
           isDropdown ? "group__option group__option--active" : "group__option"
         }
-        ref={controlRef}
       >
         {option && option?.length > 0 ? (
           filter(option).map((item: any) => {
             return (
               <div
-                key={option[id]}
+                key={item.label}
                 className={
-                  value === item[id]
+                  value?.value === item[id]
                     ? "option__item option__item--selected"
                     : "option__item"
                 }
@@ -95,6 +99,7 @@ const SelectField: React.FunctionComponent<ISelectFieldProps> = (props) => {
                   onChange && onChange(item[id]);
                   getValue(item[label]);
                   setIsDropdown(false);
+                  console.log(value)
                 }}
               >
                 {item[label]}

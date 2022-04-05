@@ -5,11 +5,11 @@ const getOrderList = async (req, res) => {
     const orderList = await Order.findAll({
       attributes: [
         ["id", "orderId"],
-        "amount",
         "note",
         "totalPay",
         "paymentType",
-        "deliveryType",
+        "shipmentType",
+        "shipmentFee",
         "status",
         "products",
       ],
@@ -29,11 +29,11 @@ const getOrderDetail = async (req, res) => {
       },
       attributes: [
         ["id", "orderId"],
-        "amount",
         "note",
         "totalPay",
         "paymentType",
-        "deliveryType",
+        "shipmentType",
+        "shipmentFee",
         "status",
         "products",
       ],
@@ -50,11 +50,11 @@ const getOrderDetail = async (req, res) => {
 
 const createOrder = async (req, res) => {
   const {
-    amount,
     note,
     totalPay,
     paymentType,
-    deliveryType,
+    shipmentType,
+    shipmentFree,
     status,
     products,
     userId,
@@ -63,11 +63,11 @@ const createOrder = async (req, res) => {
   try {
     const newOrder = await Order.create({
       id: orderId,
-      amount,
       note,
       totalPay,
       paymentType,
-      deliveryType,
+      shipmentType,
+      shipmentFree,
       status,
       products,
       userId,
@@ -80,15 +80,22 @@ const createOrder = async (req, res) => {
 
 const updateOrder = async (req, res) => {
   const { orderId } = req.query;
-  const { amount, note, totalPay, paymentType, status, products, userId } =
-    req.body;
+  const {
+    note,
+    totalPay,
+    shipmentType,
+    shipmentFree,
+    status,
+    products,
+    userId,
+  } = req.body;
   try {
     await Order.update(
       {
-        amount,
         note,
         totalPay,
-        paymentType,
+        shipmentType,
+        shipmentFree,
         status,
         products,
         userId,

@@ -1,10 +1,10 @@
-import ModalWrapper from "./ModalContainer";
+import Wrapper from "./ModalContainer";
 import Header from "./ModalHeader";
 import Body from "./ModalBody";
 import Footer from "./ModalFooter";
 
 export {
-    ModalWrapper,
+    Wrapper,
     Header,
     Body,
     Footer

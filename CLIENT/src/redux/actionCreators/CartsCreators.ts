@@ -7,7 +7,7 @@ import { ICarts } from "../../models/Carts";
 import { IQueryList } from "../../interfaces/query";
 import { getListQuery } from "../../configs/setting";
 
-export const getCartsList = () => {
+export const getCartsList = (err?: string) => {
   return async (dispatch: Dispatch) => {
     try {
       const result = await axiosClient.get(apiPath.cartsPaths.getCartsList);
@@ -16,7 +16,7 @@ export const getCartsList = () => {
         payload: result.data,
       });
     } catch (error: any) {
-      toast.error(error.reponse.error);
+      toast.error(err);
     }
   };
 };
