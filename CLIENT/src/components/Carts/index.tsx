@@ -3,7 +3,10 @@ import * as customHooks from "../../hooks";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ReducerState } from "../../redux/store";
-import { getCartsList, removeCarts } from "../../redux/actionCreators/CartsCreators";
+import {
+  getCartsList,
+  removeCarts,
+} from "../../redux/actionCreators/CartsCreators";
 import { IQueryList } from "../../interfaces/query";
 import { ICarts } from "../../models/Carts";
 import CartsItem from "./CartsItem";
@@ -17,6 +20,9 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
   const { className } = props;
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
   const { carts } = useSelector((state: ReducerState) => state.CartsReducer);
+  const { page } = useSelector(
+    (state: ReducerState) => state.PaginationReducer
+  );
 
   const [isShow, setIsShow] = React.useState<boolean>(false);
 
@@ -26,10 +32,16 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
 
   const langs = utils.changeLang(lang);
 
+  const { cartsList } = carts;
+
   customHooks.useClickOutSide(cartsRef, setIsShow);
 
   React.useEffect(() => {
-    dispatch(getCartsList());
+    const query: IQueryList = {
+      page: page,
+      limits: 10,
+    }
+    dispatch(getCartsList(query));
   }, []);
 
   const handleRemoveItem = (item: any) => {
@@ -43,7 +55,7 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
         langs?.toastMessages.error.removeCart
       )
     );
-  }
+  };
 
   return (
     <div className="carts" ref={cartsRef}>
@@ -54,7 +66,7 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
         <i className="fa fa-shopping-cart"></i>
       </div>
 
-      <div className="carts__total">{carts?.length}</div>
+      <div className="carts__total">{cartsList?.length}</div>
 
       <div
         className={
@@ -63,8 +75,8 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
       >
         <div className="inner__list">
           {(() => {
-            if (carts && carts?.length > 0) {
-              return carts?.map((item: ICarts, index: number) => {
+            if (cartsList && cartsList?.length > 0) {
+              return cartsList?.map((item: ICarts, index: number) => {
                 return (
                   <CartsItem
                     key={index}
@@ -81,7 +93,7 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
           })()}
         </div>
 
-        {carts && carts?.length > 0 && (
+        {cartsList && cartsList?.length > 0 && (
           <div className="inner__link">
             {" "}
             <Link to="/productCarts" className="link__content">

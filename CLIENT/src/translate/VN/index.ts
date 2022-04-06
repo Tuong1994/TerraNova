@@ -120,7 +120,8 @@ const VnLang = {
       "Chi nhánh 2: 12B Nguyễn Hữu Cảnh, Phường 19, Quận Bình Thạnh, TP.HCM",
   },
   productCarts: {
-    title: "Thông tin chung",
+    title: "Giỏ hàng",
+    summaryTitle: "Thông tin chung",
     paymentType: "Chọn hình thức thanh toán",
     payment: "Thanh toán",
     cash: "Tiền mặt",

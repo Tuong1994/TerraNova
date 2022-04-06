@@ -35,6 +35,8 @@ const ProductDetail: React.FunctionComponent<
 
   const langs = utils.changeLang(lang);
 
+  const { cartsList } = carts;
+
   customHook.useLoading(productDetail);
 
   React.useEffect(() => {
@@ -81,29 +83,31 @@ const ProductDetail: React.FunctionComponent<
     dispatch(actions.openButtonLoading);
     setTimeout(() => {
       if (amount > 0) {
-        if (carts && carts.length > 0) {
-          let index: any = carts.findIndex(
+        if (cartsList && cartsList.length > 0) {
+          let index: number = cartsList.findIndex(
             (i) => i.productId === productDetail.productId
           );
+
           if (index !== -1) {
-            let newStock: ICarts = {
-              productId: carts[index].productId,
-              productName: carts[index].productName,
-              price: carts[index].price,
-              amount: carts[index].amount || 0 + amount,
-            };
-            const query: IQueryList = {
-              cartsId: carts[index]?.cartsId,
-            };
-            dispatch(
-              updateCarts(
-                newStock,
-                query,
-                langs?.toastMessages.success.updateCart,
-                langs?.toastMessages.error.updateCart
-              )
-            );
-          }
+              let newStock: ICarts = {
+                productId: cartsList[index].productId,
+                productName: cartsList[index].productName,
+                price: cartsList[index].price,
+                amount: (cartsList[index].amount || 0) + amount,
+              };
+              const query: IQueryList = {
+                cartsId: cartsList[index]?.cartsId,
+              };
+
+              dispatch(
+                updateCarts(
+                  newStock,
+                  query,
+                  langs?.toastMessages.success.updateCart,
+                  langs?.toastMessages.error.updateCart
+                )
+              );
+            }
         } else {
           dispatch(
             createCarts(

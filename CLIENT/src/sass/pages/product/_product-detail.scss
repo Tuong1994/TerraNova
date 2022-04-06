@@ -3,11 +3,16 @@
   .product-detail__title {
     width: $w-100;
     margin-bottom: $m-10;
-    padding: $p-10;
+    padding: $p-10 $p-10 * 2;
     background: $secondary;
     color: $tSecondary;
     font-size: $h5;
     font-weight: $medium;
+    border-top-left-radius: $round;
+    border-bottom-left-radius: $round;
+    @include respond(phone) {
+      font-size: $subtitle;
+    }
   }
   .product-detail__content {
     display: flex;
@@ -39,6 +44,17 @@
           }
         }
       }
+      @include respond(laptop) {
+        width: $w-100 - 65;
+      }
+      @include respond(extraTablet) {
+        width: $w-100;
+        margin-bottom: $m-10 * 2;
+      }
+      @include respond(tablet) {
+        width: $w-100;
+        margin-bottom: $m-10 + 5;
+      }
     }
     .content__info {
       width: $w-100 - 75;
@@ -62,24 +78,38 @@
           }
         }
       }
-      .info__quantily {
+      .info__amount {
         width: $w-100;
         margin: $m-10 * 5 0;
         display: flex;
         align-items: center;
-        .quantily__item {
+        .amount__item {
           width: $w-100 / 3.5;
+          margin: 0 $m-5;
           padding: $p-5;
           text-align: center;
           border: 1px solid $borderGrey;
-          border-radius: 0;
+          border-radius: $lightRound;
           &:nth-child(1),
           &:nth-child(3) {
-            width: $w-100 / 6;
+            width: $w-10 * 3;
+            height: $h-10 * 3;
             font-size: $subtitle;
             font-weight: $medium;
-            margin: 0;
-            border: transparent;
+            border: 1px solid transparent;
+            border-radius: $lightRound;
+            background: $secondary;
+            color: $tSecondary;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s ease;
+            &:hover {
+              border-color: $borderGrey;
+              background: $primary;
+              color: $tPrimary;
+            }
           }
         }
       }
@@ -93,6 +123,14 @@
           font-weight: $medium;
           justify-content: center;
         }
+      }
+      @include respond(extraTablet) {
+        width: $w-100 - 50;
+        margin-bottom: $m-10 * 2;
+      }
+      @include respond(tablet) {
+        width: $w-100;
+        margin-bottom: $m-10 + 5;
       }
     }
     .content__related {
@@ -143,6 +181,13 @@
           }
         }
       }
+      @include respond(extraTablet) {
+        width: $w-100;
+      }
+    }
+    @include respond(extraTablet) {
+      padding: $p-10 * 3 0;
+      flex-direction: column;
     }
   }
   .product-detail__tabs {
@@ -165,6 +210,14 @@
             border-left: 0;
             border-top-right-radius: $lightRound;
           }
+          @include respond(extraTablet) {
+            font-size: $body-1;
+            width: $w-100 - 60;
+          }
+          @include respond(tablet) {
+            font-size: $body-1;
+            width: $w-100 - 50;
+          }
         }
         .title__item--active {
           height: $h-10 * 4;
@@ -182,6 +235,12 @@
           width: $w-100 - 30;
           height: 1px;
           background: $grey;
+          @include respond(laptop) {
+            width: $w-100 - 30;
+          }
+          @include respond(tablet) {
+            display: none;
+          }
         }
       }
       .wrapper__content {
@@ -216,6 +275,9 @@
                     font-weight: $semiBold;
                   }
                 }
+              }
+              @include respond(tablet) {
+                font-size: $body-1;
               }
             }
           }
@@ -272,8 +334,17 @@
                 padding: $p-10;
                 font-size: $body-1;
                 text-align: justify;
+                @include respond(tablet) {
+                  font-size: $body-1;
+                }
+                @include respond(phone) {
+                  font-size: $body-2;
+                }
               }
             }
+          }
+          @include respond(phone) {
+            padding: $p-10 * 2;
           }
         }
         .content__inner--active {
@@ -282,5 +353,8 @@
         }
       }
     }
+  }
+  @include respond(phone) {
+    padding: $p-10 * 2;
   }
 }

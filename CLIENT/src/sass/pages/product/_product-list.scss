@@ -159,6 +159,9 @@
       }
     }
   }
+  .product-list__pagination {
+    border-top: 1px solid $borderGrey;
+  }
   @include respond(laptop) {
     padding: $p-10 * 5 $p-10 * 2;
   }

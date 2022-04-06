@@ -1,11 +1,12 @@
 .table__wrapper {
+  position: relative;
   .wrapper__thead,
   .wrapper__tbody {
     tr {
       border-bottom: 1px solid $borderGrey;
       th,
       td {
-        min-width: $w-100;
+        min-width: $w-10 * 15;
         padding: $p-10;
         font-size: $body-1;
         text-align: center;
@@ -29,6 +30,9 @@
         }
       }
     }
+  }
+  @include respond(phone) {
+    overflow-x: auto !important;
   }
 }
 

@@ -92,6 +92,10 @@
         text-decoration: none;
       }
     }
+    @include respond(phone) {
+      width: $w-10 * 25;
+      right: -100%;
+    }
   }
   .carts__inner--active {
     opacity: 1;

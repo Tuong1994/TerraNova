@@ -121,7 +121,8 @@ const EngLang = {
       "Branches 2: 12B Nguyen Huu Canh Str, Ward 19, District Binh Thanh, HCMC",
   },
   productCarts: {
-    title: "General infomation",
+    title: "Cart",
+    summaryTitle: "General infomation",
     paymentType: "Choose your payment type",
     payment: "Payment",
     cash: "Cash",

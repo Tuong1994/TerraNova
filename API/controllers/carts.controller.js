@@ -1,6 +1,9 @@
 const { Carts } = require("../models");
 
 const getCartsList = async (req, res) => {
+  const { page, limits } = req.query;
+  const pageNumber = parseInt(page);
+  const itemPerPage = parseInt(limits);
   try {
     const cartsList = await Carts.findAll({
       attributes: [
@@ -11,7 +14,18 @@ const getCartsList = async (req, res) => {
         "amount",
       ],
     });
-    res.status(200).send(cartsList);
+    if(page) {
+      let total = cartsList.length;
+      let start = (pageNumber - 1) * itemPerPage;
+      let end = start + itemPerPage;
+      const cartsListPerPage = cartsList.slice(start, end);
+      res.status(200).send({
+        cartsList: cartsListPerPage,
+        totalCarts: total,
+        page: pageNumber,
+        limits: itemPerPage,
+      });
+    }
   } catch (error) {
     res.status(500).send(error);
   }

@@ -172,11 +172,27 @@
         }
       }
     }
+    .wrapper__translate {
+      width: $w-100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .translate__button {
+        width: $w-10 * 10;
+        margin: 0 $m-10;
+        padding: $p-5 $p-10;
+        font-size: $body-2;
+        text-align: center;
+        color: $tSecondary;
+        border: 1px solid $borderWhite;
+        border-radius: $lightRound;
+      }
+    }
   }
   .responsive__wrapper--active {
     transform: translateX(0);
   }
-  @include respond(tablet) {
+  @include respond(extraTablet) {
     display: block;
   }
 }

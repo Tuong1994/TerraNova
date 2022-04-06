@@ -9,16 +9,21 @@ import { ICarts } from "../../../models/Carts";
 import { IOrder } from "../../../models/Order";
 import { getCartsList } from "../../../redux/actionCreators/CartsCreators";
 import { createOrder } from "../../../redux/actionCreators/OrderCreators";
+import { IQueryList } from "../../../interfaces/query";
 import Table from "../../../components/Table";
 import CartsRow from "../../../components/Table/CartsRow";
 import CartsPayment from "./CartsPayment";
 import utils from "../../../utils";
+import Pagination from "../../../components/Pagination";
 
 interface ProductCartsProps {}
 
 const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
   const { carts } = useSelector((state: ReducerState) => state.CartsReducer);
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
+  const { page } = useSelector(
+    (state: ReducerState) => state.PaginationReducer
+  );
 
   const [shipmentType, setShipmentType] = React.useState<number>(0);
   const [shipment, setShipment] = React.useState<number>(0);
@@ -34,13 +39,19 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
 
   const langs = utils.changeLang(lang);
 
+  const { cartsList, totalCarts, limits } = carts;
+
   const options = [
     { label: langs?.productCarts.noShipment, value: 1 },
     { label: langs?.productCarts.delivery, value: 2 },
   ];
 
   React.useEffect(() => {
-    dispatch(getCartsList());
+    const query: IQueryList = {
+      page: page,
+      limits: 10,
+    };
+    dispatch(getCartsList(query));
   }, []);
 
   const handlePayment = () => {
@@ -51,7 +62,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
       status: 0,
       shipmentType: shipmentType,
       shipmentFee: shipment,
-      products: carts,
+      products: cartsList,
       userId: "",
     };
     dispatch(
@@ -65,7 +76,8 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
 
   return (
     <div className="product-carts">
-      <Card.Wrapper className="carts__card">
+      <h3 className="product-carts__title">{langs?.productCarts.title}</h3>
+      <Card.Wrapper className="product-carts__card">
         <Table
           headers={[
             { title: langs?.tableHeader.image || "" },
@@ -74,7 +86,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
             { title: langs?.tableHeader.price || "" },
             { title: langs?.tableHeader.features || "" },
           ]}
-          isNodata={carts}
+          isNodata={cartsList}
           noDataTitle={langs?.noData.product || ""}
           renderNoDataLink={() => (
             <Link to="/" className="button--submit" type="button">
@@ -83,38 +95,50 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
           )}
         >
           {(() => {
-            if (carts && carts?.length > 0) {
-              return carts.map((item: ICarts) => {
+            if (cartsList && cartsList?.length > 0) {
+              return cartsList.map((item: ICarts) => {
                 return <CartsRow key={utils.uuid()} item={item} />;
               });
             }
           })()}
         </Table>
 
-        {carts && carts?.length > 0 && (
-          <div className="cart__button">
-            <FormControls.Select
-              placeholder={langs?.productCarts.receivedType}
-              groupClassName="button__select"
-              id="value"
-              label="label"
-              option={options}
-              value={options.find((i) => i.value === shipmentType)}
-              onChange={(value) => {
-                setShipmentType(value);
-              }}
-            />
-            <div className="button--submit">{langs?.button.update}</div>
-            <div className="button--submit" onClick={handlePayment}>
-              {langs?.button.payment}
+        <Pagination
+          perPage={limits}
+          total={totalCarts}
+          className="card__pagination"
+        />
+
+        {/* Payment area */}
+        {cartsList && cartsList?.length > 0 && (
+          <div className="card__features">
+            <div className="features__select">
+              <FormControls.Select
+                placeholder={langs?.productCarts.receivedType}
+                groupClassName="select__field"
+                id="value"
+                label="label"
+                option={options}
+                value={options.find((i) => i.value === shipmentType)}
+                onChange={(value) => {
+                  setShipmentType(value);
+                }}
+              />
+            </div>
+            <div className="features__button">
+              <div className="button--submit">{langs?.button.update}</div>
+              <div className="button--submit" onClick={handlePayment}>
+                {langs?.button.payment}
+              </div>
             </div>
           </div>
         )}
 
-        {carts && carts?.length > 0 && (
+        {/* Payment summary */}
+        {cartsList && cartsList?.length > 0 && (
           <CartsPayment
             langs={langs}
-            carts={carts}
+            carts={cartsList}
             shipment={shipment}
             price={price}
             total={total}

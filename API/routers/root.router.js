@@ -5,6 +5,7 @@ const { cartsRouter } = require("./carts.router");
 const { categoryRouter } = require("./category.router");
 const { orderRouter } = require("./order.router");
 const { productRouter } = require("./product.router");
+const { shipmentRouter } = require("./shipment.router");
 const { userRouter } = require("./user.router");
 
 rootRouter.use("/userManagement", userRouter)
@@ -13,6 +14,7 @@ rootRouter.use("/categoryManagement", categoryRouter);
 rootRouter.use("/productManagement", productRouter);
 rootRouter.use("/orderManagement", orderRouter);
 rootRouter.use("/cartsManagement", cartsRouter);
+rootRouter.use("/shipmentManagement", shipmentRouter)
 
 module.exports = {
     rootRouter,

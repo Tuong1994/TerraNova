@@ -184,7 +184,7 @@ const ProductList: React.FunctionComponent<
         </div>
       </div>
 
-      <Pagination perPage={limits} total={totalProduct} isShowContent={true} />
+      <Pagination perPage={limits} total={totalProduct} isShowContent={true} className="product-list__pagination" />
     </div>
   );
 };

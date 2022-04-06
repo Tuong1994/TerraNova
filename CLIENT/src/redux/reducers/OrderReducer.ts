@@ -1,6 +1,5 @@
 import { OrderAction } from "./../actions/OrderAction";
 import { IOrder } from "./../../models/Order";
-import { EOrderActionTypes } from "../actionTypes/OrderActionTypes";
 
 interface IStateDefault {
   orders: IOrder[];

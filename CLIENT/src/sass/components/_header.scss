@@ -186,7 +186,7 @@
         }
       }
     }
-    @include respond(tablet) {
+    @include respond(extraTablet) {
       display: none;
     }
   }
@@ -267,7 +267,7 @@
     .features__translate {
       width: $w-100 - 80;
     }
-    @include respond(tablet) {
+    @include respond(extraTablet) {
       display: none;
     }
   }
@@ -278,7 +278,7 @@
       border: 1px solid $borderGrey;
       border-radius: $lightRound;
     }
-    @include respond(tablet) {
+    @include respond(extraTablet) {
       display: block;
     }
   }

@@ -39,7 +39,7 @@ const Summary: React.FunctionComponent<SummaryProps> = (props) => {
     if (carts && carts?.length > 0) {
       if (carts && carts.length > 0) {
         for (let i = 0; i < carts.length; i++) {
-          sum += carts[i].price || 0;
+          sum += ((carts[i].price || 0) * (carts[i].amount || 0));
         }
       }
     }
@@ -58,7 +58,7 @@ const Summary: React.FunctionComponent<SummaryProps> = (props) => {
   return (
     <Card.Wrapper className="payment__summary">
       <Card.Header className="summary__header">
-        <h3 className="header__title">{langs?.productCarts.title}</h3>
+        <h3 className="header__title">{langs?.productCarts.summaryTitle}</h3>
       </Card.Header>
       <Card.Body className="summary__body">
         <ul className="body__list">

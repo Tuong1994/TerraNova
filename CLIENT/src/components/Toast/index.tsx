@@ -50,8 +50,6 @@ const Toast = (props: ToastProps, ref: any) => {
     })
   };
 
-  console.log(toast);
-
   return loaded ? (
     ReactDOM.createPortal(
       <div className="toast__wrapper">

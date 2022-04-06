@@ -1,20 +1,54 @@
 .product-carts {
   padding: $p-10 * 5;
-  .carts__card {
+  .product-carts__title {
+    padding: $p-10;
+    font-size: $h5;
+    text-align: center;
+  }
+  .product-carts__card {
     padding: $p-10 * 2;
-    .cart__button {
+    .card__features {
       width: $w-100;
       padding: $p-10 0;
       display: flex;
       justify-content: flex-end;
-      .button__select {
+      .features__select {
         width: $w-100 - 75;
         margin: 0 $m-10;
-      }
-      .button--submit {
-        &:nth-child(2) {
-          margin-right: $m-10;
+        .select__field {
+          margin: 0;
         }
+        @include respond(extraTablet) {
+          width: $w-100 - 65;
+        }
+        @include respond(tablet) {
+          width: $w-100 - 30;
+        }
+        @include respond(phone) {
+          width: $w-100;
+          margin-bottom: $m-10;
+        }
+      }
+      .features__button {
+        display: flex;
+        justify-content: space-between;
+        .button--submit {
+          &:nth-child(1) {
+            margin-right: $m-10;
+          }
+          @include respond(phone) {
+            width: $w-100 - 45 !important;
+            display: flex;
+            justify-content: center;
+          }
+        }
+        @include respond(phone) {
+          width: $w-100 !important;
+        }
+      }
+      @include respond(phone) {
+        flex-direction: column;
+        align-items: center;
       }
     }
     .card__payment {
@@ -32,6 +66,10 @@
         .group__label {
           font-size: $subtitle;
         }
+        @include respond(tablet) {
+          width: $w-100;
+          margin-bottom: $m-10;
+        }
       }
       .payment__summary {
         width: $w-100 - 60;
@@ -44,6 +82,9 @@
             text-align: center;
             padding: $p-10 0;
             border-bottom: 1px solid $borderGrey;
+            @include respond(phone) {
+              font-size: $default;
+            }
           }
         }
         .summary__body {
@@ -67,6 +108,10 @@
                 list-style: none;
               }
             }
+            @include respond(phone) {
+              margin-left: $m-10;
+              padding: $p-5;
+            }
           }
           .body__line {
             width: $w-100;
@@ -74,8 +119,28 @@
             margin: $m-10 0;
             background: $grey;
           }
+          @include respond(phone) {
+            font-size: $body-1;
+          }
+        }
+        @include respond(tablet) {
+          width: $w-100;
         }
       }
+      @include respond(extraTablet) {
+        padding: $p-10;
+      }
+      @include respond(tablet) {
+        padding: $p-10;
+        flex-direction: column;
+      }
+    }
+    .card__pagination {
+      border-top: 0;
+    }
+    @include respond(extraTablet) {
+      padding: $p-10;
+      overflow: hidden;
     }
   }
   .table__nodata {
@@ -84,5 +149,8 @@
       padding: $p-10;
       font-size: $subtitle;
     }
+  }
+  @include respond(extraTablet) {
+    padding: $p-10 * 2;
   }
 }

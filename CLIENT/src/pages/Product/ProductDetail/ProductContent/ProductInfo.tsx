@@ -50,19 +50,19 @@ const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
         </li>
       </ul>
 
-      <div className="info__quantily">
+      <div className="info__amount">
         <div
           className={
             amount <= 0
-              ? "quantily__item button--delete button--disabled"
-              : "quantily__item button--delete"
+              ? "amount__item button--disabled"
+              : "amount__item"
           }
           onClick={handleDecrease}
         >
           -
         </div>
-        <div className="quantily__item">{amount}</div>
-        <div className="quantily__item button--add" onClick={handleIncrease}>
+        <div className="amount__item">{amount}</div>
+        <div className="amount__item" onClick={handleIncrease}>
           +
         </div>
       </div>

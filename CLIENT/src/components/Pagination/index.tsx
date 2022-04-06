@@ -11,10 +11,11 @@ interface IPaginationProps {
   total: any;
   data?: any;
   isShowContent?: boolean;
+  className?: string;
 }
 
 const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
-  const { perPage, total, data, isShowContent } = props;
+  const { perPage, total, data, isShowContent, className } = props;
 
   const { page } = useSelector(
     (state: ReducerState) => state.PaginationReducer
@@ -40,10 +41,12 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
     setEnd(start + parseInt(perPage));
   }, [start]);
 
+  // Calculate page list
   for (let i = 1; i <= Math.ceil(total / perPage); i++) {
     pageNumber.push(i);
   }
 
+  // Loading data when change page
   const handleDataLoading = () => {
     dispatch(actions.openDataLoading);
     if (utils.checkObjectEmpty(data) || data?.length > 0) {
@@ -155,7 +158,7 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
   }
 
   return (
-    <div className="pagination">
+    <div className={`pagination ${className ? className : ""}`}>
       <div className="pagination__content">
         {isShowContent ? renderContent() : ""}
       </div>
