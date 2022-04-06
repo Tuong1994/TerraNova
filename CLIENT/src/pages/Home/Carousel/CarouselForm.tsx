@@ -8,7 +8,6 @@ import { IUser } from "../../../models/User/";
 import { EModalActionTypes } from "../../../redux/actionTypes/ModalActionTypes";
 import { EUserActionTypes } from "../../../redux/actionTypes/UserActionTypes";
 import { phoneRegex } from "../../../configs/regex";
-import InputField from "../../../components/Fields/InputField";
 import Button from "../../../components/Button";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";
 import actions from "../../../configs/actions";
@@ -52,7 +51,7 @@ const CarouselForm: React.FunctionComponent<{}> = (props) => {
         },
       });
       dispatch({
-        type: EModalActionTypes.OPEN_MODAL,
+        type: EModalActionTypes.OPEN_CONSULT_MODAL,
       });
       dispatch(actions.closeButtonLoading);
     }, 1000);

@@ -1,5 +1,7 @@
 import React from "react";
 import * as customHooks from "../../../hooks";
+import { useSelector } from "react-redux";
+import { ReducerState } from "../../../redux/store";
 
 interface ISelectFieldProps {
   id?: any;
@@ -16,13 +18,31 @@ interface ISelectFieldProps {
 }
 
 const SelectField: React.FunctionComponent<ISelectFieldProps> = (props) => {
-  const { placeholder, id, label, value, option, groupClassName, labelClassName, inputClassName, fieldClassName, onChange } = props;
+  const {
+    placeholder,
+    id,
+    label,
+    value,
+    option,
+    groupClassName,
+    labelClassName,
+    inputClassName,
+    fieldClassName,
+    onChange,
+  } = props;
+
+  const { lang } = useSelector((state: ReducerState) => state.LangReducer);
+
   const [isDropdown, setIsDropdown] = React.useState<boolean>(false);
   const [newValue, setNewValue] = React.useState<any>();
   const [freeText, setFreeText] = React.useState<string>("");
   const controlRef = React.useRef(null);
 
   customHooks.useClickOutSide(controlRef, setIsDropdown);
+
+  React.useEffect(() => {
+    setNewValue("");
+  }, [lang])
 
   React.useEffect(() => {
     if (value !== "") {
@@ -51,12 +71,15 @@ const SelectField: React.FunctionComponent<ISelectFieldProps> = (props) => {
   };
 
   return (
-    <div className={`form__group ${groupClassName ? groupClassName : ""}`} ref={controlRef}>
+    <div
+      className={`form__group ${groupClassName ? groupClassName : ""}`}
+      ref={controlRef}
+    >
       {/* Input */}
       <div className={`group__field ${fieldClassName ? fieldClassName : ""}`}>
         <input
           type="text"
-          className="field__control"
+          className={`field__control ${inputClassName ? inputClassName : ""}`}
           value={renderValue()}
           placeholder={placeholder}
           onChange={(e) => {
@@ -99,7 +122,6 @@ const SelectField: React.FunctionComponent<ISelectFieldProps> = (props) => {
                   onChange && onChange(item[id]);
                   getValue(item[label]);
                   setIsDropdown(false);
-                  console.log(value)
                 }}
               >
                 {item[label]}

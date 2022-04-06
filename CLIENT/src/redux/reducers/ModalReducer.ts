@@ -11,7 +11,13 @@ const stateDefault: IModalStateDefault = {
 
 export const ModalReducer = (state = stateDefault, action: ModalAction) => {
   switch (action.type) {
-    case EModalActionTypes.OPEN_MODAL: {
+    case EModalActionTypes.OPEN_CONSULT_MODAL: {
+      let newState = { ...state };
+      newState.isShowing = true;
+      state = newState;
+      return { ...state };
+    }
+    case EModalActionTypes.OPEN_SHIPMENT_MODAL: {
       let newState = { ...state };
       newState.isShowing = true;
       state = newState;

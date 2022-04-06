@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { EPaginationActionTypes } from "../../redux/actionTypes/PaginationActionTypes";
-import { ELoadingActionTypes } from "../../redux/actionTypes/LoadingActionTypes";
 import { ReducerState } from "../../redux/store";
 import actions from "../../configs/actions";
 import utils from "../../utils";
@@ -21,7 +20,7 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
     (state: ReducerState) => state.PaginationReducer
   );
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
-  const [pageNumberLimit, setPageNumberLimit] = React.useState<number>(5);
+  const [pageNumberLimit] = React.useState<number>(5);
   const [minPageNumber, setMinPageNumber] = React.useState<number>(0);
   const [maxPageNumber, setMaxPageNumber] = React.useState<number>(5);
   const [start, setStart] = React.useState<number>(0);

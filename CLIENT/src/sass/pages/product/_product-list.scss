@@ -15,9 +15,12 @@
     width: $w-100;
     padding-left: $p-10 * 2;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     .search__input {
-      width: $w-100 - 70;
+      width: $w-100 - 40;
+      .input__fields {
+        border-radius: $round;
+      }
       @include respond(extraTablet) {
         width: $w-100 - 30;
       }
@@ -29,7 +32,7 @@
   .product-list__wrapper {
     width: $w-100;
     margin: 0 auto;
-    padding-top: $p-10 * 2 ;
+    padding-top: $p-10 * 2;
     padding-bottom: $p-10 * 5;
     display: flex;
     justify-content: center;

@@ -143,6 +143,19 @@
       overflow: hidden;
     }
   }
+  .product-carts__shipment-modal {
+    .shipment-modal__body {
+      .body__form {
+        .form__label {
+          background: $secondary;
+          color: $tSecondary;
+        }
+        .form__input {
+          color: $tSecondary;
+        }
+      }
+    }
+  }
   .table__nodata {
     .button--submit {
       margin: $m-10 0;

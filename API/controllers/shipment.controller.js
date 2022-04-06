@@ -38,7 +38,61 @@ const getShipmentDetail = async (req, res) => {
   }
 };
 
+const createShipment = async (req, res) => {
+  const { userId, userName, address, ward, district, province } = req.body;
+  try {
+    const shipmentId = "S_" + Math.floor(Math.random() * 999999999).toString();
+    const newShipment = await Shipment.create({
+      id: shipmentId,
+      userId,
+      userName,
+      address,
+      ward,
+      district,
+      province,
+    });
+    res.status(200).send(newShipment);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const updateShipment = async (req, res) => {
+  const { shipmentId } = req.query;
+  const { userId, userName, address, ward, district, province } = req.body;
+  try {
+    await Shipment.update(
+      { userId, userName, address, ward, district, province },
+      {
+        where: {
+          id: shipmentId,
+        },
+      }
+    );
+    res.status(200).send("Update success");
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const removeShipment = async (req, res) => {
+  const { shipmentId } = req.query;
+  try {
+    await Shipment.destroy({
+      where: {
+        id: shipmentId,
+      },
+    });
+    res.status(200).send("Remove success");
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   getShipmentList,
   getShipmentDetail,
+  createShipment,
+  updateShipment,
+  removeShipment,
 };

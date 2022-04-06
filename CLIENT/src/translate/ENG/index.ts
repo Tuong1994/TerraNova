@@ -136,6 +136,9 @@ const EngLang = {
     noShipment: "Received in store",
     delivery: "Delivery",
     receivedType: "Please choose recevied type",
+    modal: {
+      shipmentTitle: "Shipment infomation",
+    }
   },
   time: {
     day: "day",
@@ -219,6 +222,9 @@ const EngLang = {
     haveAcc: "Already have account?",
     search: "Search",
     note: "Note",
+    ward: "Ward",
+    district: "District",
+    province: "Province"
   },
   tableHeader: {
     number: "No.",

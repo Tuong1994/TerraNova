@@ -175,7 +175,7 @@ const ProductList: React.FunctionComponent<
         <h3>{renderTitle()}</h3>
       </div>
       <div className="product-list__search">
-        <FormControl.Search value={freeText} onChange={handleChange} groupClassName="search__input" />
+        <FormControl.Search value={freeText} onChange={handleChange} groupClassName="search__input" fieldClassName="input__fields" />
       </div>
       <div className="product-list__wrapper">
         <div className="wrapper__inner">

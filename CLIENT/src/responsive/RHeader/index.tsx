@@ -75,6 +75,7 @@ const RHeaderMenu: React.FunctionComponent<IRHeaderMenuProps> = (props) => {
       let list = [...menuList];
       return (
         <Menu
+          key={index}
           menu={menu}
           subMenu={subMenuData}
           list={list}

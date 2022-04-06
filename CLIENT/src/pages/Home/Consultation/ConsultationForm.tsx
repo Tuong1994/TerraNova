@@ -51,7 +51,7 @@ const ConsultationForm: React.FunctionComponent<{}> = (props) => {
         },
       });
       dispatch({
-        type: EModalActionTypes.OPEN_MODAL,
+        type: EModalActionTypes.OPEN_CONSULT_MODAL,
       });
       dispatch(actions.closeButtonLoading);
     }, 1000);

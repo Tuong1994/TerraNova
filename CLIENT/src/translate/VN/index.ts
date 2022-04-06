@@ -135,6 +135,9 @@ const VnLang = {
     noShipment: "Nhận tại cửa hàng",
     delivery: "Giao hàng tận nơi",
     receivedType: "Chọn hình thức nhận hàng",
+    modal: {
+      shipmentTitle: "Thông tin vận chuyển",
+    },
   },
   time: {
     day: "ngày",
@@ -218,6 +221,9 @@ const VnLang = {
     haveAcc: "Bạn đã có tài khoản?",
     search: "Tìm kiếm",
     note: "Ghi chú",
+    ward: "Phường",
+    district: "Quận",
+    province: "Tỉnh/Thành phố"
   },
   tableHeader: {
     number: "STT",

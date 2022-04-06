@@ -27,7 +27,6 @@ const Summary: React.FunctionComponent<SummaryProps> = (props) => {
     total,
     vat,
     totalPay,
-    setShipment,
     setPrice,
     setTotal,
     setVat,

@@ -6,15 +6,17 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
 import { ICarts } from "../../../models/Carts";
-import { IOrder } from "../../../models/Order";
+import { EShipmentType, IOrder } from "../../../models/Order";
 import { getCartsList } from "../../../redux/actionCreators/CartsCreators";
 import { createOrder } from "../../../redux/actionCreators/OrderCreators";
 import { IQueryList } from "../../../interfaces/query";
+import { EModalActionTypes } from "../../../redux/actionTypes/ModalActionTypes";
 import Table from "../../../components/Table";
 import CartsRow from "../../../components/Table/CartsRow";
 import CartsPayment from "./CartsPayment";
 import utils from "../../../utils";
 import Pagination from "../../../components/Pagination";
+import ShipmentModal from "./ShipmentModal";
 
 interface ProductCartsProps {}
 
@@ -42,8 +44,8 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
   const { cartsList, totalCarts, limits } = carts;
 
   const options = [
-    { label: langs?.productCarts.noShipment, value: 1 },
-    { label: langs?.productCarts.delivery, value: 2 },
+    { label: langs?.productCarts.noShipment, value: EShipmentType.noShipment },
+    { label: langs?.productCarts.delivery, value: EShipmentType.delivery },
   ];
 
   React.useEffect(() => {
@@ -53,6 +55,18 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
     };
     dispatch(getCartsList(query));
   }, []);
+
+  React.useEffect(() => {
+    setShipmentType(0)
+  }, [lang])
+
+  React.useEffect(() => {
+    if (shipmentType === 2) {
+      dispatch({
+        type: EModalActionTypes.OPEN_SHIPMENT_MODAL,
+      });
+    }
+  }, [shipmentType]);
 
   const handlePayment = () => {
     let newCarts: IOrder = {
@@ -153,6 +167,9 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
           />
         )}
       </Card.Wrapper>
+      
+      {/* Shipment modal */}
+      <ShipmentModal />
     </div>
   );
 };
