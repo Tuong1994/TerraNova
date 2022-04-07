@@ -139,6 +139,7 @@ const VnLang = {
       shipmentTitle: "Thông tin vận chuyển",
       receiver: "Người nhận",
       address: "Địa chỉ giao hàng",
+      note: "Chú ý: Vui lòng cung cấp thông tin chính xác tránh các vấn đề phát sinh và để việc vận chuyển thuận tiện hơn",
     },
   },
   time: {
@@ -230,6 +231,7 @@ const VnLang = {
     selectWard: "Chọn phường",
     selectDistrict: "Chọn quận",
     selectProvince: "Chọn tỉnh/thành phố",
+    noOption: "Không có dữ liệu",
   },
   tableHeader: {
     number: "STT",

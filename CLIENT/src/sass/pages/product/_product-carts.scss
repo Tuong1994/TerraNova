@@ -232,6 +232,25 @@
         margin: $m-10 * 2 0;
       }
     }
+    .shipment-modal__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .footer__note {
+        width: $w-100 - 15;
+        margin-left: $m-10 * 2;
+        line-height: $h-10 * 2;
+        font-size: $body-1;
+        font-style: italic;
+        color: $tSecondary;
+        @include respond(phone) {
+          margin: $m-10 0;
+        }
+      }
+      @include respond(phone) {
+        flex-direction: column;
+      }
+    }
   }
   .table__nodata {
     .button--submit {

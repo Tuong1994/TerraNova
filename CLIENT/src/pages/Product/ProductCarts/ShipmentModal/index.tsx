@@ -1,6 +1,6 @@
 import React from "react";
 import * as Modal from "../../../../components/Modal";
-import * as FormControls from "../../../../components/Fields";
+import * as FormControl from "../../../../components/Fields";
 import * as yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +12,7 @@ import ButtonLoading from "../../../../components/Loading/ButtonLoading";
 import Button from "../../../../components/Button";
 import actions from "../../../../configs/actions";
 import utils from "../../../../utils";
-import { EModalActionTypes } from "../../../../redux/actionTypes/ModalActionTypes";
+import options from "../../../../configs/options";
 
 interface ShipmentModalProps {}
 
@@ -97,7 +97,7 @@ const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
                   </h3>
                   <Field
                     name="userName"
-                    component={FormControls.Input}
+                    component={FormControl.Input}
                     label={langs?.form.name}
                     placeholder=" "
                     icon={<i className="fas fa-user"></i>}
@@ -108,7 +108,7 @@ const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
                   <Field
                     name="phone"
                     type="number"
-                    component={FormControls.Input}
+                    component={FormControl.Input}
                     label={langs?.form.phone}
                     placeholder=" "
                     icon={<i className="fas fa-phone"></i>}
@@ -116,14 +116,17 @@ const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
                     inputClassName="group__input"
                     iconClassName="group__icon"
                     onKeyPress={(e: any) => {
-                      if(e.type === "number") {
-                        utils.checkKeyNumberType(e, langs?.toastMessages.error.onlyNumber);
+                      if (e.type === "number") {
+                        utils.checkKeyNumberType(
+                          e,
+                          langs?.toastMessages.error.onlyNumber
+                        );
                       }
                     }}
                   />
                   <Field
                     name="email"
-                    component={FormControls.Input}
+                    component={FormControl.Input}
                     label={langs?.form.email}
                     placeholder=" "
                     icon={<i className="fas fa-envelope"></i>}
@@ -141,7 +144,7 @@ const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
                   </h3>
                   <Field
                     name="address"
-                    component={FormControls.Input}
+                    component={FormControl.Input}
                     label={langs?.form.address}
                     placeholder=" "
                     icon={<i className="fa-solid fa-location-dot"></i>}
@@ -151,7 +154,7 @@ const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
                   />
                   <Field
                     name="ward"
-                    component={FormControls.Input}
+                    component={FormControl.Input}
                     label={langs?.form.ward}
                     placeholder=" "
                     icon={<i className="fa-solid fa-location-dot"></i>}
@@ -161,7 +164,7 @@ const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
                   />
                   <Field
                     name="district"
-                    component={FormControls.Input}
+                    component={FormControl.Input}
                     label={langs?.form.district}
                     placeholder=" "
                     icon={<i className="fa-solid fa-location-dot"></i>}
@@ -171,7 +174,7 @@ const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
                   />
                   <Field
                     name="province"
-                    component={FormControls.Input}
+                    component={FormControl.Input}
                     label={langs?.form.province}
                     placeholder=" "
                     icon={<i className="fa-solid fa-location-dot"></i>}
@@ -181,7 +184,7 @@ const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
                   />
                 </div>
               </Modal.Body>
-              <Modal.Footer>
+              <Modal.Footer className="shipment-modal__footer">
                 {!isValid ? (
                   <Button type="button" className="button--disabled">
                     {langs?.button.submit}
@@ -200,6 +203,7 @@ const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
                     <span>{langs?.button.submit}</span>
                   </Button>
                 )}
+                <p className="footer__note">{langs?.productCarts.modal.note}</p>
               </Modal.Footer>
             </Form>
           );

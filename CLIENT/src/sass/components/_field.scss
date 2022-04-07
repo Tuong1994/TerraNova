@@ -25,6 +25,12 @@
         opacity: 0.5;
       }
     }
+    .field__control--select {
+      width: $w-100 - 3;
+      .select__item {
+        height: $h-10;
+      }
+    }
     .field__label {
       font-size: $body-1;
       padding: $p-5;

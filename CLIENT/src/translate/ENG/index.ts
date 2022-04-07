@@ -140,6 +140,7 @@ const EngLang = {
       shipmentTitle: "Shipment infomation",
       receiver: "Receiver",
       address: "Delivery address",
+      note: "Note: Please provide accurate information to avoid problems and make distribution more convenient",
     },
   },
   time: {
@@ -191,7 +192,7 @@ const EngLang = {
       createOrder: "Payment failed",
       signIn: "Account or password incorrect",
       signUp: "Sign up failed",
-      onlyNumber: "Can type only number"
+      onlyNumber: "Can type only number",
     },
   },
   validateMessages: {
@@ -231,6 +232,7 @@ const EngLang = {
     selectWard: "Select ward",
     selectDistrict: "Select district",
     selectProvince: "Select province",
+    noOption: "No option",
   },
   tableHeader: {
     number: "No.",

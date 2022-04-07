@@ -145,11 +145,11 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
           className="card__pagination"
         />
 
-        {/* Payment area */}
+        {/* Payment features */}
         {cartsList && cartsList?.length > 0 && (
           <div className="card__features">
             <div className="features__select">
-              <FormControls.Select
+              <FormControls.SelectCustom
                 placeholder={langs?.productCarts.receivedType}
                 groupClassName="select__field"
                 id="value"
