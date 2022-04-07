@@ -137,6 +137,8 @@ const VnLang = {
     receivedType: "Chọn hình thức nhận hàng",
     modal: {
       shipmentTitle: "Thông tin vận chuyển",
+      receiver: "Người nhận",
+      address: "Địa chỉ giao hàng",
     },
   },
   time: {
@@ -188,6 +190,7 @@ const VnLang = {
       createOrder: "Thanh toán thất bại",
       signIn: "Tài khoản hoặc mật khẩu không đúng",
       signUp: "Đăng ký thất bại",
+      onlyNumber: "Chỉ có thể nhập số"
     },
   },
   validateMessages: {
@@ -223,7 +226,10 @@ const VnLang = {
     note: "Ghi chú",
     ward: "Phường",
     district: "Quận",
-    province: "Tỉnh/Thành phố"
+    province: "Tỉnh/Thành phố",
+    selectWard: "Chọn phường",
+    selectDistrict: "Chọn quận",
+    selectProvince: "Chọn tỉnh/thành phố",
   },
   tableHeader: {
     number: "STT",

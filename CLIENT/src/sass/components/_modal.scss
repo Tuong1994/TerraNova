@@ -51,7 +51,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid $borderGrey;
   .header__title {
     width: $w-100;
     font-size: $subtitle;
@@ -67,8 +66,10 @@
 }
 
 .modal__body {
+  height: $h-10 * 35;
   padding: $p-10 * 2;
-  border-bottom: 1px solid $borderGrey;
+  overflow: auto;
+  border-top: 1px solid $borderGrey;
   @include respond(phone) {
     padding: $p-10;
     font-size: $body-2;
@@ -77,6 +78,7 @@
 
 .modal__footer {
   padding: $p-10 * 2;
+  border-top: 1px solid $borderGrey;
   @include respond(phone) {
     padding: $p-10;
     font-size: $body-2;

@@ -1,4 +1,5 @@
 import { ICarts } from "../Carts";
+import { IShipment } from "../Shipment";
 
 export enum EPaymentTypes {
     cash = 1,
@@ -11,9 +12,11 @@ export enum EShipmentType {
     delivery = 2,
 }
 
-export enum EProvinceType {
+export enum EStatus {
+    paid = 1,
     
 }
+
 export interface IOrder {
     note?: string,
     paymentType?: number,
@@ -21,6 +24,7 @@ export interface IOrder {
     status?: number,
     shipmentType?: number,
     shipmentFee?: number,
+    shipmentDetail: IShipment;
     products?: ICarts[],
     userId?: string;
 }

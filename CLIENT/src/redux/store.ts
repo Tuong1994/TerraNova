@@ -1,13 +1,14 @@
-import { SideBarReducer } from './reducers/SideBarReducer';
-import { ToastReducer } from './reducers/ToastReducer';
-import { LangReducer } from './reducers/LangReducer';
-import { OrderReducer } from './reducers/OrderReducer';
-import { CartsReducer } from './reducers/CartsReducer';
+import { SideBarReducer } from "./reducers/SideBarReducer";
+import { ToastReducer } from "./reducers/ToastReducer";
+import { LangReducer } from "./reducers/LangReducer";
+import { OrderReducer } from "./reducers/OrderReducer";
+import { CartsReducer } from "./reducers/CartsReducer";
 import { UserReducer } from "./reducers/UserReducer";
 import { ModalReducer } from "./reducers/ModalReducer";
 import { PaginationReducer } from "./reducers/PaginationReducer";
 import { ProductReducer } from "./reducers/ProductReducer";
 import { LoadingReducer } from "./reducers/LoadingReducer";
+import { ShipmentReducer } from "./reducers/ShipmentReducer";
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import reduxThunk from "redux-thunk";
 
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   LangReducer,
   ToastReducer,
   SideBarReducer,
+  ShipmentReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(reduxThunk));

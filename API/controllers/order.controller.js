@@ -10,6 +10,7 @@ const getOrderList = async (req, res) => {
         "paymentType",
         "shipmentType",
         "shipmentFee",
+        "shipmentDetail",
         "status",
         "products",
       ],
@@ -34,6 +35,7 @@ const getOrderDetail = async (req, res) => {
         "paymentType",
         "shipmentType",
         "shipmentFee",
+        "shipmentDetail",
         "status",
         "products",
       ],
@@ -57,6 +59,7 @@ const createOrder = async (req, res) => {
     shipmentFree,
     status,
     products,
+    shipmentDetail,
     userId,
   } = req.body;
   const orderId = "O_" + Math.floor(Math.random() * 999999999).toString();
@@ -65,10 +68,11 @@ const createOrder = async (req, res) => {
       id: orderId,
       note,
       totalPay,
+      status,
       paymentType,
       shipmentType,
       shipmentFree,
-      status,
+      shipmentDetail,
       products,
       userId,
     });
@@ -87,6 +91,7 @@ const updateOrder = async (req, res) => {
     shipmentFree,
     status,
     products,
+    shipmentDetail,
     userId,
   } = req.body;
   try {
@@ -94,9 +99,10 @@ const updateOrder = async (req, res) => {
       {
         note,
         totalPay,
+        status,
         shipmentType,
         shipmentFree,
-        status,
+        shipmentDetail,
         products,
         userId,
       },

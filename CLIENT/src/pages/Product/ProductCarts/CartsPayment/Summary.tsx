@@ -6,12 +6,12 @@ import { ICarts } from "../../../../models/Carts";
 interface SummaryProps {
   langs: ILangs;
   carts: ICarts[];
-  shipment: number;
+  shipmentFee: number;
   price: number;
   total: number;
   vat: number;
   totalPay: number;
-  setShipment: React.Dispatch<React.SetStateAction<number>>;
+  setShipmentFee: React.Dispatch<React.SetStateAction<number>>;
   setPrice: React.Dispatch<React.SetStateAction<number>>;
   setTotal: React.Dispatch<React.SetStateAction<number>>;
   setVat: React.Dispatch<React.SetStateAction<number>>;
@@ -22,7 +22,7 @@ const Summary: React.FunctionComponent<SummaryProps> = (props) => {
   const {
     langs,
     carts,
-    shipment,
+    shipmentFee,
     price,
     total,
     vat,
@@ -38,7 +38,7 @@ const Summary: React.FunctionComponent<SummaryProps> = (props) => {
     if (carts && carts?.length > 0) {
       if (carts && carts.length > 0) {
         for (let i = 0; i < carts.length; i++) {
-          sum += ((carts[i].price || 0) * (carts[i].amount || 0));
+          sum += (carts[i].price || 0) * (carts[i].amount || 0);
         }
       }
     }
@@ -46,9 +46,16 @@ const Summary: React.FunctionComponent<SummaryProps> = (props) => {
   }, [carts]);
 
   React.useEffect(() => {
-    setVat((price * 10) / 100);
-    setTotal(price + shipment);
-  }, [price]);
+    if(shipmentFee !== 0) {
+      setTotal(price + shipmentFee);
+    } else {
+      setTotal(price)
+    }
+  }, [price, shipmentFee]);
+
+  React.useEffect(() => {
+    setVat((total * 10) / 100);
+  }, [price, shipmentFee, total]);
 
   React.useEffect(() => {
     setTotalPay(price + vat);
@@ -70,7 +77,7 @@ const Summary: React.FunctionComponent<SummaryProps> = (props) => {
           <li className="list__item">
             <div className="item__inner">
               <span>{langs?.productCarts.shipment} : </span>
-              <strong>{shipment.toLocaleString()} VND</strong>
+              <strong>{shipmentFee.toLocaleString()} VND</strong>
             </div>
           </li>
         </ul>

@@ -19,6 +19,9 @@ module.exports = {
       shipmentFee: {
         type: Sequelize.INTEGER,
       },
+      shipmentDetail: {
+        type: Sequelize.JSON,
+      },
       status: {
         type: Sequelize.INTEGER,
       },

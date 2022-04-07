@@ -1,5 +1,7 @@
 import * as apiPath from "../../paths/";
 import axiosClient from "../../axios";
+import actions from "../../configs/actions";
+import { history } from "../../App";
 import { IOrder } from "../../models/Order";
 import { EOrderActionTypes } from "../actionTypes/OrderActionTypes";
 import { Dispatch } from "redux";
@@ -20,16 +22,19 @@ export const getOrderList = () => {
 };
 
 export const createOrder = (data: IOrder, success?: string, err?: string) => {
-  return async (dispatch: Dispatch | any) => {
-    try {
-      await axiosClient.post(
-        apiPath.orderPaths.createOrder,
-        data
-      );
-      dispatch(getOrderList());
-      toast.success(success);
-    } catch (error: any) {
-      toast.error(err);
-    }
+  return (dispatch: Dispatch | any) => {
+    dispatch(actions.openButtonLoading);
+    setTimeout(async () => {
+      try {
+        await axiosClient.post(apiPath.orderPaths.createOrder, data);
+        dispatch(getOrderList());
+        dispatch(actions.closeButtonLoading);
+        toast.success(success);
+        history.push("/")
+      } catch (error: any) {
+        toast.error(err);
+        dispatch(actions.closeButtonLoading);
+      }
+    }, 1000);
   };
 };

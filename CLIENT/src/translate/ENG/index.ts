@@ -45,8 +45,8 @@ const EngLang = {
         name: "Name",
         email: "Email",
         phone: "Phone",
-        note: "Thank you for your interest, we have received your information, we will contact you soon. In the meantime, please visit our website for more information."
-      }
+        note: "Thank you for your interest, we have received your information, we will contact you soon. In the meantime, please visit our website for more information.",
+      },
     },
     categories: {
       title_1: "Products",
@@ -138,7 +138,9 @@ const EngLang = {
     receivedType: "Please choose recevied type",
     modal: {
       shipmentTitle: "Shipment infomation",
-    }
+      receiver: "Receiver",
+      address: "Delivery address",
+    },
   },
   time: {
     day: "day",
@@ -189,6 +191,7 @@ const EngLang = {
       createOrder: "Payment failed",
       signIn: "Account or password incorrect",
       signUp: "Sign up failed",
+      onlyNumber: "Can type only number"
     },
   },
   validateMessages: {
@@ -224,7 +227,10 @@ const EngLang = {
     note: "Note",
     ward: "Ward",
     district: "District",
-    province: "Province"
+    province: "Province",
+    selectWard: "Select ward",
+    selectDistrict: "Select district",
+    selectProvince: "Select province",
   },
   tableHeader: {
     number: "No.",
@@ -239,10 +245,10 @@ const EngLang = {
   pagination: {
     showing: "Showing",
     of: "of",
-    results: "results"
-  }
+    results: "results",
+  },
 };
 
-export type LangENG = typeof EngLang; 
+export type LangENG = typeof EngLang;
 
 export default EngLang;

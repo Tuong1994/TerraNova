@@ -27,6 +27,7 @@ const ConsultationForm: React.FunctionComponent<{}> = (props) => {
     email: "",
     phone: "",
   };
+  
   const validationSchema = yup.object().shape({
     name: yup.string().required(langs?.validateMessages.required),
     email: yup
@@ -38,6 +39,7 @@ const ConsultationForm: React.FunctionComponent<{}> = (props) => {
       .matches(phoneRegex, langs?.validateMessages.phone)
       .required(langs?.validateMessages.required),
   });
+
   const handleSubmit = (values: IUser, action: any) => {
     dispatch(actions.openButtonLoading);
     dispatch({

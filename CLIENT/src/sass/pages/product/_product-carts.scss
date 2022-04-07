@@ -32,7 +32,8 @@
       .features__button {
         display: flex;
         justify-content: space-between;
-        .button--submit {
+        .button--submit,
+        .button--disabled {
           &:nth-child(1) {
             margin-right: $m-10;
           }
@@ -41,6 +42,9 @@
             display: flex;
             justify-content: center;
           }
+        }
+        .button--disabled {
+          margin: 0;
         }
         @include respond(phone) {
           width: $w-100 !important;
@@ -56,15 +60,63 @@
       padding: $p-10 * 2 $p-10 * 5;
       display: flex;
       justify-content: space-between;
-      .payment__group {
-        width: $w-100 - 50;
+      .payment__info {
+        width: $w-100 - 45;
         margin: 0;
-        .group__input {
-          width: $w-100;
-          padding: $p-10 0;
+        .info__card {
+          padding: $p-10 $p-10 * 3;
+          margin-bottom: $m-10 * 2;
+          .card__title {
+            padding: $p-10 0;
+            text-align: center;
+            font-size: $subtitle;
+            font-weight: $semiBold;
+            border-bottom: 1px solid $borderGrey;
+          }
+          .card__content {
+            .content__title {
+              padding: $p-10 0;
+              font-weight: $semiBold;
+              @include respond(phone) {
+                font-size: $body-1;
+              }
+            }
+            .content__inner {
+              font-size: $body-1;
+              .inner__list {
+                padding: $p-5 0;
+                .list__item {
+                  width: $w-100;
+                  display: flex;
+                  justify-content: space-between;
+                  strong {
+                    font-weight: $semiBold;
+                  }
+                }
+              }
+              @include respond(phone) {
+                font-size: $body-2;
+              }
+            }
+          }
+          @include respond(phone) {
+            padding: $p-10;
+          }
         }
-        .group__label {
-          font-size: $subtitle;
+        .info__group {
+          width: $w-100;
+          margin: 0;
+          .group__input {
+            width: $w-100;
+            padding: $p-10 0;
+          }
+          .group__label {
+            font-size: $subtitle;
+          }
+          @include respond(tablet) {
+            width: $w-100;
+            margin-bottom: $m-10;
+          }
         }
         @include respond(tablet) {
           width: $w-100;
@@ -144,15 +196,40 @@
     }
   }
   .product-carts__shipment-modal {
+    .shipment-modal__header {
+      font-size: $subtitle;
+      font-weight: $semiBold;
+    }
     .shipment-modal__body {
-      .body__form {
-        .form__label {
+      .body__group {
+        .group__title {
+          margin-bottom: $m-10 * 2;
+          font-size: $subtitle;
+          font-weight: $semiBold;
+        }
+        .group__wrapper {
+          margin: $m-10 0;
+        }
+        .group__label {
           background: $secondary;
           color: $tSecondary;
         }
-        .form__input {
+        .group__input {
+          color: $tSecondary;
+          &::placeholder {
+            color: $tSecondary;
+            opacity: 0.5;
+          }
+        }
+        .group__icon {
           color: $tSecondary;
         }
+      }
+      .body__line {
+        width: $w-100;
+        height: 1px;
+        background-color: $primary;
+        margin: $m-10 * 2 0;
       }
     }
   }

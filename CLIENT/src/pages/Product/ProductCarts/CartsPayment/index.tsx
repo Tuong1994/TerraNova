@@ -2,17 +2,21 @@ import React from "react";
 import * as FormControl from "../../../../components/Fields";
 import { ILangs } from "../../../../interfaces/lang";
 import { ICarts } from "../../../../models/Carts";
+import { IShipment } from "../../../../models/Shipment";
+import Shipment from "./Shipment";
 import Summary from "./Summary";
+import utils from "../../../../utils";
 
 interface CartsPaymentProps {
   langs: ILangs;
   carts: ICarts[];
-  shipment: number;
+  shipment: IShipment
+  shipmentFee: number;
   price: number;
   total: number;
   vat: number;
   totalPay: number;
-  setShipment: React.Dispatch<React.SetStateAction<number>>;
+  setShipmentFee: React.Dispatch<React.SetStateAction<number>>;
   setPrice: React.Dispatch<React.SetStateAction<number>>;
   setTotal: React.Dispatch<React.SetStateAction<number>>;
   setVat: React.Dispatch<React.SetStateAction<number>>;
@@ -25,11 +29,12 @@ const CartsPayment: React.FunctionComponent<CartsPaymentProps> = (props) => {
     langs,
     carts,
     shipment,
+    shipmentFee,
     price,
     total,
     vat,
     totalPay,
-    setShipment,
+    setShipmentFee,
     setPrice,
     setTotal,
     setVat,
@@ -39,25 +44,33 @@ const CartsPayment: React.FunctionComponent<CartsPaymentProps> = (props) => {
 
   return (
     <div className="card__payment">
-      <FormControl.Note
-        label={langs?.form.note}
-        placeholder=" "
-        groupClassName="payment__group"
-        inputClassName="group__input"
-        labelClassName="group__label"
-        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-          setNote(e.target.value)
-        }}
-      />
+      <div className="payment__info">
+        {(() => {
+          if(utils.checkObjectEmpty(shipment)) {
+            return <Shipment shipment={shipment} />
+          }
+          return;
+        })()}
+        <FormControl.Note
+          label={langs?.form.note}
+          placeholder=" "
+          groupClassName="info__group"
+          inputClassName="group__input"
+          labelClassName="group__label"
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+            setNote(e.target.value);
+          }}
+        />
+      </div>
       <Summary
         langs={langs}
         carts={carts}
-        shipment={shipment}
+        shipmentFee={shipmentFee}
         price={price}
         total={total}
         vat={vat}
         totalPay={totalPay}
-        setShipment={setShipment}
+        setShipmentFee={setShipmentFee}
         setPrice={setPrice}
         setTotal={setTotal}
         setVat={setVat}

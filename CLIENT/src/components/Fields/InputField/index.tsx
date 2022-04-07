@@ -11,6 +11,7 @@ interface InputFieldProps extends FieldProps {
   inputClassName?: string;
   fieldClassName?: string;
   iconClassName?: string;
+  onKeyPress?: (e: any) => void;
 }
 
 const InputField: React.FunctionComponent<InputFieldProps> = (props) => {
@@ -26,6 +27,7 @@ const InputField: React.FunctionComponent<InputFieldProps> = (props) => {
     inputClassName,
     labelClassName,
     iconClassName,
+    onKeyPress,
   } = props;
   const { name } = field;
   const { touched, errors } = form;
@@ -43,6 +45,7 @@ const InputField: React.FunctionComponent<InputFieldProps> = (props) => {
           type={type}
           placeholder={placeholder}
           className={`field__control ${inputClassName ? inputClassName : ""}`}
+          onKeyPress={onKeyPress}
         />
         {label && (
           <label htmlFor={name} className={`field__label ${labelClassName ? labelClassName : ""}`}>

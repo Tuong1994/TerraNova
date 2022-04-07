@@ -11,24 +11,32 @@ import { getCartsList } from "../../../redux/actionCreators/CartsCreators";
 import { createOrder } from "../../../redux/actionCreators/OrderCreators";
 import { IQueryList } from "../../../interfaces/query";
 import { EModalActionTypes } from "../../../redux/actionTypes/ModalActionTypes";
+import { EShipmentActionTypes } from "../../../redux/actionTypes/ShipmentActionTypes";
 import Table from "../../../components/Table";
 import CartsRow from "../../../components/Table/CartsRow";
 import CartsPayment from "./CartsPayment";
-import utils from "../../../utils";
 import Pagination from "../../../components/Pagination";
 import ShipmentModal from "./ShipmentModal";
+import utils from "../../../utils";
+import ButtonLoading from "../../../components/Loading/ButtonLoading";
 
 interface ProductCartsProps {}
 
 const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
   const { carts } = useSelector((state: ReducerState) => state.CartsReducer);
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
+  const { buttonLoading } = useSelector(
+    (state: ReducerState) => state.LoadingReducer
+  );
+  const { shipment } = useSelector(
+    (state: ReducerState) => state.ShipmentReducer
+  );
   const { page } = useSelector(
     (state: ReducerState) => state.PaginationReducer
   );
 
   const [shipmentType, setShipmentType] = React.useState<number>(0);
-  const [shipment, setShipment] = React.useState<number>(0);
+  const [shipmentFee, setShipmentFee] = React.useState<number>(0);
   const [price, setPrice] = React.useState<number>(0);
   const [total, setTotal] = React.useState<number>(0);
   const [vat, setVat] = React.useState<number>(0);
@@ -57,25 +65,39 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
   }, []);
 
   React.useEffect(() => {
-    setShipmentType(0)
-  }, [lang])
+    setShipmentType(0);
+  }, [lang]);
 
   React.useEffect(() => {
     if (shipmentType === 2) {
       dispatch({
         type: EModalActionTypes.OPEN_SHIPMENT_MODAL,
       });
+    } else {
+      dispatch({
+        type: EShipmentActionTypes.REMOVE_SHIPMENT,
+      });
     }
   }, [shipmentType]);
+
+  React.useEffect(() => {
+    if (utils.checkObjectEmpty(shipment)) {
+      const fee = utils.getShipmentFee(shipment.district || 0);
+      setShipmentFee(fee || 0);
+    } else {
+      setShipmentFee(0)
+    }
+  }, [shipment]);
 
   const handlePayment = () => {
     let newCarts: IOrder = {
       note: note,
       paymentType: 0,
       totalPay: totalPay,
-      status: 0,
+      status: 1,
       shipmentType: shipmentType,
-      shipmentFee: shipment,
+      shipmentFee: shipmentFee,
+      shipmentDetail: shipment,
       products: cartsList,
       userId: "",
     };
@@ -131,7 +153,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
                 placeholder={langs?.productCarts.receivedType}
                 groupClassName="select__field"
                 id="value"
-                label="label"
+                name="label"
                 option={options}
                 value={options.find((i) => i.value === shipmentType)}
                 onChange={(value) => {
@@ -141,8 +163,9 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
             </div>
             <div className="features__button">
               <div className="button--submit">{langs?.button.update}</div>
-              <div className="button--submit" onClick={handlePayment}>
-                {langs?.button.payment}
+              <div className={`button--submit ${buttonLoading ? "button--disabled" : ""}`} onClick={handlePayment}>
+                <ButtonLoading />
+                <span>{langs?.button.payment}</span>
               </div>
             </div>
           </div>
@@ -154,11 +177,12 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
             langs={langs}
             carts={cartsList}
             shipment={shipment}
+            shipmentFee={shipmentFee}
             price={price}
             total={total}
             vat={vat}
             totalPay={totalPay}
-            setShipment={setShipment}
+            setShipmentFee={setShipmentFee}
             setPrice={setPrice}
             setTotal={setTotal}
             setVat={setVat}
@@ -167,7 +191,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
           />
         )}
       </Card.Wrapper>
-      
+
       {/* Shipment modal */}
       <ShipmentModal />
     </div>
