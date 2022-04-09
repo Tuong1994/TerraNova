@@ -5,14 +5,13 @@ import * as yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../../redux/store";
-import { IShipment } from "../../../../models/Shipment";
+import { EProvince, IShipment } from "../../../../models/Shipment";
 import { EShipmentActionTypes } from "../../../../redux/actionTypes/ShipmentActionTypes";
 import { phoneRegex } from "../../../../configs/regex";
 import ButtonLoading from "../../../../components/Loading/ButtonLoading";
 import Button from "../../../../components/Button";
 import actions from "../../../../configs/actions";
 import utils from "../../../../utils";
-import options from "../../../../configs/options";
 
 interface ShipmentModalProps {}
 
@@ -25,9 +24,21 @@ const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
   );
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
+  const [provinceType, setProvinceType] = React.useState<number>(0);
+
   const dispatch = useDispatch();
 
   const langs = utils.changeLang(lang);
+
+  const options = utils.getOptionByLang(lang);
+
+  const getOptionsByProvince = () => {
+    if (provinceType === EProvince.HCM) {
+      return options?.HCM;
+    } else if (provinceType === EProvince.HN) {
+      return options?.HN;
+    }
+  };
 
   const initialValues = {
     userName: "",
@@ -85,7 +96,7 @@ const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
         {(formikProps) => {
           const { isValid, isSubmitting } = formikProps;
           return (
-            <Form>
+            <Form autoComplete="off">
               <Modal.Header
                 titleClassName="shipment-modal__header"
                 title={langs?.productCarts.modal.shipmentTitle}
@@ -153,34 +164,41 @@ const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
                     iconClassName="group__icon"
                   />
                   <Field
-                    name="ward"
-                    component={FormControl.Input}
-                    label={langs?.form.ward}
-                    placeholder=" "
-                    icon={<i className="fa-solid fa-location-dot"></i>}
+                    name="province"
+                    component={FormControl.Select}
+                    label={langs?.form.province}
+                    option={options?.province}
+                    selectClassName="options__item"
                     labelClassName="group__label"
                     inputClassName="group__input"
                     iconClassName="group__icon"
+                    optionClassName="group__options"
+                    onChange={(value: any) => {
+                      setProvinceType(value);
+                    }}
                   />
+                  <Field
+                    name="ward"
+                    component={FormControl.Select}
+                    label={langs?.form.ward}
+                    option={getOptionsByProvince()?.ward}
+                    selectClassName="options__item"
+                    labelClassName="group__label"
+                    inputClassName="group__input"
+                    iconClassName="group__icon"
+                    optionClassName="group__options"
+                  />
+
                   <Field
                     name="district"
-                    component={FormControl.Input}
+                    component={FormControl.Select}
                     label={langs?.form.district}
-                    placeholder=" "
-                    icon={<i className="fa-solid fa-location-dot"></i>}
+                    option={getOptionsByProvince()?.district}
+                    selectClassName="options__item"
                     labelClassName="group__label"
                     inputClassName="group__input"
                     iconClassName="group__icon"
-                  />
-                  <Field
-                    name="province"
-                    component={FormControl.Input}
-                    label={langs?.form.province}
-                    placeholder=" "
-                    icon={<i className="fa-solid fa-location-dot"></i>}
-                    labelClassName="group__label"
-                    inputClassName="group__input"
-                    iconClassName="group__icon"
+                    optionClassName="group__options"
                   />
                 </div>
               </Modal.Body>

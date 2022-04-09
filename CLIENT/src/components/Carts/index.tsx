@@ -6,9 +6,10 @@ import { ReducerState } from "../../redux/store";
 import {
   getCartsList,
   removeCarts,
+  updateCarts,
 } from "../../redux/actionCreators/CartsCreators";
 import { IQueryList } from "../../interfaces/query";
-import { ICarts } from "../../models/Carts";
+import { ICarts, IProductCarts } from "../../models/Carts";
 import CartsItem from "./CartsItem";
 import utils from "../../utils";
 
@@ -18,6 +19,8 @@ interface ICartsProps {
 
 const Carts: React.FunctionComponent<ICartsProps> = (props) => {
   const { className } = props;
+  const path = document.location.pathname;
+
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
   const { carts } = useSelector((state: ReducerState) => state.CartsReducer);
   const { page } = useSelector(
@@ -25,6 +28,7 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
   );
 
   const [isShow, setIsShow] = React.useState<boolean>(false);
+  const [totalPrice, setTotalPrice] = React.useState<number>(0);
 
   const cartsRef = React.useRef(null);
 
@@ -32,27 +36,39 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
 
   const langs = utils.changeLang(lang);
 
-  const { cartsList } = carts;
-
   customHooks.useClickOutSide(cartsRef, setIsShow);
 
   React.useEffect(() => {
-    const query: IQueryList = {
-      page: page,
-      limits: 10,
-    }
-    dispatch(getCartsList(query));
+    dispatch(getCartsList());
   }, []);
 
-  const handleRemoveItem = (item: any) => {
+  React.useEffect(() => {
+    let sum = 0;
+    if (carts && carts?.length > 0) {
+      const products = carts[0].products || [];
+      for (let i = 0; i < products.length; i++) {
+        sum += (products[i].price || 0) * (products[i].amount || 0);
+      }
+    }
+    setTotalPrice(sum);
+  }, [carts]);
+
+  const handleRemoveItem = (item: IProductCarts) => {
+    const products = carts[0].products;
+    const newProducts = products?.filter((i) => i.productId !== item.productId);
+    const newStock = {
+      cartsId: carts[0].cartsId,
+      products: newProducts,
+    };
     const query: IQueryList = {
-      cartsId: item.cartsId,
+      cartsId: carts[0].cartsId,
     };
     dispatch(
-      removeCarts(
+      updateCarts(
+        newStock,
         query,
-        langs?.toastMessages.success.removeCart,
-        langs?.toastMessages.error.removeCart
+        langs?.toastMessages.success.updateCart,
+        langs?.toastMessages.error.updateCart
       )
     );
   };
@@ -66,7 +82,7 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
         <i className="fa fa-shopping-cart"></i>
       </div>
 
-      <div className="carts__total">{cartsList?.length}</div>
+      <div className="carts__total">{carts[0]?.products?.length || 0}</div>
 
       <div
         className={
@@ -75,16 +91,22 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
       >
         <div className="inner__list">
           {(() => {
-            if (cartsList && cartsList?.length > 0) {
-              return cartsList?.map((item: ICarts, index: number) => {
+            if (carts[0]?.products && carts[0]?.products?.length > 0) {
+              return carts?.map((item: ICarts, index: number) => {
                 return (
-                  <CartsItem
-                    key={index}
-                    item={item}
-                    lang={lang}
-                    langs={langs}
-                    removeCarts={handleRemoveItem}
-                  />
+                  <React.Fragment key={index}>
+                    {item.products?.map((product, index) => {
+                      return (
+                        <CartsItem
+                          key={index}
+                          item={product}
+                          lang={lang}
+                          langs={langs}
+                          removeCarts={handleRemoveItem}
+                        />
+                      );
+                    })}
+                  </React.Fragment>
                 );
               });
             } else {
@@ -93,12 +115,23 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
           })()}
         </div>
 
-        {cartsList && cartsList?.length > 0 && (
+        {carts[0]?.products && carts[0]?.products?.length > 0 && (
+          <div className="inner__total">
+            {langs?.carts.total} : {totalPrice.toLocaleString()} VND
+          </div>
+        )}
+
+        {carts[0]?.products && carts[0]?.products?.length > 0 && (
           <div className="inner__link">
-            {" "}
-            <Link to="/productCarts" className="link__content">
-              {langs?.button.seeMore}
-            </Link>
+            {path.includes("productCarts") ? (
+              <Link to="/" className="link__content">
+                {langs?.button.buyProduct}
+              </Link>
+            ) : (
+              <Link to="/productCarts" className="link__content">
+                {langs?.button.seeMore}
+              </Link>
+            )}
           </div>
         )}
       </div>

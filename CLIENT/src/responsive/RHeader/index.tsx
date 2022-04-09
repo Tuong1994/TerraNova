@@ -36,7 +36,7 @@ const RHeaderMenu: React.FunctionComponent<IRHeaderMenuProps> = (props) => {
   React.useEffect(() => {
     if (lang === "ENG") {
       setMenuList(headerMenuEng);
-    } else if (lang == "VN") {
+    } else if (lang === "VN") {
       setMenuList(headerMenuVN);
     }
   }, [lang]);

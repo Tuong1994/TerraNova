@@ -81,6 +81,13 @@
         opacity: 0.6;
       }
     }
+    .inner__total {
+      width: $w-100;
+      margin-bottom: $m-10;
+      font-size: $body-1;
+      font-weight: $semiBold;
+      text-align: right;
+    }
     .inner__link {
       width: $w-100;
       padding: $p-10 0;

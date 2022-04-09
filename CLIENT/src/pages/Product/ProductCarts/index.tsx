@@ -1,24 +1,27 @@
 import React from "react";
 import * as customHooks from "../../../hooks";
 import * as Card from "../../../components/Card";
-import * as FormControls from "../../../components/Fields";
+import * as FormControl from "../../../components/Fields";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
-import { ICarts } from "../../../models/Carts";
-import { EShipmentType, IOrder } from "../../../models/Order";
-import { getCartsList } from "../../../redux/actionCreators/CartsCreators";
-import { createOrder } from "../../../redux/actionCreators/OrderCreators";
-import { IQueryList } from "../../../interfaces/query";
+import { ICarts, IProductCarts } from "../../../models/Carts";
+import { EPaymentTypes, EShipmentType, IOrder } from "../../../models/Order";
+import {
+  getCartsList,
+  updateCarts,
+} from "../../../redux/actionCreators/CartsCreators";
 import { EModalActionTypes } from "../../../redux/actionTypes/ModalActionTypes";
 import { EShipmentActionTypes } from "../../../redux/actionTypes/ShipmentActionTypes";
+import { IQueryList } from "../../../interfaces/query";
+import { createOrder } from "../../../redux/actionCreators/OrderCreators";
 import Table from "../../../components/Table";
 import CartsRow from "../../../components/Table/CartsRow";
 import CartsPayment from "./CartsPayment";
 import Pagination from "../../../components/Pagination";
 import ShipmentModal from "./ShipmentModal";
-import utils from "../../../utils";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";
+import utils from "../../../utils";
 
 interface ProductCartsProps {}
 
@@ -35,13 +38,19 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
     (state: ReducerState) => state.PaginationReducer
   );
 
-  const [shipmentType, setShipmentType] = React.useState<number>(0);
+  const [shipmentType, setShipmentType] = React.useState<number>(
+    EShipmentType.noShipment
+  );
+  const [paymentType, setPaymentType] = React.useState<number>(
+    EPaymentTypes.cash
+  );
   const [shipmentFee, setShipmentFee] = React.useState<number>(0);
   const [price, setPrice] = React.useState<number>(0);
   const [total, setTotal] = React.useState<number>(0);
   const [vat, setVat] = React.useState<number>(0);
   const [totalPay, setTotalPay] = React.useState<number>(0);
   const [note, setNote] = React.useState<string>("");
+  const [productUpdate, setProductUpdate] = React.useState<IProductCarts>({});
 
   const dispatch = useDispatch();
 
@@ -49,27 +58,15 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
 
   const langs = utils.changeLang(lang);
 
-  const { cartsList, totalCarts, limits } = carts;
-
-  const options = [
-    { label: langs?.productCarts.noShipment, value: EShipmentType.noShipment },
-    { label: langs?.productCarts.delivery, value: EShipmentType.delivery },
-  ];
+  const options = utils.getOptionByLang(lang);
 
   React.useEffect(() => {
-    const query: IQueryList = {
-      page: page,
-      limits: 10,
-    };
-    dispatch(getCartsList(query));
+    dispatch(getCartsList());
   }, []);
 
+  // Get Shipment Type
   React.useEffect(() => {
-    setShipmentType(0);
-  }, [lang]);
-
-  React.useEffect(() => {
-    if (shipmentType === 2) {
+    if (shipmentType === EShipmentType.delivery) {
       dispatch({
         type: EModalActionTypes.OPEN_SHIPMENT_MODAL,
       });
@@ -80,25 +77,82 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
     }
   }, [shipmentType]);
 
+  // Get Shipment Fee
   React.useEffect(() => {
     if (utils.checkObjectEmpty(shipment)) {
-      const fee = utils.getShipmentFee(shipment.district || 0);
+      const fee = utils.getShipmentFee(
+        parseInt(shipment.province || ""),
+        parseInt(shipment.district || "")
+      );
       setShipmentFee(fee || 0);
     } else {
-      setShipmentFee(0)
+      setShipmentFee(0);
     }
   }, [shipment]);
 
+  const handleUpdateCarts = () => {
+    if (utils.checkObjectEmpty(productUpdate)) {
+      const products = carts[0]?.products;
+      const newProducts = products?.map((i) => {
+        if (i.productId === productUpdate.productId) {
+          return {
+            ...i,
+            price: productUpdate.price,
+            amount: productUpdate.amount,
+          };
+        } else {
+          return { ...i };
+        }
+      });
+      const newStock = {
+        cartsId: carts[0].cartsId,
+        products: newProducts,
+      };
+      const query: IQueryList = {
+        cartsId: carts[0].cartsId,
+      };
+      dispatch(
+        updateCarts(
+          newStock,
+          query,
+          langs?.toastMessages.success.updateCart,
+          langs?.toastMessages.error.updateCart
+        )
+      );
+    }
+  };
+
+  const handleRemoveItem = (item: IProductCarts) => {
+    const products = carts[0].products;
+    const newProducts = products?.filter((i) => i.productId !== item.productId);
+    const newStock = {
+      cartsId: carts[0].cartsId,
+      products: newProducts,
+    };
+    const query: IQueryList = {
+      cartsId: carts[0].cartsId,
+    };
+    dispatch(
+      updateCarts(
+        newStock,
+        query,
+        langs?.toastMessages.success.updateCart,
+        langs?.toastMessages.error.updateCart
+      )
+    );
+  };
+
+  // Payment
   const handlePayment = () => {
     let newCarts: IOrder = {
       note: note,
-      paymentType: 0,
+      paymentType: paymentType,
       totalPay: totalPay,
       status: 1,
       shipmentType: shipmentType,
       shipmentFee: shipmentFee,
       shipmentDetail: shipment,
-      products: cartsList,
+      products: carts[0].products,
       userId: "",
     };
     dispatch(
@@ -122,7 +176,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
             { title: langs?.tableHeader.price || "" },
             { title: langs?.tableHeader.features || "" },
           ]}
-          isNodata={cartsList}
+          isNodata={carts[0]?.products || 0}
           noDataTitle={langs?.noData.product || ""}
           renderNoDataLink={() => (
             <Link to="/" className="button--submit" type="button">
@@ -131,39 +185,64 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
           )}
         >
           {(() => {
-            if (cartsList && cartsList?.length > 0) {
-              return cartsList.map((item: ICarts) => {
-                return <CartsRow key={utils.uuid()} item={item} />;
+            if (carts && carts.length > 0) {
+              return carts.map((item: ICarts, index) => {
+                return (
+                  <React.Fragment key={index}>
+                    {item.products?.map((product, index) => {
+                      return (
+                        <CartsRow
+                          key={index}
+                          item={product}
+                          removeItem={handleRemoveItem}
+                          setProductUpdate={setProductUpdate}
+                        />
+                      );
+                    })}
+                  </React.Fragment>
+                );
               });
             }
           })()}
         </Table>
 
-        <Pagination
-          perPage={limits}
-          total={totalCarts}
-          className="card__pagination"
-        />
-
         {/* Payment features */}
-        {cartsList && cartsList?.length > 0 && (
+        {carts && carts?.length > 0 && (
           <div className="card__features">
+            {/* Select shipment type */}
             <div className="features__select">
-              <FormControls.SelectCustom
+              <FormControl.SelectCustom
                 placeholder={langs?.productCarts.receivedType}
                 groupClassName="select__field"
                 id="value"
                 name="label"
-                option={options}
-                value={options.find((i) => i.value === shipmentType)}
+                option={options?.shipmentType}
+                value={options?.shipmentType.find(
+                  (i) => i.value === shipmentType
+                )}
                 onChange={(value) => {
                   setShipmentType(value);
                 }}
               />
             </div>
+
+            {/* Button update/payment */}
             <div className="features__button">
-              <div className="button--submit">{langs?.button.update}</div>
-              <div className={`button--submit ${buttonLoading ? "button--disabled" : ""}`} onClick={handlePayment}>
+              <div
+                className={`button--submit ${
+                  buttonLoading ? "button--disabled" : ""
+                }`}
+                onClick={handleUpdateCarts}
+              >
+                <ButtonLoading />
+                <span>{langs?.button.update}</span>
+              </div>
+              <div
+                className={`button--submit ${
+                  buttonLoading ? "button--disabled" : ""
+                }`}
+                onClick={handlePayment}
+              >
                 <ButtonLoading />
                 <span>{langs?.button.payment}</span>
               </div>
@@ -172,21 +251,23 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
         )}
 
         {/* Payment summary */}
-        {cartsList && cartsList?.length > 0 && (
+        {carts && carts?.length > 0 && (
           <CartsPayment
             langs={langs}
-            carts={cartsList}
+            carts={carts[0].products}
             shipment={shipment}
             shipmentFee={shipmentFee}
             price={price}
             total={total}
             vat={vat}
             totalPay={totalPay}
+            paymentType={paymentType}
             setShipmentFee={setShipmentFee}
             setPrice={setPrice}
             setTotal={setTotal}
             setVat={setVat}
             setTotalPay={setTotalPay}
+            setPaymentType={setPaymentType}
             setNote={setNote}
           />
         )}

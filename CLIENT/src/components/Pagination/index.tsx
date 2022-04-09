@@ -60,7 +60,6 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
 
   // Hanlde click to change page
   const handleChangePage = (page: number) => {
-    window.scrollTo(0, 0);
     handleDataLoading();
     dispatch({
       type: EPaginationActionTypes.CHANGE_PAGE,
@@ -70,7 +69,6 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
 
   // Handle click to preve page
   const handlePrevPage = () => {
-    window.scrollTo(0, 0);
     handleDataLoading();
     dispatch({
       type: EPaginationActionTypes.CHANGE_PAGE,
@@ -84,7 +82,6 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
 
   // Handle click to next page
   const handleNextPage = () => {
-    window.scrollTo(0, 0);
     handleDataLoading();
     dispatch({
       type: EPaginationActionTypes.CHANGE_PAGE,

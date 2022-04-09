@@ -1,5 +1,6 @@
 import React from "react";
 import * as Card from "../../../../components/Card";
+import * as content from "../../../../configs/shipment";
 import { useSelector } from "react-redux";
 import { IShipment } from "../../../../models/Shipment";
 import { ReducerState } from "../../../../redux/store";
@@ -15,6 +16,30 @@ const Shipment: React.FunctionComponent<ShipmentProps> = (props) => {
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
   const langs = utils.changeLang(lang);
+
+  const renderWard = () => {
+    if (lang === "ENG") {
+      return content.renderWardEng(parseInt(shipment?.ward || ""));
+    } else if (lang === "VN") {
+      return content.renderWardVn(parseInt(shipment?.ward || ""));
+    }
+  };
+
+  const renderDistrict = () => {
+    if (lang === "ENG") {
+      return content.renderDistrictEng(parseInt(shipment?.district || ""));
+    } else if (lang === "VN") {
+      return content.renderDistrictVn(parseInt(shipment?.district || ""));
+    }
+  };
+
+  const renderProvince = () => {
+    if (lang === "ENG") {
+      return content.renderProvinceEng(parseInt(shipment?.province || ""));
+    } else if (lang === "VN") {
+      return content.renderProvinceVn(parseInt(shipment?.province || ""));
+    }
+  }
 
   return (
     <Card.Wrapper className="info__card">
@@ -53,19 +78,19 @@ const Shipment: React.FunctionComponent<ShipmentProps> = (props) => {
           <li className="inner__list">
             <div className="list__item">
               <p>{langs?.form.ward} : </p>
-              <strong>{shipment?.ward}</strong>
+              <strong>{renderWard()}</strong>
             </div>
           </li>
           <li className="inner__list">
             <div className="list__item">
               <p>{langs?.form.district} : </p>
-              <strong>{shipment?.district}</strong>
+              <strong>{renderDistrict()}</strong>
             </div>
           </li>
           <li className="inner__list">
             <div className="list__item">
               <p>{langs?.form.province} : </p>
-              <strong>{shipment?.province}</strong>
+              <strong>{renderProvince()}</strong>
             </div>
           </li>
         </ul>

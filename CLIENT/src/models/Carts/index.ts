@@ -1,8 +1,11 @@
-export interface ICarts {
-  cartsId?: string;
+export interface IProductCarts {
   productId?: string;
   productName?: string;
   amount?: number;
   price?: number;
-  image?: string;
+  image?: any;
+}
+export interface ICarts {
+  cartsId?: string;
+  products?: IProductCarts[];
 }

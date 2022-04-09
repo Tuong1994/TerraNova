@@ -1,7 +1,7 @@
 import React from "react";
 import * as FormControl from "../../../../components/Fields";
 import { ILangs } from "../../../../interfaces/lang";
-import { ICarts } from "../../../../models/Carts";
+import { IProductCarts } from "../../../../models/Carts";
 import { IShipment } from "../../../../models/Shipment";
 import Shipment from "./Shipment";
 import Summary from "./Summary";
@@ -9,18 +9,20 @@ import utils from "../../../../utils";
 
 interface CartsPaymentProps {
   langs: ILangs;
-  carts: ICarts[];
-  shipment: IShipment
+  carts?: IProductCarts[];
+  shipment: IShipment;
   shipmentFee: number;
   price: number;
   total: number;
   vat: number;
   totalPay: number;
+  paymentType: number;
   setShipmentFee: React.Dispatch<React.SetStateAction<number>>;
   setPrice: React.Dispatch<React.SetStateAction<number>>;
   setTotal: React.Dispatch<React.SetStateAction<number>>;
   setVat: React.Dispatch<React.SetStateAction<number>>;
   setTotalPay: React.Dispatch<React.SetStateAction<number>>;
+  setPaymentType: React.Dispatch<React.SetStateAction<number>>;
   setNote: React.Dispatch<React.SetStateAction<string>>;
 }
 
@@ -34,11 +36,13 @@ const CartsPayment: React.FunctionComponent<CartsPaymentProps> = (props) => {
     total,
     vat,
     totalPay,
+    paymentType,
     setShipmentFee,
     setPrice,
     setTotal,
     setVat,
     setTotalPay,
+    setPaymentType,
     setNote,
   } = props;
 
@@ -46,8 +50,8 @@ const CartsPayment: React.FunctionComponent<CartsPaymentProps> = (props) => {
     <div className="card__payment">
       <div className="payment__info">
         {(() => {
-          if(utils.checkObjectEmpty(shipment)) {
-            return <Shipment shipment={shipment} />
+          if (utils.checkObjectEmpty(shipment)) {
+            return <Shipment shipment={shipment} />;
           }
           return;
         })()}
@@ -70,11 +74,13 @@ const CartsPayment: React.FunctionComponent<CartsPaymentProps> = (props) => {
         total={total}
         vat={vat}
         totalPay={totalPay}
+        paymentType={paymentType}
         setShipmentFee={setShipmentFee}
         setPrice={setPrice}
         setTotal={setTotal}
         setVat={setVat}
         setTotalPay={setTotalPay}
+        setPaymentType={setPaymentType}
       />
     </div>
   );

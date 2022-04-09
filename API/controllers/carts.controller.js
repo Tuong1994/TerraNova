@@ -1,31 +1,11 @@
 const { Carts } = require("../models");
 
 const getCartsList = async (req, res) => {
-  const { page, limits } = req.query;
-  const pageNumber = parseInt(page);
-  const itemPerPage = parseInt(limits);
   try {
     const cartsList = await Carts.findAll({
-      attributes: [
-        ["id", "cartsId"],
-        "productId",
-        "productName",
-        "price",
-        "amount",
-      ],
+      attributes: [["id", "cartsId"], "products"],
     });
-    if(page) {
-      let total = cartsList.length;
-      let start = (pageNumber - 1) * itemPerPage;
-      let end = start + itemPerPage;
-      const cartsListPerPage = cartsList.slice(start, end);
-      res.status(200).send({
-        cartsList: cartsListPerPage,
-        totalCarts: total,
-        page: pageNumber,
-        limits: itemPerPage,
-      });
-    }
+    res.status(200).send(cartsList);
   } catch (error) {
     res.status(500).send(error);
   }
@@ -38,13 +18,7 @@ const getCartsDetail = async (req, res) => {
       where: {
         id: cartsId,
       },
-      attributes: [
-        ["id", "cartsId"],
-        "productId",
-        "productName",
-        "price",
-        "amount",
-      ],
+      attributes: [["id", "cartsId"], "products"],
     });
     res.status(200).send(cartsDetail);
   } catch (error) {
@@ -53,15 +27,12 @@ const getCartsDetail = async (req, res) => {
 };
 
 const createCarts = async (req, res) => {
-  const { productId, productName, amount, price } = req.body;
+  const { products } = req.body;
   try {
     const cartsId = "C_" + Math.floor(Math.random() * 999999999).toString();
     const newCarts = await Carts.create({
       id: cartsId,
-      productId,
-      productName,
-      amount,
-      price,
+      products,
     });
     res.status(200).send(newCarts);
   } catch (error) {
@@ -71,10 +42,10 @@ const createCarts = async (req, res) => {
 
 const updateCarts = async (req, res) => {
   const { cartsId } = req.query;
-  const { productId, productName, amount, price } = req.body;
+  const { products } = req.body;
   try {
     await Carts.update(
-      { productId, productName, amount, price },
+      { products },
       {
         where: {
           id: cartsId,

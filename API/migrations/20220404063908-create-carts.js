@@ -7,20 +7,8 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.STRING
       },
-      productId: {
-        type: Sequelize.STRING
-      },
-      productName: {
-        type: Sequelize.STRING
-      },
-      amount: {
-        type: Sequelize.INTEGER
-      },
-      price: {
-        type: Sequelize.INTEGER
-      },
-      image: {
-        type: Sequelize.STRING
+      products: {
+        type: Sequelize.JSON
       },
       createdAt: {
         allowNull: false,

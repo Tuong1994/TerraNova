@@ -2,6 +2,7 @@ import React from "react";
 import * as customHooks from "../../../hooks";
 import { useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
+import utils from "../../../utils";
 
 interface SelectCustomFieldProps {
   id?: any;
@@ -10,6 +11,7 @@ interface SelectCustomFieldProps {
   value?: any;
   option?: any;
   error?: string;
+  isReset?: boolean;
   placeholder?: string;
   groupClassName?: string;
   labelClassName?: string;
@@ -19,7 +21,9 @@ interface SelectCustomFieldProps {
   onChange?(item: any): void;
 }
 
-const SelectCustomField: React.FunctionComponent<SelectCustomFieldProps> = (props) => {
+const SelectCustomField: React.FunctionComponent<SelectCustomFieldProps> = (
+  props
+) => {
   const {
     id,
     name,
@@ -27,6 +31,7 @@ const SelectCustomField: React.FunctionComponent<SelectCustomFieldProps> = (prop
     value,
     option,
     error,
+    isReset,
     placeholder,
     groupClassName,
     labelClassName,
@@ -45,24 +50,32 @@ const SelectCustomField: React.FunctionComponent<SelectCustomFieldProps> = (prop
 
   customHooks.useClickOutSide(controlRef, setIsDropdown);
 
+  const langs = utils.changeLang(lang);
+
+  // Reset value by lang
   React.useEffect(() => {
-    setNewValue("");
+    if (isReset) {
+      setNewValue("");
+    }
   }, [lang]);
 
+  // Check value is not empty => Set default value
   React.useEffect(() => {
-    if (value !== "") {
+    if (value !== "" || utils.checkKeyNumberType(value)) {
       option?.map((item: any) => {
-        if (item[id] === value) {
+        if (item[id] === value?.value) {
           return setNewValue(item[name]);
         }
       });
     }
-  }, []);
+  }, [lang, value]);
 
+  // Set label for value
   const getValue = (item: any) => {
     setNewValue(item);
   };
 
+  // Filter options
   const filter = (options: any) => {
     if (options && options.length > 0) {
       return options.filter((item: any) => {
@@ -80,6 +93,7 @@ const SelectCustomField: React.FunctionComponent<SelectCustomFieldProps> = (prop
 
   return (
     <React.Fragment>
+      {/* Label */}
       {label && (
         <div
           className={`form__label--select ${
@@ -106,7 +120,7 @@ const SelectCustomField: React.FunctionComponent<SelectCustomFieldProps> = (prop
           <input
             type="text"
             className={`field__control ${inputClassName ? inputClassName : ""}`}
-            value={renderValue()}
+            value={renderValue() || ""}
             placeholder={placeholder}
             onChange={(e) => {
               setFreeText(e.target.value);
@@ -155,12 +169,13 @@ const SelectCustomField: React.FunctionComponent<SelectCustomFieldProps> = (prop
                     setIsDropdown(false);
                   }}
                 >
-                  {item[name]}
+                  {item.icon && <img src={item.icon} alt="" />}
+                  <span>{item[name]}</span>
                 </div>
               );
             })
           ) : (
-            <div className="option__nodata">No options</div>
+            <div className="option__nodata">{langs?.form.noOption}</div>
           )}
         </div>
         {/* Options */}

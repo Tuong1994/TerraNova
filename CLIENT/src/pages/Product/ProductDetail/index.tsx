@@ -10,12 +10,11 @@ import {
   createCarts,
   updateCarts,
 } from "../../../redux/actionCreators/CartsCreators";
-import { ICarts } from "../../../models/Carts";
+import { ICarts, IProductCarts } from "../../../models/Carts";
 import ProductSlider from "./ProductContent/ProductSlider";
 import ProductInfo from "./ProductContent/ProductInfo";
 import ProductRelated from "./ProductContent/ProductRelated";
 import ProductTabs from "./ProductTabs";
-import actions from "../../../configs/actions";
 import utils from "../../../utils";
 
 const ProductDetail: React.FunctionComponent<
@@ -27,15 +26,13 @@ const ProductDetail: React.FunctionComponent<
   const { carts } = useSelector((state: ReducerState) => state.CartsReducer);
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
-  const [stock, setStock] = React.useState<ICarts>({});
+  const [stock, setStock] = React.useState<IProductCarts>({});
   const [amount, setAmount] = React.useState<number>(0);
 
   const dispatch = useDispatch();
   const id = props.match.params.id;
 
   const langs = utils.changeLang(lang);
-
-  const { cartsList } = carts;
 
   customHook.useLoading(productDetail);
 
@@ -80,46 +77,65 @@ const ProductDetail: React.FunctionComponent<
   };
 
   const handleOrder = () => {
-    dispatch(actions.openButtonLoading);
-    setTimeout(() => {
-      if (amount > 0) {
-        if (cartsList && cartsList.length > 0) {
-          let index: number = cartsList.findIndex(
-            (i) => i.productId === productDetail.productId
-          );
+    if (amount > 0) {
+      if (carts && carts.length > 0) {
+        const query: IQueryList = {
+          cartsId: carts[0].cartsId,
+        };
+        const products = carts[0].products || [];
+        let index: number = products.findIndex(
+          (i) => i.productId === productDetail.productId
+        );
 
-          if (index !== -1) {
-              let newStock: ICarts = {
-                productId: cartsList[index].productId,
-                productName: cartsList[index].productName,
-                price: cartsList[index].price,
-                amount: (cartsList[index].amount || 0) + amount,
-              };
-              const query: IQueryList = {
-                cartsId: cartsList[index]?.cartsId,
-              };
-
-              dispatch(
-                updateCarts(
-                  newStock,
-                  query,
-                  langs?.toastMessages.success.updateCart,
-                  langs?.toastMessages.error.updateCart
-                )
-              );
-            }
-        } else {
+        if (index !== -1) {
+          const newProducts: IProductCarts = {
+            productId: products[index].productId,
+            productName: products[index].productName,
+            price: products[index].price,
+            amount: (products[index].amount || 0) + amount,
+          };
+          const newStock: ICarts = {
+            cartsId: carts[0].cartsId,
+            products: [{ ...newProducts }],
+          };
           dispatch(
-            createCarts(
-              stock,
+            updateCarts(
+              newStock,
+              query,
+              langs?.toastMessages.success.updateCart,
+              langs?.toastMessages.error.updateCart
+            )
+          );
+        } else {
+          products.push(stock);
+          const newStock = {
+            cartsId: carts[0].cartsId,
+            products: products,
+          };
+          dispatch(
+            updateCarts(
+              newStock,
+              query,
               langs?.toastMessages.success.addToCart,
               langs?.toastMessages.error.addToCart
             )
           );
         }
+      } else if (carts && carts.length === 0) {
+        carts.push({ products: [] });
+        carts[0]?.products?.push(stock);
+        let newStock = {
+          products: carts[0].products,
+        };
+        dispatch(
+          createCarts(
+            newStock,
+            langs?.toastMessages.success.addToCart,
+            langs?.toastMessages.error.addToCart
+          )
+        );
       }
-      dispatch(actions.closeButtonLoading);
-    }, 500);
+    }
   };
 
   return (

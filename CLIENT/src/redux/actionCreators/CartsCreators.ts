@@ -3,17 +3,15 @@ import axiosClient from "../../axios";
 import { Dispatch } from "redux";
 import { toast } from "react-toastify";
 import { ECartsActionTypes } from "../actionTypes/CartsActionTypes";
-import { ICarts } from "../../models/Carts";
+import { ICarts, IProductCarts } from "../../models/Carts";
 import { IQueryList } from "../../interfaces/query";
 import { getListQuery } from "../../configs/setting";
+import actions from "../../configs/actions";
 
-export const getCartsList = (query?: IQueryList, err?: string) => {
+export const getCartsList = (err?: string) => {
   return async (dispatch: Dispatch) => {
     try {
-      const result = await axiosClient.get(
-        apiPath.cartsPaths.getCartsList,
-        getListQuery(query as IQueryList)
-      );
+      const result = await axiosClient.get(apiPath.cartsPaths.getCartsList);
       dispatch({
         type: ECartsActionTypes.GET_CARTS_LIST,
         payload: result.data,
@@ -25,14 +23,19 @@ export const getCartsList = (query?: IQueryList, err?: string) => {
 };
 
 export const createCarts = (data: ICarts, success?: string, err?: string) => {
-  return async (dispatch: Dispatch | any) => {
-    try {
-      await axiosClient.post(apiPath.cartsPaths.createCarts, data);
-      dispatch(getCartsList());
-      toast.success(success);
-    } catch (error: any) {
-      toast.error(err);
-    }
+  return (dispatch: Dispatch | any) => {
+    dispatch(actions.openButtonLoading);
+    setTimeout(async () => {
+      try {
+        await axiosClient.post(apiPath.cartsPaths.createCarts, data);
+        dispatch(getCartsList());
+        dispatch(actions.closeButtonLoading);
+        toast.success(success);
+      } catch (error: any) {
+        dispatch(actions.closeButtonLoading);
+        toast.error(err);
+      }
+    }, 1000);
   };
 };
 
@@ -42,18 +45,23 @@ export const updateCarts = (
   success?: string,
   err?: string
 ) => {
-  return async (dispatch: Dispatch | any) => {
-    try {
-      await axiosClient.put(
-        apiPath.cartsPaths.updateCarts,
-        data,
-        getListQuery(query as IQueryList)
-      );
-      dispatch(getCartsList());
-      toast.success(success);
-    } catch (error: any) {
-      toast.error(err);
-    }
+  return (dispatch: Dispatch | any) => {
+    dispatch(actions.openButtonLoading);
+    setTimeout(async () => {
+      try {
+        await axiosClient.put(
+          apiPath.cartsPaths.updateCarts,
+          data,
+          getListQuery(query as IQueryList)
+        );
+        dispatch(getCartsList());
+        dispatch(actions.closeButtonLoading);
+        toast.success(success);
+      } catch (error: any) {
+        dispatch(actions.closeButtonLoading);
+        toast.error(err);
+      }
+    }, 1000);
   };
 };
 
@@ -62,16 +70,21 @@ export const removeCarts = (
   success?: string,
   err?: string
 ) => {
-  return async (dispatch: Dispatch | any) => {
-    try {
-      await axiosClient.delete(
-        apiPath.cartsPaths.removeCarts,
-        getListQuery(query as IQueryList)
-      );
-      dispatch(getCartsList());
-      toast.success(success);
-    } catch (error) {
-      toast.error(err);
-    }
+  return (dispatch: Dispatch | any) => {
+    dispatch(actions.openButtonLoading);
+    setTimeout(async () => {
+      try {
+        await axiosClient.delete(
+          apiPath.cartsPaths.removeCarts,
+          getListQuery(query as IQueryList)
+        );
+        dispatch(getCartsList());
+        dispatch(actions.closeButtonLoading);
+        toast.success(success);
+      } catch (error) {
+        dispatch(actions.closeButtonLoading);
+        toast.error(err);
+      }
+    }, 1000);
   };
 };

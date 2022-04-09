@@ -175,6 +175,7 @@ const EngLang = {
   },
   carts: {
     slots: "slots",
+    total: "Total",
   },
   toastMessages: {
     success: {
@@ -228,11 +229,12 @@ const EngLang = {
     note: "Note",
     ward: "Ward",
     district: "District",
-    province: "Province",
+    province: "Province/City",
     selectWard: "Select ward",
     selectDistrict: "Select district",
     selectProvince: "Select province",
     noOption: "No option",
+    defaultOption: "Select...",
   },
   tableHeader: {
     number: "No.",

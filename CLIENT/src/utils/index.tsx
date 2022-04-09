@@ -1,6 +1,7 @@
 import * as lang from "../translate";
 import { toast } from "react-toastify";
 import { EDistrict } from "../models/Shipment";
+import { optionsEng, optionsVn } from "../configs/options";
 
 const utils = {
   checkObjectEmpty: (obj: any) => {
@@ -23,9 +24,9 @@ const utils = {
     }
   },
   changeLang: (l: string) => {
-    if (l == "VN") {
+    if (l === "VN") {
       return lang.VN;
-    } else if (l == "ENG") {
+    } else if (l === "ENG") {
       return lang.ENG;
     }
   },
@@ -41,15 +42,33 @@ const utils = {
       }
     );
   },
-  getShipmentFee: (v: number | string) => {
-    if(v == EDistrict.one || v == EDistrict.three || v == EDistrict.five || v == EDistrict.six || v == EDistrict.ten || v == EDistrict.eleven) {
+  getShipmentFee: (province: number | string, district: number | string) => {
+    if (
+      district === EDistrict.one ||
+      district === EDistrict.three ||
+      district === EDistrict.five ||
+      district === EDistrict.six ||
+      district === EDistrict.ten ||
+      district === EDistrict.eleven
+    ) {
       return 30000;
-    } else if (v == EDistrict.two || v == EDistrict.four) {
+    } else if (district === EDistrict.two || district === EDistrict.four) {
       return 50000;
-    } else if (v == EDistrict.seven || v == EDistrict.eight || v == EDistrict.nine) {
+    } else if (
+      district === EDistrict.seven ||
+      district === EDistrict.eight ||
+      district === EDistrict.nine
+    ) {
       return 80000;
     }
-  }
+  },
+  getOptionByLang: (lang: string) => {
+    if (lang === "ENG") {
+      return optionsEng;
+    } else if (lang === "VN") {
+      return optionsVn;
+    }
+  },
 };
 
 export default utils;

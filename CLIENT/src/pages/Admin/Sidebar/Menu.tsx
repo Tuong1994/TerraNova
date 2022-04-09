@@ -24,7 +24,7 @@ const Menu: React.FunctionComponent<{}> = (props) => {
           key={menu.id}
           to={menu.path}
           className={`menu__link ${
-            menuId == menu.id ? "menu__link--active" : ""
+            menuId === menu.id ? "menu__link--active" : ""
           }`}
           onClick={() => handleChangeMenu(menu)}
         >

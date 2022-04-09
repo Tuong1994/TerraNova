@@ -1,81 +1,85 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { ReducerState } from "../../redux/store";
-import { IQueryList } from "../../interfaces/query";
-import { ICarts } from "../../models/Carts";
-import { removeCarts } from "../../redux/actionCreators/CartsCreators";
+import { IProductCarts } from "../../models/Carts";
 import TableCol from "./TableCol";
-import utils from "../../utils";
+import Button from "../Button";
 
 interface ICartsRowProps {
-  item: ICarts;
+  item: IProductCarts;
+  removeItem: (i: IProductCarts) => void;
+  setProductUpdate: React.Dispatch<React.SetStateAction<IProductCarts>>;
 }
 
 const CartsRow: React.FunctionComponent<ICartsRowProps> = (props) => {
-  const { item } = props;
+  const { item, removeItem, setProductUpdate } = props;
 
-  const { lang } = useSelector((state: ReducerState) => state.LangReducer);
+  const [amount, setAmount] = React.useState<any>(item.amount);
 
-  const dispatch = useDispatch();
+  React.useEffect(() => {
+    if (item) {
+      setAmount(item?.amount);
+    }
+  }, [item]);
 
-  const langs = utils.changeLang(lang);
-
-  const handleRemoveItem = () => {
-    const query: IQueryList = {
-      cartsId: item.cartsId,
-    };
-    dispatch(
-      removeCarts(
-        query,
-        langs?.toastMessages.success.removeCart,
-        langs?.toastMessages.error.removeCart
-      )
-    );
-  };
+  React.useEffect(() => {
+    setProductUpdate({
+      ...item,
+      amount: amount,
+      price: (item.price || 0) * amount,
+    });
+  }, [amount]);
 
   return (
     <tr className="carts-row">
       <TableCol>
-        <div className="col__item col__img">
+        <div className="col__img">
           <img src="../img/product_img.jpg" alt="product" />
         </div>
       </TableCol>
       <TableCol>
-        <div className="col__item">{item.productName}</div>
+        <div>{item.productName}</div>
       </TableCol>
       <TableCol>
-        <div className="col__item col__amount">
+        <div className="col__amount">
           <div
             className={`amount__button ${
-              item.amount == 1 ? "amount__button--disabled" : ""
+              amount == 1 ? "amount__button--disabled" : ""
             }`}
+            onClick={() => {
+              setAmount(amount - 1);
+            }}
           >
             <i className="fa-solid fa-minus"></i>
           </div>
 
-          <div className="amount__content">{item.amount}</div>
+          <div className="amount__content">{amount}</div>
 
-          <div className="amount__button">
+          <div
+            className="amount__button"
+            onClick={() => {
+              setAmount(amount + 1);
+            }}
+          >
             <i className="fa-solid fa-plus"></i>
           </div>
         </div>
       </TableCol>
       <TableCol>
         {(() => {
-          if (item.amount && item.price) {
-            return (
-              <div className="col__item">
-                {(item.price * item.amount).toLocaleString()} VND
-              </div>
-            );
+          if (amount && item.price) {
+            return <div>{(item.price * amount).toLocaleString()} VND</div>;
           }
         })()}
       </TableCol>
       <TableCol>
-        <div className="col__item">
-          <div className="button--delete" onClick={handleRemoveItem}>
+        <div>
+          <Button
+            className="button--delete"
+            onClick={() => {
+              removeItem(item);
+            }}
+          >
             <i className="fa-solid fa-trash-can"></i>
-          </div>
+          </Button>
         </div>
       </TableCol>
     </tr>

@@ -32,7 +32,6 @@
       }
     }
     .field__label {
-      font-size: $body-1;
       padding: $p-5;
       color: $tPrimary;
       background: $primary;
@@ -43,6 +42,19 @@
       left: 3%;
       transform: translateY(-50%);
       transition: all 0.3s ease;
+    }
+    .field__label--select {
+      font-size: $body-1;
+      padding: $p-5;
+      color: $tPrimary;
+      background: $primary;
+      position: absolute;
+      top: 0;
+      left: 3%;
+      transform: translateY(-50%);
+      @include respond(extraTablet) {
+        font-size: $body-2;
+      }
     }
     .field__icon,
     .field__error-icon {
@@ -112,6 +124,8 @@
   }
   .group__option {
     width: $w-100;
+    max-height: 0;
+    padding: $p-5 0;
     border-radius: $lightRound;
     box-shadow: 0 0 15px $grey;
     position: absolute;
@@ -124,14 +138,22 @@
     visibility: hidden;
     transition: all 0.2s ease;
     .option__item {
+      width: $w-100;
       padding: $p-10;
       margin: $m-5 0;
-      text-align: center;
+      display: flex;
+      align-items: center;
       transition: all 0.5s ease;
       cursor: pointer;
       &:hover {
         background: $secondary;
         color: $tSecondary;
+      }
+      img {
+        width: $w-10 * 3;
+        height: $h-10 * 3;
+        margin-right: $m-10;
+        object-fit: cover;
       }
     }
     .option__item--selected {
@@ -144,7 +166,7 @@
     }
   }
   .group__option--active {
-    max-height: $h-10 * 15;
+    max-height: $h-10 * 20;
     opacity: 1;
     visibility: visible;
   }
@@ -155,9 +177,6 @@
       opacity: 0.5;
     }
   }
-}
-.form__label--select {
-  font-size: $body-1;
 }
 
 @keyframes error {

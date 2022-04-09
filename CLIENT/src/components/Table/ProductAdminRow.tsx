@@ -34,9 +34,9 @@ const ProductAdminRow: React.FunctionComponent<IProductAdminRowProps> = (
         <Link to="/admin" className="button--edit">
           <i className="far fa-edit"></i>
         </Link>
-        <Link to="/admin" className="button--delete">
+        <div className="button--delete">
           <i className="fas fa-trash-alt"></i>
-        </Link>
+        </div>
       </TableCol>
     </tr>
   );

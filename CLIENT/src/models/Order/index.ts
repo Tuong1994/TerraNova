@@ -1,4 +1,5 @@
-import { ICarts } from "../Carts";
+import { IAccessories } from './../Product/index';
+import { ICarts, IProductCarts } from "../Carts";
 import { IShipment } from "../Shipment";
 
 export enum EPaymentTypes {
@@ -25,6 +26,6 @@ export interface IOrder {
     shipmentType?: number,
     shipmentFee?: number,
     shipmentDetail: IShipment;
-    products?: ICarts[],
+    products?: IProductCarts[],
     userId?: string;
 }

@@ -3,21 +3,11 @@ import { ECartsActionTypes } from "../actionTypes/CartsActionTypes";
 import { CartsAction } from "../actions/CartsAction";
 
 interface IStateDefault {
-  carts: {
-    totalCarts?: number;
-    page?: number;
-    limits?: number;
-    cartsList?: ICarts[];
-  };
+  carts: ICarts[];
 }
 
 const stateDefault: IStateDefault = {
-  carts: {
-    totalCarts: 0,
-    page: 0,
-    limits: 0,
-    cartsList: [],
-  }
+  carts: [],
 };
 
 export const CartsReducer = (state = stateDefault, action: CartsAction) => {

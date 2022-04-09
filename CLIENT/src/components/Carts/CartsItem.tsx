@@ -1,11 +1,11 @@
 import React from "react";
 import { ELangs, ILangs } from "../../interfaces/lang";
-import { ICarts } from "../../models/Carts";
+import { IProductCarts } from "../../models/Carts";
 interface CartsItemProps {
-  item: ICarts;
+  item: IProductCarts;
   lang: string;
   langs: ILangs;
-  removeCarts: (i: ICarts) => void;
+  removeCarts: (i: IProductCarts) => void;
 }
 
 const CartsItem: React.FunctionComponent<CartsItemProps> = (props) => {

@@ -1,21 +1,27 @@
 import React from "react";
 import * as Card from "../../../../components/Card";
+import * as FormControl from "../../../../components/Fields";
+import { useSelector } from "react-redux";
 import { ILangs } from "../../../../interfaces/lang";
-import { ICarts } from "../../../../models/Carts";
+import { IProductCarts } from "../../../../models/Carts";
+import { ReducerState } from "../../../../redux/store";
+import utils from "../../../../utils";
 
 interface SummaryProps {
   langs: ILangs;
-  carts: ICarts[];
+  carts?: IProductCarts[];
   shipmentFee: number;
   price: number;
   total: number;
   vat: number;
   totalPay: number;
+  paymentType: number;
   setShipmentFee: React.Dispatch<React.SetStateAction<number>>;
   setPrice: React.Dispatch<React.SetStateAction<number>>;
   setTotal: React.Dispatch<React.SetStateAction<number>>;
   setVat: React.Dispatch<React.SetStateAction<number>>;
   setTotalPay: React.Dispatch<React.SetStateAction<number>>;
+  setPaymentType: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Summary: React.FunctionComponent<SummaryProps> = (props) => {
@@ -27,11 +33,17 @@ const Summary: React.FunctionComponent<SummaryProps> = (props) => {
     total,
     vat,
     totalPay,
+    paymentType,
     setPrice,
     setTotal,
     setVat,
     setTotalPay,
+    setPaymentType,
   } = props;
+
+  const { lang } = useSelector((state: ReducerState) => state.LangReducer);
+
+  const options = utils.getOptionByLang(lang);
 
   React.useEffect(() => {
     let sum = 0;
@@ -46,10 +58,10 @@ const Summary: React.FunctionComponent<SummaryProps> = (props) => {
   }, [carts]);
 
   React.useEffect(() => {
-    if(shipmentFee !== 0) {
+    if (shipmentFee !== 0) {
       setTotal(price + shipmentFee);
     } else {
-      setTotal(price)
+      setTotal(price);
     }
   }, [price, shipmentFee]);
 
@@ -105,6 +117,21 @@ const Summary: React.FunctionComponent<SummaryProps> = (props) => {
           </li>
         </ul>
       </Card.Body>
+      <Card.Footer className="summary__footer">
+        <FormControl.SelectCustom
+          label={langs?.productCarts.paymentType}
+          placeholder={langs?.productCarts.paymentType}
+          groupClassName="footer__select"
+          labelClassName="footer__label"
+          id="value"
+          name="label"
+          option={options?.paymentType}
+          value={options?.paymentType.find((i) => i.value === paymentType)}
+          onChange={(value) => {
+            setPaymentType(value);
+          }}
+        />
+      </Card.Footer>
     </Card.Wrapper>
   );
 };

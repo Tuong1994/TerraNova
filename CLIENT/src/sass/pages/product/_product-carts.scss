@@ -140,6 +140,7 @@
           }
         }
         .summary__body {
+          border-bottom: 1px solid $borderGrey;
           .body__list {
             margin-left: $m-10 * 2;
             padding: $p-10;
@@ -161,6 +162,7 @@
               }
             }
             @include respond(phone) {
+              font-size: $body-2;
               margin-left: $m-10;
               padding: $p-5;
             }
@@ -173,6 +175,15 @@
           }
           @include respond(phone) {
             font-size: $body-1;
+          }
+        }
+        .summary__footer {
+          padding: $p-10 0;
+          .footer__select {
+            margin: $m-10 0;
+          }
+          .footer__label {
+            font-weight: $semiBold;
           }
         }
         @include respond(tablet) {
@@ -206,6 +217,9 @@
           margin-bottom: $m-10 * 2;
           font-size: $subtitle;
           font-weight: $semiBold;
+          @include respond(phone) {
+            font-size: $default;
+          }
         }
         .group__wrapper {
           margin: $m-10 0;
@@ -224,6 +238,20 @@
         .group__icon {
           color: $tSecondary;
         }
+        .group__select {
+          background: $secondary;
+          color: $tSecondary;
+        }
+        .group__options {
+          background: $secondary;
+          color: $tSecondary;
+          .options__item {
+            &:hover {
+              background: $primary;
+              color: $tPrimary;
+            }
+          }
+        }
       }
       .body__line {
         width: $w-100;
@@ -237,13 +265,15 @@
       align-items: center;
       justify-content: space-between;
       .footer__note {
-        width: $w-100 - 15;
+        width: $w-100 - 30;
         margin-left: $m-10 * 2;
         line-height: $h-10 * 2;
         font-size: $body-1;
         font-style: italic;
         color: $tSecondary;
         @include respond(phone) {
+          font-size: $body-2;
+          width: $w-100;
           margin: $m-10 0;
         }
       }

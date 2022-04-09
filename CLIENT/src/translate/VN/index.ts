@@ -174,6 +174,7 @@ const VnLang = {
   },
   carts: {
     slots: "sl",
+    total: "Tổng cộng",
   },
   toastMessages: {
     success: {
@@ -225,13 +226,14 @@ const VnLang = {
     haveAcc: "Bạn đã có tài khoản?",
     search: "Tìm kiếm",
     note: "Ghi chú",
-    ward: "Phường",
+    ward: "Phường/Huyện",
     district: "Quận",
     province: "Tỉnh/Thành phố",
-    selectWard: "Chọn phường",
+    selectWard: "Chọn phường/huyện",
     selectDistrict: "Chọn quận",
     selectProvince: "Chọn tỉnh/thành phố",
     noOption: "Không có dữ liệu",
+    defaultOption: "Chọn...",
   },
   tableHeader: {
     number: "STT",
