@@ -34,7 +34,6 @@ const Summary: React.FunctionComponent<SummaryProps> = (props) => {
     vat,
     totalPay,
     paymentType,
-    setPrice,
     setTotal,
     setVat,
     setTotalPay,
@@ -45,17 +44,17 @@ const Summary: React.FunctionComponent<SummaryProps> = (props) => {
 
   const options = utils.getOptionByLang(lang);
 
-  React.useEffect(() => {
-    let sum = 0;
-    if (carts && carts?.length > 0) {
-      if (carts && carts.length > 0) {
-        for (let i = 0; i < carts.length; i++) {
-          sum += (carts[i].price || 0) * (carts[i].amount || 0);
-        }
-      }
-    }
-    setPrice(sum);
-  }, [carts]);
+  // React.useEffect(() => {
+  //   let sum = 0;
+  //   if (carts && carts?.length > 0) {
+  //     if (carts && carts.length > 0) {
+  //       for (let i = 0; i < carts.length; i++) {
+  //         sum += (carts[i].price || 0) * (carts[i].amount || 0);
+  //       }
+  //     }
+  //   }
+  //   setPrice(sum);
+  // }, [carts]);
 
   React.useEffect(() => {
     if (shipmentFee !== 0) {

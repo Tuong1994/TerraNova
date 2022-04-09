@@ -47,7 +47,7 @@ const CartsPayment: React.FunctionComponent<CartsPaymentProps> = (props) => {
   } = props;
 
   return (
-    <div className="card__payment">
+    <div className="product-carts__payment">
       <div className="payment__info">
         {(() => {
           if (utils.checkObjectEmpty(shipment)) {

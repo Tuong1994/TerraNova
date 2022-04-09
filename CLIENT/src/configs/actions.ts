@@ -14,9 +14,6 @@ const actions = {
   closeDataLoading: {
     type: ELoadingActionTypes.CLOSE_DATA_LOADING,
   },
-  closeModal: {
-    type: EModalActionTypes.CLOSE_MODAL,
-  },
 };
 
 export default actions;

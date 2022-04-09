@@ -5,23 +5,37 @@ import { EModalActionTypes } from "../../redux/actionTypes/ModalActionTypes";
 
 interface IModalContainerProps {
   isShowing: boolean;
+  onHide(): void;
   className?: string;
 }
 
 const ModalContainer: React.FunctionComponent<IModalContainerProps> = (
   props
 ) => {
-  const { isShowing, className } = props;
-  const modalRef = React.useRef<any>(null);
+  const { isShowing, className, onHide } = props;
+
+  const [shouldRender, setShouldRender] = React.useState<boolean>(false);
+
   const dispatch = useDispatch();
+
   customHook.useOverFlow(isShowing);
+
+  const modalRef = React.useRef<any>(null);
+
+  React.useEffect(() => {
+    let timeOutId: any;
+    if (isShowing && !shouldRender) {
+      setShouldRender(true);
+    } else if (!isShowing && shouldRender) {
+      timeOutId = setTimeout(() => setShouldRender(false), 400);
+    }
+    return () => clearTimeout(timeOutId);
+  });
 
   React.useEffect(() => {
     const handleClickOutSide = (e: any) => {
       if (modalRef.current && !modalRef.current.contains(e.target)) {
-        dispatch({
-          type: EModalActionTypes.CLOSE_MODAL,
-        });
+        onHide();
       }
     };
     window.addEventListener("mousedown", handleClickOutSide);
@@ -31,26 +45,30 @@ const ModalContainer: React.FunctionComponent<IModalContainerProps> = (
   });
 
   return (
-    <div
-      className={
-        isShowing
-          ? `modal-container modal-container--active`
-          : "modal-container"
-      }
-    >
-      <div
-        className={
-          isShowing
-            ? `modal-container__inner modal-container__inner--active ${
-                className ? className : ""
-              }`
-            : "modal-container__inner"
-        }
-        ref={modalRef}
-      >
-        {props.children}
-      </div>
-    </div>
+    <React.Fragment>
+      {shouldRender ? (
+        <div
+          className={
+            isShowing
+              ? `modal-container modal-container--active`
+              : "modal-container"
+          }
+        >
+          <div
+            className={
+              isShowing
+                ? `modal-container__inner modal-container__inner--active ${
+                    className ? className : ""
+                  }`
+                : "modal-container__inner"
+            }
+            ref={modalRef}
+          >
+            {props.children}
+          </div>
+        </div>
+      ) : null}
+    </React.Fragment>
   );
 };
 

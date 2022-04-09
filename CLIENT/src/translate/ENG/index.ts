@@ -138,6 +138,9 @@ const EngLang = {
     receivedType: "Please choose recevied type",
     modal: {
       shipmentTitle: "Shipment infomation",
+      paymentTitle: "Payment infomation",
+      product: "Product information",
+      shipment: "Shipment infomation",
       receiver: "Receiver",
       address: "Delivery address",
       note: "Note: Please provide accurate information to avoid problems and make distribution more convenient",
@@ -245,6 +248,7 @@ const EngLang = {
     price: "Price",
     features: "Features",
     description: "Description",
+    total: "Total",
   },
   pagination: {
     showing: "Showing",

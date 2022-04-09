@@ -137,6 +137,9 @@ const VnLang = {
     receivedType: "Chọn hình thức nhận hàng",
     modal: {
       shipmentTitle: "Thông tin vận chuyển",
+      paymentTitle: "Thông tin thanh toán",
+      product: "Thông tin sản phẩm",
+      shipment: "Thông tin giao hàng",
       receiver: "Người nhận",
       address: "Địa chỉ giao hàng",
       note: "Chú ý: Vui lòng cung cấp thông tin chính xác tránh các vấn đề phát sinh và để việc vận chuyển thuận tiện hơn",
@@ -241,9 +244,10 @@ const VnLang = {
     name: "Họ Tên",
     productName: "Tên sản phẩm",
     amount: "Số lượng",
-    price: "Giá",
+    price: "Đơn giá",
     features: "Chức năng",
     description: "Mô tả",
+    total: "Tổng cộng",
   },
   pagination: {
     showing: "Hiển thị",

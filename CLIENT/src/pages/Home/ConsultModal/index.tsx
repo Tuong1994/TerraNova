@@ -1,13 +1,14 @@
 import React from "react";
 import * as Modal from "../../../components/Modal";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
+import { EModalActionTypes } from "../../../redux/actionTypes/ModalActionTypes";
 import utils from "../../../utils";
 
 interface ConsultModalProps {}
 
 const ConsultModal: React.FunctionComponent<ConsultModalProps> = (props) => {
-  const { isShowing } = useSelector(
+  const { isConsult } = useSelector(
     (state: ReducerState) => state.ModalReducer
   );
   const { consultationDetail } = useSelector(
@@ -15,11 +16,22 @@ const ConsultModal: React.FunctionComponent<ConsultModalProps> = (props) => {
   );
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
+  const dispatch = useDispatch();
+
   const langs = utils.changeLang(lang);
 
+  const handleCloseModal = () => {
+    dispatch({
+      type: EModalActionTypes.CLOSE_CONSULT_MODAL,
+    });
+  };
+
   return (
-    <Modal.Wrapper isShowing={isShowing}>
-      <Modal.Header title={langs?.home.consultation.modal.title} />
+    <Modal.Wrapper isShowing={isConsult} onHide={handleCloseModal}>
+      <Modal.Header
+        title={langs?.home.consultation.modal.title}
+        onHide={handleCloseModal}
+      />
       <Modal.Body>
         <div className="body__content">
           <span className="content">

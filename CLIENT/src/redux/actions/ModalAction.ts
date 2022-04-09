@@ -1,15 +1,32 @@
 import { EModalActionTypes } from "../actionTypes/ModalActionTypes";
 
 interface OPEN_CONSULT_MODAL {
-    type: EModalActionTypes.OPEN_CONSULT_MODAL,
+  type: EModalActionTypes.OPEN_CONSULT_MODAL;
 }
 
 interface OPEN_SHIPMENT_MODAL {
-    type: EModalActionTypes.OPEN_SHIPMENT_MODAL,
+  type: EModalActionTypes.OPEN_SHIPMENT_MODAL;
 }
-interface CLOSE_MODAL {
-    type: EModalActionTypes.CLOSE_MODAL,
+interface OPEN_PAYMENT_MODAL {
+  type: EModalActionTypes.OPEN_PAYMENT_MODAL;
 }
 
+interface CLOSE_CONSULT_MODAL {
+  type: EModalActionTypes.CLOSE_CONSULT_MODAL;
+}
 
-export type ModalAction = OPEN_CONSULT_MODAL | OPEN_SHIPMENT_MODAL | CLOSE_MODAL
+interface CLOSE_SHIPMENT_MODAL {
+  type: EModalActionTypes.CLOSE_SHIPMENT_MODAL;
+}
+
+interface CLOSE_PAYMENT_MODAL {
+  type: EModalActionTypes.CLOSE_PAYMENT_MODAL;
+}
+
+export type ModalAction =
+  | OPEN_CONSULT_MODAL
+  | OPEN_SHIPMENT_MODAL
+  | OPEN_PAYMENT_MODAL
+  | CLOSE_CONSULT_MODAL
+  | CLOSE_SHIPMENT_MODAL
+  | CLOSE_PAYMENT_MODAL;

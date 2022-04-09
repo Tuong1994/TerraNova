@@ -52,7 +52,11 @@ const utils = {
       district === EDistrict.eleven
     ) {
       return 30000;
-    } else if (district === EDistrict.two || district === EDistrict.four) {
+    } else if (
+      district === EDistrict.two ||
+      district === EDistrict.four ||
+      district === EDistrict.twelve
+    ) {
       return 50000;
     } else if (
       district === EDistrict.seven ||

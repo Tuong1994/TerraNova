@@ -5,12 +5,11 @@ import { Link } from "react-router-dom";
 import { ReducerState } from "../../redux/store";
 import {
   getCartsList,
-  removeCarts,
   updateCarts,
 } from "../../redux/actionCreators/CartsCreators";
 import { IQueryList } from "../../interfaces/query";
 import { ICarts, IProductCarts } from "../../models/Carts";
-import CartsItem from "./CartsItem";
+import CartsItem from "../CartsItem";
 import utils from "../../utils";
 
 interface ICartsProps {
@@ -100,8 +99,7 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
                         <CartsItem
                           key={index}
                           item={product}
-                          lang={lang}
-                          langs={langs}
+                          isButton={true}
                           removeCarts={handleRemoveItem}
                         />
                       );

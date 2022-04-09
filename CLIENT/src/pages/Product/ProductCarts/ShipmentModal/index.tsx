@@ -8,27 +8,31 @@ import { ReducerState } from "../../../../redux/store";
 import { EProvince, IShipment } from "../../../../models/Shipment";
 import { EShipmentActionTypes } from "../../../../redux/actionTypes/ShipmentActionTypes";
 import { phoneRegex } from "../../../../configs/regex";
+import { ILangs } from "../../../../interfaces/lang";
+import { EModalActionTypes } from "../../../../redux/actionTypes/ModalActionTypes";
 import ButtonLoading from "../../../../components/Loading/ButtonLoading";
 import Button from "../../../../components/Button";
 import actions from "../../../../configs/actions";
 import utils from "../../../../utils";
 
-interface ShipmentModalProps {}
+interface ShipmentModalProps {
+  lang: string;
+  langs: ILangs;
+}
 
 const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
-  const { isShowing } = useSelector(
+  const { lang, langs } = props;
+
+  const { isShipment } = useSelector(
     (state: ReducerState) => state.ModalReducer
   );
   const { buttonLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
   );
-  const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
   const [provinceType, setProvinceType] = React.useState<number>(0);
 
   const dispatch = useDispatch();
-
-  const langs = utils.changeLang(lang);
 
   const options = utils.getOptionByLang(lang);
 
@@ -38,6 +42,12 @@ const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
     } else if (provinceType === EProvince.HN) {
       return options?.HN;
     }
+  };
+
+  const handleCloseModal = () => {
+    dispatch({
+      type: EModalActionTypes.CLOSE_SHIPMENT_MODAL,
+    });
   };
 
   const initialValues = {
@@ -79,14 +89,17 @@ const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
         },
       });
       dispatch(actions.closeButtonLoading);
-      dispatch(actions.closeModal);
+      dispatch({
+        type: EModalActionTypes.CLOSE_SHIPMENT_MODAL,
+      });
     }, 1000);
   };
 
   return (
     <Modal.Wrapper
-      isShowing={isShowing}
+      isShowing={isShipment}
       className="product-carts__shipment-modal"
+      onHide={handleCloseModal}
     >
       <Formik
         initialValues={initialValues}
@@ -100,6 +113,7 @@ const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
               <Modal.Header
                 titleClassName="shipment-modal__header"
                 title={langs?.productCarts.modal.shipmentTitle}
+                onHide={handleCloseModal}
               />
               <Modal.Body className="shipment-modal__body">
                 <div className="body__group">

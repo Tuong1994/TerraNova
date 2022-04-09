@@ -38,6 +38,7 @@
     opacity: 1;
     visibility: visible;
     transform: translateX(0);
+    animation: sideIn 0.3s linear 1;
   }
 }
 
@@ -93,5 +94,16 @@
   @include respond(phone) {
     padding: $p-10;
     font-size: $body-2;
+  }
+}
+
+@keyframes sideIn {
+  from {
+    opacity: 0;
+    transform: translateX(70%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }

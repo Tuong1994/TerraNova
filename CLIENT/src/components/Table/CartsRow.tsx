@@ -64,9 +64,12 @@ const CartsRow: React.FunctionComponent<ICartsRowProps> = (props) => {
         </div>
       </TableCol>
       <TableCol>
+            <div>{item.price && item.price.toLocaleString()} VND</div>
+      </TableCol>
+      <TableCol>
         {(() => {
           if (amount && item.price) {
-            return <div>{(item.price * amount).toLocaleString()} VND</div>;
+            return <div>{(item.price * amount).toLocaleString()} VND</div>
           }
         })()}
       </TableCol>
