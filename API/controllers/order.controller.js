@@ -3,17 +3,7 @@ const { Order } = require("../models");
 const getOrderList = async (req, res) => {
   try {
     const orderList = await Order.findAll({
-      attributes: [
-        ["id", "orderId"],
-        "note",
-        "totalPay",
-        "paymentType",
-        "shipmentType",
-        "shipmentFee",
-        "shipmentDetail",
-        "status",
-        "products",
-      ],
+      order: [["updatedAt", "DESC"]],
     });
     res.status(200).send(orderList);
   } catch (error) {
@@ -38,6 +28,7 @@ const getOrderDetail = async (req, res) => {
         "shipmentDetail",
         "status",
         "products",
+        "userId",
       ],
     });
     if (orderDetail) {
@@ -56,7 +47,7 @@ const createOrder = async (req, res) => {
     totalPay,
     paymentType,
     shipmentType,
-    shipmentFree,
+    shipmentFee,
     status,
     products,
     shipmentDetail,
@@ -71,7 +62,7 @@ const createOrder = async (req, res) => {
       status,
       paymentType,
       shipmentType,
-      shipmentFree,
+      shipmentFee,
       shipmentDetail,
       products,
       userId,
@@ -88,7 +79,7 @@ const updateOrder = async (req, res) => {
     note,
     totalPay,
     shipmentType,
-    shipmentFree,
+    shipmentFee,
     status,
     products,
     shipmentDetail,
@@ -101,7 +92,7 @@ const updateOrder = async (req, res) => {
         totalPay,
         status,
         shipmentType,
-        shipmentFree,
+        shipmentFee,
         shipmentDetail,
         products,
         userId,

@@ -1,8 +1,5 @@
 import React from "react";
 import * as customHook from "../../hooks/index";
-import { useDispatch } from "react-redux";
-import { EModalActionTypes } from "../../redux/actionTypes/ModalActionTypes";
-
 interface IModalContainerProps {
   isShowing: boolean;
   onHide(): void;
@@ -15,8 +12,6 @@ const ModalContainer: React.FunctionComponent<IModalContainerProps> = (
   const { isShowing, className, onHide } = props;
 
   const [shouldRender, setShouldRender] = React.useState<boolean>(false);
-
-  const dispatch = useDispatch();
 
   customHook.useOverFlow(isShowing);
 

@@ -34,6 +34,7 @@ const Summary: React.FunctionComponent<SummaryProps> = (props) => {
     vat,
     totalPay,
     paymentType,
+    setPrice,
     setTotal,
     setVat,
     setTotalPay,
@@ -118,8 +119,8 @@ const Summary: React.FunctionComponent<SummaryProps> = (props) => {
       </Card.Body>
       <Card.Footer className="summary__footer">
         <FormControl.SelectCustom
-          label={langs?.productCarts.paymentType}
-          placeholder={langs?.productCarts.paymentType}
+          label={langs?.productCarts.choosePaymentType}
+          placeholder={langs?.productCarts.choosePaymentType}
           groupClassName="footer__select"
           labelClassName="footer__label"
           id="value"

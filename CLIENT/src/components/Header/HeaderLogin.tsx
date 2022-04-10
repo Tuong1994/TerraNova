@@ -10,7 +10,7 @@ import Carts from "../Carts";
 import ButtonLoading from "../Loading/ButtonLoading";
 
 const HeaderLogin: React.FunctionComponent<{}> = (props) => {
-  const { account } = useSelector((state: ReducerState) => state.UserReducer);
+  const { user } = useSelector((state: ReducerState) => state.UserReducer);
   const { buttonLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
   );
@@ -38,7 +38,7 @@ const HeaderLogin: React.FunctionComponent<{}> = (props) => {
   };
 
   const renderLoginInfo = () => {
-    if (utils.checkObjectEmpty(account)) {
+    if (utils.checkObjectEmpty(user)) {
       return (
         <div className="login__user" ref={menuSettingRef}>
           <Link
@@ -54,7 +54,7 @@ const HeaderLogin: React.FunctionComponent<{}> = (props) => {
               alt="avatar"
             />
             <span>
-              {account?.firstName} {account?.lastName}
+              {user?.firstName} {user?.lastName}
             </span>
           </Link>
           
@@ -66,7 +66,7 @@ const HeaderLogin: React.FunctionComponent<{}> = (props) => {
             }
             ref={menuSettingRef}
           >
-            <Link to="/" className="setting__link">
+            <Link to="/user" className="setting__link">
               {langs?.headerMenu.accountSetting}
             </Link>
             <div

@@ -3,7 +3,7 @@ import axiosClient from "../../axios";
 import { Dispatch } from "redux";
 import { toast } from "react-toastify";
 import { ECartsActionTypes } from "../actionTypes/CartsActionTypes";
-import { ICarts, IProductCarts } from "../../models/Carts";
+import { ICarts } from "../../models/Carts";
 import { IQueryList } from "../../interfaces/query";
 import { getListQuery } from "../../configs/setting";
 import actions from "../../configs/actions";
@@ -67,8 +67,6 @@ export const updateCarts = (
 
 export const removeCarts = (
   query: IQueryList,
-  success?: string,
-  err?: string
 ) => {
   return (dispatch: Dispatch | any) => {
     dispatch(actions.openButtonLoading);
@@ -80,10 +78,8 @@ export const removeCarts = (
         );
         dispatch(getCartsList());
         dispatch(actions.closeButtonLoading);
-        toast.success(success);
       } catch (error) {
         dispatch(actions.closeButtonLoading);
-        toast.error(err);
       }
     }, 1000);
   };

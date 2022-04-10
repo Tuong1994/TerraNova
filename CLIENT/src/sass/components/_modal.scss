@@ -10,7 +10,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999;
+  z-index: 99999;
 
   opacity: 0;
   visibility: hidden;
@@ -77,12 +77,12 @@
     font-size: $body-2;
   }
   @include respond(tablet) {
-    height: $h-10 * 20;
+    height: $h-10 * 23;
     padding: $p-10;
     font-size: $body-2;
   }
-  @include respond(smallPhone) {
-    height: $h-10 * 15;
+  @include respond(phone) {
+    height: $h-10 * 20;
     padding: $p-10;
     font-size: $body-2;
   }

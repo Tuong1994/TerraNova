@@ -1,0 +1,54 @@
+.user-template__sidebar {
+  width: $w-100 - 80;
+  height: $h-100-vh;
+  background: $secondary;
+  .sidebar__avatar {
+    padding: $p-10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .avatar__img {
+      width: $w-10 * 15;
+      height: $h-10 * 15;
+      object-fit: cover;
+      object-position: center;
+      border-radius: $circle;
+    }
+    .avatar__info {
+      padding: $p-10 * 2 $p-10;
+      font-size: $subtitle;
+      font-weight: $semiBold;
+      color: $tSecondary;
+    }
+    .avatar__line {
+      width: $w-100;
+      height: 2px;
+      background: $primary;
+    }
+  }
+  .sidebar__menu {
+    margin-top: $m-10 * 2;
+    height: $h-100-vh;
+    overflow: auto;
+    .menu__link {
+      width: $w-100;
+      margin-left: $m-10;
+      padding: $p-10 * 2;
+      text-decoration: none;
+      color: $tSecondary;
+      display: block;
+      border-top-left-radius: $round;
+      border-bottom-left-radius: $round;
+      transition: all 0.5s ease;
+      &:hover {
+        background: $primary;
+        color: $tPrimary;
+      }
+    }
+    .menu__link--active {
+      background: $primary;
+      color: $tPrimary;
+    }
+  }
+}

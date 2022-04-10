@@ -5,10 +5,10 @@ import { IUser } from "../../models/User";
 
 interface IUserStateDefault {
   consultationDetail: IUser;
-  account?: IUser | null;
+  user?: IUser | null;
 }
 
-let userAccount: any = {};
+let userAccount: IUser = {};
 if (localStorage.getItem(ACCOUNT)) {
   let userInfo = localStorage.getItem(ACCOUNT);
   userAccount = JSON.parse(userInfo || "");
@@ -16,21 +16,21 @@ if (localStorage.getItem(ACCOUNT)) {
 
 const stateDefault: IUserStateDefault = {
   consultationDetail: {},
-  account: userAccount,
+  user: userAccount,
 };
 
 export const UserReducer = (state = stateDefault, action: UserAction) => {
   switch (action.type) {
     case EUserActionTypes.SIGN_IN: {
       let newState = { ...state };
-      newState.account = action.payload;
+      newState.user = action.payload;
       state = newState;
       return { ...state };
     }
     case EUserActionTypes.LOG_OUT: {
       localStorage.removeItem(ACCESSTOKEN);
       localStorage.removeItem(ACCOUNT);
-      state.account = null;
+      state.user = null;
       return { ...state };
     }
     case EUserActionTypes.CONSULTATION: {

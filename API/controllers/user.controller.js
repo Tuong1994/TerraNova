@@ -4,6 +4,7 @@ const { User, Order } = require("../models");
 const getUserList = async (req, res) => {
   try {
     const userList = await User.findAll({
+      order: [["updatedAt", "DESC"]],
       attributes: [
         ["id", "userId"],
         "account",
@@ -42,6 +43,12 @@ const getUserDetail = async (req, res) => {
         "gender",
         "role",
       ],
+      include: [
+        {
+          model: Order,
+          as: "orders"
+        }
+      ]
     });
     res.status(200).send(userDetail);
   } catch (error) {

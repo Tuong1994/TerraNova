@@ -4,6 +4,7 @@ import * as content from "../../../../configs/shipment";
 import { useSelector } from "react-redux";
 import { IShipment } from "../../../../models/Shipment";
 import { ReducerState } from "../../../../redux/store";
+import { ELangs } from "../../../../interfaces/lang";
 import utils from "../../../../utils";
 
 interface ShipmentProps {
@@ -18,25 +19,25 @@ const Shipment: React.FunctionComponent<ShipmentProps> = (props) => {
   const langs = utils.changeLang(lang);
 
   const renderWard = () => {
-    if (lang === "ENG") {
+    if (lang === ELangs.ENG) {
       return content.renderWardEng(parseInt(shipment?.ward || ""));
-    } else if (lang === "VN") {
+    } else if (lang === ELangs.VN) {
       return content.renderWardVn(parseInt(shipment?.ward || ""));
     }
   };
 
   const renderDistrict = () => {
-    if (lang === "ENG") {
+    if (lang === ELangs.ENG) {
       return content.renderDistrictEng(parseInt(shipment?.district || ""));
-    } else if (lang === "VN") {
+    } else if (lang === ELangs.VN) {
       return content.renderDistrictVn(parseInt(shipment?.district || ""));
     }
   };
 
   const renderProvince = () => {
-    if (lang === "ENG") {
+    if (lang === ELangs.ENG) {
       return content.renderProvinceEng(parseInt(shipment?.province || ""));
-    } else if (lang === "VN") {
+    } else if (lang === ELangs.VN) {
       return content.renderProvinceVn(parseInt(shipment?.province || ""));
     }
   }

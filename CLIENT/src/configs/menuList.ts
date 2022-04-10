@@ -33,6 +33,24 @@ export const adminMenu = [
   },
 ];
 
+export const userMenuEng = [
+  {
+    id: "user",
+    path: "/user",
+    name: "Overview",
+    icon: "",
+  },
+];
+
+export const userMenuVn = [
+  {
+    id: "user",
+    path: "/user",
+    name: "Tổng quan",
+    icon: "",
+  },
+];
+
 export const headerMenuEng = [
   {
     menuId: "M_0001",

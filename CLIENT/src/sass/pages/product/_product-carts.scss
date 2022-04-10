@@ -288,6 +288,9 @@
     .payment-modal__header {
       font-size: $subtitle;
       font-weight: $semiBold;
+      @include respond(phone) {
+        font-size: $default;
+      }
     }
     .payment-modal__body {
       .body__item {
@@ -295,9 +298,20 @@
         margin: $m-10 0;
         background: transparent;
         border-color: $borderGrey;
+        strong {
+          font-weight: $semiBold;
+        }
         .item__title {
           font-weight: $semiBold;
-          padding: $p-10 0;
+          padding: $p-10;
+          @include respond(laptop) {
+            font-size: $default;
+            padding: $p-10 $p-10 * 2;
+          }
+          @include respond(phone) {
+            font-size: $body-1;
+            padding: $p-10;
+          }
         }
         .item__group {
           justify-content: space-around;
@@ -307,10 +321,109 @@
           .group__img {
             width: $w-10 * 5;
             height: $h-10 * 5;
+            @include respond(phone) {
+              width: $w-10 * 4;
+              height: $h-10 * 4;
+            }
           }
           .group__content {
             font-size: $default;
+            @include respond(phone) {
+              font-size: $body-2;
+            }
           }
+          @include respond(phone) {
+            justify-content: space-between;
+          }
+        }
+        .item__content {
+          .content__title {
+            padding: $p-10;
+            font-weight: $semiBold;
+            @include respond(laptop) {
+              font-size: $default;
+              padding: $p-10 $p-10 * 2;
+            }
+            @include respond(phone) {
+              font-size: $body-1;
+              padding: $p-10;
+            }
+          }
+          .content__inner {
+            .inner__list {
+              padding: $p-10;
+              .list__item {
+                width: $w-100;
+                display: flex;
+                justify-content: space-between;
+                strong {
+                  font-weight: $semiBold;
+                }
+              }
+              @include respond(laptop) {
+                font-size: $body-1;
+                padding: $p-5 0;
+              }
+              @include respond(phone) {
+                font-size: $body-2;
+                padding: $p-5 0;
+              }
+            }
+            @include respond(laptop) {
+              font-size: $body-1;
+              padding: $p-10 $p-10 * 2;
+            }
+            @include respond(phone) {
+              font-size: $body-2;
+              padding: $p-10;
+            }
+          }
+        }
+        .item__list {
+          padding: $p-10;
+          .list__item {
+            width: $w-100;
+            padding: $p-5;
+            list-style-type: none;
+            .item__inner {
+              display: flex;
+              justify-content: space-between;
+              strong {
+                font-weight: $semiBold;
+              }
+            }
+          }
+          @include respond(laptop) {
+            font-size: $default;
+            padding: $p-5;
+          }
+          @include respond(phone) {
+            font-size: $body-1;
+            padding: $p-5;
+          }
+        }
+        .item__line {
+          width: $w-100;
+          height: 1px;
+          margin: $m-10 0;
+          background: $grey;
+        }
+        .item__payment-type {
+          width: $w-100;
+          padding: $p-10;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+    }
+    .payment-modal__footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      .button--submit {
+        @include respond(phone) {
+          font-size: $body-1;
         }
       }
     }

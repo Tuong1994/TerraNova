@@ -1,6 +1,6 @@
 import { IRoute } from "../interfaces/route";
 import Dashboard from "../pages/Admin/Dashboard";
-import Product from "../pages/Admin/Product/Product";
+import Product from "../pages/Admin/Product";
 import ProductCustom from "../pages/Admin/Product/ProductCustom";
 import Customer from "../pages/Admin/Customer";
 import Course from "../pages/Admin/Course";
@@ -12,6 +12,7 @@ import Contact from "../pages/Contact";
 import ProductList from "../pages/Product/ProductList";
 import ProductDetail from "../pages/Product/ProductDetail";
 import ProductCarts from "../pages/Product/ProductCarts";
+import OverView from "../pages/User/OverView";
 
 export const adminRoutes: IRoute[] = [
   {
@@ -60,6 +61,14 @@ export const adminRoutes: IRoute[] = [
     component: Course,
   },
 ];
+
+export const userRoutes: IRoute[] = [
+  {
+    path: "/user",
+    exact: true,
+    component: OverView,
+  },
+]
 
 export const homeRoutes: IRoute[] = [
   {

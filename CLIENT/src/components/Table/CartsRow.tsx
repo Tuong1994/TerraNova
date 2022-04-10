@@ -24,7 +24,6 @@ const CartsRow: React.FunctionComponent<ICartsRowProps> = (props) => {
     setProductUpdate({
       ...item,
       amount: amount,
-      price: (item.price || 0) * amount,
     });
   }, [amount]);
 

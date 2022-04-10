@@ -19,7 +19,7 @@ interface IRHeaderMenuProps {
 
 const RHeaderMenu: React.FunctionComponent<IRHeaderMenuProps> = (props) => {
   const { showMenu, setShowMenu } = props;
-  const { account } = useSelector((state: ReducerState) => state.UserReducer);
+  const { user } = useSelector((state: ReducerState) => state.UserReducer);
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
   const [menuList, setMenuList] = React.useState<any>([]);
@@ -89,12 +89,13 @@ const RHeaderMenu: React.FunctionComponent<IRHeaderMenuProps> = (props) => {
   };
 
   const renderUserLogin = () => {
-    if (utils.checkObjectEmpty(account)) {
+    if (utils.checkObjectEmpty(user)) {
       return (
         <LoggedIn
           menuRef={menuSettingRef}
-          account={account}
+          user={user}
           isShow={isShow}
+          langs={langs}
           handleLogout={handleLogout}
           setIsShow={setIsShow}
         />

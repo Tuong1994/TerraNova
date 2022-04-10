@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "../../pages/Admin/Sidebar/Sidebar";
+import Sidebar from "../../pages/Admin/Sidebar";
 import AdminTemplateHeader from "./AdminTemplateHeader";
 import RAdminTemplate from "../../responsive/RAdminTemplate/RAdminTemplate";
 import { IRoute } from "../../interfaces/route";

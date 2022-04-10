@@ -1,5 +1,4 @@
-import { IAccessories } from './../Product/index';
-import { ICarts, IProductCarts } from "../Carts";
+import { IProductCarts } from "../Carts";
 import { IShipment } from "../Shipment";
 
 export enum EPaymentTypes {
@@ -15,7 +14,6 @@ export enum EShipmentType {
 
 export enum EStatus {
     paid = 1,
-    
 }
 
 export interface IOrder {

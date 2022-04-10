@@ -6,9 +6,15 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
 import { ICarts, IProductCarts } from "../../../models/Carts";
-import { EPaymentTypes, EShipmentType, IOrder } from "../../../models/Order";
+import {
+  EPaymentTypes,
+  EShipmentType,
+  EStatus,
+  IOrder,
+} from "../../../models/Order";
 import {
   getCartsList,
+  removeCarts,
   updateCarts,
 } from "../../../redux/actionCreators/CartsCreators";
 import { EModalActionTypes } from "../../../redux/actionTypes/ModalActionTypes";
@@ -18,7 +24,6 @@ import { createOrder } from "../../../redux/actionCreators/OrderCreators";
 import Table from "../../../components/Table";
 import CartsRow from "../../../components/Table/CartsRow";
 import CartsPayment from "./CartsPayment";
-import Pagination from "../../../components/Pagination";
 import ShipmentModal from "./ShipmentModal";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";
 import utils from "../../../utils";
@@ -35,9 +40,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
   const { shipment } = useSelector(
     (state: ReducerState) => state.ShipmentReducer
   );
-  const { page } = useSelector(
-    (state: ReducerState) => state.PaginationReducer
-  );
+  const { user } = useSelector((state: ReducerState) => state.UserReducer);
 
   const [shipmentType, setShipmentType] = React.useState<number>(
     EShipmentType.noShipment
@@ -45,6 +48,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
   const [paymentType, setPaymentType] = React.useState<number>(
     EPaymentTypes.cash
   );
+  const [cartsDetail, setCartsDetail] = React.useState<ICarts[]>([]);
   const [shipmentFee, setShipmentFee] = React.useState<number>(0);
   const [price, setPrice] = React.useState<number>(0);
   const [total, setTotal] = React.useState<number>(0);
@@ -66,8 +70,14 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
   }, []);
 
   React.useEffect(() => {
+    if (carts && carts.length > 0) {
+      setCartsDetail(carts);
+    }
+  }, [carts]);
+
+  React.useEffect(() => {
     let sum = 0;
-    const products = carts[0]?.products;
+    const products = cartsDetail[0]?.products;
     if (products && products?.length > 0) {
       if (products && products.length > 0) {
         for (let i = 0; i < products.length; i++) {
@@ -76,31 +86,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
       }
     }
     setPrice(sum);
-  }, [carts]);
-
-  // React.useEffect(() => {
-  //   let sum = 0;
-  //   const products = carts[0]?.products;
-  //   const newProducts = products?.map((i) => {
-  //     if (i.productId === productUpdate.productId) {
-  //       return {
-  //         ...i,
-  //         price: productUpdate.price,
-  //         amount: productUpdate.amount,
-  //       };
-  //     } else {
-  //       return { ...i };
-  //     }
-  //   });
-  //   if (newProducts && newProducts?.length > 0) {
-  //     if (newProducts && newProducts.length > 0) {
-  //       for (let i = 0; i < newProducts.length; i++) {
-  //         sum += (newProducts[i].price || 0) * (newProducts[i].amount || 0);
-  //       }
-  //     }
-  //   }
-  //   console.log(newProducts)
-  // }, [productUpdate]);
+  }, [cartsDetail]);
 
   // Get Shipment Type
   React.useEffect(() => {
@@ -136,7 +122,6 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
         if (i.productId === productUpdate.productId) {
           return {
             ...i,
-            price: productUpdate.price,
             amount: productUpdate.amount,
           };
         } else {
@@ -184,27 +169,30 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
 
   // Payment
   const handlePayment = () => {
-    let newCarts: IOrder = {
+    const newOrder: IOrder = {
       note: note,
       paymentType: paymentType,
       totalPay: totalPay,
-      status: 1,
+      status: EStatus.paid,
       shipmentType: shipmentType,
       shipmentFee: shipmentFee,
       shipmentDetail: shipment,
       products: carts[0].products,
-      userId: "",
+      userId: user?.id,
     };
-    dispatch({
-      type: EModalActionTypes.OPEN_PAYMENT_MODAL,
-    });
-    // dispatch(
-    //   createOrder(
-    //     newCarts,
-    //     langs?.toastMessages.success.createOrder,
-    //     langs?.toastMessages.error.createOrder
-    //   )
-    // );
+    const query: IQueryList = {
+      cartsId: carts[0].cartsId,
+    };
+    dispatch(
+      createOrder(
+        newOrder,
+        langs?.toastMessages.success.createOrder,
+        langs?.toastMessages.error.createOrder
+      )
+    );
+    setTimeout(() => {
+      dispatch(removeCarts(query));
+    }, 500);
   };
 
   return (
@@ -322,7 +310,19 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
       <ShipmentModal lang={lang} langs={langs} />
 
       {/* Payment modal */}
-      <PaymentModal lang={lang} langs={langs} shipment={shipment} />
+      <PaymentModal
+        cartsDetail={cartsDetail}
+        lang={lang}
+        langs={langs}
+        shipment={shipment}
+        shipmentFee={shipmentFee}
+        price={price}
+        total={total}
+        vat={vat}
+        totalPay={totalPay}
+        paymentType={paymentType}
+        note={note}
+      />
     </div>
   );
 };

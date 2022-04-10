@@ -4,18 +4,20 @@ import { IUser } from "../../models/User";
 import Carts from "../../components/Carts";
 import { useSelector } from "react-redux";
 import { ReducerState } from "../../redux/store";
+import { ILangs } from "../../interfaces/lang";
 import ButtonLoading from "../../components/Loading/ButtonLoading";
 
 interface LoggedInProps {
   menuRef: any;
-  account?: IUser | null;
+  user?: IUser | null;
   isShow: boolean;
+  langs: ILangs;
   handleLogout(): void;
   setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const LoggedIn = (props: LoggedInProps, ref: any) => {
-  const { menuRef, account, isShow, setIsShow, handleLogout } = props;
+  const { menuRef, user, isShow, langs, setIsShow, handleLogout } = props;
 
   const { buttonLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
@@ -32,7 +34,7 @@ const LoggedIn = (props: LoggedInProps, ref: any) => {
       >
         <img className="info__avatar" src="../img/avatar.png" alt="avatar" />
         <span>
-          {account?.firstName} {account?.lastName}
+          {user?.firstName} {user?.lastName}
         </span>
       </Link>
       <Carts className="wrapper__carts" />
@@ -42,8 +44,8 @@ const LoggedIn = (props: LoggedInProps, ref: any) => {
         }
         ref={menuRef}
       >
-        <Link to="/" className="setting__link">
-          Account setting
+        <Link to="/user" className="setting__link">
+          {langs?.headerMenu.accountSetting}
         </Link>
         <div
           className={
