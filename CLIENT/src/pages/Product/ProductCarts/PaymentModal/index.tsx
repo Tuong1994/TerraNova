@@ -76,13 +76,13 @@ const PaymentModal: React.FunctionComponent<PaymentModalProps> = (props) => {
   const renderPaymentType = () => {
     switch (paymentType) {
       case EPaymentTypes.cash: {
-        return langs?.productCarts.cash;
+        return langs?.paymentType.cash;
       }
       case EPaymentTypes.zalo: {
-        return langs?.productCarts.zalo;
+        return langs?.paymentType.zalo;
       }
       case EPaymentTypes.vib: {
-        return langs?.productCarts.vib;
+        return langs?.paymentType.vib;
       }
     }
   };

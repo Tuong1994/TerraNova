@@ -6,7 +6,7 @@ interface IStateDefault {
 }
 
 const stateDefault: IStateDefault = {
-  menuId: "admin",
+  menuId: "",
 };
 
 export const SideBarReducer = (state = stateDefault, action: SideBarAction) => {

@@ -1,9 +1,11 @@
 .user-template__sidebar {
-  width: $w-100 - 80;
+  width: $w-100 - 75;
   height: $h-100-vh;
   background: $secondary;
+  position: sticky;
+  top: 50px;
   .sidebar__avatar {
-    padding: $p-10;
+    padding: $p-10 * 2 $p-10;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,11 +31,13 @@
   }
   .sidebar__menu {
     margin-top: $m-10 * 2;
-    height: $h-100-vh;
-    overflow: auto;
+    height: $h-100-vh - 45;
+    overflow-x: hidden;
+    overflow-y: auto;
     .menu__link {
       width: $w-100;
-      margin-left: $m-10;
+      margin-left: $m-10 * 2;
+      margin-bottom: $m-10;
       padding: $p-10 * 2;
       text-decoration: none;
       color: $tSecondary;
@@ -50,5 +54,8 @@
       background: $primary;
       color: $tPrimary;
     }
+  }
+  @include respond(extraTablet) {
+    display: none;
   }
 }

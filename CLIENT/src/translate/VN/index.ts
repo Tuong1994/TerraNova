@@ -45,8 +45,8 @@ const VnLang = {
         name: "Họ tên",
         email: "Email",
         phone: "Điện thoại",
-        note: "Cảm ơn bạn đã quan tâm, chúng tôi đã nhận được thông tin của bạn, chúng tôi sẽ liên lạc với bạn sớm nhất. Trong lúc đó, hãy tiếp tục ghé thăm website của chúng tôi để biết thêm thông tin."
-      }
+        note: "Cảm ơn bạn đã quan tâm, chúng tôi đã nhận được thông tin của bạn, chúng tôi sẽ liên lạc với bạn sớm nhất. Trong lúc đó, hãy tiếp tục ghé thăm website của chúng tôi để biết thêm thông tin.",
+      },
     },
     categories: {
       title_1: "Sản phẩm",
@@ -126,16 +126,11 @@ const VnLang = {
     paymentType: "Hình thức thanh toán",
     payment: "Thanh toán",
     note: "Ghi chú",
-    cash: "Tiền mặt",
-    zalo: "Ứng dụng Zalo - pay",
-    vib: "Ngân hàng quốc tế VIB",
     price: "Giá",
     shipment: "Phí giao hàng",
     total: "Tổng cộng",
     vat: "Thuế VAT 10%",
     totalPay: "Thành tiền",
-    noShipment: "Nhận tại cửa hàng",
-    delivery: "Giao hàng tận nơi",
     receivedType: "Chọn hình thức nhận hàng",
     modal: {
       shipmentTitle: "Thông tin vận chuyển",
@@ -146,6 +141,13 @@ const VnLang = {
       address: "Địa chỉ giao hàng",
       note: "Chú ý: Vui lòng cung cấp thông tin chính xác tránh các vấn đề phát sinh và để việc vận chuyển thuận tiện hơn",
     },
+  },
+  user: {
+    hello: "Xin chào",
+    overviewTitle: "Tổng quan",
+    accountInfo: "Thông tin tài khoản",
+    personalInfo: "Thông tin cá nhân",
+    orderTitle: "Danh sách đơn hàng",
   },
   time: {
     day: "ngày",
@@ -163,6 +165,16 @@ const VnLang = {
   },
   status: {
     new: "Mới 100%",
+    paid: "Đã thanh toán",
+  },
+  paymentType: {
+    cash: "Tiền mặt",
+    zalo: "Ứng dụng Zalo - pay",
+    vib: "Ngân hàng quốc tế VIB",
+  },
+  shipmentType: {
+    noShipment: "Nhận tại cửa hàng",
+    delivery: "Giao hàng tận nơi",
   },
   button: {
     submit: "Gửi",
@@ -177,6 +189,7 @@ const VnLang = {
   noData: {
     data: "Không tìm thấy dữ liệu",
     product: "Chưa có sản phẩm",
+    order: "Chưa có đơn hàng",
   },
   carts: {
     slots: "sl",
@@ -198,7 +211,7 @@ const VnLang = {
       createOrder: "Thanh toán thất bại",
       signIn: "Tài khoản hoặc mật khẩu không đúng",
       signUp: "Đăng ký thất bại",
-      onlyNumber: "Chỉ có thể nhập số"
+      onlyNumber: "Chỉ có thể nhập số",
     },
   },
   validateMessages: {
@@ -251,14 +264,20 @@ const VnLang = {
     features: "Chức năng",
     description: "Mô tả",
     total: "Tổng cộng",
+    orderId: "Mã Đơn hàng",
+    orderStatus: "Tình trạng",
+    paymentType: "Thanh toán",
+    totalPay: "Tổng tiền",
+    products: "Sản phẩm",
+    createdAt: "Ngày tạo"
   },
   pagination: {
     showing: "Hiển thị",
     of: "của",
-    results: "kết quả"
-  }
+    results: "kết quả",
+  },
 };
 
-export type LangVN = typeof VnLang; 
+export type LangVN = typeof VnLang;
 
 export default VnLang;

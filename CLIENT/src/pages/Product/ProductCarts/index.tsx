@@ -22,7 +22,7 @@ import { EShipmentActionTypes } from "../../../redux/actionTypes/ShipmentActionT
 import { IQueryList } from "../../../interfaces/query";
 import { createOrder } from "../../../redux/actionCreators/OrderCreators";
 import Table from "../../../components/Table";
-import CartsRow from "../../../components/Table/CartsRow";
+import CartsRow from "../../../components/TableRow/CartsRow";
 import CartsPayment from "./CartsPayment";
 import ShipmentModal from "./ShipmentModal";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";

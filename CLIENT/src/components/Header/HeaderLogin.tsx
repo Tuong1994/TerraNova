@@ -8,6 +8,7 @@ import { ELoadingActionTypes } from "../../redux/actionTypes/LoadingActionTypes"
 import utils from "../../utils";
 import Carts from "../Carts";
 import ButtonLoading from "../Loading/ButtonLoading";
+import { history } from "../../App";
 
 const HeaderLogin: React.FunctionComponent<{}> = (props) => {
   const { user } = useSelector((state: ReducerState) => state.UserReducer);
@@ -34,6 +35,7 @@ const HeaderLogin: React.FunctionComponent<{}> = (props) => {
       dispatch({
         type: ELoadingActionTypes.CLOSE_BUTTON_LOADING,
       });
+      history.push("/")
     }, 1000);
   };
 
@@ -41,8 +43,7 @@ const HeaderLogin: React.FunctionComponent<{}> = (props) => {
     if (utils.checkObjectEmpty(user)) {
       return (
         <div className="login__user" ref={menuSettingRef}>
-          <Link
-            to="/"
+          <div
             className="user__info"
             onClick={() => {
               setIsShow(!isShow);
@@ -56,7 +57,7 @@ const HeaderLogin: React.FunctionComponent<{}> = (props) => {
             <span>
               {user?.firstName} {user?.lastName}
             </span>
-          </Link>
+          </div>
           
           <Carts />
 

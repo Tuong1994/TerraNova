@@ -25,8 +25,7 @@ const LoggedIn = (props: LoggedInProps, ref: any) => {
 
   return (
     <div className="login__user" ref={menuRef}>
-      <Link
-        to="/"
+      <div
         className="user__info"
         onClick={() => {
           setIsShow(!isShow);
@@ -36,7 +35,7 @@ const LoggedIn = (props: LoggedInProps, ref: any) => {
         <span>
           {user?.firstName} {user?.lastName}
         </span>
-      </Link>
+      </div>
       <Carts className="wrapper__carts" />
       <div
         className={
@@ -56,7 +55,7 @@ const LoggedIn = (props: LoggedInProps, ref: any) => {
           onClick={handleLogout}
         >
           <ButtonLoading />
-          <span>Log out</span>
+          <span>{langs?.headerMenu.logOut}</span>
         </div>
       </div>
     </div>

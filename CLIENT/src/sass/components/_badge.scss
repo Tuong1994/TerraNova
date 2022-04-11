@@ -1,0 +1,12 @@
+.badge {
+  padding: $p-5 $p-10 * 2;
+  font-size: $body-2;
+  border-radius: $round;
+  background: $secondary;
+  color: $tSecondary;
+  text-align: center;
+}
+
+.badge--paid {
+  background: $green-1;
+}

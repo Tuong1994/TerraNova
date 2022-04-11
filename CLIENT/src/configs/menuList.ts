@@ -38,7 +38,7 @@ export const userMenuEng = [
     id: "user",
     path: "/user",
     name: "Overview",
-    icon: "",
+    icon: "fa-solid fa-chart-column",
   },
 ];
 
@@ -47,7 +47,7 @@ export const userMenuVn = [
     id: "user",
     path: "/user",
     name: "Tổng quan",
-    icon: "",
+    icon: "fa-solid fa-chart-column",
   },
 ];
 

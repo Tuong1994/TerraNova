@@ -1,3 +1,4 @@
+import { IOrder } from './../Order/index';
 export interface IUser {
   id?: string;
   account?: string;
@@ -11,4 +12,5 @@ export interface IUser {
   birthDay?: string;
   gender?: string;
   role?: string; 
+  orders?: IOrder[]
 }

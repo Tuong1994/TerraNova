@@ -1,4 +1,6 @@
 import * as apiPath from "../../paths/index";
+import { getListQuery } from "./../../configs/setting";
+import { IQueryList } from "./../../interfaces/query";
 import { EUserActionTypes } from "../actionTypes/UserActionTypes";
 import { IUser } from "../../models/User";
 import { Dispatch } from "redux";
@@ -22,7 +24,7 @@ export const signIn = (user: IUser, success?: string, err?: string) => {
         });
         toast.success(success);
         dispatch(actions.closeButtonLoading);
-        history.push("/")
+        history.push("/");
       } catch (error: any) {
         toast.error(err);
         dispatch(actions.closeButtonLoading);
@@ -34,16 +36,50 @@ export const signIn = (user: IUser, success?: string, err?: string) => {
 export const signUp = (user: IUser, success?: string, err?: string) => {
   return (dispatch: Dispatch | any) => {
     dispatch(actions.openButtonLoading);
-    setTimeout(() => {
+    setTimeout(async () => {
       try {
-        axiosClient.post(apiPath.userPaths.signUp, user);
+        await axiosClient.post(apiPath.userPaths.signUp, user);
         toast.success(success);
-        dispatch(signIn(user))
+        dispatch(signIn(user));
         dispatch(actions.closeButtonLoading);
       } catch (error: any) {
         toast.error(err);
         dispatch(actions.closeButtonLoading);
       }
     }, 1000);
+  };
+};
+
+export const getUserList = (query: IQueryList) => {
+  return async (dispatch: Dispatch) => {
+    try {
+      const result = await axiosClient.get(
+        apiPath.userPaths.getUserList,
+        getListQuery(query as IQueryList)
+      );
+      dispatch({
+        type: EUserActionTypes.GET_USER_LIST,
+        payload: result.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getUserDetail = (query: IQueryList) => {
+  return async (dispatch: Dispatch) => {
+    try {
+      const result = await axiosClient.get(
+        apiPath.userPaths.getUserDetail,
+        getListQuery(query as IQueryList)
+      );
+      dispatch({
+        type: EUserActionTypes.GET_USER_DETAIL,
+        payload: result.data,
+      })
+    } catch (error) {
+      console.log(error);
+    }
   };
 };

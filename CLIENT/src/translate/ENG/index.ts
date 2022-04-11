@@ -127,18 +127,12 @@ const EngLang = {
     paymentType: "Payment type",
     payment: "Payment",
     note: "Note",
-    cash: "Cash",
-    zalo: "Zalo - pay",
-    vib: "VIB - Bank",
     price: "Price",
     shipment: "Shipment",
     total: "Total",
     vat: "VAT 10%",
     totalPay: "Total pay",
-    noShipment: "Received in store",
-    delivery: "Delivery",
     receivedType: "Please choose recevied type",
-
     modal: {
       shipmentTitle: "Shipment infomation",
       paymentTitle: "Payment success",
@@ -148,6 +142,13 @@ const EngLang = {
       address: "Delivery address",
       note: "Note: Please provide accurate information to avoid problems and make distribution more convenient",
     },
+  },
+  user: {
+    hello: "Hello",
+    overviewTitle: "Overview",
+    accountInfo: "Account infomation",
+    personalInfo: "Personal information",
+    orderTitle: "Orders"
   },
   time: {
     day: "day",
@@ -165,6 +166,16 @@ const EngLang = {
   },
   status: {
     new: "New",
+    paid: "Paid",
+  },
+  paymentType: {
+    cash: "Cash",
+    zalo: "Zalo - pay",
+    vib: "VIB - Bank",
+  },
+  shipmentType: {
+    noShipment: "Received in store",
+    delivery: "Delivery",
   },
   button: {
     submit: "Submit",
@@ -179,6 +190,7 @@ const EngLang = {
   noData: {
     data: "No data founded",
     product: "No product yet",
+    order: "No order yet",
   },
   carts: {
     slots: "slots",
@@ -253,6 +265,12 @@ const EngLang = {
     features: "Features",
     description: "Description",
     total: "Total",
+    orderId: "Order Id",
+    orderStatus: "Status",
+    paymentType: "Payment",
+    totalPay: "Total pay",
+    products: "Total product",
+    createdAt: "Created at",
   },
   pagination: {
     showing: "Showing",

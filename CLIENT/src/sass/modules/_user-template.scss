@@ -1,0 +1,19 @@
+.user-template {
+  .user-template__content {
+    display: flex;
+    .content__inner {
+      width: $w-100 - 25;
+      padding: $p-10 * 5;
+      @include respond(extraTablet) {
+        width: $w-100;
+      }
+      @include respond(phone) {
+        width: $w-100;
+        padding: $p-10;
+      }
+    }
+    @include respond(extraTablet) {
+      display: block
+    }
+  }
+}

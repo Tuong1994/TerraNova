@@ -1,0 +1,32 @@
+.user-sidebar__responsive {
+  width: $w-100;
+  display: none;
+  position: sticky;
+  top: 50px;
+  z-index: 99;
+  .responsive__wrapper {
+    width: $w-100;
+    padding: $p-10;
+    background: $secondary;
+    display: flex;
+    justify-content: flex-end;
+    .wrapper__link {
+      text-decoration: none;
+      display: block;
+      padding: 0 $p-10;
+      color: $tSecondary;
+      i {
+        font-size: $subtitle;
+      }
+    }
+    @include respond(extraTablet) {
+        padding: $p-10 * 2 $p-10;
+    }
+    @include respond(phone) {
+        padding: $p-10;
+    }
+  }
+  @include respond(extraTablet) {
+    display: block;
+  }
+}

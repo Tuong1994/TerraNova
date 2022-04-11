@@ -6,6 +6,9 @@ import { ReducerState } from "../../../redux/store";
 import { ESideBarActionTypes } from "../../../redux/actionTypes/SideBarActionTypes";
 
 const Menu: React.FunctionComponent<{}> = (props) => {
+  const path = document.location.pathname;
+  const id = path.slice(1, path.length);
+
   const { menuId } = useSelector((state: ReducerState) => state.SideBarReducer);
 
   const dispatch = useDispatch();
@@ -24,7 +27,7 @@ const Menu: React.FunctionComponent<{}> = (props) => {
           key={menu.id}
           to={menu.path}
           className={`menu__link ${
-            menuId === menu.id ? "menu__link--active" : ""
+            menuId === menu.id || id === menu.id ? "menu__link--active" : ""
           }`}
           onClick={() => handleChangeMenu(menu)}
         >

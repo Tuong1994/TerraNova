@@ -1,6 +1,6 @@
 import React from "react";
 import { IProductCarts } from "../../models/Carts";
-import TableCol from "./TableCol";
+import TableCol from "../Table/TableCol";
 import Button from "../Button";
 
 interface ICartsRowProps {

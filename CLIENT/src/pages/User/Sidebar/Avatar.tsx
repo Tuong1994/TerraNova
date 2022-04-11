@@ -1,15 +1,24 @@
 import React from "react";
+import { ILangs } from "../../../interfaces/lang";
+import { IUser } from "../../../models/User";
 
-interface AvatarProps {}
-
-const Avatar: React.FunctionComponent<AvatarProps> = props => {
-    return <div className="sidebar__avatar">
-        <img className="avatar__img" src="../img/avatar.png" alt="avatar" />
-        <div className="avatar__info">
-            <p>Hello, Admin</p>
-        </div>
-        <div className="avatar__line"></div>
-    </div>
+interface AvatarProps {
+  user: IUser | null | undefined;
+  langs: ILangs;
 }
+
+const Avatar: React.FunctionComponent<AvatarProps> = (props) => {
+  const { user, langs } = props;
+
+  return (
+    <div className="sidebar__avatar">
+      <img className="avatar__img" src="../img/avatar.png" alt="avatar" />
+      <div className="avatar__info">
+        <p>{langs?.user.hello}, {user?.firstName} {user?.lastName}</p>
+      </div>
+      <div className="avatar__line"></div>
+    </div>
+  );
+};
 
 export default Avatar;

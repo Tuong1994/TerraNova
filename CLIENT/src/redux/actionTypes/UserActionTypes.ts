@@ -3,4 +3,6 @@ export enum EUserActionTypes {
   SIGN_IN = "SIGN_IN",
   SIGN_UP = "SIGN_UP",
   LOG_OUT = "LOG_OUT",
+  GET_USER_LIST = "GET_USER_LIST",
+  GET_USER_DETAIL = "GET_USER_DETAIL",
 }

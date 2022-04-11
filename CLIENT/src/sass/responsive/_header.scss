@@ -48,6 +48,7 @@
           display: flex;
           align-items: center;
           transition: all 0.3s ease;
+          cursor: pointer;
           .info__avatar {
             width: $w-10 * 2;
             height: $h-10 * 2;

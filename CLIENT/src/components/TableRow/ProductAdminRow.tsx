@@ -1,5 +1,5 @@
 import React from "react";
-import TableCol from "./TableCol";
+import TableCol from "../Table/TableCol";
 import { Link } from "react-router-dom";
 
 interface IProductAdminRowProps {

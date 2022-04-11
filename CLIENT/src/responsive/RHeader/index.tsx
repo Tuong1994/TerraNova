@@ -11,6 +11,7 @@ import Carts from "../../components/Carts";
 import Menu from "./Menu";
 import LoggedIn from "./LoggedIn";
 import utils from "../../utils";
+import { history } from "../../App";
 
 interface IRHeaderMenuProps {
   showMenu: boolean;
@@ -19,6 +20,7 @@ interface IRHeaderMenuProps {
 
 const RHeaderMenu: React.FunctionComponent<IRHeaderMenuProps> = (props) => {
   const { showMenu, setShowMenu } = props;
+  
   const { user } = useSelector((state: ReducerState) => state.UserReducer);
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
@@ -56,6 +58,7 @@ const RHeaderMenu: React.FunctionComponent<IRHeaderMenuProps> = (props) => {
       dispatch({
         type: ELoadingActionTypes.CLOSE_BUTTON_LOADING,
       });
+      history.push("/")
     }, 1000);
   };
 

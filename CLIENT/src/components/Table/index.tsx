@@ -1,15 +1,16 @@
 import React from "react";
 import TableNoData from "./TableNoData";
 import TableHeader from "./TableHeader";
-import ProductAdminRow from "./ProductAdminRow";
-import CartsRow from "./CartsRow";
+import ProductAdminRow from "../TableRow/ProductAdminRow";
+import CartsRow from "../TableRow/CartsRow";
+import OrderRow from "../TableRow/OrderRow";
 export interface ITableHeader {
   title: string;
   width?: string;
   className?: string;
 }
 
-type TableRowType = typeof ProductAdminRow | typeof CartsRow;
+type TableRowType = typeof ProductAdminRow | typeof CartsRow | typeof OrderRow;
 interface ITableProps {
   headers: ITableHeader[];
   headersClassName?: string;
