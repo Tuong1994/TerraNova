@@ -46,7 +46,7 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
     };
     dispatch(getCartsList());
     dispatch(getUserDetail(query));
-  }, [user?.carts]);
+  }, []);
 
   React.useEffect(() => {
     let sum = 0;

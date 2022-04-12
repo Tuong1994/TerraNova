@@ -4,7 +4,13 @@ const getCartsList = async (req, res) => {
   try {
     const cartsList = await Carts.findAll({
       order: [["updatedAt", "DESC"]],
-      attributes: [["id", "cartsId"], "products", "userId", "createdAt", "updatedAt"],
+      attributes: [
+        ["id", "cartsId"],
+        "products",
+        "userId",
+        "createdAt",
+        "updatedAt",
+      ],
     });
     res.status(200).send(cartsList);
   } catch (error) {
@@ -19,7 +25,13 @@ const getCartsDetail = async (req, res) => {
       where: {
         id: cartsId,
       },
-      attributes: [["id", "cartsId"], "products", "userId", "createdAt", "updatedAt"],
+      attributes: [
+        ["id", "cartsId"],
+        "products",
+        "userId",
+        "createdAt",
+        "updatedAt",
+      ],
     });
     res.status(200).send(cartsDetail);
   } catch (error) {
@@ -46,15 +58,24 @@ const updateCarts = async (req, res) => {
   const { cartsId } = req.query;
   const { products, userId } = req.body;
   try {
-    await Carts.update(
-      { products, userId },
-      {
+    if (products.length > 0) {
+      await Carts.update(
+        { products, userId },
+        {
+          where: {
+            id: cartsId,
+          },
+        }
+      );
+      res.status(200).send("Update success");
+    } else {
+      await Carts.destroy({
         where: {
           id: cartsId,
-        },
-      }
-    );
-    res.status(200).send("Update success");
+        }
+      });
+      res.status(200).send("Update success")
+    }
   } catch (error) {
     res.status(500).send(error);
   }
