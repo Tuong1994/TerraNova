@@ -1,4 +1,5 @@
-import { IOrder } from './../Order/index';
+import { ICarts } from "../Carts";
+import { IOrder } from "./../Order/index";
 export interface IUser {
   id?: string;
   account?: string;
@@ -11,6 +12,7 @@ export interface IUser {
   address?: string;
   birthDay?: string;
   gender?: string;
-  role?: string; 
-  orders?: IOrder[]
+  role?: string;
+  orders?: IOrder[];
+  carts?: ICarts[];
 }

@@ -1,3 +1,5 @@
 export enum ECartsActionTypes {
   GET_CARTS_LIST = "GET_CARTS_LIST",
+  ADD_TEMP_CARTS = "ADD_TEMP_CARTS",
+  UPDATE_TEMP_CARTS = "UPDATE_TEMP_CARTS",
 }

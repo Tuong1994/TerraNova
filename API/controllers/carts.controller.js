@@ -3,7 +3,8 @@ const { Carts } = require("../models");
 const getCartsList = async (req, res) => {
   try {
     const cartsList = await Carts.findAll({
-      attributes: [["id", "cartsId"], "products"],
+      order: [["updatedAt", "DESC"]],
+      attributes: [["id", "cartsId"], "products", "userId", "createdAt", "updatedAt"],
     });
     res.status(200).send(cartsList);
   } catch (error) {
@@ -18,7 +19,7 @@ const getCartsDetail = async (req, res) => {
       where: {
         id: cartsId,
       },
-      attributes: [["id", "cartsId"], "products"],
+      attributes: [["id", "cartsId"], "products", "userId", "createdAt", "updatedAt"],
     });
     res.status(200).send(cartsDetail);
   } catch (error) {
@@ -27,12 +28,13 @@ const getCartsDetail = async (req, res) => {
 };
 
 const createCarts = async (req, res) => {
-  const { products } = req.body;
+  const { products, userId } = req.body;
   try {
     const cartsId = "C_" + Math.floor(Math.random() * 999999999).toString();
     const newCarts = await Carts.create({
       id: cartsId,
       products,
+      userId,
     });
     res.status(200).send(newCarts);
   } catch (error) {
@@ -42,10 +44,10 @@ const createCarts = async (req, res) => {
 
 const updateCarts = async (req, res) => {
   const { cartsId } = req.query;
-  const { products } = req.body;
+  const { products, userId } = req.body;
   try {
     await Carts.update(
-      { products },
+      { products, userId },
       {
         where: {
           id: cartsId,

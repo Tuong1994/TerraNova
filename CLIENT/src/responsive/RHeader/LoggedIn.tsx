@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { IUser } from "../../models/User";
-import Carts from "../../components/Carts";
 import { useSelector } from "react-redux";
 import { ReducerState } from "../../redux/store";
 import { ILangs } from "../../interfaces/lang";
+import Carts from "../../components/Carts";
 import ButtonLoading from "../../components/Loading/ButtonLoading";
 
 interface LoggedInProps {

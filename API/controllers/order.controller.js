@@ -3,6 +3,20 @@ const { Order } = require("../models");
 const getOrderList = async (req, res) => {
   try {
     const orderList = await Order.findAll({
+      attributes: [
+        ["id", "orderId"],
+        "note",
+        "totalPay",
+        "paymentType",
+        "shipmentType",
+        "shipmentFee",
+        "shipmentDetail",
+        "status",
+        "products",
+        "userId",
+        "createdAt",
+        "updatedAt",
+      ],
       order: [["updatedAt", "DESC"]],
     });
     res.status(200).send(orderList);

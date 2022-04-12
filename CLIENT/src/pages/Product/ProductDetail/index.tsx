@@ -11,11 +11,14 @@ import {
   updateCarts,
 } from "../../../redux/actionCreators/CartsCreators";
 import { ICarts, IProductCarts } from "../../../models/Carts";
+import { ECartsActionTypes } from "../../../redux/actionTypes/CartsActionTypes";
+import { toast } from "react-toastify";
 import ProductSlider from "./ProductContent/ProductSlider";
 import ProductInfo from "./ProductContent/ProductInfo";
 import ProductRelated from "./ProductContent/ProductRelated";
 import ProductTabs from "./ProductTabs";
 import utils from "../../../utils";
+import actions from "../../../configs/actions";
 
 const ProductDetail: React.FunctionComponent<
   RouteComponentProps<IRouteParams>
@@ -25,6 +28,7 @@ const ProductDetail: React.FunctionComponent<
   );
   const { carts } = useSelector((state: ReducerState) => state.CartsReducer);
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
+  const { user } = useSelector((state: ReducerState) => state.UserReducer);
 
   const [stock, setStock] = React.useState<IProductCarts>({});
   const [amount, setAmount] = React.useState<number>(0);
@@ -78,6 +82,7 @@ const ProductDetail: React.FunctionComponent<
 
   const handleOrder = () => {
     if (amount > 0) {
+      // Carts has products
       if (carts && carts.length > 0) {
         const query: IQueryList = {
           cartsId: carts[0].cartsId,
@@ -85,55 +90,110 @@ const ProductDetail: React.FunctionComponent<
         const products = carts[0].products || [];
         let index: number = products.findIndex(
           (i) => i.productId === productDetail.productId
-        );
+        ); // Find products in carts if exist
 
-        if (index !== -1) {
+        if (index !== -1) { // If products not exist => add new products into carts
           const newProducts: IProductCarts = {
             productId: products[index].productId,
             productName: products[index].productName,
             price: products[index].price,
             amount: (products[index].amount || 0) + amount,
           };
-          const newStock: ICarts = {
-            cartsId: carts[0].cartsId,
-            products: [{ ...newProducts }],
-          };
-          dispatch(
-            updateCarts(
-              newStock,
-              query,
-              langs?.toastMessages.success.updateCart,
-              langs?.toastMessages.error.updateCart
-            )
-          );
-        } else {
+          if (utils.checkObjectEmpty(user)) { // Check if user exist => call API create carts / if not => save temporary carts
+            const newStock: ICarts = {
+              cartsId: carts[0].cartsId,
+              products: [{ ...newProducts }],
+              userId: user?.id,
+            };
+
+            dispatch(
+              updateCarts(
+                newStock,
+                query,
+                langs?.toastMessages.success.updateCart,
+                langs?.toastMessages.error.updateCart
+              )
+            );
+          } else {
+            const stock = {
+              products: [{ ...newProducts }],
+            };
+            localStorage.setItem("carts", JSON.stringify(stock));
+            dispatch(actions.openButtonLoading);
+            setTimeout(() => {
+              dispatch({
+                type: ECartsActionTypes.UPDATE_TEMP_CARTS,
+                payload: stock,
+              });
+              toast.success(langs?.toastMessages.success.updateCart);
+              dispatch(actions.closeButtonLoading);
+            }, 1000);
+          }
+          
+        } else { // If products exist => update product's amount
           products.push(stock);
-          const newStock = {
-            cartsId: carts[0].cartsId,
-            products: products,
+          if (utils.checkObjectEmpty(user)) {  // Check if user exist => call API create carts / if not => save temporary carts
+            const newStock: ICarts = {
+              cartsId: carts[0].cartsId,
+              products: products,
+              userId: user?.id,
+            };
+            dispatch(
+              updateCarts(
+                newStock,
+                query,
+                langs?.toastMessages.success.addToCart,
+                langs?.toastMessages.error.addToCart
+              )
+            );
+          } else {
+            const stock = {
+              products: products,
+            };
+            localStorage.setItem("carts", JSON.stringify(stock));
+            dispatch(actions.openButtonLoading);
+            setTimeout(() => {
+              dispatch({
+                type: ECartsActionTypes.UPDATE_TEMP_CARTS,
+                payload: stock,
+              });
+              toast.success(langs?.toastMessages.success.updateCart);
+              dispatch(actions.closeButtonLoading);
+            }, 1000);
+          }
+        }
+
+        // Carts has products
+      } else if (carts && carts.length === 0) {
+        carts.push({ products: [] });
+        carts[0]?.products?.push(stock);
+        if (utils.checkObjectEmpty(user)) {  // Check if user exist => call API create carts / if not => save temporary carts
+          let newStock: ICarts = {
+            products: carts[0].products,
+            userId: user?.id,
           };
           dispatch(
-            updateCarts(
+            createCarts(
               newStock,
-              query,
               langs?.toastMessages.success.addToCart,
               langs?.toastMessages.error.addToCart
             )
           );
+        } else {
+          let stock = {
+            products: carts[0].products,
+          };
+          localStorage.setItem("carts", JSON.stringify(stock));
+          dispatch(actions.openButtonLoading);
+          setTimeout(() => {
+            dispatch({
+              type: ECartsActionTypes.ADD_TEMP_CARTS,
+              payload: stock,
+            });
+            toast.success(langs?.toastMessages.success.addToCart);
+            dispatch(actions.closeButtonLoading);
+          }, 1000);
         }
-      } else if (carts && carts.length === 0) {
-        carts.push({ products: [] });
-        carts[0]?.products?.push(stock);
-        let newStock = {
-          products: carts[0].products,
-        };
-        dispatch(
-          createCarts(
-            newStock,
-            langs?.toastMessages.success.addToCart,
-            langs?.toastMessages.error.addToCart
-          )
-        );
       }
     }
   };

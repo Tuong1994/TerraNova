@@ -21,18 +21,22 @@ import { EModalActionTypes } from "../../../redux/actionTypes/ModalActionTypes";
 import { EShipmentActionTypes } from "../../../redux/actionTypes/ShipmentActionTypes";
 import { IQueryList } from "../../../interfaces/query";
 import { createOrder } from "../../../redux/actionCreators/OrderCreators";
+import { ECartsActionTypes } from "../../../redux/actionTypes/CartsActionTypes";
+import { toast } from "react-toastify";
 import Table from "../../../components/Table";
 import CartsRow from "../../../components/TableRow/CartsRow";
 import CartsPayment from "./CartsPayment";
 import ShipmentModal from "./ShipmentModal";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";
-import utils from "../../../utils";
 import PaymentModal from "./PaymentModal";
+import utils from "../../../utils";
 
 interface ProductCartsProps {}
 
 const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
-  const { carts } = useSelector((state: ReducerState) => state.CartsReducer);
+  const { carts, tempCarts } = useSelector(
+    (state: ReducerState) => state.CartsReducer
+  );
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
   const { buttonLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
@@ -77,16 +81,28 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
 
   React.useEffect(() => {
     let sum = 0;
-    const products = cartsDetail[0]?.products;
-    if (products && products?.length > 0) {
-      if (products && products.length > 0) {
-        for (let i = 0; i < products.length; i++) {
-          sum += (products[i].price || 0) * (products[i].amount || 0);
+    if (utils.checkObjectEmpty(user)) {
+      const products = cartsDetail[0]?.products;
+      if (products && products?.length > 0) {
+        if (products && products.length > 0) {
+          for (let i = 0; i < products.length; i++) {
+            sum += (products[i].price || 0) * (products[i].amount || 0);
+          }
         }
       }
+      setPrice(sum);
+    } else {
+      const products = tempCarts?.products;
+      if (products && products?.length > 0) {
+        if (products && products.length > 0) {
+          for (let i = 0; i < products.length; i++) {
+            sum += (products[i].price || 0) * (products[i].amount || 0);
+          }
+        }
+      }
+      setPrice(sum);
     }
-    setPrice(sum);
-  }, [cartsDetail]);
+  }, [cartsDetail, tempCarts]);
 
   // Get Shipment Type
   React.useEffect(() => {
@@ -117,20 +133,70 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
   // Update Item
   const handleUpdateItem = () => {
     if (utils.checkObjectEmpty(productUpdate)) {
-      const products = carts[0]?.products;
-      const newProducts = products?.map((i) => {
-        if (i.productId === productUpdate.productId) {
-          return {
-            ...i,
-            amount: productUpdate.amount,
-          };
-        } else {
-          return { ...i };
-        }
-      });
-      const newStock = {
+      if (utils.checkObjectEmpty(user)) {  // Check if user exist => call API create carts / if not => save temporary carts
+        const products = carts[0]?.products;
+        const newProducts = products?.map((i) => {
+          if (i.productId === productUpdate.productId) {
+            return {
+              ...i,
+              amount: productUpdate.amount,
+            };
+          } else {
+            return { ...i };
+          }
+        });
+        const newStock = {
+          cartsId: carts[0].cartsId,
+          products: newProducts,
+          userId: user?.id,
+        };
+        const query: IQueryList = {
+          cartsId: carts[0].cartsId,
+        };
+        dispatch(
+          updateCarts(
+            newStock,
+            query,
+            langs?.toastMessages.success.updateCart,
+            langs?.toastMessages.error.updateCart
+          )
+        );
+      } else {
+        const products = tempCarts?.products;
+        const newProducts = products?.map((i) => {
+          if (i.productId === productUpdate.productId) {
+            return {
+              ...i,
+              amount: productUpdate.amount,
+            };
+          } else {
+            return { ...i };
+          }
+        });
+        const stock = {
+          products: newProducts,
+        };
+        localStorage.setItem("carts", JSON.stringify(stock));
+        dispatch({
+          type: ECartsActionTypes.UPDATE_TEMP_CARTS,
+          payload: stock,
+        });
+        toast.success(langs?.toastMessages.success.updateCart);
+      }
+    }
+  };
+
+  // Remove item
+  const handleRemoveItem = (item: IProductCarts) => {
+    if (utils.checkObjectEmpty(user)) {  // Check if user exist => call API create carts / if not => save temporary carts
+      const products = carts[0].products;
+      const newProducts = products?.filter(
+        (i) => i.productId !== item.productId
+      );
+      const newStock: ICarts = {
         cartsId: carts[0].cartsId,
         products: newProducts,
+        userId: user?.id,
       };
       const query: IQueryList = {
         cartsId: carts[0].cartsId,
@@ -143,28 +209,21 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
           langs?.toastMessages.error.updateCart
         )
       );
+    } else {
+      const products = tempCarts.products;
+      const newProducts = products?.filter(
+        (i) => i.productId !== item.productId
+      );
+      const stock = {
+        products: newProducts,
+      };
+      localStorage.setItem("carts", JSON.stringify(stock));
+      dispatch({
+        type: ECartsActionTypes.UPDATE_TEMP_CARTS,
+        payload: stock,
+      });
+      toast.success(langs?.toastMessages.success.updateCart);
     }
-  };
-
-  // Remove item
-  const handleRemoveItem = (item: IProductCarts) => {
-    const products = carts[0].products;
-    const newProducts = products?.filter((i) => i.productId !== item.productId);
-    const newStock = {
-      cartsId: carts[0].cartsId,
-      products: newProducts,
-    };
-    const query: IQueryList = {
-      cartsId: carts[0].cartsId,
-    };
-    dispatch(
-      updateCarts(
-        newStock,
-        query,
-        langs?.toastMessages.success.updateCart,
-        langs?.toastMessages.error.updateCart
-      )
-    );
   };
 
   // Payment
@@ -177,7 +236,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
       shipmentType: shipmentType,
       shipmentFee: shipmentFee,
       shipmentDetail: shipment,
-      products: carts[0].products,
+      products: carts[0].products || tempCarts?.products,
       userId: user?.id,
     };
     const query: IQueryList = {
@@ -208,7 +267,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
             { title: langs?.tableHeader.total || "" },
             { title: langs?.tableHeader.features || "" },
           ]}
-          isNodata={carts[0]?.products || 0}
+          isNodata={carts[0]?.products || tempCarts?.products || 0}
           noDataTitle={langs?.noData.product || ""}
           renderNoDataLink={() => (
             <Link to="/" className="button--submit" type="button">
@@ -217,94 +276,111 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
           )}
         >
           {(() => {
-            if (carts && carts.length > 0) {
-              return carts.map((item: ICarts, index) => {
-                return (
-                  <React.Fragment key={index}>
-                    {item.products?.map((product, index) => {
-                      return (
-                        <CartsRow
-                          key={index}
-                          item={product}
-                          removeItem={handleRemoveItem}
-                          setProductUpdate={setProductUpdate}
-                        />
-                      );
-                    })}
-                  </React.Fragment>
-                );
-              });
+            if (utils.checkObjectEmpty(user)) {
+              if (carts && carts.length > 0) {
+                return carts.map((item: ICarts, index) => {
+                  return (
+                    <React.Fragment key={index}>
+                      {item.products?.map((product, index) => {
+                        return (
+                          <CartsRow
+                            key={index}
+                            item={product}
+                            removeItem={handleRemoveItem}
+                            setProductUpdate={setProductUpdate}
+                          />
+                        );
+                      })}
+                    </React.Fragment>
+                  );
+                });
+              }
+            } else {
+              if (tempCarts?.products && tempCarts?.products?.length > 0) {
+                return tempCarts?.products?.map((product, index) => {
+                  return (
+                    <CartsRow
+                      key={index}
+                      item={product}
+                      removeItem={handleRemoveItem}
+                      setProductUpdate={setProductUpdate}
+                    />
+                  );
+                });
+              }
             }
           })()}
         </Table>
       </Card.Wrapper>
 
       {/* Payment features */}
-      {carts && carts?.length > 0 && (
-        <div className="product-carts__features">
-          {/* Select shipment type */}
-          <div className="features__select">
-            <FormControl.SelectCustom
-              placeholder={langs?.productCarts.receivedType}
-              groupClassName="select__field"
-              id="value"
-              name="label"
-              option={options?.shipmentType}
-              value={options?.shipmentType.find(
-                (i) => i.value === shipmentType
-              )}
-              onChange={(value) => {
-                setShipmentType(value);
-              }}
-            />
-          </div>
-
-          {/* Button update/payment */}
-          <div className="features__button">
-            <div
-              className={`button--submit ${
-                buttonLoading ? "button--disabled" : ""
-              }`}
-              onClick={handleUpdateItem}
-            >
-              <ButtonLoading />
-              <span>{langs?.button.update}</span>
+      {(carts && carts?.length > 0) ||
+        (tempCarts?.products && tempCarts?.products?.length > 0 && (
+          <div className="product-carts__features">
+            {/* Select shipment type */}
+            <div className="features__select">
+              <FormControl.SelectCustom
+                placeholder={langs?.productCarts.receivedType}
+                groupClassName="select__field"
+                id="value"
+                name="label"
+                option={options?.shipmentType}
+                value={options?.shipmentType.find(
+                  (i) => i.value === shipmentType
+                )}
+                onChange={(value) => {
+                  setShipmentType(value);
+                }}
+              />
             </div>
 
-            <div
-              className={`button--submit ${
-                buttonLoading ? "button--disabled" : ""
-              }`}
-              onClick={handlePayment}
-            >
-              <ButtonLoading />
-              <span>{langs?.button.payment}</span>
+            {/* Button update/payment */}
+            <div className="features__button">
+              <div
+                className={`button--submit ${
+                  buttonLoading ? "button--disabled" : ""
+                }`}
+                onClick={handleUpdateItem}
+              >
+                <ButtonLoading />
+                <span>{langs?.button.update}</span>
+              </div>
+
+              <div
+                className={`button--submit ${
+                  buttonLoading ? "button--disabled" : ""
+                }`}
+                onClick={handlePayment}
+              >
+                <ButtonLoading />
+                <span>{langs?.button.payment}</span>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        ))}
 
       {/* Payment summary */}
-      {carts && carts?.length > 0 && (
-        <CartsPayment
-          langs={langs}
-          carts={carts[0].products}
-          shipment={shipment}
-          shipmentFee={shipmentFee}
-          price={price}
-          total={total}
-          vat={vat}
-          totalPay={totalPay}
-          paymentType={paymentType}
-          setShipmentFee={setShipmentFee}
-          setPrice={setPrice}
-          setTotal={setTotal}
-          setVat={setVat}
-          setTotalPay={setTotalPay}
-          setPaymentType={setPaymentType}
-          setNote={setNote}
-        />
-      )}
+      {(carts && carts?.length > 0) ||
+        (tempCarts?.products && tempCarts?.products?.length > 0 && (
+          <CartsPayment
+            langs={langs}
+            carts={carts[0]?.products || tempCarts?.products}
+            shipment={shipment}
+            shipmentFee={shipmentFee}
+            price={price}
+            total={total}
+            vat={vat}
+            totalPay={totalPay}
+            paymentType={paymentType}
+            setShipmentFee={setShipmentFee}
+            setPrice={setPrice}
+            setTotal={setTotal}
+            setVat={setVat}
+            setTotalPay={setTotalPay}
+            setPaymentType={setPaymentType}
+            setNote={setNote}
+          />
+        ))}
 
       {/* Shipment modal */}
       <ShipmentModal lang={lang} langs={langs} />

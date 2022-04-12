@@ -10,6 +10,9 @@ module.exports = {
       products: {
         type: Sequelize.JSON
       },
+      userId: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
