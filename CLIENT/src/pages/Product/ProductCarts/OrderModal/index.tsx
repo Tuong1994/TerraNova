@@ -104,7 +104,7 @@ const OrderModal: React.FunctionComponent<OrderModalProps> = (props) => {
                     {langs?.productCarts.modal.orderer}
                   </h3>
                   <Field
-                    name="userName"
+                    name="name"
                     component={FormControls.Input}
                     label={langs?.form.name}
                     placeholder=" "

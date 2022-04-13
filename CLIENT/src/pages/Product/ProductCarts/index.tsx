@@ -31,6 +31,7 @@ import ButtonLoading from "../../../components/Loading/ButtonLoading";
 import PaymentModal from "./PaymentModal";
 import utils from "../../../utils";
 import OrderModal from "./OrderModal";
+import actions from "../../../configs/actions";
 
 interface ProductCartsProps {}
 
@@ -53,7 +54,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
   const [paymentType, setPaymentType] = React.useState<number>(
     EPaymentTypes.cash
   );
-  const [cartsDetail, setCartsDetail] = React.useState<ICarts[]>([]);
+  const [cartsDetail, setCartsDetail] = React.useState<any>([]);
   const [shipmentFee, setShipmentFee] = React.useState<number>(0);
   const [price, setPrice] = React.useState<number>(0);
   const [total, setTotal] = React.useState<number>(0);
@@ -77,8 +78,10 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
   React.useEffect(() => {
     if (user?.carts && user?.carts.length > 0) {
       setCartsDetail(user?.carts);
+    } else if (tempCarts?.products && tempCarts?.products.length > 0) {
+      setCartsDetail(tempCarts)
     }
-  }, [user?.carts]);
+  }, [user?.carts, tempCarts]);
 
   React.useEffect(() => {
     let sum = 0;
@@ -184,12 +187,16 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
         const stock = {
           products: newProducts,
         };
-        localStorage.setItem("carts", JSON.stringify(stock));
-        dispatch({
-          type: ECartsActionTypes.UPDATE_TEMP_CARTS,
-          payload: stock,
-        });
-        toast.success(langs?.toastMessages.success.updateCart);
+        dispatch(actions.openButtonLoading);
+        setTimeout(() => {
+          localStorage.setItem("carts", JSON.stringify(stock));
+          dispatch({
+            type: ECartsActionTypes.UPDATE_TEMP_CARTS,
+            payload: stock,
+          });
+          dispatch(actions.closeButtonLoading);
+          toast.success(langs?.toastMessages.success.updateCart);
+        }, 1000);
       }
     }
   };
@@ -407,7 +414,9 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
             </div>
 
             <div
-              className="button--submit"
+              className={`button--submit ${
+                buttonLoading ? "button--disabled" : ""
+              }`}
               onClick={() => {
                 dispatch({
                   type: EModalActionTypes.OPEN_ORDER_MODAL,

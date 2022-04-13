@@ -41,14 +41,17 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
   customHooks.useClickOutSide(cartsRef, setIsShow);
 
   React.useEffect(() => {
-    const query: IQueryList = {
-      userId: user?.id,
-    };
+    if (utils.checkObjectEmpty(user)) {
+      const query: IQueryList = {
+        userId: user?.id,
+      };
+      dispatch(getUserDetail(query));
+    }
     dispatch(getCartsList());
-    dispatch(getUserDetail(query));
   }, []);
 
   React.useEffect(() => {
+    // Calculate total price
     let sum = 0;
     if (utils.checkObjectEmpty(user)) {
       if (user?.carts && user?.carts?.length > 0) {
@@ -105,12 +108,14 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
       const stock = {
         products: newProducts,
       };
-      localStorage.setItem("carts", JSON.stringify(stock));
-      dispatch({
-        type: ECartsActionTypes.UPDATE_TEMP_CARTS,
-        payload: stock,
-      });
-      toast.success(langs?.toastMessages.success.updateCart);
+      setTimeout(() => {
+        localStorage.setItem("carts", JSON.stringify(stock));
+        dispatch({
+          type: ECartsActionTypes.UPDATE_TEMP_CARTS,
+          payload: stock,
+        });
+        toast.success(langs?.toastMessages.success.updateCart);
+      }, 500);
     }
   };
 

@@ -13,6 +13,10 @@ import { ICarts } from "../../../../models/Carts";
 import CardBody from "../../../../components/Card/CardBody";
 import CartsItem from "../../../../components/CartsItem";
 import utils from "../../../../utils";
+import Orderer from "./Orderer";
+import CartsDetail from "./CartsDetail";
+import Shipment from "./Shipment";
+import TotalPay from "./TotalPay";
 
 interface PaymentModalProps {
   cartsDetail: ICarts[];
@@ -109,188 +113,35 @@ const PaymentModal: React.FunctionComponent<PaymentModalProps> = (props) => {
       <Modal.Body className="payment-modal__body">
         {(() => {
           if (utils.checkObjectEmpty(orderer)) {
-            return (
-              <Card.Wrapper className="body__item">
-                <CardBody>
-                  <h5 className="item__title">
-                    {langs?.productCarts.modal.orderer}
-                  </h5>
-
-                  <div className="item__content">
-                    <ul className="content__inner">
-                      <li className="inner__list">
-                        <div className="list__item">
-                          <p>{langs?.form.name} : </p>
-                          <strong>{orderer?.name}</strong>
-                        </div>
-                      </li>
-                      <li className="inner__list">
-                        <div className="list__item">
-                          <p>{langs?.form.phone} : </p>
-                          <strong>{orderer?.phone}</strong>
-                        </div>
-                      </li>
-                      <li className="inner__list">
-                        <div className="list__item">
-                          <p>{langs?.form.email} : </p>
-                          <strong>{orderer?.email}</strong>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </CardBody>
-              </Card.Wrapper>
-            );
+            return <Orderer langs={langs} orderer={orderer} />;
           }
         })()}
 
-        <Card.Wrapper className="body__item">
-          <CardBody>
-            <h5 className="item__title">{langs?.productCarts.modal.product}</h5>
-            {(() => {
-              if (cartsDetail && cartsDetail.length > 0) {
-                return cartsDetail.map((i, index) => {
-                  return (
-                    <React.Fragment key={index}>
-                      {i.products?.map((product, index) => {
-                        return (
-                          <CartsItem
-                            key={index}
-                            item={product}
-                            groupClassName="item__group"
-                            imgClassName="group__img"
-                            contentClassName="group__content"
-                          />
-                        );
-                      })}
-                    </React.Fragment>
-                  );
-                });
-              }
-            })()}
-          </CardBody>
-        </Card.Wrapper>
+        <CartsDetail cartsDetail={cartsDetail} langs={langs} />
 
         {(() => {
           if (utils.checkObjectEmpty(shipment)) {
             return (
-              <Card.Wrapper className="body__item">
-                <CardBody>
-                  <h5 className="item__title">
-                    {langs?.productCarts.modal.shipment}
-                  </h5>
-
-                  <div className="item__content">
-                    <h5 className="content__title">
-                      {langs?.productCarts.modal.receiver}
-                    </h5>
-                    <ul className="content__inner">
-                      <li className="inner__list">
-                        <div className="list__item">
-                          <p>{langs?.form.name} : </p>
-                          <strong>{shipment?.userName}</strong>
-                        </div>
-                      </li>
-                      <li className="inner__list">
-                        <div className="list__item">
-                          <p>{langs?.form.phone} : </p>
-                          <strong>{shipment?.phone}</strong>
-                        </div>
-                      </li>
-                      <li className="inner__list">
-                        <div className="list__item">
-                          <p>{langs?.form.email} : </p>
-                          <strong>{shipment?.email}</strong>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div className="item__content">
-                    <h5 className="content__title">
-                      {langs?.productCarts.modal.address}
-                    </h5>
-                    <ul className="content__inner">
-                      <li className="inner__list">
-                        <div className="list__item">
-                          <p>{langs?.form.address} : </p>
-                          <strong>{shipment?.address}</strong>
-                        </div>
-                      </li>
-                      <li className="inner__list">
-                        <div className="list__item">
-                          <p>{langs?.form.ward} : </p>
-                          <strong>{renderWard()}</strong>
-                        </div>
-                      </li>
-                      <li className="inner__list">
-                        <div className="list__item">
-                          <p>{langs?.form.district} : </p>
-                          <strong>{renderDistrict()}</strong>
-                        </div>
-                      </li>
-                      <li className="inner__list">
-                        <div className="list__item">
-                          <p>{langs?.form.province} : </p>
-                          <strong>{renderProvince()}</strong>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </CardBody>
-              </Card.Wrapper>
+              <Shipment
+                langs={langs}
+                shipment={shipment}
+                renderWard={renderWard}
+                renderDistrict={renderDistrict}
+                renderProvince={renderProvince}
+              />
             );
           }
         })()}
 
-        <Card.Wrapper className="body__item">
-          <CardBody>
-            <ul className="item__list">
-              <li className="list__item">
-                <div className="item__inner">
-                  <span>{langs?.productCarts.price} : </span>
-                  <strong>{price.toLocaleString()} VND</strong>
-                </div>
-              </li>
-              <li className="list__item">
-                <div className="item__inner">
-                  <span>{langs?.productCarts.shipment} : </span>
-                  <strong>{shipmentFee.toLocaleString()} VND</strong>
-                </div>
-              </li>
-            </ul>
-
-            <div className="item__line"></div>
-
-            <ul className="item__list">
-              <li className="list__item">
-                <div className="item__inner">
-                  <span>{langs?.productCarts.total} : </span>
-                  <strong>{total.toLocaleString()} VND</strong>
-                </div>
-              </li>
-              <li className="list__item">
-                <div className="item__inner">
-                  <span>{langs?.productCarts.vat} : </span>
-                  <strong>{vat.toLocaleString()} VND</strong>
-                </div>
-              </li>
-              <li className="list__item">
-                <div className="item__inner">
-                  <span>{langs?.productCarts.totalPay} : </span>
-                  <strong>{totalPay.toLocaleString()} VND</strong>
-                </div>
-              </li>
-            </ul>
-
-            <div className="item__line"></div>
-
-            <div className="item__payment-type">
-              <span>{langs?.productCarts.paymentType}</span>
-              <strong>{renderPaymentType()}</strong>
-            </div>
-          </CardBody>
-        </Card.Wrapper>
+        <TotalPay
+          langs={langs}
+          price={price}
+          shipmentFee={shipmentFee}
+          total={total}
+          totalPay={totalPay}
+          vat={vat}
+          renderPaymentType={renderPaymentType}
+        />
 
         {note && (
           <Card.Wrapper className="body__item">
