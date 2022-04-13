@@ -18,6 +18,7 @@ export enum EStatus {
 
 export interface IOrder {
   id?: string;
+  orderId?: string;
   note?: string;
   paymentType?: number;
   totalPay?: number;

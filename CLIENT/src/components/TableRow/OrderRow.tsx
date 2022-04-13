@@ -30,7 +30,7 @@ const OrderRow: React.FunctionComponent<OrderRowProps> = (props) => {
   return (
     <tr className="order-row">
       <TableCol>
-        <div>{order?.id}</div>
+        <div>{order?.id || order?.orderId}</div>
       </TableCol>
       <TableCol>
         <div>

@@ -105,13 +105,17 @@ const ProductDetail: React.FunctionComponent<
               products: [{ ...newProducts }],
               userId: user?.id,
             };
+            const userQuery: IQueryList = {
+              userId: user?.id,
+            }
 
             dispatch(
               updateCarts(
                 newStock,
                 query,
                 langs?.toastMessages.success.updateCart,
-                langs?.toastMessages.error.updateCart
+                langs?.toastMessages.error.updateCart,
+                userQuery,
               )
             );
           } else {
@@ -138,12 +142,17 @@ const ProductDetail: React.FunctionComponent<
               products: products,
               userId: user?.id,
             };
+            const userQuery: IQueryList = {
+              userId: user?.id,
+            }
+
             dispatch(
               updateCarts(
                 newStock,
                 query,
                 langs?.toastMessages.success.addToCart,
-                langs?.toastMessages.error.addToCart
+                langs?.toastMessages.error.addToCart,
+                userQuery,
               )
             );
           } else {
@@ -163,7 +172,7 @@ const ProductDetail: React.FunctionComponent<
           }
         }
 
-        // Carts has products
+        // Carts has no products
       } else if (carts && carts.length === 0) {
         carts.push({ products: [] });
         carts[0]?.products?.push(stock);
@@ -172,11 +181,15 @@ const ProductDetail: React.FunctionComponent<
             products: carts[0].products,
             userId: user?.id,
           };
+          const query: IQueryList = {
+            userId: user?.id,
+          }
           dispatch(
             createCarts(
               newStock,
               langs?.toastMessages.success.addToCart,
-              langs?.toastMessages.error.addToCart
+              langs?.toastMessages.error.addToCart,
+              query,
             )
           );
         } else {

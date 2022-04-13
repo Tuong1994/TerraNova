@@ -24,7 +24,7 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
   const path = document.location.pathname;
 
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
-  const { carts, tempCarts } = useSelector(
+  const { tempCarts } = useSelector(
     (state: ReducerState) => state.CartsReducer
   );
   const { user } = useSelector((state: ReducerState) => state.UserReducer);
@@ -67,21 +67,25 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
       }
       setTotalPrice(sum);
     }
-  }, [carts, tempCarts]);
+  }, [user?.carts, tempCarts]);
 
   const handleRemoveItem = (item: IProductCarts) => {
     if (utils.checkObjectEmpty(user)) {
+      // Check if user exist => render carts by user
       if (user?.carts && user?.carts[0]?.products) {
         const products = user?.carts[0]?.products;
         const newProducts = products?.filter(
           (i: any) => i.productId !== item.productId
         );
         const newStock = {
-          cartsId: carts[0].cartsId,
+          cartsId: user?.carts[0].cartsId,
           products: newProducts,
         };
         const query: IQueryList = {
           cartsId: user?.carts[0].cartsId,
+        };
+        const userQuery: IQueryList = {
+          userId: user?.id,
         };
         dispatch(
           updateCarts(
@@ -91,6 +95,7 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
             langs?.toastMessages.error.updateCart
           )
         );
+        dispatch(getUserDetail(userQuery));
       }
     } else {
       const products = tempCarts?.products;
@@ -111,7 +116,7 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
 
   const renderItem = () => {
     if (utils.checkObjectEmpty(user)) {
-      // Check if user exist => call API create carts / if not => save temporary carts
+      // Check if user exist => render carts by users
       if (user?.carts && user?.carts?.length > 0) {
         if (user?.carts[0]?.products && user?.carts[0]?.products?.length > 0) {
           return user?.carts?.map((item: ICarts, index: number) => {
@@ -230,7 +235,15 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
       </div>
 
       <div className="carts__total">
-        {carts[0]?.products?.length || tempCarts?.products?.length || 0}
+        {(() => {
+          if (user?.carts && user?.carts[0]?.products) {
+            return user?.carts[0]?.products?.length;
+          } else if (tempCarts?.products?.length) {
+            return tempCarts?.products?.length;
+          } else {
+            return 0;
+          }
+        })()}
       </div>
 
       <div
