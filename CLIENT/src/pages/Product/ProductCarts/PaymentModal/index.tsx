@@ -47,6 +47,8 @@ const PaymentModal: React.FunctionComponent<PaymentModalProps> = (props) => {
     (state: ReducerState) => state.ModalReducer
   );
 
+  const { orderer } = useSelector((state: ReducerState) => state.OrderReducer);
+
   const dispatch = useDispatch();
 
   const renderWard = () => {
@@ -105,6 +107,43 @@ const PaymentModal: React.FunctionComponent<PaymentModalProps> = (props) => {
         onHide={handleCloseModal}
       />
       <Modal.Body className="payment-modal__body">
+        {(() => {
+          if (utils.checkObjectEmpty(orderer)) {
+            return (
+              <Card.Wrapper className="body__item">
+                <CardBody>
+                  <h5 className="item__title">
+                    {langs?.productCarts.modal.orderer}
+                  </h5>
+
+                  <div className="item__content">
+                    <ul className="content__inner">
+                      <li className="inner__list">
+                        <div className="list__item">
+                          <p>{langs?.form.name} : </p>
+                          <strong>{orderer?.name}</strong>
+                        </div>
+                      </li>
+                      <li className="inner__list">
+                        <div className="list__item">
+                          <p>{langs?.form.phone} : </p>
+                          <strong>{orderer?.phone}</strong>
+                        </div>
+                      </li>
+                      <li className="inner__list">
+                        <div className="list__item">
+                          <p>{langs?.form.email} : </p>
+                          <strong>{orderer?.email}</strong>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </CardBody>
+              </Card.Wrapper>
+            );
+          }
+        })()}
+
         <Card.Wrapper className="body__item">
           <CardBody>
             <h5 className="item__title">{langs?.productCarts.modal.product}</h5>

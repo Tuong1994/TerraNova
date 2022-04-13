@@ -1,6 +1,6 @@
 import React from "react";
 import * as Modal from "../../../../components/Modal";
-import * as FormControl from "../../../../components/Fields";
+import * as FormControls from "../../../../components/Fields";
 import * as yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { useDispatch, useSelector } from "react-redux";
@@ -122,7 +122,7 @@ const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
                   </h3>
                   <Field
                     name="userName"
-                    component={FormControl.Input}
+                    component={FormControls.Input}
                     label={langs?.form.name}
                     placeholder=" "
                     icon={<i className="fas fa-user"></i>}
@@ -133,7 +133,7 @@ const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
                   <Field
                     name="phone"
                     type="number"
-                    component={FormControl.Input}
+                    component={FormControls.Input}
                     label={langs?.form.phone}
                     placeholder=" "
                     icon={<i className="fas fa-phone"></i>}
@@ -151,7 +151,7 @@ const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
                   />
                   <Field
                     name="email"
-                    component={FormControl.Input}
+                    component={FormControls.Input}
                     label={langs?.form.email}
                     placeholder=" "
                     icon={<i className="fas fa-envelope"></i>}
@@ -169,7 +169,7 @@ const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
                   </h3>
                   <Field
                     name="address"
-                    component={FormControl.Input}
+                    component={FormControls.Input}
                     label={langs?.form.address}
                     placeholder=" "
                     icon={<i className="fa-solid fa-location-dot"></i>}
@@ -179,7 +179,7 @@ const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
                   />
                   <Field
                     name="province"
-                    component={FormControl.Select}
+                    component={FormControls.Select}
                     label={langs?.form.province}
                     option={options?.province}
                     selectClassName="options__item"
@@ -193,7 +193,7 @@ const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
                   />
                   <Field
                     name="ward"
-                    component={FormControl.Select}
+                    component={FormControls.Select}
                     label={langs?.form.ward}
                     option={getOptionsByProvince()?.ward}
                     selectClassName="options__item"
@@ -205,7 +205,7 @@ const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
 
                   <Field
                     name="district"
-                    component={FormControl.Select}
+                    component={FormControls.Select}
                     label={langs?.form.district}
                     option={getOptionsByProvince()?.district}
                     selectClassName="options__item"

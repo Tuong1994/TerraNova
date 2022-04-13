@@ -135,9 +135,11 @@ const VnLang = {
     modal: {
       shipmentTitle: "Thông tin vận chuyển",
       paymentTitle: "Thành toán thành công",
+      orderTitle: "Thông tin đặt hàng",
       product: "Thông tin sản phẩm",
       shipment: "Thông tin giao hàng",
       receiver: "Người nhận",
+      orderer: "Người đặt",
       address: "Địa chỉ giao hàng",
       note: "Chú ý: Vui lòng cung cấp thông tin chính xác tránh các vấn đề phát sinh và để việc vận chuyển thuận tiện hơn",
     },

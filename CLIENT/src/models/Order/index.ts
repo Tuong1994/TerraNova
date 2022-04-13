@@ -15,7 +15,6 @@ export enum EShipmentType {
 export enum EStatus {
   paid = 1,
 }
-
 export interface IOrder {
   id?: string;
   orderId?: string;

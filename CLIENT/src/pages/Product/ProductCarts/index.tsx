@@ -30,11 +30,12 @@ import ShipmentModal from "./ShipmentModal";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";
 import PaymentModal from "./PaymentModal";
 import utils from "../../../utils";
+import OrderModal from "./OrderModal";
 
 interface ProductCartsProps {}
 
 const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
-  const { carts, tempCarts } = useSelector(
+  const { tempCarts } = useSelector(
     (state: ReducerState) => state.CartsReducer
   );
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
@@ -242,7 +243,8 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
 
   // Payment
   const handlePayment = () => {
-    if (utils.checkObjectEmpty(user)) { // Check if user exist
+    if (utils.checkObjectEmpty(user)) {
+      // Check if user exist
       if (user?.carts) {
         const newOrder: IOrder = {
           note: note,
@@ -286,7 +288,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
       };
       const stock = {
         products: [],
-      }
+      };
       dispatch(
         createOrder(
           newOrder,
@@ -298,8 +300,8 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
         localStorage.setItem("carts", JSON.stringify(stock));
         dispatch({
           type: ECartsActionTypes.UPDATE_TEMP_CARTS,
-          payload: stock
-        })
+          payload: stock,
+        });
       }, 500);
     }
   };
@@ -405,10 +407,12 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
             </div>
 
             <div
-              className={`button--submit ${
-                buttonLoading ? "button--disabled" : ""
-              }`}
-              onClick={handlePayment}
+              className="button--submit"
+              onClick={() => {
+                dispatch({
+                  type: EModalActionTypes.OPEN_ORDER_MODAL,
+                });
+              }}
             >
               <ButtonLoading />
               <span>{langs?.button.payment}</span>
@@ -447,9 +451,18 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
       {/* Shipment modal */}
       <ShipmentModal lang={lang} langs={langs} />
 
+      {/* Order modal */}
+      <OrderModal
+        langs={langs}
+        options={options}
+        shipmentType={shipmentType}
+        handlePayment={handlePayment}
+        setShipmentType={setShipmentType}
+      />
+
       {/* Payment modal */}
       <PaymentModal
-        cartsDetail={cartsDetail}
+        cartsDetail={cartsDetail || tempCarts?.products}
         lang={lang}
         langs={langs}
         shipment={shipment}

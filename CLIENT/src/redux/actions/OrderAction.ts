@@ -9,4 +9,9 @@ interface UPDATE_ORDER {
     payload: any;
 }
 
-export type OrderAction = GET_ORDER_LIST | UPDATE_ORDER;
+interface ADD_ORDERER {
+    type: EOrderActionTypes.ADD_ORDERER;
+    payload: any;
+}
+
+export type OrderAction = GET_ORDER_LIST | UPDATE_ORDER | ADD_ORDERER;

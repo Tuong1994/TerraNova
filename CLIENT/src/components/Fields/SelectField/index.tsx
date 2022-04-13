@@ -14,6 +14,7 @@ interface SelectFieldProps extends FieldProps {
   label?: string;
   option?: IOption[];
   isReset?: boolean;
+  defaultValue?: any;
   placeholder?: string;
   groupClassName?: string;
   optionClassName?: string;
@@ -32,6 +33,7 @@ const SelectField: React.FunctionComponent<SelectFieldProps> = (props) => {
     label,
     option,
     isReset,
+    defaultValue,
     placeholder,
     groupClassName,
     optionClassName,
@@ -93,6 +95,7 @@ const SelectField: React.FunctionComponent<SelectFieldProps> = (props) => {
   const renderValue = () => {
     if (freeText.length > 0) return freeText;
     if (newValue) return newValue;
+    if (defaultValue) return defaultValue.label;
     return "";
   };
 

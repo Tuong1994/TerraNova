@@ -136,9 +136,11 @@ const EngLang = {
     modal: {
       shipmentTitle: "Shipment infomation",
       paymentTitle: "Payment success",
+      orderTitle: "Order infomation",
       product: "Product information",
       shipment: "Shipment infomation",
       receiver: "Receiver",
+      orderer: "Orderer",
       address: "Delivery address",
       note: "Note: Please provide accurate information to avoid problems and make distribution more convenient",
     },
