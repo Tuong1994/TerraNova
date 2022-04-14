@@ -6,9 +6,9 @@ import Customer from "../pages/Admin/Customer";
 import Course from "../pages/Admin/Course";
 import Order from "../pages/Admin/Order";
 import Home from "../pages/Home";
-import UserForm from "../pages/UserForm";
+import UserLog from "../pages/UserLog";
 import AboutUs from "../pages/AboutUs";
-import Contact from "../pages/Contact";
+import Movie from "../pages/Movie";
 import ProductList from "../pages/Product/ProductList";
 import ProductDetail from "../pages/Product/ProductDetail";
 import ProductCarts from "../pages/Product/ProductCarts";
@@ -82,19 +82,19 @@ export const homeRoutes: IRoute[] = [
     component: AboutUs,
   },
   {
-    path: "/contact",
+    path: "/movie",
     exact: true,
-    component: Contact,
+    component: Movie,
   },
   {
     path: "/signIn",
     exact: true,
-    component: UserForm,
+    component: UserLog,
   },
   {
     path: "/signUp",
     exact: true,
-    component: UserForm,
+    component: UserLog,
   },
   {
     path: "/productByCategory/:id",

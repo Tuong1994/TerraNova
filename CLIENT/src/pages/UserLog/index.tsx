@@ -5,9 +5,9 @@ import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
 import { RouteComponentProps } from "react-router-dom";
 
-interface IUserFormProps extends RouteComponentProps {}
+interface IUserLogProps extends RouteComponentProps {}
 
-const UserForm: React.FunctionComponent<IUserFormProps> = (props) => {
+const UserLog: React.FunctionComponent<IUserLogProps> = (props) => {
   const path = props.match.path;
   
   customHook.useLoading();
@@ -22,8 +22,8 @@ const UserForm: React.FunctionComponent<IUserFormProps> = (props) => {
 
 
   return (
-    <div className="user-form">
-      <div className="user-form__logo">
+    <div className="user-log">
+      <div className="user-log__logo">
         <Logo className="logo__inner" />
         <ul className="logo__content">
           <li className="content__list">Build your own PC</li>
@@ -32,11 +32,11 @@ const UserForm: React.FunctionComponent<IUserFormProps> = (props) => {
         </ul>
       </div>
 
-      <div className="user-form__line"></div>
+      <div className="user-log__line"></div>
 
       {renderForm()}
     </div>
   );
 };
 
-export default UserForm;
+export default UserLog;

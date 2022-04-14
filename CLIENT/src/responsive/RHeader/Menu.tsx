@@ -31,7 +31,7 @@ const Menu: React.FunctionComponent<MenuProps> = props => {
           <span className="list__link">{menu.name}</span>
 
           {menu.name !== langs?.headerMenu.home &&
-          menu.name !== langs?.headerMenu.contact &&
+          menu.name !== langs?.headerMenu.movie &&
           menu.name !== langs?.headerMenu.aboutUs ? (
             <ul
               className={

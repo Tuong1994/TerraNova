@@ -29,8 +29,8 @@ import CartsPayment from "./CartsPayment";
 import ShipmentModal from "./ShipmentModal";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";
 import PaymentModal from "./PaymentModal";
-import utils from "../../../utils";
 import OrderModal from "./OrderModal";
+import utils from "../../../utils";
 import actions from "../../../configs/actions";
 
 interface ProductCartsProps {}
@@ -83,7 +83,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
     }
   }, [user?.carts, tempCarts]);
 
-  React.useEffect(() => {
+  React.useEffect(() => { // Calculate total pay
     let sum = 0;
     if (utils.checkObjectEmpty(user)) {
       const products = cartsDetail[0]?.products;
@@ -96,7 +96,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
       }
       setPrice(sum);
     } else {
-      const products = tempCarts?.products;
+      const products = cartsDetail?.products;
       if (products && products?.length > 0) {
         if (products && products.length > 0) {
           for (let i = 0; i < products.length; i++) {
@@ -172,6 +172,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
             )
           );
         }
+
       } else {
         const products = tempCarts?.products;
         const newProducts = products?.map((i) => {
@@ -231,6 +232,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
           )
         );
       }
+
     } else {
       const products = tempCarts.products;
       const newProducts = products?.filter(
@@ -281,6 +283,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
           dispatch(removeCarts(query, userQuery));
         }, 500);
       }
+
     } else {
       const newOrder: IOrder = {
         note: note,

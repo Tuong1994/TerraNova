@@ -1,4 +1,5 @@
 const { User } = require("../models");
+const { key } = require("../setting/setting");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -13,7 +14,7 @@ const signIn = async (req, res) => {
     if (userLogin) {
       const isAuth = bcryptjs.compareSync(password, userLogin.password);
       if (isAuth) {
-        const secretKey = "ProPhet@456";
+        const secretKey = key;
         const payLoad = {
           id: userLogin.id,
           account: userLogin.account,
@@ -57,9 +58,9 @@ const signUp = async (req, res) => {
     gender,
   } = req.body;
   try {
-    const userId ="U_" + (Math.floor(Math.random() * 100000)).toString();
-    const salt = bcryptjs.genSaltSync(10)
-    const hashPassword = bcryptjs.hashSync(password, salt)
+    const userId = "U_" + Math.floor(Math.random() * 100000).toString();
+    const salt = bcryptjs.genSaltSync(10);
+    const hashPassword = bcryptjs.hashSync(password, salt);
     const newUser = await User.create({
       id: userId,
       account,

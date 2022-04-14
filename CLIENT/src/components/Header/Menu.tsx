@@ -65,7 +65,7 @@ const Menu: React.FunctionComponent<MenuProps> = (props) => {
         )}
         {menu.name === langs?.headerMenu.home ||
         menu.name === langs?.headerMenu.aboutUs ||
-        menu.name === langs?.headerMenu.contact
+        menu.name === langs?.headerMenu.movie
           ? null
           : renderSubMenu(menu)}
       </li>

@@ -1,9 +1,9 @@
-.user-form {
+.user-log {
   padding: $p-10 * 10 $p-10 * 5;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  .user-form__logo {
+  .user-log__logo {
     .logo__inner {
       cursor: unset;
       pointer-events: none;
@@ -38,7 +38,7 @@
       display: none;
     }
   }
-  .user-form__line {
+  .user-log__line {
     width: 4px;
     height: $h-10 * 40;
     background: $dark;

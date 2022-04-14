@@ -4,7 +4,7 @@ const VnLang = {
     product: "Sản phẩm",
     course: "Khóa học",
     aboutUs: "Về chúng tôi",
-    contact: "Liên hệ",
+    movie: "Phim",
     computer: "Máy tính PC",
     electronics: "Đồ điện tử",
     printer: "MÁY IN",
@@ -18,11 +18,11 @@ const VnLang = {
     psu: "NGUỒN MÁY TÍNH - PSU",
     mainboard: "MAINBOARD",
     accessories: "Linh kiện",
-    mindsetPrograming: "Lập trình Tư Duy",
-    mobilePrograming: "Lập trình Mobile",
-    fullstackPrograming: "Lập trình Fullstack",
-    backendPrograming: "Lập trình Backend",
-    frontendPrograming: "Lập trình Frontend",
+    mindsetProgramming: "Lập trình Tư Duy",
+    mobileProgramming: "Lập trình Mobile",
+    fullstackProgramming: "Lập trình Fullstack",
+    backendProgramming: "Lập trình Backend",
+    frontendProgramming: "Lập trình Frontend",
     signIn: "Đăng nhập",
     signUp: "Đăng ký",
     accountSetting: "Thông tin tài khoản",
@@ -142,6 +142,21 @@ const VnLang = {
       orderer: "Người đặt",
       address: "Địa chỉ giao hàng",
       note: "Chú ý: Vui lòng cung cấp thông tin chính xác tránh các vấn đề phát sinh và để việc vận chuyển thuận tiện hơn",
+    },
+  },
+  aboutUs: {
+    banner: {
+      title: "Giới thiệu về",
+    },
+    intro: {
+      intro_1:
+        "Mong muốn tạo ra một nền tảng để khách hàng có thể trải nghiệm và sử dụng các dịch vụ trực tuyến chất lượng, Terra Nova ra đời nhằm đáp ứng những nhu cầu đó.",
+      intro_2:
+        "Terra Nova được thành lập ngày 28 tháng 11 năm 2010. Với tầm nhìn trở thành nền tảng phổ biến với người dùng, sau hơn 10 năm nỗ lực, Terra nova ngày càng được các đối tác và khách hàng tin tưởng.",
+        subTitle: "Các sản phẩm và dịch vụ của chúng tôi",
+        product: "Sản phẩm điện tử và linh kiện máy tính",
+        course: "Khóa học",
+        service: "Dịch vụ đặt vé xem phim trực tuyến",
     },
   },
   user: {

@@ -11,12 +11,11 @@ import { Link } from "react-router-dom";
 import { EPaymentTypes } from "../../../../models/Order";
 import { ICarts } from "../../../../models/Carts";
 import CardBody from "../../../../components/Card/CardBody";
-import CartsItem from "../../../../components/CartsItem";
-import utils from "../../../../utils";
 import Orderer from "./Orderer";
 import CartsDetail from "./CartsDetail";
 import Shipment from "./Shipment";
 import TotalPay from "./TotalPay";
+import utils from "../../../../utils";
 
 interface PaymentModalProps {
   cartsDetail: ICarts[];

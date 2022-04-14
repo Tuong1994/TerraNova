@@ -1,6 +1,7 @@
 import React from "react";
 import * as Modal from "../../../../components/Modal";
 import * as FormControls from "../../../../components/Fields";
+import * as yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { ILangs } from "../../../../interfaces/lang";
@@ -10,10 +11,11 @@ import { IUser } from "../../../../models/User";
 import { EShipmentActionTypes } from "../../../../redux/actionTypes/ShipmentActionTypes";
 import { EShipmentType } from "../../../../models/Order";
 import { EOrderActionTypes } from "../../../../redux/actionTypes/OrderActionTypes";
-import utils from "../../../../utils";
+import { phoneRegex } from "../../../../configs/regex";
 import Button from "../../../../components/Button";
 import ButtonLoading from "../../../../components/Loading/ButtonLoading";
 import actions from "../../../../configs/actions";
+import utils from "../../../../utils";
 
 interface OrderModalProps {
   langs: ILangs;
@@ -63,6 +65,18 @@ const OrderModal: React.FunctionComponent<OrderModalProps> = (props) => {
     email: "",
   };
 
+  const validateSchema = yup.object().shape({
+    name: yup.string().required(langs?.validateMessages.required),
+    email: yup
+      .string()
+      .email(langs?.validateMessages.email)
+      .required(langs?.validateMessages.required),
+    phone: yup
+      .string()
+      .matches(phoneRegex, langs?.validateMessages.phone)
+      .required(langs?.validateMessages.required),
+  });
+
   const handleSubmit = (value: IUser, action: any) => {
     dispatch(actions.openButtonLoading);
     dispatch({
@@ -89,7 +103,11 @@ const OrderModal: React.FunctionComponent<OrderModalProps> = (props) => {
       className="product-carts__order-modal"
       onHide={handleCloseModal}
     >
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validateSchema}
+        onSubmit={handleSubmit}
+      >
         {(formikProps) => {
           const { isValid, isSubmitting } = formikProps;
           return (
@@ -145,6 +163,7 @@ const OrderModal: React.FunctionComponent<OrderModalProps> = (props) => {
                 </div>
 
                 <div className="body__line"></div>
+
                 <div className="body__group">
                   <Field
                     component={FormControls.Select}

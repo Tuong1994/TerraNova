@@ -16,8 +16,6 @@ const TotalPay: React.FunctionComponent<TotalPayProps> = (props) => {
   const { langs, price, shipmentFee, total, totalPay, vat, renderPaymentType } =
     props;
 
-  console.log(price);
-
   return (
     <Card.Wrapper className="body__item">
       <Card.Body>
