@@ -159,6 +159,14 @@ const EngLang = {
         course: "Courses",
         service: "Online booking movie ticket service",
     },
+    vision: {
+      title: "Our vision",
+      content: "Become a popular, trusted platform with every users",
+    },
+    mission: {
+      title: "Our mission",
+      content: "We provide you a platform where you can purchase products, courses and more."
+    },
   },
   user: {
     hello: "Hello",

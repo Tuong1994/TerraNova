@@ -83,9 +83,43 @@ const createCourse = async (req, res) => {
   }
 };
 
+const updateCourse = async (req, res) => {
+  const { courseId } = req.query;
+  const { categoryId, nameENG, nameVN, descENG, descVN } = req.body;
+  try {
+    await Course.update(
+      { categoryId, nameENG, nameVN, descENG, descVN },
+      {
+        where: {
+          id: courseId,
+        },
+      }
+    );
+    res.status(200).send("Update success");
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const removeCourse = async (req, res) => {
+  const { courseId } = req.query;
+  try {
+    await Course.destroy({
+      where: {
+        id: courseId,
+      },
+    });
+    res.status(200).send("Remove success");
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   getCategoryAndCourseList,
   getCourseByCategory,
   getCourseDetail,
   createCourse,
+  updateCourse,
+  removeCourse,
 };

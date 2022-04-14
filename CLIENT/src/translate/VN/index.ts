@@ -158,6 +158,14 @@ const VnLang = {
         course: "Khóa học",
         service: "Dịch vụ đặt vé xem phim trực tuyến",
     },
+    vision: {
+      title: "Tầm nhìn của chúng tôi",
+      content: "Nền tảng trở nên phổ biến, được mỗi khách hàng tin dùng",
+    },
+    mission: {
+      title: "Nhiệm vụ của chúng tôi",
+      content: "Chúng tôi cung cấp nền tảng nơi bạn có thể mua sản phẩm, khóa học v.v"
+    },
   },
   user: {
     hello: "Xin chào",

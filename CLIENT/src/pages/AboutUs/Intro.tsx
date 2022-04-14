@@ -9,7 +9,7 @@ const Intro: React.FunctionComponent<IntroProps> = (props) => {
   const { langs } = props;
 
   return (
-    <div className="about-us__intro">
+    <div className="content__intro">
       <div className="intro__content">
         <p>{langs?.aboutUs.intro.intro_1}</p>
         <p>{langs?.aboutUs.intro.intro_2}</p>

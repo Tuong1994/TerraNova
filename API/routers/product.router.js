@@ -20,6 +20,7 @@ const {
   authorize,
 } = require("../middlewares/auths/check-verify.middleware");
 
+
 productRouter.get("/getProducerAndProduct", getProducerAndProduct);
 
 productRouter.get("/getProductList", getProductList);

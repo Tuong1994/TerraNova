@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { ReducerState } from "../../redux/store";
 import Banner from "./Banner";
 import Intro from "./Intro";
+import Vision from "./Vision";
+import Mission from "./Mission";
 import utils from "../../utils";
 
 const AboutUs: React.FunctionComponent<{}> = (props) => {
@@ -16,7 +18,11 @@ const AboutUs: React.FunctionComponent<{}> = (props) => {
   return (
     <div className="about-us">
       <Banner langs={langs} />
-      <Intro langs={langs} />
+      <div className="about-us__content">
+        <Intro langs={langs} />
+        <Vision langs={langs} />
+        <Mission langs={langs} />
+      </div>
     </div>
   );
 };
