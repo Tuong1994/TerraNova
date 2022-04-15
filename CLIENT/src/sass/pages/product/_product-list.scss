@@ -4,8 +4,7 @@
     padding: $p-10 $p-10 * 2;
     font-size: $h5;
     color: $tSecondary;
-    border-top-left-radius: $round;
-    border-bottom-left-radius: $round;
+    border-radius: $round;
     background: $secondary;
     @include respond(phone) {
       font-size: $h6;
@@ -102,17 +101,13 @@
               }
             }
             .content__price {
-              font-size: $body-1;
+              font-size: $default;
+              font-weight: $semiBold;
               color: $tRed;
             }
           }
           .card__features {
             width: $w-100;
-            .features__rate {
-              font-size: $body-1;
-              color: $tYellow;
-              padding-bottom: $p-10 * 2;
-            }
             .features__specs {
               width: $w-100;
               border-top: 1px solid $borderGrey;

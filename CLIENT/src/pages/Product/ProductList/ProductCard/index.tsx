@@ -36,24 +36,6 @@ const ProductCard: React.FunctionComponent<ProductCardProps> = (props) => {
           </p>
         </Card.Body>
         <Card.Footer className="card__features">
-          {/* <div className="button--round">More details</div> */}
-          <div className="features__rate">
-            <span>
-              <i className="fas fa-star"></i>
-            </span>
-            <span>
-              <i className="fas fa-star"></i>
-            </span>
-            <span>
-              <i className="fas fa-star"></i>
-            </span>
-            <span>
-              <i className="fas fa-star"></i>
-            </span>
-            <span>
-              <i className="fas fa-star"></i>
-            </span>
-          </div>
           <SpecsContent product={product} />
         </Card.Footer>
       </Card.Wrapper>

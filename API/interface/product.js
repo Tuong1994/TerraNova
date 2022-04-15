@@ -255,7 +255,8 @@ const getProductDetailField = (id, type) => {
   if (type == productType.cpu) {
     return (
       productFields.cpu +
-      `
+      `,
+        producers.name as producerName
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
@@ -267,7 +268,8 @@ const getProductDetailField = (id, type) => {
   } else if (type == productType.mainboard) {
     return (
       productFields.mainboard +
-      `
+      `,
+        producers.name as producerName
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
@@ -279,7 +281,8 @@ const getProductDetailField = (id, type) => {
   } else if (type === productType.ram) {
     return (
       productFields.ram +
-      `
+      `,
+        producers.name as producerName
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
@@ -291,7 +294,8 @@ const getProductDetailField = (id, type) => {
   } else if (type == productType.hdd) {
     return (
       productFields.hdd +
-      `
+      `,
+        producers.name as producerName
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
@@ -303,7 +307,8 @@ const getProductDetailField = (id, type) => {
   } else if (type == productType.ssd) {
     return (
       productFields.ssd +
-      `
+      `,
+        producers.name as producerName
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
@@ -315,7 +320,8 @@ const getProductDetailField = (id, type) => {
   } else if (type == productType.vga) {
     return (
       productFields.vga +
-      `
+      `,
+        producers.name as producerName
         from products
         inner join pcspecs
         on pcspecs.productId = products.id
@@ -327,7 +333,8 @@ const getProductDetailField = (id, type) => {
   } else if (type == productType.psu) {
     return (
       productFields.psu +
-      `
+      `,
+        producers.name as producerName
         from products
         inner join pcspecs
         on pcspecs.productId = products.id

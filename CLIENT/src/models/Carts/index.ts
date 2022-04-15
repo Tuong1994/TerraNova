@@ -9,4 +9,6 @@ export interface ICarts {
   cartsId?: string;
   products?: IProductCarts[];
   userId?: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
 }

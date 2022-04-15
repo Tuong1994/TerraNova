@@ -1,5 +1,6 @@
 import React from "react";
 import { EStatus } from "../../models/Order";
+import { EProductStatus } from "../../models/Product";
 
 interface BadgeProps {
   status?: number;
@@ -12,8 +13,11 @@ const Badge: React.FunctionComponent<BadgeProps> = (props) => {
   const getClassName = () => {
     if (status) {
       switch (status) {
-        case EStatus.paid: {
-          return "badge--paid";
+        case (EStatus.paid): {
+          return "badge--success";
+        }
+        case (EProductStatus.stocking): {
+          return "badge--success"
         }
       }
     }

@@ -9,6 +9,7 @@ import { PaginationReducer } from "./reducers/PaginationReducer";
 import { ProductReducer } from "./reducers/ProductReducer";
 import { LoadingReducer } from "./reducers/LoadingReducer";
 import { ShipmentReducer } from "./reducers/ShipmentReducer";
+import { CourseReducer } from "./reducers/CourseReducer";
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import reduxThunk from "redux-thunk";
 
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   ToastReducer,
   SideBarReducer,
   ShipmentReducer,
+  CourseReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(reduxThunk));

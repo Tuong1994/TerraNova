@@ -103,7 +103,9 @@ export const headerMenuEng = [
             categoryId: "printer",
             name: lang?.ENG.headerMenu.printer,
             active: false,
-            Producers: [],
+            Producers: [
+              { producerId: "samsung", name: "SAMSUNG" },
+            ],
           },
           {
             categoryId: "monitor",
@@ -119,7 +121,9 @@ export const headerMenuEng = [
             categoryId: "fax",
             name: lang?.ENG.headerMenu.faxMachine,
             active: false,
-            Producers: [],
+            Producers: [
+              { producerId: "samsung", name: "SAMSUNG" },
+            ],
           },
         ],
       },
@@ -318,7 +322,9 @@ export const headerMenuVN = [
             categoryId: "printer",
             name: lang?.VN.headerMenu.printer,
             active: false,
-            Producers: [],
+            Producers: [
+              { producerId: "samsung", name: "SAMSUNG" },
+            ],
           },
           {
             categoryId: "monitor",
@@ -334,7 +340,9 @@ export const headerMenuVN = [
             categoryId: "fax",
             name: lang?.VN.headerMenu.faxMachine,
             active: false,
-            Producers: [],
+            Producers: [
+              { producerId: "samsung", name: "SAMSUNG" },
+            ],
           },
         ],
       },

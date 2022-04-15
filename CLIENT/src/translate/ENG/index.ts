@@ -161,11 +161,11 @@ const EngLang = {
     },
     vision: {
       title: "Our vision",
-      content: "Become a popular, trusted platform with every users",
+      content: "Bring to you the most popular, convenience and friendly platform.",
     },
     mission: {
       title: "Our mission",
-      content: "We provide you a platform where you can purchase products, courses and more."
+      content: "We provide you a platform where you can use all kind services like purchase products, courses or online booking movie ticket, etc."
     },
   },
   user: {
@@ -192,6 +192,8 @@ const EngLang = {
   status: {
     new: "New",
     paid: "Paid",
+    stocking: "Stocking",
+    outOfStock: "Out of stock", 
   },
   paymentType: {
     cash: "Cash",

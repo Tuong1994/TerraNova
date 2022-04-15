@@ -160,11 +160,11 @@ const VnLang = {
     },
     vision: {
       title: "Tầm nhìn của chúng tôi",
-      content: "Nền tảng trở nên phổ biến, được mỗi khách hàng tin dùng",
+      content: "Mang đến cho bạn một nền tảng phổ biến, tiện dụng và thân thiện",
     },
     mission: {
       title: "Nhiệm vụ của chúng tôi",
-      content: "Chúng tôi cung cấp nền tảng nơi bạn có thể mua sản phẩm, khóa học v.v"
+      content: "Chúng tôi cung cấp nền tảng nơi bạn có thể sử dụng các dịch vụ như mua sản phẩm, khóa học hoặc đặt vé xem phim trực tuyến, v.v"
     },
   },
   user: {
@@ -191,6 +191,8 @@ const VnLang = {
   status: {
     new: "Mới 100%",
     paid: "Đã thanh toán",
+    stocking: "Còn hàng",
+    outOfStock: "Hết hàng", 
   },
   paymentType: {
     cash: "Tiền mặt",

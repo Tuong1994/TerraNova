@@ -64,6 +64,8 @@
       padding: $p-10 * 5;
       border: 1px solid $borderBlue;
       border-radius: $lightRound;
+      opacity: 0;
+      transition: all 0.5s ease;
       .vision__title {
         padding: $p-10 0;
         font-size: $h3;
@@ -84,6 +86,9 @@
         }
       }
     }
+    .content__vision--reveal {
+      opacity: 1;
+    }
     .content__mission {
       margin: $m-10 * 5 0;
       padding: $p-10 * 5;
@@ -91,6 +96,8 @@
       color: $tSecondary;
       border: 1px solid $borderBlue;
       border-radius: $lightRound;
+      opacity: 0;
+      transition: all 0.5s ease;
       .mission__title {
         padding: $p-10 0;
         font-size: $h3;
@@ -110,6 +117,9 @@
           font-size: $subtitle;
         }
       }
+    }
+    .content__mission--reveal {
+      opacity: 1;
     }
   }
 }

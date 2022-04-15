@@ -10,13 +10,23 @@ export enum EProductType {
   printer = "printer",
   fax = "fax",
 }
+
+export enum EProductStatus {
+  new = 1,
+  stocking = 2,
+  outOfStock = 3,
+}
 export interface ICategory {
   categoryId?: string;
   name?: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
 }
 export interface IProducer {
   producerId?: string;
   name?: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
 }
 export interface IAccessories {
   productId?: string;
@@ -46,4 +56,6 @@ export interface IAccessories {
   model: string;
   outputCapacity?: string;
   efficiency?: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
 }

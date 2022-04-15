@@ -13,10 +13,10 @@ import {
 import { ICarts, IProductCarts } from "../../../models/Carts";
 import { ECartsActionTypes } from "../../../redux/actionTypes/CartsActionTypes";
 import { toast } from "react-toastify";
-import ProductSlider from "./ProductContent/ProductSlider";
-import ProductInfo from "./ProductContent/ProductInfo";
-import ProductRelated from "./ProductContent/ProductRelated";
-import ProductTabs from "./ProductTabs";
+import ProductSlider from "./ProductSilder";
+import ProductInfo from "./ProductInfo";
+import ProductRelated from "./ProductRelated";
+import ProductSpecs from "./ProductSpecs";
 import utils from "../../../utils";
 import actions from "../../../configs/actions";
 
@@ -228,8 +228,8 @@ const ProductDetail: React.FunctionComponent<
         />
         <ProductRelated langs={langs} getProductDetail={_getProductDetail} />
       </div>
-      <div className="product-detail__tabs">
-        <ProductTabs product={productDetail} langs={langs} />
+      <div className="product-detail__specs">
+        <ProductSpecs langs={langs} product={productDetail} />
       </div>
     </div>
   );
