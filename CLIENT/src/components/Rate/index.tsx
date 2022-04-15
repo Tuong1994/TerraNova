@@ -1,10 +1,17 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { ReducerState } from "../../redux/store";
+import utils from "../../utils";
 
 interface RateProps {}
 
 const Rate: React.FunctionComponent<RateProps> = (props) => {
+  const { lang } = useSelector((state: ReducerState) => state.LangReducer);
+
   const [rating, setRating] = React.useState<any>(null);
   const [hover, setHover] = React.useState<any>(null);
+
+  const langs = utils.changeLang(lang);
 
   const getColor = (value: any) => {
     if (value <= (hover || rating)) {
@@ -38,7 +45,7 @@ const Rate: React.FunctionComponent<RateProps> = (props) => {
         })}
       </div>
       <div className="rate__content">
-        <p>{rating !== null ? rating : 0}/5 - (1 voted)</p>
+        <p>{rating !== null ? rating : 0}/5 - (1 {langs?.rate.voted})</p>
       </div>
     </div>
   );

@@ -9,7 +9,12 @@ interface IStateDefault {
       nameVN: string;
       nameENG: string;
     };
-    courses: ICourse[];
+    course: {
+      courseList: ICourse[];
+      total: number;
+      page: number;
+      limits: number;
+    };
   };
   courseDetail: ICourse;
 }
@@ -21,7 +26,12 @@ const stateDefault: IStateDefault = {
       nameVN: "",
       nameENG: "",
     },
-    courses: [],
+    course: {
+      courseList: [],
+      total: 0,
+      page: 0,
+      limits: 0,
+    },
   },
   courseDetail: {},
 };

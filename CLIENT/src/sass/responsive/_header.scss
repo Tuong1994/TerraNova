@@ -22,14 +22,16 @@
   }
   .responsive__wrapper {
     width: $w-100 - 15;
-    height: $h-100;
-    padding: $p-10 * 5 0;
+    height: $h-100-vh;
     background: $secondary;
-    overflow: auto;
     transform: translateX(-100%);
     transition: all 0.5s ease;
     .wrapper__login {
       width: $w-100;
+      height: $h-100-vh - 85;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       .login__wrapper,
       .login__user {
         display: flex;
@@ -129,52 +131,126 @@
       width: $w-100;
       height: 2px;
       background: $primary;
-      margin: $m-10 * 2 0;
     }
     .wrapper__menu {
       width: $w-100;
+      height: $h-100-vh - 30;
+      position: relative;
+      overflow: hidden;
       .menu__list {
-        list-style: none;
-        .list__link {
-          display: block;
+        width: $w-100;
+        height: $h-100;
+        overflow: auto;
+        .list__inner {
+          width: $w-100;
           padding: $p-10 * 2;
-          text-decoration: none;
-          color: $tSecondary;
-          cursor: pointer;
-        }
-        .list__submenu {
-          height: 0;
-          margin-left: $m-10 * 2;
-          border-left: 1px solid $borderWhite;
+          list-style: none;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
           overflow: auto;
-          transition: all 0.3s ease;
-          .submenu__list {
-            list-style: none;
-            .list__inner {
-              height: 0;
-              overflow: auto;
-              padding-left: $p-10 * 2;
-              transition: all 0.3s ease;
-              .inner__list {
-                font-size: $body-2;
-                border-bottom: 1px solid $borderWhite;
-              }
-            }
-            .list__inner--active {
-              height: $h-10 * 30;
+          cursor: pointer;
+          .inner__link {
+            width: $w-100;
+            display: block;
+            text-decoration: none;
+            color: $tSecondary;
+            cursor: pointer;
+          }
+          .fa-solid {
+            width: $w-100 - 10;
+            font-size: $subtitle;
+            color: $tSecondary;
+          }
+          @include respond(phone) {
+            font-size: $body-1;
+          }
+        }
+      }
+      .menu__product {
+        width: $w-100;
+        height: $h-100;
+        background: $secondary;
+        display: flex;
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: auto;
+        transform: translateX(101%);
+        transition: all 0.5s ease;
+        .product__icon {
+          height: $h-100;
+          padding: $p-10 * 2;
+          background: $primary;
+          font-size: $h6;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: sticky;
+          top: 0;
+        }
+        .product__list {
+          width: $w-100;
+          padding: $p-10;
+          .list__link {
+            display: block;
+            padding: $p-10 * 2 $p-10;
+            text-decoration: none;
+            color: $tSecondary;
+            border-bottom: 1px solid $borderWhite;
+            @include respond(phone) {
+              font-size: $body-1;
             }
           }
         }
-        .list__submenu--active {
-          height: $h-10 * 30;
+      }
+      .menu__product--active {
+        transform: translateX(0);
+      }
+      .menu__course {
+        width: $w-100;
+        height: $h-100;
+        background: $secondary;
+        display: flex;
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: auto;
+        transform: translateX(101%);
+        transition: all 0.5s ease;
+        .course__icon {
+          height: $h-100;
+          padding: $p-10 * 2;
+          background: $primary;
+          font-size: $h6;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: sticky;
+          top: 0;
         }
-        @include respond(phone) {
-          font-size: $body-1;
+        .course__list {
+          width: $w-100;
+          padding: $p-10;
+          .list__link {
+            display: block;
+            padding: $p-10 * 2 $p-10;
+            text-decoration: none;
+            color: $tSecondary;
+            border-bottom: 1px solid $borderWhite;
+            @include respond(phone) {
+              font-size: $body-1;
+            }
+          }
         }
+      }
+      .menu__course--active {
+        transform: translateX(0);
       }
     }
     .wrapper__translate {
       width: $w-100;
+      height: $h-100-vh - 85;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -187,6 +263,12 @@
         color: $tSecondary;
         border: 1px solid $borderWhite;
         border-radius: $lightRound;
+        @include respond(extraTablet) {
+          font-size: $default;
+        }
+        @include respond(phone) {
+          font-size: $body-1;
+        }
       }
     }
   }

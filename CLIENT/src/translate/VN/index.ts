@@ -303,6 +303,9 @@ const VnLang = {
     of: "của",
     results: "kết quả",
   },
+  rate: {
+    voted: "bình chọn",
+  },
 };
 
 export type LangVN = typeof VnLang;

@@ -1,6 +1,6 @@
-.product-list {
-  padding: $p-10 * 5;
-  .product-list__title {
+.course-list {
+  padding: $p-10 * 3;
+  .course-list__title {
     padding: $p-10 $p-10 * 2;
     font-size: $h5;
     color: $tSecondary;
@@ -10,7 +10,7 @@
       font-size: $h6;
     }
   }
-  .product-list__search {
+  .course-list__search {
     width: $w-100;
     padding-left: $p-10 * 2;
     display: flex;
@@ -31,7 +31,7 @@
       padding: 0;
     }
   }
-  .product-list__wrapper {
+  .course-list__wrapper {
     width: $w-100;
     margin: 0 auto;
     padding-top: $p-10 * 2;
@@ -160,7 +160,7 @@
       }
     }
   }
-  .product-list__pagination {
+  .course-list__pagination {
     border-top: 1px solid $borderGrey;
   }
   @include respond(laptop) {

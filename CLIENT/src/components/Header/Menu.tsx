@@ -41,7 +41,7 @@ const Menu: React.FunctionComponent<MenuProps> = (props) => {
           {data.subMenu?.map((subMenu: any) => {
             return (
               <li className="dropdown__list" key={subMenu.subMenuId}>
-                <Link to={subMenu.path} className="list__link">
+                <Link to={`/courseByCategory/${subMenu.subMenuId}`} className="list__link">
                   {subMenu.name}
                 </Link>
               </li>

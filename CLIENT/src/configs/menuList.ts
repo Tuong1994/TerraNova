@@ -53,7 +53,7 @@ export const userMenuVn = [
 
 export const headerMenuEng = [
   {
-    menuId: "M_0001",
+    menuId: "home",
     name: lang?.ENG.headerMenu.home,
     path: "/",
     icon: "fas fa-home",
@@ -61,14 +61,14 @@ export const headerMenuEng = [
     subMenu: [],
   },
   {
-    menuId: "M_0002",
+    menuId: "product",
     name: lang?.ENG.headerMenu.product,
     path: "/product",
     icon: "fas fa-tag",
     active: false,
     subMenu: [
       {
-        subMenuId: "SM_0003",
+        subMenuId: "computer",
         name: lang?.ENG.headerMenu.computer,
         path: "/computer",
         active: false,
@@ -94,7 +94,7 @@ export const headerMenuEng = [
         ],
       },
       {
-        subMenuId: "SM_0002",
+        subMenuId: "electronics",
         name: lang?.ENG.headerMenu.electronics,
         path: "/electronics",
         active: false,
@@ -128,7 +128,7 @@ export const headerMenuEng = [
         ],
       },
       {
-        subMenuId: "SM_0001",
+        subMenuId: "accessories",
         name: lang?.ENG.headerMenu.accessories,
         path: "/pcAccessories",
         active: false,
@@ -209,51 +209,51 @@ export const headerMenuEng = [
     ],
   },
   {
-    menuId: "M_0003",
+    menuId: "course",
     name: lang?.ENG.headerMenu.course,
     path: "/course",
     icon: "fas fa-book-open",
     active: false,
     subMenu: [
       {
-        subMenuId: "SM_0008",
+        subMenuId: "mindSet",
         name: lang?.ENG.headerMenu.mindsetProgramming,
-        path: "/mindSet",
+        path: "",
         active: false,
         categoryMenu: [],
       },
       {
-        subMenuId: "SM_0007",
+        subMenuId: "mobile",
         name: lang?.ENG.headerMenu.mobileProgramming,
-        path: "/mobile",
+        path: "",
         active: false,
         categoryMenu: [],
       },
       {
-        subMenuId: "SM_0006",
+        subMenuId: "fullStack",
         name: lang?.ENG.headerMenu.fullstackProgramming,
-        path: "/fullStack",
+        path: "",
         active: false,
         categoryMenu: [],
       },
       {
-        subMenuId: "SM_0005",
+        subMenuId: "backEnd",
         name: lang?.ENG.headerMenu.backendProgramming,
-        path: "/backEnd",
+        path: "",
         active: false,
         categoryMenu: [],
       },
       {
-        subMenuId: "SM_0004",
+        subMenuId: "frontEnd",
         name: lang?.ENG.headerMenu.fronendProgramming,
-        path: "/frontEnd",
+        path: "",
         active: false,
         categoryMenu: [],
       },
     ],
   },
   {
-    menuId: "M_0005",
+    menuId: "movie",
     name: lang?.ENG.headerMenu.movie,
     path: "/movie",
     icon: "fas fa-phone",
@@ -261,7 +261,7 @@ export const headerMenuEng = [
     subMenu: [],
   },
   {
-    menuId: "M_0004",
+    menuId: "about",
     name: lang?.ENG.headerMenu.aboutUs,
     path: "/about",
     icon: "fas fa-home",
@@ -272,7 +272,7 @@ export const headerMenuEng = [
 
 export const headerMenuVN = [
   {
-    menuId: "M_0001",
+    menuId: "home",
     name: lang?.VN.headerMenu.home,
     path: "/",
     icon: "fas fa-home",
@@ -280,14 +280,14 @@ export const headerMenuVN = [
     subMenu: [],
   },
   {
-    menuId: "M_0002",
+    menuId: "product",
     name: lang?.VN.headerMenu.product,
     path: "/product",
     icon: "fas fa-tag",
     active: false,
     subMenu: [
       {
-        subMenuId: "SM_0003",
+        subMenuId: "computer",
         name: lang?.VN.headerMenu.computer,
         path: "/computer",
         active: false,
@@ -313,7 +313,7 @@ export const headerMenuVN = [
         ],
       },
       {
-        subMenuId: "SM_0002",
+        subMenuId: "electronics",
         name: lang?.VN.headerMenu.electronics,
         path: "/electronics",
         active: false,
@@ -347,7 +347,7 @@ export const headerMenuVN = [
         ],
       },
       {
-        subMenuId: "SM_0001",
+        subMenuId: "accessories",
         name: lang?.VN.headerMenu.accessories,
         path: "/pcAccessories",
         active: false,
@@ -428,51 +428,51 @@ export const headerMenuVN = [
     ],
   },
   {
-    menuId: "M_0003",
+    menuId: "course",
     name: lang?.VN.headerMenu.course,
     path: "/course",
     icon: "fas fa-book-open",
     active: false,
     subMenu: [
       {
-        subMenuId: "SM_0008",
+        subMenuId: "mindSet",
         name: lang?.VN.headerMenu.mindsetProgramming,
-        path: "/mindSet",
+        path: "",
         active: false,
         categoryMenu: [],
       },
       {
-        subMenuId: "SM_0007",
+        subMenuId: "mobile",
         name: lang?.VN.headerMenu.mobileProgramming,
-        path: "/mobile",
+        path: "",
         active: false,
         categoryMenu: [],
       },
       {
-        subMenuId: "SM_0006",
+        subMenuId: "fullStack",
         name: lang?.VN.headerMenu.fullstackProgramming,
-        path: "/fullStack",
+        path: "",
         active: false,
         categoryMenu: [],
       },
       {
-        subMenuId: "SM_0005",
+        subMenuId: "backEnd",
         name: lang?.VN.headerMenu.backendProgramming,
-        path: "/backEnd",
+        path: "",
         active: false,
         categoryMenu: [],
       },
       {
-        subMenuId: "SM_0004",
+        subMenuId: "fontEnd",
         name: lang?.VN.headerMenu.frontendProgramming,
-        path: "/frontEnd",
+        path: "",
         active: false,
         categoryMenu: [],
       },
     ],
   },
   {
-    menuId: "M_0005",
+    menuId: "movie",
     name: lang?.VN.headerMenu.movie,
     path: "/movie",
     icon: "fas fa-phone",
@@ -480,7 +480,7 @@ export const headerMenuVN = [
     subMenu: [],
   },
   {
-    menuId: "M_0004",
+    menuId: "about",
     name: lang?.VN.headerMenu.aboutUs,
     path: "/about",
     icon: "fas fa-home",

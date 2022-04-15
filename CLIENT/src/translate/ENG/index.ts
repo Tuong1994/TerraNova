@@ -304,6 +304,9 @@ const EngLang = {
     of: "of",
     results: "results",
   },
+  rate: {
+    voted: "voted",
+  },
 };
 
 export type LangENG = typeof EngLang;

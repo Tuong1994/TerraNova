@@ -17,7 +17,9 @@ const getCategoryAndCourseList = async (req, res) => {
 };
 
 const getCourseByCategory = async (req, res) => {
-  const { categoryId } = req.query;
+  const { categoryId, page, limits } = req.query;
+  const pageNumber = parseInt(page);
+  const itemPerPage = parseInt(limits);
   try {
     const [result] = await sequelize.query(
       `
@@ -42,10 +44,21 @@ const getCourseByCategory = async (req, res) => {
       },
       attributes: ["nameVN", "nameENG"],
     });
-    res.status(200).send({
-      categoryName: categoryName,
-      courses: result,
-    });
+    if (page) {
+      const total = result.length;
+      const start = (pageNumber - 1) * itemPerPage;
+      const end = start + itemPerPage;
+      const courses = result.slice(start, end);
+      res.status(200).send({
+        categoryName: categoryName,
+        course: {
+          courseList: courses,
+          total: total,
+          page: pageNumber,
+          limits: itemPerPage,
+        },
+      });
+    }
   } catch (error) {
     res.status(500).send(error);
   }

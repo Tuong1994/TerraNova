@@ -7,11 +7,13 @@ import { ELoadingActionTypes } from "../../redux/actionTypes/LoadingActionTypes"
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../redux/store";
 import { ELangActionTypes } from "../../redux/actionTypes/LangActionTypes";
+import { history } from "../../App";
 import Carts from "../../components/Carts";
 import Menu from "./Menu";
 import LoggedIn from "./LoggedIn";
+import ProductMenu from "./ProductMenu";
 import utils from "../../utils";
-import { history } from "../../App";
+import CourseMenu from "./CourseMenu";
 
 interface IRHeaderMenuProps {
   showMenu: boolean;
@@ -20,13 +22,14 @@ interface IRHeaderMenuProps {
 
 const RHeaderMenu: React.FunctionComponent<IRHeaderMenuProps> = (props) => {
   const { showMenu, setShowMenu } = props;
-  
+
   const { user } = useSelector((state: ReducerState) => state.UserReducer);
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
   const [menuList, setMenuList] = React.useState<any>([]);
-  const [subMenuData, setSubMenuData] = React.useState<boolean>(false);
   const [isShow, setIsShow] = React.useState<boolean>(false);
+  const [showProductMenu, setShowProductMenu] = React.useState<boolean>(false);
+  const [showCourseMenu, setShowCourseMenu] = React.useState<boolean>(false);
 
   const menuRef = React.useRef(null);
   const menuSettingRef = React.useRef(null);
@@ -58,7 +61,7 @@ const RHeaderMenu: React.FunctionComponent<IRHeaderMenuProps> = (props) => {
       dispatch({
         type: ELoadingActionTypes.CLOSE_BUTTON_LOADING,
       });
-      history.push("/")
+      history.push("/");
     }, 1000);
   };
 
@@ -74,21 +77,22 @@ const RHeaderMenu: React.FunctionComponent<IRHeaderMenuProps> = (props) => {
   };
 
   const renderHeaderMenu = () => {
-    return menuList.map((menu: any, index: number) => {
-      let list = [...menuList];
-      return (
-        <Menu
-          key={index}
-          menu={menu}
-          subMenu={subMenuData}
-          list={list}
-          index={index}
-          langs={langs}
-          setMenu={setMenuList}
-          setSubMenu={setSubMenuData}
-        />
-      );
-    });
+    return (
+      <div className="menu__list">
+        {menuList.map((menu: any, index: number) => {
+          return (
+            <Menu
+              key={index}
+              menu={menu}
+              langs={langs}
+              setShowCourseMenu={setShowCourseMenu}
+              setShowProductMenu={setShowProductMenu}
+            />
+          );
+        })}
+        ;
+      </div>
+    );
   };
 
   const renderUserLogin = () => {
@@ -126,6 +130,7 @@ const RHeaderMenu: React.FunctionComponent<IRHeaderMenuProps> = (props) => {
           : "header__responsive"
       }
     >
+      {/* Close Button */}
       <div
         className={
           showMenu
@@ -139,6 +144,8 @@ const RHeaderMenu: React.FunctionComponent<IRHeaderMenuProps> = (props) => {
       >
         <i className="fa fa-times"></i>
       </div>
+
+      {/* Sidebar */}
       <div
         className={
           showMenu
@@ -151,7 +158,21 @@ const RHeaderMenu: React.FunctionComponent<IRHeaderMenuProps> = (props) => {
 
         <div className="wrapper__line"></div>
 
-        <ul className="wrapper__menu">{renderHeaderMenu()}</ul>
+        <ul className="wrapper__menu">
+          {renderHeaderMenu()}
+          <ProductMenu
+            menu={menuList}
+            isShow={showProductMenu}
+            onHide={() => setShowProductMenu(false)}
+            onHideMenu={() => setShowMenu(false)}
+          />
+          <CourseMenu
+            menu={menuList}
+            isShow={showCourseMenu}
+            onHide={() => setShowCourseMenu(false)}
+            onHideMenu={() => setShowMenu(false)}
+          />
+        </ul>
 
         <div className="wrapper__line"></div>
 
