@@ -149,18 +149,19 @@
           align-items: center;
           justify-content: space-between;
           overflow: auto;
-          cursor: pointer;
           .inner__link {
             width: $w-100;
             display: block;
             text-decoration: none;
             color: $tSecondary;
-            cursor: pointer;
           }
-          .fa-solid {
-            width: $w-100 - 10;
-            font-size: $subtitle;
-            color: $tSecondary;
+          .inner__icon {
+            cursor: pointer;
+            .fa-solid {
+              width: $w-100 - 10;
+              font-size: $subtitle;
+              color: $tSecondary;
+            }
           }
           @include respond(phone) {
             font-size: $body-1;

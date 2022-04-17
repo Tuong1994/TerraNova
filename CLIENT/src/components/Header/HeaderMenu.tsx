@@ -2,6 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { headerMenuEng, headerMenuVN } from "../../configs/menuList";
 import { ELangs } from "../../interfaces/lang";
+import { IQueryList } from "../../interfaces/query";
+import { getCourseByCategory } from "../../redux/actionCreators/CourseCreators";
 import {
   getProductByCategory,
   getProductByProducer,
@@ -9,9 +11,11 @@ import {
 import { ELoadingActionTypes } from "../../redux/actionTypes/LoadingActionTypes";
 import { ReducerState } from "../../redux/store";
 import Menu from "./Menu";
+import actions from "../../configs/actions";
 
 const _defaultCurrentPage = 1;
 const _defaultItemPerPage = 10;
+const _defaultTimeout = 2000;
 
 interface HeaderMenuProps {}
 
@@ -20,10 +24,8 @@ const HeaderMenu: React.FunctionComponent<HeaderMenuProps> = (props) => {
   const dispatch = useDispatch();
 
   const productByCategory = (id: string) => {
-    dispatch({
-      type: ELoadingActionTypes.OPEN_PAGE_LOADING,
-    });
-    let query = {
+    dispatch(actions.openPageLoading);
+    const query: IQueryList = {
       categoryId: id,
       page: _defaultCurrentPage,
       limits: _defaultItemPerPage,
@@ -31,17 +33,13 @@ const HeaderMenu: React.FunctionComponent<HeaderMenuProps> = (props) => {
     localStorage.setItem("categoryId", id);
     dispatch(getProductByCategory(query));
     setTimeout(() => {
-      dispatch({
-        type: ELoadingActionTypes.CLOSE_PAGE_LOADING,
-      });
-    }, 2000);
+      dispatch(actions.closePageLoading);
+    }, _defaultTimeout);
   };
 
   const productByProducer = (categoryId: string, producerId: string) => {
-    dispatch({
-      type: ELoadingActionTypes.OPEN_PAGE_LOADING,
-    });
-    let query = {
+    dispatch(actions.openPageLoading);
+    const query: IQueryList = {
       categoryId: categoryId,
       producerId: producerId,
       page: _defaultCurrentPage,
@@ -49,10 +47,21 @@ const HeaderMenu: React.FunctionComponent<HeaderMenuProps> = (props) => {
     };
     dispatch(getProductByProducer(query));
     setTimeout(() => {
-      dispatch({
-        type: ELoadingActionTypes.CLOSE_PAGE_LOADING,
-      });
-    }, 2000);
+      dispatch(actions.closePageLoading);
+    }, _defaultTimeout);
+  };
+
+  const courseByCategory = (categoryId: string) => {
+    dispatch(actions.openPageLoading);
+    const query: IQueryList = {
+      categoryId: categoryId,
+      page: 1,
+      limits: 10,
+    };
+    dispatch(getCourseByCategory(query));
+    setTimeout(() => {
+      dispatch(actions.closePageLoading);
+    }, _defaultTimeout);
   };
 
   const renderMenuData = () => {
@@ -64,6 +73,7 @@ const HeaderMenu: React.FunctionComponent<HeaderMenuProps> = (props) => {
             menu={menu}
             getProductByCategory={productByCategory}
             getProductByProducer={productByProducer}
+            getCourseByCategory={courseByCategory}
           />
         );
       });
@@ -75,6 +85,7 @@ const HeaderMenu: React.FunctionComponent<HeaderMenuProps> = (props) => {
             menu={menu}
             getProductByCategory={productByCategory}
             getProductByProducer={productByProducer}
+            getCourseByCategory={courseByCategory}
           />
         );
       });

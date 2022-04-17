@@ -1,0 +1,230 @@
+.course-home {
+  .course-home__banner {
+    width: $w-100;
+    height: $h-10 * 30;
+    padding: $p-10;
+    background-image: url("../../../assets/img/blue-background.jpg");
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .banner__intro {
+      margin-bottom: $m-10;
+      font-size: $h5;
+      color: $tSecondary;
+      text-align: center;
+    }
+    .banner__text-dynamic {
+      color: $tSecondary;
+      .text-dynamic__blink-line {
+        background: $primary;
+      }
+    }
+  }
+  .course-home__intro {
+    padding: $p-10 * 5 $p-10 * 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .intro__content {
+      width: $w-100 - 30;
+      .content__title {
+        padding: $p-10 * 2 0;
+        font-size: $h5;
+        font-weight: $semiBold;
+        i {
+          margin-right: $m-10;
+        }
+      }
+      .content__text {
+        text-align: justify;
+      }
+      @include respond(laptop) {
+        width: $w-100 - 40;
+      }
+      @include respond(phone) {
+        width: $w-100;
+      }
+    }
+    .intro__img {
+      width: $w-10 * 30;
+      height: $h-10 * 30;
+      border-radius: $lightRound;
+      overflow: hidden;
+      img {
+        object-fit: cover;
+        object-position: center;
+      }
+      @include respond(tablet) {
+        width: $w-10 * 20;
+        height: $h-10 * 20;
+      }
+      @include respond(phone) {
+        display: none;
+      }
+    }
+    @include respond(laptop) {
+      padding: $p-10 * 5 $p-10 * 3;
+    }
+    @include respond(extraTablet) {
+      padding: $p-10 * 5 $p-10 * 2;
+    }
+  }
+  .course-home__subject {
+    padding: $p-10 * 5 $p-10 * 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .subject__item {
+      width: $w-100 - 51;
+      height: $h-10 * 30;
+      padding: $p-10 * 3;
+      border: 1px solid $borderBlue;
+      border-radius: $lightRound;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.5s ease;
+      &:hover {
+        color: $tSecondary;
+        box-shadow: 0 20px 15px $dark;
+      }
+      &:hover::before {
+        width: $w-100;
+      }
+      &:hover::after {
+        width: $w-100;
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 10px;
+        background: $secondary;
+        z-index: 9;
+        transition: all 0.5s ease;
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: $h-100;
+        z-index: -1;
+        background: $RGBA-blue-1;
+        transition: all 0.5s ease;
+      }
+      .item__title {
+        font-size: $h2;
+        font-weight: $semiBold;
+        margin-bottom: $m-10;
+        user-select: none;
+        @include respond(tablet) {
+          font-size: $h4;
+        }
+      }
+      .item__content {
+        font-size: $subtitle;
+        user-select: none;
+      }
+      @include respond(phone) {
+        width: $w-100;
+        margin: $m-10 * 2 0;
+      }
+    }
+    @include respond(laptop) {
+      padding: $p-10 * 5 $p-10 * 3;
+    }
+    @include respond(tablet) {
+      padding: $p-10 * 5 $p-10 * 2;
+    }
+    @include respond(phone) {
+      padding: $p-10 * 5 $p-10 * 2;
+      flex-direction: column;
+    }
+  }
+  .course-home__benefits {
+    background: $secondary;
+    color: $tSecondary;
+    .benefits__wrapper {
+      padding: $p-10 * 5 $p-10 * 10;
+      .wrapper__title {
+        font-size: $h4;
+        font-weight: $semiBold;
+        margin-bottom: $m-10 * 2;
+      }
+      .wrapper__list {
+        width: $w-100;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        .list__item {
+          width: $w-100 / 3.2;
+          margin: $m-10 0;
+          display: flex;
+          align-items: center;
+          &:hover .icon__inner {
+            color: $tPrimary;
+          }
+          &:hover .icon__inner .inner__backdrop {
+            transform: scale(0);
+          }
+          .item__icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .icon__inner {
+              display: block;
+              width: $w-10 * 10;
+              height: $h-10 * 10;
+              line-height: $h-10 * 10;
+              text-align: center;
+              font-size: $h2;
+              border: 1px solid $borderWhite;
+              border-radius: $circle;
+              background: $primary;
+              transition: all 0.5s ease;
+              position: relative;
+              z-index: 1;
+              overflow: hidden;
+              .inner__backdrop {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: $secondary;
+                z-index: -1;
+                transform: scale(1.5);
+                transition: all 0.5s ease;
+              }
+            }
+            .icon__line {
+              display: block;
+              width: 1px;
+              height: $h-10 * 10;
+              background: $primary;
+            }
+          }
+          .item__content {
+            padding-left: $p-10;
+            .content__title {
+              font-size: $subtitle;
+              font-weight: $semiBold;
+              margin-bottom: $m-10 * 2;
+            }
+            .content__text {
+            }
+          }
+        }
+      }
+    }
+  }
+}

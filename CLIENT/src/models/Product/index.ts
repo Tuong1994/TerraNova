@@ -13,8 +13,11 @@ export enum EProductType {
 
 export enum EProductStatus {
   new = 1,
-  stocking = 2,
-  outOfStock = 3,
+}
+
+export enum EInventoryStatus {
+  stocking = 1,
+  outOfStock = 2,
 }
 export interface ICategory {
   categoryId?: string;
@@ -36,6 +39,9 @@ export interface IAccessories {
   image?: any;
   price?: number;
   description?: string;
+  status?: number;
+  inventoryStatus?: number;
+  stockAmount?: number;
   totalCores?: string;
   totalThreads?: string;
   baseFrequency?: string;

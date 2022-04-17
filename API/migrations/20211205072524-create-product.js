@@ -19,6 +19,15 @@ module.exports = {
       description: {
         type: Sequelize.STRING
       },
+      status: {
+        type: Sequelize.INTEGER
+      },
+      inventoryStatus: {
+        type: Sequelize.INTEGER
+      },
+      stockAmount: {
+        type: Sequelize.INTEGER
+      },
       productType: {
         type: Sequelize.STRING
       },

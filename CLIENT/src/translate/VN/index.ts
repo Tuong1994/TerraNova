@@ -144,6 +144,28 @@ const VnLang = {
       note: "Chú ý: Vui lòng cung cấp thông tin chính xác tránh các vấn đề phát sinh và để việc vận chuyển thuận tiện hơn",
     },
   },
+  course: {
+    title: "Khóa học",
+    home: {
+      banner: {
+        title: "Chào mừng đến với khóa học lập trình tại Tera Nova",
+      },
+      intro: {
+        title: "Đào tạo nghề lập trình chuyên sâu từ ZERO",
+        content:
+          "Terra Nova khai thác nhu cầu tuyển dụng lập trình, kết nối việc làm tới doanh nghiệp và tích hợp các dự án với công nghệ mới nhất vào phương pháp đào tạo tích cực cho các học viên học xong có việc làm ngay. Chương trình giảng dạy được biên soạn may đo dành riêng cho các bạn Lập trình từ trái ngành hoặc đã có kiến thức theo cường độ cao, luôn được tinh chỉnh và tối ưu hóa theo thời gian bởi các thành viên sáng lập và giảng viên dày kinh nghiệm.",
+      },
+      subject: {
+        title_1: "TRÁI NGÀNH",
+        title_2: "ĐÃ BIẾT LẬP TRÌNH",
+        content_1: "Lộ trình cho người trái ngành, mất gốc, học từ ZERO",
+        content_2: "Đã có kiến thức tư duy lập trình và OOP",
+      },
+      benefits: {
+        title: "Lợi ích của khóa học - Chỉ có tại Terra Nova",
+      },
+    },
+  },
   aboutUs: {
     banner: {
       title: "Giới thiệu về",
@@ -153,18 +175,20 @@ const VnLang = {
         "Mong muốn tạo ra một nền tảng để khách hàng có thể trải nghiệm và sử dụng các dịch vụ trực tuyến chất lượng, Terra Nova ra đời nhằm đáp ứng những nhu cầu đó.",
       intro_2:
         "Terra Nova được thành lập ngày 28 tháng 11 năm 2010. Với tầm nhìn trở thành nền tảng phổ biến với người dùng, sau hơn 10 năm nỗ lực, Terra nova ngày càng được các đối tác và khách hàng tin tưởng.",
-        subTitle: "Các sản phẩm và dịch vụ của chúng tôi",
-        product: "Sản phẩm điện tử và linh kiện máy tính",
-        course: "Khóa học",
-        service: "Dịch vụ đặt vé xem phim trực tuyến",
+      subTitle: "Các sản phẩm và dịch vụ của chúng tôi",
+      product: "Sản phẩm điện tử và linh kiện máy tính",
+      course: "Khóa học",
+      service: "Dịch vụ đặt vé xem phim trực tuyến",
     },
     vision: {
       title: "Tầm nhìn của chúng tôi",
-      content: "Mang đến cho bạn một nền tảng phổ biến, tiện dụng và thân thiện",
+      content:
+        "Mang đến cho bạn một nền tảng phổ biến, tiện dụng và thân thiện",
     },
     mission: {
       title: "Nhiệm vụ của chúng tôi",
-      content: "Chúng tôi cung cấp nền tảng nơi bạn có thể sử dụng các dịch vụ như mua sản phẩm, khóa học hoặc đặt vé xem phim trực tuyến, v.v"
+      content:
+        "Chúng tôi cung cấp nền tảng nơi bạn có thể sử dụng các dịch vụ như mua sản phẩm, khóa học hoặc đặt vé xem phim trực tuyến, v.v",
     },
   },
   user: {
@@ -192,7 +216,7 @@ const VnLang = {
     new: "Mới 100%",
     paid: "Đã thanh toán",
     stocking: "Còn hàng",
-    outOfStock: "Hết hàng", 
+    outOfStock: "Hết hàng",
   },
   paymentType: {
     cash: "Tiền mặt",
@@ -296,7 +320,7 @@ const VnLang = {
     paymentType: "Thanh toán",
     totalPay: "Tổng tiền",
     products: "Sản phẩm",
-    createdAt: "Ngày tạo"
+    createdAt: "Ngày tạo",
   },
   pagination: {
     showing: "Hiển thị",

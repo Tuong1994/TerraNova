@@ -8,6 +8,15 @@ const productType = {
   psu: "psu",
 };
 
+const status = {
+  new: 1,
+};
+
+const inventoryStatus = {
+  stocking: 1,
+  outOfStock: 2,
+};
+
 const productFields = {
   cpu: `select 
   products.id as productId,
@@ -256,6 +265,9 @@ const getProductDetailField = (id, type) => {
     return (
       productFields.cpu +
       `,
+        products.status,
+        products.inventoryStatus,
+        products.stockAmount,
         producers.name as producerName
         from products
         inner join pcspecs
@@ -269,6 +281,9 @@ const getProductDetailField = (id, type) => {
     return (
       productFields.mainboard +
       `,
+        products.status,
+        products.inventoryStatus,
+        products.stockAmount,
         producers.name as producerName
         from products
         inner join pcspecs
@@ -282,6 +297,9 @@ const getProductDetailField = (id, type) => {
     return (
       productFields.ram +
       `,
+        products.status,
+        products.inventoryStatus,
+        products.stockAmount,
         producers.name as producerName
         from products
         inner join pcspecs
@@ -295,6 +313,9 @@ const getProductDetailField = (id, type) => {
     return (
       productFields.hdd +
       `,
+        products.status,
+        products.inventoryStatus,
+        products.stockAmount,
         producers.name as producerName
         from products
         inner join pcspecs
@@ -308,6 +329,9 @@ const getProductDetailField = (id, type) => {
     return (
       productFields.ssd +
       `,
+        products.status,
+        products.inventoryStatus,
+        products.stockAmount,
         producers.name as producerName
         from products
         inner join pcspecs
@@ -321,6 +345,9 @@ const getProductDetailField = (id, type) => {
     return (
       productFields.vga +
       `,
+        products.status,
+        products.inventoryStatus,
+        products.stockAmount,
         producers.name as producerName
         from products
         inner join pcspecs
@@ -334,6 +361,9 @@ const getProductDetailField = (id, type) => {
     return (
       productFields.psu +
       `,
+        products.status,
+        products.inventoryStatus,
+        products.stockAmount,
         producers.name as producerName
         from products
         inner join pcspecs
@@ -386,6 +416,8 @@ const getProductByFreeText = (id, freeText) => {
 
 module.exports = {
   productType,
+  status,
+  inventoryStatus,
   getProductFieldByCategory,
   getProductFieldByProducer,
   getProductDetailField,

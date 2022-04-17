@@ -1,7 +1,8 @@
 import moment from "moment";
 import React from "react";
+import { EBadgeStatus } from "../../interfaces/badge";
 import { ILangs } from "../../interfaces/lang";
-import { EPaymentTypes, IOrder } from "../../models/Order";
+import { EPaymentTypes, EStatus, IOrder } from "../../models/Order";
 import Badge from "../Badge";
 import TableCol from "../Table/TableCol";
 
@@ -27,6 +28,12 @@ const OrderRow: React.FunctionComponent<OrderRowProps> = (props) => {
     }
   };
 
+  const getBadgeStatus = () => {
+    if(order?.status === EStatus.paid) {
+      return EBadgeStatus.success
+    }
+  }
+
   return (
     <tr className="order-row">
       <TableCol>
@@ -34,7 +41,7 @@ const OrderRow: React.FunctionComponent<OrderRowProps> = (props) => {
       </TableCol>
       <TableCol>
         <div>
-          <Badge status={order?.status} title={langs?.status.paid} />
+          <Badge status={getBadgeStatus()}  title={langs?.status.paid} />
         </div>
       </TableCol>
       <TableCol>

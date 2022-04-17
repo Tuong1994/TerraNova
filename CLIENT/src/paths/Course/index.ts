@@ -1,4 +1,4 @@
-import { domain } from "process";
+import { domain } from "../../configs/setting";
 
 export const coursePaths = {
   getCategoryAndCourseList: `${domain}/api/courseManagement/getCategoryAndCourseList`,

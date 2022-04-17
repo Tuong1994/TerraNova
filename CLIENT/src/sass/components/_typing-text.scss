@@ -1,0 +1,38 @@
+.typing-text {
+  height: $h-10 * 5;
+  overflow: hidden;
+  .typing-text__dynamic {
+    height: $h-100;
+    line-height: 50px;
+    font-size: $h3;
+    font-weight: $semiBold;
+    color: $tBlue;
+    display: flex;
+    align-items: center;
+    .dynamic__line {
+      display: inline-block;
+      width: 3px;
+      height: $h-10 * 5;
+      background: $secondary;
+      animation: blink 1s infinite ease;
+      @include respond(phone) {
+        height: $h-10 * 3;
+      }
+    }
+    @include respond(phone) {
+      font-size: $h5;
+    }
+  }
+  @include respond(phone) {
+    height: $h-10 * 3;
+  }
+}
+
+@keyframes blink {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

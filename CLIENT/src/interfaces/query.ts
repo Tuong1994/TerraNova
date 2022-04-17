@@ -6,6 +6,7 @@ export interface IQueryList {
   productId?: string;
   cartsId?: string;
   userId?: string;
+  courseId?: string;
   productType?: string;
   freeText?: string;
 }

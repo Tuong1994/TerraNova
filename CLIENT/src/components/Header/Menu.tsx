@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../redux/store";
 import SubMenu from "./SubMenu";
 import utils from "../../utils";
@@ -9,10 +9,16 @@ interface MenuProps {
   menu: any;
   getProductByCategory(id: string): void;
   getProductByProducer(categoryId: string, producerId: string): void;
+  getCourseByCategory(categoryId: string): void;
 }
 
 const Menu: React.FunctionComponent<MenuProps> = (props) => {
-  const { menu, getProductByCategory, getProductByProducer } = props;
+  const {
+    menu,
+    getProductByCategory,
+    getProductByProducer,
+    getCourseByCategory,
+  } = props;
 
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
   const [tabActive, setTabActive] = React.useState<number>(-1);
@@ -41,7 +47,11 @@ const Menu: React.FunctionComponent<MenuProps> = (props) => {
           {data.subMenu?.map((subMenu: any) => {
             return (
               <li className="dropdown__list" key={subMenu.subMenuId}>
-                <Link to={`/courseByCategory/${subMenu.subMenuId}`} className="list__link">
+                <Link
+                  to={`/courseByCategory/${subMenu.subMenuId}`}
+                  className="list__link"
+                  onClick={() => getCourseByCategory(subMenu.subMenuId)}
+                >
                   {subMenu.name}
                 </Link>
               </li>
@@ -55,8 +65,7 @@ const Menu: React.FunctionComponent<MenuProps> = (props) => {
   return (
     <div>
       <li className="menu__list" key={menu.menuId}>
-        {menu.name === langs?.headerMenu.product ||
-        menu.name === langs?.headerMenu.course ? (
+        {menu.name === langs?.headerMenu.product ? (
           <span className="list__link">{menu.name}</span>
         ) : (
           <Link to={menu.path} className="list__link">

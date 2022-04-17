@@ -145,6 +145,29 @@ const EngLang = {
       note: "Note: Please provide accurate information to avoid problems and make distribution more convenient",
     },
   },
+  course: {
+    title: "Course",
+    home: {
+      banner: {
+        title: "Welcome to Terra Nova's Programming Course",
+      },
+      intro: {
+        title: "Professional programming training from ZERO",
+        content:
+          "Terra Nova exploits the demand for programmers, connects jobs with businesses, and integrates projects with the latest technology into active training methods for students to get jobs immediately after completing their studies. The curriculum is tailor-made for those of you who are programming from outside the industry or already have intense knowledge, always fine-tuned and optimized over time by the founding members and seasoned faculty. experience.",
+      },
+      subject: {
+        title_1: "LEFT BRANCH",
+        title_2: "ALREADY KNOWN PROGRAMMING",
+        content_1:
+          "Roadmap for those who are not in programming fields, lose their roots, learn from ZERO",
+        content_2: "Have knowledge of programming thinking and OOP",
+      },
+      benefits: {
+        title: "Course Benefits - Only at Terra Nova",
+      },
+    },
+  },
   aboutUs: {
     banner: {
       title: "About",
@@ -154,18 +177,20 @@ const EngLang = {
         "Desire to create a platform where customers can experience and use quality online services, Terra Nova was born to meet those needs.",
       intro_2:
         "Terra Nova was founded november 28th, 2010. With a vision to become a popular platform with users, after more than 10 years of effort, Terra nova is increasingly trusted by partners and customers.",
-        subTitle: "Our products and services",
-        product: "Electronics and PC accessories",
-        course: "Courses",
-        service: "Online booking movie ticket service",
+      subTitle: "Our products and services",
+      product: "Electronics and PC accessories",
+      course: "Courses",
+      service: "Online booking movie ticket service",
     },
     vision: {
       title: "Our vision",
-      content: "Bring to you the most popular, convenience and friendly platform.",
+      content:
+        "Bring to you the most popular, convenience and friendly platform.",
     },
     mission: {
       title: "Our mission",
-      content: "We provide you a platform where you can use all kind services like purchase products, courses or online booking movie ticket, etc."
+      content:
+        "We provide you a platform where you can use all kind services like purchase products, courses or online booking movie ticket, etc.",
     },
   },
   user: {
@@ -193,7 +218,7 @@ const EngLang = {
     new: "New",
     paid: "Paid",
     stocking: "Stocking",
-    outOfStock: "Out of stock", 
+    outOfStock: "Out of stock",
   },
   paymentType: {
     cash: "Cash",

@@ -21,18 +21,17 @@ const Menu: React.FunctionComponent<MenuProps> = (props) => {
 
   return (
     <React.Fragment>
-      <li
-        className="list__inner"
-        key={menu.menuId}
-        onClick={() => {
-          handleShowSubMenu(menu);
-        }}
-      >
+      <li className="list__inner" key={menu.menuId}>
         <span className="inner__link">{menu.name}</span>
         {menu.name !== langs?.headerMenu.home &&
         menu.name !== langs?.headerMenu.movie &&
         menu.name !== langs?.headerMenu.aboutUs ? (
-          <span>
+          <span
+            className="inner__icon"
+            onClick={() => {
+              handleShowSubMenu(menu);
+            }}
+          >
             <i className="fa-solid fa-angle-right"></i>
           </span>
         ) : null}

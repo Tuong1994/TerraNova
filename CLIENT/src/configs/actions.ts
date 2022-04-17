@@ -1,5 +1,4 @@
 import { ELoadingActionTypes } from "../redux/actionTypes/LoadingActionTypes";
-import { EModalActionTypes } from "../redux/actionTypes/ModalActionTypes";
 
 const actions = {
   openButtonLoading: {
@@ -13,6 +12,12 @@ const actions = {
   },
   closeDataLoading: {
     type: ELoadingActionTypes.CLOSE_DATA_LOADING,
+  },
+  openPageLoading: {
+    type: ELoadingActionTypes.OPEN_PAGE_LOADING,
+  },
+  closePageLoading: {
+    type: ELoadingActionTypes.CLOSE_PAGE_LOADING,
   },
 };
 

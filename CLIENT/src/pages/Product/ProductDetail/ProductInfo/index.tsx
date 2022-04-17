@@ -1,8 +1,13 @@
 import React from "react";
-import { EProductStatus, IAccessories } from "../../../../models/Product";
+import {
+  EInventoryStatus,
+  EProductStatus,
+  IAccessories,
+} from "../../../../models/Product";
 import { useSelector } from "react-redux";
 import { ReducerState } from "../../../../redux/store";
 import { ILangs } from "../../../../interfaces/lang";
+import { EBadgeStatus } from "../../../../interfaces/badge";
 import ButtonLoading from "../../../../components/Loading/ButtonLoading";
 import Badge from "../../../../components/Badge";
 import Rate from "../../../../components/Rate";
@@ -30,15 +35,26 @@ const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
     (state: ReducerState) => state.LoadingReducer
   );
 
+  const renderStatus = () => {
+    if (product?.status === EProductStatus.new) {
+      return langs?.status.new;
+    }
+  };
+
+  const getBadgeStatus = () => {
+    if (product?.inventoryStatus === EInventoryStatus.stocking) {
+      return EBadgeStatus.success;
+    } else if (product?.inventoryStatus === EInventoryStatus.outOfStock) {
+      return EBadgeStatus.error;
+    }
+  };
+
   return (
     <div className="content__info">
       <h3 className="info__title">{langs?.productDetail.generalInfo}</h3>
 
       <div className="info__badge">
-        <Badge
-          status={EProductStatus.stocking}
-          title={langs?.status.stocking}
-        />
+        <Badge status={getBadgeStatus()} title={langs?.status.stocking} />
       </div>
 
       <ul className="info__list">
@@ -51,7 +67,7 @@ const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
           <strong>36 {langs?.time.months}</strong>
         </li>
         <li className="list__content">
-          {langs?.productDetail.status} : <strong>{langs?.status.new}</strong>
+          {langs?.productDetail.status} : <strong>{renderStatus()}</strong>
         </li>
         <li className="list__content">
           {langs?.productDetail.price} :{" "}

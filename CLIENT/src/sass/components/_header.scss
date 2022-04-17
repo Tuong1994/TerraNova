@@ -44,6 +44,7 @@
         visibility: visible;
         pointer-events: visible;
       }
+      // Header menu link
       .list__link {
         display: block;
         padding: $p-10 * 2;
@@ -53,6 +54,7 @@
         color: $tPrimary;
         transition: all 0.3s ease;
       }
+      // Course dropdown
       .list__dropdown {
         width: $w-100 * 3;
         padding: $p-10 0;
@@ -79,6 +81,7 @@
           }
         }
       }
+      // Product dropdown
       .list__submenu {
         width: $w-10 * 100;
         height: $h-10 * 55;

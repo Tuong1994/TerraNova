@@ -27,7 +27,7 @@ const Rate: React.FunctionComponent<RateProps> = (props) => {
         {[...Array(5)].map((star: any, i: number) => {
           const ratingValue = i + 1;
           return (
-            <label className="star__item">
+            <label className="star__item" key={i}>
               <input
                 type="radio"
                 name="rating"

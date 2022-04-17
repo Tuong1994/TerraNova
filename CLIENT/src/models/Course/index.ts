@@ -14,6 +14,7 @@ export interface ICourse {
   descENG?: string;
   descVN?: string;
   image?: string;
+  price?: number;
   categoryId?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;

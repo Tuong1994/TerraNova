@@ -30,6 +30,7 @@ const getCourseByCategory = async (req, res) => {
         courses.descENG, 
         courses.descVN, 
         courses.image, 
+        courses.price,
         courses.createdAt, 
         courses.updatedAt
         from courses
@@ -79,7 +80,7 @@ const getCourseDetail = async (req, res) => {
 };
 
 const createCourse = async (req, res) => {
-  const { categoryId, nameENG, nameVN, descENG, descVN } = req.body;
+  const { categoryId, nameENG, nameVN, descENG, descVN, price } = req.body;
   try {
     const courseId = "COU_" + Math.floor(Math.random() * 999999999).toString();
     const newCourse = await Course.create({
@@ -88,6 +89,7 @@ const createCourse = async (req, res) => {
       nameVN,
       descENG,
       descVN,
+      price,
       categoryId,
     });
     res.status(200).send(newCourse);
@@ -98,10 +100,10 @@ const createCourse = async (req, res) => {
 
 const updateCourse = async (req, res) => {
   const { courseId } = req.query;
-  const { categoryId, nameENG, nameVN, descENG, descVN } = req.body;
+  const { categoryId, nameENG, nameVN, descENG, descVN, price } = req.body;
   try {
     await Course.update(
-      { categoryId, nameENG, nameVN, descENG, descVN },
+      { categoryId, nameENG, nameVN, descENG, descVN, price },
       {
         where: {
           id: courseId,
