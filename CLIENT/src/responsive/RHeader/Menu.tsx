@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ILangs } from "../../interfaces/lang";
 
 interface MenuProps {
@@ -21,8 +22,8 @@ const Menu: React.FunctionComponent<MenuProps> = (props) => {
 
   return (
     <React.Fragment>
-      <li className="list__inner" key={menu.menuId}>
-        <span className="inner__link">{menu.name}</span>
+      <div className="list__inner" key={menu.menuId}>
+        <Link to={menu.path} className="inner__link">{menu.name}</Link>
         {menu.name !== langs?.headerMenu.home &&
         menu.name !== langs?.headerMenu.movie &&
         menu.name !== langs?.headerMenu.aboutUs ? (
@@ -35,7 +36,7 @@ const Menu: React.FunctionComponent<MenuProps> = (props) => {
             <i className="fa-solid fa-angle-right"></i>
           </span>
         ) : null}
-      </li>
+      </div>
     </React.Fragment>
   );
 };

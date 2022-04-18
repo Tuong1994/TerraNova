@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
-import Logo from "../../../components/Logo";
-import ConsultationForm from "./ConsultationForm";
+import Logo from "../../Logo";
+import ConsultationForm from "./Form";
 import utils from "../../../utils";
 
 const Consultation: React.FunctionComponent<{}> = (props) => {
@@ -11,7 +11,7 @@ const Consultation: React.FunctionComponent<{}> = (props) => {
   const langs = utils.changeLang(lang);
 
   return (
-    <div className="home__consultation">
+    <div className="consultation">
       <ConsultationForm />
       <div className="consultation__logo">
         <Logo className="logo__inner" />

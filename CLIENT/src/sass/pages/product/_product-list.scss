@@ -41,9 +41,9 @@
     align-items: center;
     position: relative;
     .wrapper__inner {
-      width: $w-100 - 5%;
-      padding-left: $w-100 - 98;
+      width: $w-100;
       display: flex;
+      justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       .inner__link {
@@ -136,10 +136,10 @@
           }
         }
         @include respond(laptop) {
-          width: $w-100 / 4.2;
+          width: $w-100 / 3.2;
         }
         @include respond(extraTablet) {
-          width: $w-100 / 3.4;
+          width: $w-100 / 3.3;
         }
         @include respond(tablet) {
           width: $w-100 / 2.2;
@@ -150,13 +150,6 @@
         @include respond(smallPhone) {
           width: $w-100;
         }
-      }
-      @include respond(extraTablet) {
-        padding-left: $w-100 - 98;
-        width: $w-100;
-      }
-      @include respond(smallPhone) {
-        padding: 0;
       }
     }
   }

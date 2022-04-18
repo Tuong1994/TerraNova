@@ -1,6 +1,6 @@
 import React from "react";
 import * as yup from "yup";
-import * as FormControl from "../../../components/Fields";
+import * as FormControl from "../../Fields";
 import { Formik, Form, Field } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
@@ -8,8 +8,8 @@ import { IUser } from "../../../models/User";
 import { EModalActionTypes } from "../../../redux/actionTypes/ModalActionTypes";
 import { EUserActionTypes } from "../../../redux/actionTypes/UserActionTypes";
 import { phoneRegex } from "../../../configs/regex";
-import Button from "../../../components/Button";
-import ButtonLoading from "../../../components/Loading/ButtonLoading";
+import Button from "../../Button";
+import ButtonLoading from "../../Loading/ButtonLoading";
 import actions from "../../../configs/actions";
 import utils from "../../../utils";
 

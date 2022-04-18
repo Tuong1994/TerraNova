@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 interface LayerProps {
+  link: string;
   title: string;
   icon: string;
   background: string;
@@ -9,7 +11,7 @@ interface LayerProps {
 }
 
 const Layer: React.FunctionComponent<LayerProps> = (props) => {
-  const { title, icon, background, wrapperClassName, titleClassName } = props;
+  const { link, title, icon, background, wrapperClassName, titleClassName } = props;
 
   const styled = {
     backgroundColor: background,
@@ -20,7 +22,7 @@ const Layer: React.FunctionComponent<LayerProps> = (props) => {
       className={`layer__wrapper ${wrapperClassName ? wrapperClassName : ""}`}
     >
       <div className="wrapper__item">
-        <div>
+        <Link to={link}>
           <span style={styled}></span>
           <span style={styled}></span>
           <span style={styled}></span>
@@ -28,7 +30,7 @@ const Layer: React.FunctionComponent<LayerProps> = (props) => {
           <span style={styled}>
             <i className={icon}></i>
           </span>
-        </div>
+        </Link>
       </div>
       <div className="wrapper__title">
         <p className={titleClassName ? titleClassName : ""}>{title}</p>

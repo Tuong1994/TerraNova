@@ -6,6 +6,7 @@ import { ReducerState } from "../../redux/store";
 import { ILangs } from "../../interfaces/lang";
 import Carts from "../../components/Carts";
 import ButtonLoading from "../../components/Loading/ButtonLoading";
+import Translate from "../../components/Translate";
 
 interface LoggedInProps {
   menuRef: any;

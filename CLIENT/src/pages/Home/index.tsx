@@ -7,8 +7,8 @@ import Partners from "./Partners";
 import CourseBanner from "./Banner/CourseBanner";
 import Achievement from "./Achievement";
 import MovieBanner from "./Banner/MovieBanner";
-import Consultation from "./Consultation";
-import ConsultModal from "./ConsultModal";
+import Consultation from "../../components/Consultation/ConsultationForm";
+import ConsultModal from "../../components/Consultation/ConsultModal";
 import RHomePartners from "../../responsive/RHomePartners";
 
 const Home: React.FunctionComponent<{}> = (props) => {

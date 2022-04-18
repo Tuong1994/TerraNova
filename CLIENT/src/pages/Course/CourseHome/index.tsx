@@ -9,7 +9,10 @@ import CourseBenefits from "./CourseBenefits";
 import CourseSlogan from "./CourseSlogan";
 import CoursePartners from "./CoursePartners";
 import CourseCategory from "./CourseCategory";
+import Consultation from "../../../components/Consultation/ConsultationForm";
+import RCourseCategory from "../../../responsive/RCourseCategory";
 import utils from "../../../utils";
+import ConsultModal from "../../../components/Consultation/ConsultModal";
 
 interface CourseHomeProps {}
 
@@ -29,6 +32,11 @@ const CourseHome: React.FunctionComponent<CourseHomeProps> = (props) => {
       <CourseSlogan langs={langs} />
       <CoursePartners langs={langs} />
       <CourseCategory langs={langs} />
+
+      <RCourseCategory langs={langs} />
+
+      <Consultation />
+      <ConsultModal />
     </div>
   );
 };

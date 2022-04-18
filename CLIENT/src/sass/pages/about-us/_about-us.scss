@@ -83,7 +83,17 @@
         .content__inner {
           width: $w-100 - 40;
           font-size: $subtitle;
+          @include respond(tablet) {
+            width: $w-100;
+            text-align: center;
+          }
         }
+        @include respond(tablet) {
+          flex-direction: column;
+        }
+      }
+      @include respond(tablet) {
+        padding: $p-10 * 2;
       }
     }
     .content__vision--reveal {
@@ -115,11 +125,24 @@
         .content__inner {
           width: $w-100 - 40;
           font-size: $subtitle;
+          @include respond(tablet) {
+            width: $w-100;
+            text-align: center;
+          }
         }
+        @include respond(tablet) {
+          flex-direction: column-reverse;
+        }
+      }
+      @include respond(tablet) {
+        padding: $p-10 * 2;
       }
     }
     .content__mission--reveal {
       opacity: 1;
+    }
+    @include respond(laptop) {
+      padding: $p-10 * 5 $p-10 * 2;
     }
   }
 }

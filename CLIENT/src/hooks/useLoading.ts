@@ -5,6 +5,7 @@ import utils from "../utils";
 
 const useLoading = (data?: any) => {
   const dispatch = useDispatch();
+  window.scrollTo(0, 0);
   React.useEffect(() => {
     dispatch({
       type: ELoadingActionTypes.OPEN_PAGE_LOADING,

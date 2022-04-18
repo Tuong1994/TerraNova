@@ -1,4 +1,4 @@
-.home__consultation {
+.consultation {
   width: $w-100;
   padding: $p-10 * 10 $p-10 * 5;
   background: $secondary;
@@ -16,6 +16,7 @@
     border-radius: $circle;
     position: absolute;
     z-index: -1;
+    animation: blob 5s ease infinite;
   }
   &::after {
     background: $blue-2;
@@ -113,5 +114,40 @@
   @include respond(extraTablet) {
     flex-direction: column-reverse;
     padding: $p-10 * 4 $p-10 * 2;
+  }
+}
+
+// Modal
+.body__content {
+  display: flex;
+  .content {
+    width: $w-100 - 50;
+    margin: $m-10 0;
+    display: inline-block;
+    &:nth-child(1) {
+      width: $w-100 - 70;
+    }
+  }
+}
+.footer__content {
+  font-size: $body-1;
+  font-style: italic;
+  line-height: 25px;
+  letter-spacing: 1px;
+}
+
+@keyframes blob {
+  0%,
+  100% {
+    border-radius: 64% 36% 27% 73% / 55% 58% 42% 45%;
+  }
+  25% {
+    border-radius: 73% 27% 26% 38% / 73% 36% 64% 27%;
+  }
+  50% {
+    border-radius: 28% 72% 44% 56% / 49% 40% 60% 51%;
+  }
+  75% {
+    border-radius: 40% 60% 70% 30% / 47% 42% 38% 53%;
   }
 }

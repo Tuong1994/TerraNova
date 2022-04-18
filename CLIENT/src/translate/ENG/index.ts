@@ -112,7 +112,7 @@ const EngLang = {
     related: "Related products",
   },
   footer: {
-    partners: "Parters",
+    partners: "Partners",
     socials: "Socials",
     company: "TERRA NOVA TRADING COMPANY",
     address_1:

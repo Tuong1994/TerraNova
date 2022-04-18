@@ -369,7 +369,7 @@
     width: $w-100;
     height: $h-10 * 50;
     padding: $p-10 * 5 $p-10 * 10;
-    background: url("../../../assets/img/subject-1.jpg");
+    background: $lightBlue;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -377,6 +377,7 @@
     .category__title {
       font-size: $h4;
       font-weight: $semiBold;
+      text-align: center;
       margin-bottom: $m-10 * 10;
     }
     .category__list {
@@ -389,17 +390,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        @include respond(phone) {
-        }
-      }
-      @include respond(phone) {
-        justify-content: space-between;
-        flex-direction: column;
       }
     }
-    @include respond(phone) {
-      height: auto;
+    @include respond(laptop) {
       padding: $p-10 * 5 $p-10 * 2;
+    }
+    @include respond(extraTablet) {
+      display: none;
     }
   }
 }

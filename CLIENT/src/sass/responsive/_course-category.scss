@@ -1,0 +1,48 @@
+.course-category__responsive {
+  padding: $p-10 * 5 $p-10 * 2;
+  background: $lightBlue;
+  display: none;
+  .responsive__title {
+    font-size: $h4;
+    font-weight: $semiBold;
+    text-align: center;
+    margin-bottom: $m-10 * 2;
+  }
+  .responsive__list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    .list__item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: $m-10 0;
+      .item__inner {
+        width: $w-10 * 10;
+        height: $h-10 * 10;
+        padding: $p-10;
+        margin-bottom: $m-10;
+        border-radius: $lightRound;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .inner__icon {
+          font-size: $h4;
+          color: $tSecondary;
+        }
+      }
+      .item__title {
+        font-size: $subtitle;
+        font-weight: $semiBold;
+      }
+      @include respond(phone) {
+        width: $w-100 / 2;
+      }
+    }
+  }
+  @include respond(extraTablet) {
+    display: block;
+  }
+}

@@ -1,12 +1,12 @@
 import React from "react";
-import Layer from "../../../components/Layer";
-import { ILangs } from "../../../interfaces/lang";
+import { Link } from "react-router-dom";
+import { ILangs } from "../../interfaces/lang";
 
-interface CourseCategoryProps {
+interface RCourseCategoryProps {
   langs: ILangs;
 }
 
-const CourseCategory: React.FunctionComponent<CourseCategoryProps> = (
+const RCourseCategory: React.FunctionComponent<RCourseCategoryProps> = (
   props
 ) => {
   const { langs } = props;
@@ -48,21 +48,21 @@ const CourseCategory: React.FunctionComponent<CourseCategoryProps> = (
       color: "#0faf37",
     },
   ];
-
   return (
-    <div className="course-home__category">
-      <h3 className="category__title">{langs?.course.home.category.title}</h3>
-      <div className="category__list">
+    <div className="course-category__responsive">
+      <h3 className="responsive__title">{langs?.course.home.category.title}</h3>
+      <div className="responsive__list">
         {categoryList.map((i) => {
           return (
-            <div className="list__item">
-              <Layer
-                key={i.id}
-                link={i.path}
-                title={i.title}
-                icon={i.icon}
-                background={i.color}
-              />
+            <div className="list__item" key={i.id}>
+              <Link to={i.path} className="item__inner" style={{ backgroundColor: i.color }}>
+                <div
+                  className="inner__icon"
+                >
+                  <i className={i.icon}></i>
+                </div>
+              </Link>
+              <div className="item__title">{i.title}</div>
             </div>
           );
         })}
@@ -71,4 +71,4 @@ const CourseCategory: React.FunctionComponent<CourseCategoryProps> = (
   );
 };
 
-export default CourseCategory;
+export default RCourseCategory;

@@ -10,14 +10,14 @@
     cursor: pointer;
   }
   .translate__menu {
-    width: $w-100 * 2;
+    width: $w-100 * 2.5;
     font-size: $body-1;
     background: $primary;
     border-radius: $lightRound;
     box-shadow: 0 0 10px $borderGrey;
     overflow: hidden;
     position: absolute;
-    top: 110%;
+    top: 150%;
     right: 0;
     z-index: 999;
     opacity: 0;
@@ -25,16 +25,35 @@
     transition: all 0.5s ease;
     .menu__item {
       padding: $p-10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       transition: all 0.5s ease;
       cursor: pointer;
       &:hover {
-          background: $secondary;
-          color: $tSecondary;
+        background: $secondary;
+        color: $tSecondary;
+      }
+      .item__title {
+        width: $w-100 - 35;
+        margin-right: $m-10;
+      }
+      .item__flag {
+        width: $w-100 - 80;
+        img {
+          width: $w-10 * 3;
+          height: $h-10 * 2;
+          object-fit: cover;
+          object-position: center;
+        }
+        @include respond(phone) {
+          display: none;
+        }
       }
     }
   }
   .translate__menu--active {
-      opacity: 1;
-      visibility: visible;
+    opacity: 1;
+    visibility: visible;
   }
 }

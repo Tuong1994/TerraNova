@@ -14,6 +14,7 @@ import LoggedIn from "./LoggedIn";
 import ProductMenu from "./ProductMenu";
 import utils from "../../utils";
 import CourseMenu from "./CourseMenu";
+import Translate from "../../components/Translate";
 
 interface IRHeaderMenuProps {
   showMenu: boolean;

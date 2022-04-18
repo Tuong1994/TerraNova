@@ -21,6 +21,8 @@ const Translate: React.FunctionComponent<TranslateProps> = (props) => {
 
   const dispatch = useDispatch();
 
+  customHook.useClickOutSide(menuRef, setShowMenu);
+
   const langs = utils.changeLang(lang);
 
   const activeLoading = () => {
@@ -34,7 +36,25 @@ const Translate: React.FunctionComponent<TranslateProps> = (props) => {
     }, 2000);
   };
 
-  customHook.useClickOutSide(menuRef, setShowMenu);
+  const changeVN = () => {
+    activeLoading();
+    setTimeout(() => {
+      dispatch({
+        type: ELangActionTypes.CHANGE_VN,
+        payload: "VN",
+      });
+    }, 1000);
+  };
+
+  const changeENG = () => {
+    activeLoading();
+    setTimeout(() => {
+      dispatch({
+        type: ELangActionTypes.CHANGE_ENG,
+        payload: "ENG",
+      });
+    }, 1000);
+  };
 
   return (
     <div className={`translate ${className ? className : ""}`}>
@@ -50,33 +70,17 @@ const Translate: React.FunctionComponent<TranslateProps> = (props) => {
             : "translate__menu"
         }
       >
-        <div
-          className="menu__item"
-          onClick={() => {
-            activeLoading();
-            setTimeout(() => {
-              dispatch({
-                type: ELangActionTypes.CHANGE_VN,
-                payload: "VN",
-              });
-            }, 1000);
-          }}
-        >
-          {langs?.translate.VN}
+        <div className="menu__item" onClick={changeVN}>
+          <span className="item__title">{langs?.translate.VN}</span>
+          <div className="item__flag">
+            <img src="../img/flags/VN.png" alt="VN" />
+          </div>
         </div>
-        <div
-          className="menu__item"
-          onClick={() => {
-            activeLoading();
-            setTimeout(() => {
-              dispatch({
-                type: ELangActionTypes.CHANGE_ENG,
-                payload: "ENG",
-              });
-            }, 1000);
-          }}
-        >
-          {langs?.translate.ENG}
+        <div className="menu__item" onClick={changeENG}>
+          <span className="item__title">{langs?.translate.ENG}</span>
+          <div className="item__flag">
+            <img src="../img/flags/ENG.png" alt="ENG" />
+          </div>
         </div>
       </div>
     </div>

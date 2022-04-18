@@ -42,10 +42,11 @@
       top: 0;
       left: 0;
       background: $secondary;
-      transition: all 0.5s ease;
       display: flex;
       align-items: center;
       justify-content: center;
+      border-radius: $lightRound;
+      transition: all 0.5s ease;
       i {
         font-size: $h4;
       }
