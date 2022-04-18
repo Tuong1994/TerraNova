@@ -6,6 +6,9 @@ import CourseBanner from "./CourseBanner";
 import CourseIntro from "./CourseIntro";
 import CourseSubject from "./CourseSubject";
 import CourseBenefits from "./CourseBenefits";
+import CourseSlogan from "./CourseSlogan";
+import CoursePartners from "./CoursePartners";
+import CourseCategory from "./CourseCategory";
 import utils from "../../../utils";
 
 interface CourseHomeProps {}
@@ -23,6 +26,9 @@ const CourseHome: React.FunctionComponent<CourseHomeProps> = (props) => {
       <CourseIntro langs={langs} />
       <CourseSubject langs={langs} />
       <CourseBenefits langs={langs} />
+      <CourseSlogan langs={langs} />
+      <CoursePartners langs={langs} />
+      <CourseCategory langs={langs} />
     </div>
   );
 };

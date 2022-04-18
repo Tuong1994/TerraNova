@@ -1,9 +1,7 @@
-.layer {
+.layer__wrapper {
   width: $w-10 * 10;
   height: $h-10 * 10;
-  position: relative;
-  transform: rotate(-30deg) skew(25deg);
-  &:hover span {
+  &:hover .wrapper__item span {
     &:nth-child(5) {
       transform: translate(40px, -40px);
       opacity: 1;
@@ -25,18 +23,43 @@
       opacity: 0.2;
     }
   }
-  span {
+  &:hover .wrapper__title {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .wrapper__item {
     width: $w-100;
     height: $h-100;
-    text-decoration: none;
-    color: $tSecondary;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: $secondary;
+    position: relative;
+    transform: rotate(-30deg) skew(25deg);
+    span {
+      width: $w-100;
+      height: $h-100;
+      text-decoration: none;
+      color: $tSecondary;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: $secondary;
+      transition: all 0.5s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      i {
+        font-size: $h4;
+      }
+    }
+  }
+  .wrapper__title {
+    padding: $p-10 * 2 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(50%);
     transition: all 0.5s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    p {
+      text-align: center;
+      font-weight: $semiBold;
+    }
   }
 }

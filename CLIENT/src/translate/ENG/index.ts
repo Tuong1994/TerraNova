@@ -165,6 +165,38 @@ const EngLang = {
       },
       benefits: {
         title: "Course Benefits - Only at Terra Nova",
+        itemTitle_1: "Learning according to the route, have direction",
+        itemTitle_2: "Foundation, thinking, core in programming",
+        itemTitle_3: "Sharpen you through experience, real projects",
+        itemTitle_4: "Teamwork, Scrum - Agile. Dedicated Mentor",
+        itemTitle_5: "New technology, depth, reality",
+        itemTitle_6: "Handing over the key to all-round success",
+        itemContent_1:
+          "Terra Nova will orient and offer programming learning paths to develop your programming competence and passion for a job right after school.",
+        itemContent_2:
+          "Terra Nova provides the most core thinking foundations and values ​​in programming. You will be confident in the change of technology and working environment",
+        itemContent_3:
+          "The team of Instructors and Mentors who are seasoned with real-life projects at large companies will impart their 'bloody' experience to you.",
+        itemContent_4:
+          "You will be assigned projects and follow Teamwork from day one. Play the role of a member in the Scrum, Agile process. Supported by Mentor wholeheartedly and enthusiastically.",
+        itemContent_5:
+          "You can learn and experience the latest, in-depth programming technologies, closely following the actual recruitment needs from businesses.",
+        itemContent_6:
+          "Guidelines for writing CVs and interviews. Connect businesses, meet businesses, interview with businesses right after graduation.",
+      },
+      slogan: {
+        content_1:
+          "Orientation and Standardization of the route from the left industry without programming roots to having a job",
+        content_2:
+          "Real Learning, Real Projects, Experienced, Dedicated Instructors",
+      },
+      partners: {
+        title: "COMPANIES WHERE TERRA NOVA'S EX STUDENTS ARE WORKING",
+        content:
+          "100% of students after completing the project have jobs as expected at software corporations, multinational software companies, start-up companies .... with salary from 90 ~ 140 million per year.",
+      },
+      category: {
+        title: "COURSE'S CATEGORIES"
       },
     },
   },
@@ -331,6 +363,10 @@ const EngLang = {
   },
   rate: {
     voted: "voted",
+  },
+  translate: {
+    VN: "Vietnamese",
+    ENG: "English",
   },
 };
 

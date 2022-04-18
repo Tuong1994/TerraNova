@@ -1,8 +1,10 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import * as customHook from "../../hooks";
+import { useDispatch, useSelector } from "react-redux";
 import { ELangActionTypes } from "../../redux/actionTypes/LangActionTypes";
 import { ELoadingActionTypes } from "../../redux/actionTypes/LoadingActionTypes";
+import { ReducerState } from "../../redux/store";
+import utils from "../../utils";
 
 interface TranslateProps {
   className?: string;
@@ -11,11 +13,15 @@ interface TranslateProps {
 const Translate: React.FunctionComponent<TranslateProps> = (props) => {
   const { className } = props;
 
+  const { lang } = useSelector((state: ReducerState) => state.LangReducer);
+
   const [showMenu, setShowMenu] = React.useState<boolean>(false);
 
   const menuRef = React.useRef(null);
 
   const dispatch = useDispatch();
+
+  const langs = utils.changeLang(lang);
 
   const activeLoading = () => {
     dispatch({
@@ -56,7 +62,7 @@ const Translate: React.FunctionComponent<TranslateProps> = (props) => {
             }, 1000);
           }}
         >
-          VN
+          {langs?.translate.VN}
         </div>
         <div
           className="menu__item"
@@ -70,7 +76,7 @@ const Translate: React.FunctionComponent<TranslateProps> = (props) => {
             }, 1000);
           }}
         >
-          ENG
+          {langs?.translate.ENG}
         </div>
       </div>
     </div>

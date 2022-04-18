@@ -163,6 +163,35 @@ const VnLang = {
       },
       benefits: {
         title: "Lợi ích của khóa học - Chỉ có tại Terra Nova",
+        itemTitle_1: "Học theo lộ trình, có định hướng",
+        itemTitle_2: "Nền tảng, tư duy, cốt lõi trong lập trình",
+        itemTitle_3: "Mài giũa bạn qua kinh nghiệm, dự án thực tế",
+        itemTitle_4: "Teamwork, Scrum - Agile. Mentor tận tâm",
+        itemTitle_5: "Công nghệ mới, chuyên sâu, thực tế",
+        itemTitle_6: "Trao tay chìa khóa thành công toàn diện",
+        itemContent_1:
+          "Terra Nova sẽ định hướng và đưa ra các lộ trình học lập trình nhằm phát triển năng lực và niềm đam mê lập trình của bạn để có việc ngay sau học.",
+        itemContent_2:
+          "Terra Nova cung cấp những nền tảng, giá trị tư duy cốt lõi nhất trong lập trình. Bạn sẽ tự tin trước sự thay đổi của công nghệ và môi trường làm việc.",
+        itemContent_3:
+          "Đội ngũ Giảng viên và các Mentor là những người dày dạn kinh nghiệm qua các dự án thực tế tại các công ty lớn sẽ truyền đạt những kinh nghiệm 'máu lửa' cho bạn.",
+        itemContent_4:
+          "Bạn sẽ được giao dự án và làm theo Teamwork ngay từ ngày đầu tiên. Đóng vai trò một thành viên trong qui trình Scrum, Agile. Được Mentor hỗ trợ tân tâm, nhiệt tình.",
+        itemContent_5:
+          "Bạn được học và trải nghiệm các công nghệ lập trình mới nhất, chuyên sâu, bám sát nhu cầu tuyển dụng thực tế từ doanh nghiệp.",
+        itemContent_6:
+          "Hướng dẫn viết CV, phỏng vấn. Kết nối doanh nghiệp, gặp gỡ doanh nghiệp, phỏng vấn cùng doanh nghiệp ngay sau khi tốt nghiệp.",
+      },
+      slogan: {
+        content_1: "Định hướng và Chuẩn hóa lộ trình từ trái ngành mất gốc lập trình đến Có việc làm",
+        content_2: "Học Thật, Dự Án Thật, Giảng Viên Kinh Nghiệm, Tận Tâm",
+      },
+      partners: {
+        title: "CÁC CÔNG TY NƠI CỰU HỌC VIÊN TERRA NOVA ĐANG LÀM VIỆC",
+        content: "100% học viên sau khi hoàn thành dự án đều có công việc như mong đợi tại các tập đoàn phần mềm, các công ty phần mềm đa quốc gia, các công ty khởi nghiệp....với thu nhập từ 90~140 triệu/1 năm."
+      },
+      category: {
+        title: "DANH MỤC KHÓA HỌC"
       },
     },
   },
@@ -329,6 +358,10 @@ const VnLang = {
   },
   rate: {
     voted: "bình chọn",
+  },
+  translate: {
+    VN: "Tiếng Việt",
+    ENG: "Tiếng Anh",
   },
 };
 

@@ -1,13 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { ReducerState } from "../../../redux/store";
-import Slider from "react-slick";
-import PartnersCard from "./PartnersCard";
-import utils from "../../../utils";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { ReducerState } from "../../redux/store";
+import utils from "../../utils";
 
-const Partners: React.FunctionComponent = (props) => {
+interface RHomePartnersProps {}
+
+const RHomePartners: React.FunctionComponent<RHomePartnersProps> = (props) => {
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
   const langs = utils.changeLang(lang);
@@ -68,43 +66,24 @@ const Partners: React.FunctionComponent = (props) => {
       desc: langs?.home.partners.samsungContent,
     },
   ];
-  
-  const settings = {
-    arrows: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    className: "partners__slider",
-  };
+
   return (
-    <div className="home__partners">
-      <div className="partners__title">
-        <h3>{langs?.home.partners.title}</h3>
+    <div className="home-partners__responsive">
+      <h3 className="responsive__title">{langs?.home.partners.title}</h3>
+      <div className="responsive__list">
+        {cardData.map((card) => {
+          return (
+            <div key={card.id} className="list__item">
+              <div className="item__inner">
+                <img className="inner__img" src={card.imgSrc} alt={card.name} />
+                <p className="inner__name">{card.name}</p>
+              </div>
+            </div>
+          );
+        })}
       </div>
-      <Slider {...settings}>
-        <div className="slider__item">
-          {cardData.slice(0, 3).map((card) => {
-            return <PartnersCard card={card} />;
-          })}
-        </div>
-
-        <div className="slider__item">
-          {cardData.slice(3, 6).map((card) => {
-            return <PartnersCard card={card} />;
-          })}
-        </div>
-
-        <div className="slider__item">
-          {cardData.slice(6, 9).map((card) => {
-            return <PartnersCard card={card} />;
-          })}
-        </div>
-      </Slider>
     </div>
   );
 };
 
-export default Partners;
+export default RHomePartners;

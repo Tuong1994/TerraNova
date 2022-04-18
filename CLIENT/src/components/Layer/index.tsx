@@ -1,20 +1,37 @@
 import React from "react";
 
 interface LayerProps {
-  renderContent(): React.ReactNode;
+  title: string;
+  icon: string;
+  background: string;
+  wrapperClassName?: string;
+  titleClassName?: string;
 }
 
 const Layer: React.FunctionComponent<LayerProps> = (props) => {
-  const { renderContent } = props;
+  const { title, icon, background, wrapperClassName, titleClassName } = props;
+
+  const styled = {
+    backgroundColor: background,
+  };
 
   return (
-    <div className="layer">
-      <div>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span>{renderContent()}</span>
+    <div
+      className={`layer__wrapper ${wrapperClassName ? wrapperClassName : ""}`}
+    >
+      <div className="wrapper__item">
+        <div>
+          <span style={styled}></span>
+          <span style={styled}></span>
+          <span style={styled}></span>
+          <span style={styled}></span>
+          <span style={styled}>
+            <i className={icon}></i>
+          </span>
+        </div>
+      </div>
+      <div className="wrapper__title">
+        <p className={titleClassName ? titleClassName : ""}>{title}</p>
       </div>
     </div>
   );

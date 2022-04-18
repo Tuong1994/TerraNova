@@ -64,6 +64,7 @@ const TypingText: React.FunctionComponent<TypingTextProps> = (props) => {
           clearTimeout(timeOut);
         };
       }
+      
       case Phase.Pausing:
 
       default:

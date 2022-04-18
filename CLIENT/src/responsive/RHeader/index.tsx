@@ -90,7 +90,6 @@ const RHeaderMenu: React.FunctionComponent<IRHeaderMenuProps> = (props) => {
             />
           );
         })}
-        ;
       </div>
     );
   };
@@ -189,7 +188,7 @@ const RHeaderMenu: React.FunctionComponent<IRHeaderMenuProps> = (props) => {
               }, 1000);
             }}
           >
-            VN
+            {langs?.translate.VN}
           </div>
           <div
             className="translate__button"
@@ -203,7 +202,7 @@ const RHeaderMenu: React.FunctionComponent<IRHeaderMenuProps> = (props) => {
               }, 1000);
             }}
           >
-            ENG
+            {langs?.translate.ENG}
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ import Achievement from "./Achievement";
 import MovieBanner from "./Banner/MovieBanner";
 import Consultation from "./Consultation";
 import ConsultModal from "./ConsultModal";
+import RHomePartners from "../../responsive/RHomePartners";
 
 const Home: React.FunctionComponent<{}> = (props) => {
   customHook.useLoading();
@@ -19,11 +20,13 @@ const Home: React.FunctionComponent<{}> = (props) => {
       <Categories />
       <PCBanner />
       <Partners />
+      <RHomePartners />
       <CourseBanner />
       <Achievement />
       <MovieBanner />
       <Consultation />
 
+      {/* Modal */}
       <ConsultModal />
     </div>
   );
