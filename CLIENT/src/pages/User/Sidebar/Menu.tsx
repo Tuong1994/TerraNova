@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { userMenuEng, userMenuVn } from "../../../configs/menuList";
+import { userMenuENG, userMenuVN, userMenuCH } from "../../../configs/menuList";
 import { ELangs } from "../../../interfaces/lang";
 import { ESideBarActionTypes } from "../../../redux/actionTypes/SideBarActionTypes";
 import { ReducerState } from "../../../redux/store";
@@ -17,17 +17,32 @@ const Menu: React.FunctionComponent<MenuProps> = (props) => {
 
   const { menuId } = useSelector((state: ReducerState) => state.SideBarReducer);
 
-  const [menu, setMenu] = React.useState<any>([]);
+  const [menuList, setMenuList] = React.useState<any>([]);
 
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    if (lang === ELangs.ENG) {
-      setMenu(userMenuEng);
-    } else if (lang === ELangs.VN) {
-      setMenu(userMenuVn);
+    if(lang) {
+      getMenuByLang();
     }
   }, [lang]);
+
+  const getMenuByLang = () => {
+    switch (lang) {
+      case ELangs.ENG: {
+        setMenuList(userMenuENG);
+        break;
+      }
+      case ELangs.VN: {
+        setMenuList(userMenuVN);
+        break;
+      }
+      case ELangs.CH: {
+        setMenuList(userMenuCH);
+        break;
+      }
+    }
+  }
 
   const handleChangeMenu = (menu: any) => {
     dispatch({
@@ -37,7 +52,7 @@ const Menu: React.FunctionComponent<MenuProps> = (props) => {
   };
 
   const renderMenu = () => {
-    return menu.map((item: any) => {
+    return menuList.map((item: any) => {
       return (
         <Link
           key={item.id}

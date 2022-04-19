@@ -10,4 +10,9 @@ interface CHANGE_VN {
   payload?: any;
 }
 
-export type LangAction = CHANGE_ENG | CHANGE_VN;
+interface CHANGE_CH {
+  type: ELangActionTypes.CHANGE_CH;
+  payload?: any;
+}
+
+export type LangAction = CHANGE_ENG | CHANGE_VN | CHANGE_CH;

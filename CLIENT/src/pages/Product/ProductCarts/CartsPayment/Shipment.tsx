@@ -23,6 +23,8 @@ const Shipment: React.FunctionComponent<ShipmentProps> = (props) => {
       return content.renderWardEng(parseInt(shipment?.ward || ""));
     } else if (lang === ELangs.VN) {
       return content.renderWardVn(parseInt(shipment?.ward || ""));
+    } else if (lang === ELangs.CH) {
+      return content.renderWardCh(parseInt(shipment?.ward || ""));
     }
   };
 
@@ -31,6 +33,8 @@ const Shipment: React.FunctionComponent<ShipmentProps> = (props) => {
       return content.renderDistrictEng(parseInt(shipment?.district || ""));
     } else if (lang === ELangs.VN) {
       return content.renderDistrictVn(parseInt(shipment?.district || ""));
+    } else if (lang === ELangs.CH) {
+      return content.renderDistrictCh(parseInt(shipment?.district || ""));
     }
   };
 
@@ -39,6 +43,8 @@ const Shipment: React.FunctionComponent<ShipmentProps> = (props) => {
       return content.renderProvinceEng(parseInt(shipment?.province || ""));
     } else if (lang === ELangs.VN) {
       return content.renderProvinceVn(parseInt(shipment?.province || ""));
+    } else if (lang === ELangs.CH) {
+      return content.renderProvinceCh(parseInt(shipment?.province || ""));
     }
   }
 

@@ -23,6 +23,12 @@ export const LangReducer = (state = stateDefault, action: LangAction) => {
       state = newState;
       return { ...state };
     }
+    case ELangActionTypes.CHANGE_CH: {
+      let newState = { ...state };
+      newState.lang = action.payload;
+      state = newState;
+      return { ...state };
+    }
     default:
       return { ...state };
   }

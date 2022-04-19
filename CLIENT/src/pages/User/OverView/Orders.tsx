@@ -16,7 +16,7 @@ const Order: React.FunctionComponent<OrderProps> = (props) => {
 
   return (
     <div className="overview__order">
-      <h5 className="order__title">{langs?.user.orderTitle}</h5>
+      <h5 className="order__title">{langs?.user.overview.orderTitle}</h5>
       <Card.Wrapper className="order__list">
         <Table
           headers={[

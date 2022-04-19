@@ -166,6 +166,89 @@ const renderWardVn = (v: number) => {
   }
 };
 
+const renderWardCh = (v: number) => {
+  switch (v) {
+    case EWard.one: {
+      return "一";
+    }
+    case EWard.two: {
+      return "二";
+    }
+    case EWard.three: {
+      return "三";
+    }
+    case EWard.four: {
+      return "四";
+    }
+    case EWard.five: {
+      return "五";
+    }
+    case EWard.six: {
+      return "六";
+    }
+    case EWard.seven: {
+      return "七";
+    }
+    case EWard.eight: {
+      return "八";
+    }
+    case EWard.nine: {
+      return "九";
+    }
+    case EWard.ten: {
+      return "十";
+    }
+    case EWard.eleven: {
+      return "十一";
+    }
+    case EWard.twelve: {
+      return "十二";
+    }
+    case EWard.thirteen: {
+      return "十三";
+    }
+    case EWard.fourteen: {
+      return "十四";
+    }
+    case EWard.hoanKiem: {
+      return "还剑";
+    }
+    case EWard.dongDa: {
+      return "东大";
+    }
+    case EWard.baĐinh: {
+      return "巴亭";
+    }
+    case EWard.haiBaTrung: {
+      return "海巴中";
+    }
+    case EWard.hoangMai: {
+      return "黄迈";
+    }
+    case EWard.thanhXuan: {
+      return "青春";
+    }
+    case EWard.longBien: {
+      return "龙边";
+    }
+    case EWard.namTuLiem: {
+      return "南都廉";
+    }
+    case EWard.bacTuLiem: {
+      return "北都廉";
+    }
+    case EWard.tayHo: {
+      return "西湖";
+    }
+    case EWard.cauGiay: {
+      return "考嘉";
+    }
+    case EWard.haDong: {
+      return "河东";
+    }
+  }
+};
+
 const renderDistrictEng = (v: number) => {
   switch (v) {
     case EDistrict.one: {
@@ -350,6 +433,98 @@ const renderDistrictVn = (v: number) => {
   }
 };
 
+const renderDistrictCh = (v: number) => {
+  switch (v) {
+    case EDistrict.one: {
+      return "一";
+    }
+    case EDistrict.two: {
+      return "二";
+    }
+    case EDistrict.three: {
+      return "三";
+    }
+    case EDistrict.four: {
+      return "四";
+    }
+    case EDistrict.five: {
+      return "五";
+    }
+    case EDistrict.six: {
+      return "六";
+    }
+    case EDistrict.seven: {
+      return "七";
+    }
+    case EDistrict.eight: {
+      return "八";
+    }
+    case EDistrict.nine: {
+      return "九";
+    }
+    case EDistrict.ten: {
+      return "十";
+    }
+    case EDistrict.eleven: {
+      return "十一";
+    }
+    case EDistrict.twelve: {
+      return "shier";
+    }
+    case EDistrict.baVi: {
+      return "巴维";
+    }
+    case EDistrict.chuongMy: {
+      return "章美";
+    }
+    case EDistrict.phucTho: {
+      return "乐寿";
+    }
+    case EDistrict.danPhuong: {
+      return "丹芳";
+    }
+    case EDistrict.dongAnh: {
+      return "东英";
+    }
+    case EDistrict.giaLam: {
+      return "嘉林";
+    }
+    case EDistrict.hoaiDuc: {
+      return "会德";
+    }
+    case EDistrict.meLinh: {
+      return "美玲";
+    }
+    case EDistrict.myDuc: {
+      return "美德";
+    }
+    case EDistrict.phuXuyen: {
+      return "富雪";
+    }
+    case EDistrict.quocOai: {
+      return "国哇";
+    }
+    case EDistrict.socSon: {
+      return "朔山";
+    }
+    case EDistrict.thachThat: {
+      return "石七";
+    }
+    case EDistrict.thanhOai: {
+      return "青哇";
+    }
+    case EDistrict.thuongTin: {
+      return "常识";
+    }
+    case EDistrict.ungHoa: {
+      return "配对";
+    }
+    case EDistrict.thanhTri: {
+      return "清治";
+    }
+  }
+};
+
 const renderProvinceEng = (v: number) => {
   switch (v) {
     case EProvince.HCM: {
@@ -372,11 +547,25 @@ const renderProvinceVn = (v: number) => {
   }
 };
 
+const renderProvinceCh = (v: number) => {
+  switch (v) {
+    case EProvince.HCM: {
+      return "胡志明市";
+    }
+    case EProvince.HN: {
+      return "河内市";
+    }
+  }
+};
+
 export {
   renderWardEng,
   renderWardVn,
+  renderWardCh,
   renderDistrictEng,
   renderDistrictVn,
+  renderDistrictCh,
   renderProvinceEng,
   renderProvinceVn,
+  renderProvinceCh,
 };

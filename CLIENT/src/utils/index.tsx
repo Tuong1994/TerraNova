@@ -1,7 +1,8 @@
 import * as lang from "../translate";
 import { toast } from "react-toastify";
+import { optionsCh, optionsEng, optionsVn } from "../configs/options";
 import { EDistrict } from "../models/Shipment";
-import { optionsEng, optionsVn } from "../configs/options";
+import { ELangs } from "../interfaces/lang";
 
 const utils = {
   checkObjectEmpty: (obj: any) => {
@@ -24,10 +25,12 @@ const utils = {
     }
   },
   changeLang: (l: string) => {
-    if (l === "VN") {
+    if (l === ELangs.VN) {
       return lang.VN;
-    } else if (l === "ENG") {
+    } else if (l === ELangs.ENG) {
       return lang.ENG;
+    } else if (l === ELangs.CH) {
+      return lang.CH;
     }
   },
   uuid: () => {
@@ -67,10 +70,12 @@ const utils = {
     }
   },
   getOptionByLang: (lang: string) => {
-    if (lang === "ENG") {
+    if (lang === ELangs.ENG) {
       return optionsEng;
-    } else if (lang === "VN") {
+    } else if (lang === ELangs.VN) {
       return optionsVn;
+    } else if (lang === ELangs.CH) {
+      return optionsCh;
     }
   },
 };

@@ -183,16 +183,24 @@ const VnLang = {
           "Hướng dẫn viết CV, phỏng vấn. Kết nối doanh nghiệp, gặp gỡ doanh nghiệp, phỏng vấn cùng doanh nghiệp ngay sau khi tốt nghiệp.",
       },
       slogan: {
-        content_1: "Định hướng và Chuẩn hóa lộ trình từ trái ngành mất gốc lập trình đến Có việc làm",
+        content_1:
+          "Định hướng và Chuẩn hóa lộ trình từ trái ngành mất gốc lập trình đến Có việc làm",
         content_2: "Học Thật, Dự Án Thật, Giảng Viên Kinh Nghiệm, Tận Tâm",
       },
       partners: {
         title: "CÁC CÔNG TY NƠI CỰU HỌC VIÊN TERRA NOVA ĐANG LÀM VIỆC",
-        content: "100% học viên sau khi hoàn thành dự án đều có công việc như mong đợi tại các tập đoàn phần mềm, các công ty phần mềm đa quốc gia, các công ty khởi nghiệp....với thu nhập từ 90~140 triệu/1 năm."
+        content:
+          "100% học viên sau khi hoàn thành dự án đều có công việc như mong đợi tại các tập đoàn phần mềm, các công ty phần mềm đa quốc gia, các công ty khởi nghiệp....với thu nhập từ 90~140 triệu/1 năm.",
       },
       category: {
-        title: "DANH MỤC KHÓA HỌC"
+        title: "DANH MỤC KHÓA HỌC",
       },
+    },
+    route: {
+      intro: {
+        title: "Thay đổi sự nghiệp - Học lập trình theo lộ trình chuyên biệt tại Terra Nova",
+        content: "Terra Nova vạch ra lộ trình học lập trình một cách chi tiết, bài bản, chuyên nghiệp, chuẩn nghề ĐH Arizona -USA, 100% thực hành theo dự án thực tế tránh lan man, luyện tập tư duy, logic nền tảng chuyên sâu dễ dàng phát triển lên senior, leader. Đi đúng lộ trình Terra Nova bạn sẽ tiết kiệm được thời gian, chi phí và có việc làm tốt nhất và bền vững để thăng tiến.",
+      }
     },
   },
   aboutUs: {
@@ -221,11 +229,16 @@ const VnLang = {
     },
   },
   user: {
-    hello: "Xin chào",
-    overviewTitle: "Tổng quan",
-    accountInfo: "Thông tin tài khoản",
-    personalInfo: "Thông tin cá nhân",
-    orderTitle: "Danh sách đơn hàng",
+    sidebar: {
+      overview: "Tổng quan",
+    },
+    overview: {
+      hello: "Xin chào",
+      overviewTitle: "Tổng quan",
+      accountInfo: "Thông tin tài khoản",
+      personalInfo: "Thông tin cá nhân",
+      orderTitle: "Danh sách đơn hàng",
+    },
   },
   time: {
     day: "ngày",
@@ -360,8 +373,10 @@ const VnLang = {
     voted: "bình chọn",
   },
   translate: {
+    title: "Ngôn ngữ",
     VN: "Tiếng Việt",
     ENG: "Tiếng Anh",
+    CH: "Tiếng Trung",
   },
 };
 

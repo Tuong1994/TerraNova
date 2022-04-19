@@ -34,7 +34,7 @@ const OverView: React.FunctionComponent<OverViewProps> = (props) => {
 
   return (
     <div className="overview">
-      <h3 className="overview__title">{langs?.user.overviewTitle}</h3>
+      <h3 className="overview__title">{langs?.user.overview.overviewTitle}</h3>
       <UserInfo langs={langs} user={user} />
       <Order user={user} langs={langs} />
     </div>

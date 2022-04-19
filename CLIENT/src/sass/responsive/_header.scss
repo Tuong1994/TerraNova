@@ -157,9 +157,28 @@
               color: $tSecondary;
             }
           }
-          @include respond(phone) {
-            font-size: $body-1;
+        }
+        .list__translate {
+          width: $w-100;
+          padding: $p-10 * 2;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          color: $tSecondary;
+          span {
+            display: block;
+            &:nth-child(1) {
+              width: $w-100 - 10;
+            }
+            &:nth-child(2) {
+              width: $w-100 - 90;
+              font-size: $subtitle;
+              text-align: right;
+            }
           }
+        }
+        @include respond(phone) {
+          font-size: $body-1;
         }
       }
       .menu__product {
@@ -242,6 +261,46 @@
       .menu__course--active {
         transform: translateX(0);
       }
+      .menu__lang {
+        width: $w-100;
+        height: $h-100;
+        background: $secondary;
+        display: flex;
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: auto;
+        transform: translateX(101%);
+        transition: all 0.5s ease;
+        .lang__icon {
+          height: $h-100;
+          padding: $p-10 * 2;
+          background: $primary;
+          font-size: $h6;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: sticky;
+          top: 0;
+        }
+        .lang__list {
+          width: $w-100;
+          padding: $p-10;
+          .list__link {
+            display: block;
+            padding: $p-10 * 2 $p-10;
+            text-decoration: none;
+            color: $tSecondary;
+            border-bottom: 1px solid $borderWhite;
+            @include respond(phone) {
+              font-size: $body-1;
+            }
+          }
+        }
+      }
+      .menu__lang--active {
+        transform: translateX(0);
+      }
     }
     .wrapper__translate {
       width: $w-100;
@@ -249,22 +308,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      .translate__button {
-        width: $w-10 * 10;
-        margin: 0 $m-10;
-        padding: $p-5 $p-10;
-        font-size: $body-2;
-        text-align: center;
-        color: $tSecondary;
-        border: 1px solid $borderWhite;
-        border-radius: $lightRound;
-        @include respond(extraTablet) {
-          font-size: $default;
-        }
-        @include respond(phone) {
-          font-size: $body-1;
-        }
-      }
     }
   }
   .responsive__wrapper--active {

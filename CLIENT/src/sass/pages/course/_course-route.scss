@@ -1,0 +1,69 @@
+.course-route {
+  .course-route__intro {
+    width: $w-100;
+    height: $h-10 * 30;
+    padding: $p-10 * 5 $p-10 * 10;
+    background: url("../../../assets/img/blue-background.jpg");
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .intro__content {
+      width: $w-100 - 40;
+      color: $tSecondary;
+      .content__title {
+        font-size: $h5;
+        font-weight: $semiBold;
+        margin-bottom: $m-10 * 2;
+      }
+      @include respond(tablet) {
+        width: $w-100;
+        margin-bottom: $m-10 * 2;
+      }
+    }
+    .intro__icons {
+      width: $w-100 - 75;
+      display: flex;
+      flex-wrap: wrap;
+      .icons__img {
+        width: $w-100 / 4;
+        margin: $m-5 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .img__inner {
+          width: $w-10 * 4;
+          height: $h-10 * 4;
+          border-radius: $circle;
+          background: $primary;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+          img {
+            width: $w-100 - 50;
+            height: $h-100 - 50;
+            object-fit: cover;
+            object-position: center;
+          }
+        }
+        @include respond(tablet) {
+            width: $w-100 / 6;
+        }
+        @include respond(phone) {
+            width: $w-100 / 4;
+        }
+      }
+      @include respond(tablet) {
+        width: $w-100;
+      }
+    }
+    @include respond(extraTablet) {
+      padding: $p-10 * 5 $p-10 * 2;
+    }
+    @include respond(tablet) {
+      padding: $p-10 * 5 $p-10 * 2;
+      flex-direction: column;
+      height: auto;
+    }
+  }
+}

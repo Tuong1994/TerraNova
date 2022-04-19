@@ -1,6 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { headerMenuEng, headerMenuVN } from "../../configs/menuList";
+import {
+  headerMenuENG,
+  headerMenuVN,
+  headerMenuCH,
+} from "../../configs/menuList";
 import { ELangs } from "../../interfaces/lang";
 import { IQueryList } from "../../interfaces/query";
 import { getCourseByCategory } from "../../redux/actionCreators/CourseCreators";
@@ -8,7 +12,6 @@ import {
   getProductByCategory,
   getProductByProducer,
 } from "../../redux/actionCreators/ProductCreators";
-import { ELoadingActionTypes } from "../../redux/actionTypes/LoadingActionTypes";
 import { ReducerState } from "../../redux/store";
 import Menu from "./Menu";
 import actions from "../../configs/actions";
@@ -21,7 +24,16 @@ interface HeaderMenuProps {}
 
 const HeaderMenu: React.FunctionComponent<HeaderMenuProps> = (props) => {
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
+
+  const [menuList, setMenuList] = React.useState<any>([]);
+
   const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    if (lang) {
+      getMenuByLang();
+    }
+  }, [lang]);
 
   const productByCategory = (id: string) => {
     dispatch(actions.openPageLoading);
@@ -64,32 +76,37 @@ const HeaderMenu: React.FunctionComponent<HeaderMenuProps> = (props) => {
     }, _defaultTimeout);
   };
 
-  const renderMenuData = () => {
-    if (lang === ELangs.ENG) {
-      return headerMenuEng.map((menu: any) => {
-        return (
-          <Menu
-            key={menu.menuId}
-            menu={menu}
-            getProductByCategory={productByCategory}
-            getProductByProducer={productByProducer}
-            getCourseByCategory={courseByCategory}
-          />
-        );
-      });
-    } else if (lang === ELangs.VN) {
-      return headerMenuVN.map((menu: any) => {
-        return (
-          <Menu
-            key={menu.menuId}
-            menu={menu}
-            getProductByCategory={productByCategory}
-            getProductByProducer={productByProducer}
-            getCourseByCategory={courseByCategory}
-          />
-        );
-      });
+  const getMenuByLang = () => {
+    switch (lang) {
+      case ELangs.ENG: {
+        setMenuList(headerMenuENG);
+        break;
+      }
+      case ELangs.VN: {
+        setMenuList(headerMenuVN);
+        break;
+      }
+      case ELangs.CH: {
+        setMenuList(headerMenuCH);
+        break;
+      }
+      default:
+        return;
     }
+  };
+
+  const renderMenuData = () => {
+    return menuList.map((menu: any) => {
+      return (
+        <Menu
+          key={menu.menuId}
+          menu={menu}
+          getProductByCategory={productByCategory}
+          getProductByProducer={productByProducer}
+          getCourseByCategory={courseByCategory}
+        />
+      );
+    });
   };
 
   return <ul className="header__menu">{renderMenuData()}</ul>;

@@ -1,20 +1,24 @@
 import React from "react";
 import * as customHooks from "../../hooks/index";
 import { Link } from "react-router-dom";
-import { headerMenuEng, headerMenuVN } from "../../configs/menuList";
+import {
+  headerMenuCH,
+  headerMenuENG,
+  headerMenuVN,
+} from "../../configs/menuList";
 import { EUserActionTypes } from "../../redux/actionTypes/UserActionTypes";
 import { ELoadingActionTypes } from "../../redux/actionTypes/LoadingActionTypes";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../redux/store";
-import { ELangActionTypes } from "../../redux/actionTypes/LangActionTypes";
+import { ELangs } from "../../interfaces/lang";
 import { history } from "../../App";
 import Carts from "../../components/Carts";
 import Menu from "./Menu";
 import LoggedIn from "./LoggedIn";
 import ProductMenu from "./ProductMenu";
-import utils from "../../utils";
 import CourseMenu from "./CourseMenu";
-import Translate from "../../components/Translate";
+import LangMenu from "./LangMenu";
+import utils from "../../utils";
 
 interface IRHeaderMenuProps {
   showMenu: boolean;
@@ -31,6 +35,7 @@ const RHeaderMenu: React.FunctionComponent<IRHeaderMenuProps> = (props) => {
   const [isShow, setIsShow] = React.useState<boolean>(false);
   const [showProductMenu, setShowProductMenu] = React.useState<boolean>(false);
   const [showCourseMenu, setShowCourseMenu] = React.useState<boolean>(false);
+  const [showLangMenu, setShowLangMenu] = React.useState<boolean>(false);
 
   const menuRef = React.useRef(null);
   const menuSettingRef = React.useRef(null);
@@ -40,10 +45,8 @@ const RHeaderMenu: React.FunctionComponent<IRHeaderMenuProps> = (props) => {
   const langs = utils.changeLang(lang);
 
   React.useEffect(() => {
-    if (lang === "ENG") {
-      setMenuList(headerMenuEng);
-    } else if (lang === "VN") {
-      setMenuList(headerMenuVN);
+    if (lang) {
+      getMenuByLang();
     }
   }, [lang]);
 
@@ -66,15 +69,21 @@ const RHeaderMenu: React.FunctionComponent<IRHeaderMenuProps> = (props) => {
     }, 1000);
   };
 
-  const activeLoading = () => {
-    dispatch({
-      type: ELoadingActionTypes.OPEN_PAGE_LOADING,
-    });
-    setTimeout(() => {
-      dispatch({
-        type: ELoadingActionTypes.CLOSE_PAGE_LOADING,
-      });
-    }, 2000);
+  const getMenuByLang = () => {
+    switch (lang) {
+      case ELangs.ENG: {
+        setMenuList(headerMenuENG);
+        break;
+      }
+      case ELangs.VN: {
+        setMenuList(headerMenuVN);
+        break;
+      }
+      case ELangs.CH: {
+        setMenuList(headerMenuCH);
+        break;
+      }
+    }
   };
 
   const renderHeaderMenu = () => {
@@ -91,6 +100,12 @@ const RHeaderMenu: React.FunctionComponent<IRHeaderMenuProps> = (props) => {
             />
           );
         })}
+        <div className="list__translate" onClick={() => setShowLangMenu(true)}>
+          <span>{langs?.translate.title}</span>
+          <span>
+            <i className="fa-solid fa-angle-right"></i>
+          </span>
+        </div>
       </div>
     );
   };
@@ -172,40 +187,15 @@ const RHeaderMenu: React.FunctionComponent<IRHeaderMenuProps> = (props) => {
             onHide={() => setShowCourseMenu(false)}
             onHideMenu={() => setShowMenu(false)}
           />
+          <LangMenu
+            langs={langs}
+            isShow={showLangMenu}
+            onHide={() => setShowLangMenu(false)}
+            onHideMenu={() => setShowMenu(false)}
+          />
         </ul>
 
         <div className="wrapper__line"></div>
-
-        <div className="wrapper__translate">
-          <div
-            className="translate__button"
-            onClick={() => {
-              activeLoading();
-              setTimeout(() => {
-                dispatch({
-                  type: ELangActionTypes.CHANGE_VN,
-                  payload: "VN",
-                });
-              }, 1000);
-            }}
-          >
-            {langs?.translate.VN}
-          </div>
-          <div
-            className="translate__button"
-            onClick={() => {
-              activeLoading();
-              setTimeout(() => {
-                dispatch({
-                  type: ELangActionTypes.CHANGE_ENG,
-                  payload: "ENG",
-                });
-              }, 1000);
-            }}
-          >
-            {langs?.translate.ENG}
-          </div>
-        </div>
       </div>
     </div>
   );

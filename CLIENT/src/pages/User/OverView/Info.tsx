@@ -13,7 +13,7 @@ const UserInfo: React.FunctionComponent<UserInfoProps> = (props) => {
   return (
     <div className="overview__user">
       <Card.Wrapper className="user__info">
-        <h5 className="info__title">{langs?.user.accountInfo}</h5>
+        <h5 className="info__title">{langs?.user.overview.accountInfo}</h5>
         <ul className="info__list">
           <li className="list__inner">
             <div className="inner__content">
@@ -30,7 +30,7 @@ const UserInfo: React.FunctionComponent<UserInfoProps> = (props) => {
         </ul>
       </Card.Wrapper>
       <Card.Wrapper className="user__info">
-        <h5 className="info__title">{langs?.user.personalInfo}</h5>
+        <h5 className="info__title">{langs?.user.overview.personalInfo}</h5>
         <ul className="info__list">
           <li className="list__inner">
             <div className="inner__content">

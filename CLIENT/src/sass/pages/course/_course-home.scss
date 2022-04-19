@@ -80,6 +80,8 @@
       width: $w-100 - 51;
       height: $h-10 * 30;
       padding: $p-10 * 3;
+      text-decoration: none;
+      color: $tPrimary;
       border: 1px solid $borderBlue;
       border-radius: $lightRound;
       display: flex;

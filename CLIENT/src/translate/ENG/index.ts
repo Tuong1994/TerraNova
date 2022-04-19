@@ -196,7 +196,15 @@ const EngLang = {
           "100% of students after completing the project have jobs as expected at software corporations, multinational software companies, start-up companies .... with salary from 90 ~ 140 million per year.",
       },
       category: {
-        title: "COURSE'S CATEGORIES"
+        title: "COURSE'S CATEGORIES",
+      },
+    },
+    route: {
+      intro: {
+        title:
+          "Change your career - Learn to program according to a specialized route at Terra Nova",
+        content:
+          "Terra Nova outlines a detailed, methodical, professional, career-standard programming path at the University of Arizona - USA, 100% practical project-based practice to avoid rambling, thinking practice, in-depth foundational logic. easily develop to senior, leader. Going on the right Terra Nova route, you will save time, money and have the best and sustainable job to advance.",
       },
     },
   },
@@ -226,11 +234,16 @@ const EngLang = {
     },
   },
   user: {
-    hello: "Hello",
-    overviewTitle: "Overview",
-    accountInfo: "Account infomation",
-    personalInfo: "Personal information",
-    orderTitle: "Orders",
+    sidebar: {
+      overview: "Overview",
+    },
+    overview: {
+      hello: "Hello",
+      overviewTitle: "Overview",
+      accountInfo: "Account infomation",
+      personalInfo: "Personal information",
+      orderTitle: "Orders",
+    },
   },
   time: {
     day: "day",
@@ -365,8 +378,10 @@ const EngLang = {
     voted: "voted",
   },
   translate: {
+    title: "Languages",
     VN: "Vietnamese",
     ENG: "English",
+    CH: "Chinese",
   },
 };
 
