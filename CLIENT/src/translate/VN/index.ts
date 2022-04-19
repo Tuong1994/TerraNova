@@ -198,9 +198,19 @@ const VnLang = {
     },
     route: {
       intro: {
-        title: "Thay đổi sự nghiệp - Học lập trình theo lộ trình chuyên biệt tại Terra Nova",
-        content: "Terra Nova vạch ra lộ trình học lập trình một cách chi tiết, bài bản, chuyên nghiệp, chuẩn nghề ĐH Arizona -USA, 100% thực hành theo dự án thực tế tránh lan man, luyện tập tư duy, logic nền tảng chuyên sâu dễ dàng phát triển lên senior, leader. Đi đúng lộ trình Terra Nova bạn sẽ tiết kiệm được thời gian, chi phí và có việc làm tốt nhất và bền vững để thăng tiến.",
-      }
+        title:
+          "Thay đổi sự nghiệp - Học lập trình theo lộ trình chuyên biệt tại Terra Nova",
+        content:
+          "Terra Nova vạch ra lộ trình học lập trình một cách chi tiết, bài bản, chuyên nghiệp, chuẩn nghề ĐH Arizona -USA, 100% thực hành theo dự án thực tế tránh lan man, luyện tập tư duy, logic nền tảng chuyên sâu dễ dàng phát triển lên senior, leader. Đi đúng lộ trình Terra Nova bạn sẽ tiết kiệm được thời gian, chi phí và có việc làm tốt nhất và bền vững để thăng tiến.",
+      },
+      subject: {
+        title_1: "TRÁI NGÀNH",
+        title_2: "ĐÃ BIẾT LẬP TRÌNH",
+      },
+      category: {
+        title_1: "Khóa học Part-time",
+        title_2: "Khóa học Full-time",
+      },
     },
   },
   aboutUs: {

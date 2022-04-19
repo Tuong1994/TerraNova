@@ -29,7 +29,7 @@ const CourseCard: React.FunctionComponent<CourseCardProps> = (props) => {
   };
 
   return (
-    <Link to={`/productDetail/${course.id}`} className="inner__link">
+    <Link to={`/courseDetail/${course.id}`} className="inner__link">
       <Card.Wrapper className="link__card">
         <Card.Img
           className="card__image"

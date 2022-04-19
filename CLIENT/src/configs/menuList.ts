@@ -254,7 +254,7 @@ export const headerMenuENG = [
       },
       {
         subMenuId: "frontEnd",
-        name: lang?.ENG.headerMenu.fronendProgramming,
+        name: lang?.ENG.headerMenu.frontendProgramming,
         path: "",
         active: false,
         categoryMenu: [],

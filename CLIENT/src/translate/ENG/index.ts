@@ -22,7 +22,7 @@ const EngLang = {
     mobileProgramming: "Mobile Programming",
     fullstackProgramming: "Fullstack Programming",
     backendProgramming: "Backend Programming",
-    fronendProgramming: "Frontend Programming",
+    frontendProgramming: "Frontend Programming",
     signIn: "Sign in",
     signUp: "Sign up",
     accountSetting: "Account Setting",
@@ -205,6 +205,14 @@ const EngLang = {
           "Change your career - Learn to program according to a specialized route at Terra Nova",
         content:
           "Terra Nova outlines a detailed, methodical, professional, career-standard programming path at the University of Arizona - USA, 100% practical project-based practice to avoid rambling, thinking practice, in-depth foundational logic. easily develop to senior, leader. Going on the right Terra Nova route, you will save time, money and have the best and sustainable job to advance.",
+      },
+      subject: {
+        title_1: "LEFT BRANCH",
+        title_2: "ALREADY KNOWN PROGRAMMING",
+      },
+      category: {
+        title_1: "Part-time course",
+        title_2: "Full-time course",
       },
     },
   },

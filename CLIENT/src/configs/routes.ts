@@ -16,6 +16,7 @@ import OverView from "../pages/User/OverView";
 import CourseHome from "../pages/Course/CourseHome";
 import CourseList from "../pages/Course/CourseList";
 import CourseRoute from "../pages/Course/CourseRoute";
+import CourseDetail from "../pages/Course/CourseDetail";
 
 
 export const adminRoutes: IRoute[] = [
@@ -134,5 +135,10 @@ export const homeRoutes: IRoute[] = [
     path: "/courseByCategory/:id",
     exact: true,
     component: CourseList
+  },
+  {
+    path: "/courseDetail/:id",
+    exact: true,
+    component: CourseDetail
   },
 ];

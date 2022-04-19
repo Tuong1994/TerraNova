@@ -42,15 +42,14 @@
     position: relative;
     .wrapper__inner {
       width: $w-100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-row-gap: 15px;
+      grid-column-gap: 15px;
       .inner__link {
         display: block;
-        width: $w-100 / 3.3;
+        width: $w-100;
         height: auto;
-        margin: $m-10;
         text-decoration: none;
         color: $tPrimary;
         .link__card {
@@ -135,21 +134,12 @@
             }
           }
         }
-        @include respond(laptop) {
-          width: $w-100 / 3.2;
-        }
-        @include respond(extraTablet) {
-          width: $w-100 / 3.3;
-        }
-        @include respond(tablet) {
-          width: $w-100 / 2.2;
-        }
-        @include respond(phone) {
-          width: $w-100 / 2.1;
-        }
-        @include respond(smallPhone) {
-          width: $w-100;
-        }
+      }
+      @include respond(tablet) {
+        grid-template-columns: 1fr 1fr;
+      }
+      @include respond(phone) {
+        grid-template-columns: auto;
       }
     }
   }
