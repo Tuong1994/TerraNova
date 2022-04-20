@@ -16,7 +16,7 @@ module.exports = {
       [
         {
           id: "design",
-          nameENG: "Thiết kế web",
+          nameENG: "WEB DESIGN",
           nameVN: "THIẾT KẾ WEB",
           createdAt: new Date(),
           updatedAt: new Date(),

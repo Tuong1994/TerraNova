@@ -1,20 +1,21 @@
 .home__achievement {
   padding: $p-10 * 10 $p-10 * 5;
-  height: $h-10 * 50;
-
+  height: $h-10 * 60;
+  background: $blue-1;
   display: flex;
   align-items: center;
   justify-content: space-around;
   .achievement__wrapper {
     font-weight: $medium;
     text-align: center;
+    color: $tSecondary;
     .wrapper__icon {
       font-size: $h2;
       margin-bottom: $m-10;
     }
     .wrapper__number {
       font-size: $h1;
-      color: $tBlue;
+      color: $tPrimary;
       margin-bottom: $m-10;
     }
     .wrapper__title {

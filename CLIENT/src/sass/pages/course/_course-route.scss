@@ -114,15 +114,6 @@
             color: $tPrimary;
             span {
               margin: 0 $m-5;
-              &:nth-child(2) {
-                display: block;
-                padding: $p-10;
-                text-align: center;
-                border-radius: $round;
-                background: $secondary;
-                color: $tSecondary;
-                font-size: $body-2;
-              }
             }
           }
         }
@@ -230,11 +221,6 @@
           p {
             text-align: center;
             color: $tSecondary;
-            &:nth-child(2) {
-              margin: $m-10 0;
-              font-size: $body-1;
-              font-weight: $regular;
-            }
           }
         }
       }

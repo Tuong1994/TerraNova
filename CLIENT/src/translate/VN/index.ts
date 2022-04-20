@@ -212,6 +212,31 @@ const VnLang = {
         title_2: "Khóa học Full-time",
       },
     },
+    detail: {
+      intro: {
+        content:
+          "Đã có hơn 6200 bạn đăng kí học và có việc làm thông qua chương trình đào tạo {{title}} chuyên nghiệp từ Zero tại Terra Nova. Khóa học 100% thực hành cường độ cao theo dự án thực tế và kết nối doanh nghiệp hỗ trợ tìm việc ngay sau khi học. Phương pháp đào tạo nghề chuẩn đại học Arizona - ASU Mỹ - tập trung tư duy, phân tích bài toán giúp cho học viên dễ dàng phát triển từ dev lên senior, leader và làm việc tại bất kì môi trường nào.",
+      },
+      question: {
+        title_1: "AI CÓ THỂ THAM GIA ?",
+        title_2: "HỌC XONG LÀM VIỆC TẠI ĐÂU ?",
+        list_1: "Mới học lập trình, thiếu định hướng & lộ trình học tập",
+        list_2: "Trái ngành học lập trình, chuyển nghề",
+        list_3: "Hoàn thành chương trình trung học phổ thông (12/12)",
+        list_4: "Yếu tư duy lập trình, mất gốc muốn học để xin việc làm",
+        list_5:
+          "Chủ dự án muốn quản lý team dev, startup muốn hiểu rõ việc làm của dev",
+        list_6: "Thêm nghề để kiếm thêm thu nhập ngoài giờ",
+        list_7:
+          "Apply vào tất cả công ty tuyển dụng Front End Dev ở vị trí fresher hoặc juinor",
+        list_8: "Các công ty outsourcing - gia công phần mềm",
+        list_9: "Các công ty startup - khởi nghiệp",
+        list_10: "Công ty, tập đoàn trong nước và nước ngoài...",
+        list_11:
+          "Có thể apply ngay vào Fresher, Junior với mức lương khởi điểm từ 7tr5 đến 15tr",
+        list_12: "Nhận các job freelancer về xây dựng front end cho website",
+      },
+    },
   },
   aboutUs: {
     banner: {

@@ -1,0 +1,115 @@
+.course-detail {
+  .course-detail__intro {
+    width: $w-100;
+    padding: $p-10 * 5;
+    display: flex;
+    justify-content: space-between;
+    background: url("../../../assets/img/blue-background.jpg");
+    overflow: hidden;
+    .intro__content {
+      width: $w-100 - 35;
+      color: $tSecondary;
+      .content__title {
+        font-size: $h4;
+        font-weight: $semiBold;
+      }
+      .content__line {
+        width: $w-100 - 30;
+        height: 2px;
+        background: $primary;
+        margin: $m-10 * 2 0;
+      }
+      .content__text {
+        line-height: $h-10 * 2;
+        margin: $m-10 0;
+      }
+      @include respond(tablet) {
+        width: $w-100;
+      }
+    }
+    .intro__img {
+      width: $w-100 - 70;
+      position: relative;
+      .img__blob {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        @include respond(laptop) {
+          width: $w-10 * 30 !important;
+          height: $h-10 * 30 !important;
+        }
+      }
+      .img {
+        width: $w-10 * 30;
+        height: $h-10 * 30;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: $circle;
+        box-shadow: 0 0 20px $blue-1;
+        @include respond(laptop) {
+          width: $w-10 * 20;
+          height: $h-10 * 20;
+        }
+      }
+      @include respond(tablet) {
+        width: $w-100;
+        padding: $p-10 * 10 0 $p-10 * 20 0;
+      }
+    }
+    @include respond(laptop) {
+      padding: $p-10 * 5 $p-10 * 2;
+    }
+    @include respond(tablet) {
+      padding: $p-10 * 5 $p-10 * 2;
+      flex-direction: column-reverse;
+    }
+  }
+  .course-detail__question {
+    padding: $p-10 * 5 $p-10 * 10;
+    display: flex;
+    justify-content: space-between;
+    .question__item {
+      width: $w-100 / 2.1;
+      .item__title {
+        width: $w-100;
+        margin-bottom: $m-10 * 2;
+        font-size: $h6;
+        font-weight: $semiBold;
+        color: $tBlue;
+        display: flex;
+        align-items: center;
+        i {
+          margin-right: $m-10 * 2;
+        }
+        @include respond(laptop) {
+          font-size: $subtitle;
+        }
+      }
+      .item__list {
+        width: $w-100;
+        li {
+          display: flex;
+          margin: $m-10 0;
+          i {
+            margin-right: $m-10 * 2;
+            color: $tBlue;
+          }
+        }
+      }
+      @include respond(phone) {
+        width: $w-100;
+        margin-bottom: $m-10;
+      }
+    }
+    @include respond(laptop) {
+      padding: $p-10 * 5 $p-10 * 2;
+    }
+    @include respond(phone) {
+      padding: $p-10 * 5 $p-10 * 2;
+      flex-direction: column;
+    }
+  }
+}

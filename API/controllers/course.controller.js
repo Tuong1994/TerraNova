@@ -1,4 +1,10 @@
-const { CourseCategory, Course, sequelize } = require("../models");
+const {
+  CourseCategory,
+  Course,
+  CourseOrder,
+  User,
+  sequelize,
+} = require("../models");
 
 const getCategoryAndCourseList = async (req, res) => {
   try {
@@ -27,10 +33,14 @@ const getCourseByCategory = async (req, res) => {
         courses.id, 
         courses.nameENG, 
         courses.nameVN, 
+        courses.nameCH,
         courses.descENG, 
-        courses.descVN, 
+        courses.descVN,
+        courses.descCH, 
         courses.image, 
         courses.price,
+        courses.trainingTime,
+        courses.students,
         courses.createdAt, 
         courses.updatedAt
         from courses
@@ -80,16 +90,29 @@ const getCourseDetail = async (req, res) => {
 };
 
 const createCourse = async (req, res) => {
-  const { categoryId, nameENG, nameVN, descENG, descVN, price } = req.body;
+  const {
+    categoryId,
+    nameENG,
+    nameVN,
+    nameCH,
+    descENG,
+    descVN,
+    descCH,
+    price,
+    trainingTime,
+  } = req.body;
   try {
     const courseId = "COU_" + Math.floor(Math.random() * 999999999).toString();
     const newCourse = await Course.create({
       id: courseId,
       nameENG,
       nameVN,
+      nameCH,
       descENG,
       descVN,
+      descCH,
       price,
+      trainingTime,
       categoryId,
     });
     res.status(200).send(newCourse);
@@ -100,10 +123,32 @@ const createCourse = async (req, res) => {
 
 const updateCourse = async (req, res) => {
   const { courseId } = req.query;
-  const { categoryId, nameENG, nameVN, descENG, descVN, price } = req.body;
+  const {
+    categoryId,
+    nameENG,
+    nameVN,
+    nameCH,
+    descENG,
+    descVN,
+    descCH,
+    price,
+    trainingTime,
+    students,
+  } = req.body;
   try {
     await Course.update(
-      { categoryId, nameENG, nameVN, descENG, descVN, price },
+      {
+        categoryId,
+        nameENG,
+        nameVN,
+        nameCH,
+        descENG,
+        descVN,
+        descCH,
+        price,
+        trainingTime,
+        students,
+      },
       {
         where: {
           id: courseId,
@@ -130,6 +175,70 @@ const removeCourse = async (req, res) => {
   }
 };
 
+const registerCourse = async (req, res) => {
+  const {
+    courseId,
+    nameVN,
+    nameENG,
+    nameCH,
+    price,
+    trainingTime,
+    image,
+    userId,
+  } = req.body;
+  try {
+    const courseOrderId =
+      "COUO_" + Math.floor(Math.random() * 999999999).toString();
+    await CourseOrder.create({
+      id: courseOrderId,
+      courseId,
+      nameVN,
+      nameENG,
+      nameCH,
+      price,
+      trainingTime,
+      image,
+      userId,
+    });
+
+    const course = await Course.findOne({
+      where: {
+        id: courseId,
+      },
+    });
+
+    const user = await User.findOne({
+      where: {
+        id: userId,
+      },
+    });
+
+    if (course) {
+      if (course.students.length > 0) {
+        const index = course.students.findIndex(i.id === user.id);
+        if (index !== -1) {
+          const newUser = {
+            ...user,
+            registerDate: new Date(),
+          };
+          course.students = [...course.students, newUser];
+          await course.save();
+          res.status(200).send("Register success")
+        } else {
+          res.status(401).send("You already registered this course");
+        }
+      } else if (course.students === null) {
+        course.students = [];
+        course.students.push(user);
+        await course.save();
+        res.status(200).send("Register success");
+      }
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   getCategoryAndCourseList,
   getCourseByCategory,
@@ -137,4 +246,5 @@ module.exports = {
   createCourse,
   updateCourse,
   removeCourse,
+  registerCourse,
 };

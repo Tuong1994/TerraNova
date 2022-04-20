@@ -29,9 +29,6 @@ const RouteCategory: React.FunctionComponent<RouteCategoryProps> = (props) => {
               <img className="item__img" src={i.imgSrc} alt="img" />
               <div className="item__content">
                 <p>{i.title}</p>
-                <p>
-                  {i.shortTerm} {langs?.time.months}
-                </p>
               </div>
             </Link>
           );
@@ -57,9 +54,6 @@ const RouteCategory: React.FunctionComponent<RouteCategoryProps> = (props) => {
               <img className="item__img" src={i.imgSrc} alt="img" />
               <div className="item__content">
                 <p>{i.title}</p>
-                <p>
-                  {i.longTerm} {langs?.time.months}
-                </p>
               </div>
             </Link>
           );

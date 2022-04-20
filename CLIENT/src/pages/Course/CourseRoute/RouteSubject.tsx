@@ -20,9 +20,6 @@ const RouteSubject: React.FunctionComponent<RouteSubjectProps> = (props) => {
                 <div className="inner__number">{index + 1}</div>
                 <div className="inner__content">
                   <span>{i.title}</span>
-                  <span>
-                    {i.shortTerm} {langs?.time.months}
-                  </span>
                 </div>
               </Link>
             );
@@ -41,9 +38,6 @@ const RouteSubject: React.FunctionComponent<RouteSubjectProps> = (props) => {
                 <div className="inner__number">{index + 1}</div>
                 <div className="inner__content">
                   <span>{i.title}</span>
-                  <span>
-                    {i.longTerm} {langs?.time.months}
-                  </span>
                 </div>
               </Link>
             );

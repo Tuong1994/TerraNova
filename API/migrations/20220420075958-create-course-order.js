@@ -1,10 +1,13 @@
-"use strict";
+'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("Courses", {
+    await queryInterface.createTable('CourseOrders', {
       id: {
         allowNull: false,
         primaryKey: true,
+        type: Sequelize.STRING,
+      },
+      courseId: {
         type: Sequelize.STRING,
       },
       nameENG: {
@@ -16,15 +19,6 @@ module.exports = {
       nameCH: {
         type: Sequelize.STRING,
       },
-      descENG: {
-        type: Sequelize.STRING(2500),
-      },
-      descVN: {
-        type: Sequelize.STRING(2500),
-      },
-      descCH: {
-        type: Sequelize.STRING(2500),
-      },
       image: {
         type: Sequelize.STRING,
       },
@@ -34,10 +28,7 @@ module.exports = {
       trainingTime: {
         type: Sequelize.INTEGER,
       },
-      students: {
-        type: Sequelize.JSON,
-      },
-      categoryId: {
+      userId: {
         type: Sequelize.STRING,
       },
       createdAt: {
@@ -51,6 +42,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("Courses");
-  },
+    await queryInterface.dropTable('CourseOrders');
+  }
 };

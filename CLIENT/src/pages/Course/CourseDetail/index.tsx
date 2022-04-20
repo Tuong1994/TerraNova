@@ -6,6 +6,10 @@ import { RouteComponentProps } from "react-router-dom";
 import { IRouteParams } from "../../../interfaces/route";
 import { IQueryList } from "../../../interfaces/query";
 import { getCourseDetail } from "../../../redux/actionCreators/CourseCreators";
+import DetailIntro from "./DetailIntro";
+import DetailQuestion from "./DetailQuestion";
+import utils from "../../../utils";
+import DetailInfo from "./DetailInfo";
 
 interface CourseDetailProps extends IRouteParams {}
 
@@ -17,8 +21,11 @@ const CourseDetail: React.FunctionComponent<
   const { courseDetail } = useSelector(
     (state: ReducerState) => state.CourseReducer
   );
+  const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
   const dispatch = useDispatch();
+
+  const langs = utils.changeLang(lang);
 
   customHooks.useLoading();
 
@@ -29,9 +36,13 @@ const CourseDetail: React.FunctionComponent<
     dispatch(getCourseDetail(query));
   }, []);
 
-  console.log(courseDetail)
-
-  return <div></div>;
+  return (
+    <div className="course-detail">
+      <DetailIntro langs={langs} lang={lang} courseDetail={courseDetail} />
+      <DetailQuestion langs={langs} />
+      <DetailInfo langs={langs} courseDetail={courseDetail} />
+    </div>
+  );
 };
 
 export default CourseDetail;

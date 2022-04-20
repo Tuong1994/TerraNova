@@ -215,6 +215,32 @@ const EngLang = {
         title_2: "Full-time course",
       },
     },
+    detail: {
+      intro: {
+        content:
+          "More than 6,200 students have registered to study and work through the training program professional {{title}} from Zero at Terra Nova. The key learning 100% performance is the high-end of the projected and the connection business support for find up the date after learning. The standard training method of the University of Arizona - ASU USA - focuses on thinking and analyzing problems to help students easily develop from dev to senior, leader and work in any environment.",
+      },
+      question: {
+        title_1: "WHO CAN JOIN ?",
+        title_2: "WHERE WILL YOU WORKS AFTER FINISHED ?",
+        list_1: "New to programming, lack of orientation & learning path",
+        list_2: "Left the field of programming, changed careers",
+        list_3: "Completion of high school program (12/12)",
+        list_4:
+          "Weak in programming thinking, losing root wants to learn to apply for a job",
+        list_5:
+          "The project owner wants to manage the dev team, the startup wants to understand the work of the dev",
+        list_6: "Add a job to earn more overtime",
+        list_7:
+          "Apply to all companies recruiting Front End Dev in fresher or juinor position",
+        list_8: "Outsourcing companies - outsourcing",
+        list_9: "Startup companies - start-ups",
+        list_10: "Domestic and foreign companies and corporations...",
+        list_11:
+          "Can apply immediately to Fresher, Junior with starting salary from 7 million to 15 million",
+        list_12: "Get freelance jobs on building front end for website",
+      },
+    },
   },
   aboutUs: {
     banner: {
