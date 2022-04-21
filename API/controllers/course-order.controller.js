@@ -24,7 +24,7 @@ const getCourseOrderDetail = async (req, res) => {
 };
 
 const createCourseOrder = async (req, res) => {
-  const { courseId, userId } = req.body;
+  const { courseId, userId, register } = req.body;
   try {
     const courseOrderId =
       "COUO_" + Math.floor(Math.random() * 999999999).toString();
@@ -32,6 +32,7 @@ const createCourseOrder = async (req, res) => {
       id: courseOrderId,
       courseId,
       userId,
+      register
     });
     res.status(200).send(newCourseOrder);
   } catch (error) {
@@ -41,10 +42,10 @@ const createCourseOrder = async (req, res) => {
 
 const updateCourseOrder = async (req, res) => {
   const { courseOrderId } = req.query;
-  const { courseId, userId } = req.body;
+  const { courseId, userId, register } = req.body;
   try {
     await CourseOrder.update(
-      { courseId, userId },
+      { courseId, userId, register },
       {
         where: {
           id: courseOrderId,

@@ -79,7 +79,7 @@ const getCourseDetail = async (req, res) => {
         {
           model: CourseOrder,
           as: "students",
-          attributes: ["userId", "createdAt", "updatedAt"],
+          attributes: ["userId", "register", "createdAt", "updatedAt"],
         },
       ],
     });

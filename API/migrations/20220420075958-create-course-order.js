@@ -13,6 +13,9 @@ module.exports = {
       userId: {
         type: Sequelize.STRING,
       },
+      register: {
+        type: Sequelize.JSON,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
