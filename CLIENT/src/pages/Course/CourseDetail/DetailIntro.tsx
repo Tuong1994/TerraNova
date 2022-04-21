@@ -19,7 +19,7 @@ const DetailIntro: React.FunctionComponent<DetailIntroProps> = (props) => {
     } else if (lang === ELangs.VN) {
       return courseDetail.nameVN;
     } else if (lang === ELangs.CH) {
-      return courseDetail.nameENG;
+      return courseDetail.nameCH;
     }
   };
 
@@ -29,7 +29,7 @@ const DetailIntro: React.FunctionComponent<DetailIntroProps> = (props) => {
     } else if (lang === ELangs.VN) {
       return courseDetail.descVN;
     } else if (lang === ELangs.CH) {
-      return courseDetail.descENG;
+      return courseDetail.descCH;
     }
   };
 

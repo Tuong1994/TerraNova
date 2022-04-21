@@ -11,10 +11,13 @@ export interface ICourse {
   id?: string;
   nameENG?: string;
   nameVN?: string;
+  nameCH?: string;
   descENG?: string;
   descVN?: string;
+  descCH?: string;
   image?: string;
   price?: number;
+  trainingTime?: number;
   categoryId?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;

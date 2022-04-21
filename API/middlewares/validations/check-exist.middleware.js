@@ -1,4 +1,4 @@
-const { User, Product, Producer, Category, Course } = require("../../models");
+const { User, Product, Producer, Category, Course, CourseOrder } = require("../../models");
 
 const checkUserId = async (req, res, next) => {
   const { userId } = req.query;
@@ -75,10 +75,10 @@ const checkCategoryId = async (req, res, next) => {
           id: categoryId,
         },
       });
-      if(category) {
-        next()
+      if (category) {
+        next();
       } else {
-        res.status(404).send("Category id not found")
+        res.status(404).send("Category id not found");
       }
     } else {
       res.status(400).send("Bad request");
@@ -97,10 +97,10 @@ const checkCourseId = async (req, res, next) => {
           id: courseId,
         },
       });
-      if(course) {
-        next()
+      if (course) {
+        next();
       } else {
-        res.status(404).send("Category id not found")
+        res.status(404).send("Category id not found");
       }
     } else {
       res.status(400).send("Bad request");
@@ -128,6 +128,30 @@ const checkAccount = async (req, res, next) => {
   }
 };
 
+const checkRegisterExits = async (req, res, next) => {
+  const { courseId, userId } = req.body;
+  try {
+    const courseDetail = await Course.findOne({
+      where: {
+        id: courseId,
+      },
+      include: [{ model: CourseOrder, as: "students", attributes: ["userId"] }],
+    });
+    if (courseDetail) {
+      if (courseDetail.students) {
+        const index = courseDetail.students.findIndex((i) => i.userId === userId);
+        if (index === -1) {
+          next();
+        } else {
+          res.status(401).send("You already register this course");
+        }
+      }
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   checkUserId,
   checkAccount,
@@ -135,4 +159,5 @@ module.exports = {
   checkProducerId,
   checkCategoryId,
   checkCourseId,
+  checkRegisterExits,
 };

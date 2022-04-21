@@ -34,9 +34,6 @@ module.exports = {
       trainingTime: {
         type: Sequelize.INTEGER,
       },
-      students: {
-        type: Sequelize.JSON,
-      },
       categoryId: {
         type: Sequelize.STRING,
       },

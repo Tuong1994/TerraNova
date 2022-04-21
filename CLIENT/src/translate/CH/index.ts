@@ -113,10 +113,8 @@ const ChLang = {
     partners: "伙伴",
     socials: "沟通",
     company: "TERRA NOVA 贸易公司",
-    address_1:
-      "一号分店：102 Nguyen Dinh Chinh, Ward 15, Phu Nhuan District, HCMC",
-    address_2:
-      "二号分店：12B Nguyen Huu Canh, Ward 19, Binh Thanh District, HCMC",
+    address_1: "一号分店：一零二号， 阮定清路， 十五坊， 富暖郡， 吴志明市",
+    address_2: "二号分店：十二B 阮友灿路， 十九坊，平盛郡, 吴志明市",
   },
   productCarts: {
     title: "购物车",
@@ -211,7 +209,8 @@ const ChLang = {
     },
     detail: {
       intro: {
-        content: "超过 6,200 名学生通过培训计划注册学习和工作{{title}} Terra Nova 从零开始的职称。学习100%性能的关键是预测的高端和学习后查找日期的连接业务支持。亚利桑那大学 - ASU USA - 的标准培训方法侧重于思考和分析问题，以帮助学生轻松地从开发人员发展到高级人员、领导者和在任何环境中工作。"
+        content:
+          "超过 6,200 名学生通过培训计划注册学习和工作{{title}} Terra Nova 从零开始的职称。学习100%性能的关键是预测的高端和学习后查找日期的连接业务支持。亚利桑那大学 - ASU USA - 的标准培训方法侧重于思考和分析问题，以帮助学生轻松地从开发人员发展到高级人员、领导者和在任何环境中工作。",
       },
       question: {
         title_1: "谁可以加入？",
@@ -220,17 +219,33 @@ const ChLang = {
         list_2: "离开编程领域，转行",
         list_3: "完成高中课程（12/12）",
         list_4: "编程思维薄弱，丢根想学求职",
-        list_5:
-          "项目负责人想管理开发团队，创业公司想了解开发人员的工作",
+        list_5: "项目负责人想管理开发团队，创业公司想了解开发人员的工作",
         list_6: "添加工作以赚取更多加班费",
-        list_7:
-          "适用于所有招聘新职位或初级职位前端开发人员的公司",
+        list_7: "适用于所有招聘新职位或初级职位前端开发人员的公司",
         list_8: "外包公司——外包",
         list_9: "初创公司——初创公司",
         list_10: "国内外公司及企业...",
-        list_11:
-          "起薪700万至1500万越南盾可立即申请新生、初中",
+        list_11: "起薪700万至1500万越南盾可立即申请新生、初中",
         list_12: "获得自由职业以构建网站前端",
+      },
+      lesson: {
+        title: "课程表",
+      },
+      register: {
+        mainTitle: "学费和开放学习",
+        title_1: "开放时间表",
+        schedule: {
+          mon: "星期一",
+          tue: "星期二",
+          wed: "星期三",
+          thur: "星期四",
+          fri: "星期五",
+          sat: "星期六",
+          sun: "星期日",
+        },
+        form: {
+          title: "注册课程"
+        },
       },
     },
   },
@@ -368,10 +383,10 @@ const ChLang = {
     haveAcc: "您已经有帐户？",
     search: "搜索",
     note: "笔记",
-    ward: "病房",
+    ward: "坊",
     district: "区",
     province: "省/市",
-    selectWard: "选择病房",
+    selectWard: "选择坊",
     selectDistrict: "选择区",
     selectProvince: "选择省/市",
     noOption: "没有资料",
@@ -392,6 +407,8 @@ const ChLang = {
     paymentType: "付款",
     totalPay: "总钱",
     products: "产品",
+    studyDates: "上学日",
+    openingDate: "开放日",
     createdAt: "创建日期",
   },
   pagination: {

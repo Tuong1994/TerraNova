@@ -10,24 +10,6 @@ module.exports = {
       courseId: {
         type: Sequelize.STRING,
       },
-      nameENG: {
-        type: Sequelize.STRING,
-      },
-      nameVN: {
-        type: Sequelize.STRING,
-      },
-      nameCH: {
-        type: Sequelize.STRING,
-      },
-      image: {
-        type: Sequelize.STRING,
-      },
-      price: {
-        type: Sequelize.INTEGER,
-      },
-      trainingTime: {
-        type: Sequelize.INTEGER,
-      },
       userId: {
         type: Sequelize.STRING,
       },

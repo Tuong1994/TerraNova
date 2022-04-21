@@ -7,7 +7,6 @@ const {
   createCourse,
   updateCourse,
   removeCourse,
-  registerCourse,
 } = require("../controllers/course.controller");
 const {
   checkCourseId,
@@ -46,8 +45,6 @@ courseRouter.delete(
   checkCourseId,
   removeCourse
 );
-
-courseRouter.post("/registerCourse", registerCourse);
 
 module.exports = {
   courseRouter,

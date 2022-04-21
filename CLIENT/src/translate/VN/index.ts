@@ -236,6 +236,25 @@ const VnLang = {
           "Có thể apply ngay vào Fresher, Junior với mức lương khởi điểm từ 7tr5 đến 15tr",
         list_12: "Nhận các job freelancer về xây dựng front end cho website",
       },
+      lesson: {
+        title: "DANH SÁCH CÁC BÀI HỌC",
+      },
+      register: {
+        mainTitle: "HỌC PHÍ VÀ KHAI GIẢNG",
+        title_1: "LỊCH KHAI GIẢNG",
+        schedule: {
+          mon: "T2",
+          tue: "T3",
+          wed: "T4",
+          thur: "T5",
+          fri: "T6",
+          sat: "T7",
+          sun: "CN",
+        },
+        form: {
+          title: "ĐĂNG KÝ KHÓA HỌC"
+        },
+      },
     },
   },
   aboutUs: {
@@ -397,6 +416,8 @@ const VnLang = {
     paymentType: "Thanh toán",
     totalPay: "Tổng tiền",
     products: "Sản phẩm",
+    studyDates: "Ngày học",
+    openingDate: "Ngày khai giảng",
     createdAt: "Ngày tạo",
   },
   pagination: {

@@ -7,10 +7,14 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ CourseCategory }) {
+    static associate({ CourseCategory, CourseOrder }) {
       // define association here
       this.belongsTo(CourseCategory, {
         foreignKey: "categoryId",
+      });
+      this.hasMany(CourseOrder, {
+        foreignKey: "courseId",
+        as: "students",
       });
     }
   }
@@ -25,7 +29,6 @@ module.exports = (sequelize, DataTypes) => {
       image: DataTypes.STRING,
       price: DataTypes.INTEGER,
       trainingTime: DataTypes.INTEGER,
-      students: DataTypes.JSON,
       categoryId: DataTypes.STRING,
     },
     {

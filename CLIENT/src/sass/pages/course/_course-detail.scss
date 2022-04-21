@@ -47,7 +47,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        border-radius: $circle;
+        border-radius: $round;
         box-shadow: 0 0 20px $blue-1;
         @include respond(laptop) {
           width: $w-10 * 20;
@@ -111,5 +111,179 @@
       padding: $p-10 * 5 $p-10 * 2;
       flex-direction: column;
     }
+  }
+  .course-detail__lesson {
+    background: $lightBlue;
+    overflow: hidden;
+    position: relative;
+    .lesson__inner {
+      padding: $p-10 * 5 $p-10 * 10;
+      .inner__title {
+        margin-bottom: $m-10 * 2;
+        text-align: center;
+        font-size: $h4;
+        font-weight: $semiBold;
+      }
+      .inner__list {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-row-gap: 10px;
+        grid-column-gap: 10px;
+        .list__card {
+          width: $w-100;
+          border-radius: $lightRound;
+          overflow: hidden;
+          position: relative;
+          z-index: 1;
+          &:hover::after {
+            height: $h-100;
+          }
+          &:hover .card__image .img {
+            transform: scale(1.05);
+          }
+          &:hover .content__title {
+            color: $tSecondary;
+          }
+          &::after {
+            content: "";
+            position: absolute;
+            width: $w-100;
+            height: 0;
+            background: $secondary;
+            transition: all 0.5s ease;
+            z-index: -1;
+          }
+          .card__image {
+            padding: $p-10;
+            border-radius: $lightRound;
+            overflow: hidden;
+            .img {
+              transform: scale(1);
+              transition: all 0.5s ease;
+            }
+          }
+          .card__content {
+            padding: $p-10;
+            .content__title {
+              padding: $p-10 0;
+              font-weight: $semiBold;
+              transition: all 0.5s ease;
+            }
+          }
+        }
+        @include respond(tablet) {
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+        @include respond(phone) {
+          grid-template-columns: 1fr 1fr;
+        }
+        @include respond(extraSmallPhone) {
+          grid-template-columns: auto;
+        }
+      }
+      @include respond(laptop) {
+        padding: $p-10 * 5 $p-10 * 2;
+      }
+    }
+    .lesson__wave {
+      width: $w-100;
+      height: $h-10 * 14.3;
+      background: url("../../../assets/img/wave.png");
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      animation: slide 10s linear infinite;
+      &::before {
+        content: "";
+        width: $w-100;
+        height: $h-10 * 14.3;
+        background: url("../../../assets/img/wave.png");
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0.4;
+        animation: slide-reverse 10s linear infinite;
+      }
+      &::after {
+        content: "";
+        width: $w-100;
+        height: $h-10 * 14.3;
+        background: url("../../../assets/img/wave.png");
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0.6;
+        animation-delay: -5;
+        animation: slide 20s linear infinite;
+      }
+    }
+  }
+  .course-detail__register {
+    padding: $p-10 * 5 $p-10 * 10;
+    background: $secondary;
+    .register__title {
+      font-size: $h4;
+      font-weight: $semiBold;
+      color: $tSecondary;
+    }
+    .register__line {
+      width: $w-100 - 30;
+      height: 2px;
+      margin: $m-10 * 2 0;
+      background: $primary;
+    }
+    .register__content {
+      width: $w-100;
+      display: flex;
+      justify-content: space-between;
+      .content__schedule {
+        width: $w-100 / 2.1;
+        .schedule__title {
+          margin-bottom: $m-10 * 2;
+          font-size: $h6;
+          font-weight: $semiBold;
+          color: $tSecondary;
+        }
+        .schedule__table {
+          .table__title {
+            margin: $m-10 0;
+            font-weight: $semiBold;
+            color: $tSecondary;
+          }
+          .table__wrapper {
+            padding: $p-10;
+          }
+        }
+      }
+      .content__form {
+        width: $w-100 / 2.1;
+        .form__wrapper {
+          padding: $p-10;
+          .wrapper__title {
+            font-size: $h6;
+            font-weight: $semiBold;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes slide {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: 1360px;
+  }
+}
+
+@keyframes slide-reverse {
+  0% {
+    background-position: 1360px;
+  }
+  100% {
+    background-position: 0;
   }
 }

@@ -8,8 +8,10 @@ import { IQueryList } from "../../../interfaces/query";
 import { getCourseDetail } from "../../../redux/actionCreators/CourseCreators";
 import DetailIntro from "./DetailIntro";
 import DetailQuestion from "./DetailQuestion";
-import utils from "../../../utils";
 import DetailInfo from "./DetailInfo";
+import DetailLesson from "./DetailLesson";
+import DetailRegister from "./DetailRegister";
+import utils from "../../../utils";
 
 interface CourseDetailProps extends IRouteParams {}
 
@@ -41,6 +43,8 @@ const CourseDetail: React.FunctionComponent<
       <DetailIntro langs={langs} lang={lang} courseDetail={courseDetail} />
       <DetailQuestion langs={langs} />
       <DetailInfo langs={langs} courseDetail={courseDetail} />
+      <DetailLesson langs={langs} />
+      <DetailRegister langs={langs} />
     </div>
   );
 };

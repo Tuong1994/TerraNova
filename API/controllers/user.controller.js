@@ -1,5 +1,5 @@
 const bcryptjs = require("bcryptjs");
-const { User, Order, Carts } = require("../models");
+const { User, Order, Carts, CourseOrder } = require("../models");
 
 const getUserList = async (req, res) => {
   try {
@@ -66,6 +66,12 @@ const getUserDetail = async (req, res) => {
           model: Carts,
           as: "carts",
           attributes: [["id", "cartsId"], "products", "userId", "createdAt", "updatedAt"],
+        },
+        {
+          model: CourseOrder,
+          as: "courses",
+          order: [["createdAt", "DESC"]],
+          attributes: ["courseId", "createdAt", "updatedAt"],
         }
       ]
     });

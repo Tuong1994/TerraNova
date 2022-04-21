@@ -240,6 +240,25 @@ const EngLang = {
           "Can apply immediately to Fresher, Junior with starting salary from 7 million to 15 million",
         list_12: "Get freelance jobs on building front end for website",
       },
+      lesson: {
+        title: "LESSON LIST"
+      },
+      register: {
+        mainTitle: "TUTORIAL FEES AND OPENING SCHEDULE",
+        title_1: "OPENING SCHEDULE",
+        schedule: {
+          mon: "monday",
+          tue: "tuesday",
+          wed: "wednesday",
+          thur: "thursday",
+          fri: "friday",
+          sat: "saturday",
+          sun: "sunday",
+        },
+        form: {
+          title: "COURSE REGISTER"
+        },
+      },
     },
   },
   aboutUs: {
@@ -401,6 +420,8 @@ const EngLang = {
     paymentType: "Payment",
     totalPay: "Total pay",
     products: "Total product",
+    studyDates: "Study dates",
+    openingDate: "Opening date",
     createdAt: "Created at",
   },
   pagination: {
