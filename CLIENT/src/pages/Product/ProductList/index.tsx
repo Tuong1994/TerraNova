@@ -7,6 +7,7 @@ import { RouteComponentProps } from "react-router-dom";
 import { IRouteParams } from "../../../interfaces/route";
 import {
   getProductByCategory,
+  getProductByFreeText,
   getProductByProducer,
 } from "../../../redux/actionCreators/ProductCreators";
 import { IQueryList } from "../../../interfaces/query";
@@ -29,7 +30,7 @@ const ProductList: React.FunctionComponent<
   );
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
   const [freeText, setFreeText] = React.useState<string>("");
-  const typingRef = React.useRef<any>(null);
+
   const dispatch = useDispatch();
 
   const id = props.match.params.id;
@@ -44,13 +45,18 @@ const ProductList: React.FunctionComponent<
     _getProductList();
   }, [page]);
 
+  React.useEffect(() => {
+    if (freeText === "") {
+      _getProductList();
+    }
+  }, [freeText]);
+
   const _getProductList = () => {
     if (path.includes("productByCategory")) {
       let query: IQueryList = {
         categoryId: id,
         page: page,
         limits: 10,
-        freeText: freeText,
       };
       dispatch(getProductByCategory(query));
     } else if (path.includes("productByProducer")) {
@@ -62,24 +68,11 @@ const ProductList: React.FunctionComponent<
           const query: IQueryList = {
             categoryId: ids.categoryId,
             producerId: ids.producerId,
-            freeText: freeText,
           };
           dispatch(getProductByProducer(query));
         }
       }
     }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setFreeText(value);
-    if (typingRef.current !== null) {
-      clearTimeout(typingRef.current);
-    }
-
-    typingRef.current = setTimeout(() => {
-      _getProductList();
-    }, 1000);
   };
 
   // Show product by category
@@ -91,7 +84,7 @@ const ProductList: React.FunctionComponent<
           return <ProductCard product={product} key={utils.uuid()} />;
         });
       } else {
-        return <NoData />;
+        return null;
       }
     }
   };
@@ -105,7 +98,7 @@ const ProductList: React.FunctionComponent<
           return <ProductCard product={product} key={utils.uuid()} />;
         });
       } else {
-        return <NoData />;
+        return null;
       }
     }
   };
@@ -159,14 +152,35 @@ const ProductList: React.FunctionComponent<
   // render title by path
   const renderTitle = () => {
     if (path.includes("productByCategory")) {
-      return productList.categoryName || renderTitleByParams();
+      if (freeText !== "") {
+        return langs?.form.search;
+      } else {
+        return renderTitleByParams();
+      }
     } else if (path.includes("productByProducer")) {
-      if (lang === ELangs.ENG) {
-        return `${productList.producerName} ${langs?.productList.title}`;
-      } else if (lang === ELangs.VN) {
-        return `${langs?.productList.title} ${productList.producerName}`;
+      if (freeText !== "") {
+        return langs?.form.search;
+      } else {
+        if (lang === ELangs.ENG) {
+          return `${productList.producerName} ${langs?.productList.title}`;
+        } else if (lang === ELangs.VN) {
+          return `${langs?.productList.title} ${productList.producerName}`;
+        } else if (lang === ELangs.CH) {
+          return `${productList.producerName} ${langs?.productList.title}`;
+        }
       }
     }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFreeText(e.target.value);
+  };
+
+  const handleSearch = () => {
+    const query: IQueryList = {
+      freeText: freeText,
+    };
+    dispatch(getProductByFreeText(query));
   };
 
   return (
@@ -174,17 +188,37 @@ const ProductList: React.FunctionComponent<
       <div className="product-list__title">
         <h3>{renderTitle()}</h3>
       </div>
+      
       <div className="product-list__search">
-        <FormControl.Search value={freeText} onChange={handleChange} groupClassName="search__input" fieldClassName="input__fields" />
-      </div>
-      <div className="product-list__wrapper">
-        <div className="wrapper__inner">
-          <DataLoading />
-          {renderProduct()}
-        </div>
+        <FormControl.Search
+          value={freeText}
+          onChange={handleChange}
+          onClick={handleSearch}
+          groupClassName="search__input"
+        />
       </div>
 
-      <Pagination perPage={limits} total={totalProduct} isShowContent={true} className="product-list__pagination" />
+      <div className="product-list__wrapper">
+        {(() => {
+          if (renderProduct()) {
+            return (
+              <div className="wrapper__inner">
+                <DataLoading />
+                {renderProduct()}
+              </div>
+            );
+          } else {
+            return <NoData />;
+          }
+        })()}
+      </div>
+
+      <Pagination
+        perPage={limits}
+        total={totalProduct}
+        isShowContent={true}
+        className="product-list__pagination"
+      />
     </div>
   );
 };

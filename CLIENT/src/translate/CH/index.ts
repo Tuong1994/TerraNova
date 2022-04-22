@@ -242,9 +242,13 @@ const ChLang = {
           fri: "星期五",
           sat: "星期六",
           sun: "星期日",
+          fee: "学费"
         },
         form: {
-          title: "注册课程"
+          title: "注册课程",
+          subTitle: "选择上学地址",
+          address_1: "一零二号， 阮定清路， 十五坊， 富暖郡， 吴志明市",
+          address_2: "十二B 阮友灿路， 十九坊，平盛郡, 吴志明市",
         },
       },
     },
@@ -317,6 +321,7 @@ const ChLang = {
   button: {
     submit: "寄",
     seeMore: "看更多",
+    register: "登记课程",
     addToCart: "添加到购物车",
     buyProduct: "购买产品",
     continueBuy: "继续购物",

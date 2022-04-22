@@ -47,7 +47,7 @@ const TextAreaField: React.FunctionComponent<TextAreaFieldProps> = (props) => {
           cols={cols || 10}
           rows={rows || 5}
           placeholder={placeholder}
-          className={`field__control ${inputClassName ? inputClassName : ""}`}
+          className={`field__control field__control--text-area ${inputClassName ? inputClassName : ""}`}
         />
         {label && (
           <label

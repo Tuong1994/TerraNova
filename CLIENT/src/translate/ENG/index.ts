@@ -241,10 +241,10 @@ const EngLang = {
         list_12: "Get freelance jobs on building front end for website",
       },
       lesson: {
-        title: "LESSON LIST"
+        title: "LESSON LIST",
       },
       register: {
-        mainTitle: "TUTORIAL FEES AND OPENING SCHEDULE",
+        mainTitle: "COURSE FEES AND OPENING SCHEDULE",
         title_1: "OPENING SCHEDULE",
         schedule: {
           mon: "monday",
@@ -254,9 +254,15 @@ const EngLang = {
           fri: "friday",
           sat: "saturday",
           sun: "sunday",
+          fee: "Course fee"
         },
         form: {
-          title: "COURSE REGISTER"
+          title: "COURSE REGISTER",
+          subTitle: "Choose where you want to learn",
+          address_1:
+            "102 Nguyen Dinh Chinh Str, Ward 15, District Phu Nhuan, HCMC",
+          address_2:
+            "12B Nguyen Huu Canh Str, Ward 19, District Binh Thanh, HCMC",
         },
       },
     },
@@ -330,6 +336,7 @@ const EngLang = {
   button: {
     submit: "Submit",
     seeMore: "See more",
+    register: "Register course",
     addToCart: "Add to cart",
     buyProduct: "Buy product",
     continueBuy: "Continue to buy",

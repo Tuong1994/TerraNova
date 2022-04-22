@@ -35,7 +35,7 @@ const RadioField: React.FunctionComponent<IRadioFieldProps> = (props) => {
             setFieldValue(name, e.target.value);
           }}
         />
-        <label className={labelClassName ? labelClassName : ""} htmlFor={label}>
+        <label className={`radio__label ${labelClassName ? labelClassName : ""}`} htmlFor={label}>
           {label}
         </label>
       </div>

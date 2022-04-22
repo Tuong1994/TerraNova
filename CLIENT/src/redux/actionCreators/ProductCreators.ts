@@ -5,6 +5,7 @@ import { Dispatch } from "redux";
 import { getListQuery } from "../../configs/setting";
 import { IQueryList } from "../../interfaces/query";
 import { toast } from "react-toastify";
+import actions from "../../configs/actions";
 
 export const getProductList = (query: IQueryList, err?: string) => {
   return async (dispatch: Dispatch) => {
@@ -61,7 +62,7 @@ export const getProductDetail = (query: IQueryList, err?: string) => {
   return async (dispatch: Dispatch) => {
     try {
       const result = await axiosClient.get(
-        apiPath.productPaths.getAccessoriesDetail,
+        apiPath.productPaths.getProductDetail,
         getListQuery(query as IQueryList)
       );
       dispatch({
@@ -71,5 +72,27 @@ export const getProductDetail = (query: IQueryList, err?: string) => {
     } catch (error: any) {
       toast.error(err);
     }
+  };
+};
+
+export const getProductByFreeText = (query: IQueryList, err?: string) => {
+  return async (dispatch: Dispatch) => {
+    dispatch(actions.openDataLoading);
+    setTimeout(async () => {
+      try {
+        const result = await axiosClient.get(
+          apiPath.productPaths.getProductByFreeText,
+          getListQuery(query as IQueryList)
+        );
+        dispatch({
+          type: EProductActionTypes.GET_PRODUCT_BY_FREE_TEXT,
+          payload: result.data,
+        });
+        dispatch(actions.closeDataLoading);
+      } catch (error) {
+        toast.error(err);
+        dispatch(actions.closeDataLoading);
+      }
+    }, 1000);
   };
 };

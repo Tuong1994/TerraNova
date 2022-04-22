@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       this.hasMany(Description, {
         foreignKey: "productId",
-        as: "descs"
+        as: "description"
       })
     }
   }
@@ -29,7 +29,6 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       image: DataTypes.JSON,
       price: DataTypes.INTEGER,
-      description: DataTypes.STRING,
       status: DataTypes.INTEGER,
       inventoryStatus: DataTypes.INTEGER,
       stockAmount: DataTypes.INTEGER,

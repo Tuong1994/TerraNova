@@ -1,10 +1,10 @@
 import React from "react";
 import { ILangs } from "../../../../interfaces/lang";
-import { IAccessories } from "../../../../models/Product";
+import { IProduct } from "../../../../models/Product";
 import SpecsItem from "./SpecsItem";
 
 interface ProductSpecsProps {
-  product: IAccessories;
+  product: IProduct;
   langs: ILangs;
 }
 
@@ -20,7 +20,13 @@ const ProductSpecs: React.FunctionComponent<ProductSpecsProps> = (props) => {
       <div className="wrapper__content">
         <table className="content__table">
           <tbody>
-            <SpecsItem product={product} />
+            {(() => {
+              if (product.description && product.description.length > 0) {
+                return product.description.map((desc, index) => {
+                  return <SpecsItem desc={desc} key={index} />;
+                });
+              }
+            })()}
           </tbody>
         </table>
       </div>

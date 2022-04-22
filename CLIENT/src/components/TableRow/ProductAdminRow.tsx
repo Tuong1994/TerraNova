@@ -1,33 +1,30 @@
 import React from "react";
 import TableCol from "../Table/TableCol";
 import { Link } from "react-router-dom";
+import { IProduct } from "../../models/Product";
 
 interface IProductAdminRowProps {
-  id?: number | string;
-  name?: string;
-  image?: any;
-  price?: number;
-  description?: string;
+  product: IProduct;
 }
 
 const ProductAdminRow: React.FunctionComponent<IProductAdminRowProps> = (
   props
 ) => {
-  const { id, name, image, price, description } = props;
+  const {product } = props;
   return (
     <tr>
-      <TableCol>{id}</TableCol>
+      <TableCol>{product.id || product.productId}</TableCol>
 
       <TableCol>
-        <p>{name}</p>
+        <p>{product.name}</p>
       </TableCol>
 
       <TableCol>
-        <p>{price}</p>
+        <p>{product.price}</p>
       </TableCol>
 
       <TableCol>
-        <p>{description}</p>
+        
       </TableCol>
 
       <TableCol>

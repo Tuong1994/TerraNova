@@ -189,6 +189,7 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
                       component={FormControl.Radio}
                       label={langs?.form.male}
                       groupClassName="control__item"
+                      labelClassName="item__label"
                     />
                     <Field
                       name="gender"
@@ -196,6 +197,7 @@ const SignUpForm: React.FunctionComponent<{}> = (props) => {
                       component={FormControl.Radio}
                       label={langs?.form.female}
                       groupClassName="control__item"
+                      labelClassName="item__label"
                     />
                   </div>
                 </div>

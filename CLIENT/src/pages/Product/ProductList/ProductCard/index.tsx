@@ -1,11 +1,11 @@
 import React from "react";
 import * as Card from "../../../../components/Card";
 import { Link } from "react-router-dom";
-import { IAccessories } from "../../../../models/Product";
+import { IProduct } from "../../../../models/Product";
 import SpecsContent from "./SpecsContent";
 
 interface ProductCardProps {
-  product: IAccessories;
+  product: IProduct;
 }
 
 const ProductCard: React.FunctionComponent<ProductCardProps> = (props) => {

@@ -73,6 +73,9 @@
     .field__icon--active {
       transform: rotate(-180deg);
     }
+    .field__control--text-area {
+      width: $w-100;
+    }
   }
   .group__field--invalid {
     border-color: $borderError !important;
@@ -85,10 +88,15 @@
   }
   .group__radio {
     width: $w-100;
+    display: flex;
+    align-items: center;
     .radio__control {
       width: $w-10 * 2;
       height: $h-10 * 2;
       margin-right: $m-10 * 1.5;
+    }
+    .radio__label {
+      font-size: $body-1;
     }
   }
   .group__calendar {
@@ -170,11 +178,35 @@
     opacity: 1;
     visibility: visible;
   }
-  .group__search {
+}
+
+.search__input {
+  width: $w-100;
+  margin: $m-10 * 2 0;
+  .input__field {
+    width: $w-100;
+    display: flex;
+    align-items: center;
     justify-content: space-between;
-    cursor: unset;
-    .fa-magnifying-glass {
-      opacity: 0.5;
+    border: 1px solid $borderBlue;
+    border-radius: $round;
+    overflow: hidden;
+    .field__control {
+      width: $w-100 - 10;
+      padding: 0 $p-10 * 2;
+      border: 0;
+      outline: none;
+    }
+    .field__icon {
+      width: $w-10 * 5;
+      height: $h-100;
+      padding: $p-10 + 5 $p-10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: $secondary;
+      color: $tSecondary;
+      cursor: pointer;
     }
   }
 }

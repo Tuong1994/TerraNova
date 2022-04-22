@@ -25,8 +25,6 @@ module.exports = {
           name: "Core i3 8100",
           image: null,
           price: 3500000,
-          description:
-            "Total Cores: 4 / Total Threads: 4 / Processor Base Frequency: 3.60 GHz / Cache: 6 MB Intel® Smart Cache / Bus Speed: 8 GT/s / TDP: 65W",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -42,8 +40,6 @@ module.exports = {
           name: "Core i5 8400",
           image: null,
           price: 5500000,
-          description:
-            "Total Cores: 6 / Total Threads: 6 / Max Turbo Frequency: 4.00 GHz / Intel® Turbo Boost Technology 2.0 Frequency: 4.00 GHz / Processor Base Frequency: 2.80 GHz / Cache: 9 MB Intel® Smart Cache / Bus Speed: 8 GT/s / TDP: 65W",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -59,8 +55,6 @@ module.exports = {
           name: "Core i7 8700",
           image: null,
           price: 9500000,
-          description:
-            "Total Cores: 6 / Total Threads: 12 / Max Turbo Frequency: 4.60 GHz / Intel® Turbo Boost Technology 2.0 Frequency: 4.60 GHz / Processor Base Frequency: 3.20 GHz / Cache: 12 MB Intel® Smart Cache / Bus Speed: 8 GT/s / TDP: 65W",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -76,8 +70,6 @@ module.exports = {
           name: "Core i3 9100",
           image: null,
           price: 3700000,
-          description:
-            "Total Cores: 4 / Total Threads: 4 / Max Turbo Frequency: 4.20 GHz / Intel® Turbo Boost Technology 2.0 Frequency: 4.20 GHz / Processor Base Frequency: 3.60 GHz / Cache: 6 MB Intel® Smart Cache / Bus Speed: 8 GT/s / TDP: 65W",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -93,8 +85,6 @@ module.exports = {
           name: "Core i5 9400",
           image: null,
           price: 5700000,
-          description:
-            "Total Cores: 6 / Total Threads: 6 / Max Turbo Frequency: 4.10 GHz / Intel® Turbo Boost Technology 2.0 Frequency: 4.10 GHz / Processor Base Frequency: 2.90 GHz / Cache: 9 MB Intel® Smart Cache / Bus Speed: 8 GT/s / TDP: 65W",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -110,8 +100,6 @@ module.exports = {
           name: "Core i7 9700",
           image: null,
           price: 9700000,
-          description:
-            "Total Cores: 8 / Total Threads: 8 / Max Turbo Frequency: 4.70 GHz / Intel® Turbo Boost Technology 2.0 Frequency: 4.70 GHz / Processor Base Frequency: 3.00 GHz / Cache: 12 MB Intel® Smart Cache / Bus Speed: 8 GT/s / TDP: 65W",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -127,8 +115,6 @@ module.exports = {
           name: "Core i3 10300",
           image: null,
           price: 380000,
-          description:
-            "Total Cores: 4 / Total Threads: 8 / Max Turbo Frequency: 4.40 GHz / Intel® Turbo Boost Technology 2.0 Frequency: 4.40 GHz / Processor Base Frequency: 3.70 GHz / Cache: 8 MB Intel® Smart Cache / Bus Speed: 8 GT/s / TDP: 65W",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -144,8 +130,6 @@ module.exports = {
           name: "Core i5 10400",
           image: null,
           price: 5800000,
-          description:
-            "Total Cores: 6 / Total Threads: 12 / Max Turbo Frequency: 4.30 GHz / Intel® Turbo Boost Technology 2.0 Frequency: 4.30 GHz / Processor Base Frequency: 2.90 GHz / Cache: 12 MB Intel® Smart Cache / Bus Speed: 8 GT/s / TDP: 65W",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -161,8 +145,6 @@ module.exports = {
           name: "Core i7 10700",
           image: null,
           price: 9800000,
-          description:
-            "Total Cores: 8 / Total Threads: 16 / Max Turbo Frequency: 4.80 GHz / Intel® Turbo Boost Technology 2.0 Frequency: 4.70 GHz / Processor Base Frequency: 2.90 GHz / Cache: 16 MB Intel® Smart Cache / Bus Speed: 8 GT/s / TDP: 65W",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -178,8 +160,6 @@ module.exports = {
           name: "Ryzen 3 2200",
           image: null,
           price: 2300000,
-          description:
-            "Total Cores: 4 / Total Threads: 4 / Base Clock: 3.5GHz / Max Boost Clock: Up to 3.7GHz / Cache: 4 MB / CPU Socket: AM4 / TDP: 65W",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -195,8 +175,6 @@ module.exports = {
           name: "Ryzen 5 2400",
           image: null,
           price: 4300000,
-          description:
-            "Total Cores: 4 / Total Threads: 8 / Base Clock: 3.6GHz / Max Boost Clock: Up to 3.9GHz / Cache: 4 MB / CPU Socket: AM4 / TDP: 65W",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -212,8 +190,6 @@ module.exports = {
           name: "Ryzen 7 2700",
           image: null,
           price: 7300000,
-          description:
-            "Total Cores: 8 / Total Threads: 16 / Base Clock: 3.2GHz / Max Boost Clock: Up to 4.1GHz / Cache: 16 MB / CPU Socket: AM4 / TDP: 65W",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -229,8 +205,6 @@ module.exports = {
           name: "Ryzen 3 3200",
           image: null,
           price: 2500000,
-          description:
-            "Total Cores: 4 / Total Threads: 4 / Base Clock: 3.6GHz / Max Boost Clock: Up to 4.0GHz / Cache: 4 MB / CPU Socket: AM4 / TDP: 65W",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -246,8 +220,6 @@ module.exports = {
           name: "Ryzen 5 3400",
           image: null,
           price: 4500000,
-          description:
-            "Total Cores: 4 / Total Threads: 8 / Base Clock: 3.7GHz / Max Boost Clock: Up to 4.2GHz / Cache: 4 MB / CPU Socket: AM4 / TDP: 65W",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -263,8 +235,6 @@ module.exports = {
           name: "Ryzen 7 3700",
           image: null,
           price: 7500000,
-          description:
-            "Total Cores: 8 / Total Threads: 16 / Base Clock: 3.6GHz / Max Boost Clock: Up to 4.4GHz / Cache: 32 MB / CPU Socket: AM4 / TDP: 65W",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -282,8 +252,6 @@ module.exports = {
           name: "ASUS TUF H310-PLUS GAMING",
           image: null,
           price: 2500000,
-          description:
-            "Socket: 1151 for 8th Gen Processor / Chipset: H310 / Ram: Max 32GB DDR4 2666/2400/2133 MHz",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -299,8 +267,6 @@ module.exports = {
           name: "ASUS ROG STRIX B360-F GAMING",
           image: null,
           price: 3100000,
-          description:
-            "Socket: 1151 for 8th Gen Processor / Chipset: B360 / Ram: Max 64GB DDR4 2666/2400/2133 MHz",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -316,8 +282,6 @@ module.exports = {
           name: "ASUS ROG STRIX H370-F GAMING",
           image: null,
           price: 4100000,
-          description:
-            "Socket: 1151 for 8th Gen Processor / Chipset: H370 / Ram: Max 64GB DDR4 2666/2400/2133 MHz",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -333,8 +297,6 @@ module.exports = {
           name: "ASUS ROG STRIX Z390-E GAMING",
           image: null,
           price: 7100000,
-          description:
-            "Socket: 1151 for 8th Gen Processor / Chipset: Z390 / Ram: Max 64GB DDR4 2666/2400/2133 MHz",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -350,8 +312,6 @@ module.exports = {
           name: "GIGABYTE H310M-DS2",
           image: null,
           price: 1500000,
-          description:
-            "Socket: 1151 for 8th Gen Processor / Chipset: H310 / Ram: Max 32GB DDR4 2666/2400/2133 MHz",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -367,8 +327,6 @@ module.exports = {
           name: "GIGABYTE B360 AORUS GAMING 3",
           image: null,
           price: 3100000,
-          description:
-            "Socket: 1151 for 8th Gen Processor / Chipset: B360 / Ram: Max 64GB DDR4 2666/2400/2133 MHz",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -384,8 +342,6 @@ module.exports = {
           name: "GIGABYTE H370 AORUS GAMING 3",
           image: null,
           price: 3500000,
-          description:
-            "Socket: 1151 for 8th Gen Processor / Chipset: H370 / Ram: Max 64GB DDR4 2666/2400/2133 MHz",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -401,8 +357,6 @@ module.exports = {
           name: "GIGABYTE Z390 GAMING X",
           image: null,
           price: 5500000,
-          description:
-            "Socket: 1151 for 8th Gen Processor / Chipset: Z390 / Ram: Max 64GB DDR4 2666/2400/2133 MHz",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -418,8 +372,6 @@ module.exports = {
           name: "MSI H310F PRO",
           image: null,
           price: 1400000,
-          description:
-            "Socket: 1151 for 8th Gen Processor / Chipset: H310 / Ram: Max 32GB DDR4 2666/2400/2133 MHz",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -435,8 +387,6 @@ module.exports = {
           name: "MSI B360 GAMING PLUS",
           image: null,
           price: 2900000,
-          description:
-            "Socket: 1151 for 8th Gen Processor / Chipset: B360 / Ram: Max 64GB DDR4 2666/2400/2133 MHz",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -452,8 +402,6 @@ module.exports = {
           name: "MSI H370 GAMING PLUS",
           image: null,
           price: 3500000,
-          description:
-            "Socket: 1151 for 8th Gen Processor / Chipset: H370 / Ram: Max 64GB DDR4 2666/2400/2133 MHz",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -469,8 +417,6 @@ module.exports = {
           name: "MSI Z390-A PRO",
           image: null,
           price: 5500000,
-          description:
-            "Socket: 1151 for 8th Gen Processor / Chipset: Z390 / Ram: Max 64GB DDR4 2666/2400/2133 MHz",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -486,8 +432,6 @@ module.exports = {
           name: "ASROCK H310M-HDV",
           image: null,
           price: 1500000,
-          description:
-            "Socket: 1151 for 8th Gen Processor / Chipset: H310 / Ram: Max 32GB DDR4 2666/2400/2133 MHz",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -503,8 +447,6 @@ module.exports = {
           name: "ASROCK B360 GAMING K4",
           image: null,
           price: 2800000,
-          description:
-            "Socket: 1151 for 8th Gen Processor / Chipset: B360 / Ram: Max 64GB DDR4 2666/2400/2133 MHz",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -520,8 +462,6 @@ module.exports = {
           name: "ASROCK ATAL1TY H370 PERFORMANCE",
           image: null,
           price: 3100000,
-          description:
-            "Socket: 1151 for 8th Gen Processor / Chipset: H370 / Ram: Max 64GB DDR4 2666/2400/2133 MHz",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -537,8 +477,6 @@ module.exports = {
           name: "ASROCK Z390 EXTREME4",
           image: null,
           price: 4500000,
-          description:
-            "Socket: 1151 for 8th Gen Processor / Chipset: Z390 / Ram: Max 64GB DDR4 2666/2400/2133 MHz",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -556,7 +494,6 @@ module.exports = {
           name: "RAM GIGABYTE AORUS RGB (1x8GB)",
           image: null,
           price: 1500000,
-          description: "Capacity: 8GB / Bus: 3200Mhz",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -572,7 +509,6 @@ module.exports = {
           name: "RAM GIGABYTE AORUS RGB (2x8GB)",
           image: null,
           price: 3000000,
-          description: "Capacity: 8GB / Bus: 3200Mhz",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -588,7 +524,6 @@ module.exports = {
           name: "RAM GIGABYTE AORUS RGB (1x16GB)",
           image: null,
           price: 2200000,
-          description: "Capacity: 16GB / Bus: 3400Mhz",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -604,7 +539,6 @@ module.exports = {
           name: "RAM GIGABYTE AORUS RGB (2x16GB)",
           image: null,
           price: 4400000,
-          description: "Capacity: 16GB / Bus: 3400Mhz",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -622,7 +556,6 @@ module.exports = {
           name: "HDD Seagate BarraCuda 1TB 3.5 inch",
           image: null,
           price: 980000,
-          description: "Type: HDD / Capacity: 1TB / Size: 3.5 inch",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -638,7 +571,6 @@ module.exports = {
           name: "HDD Seagate BarraCuda 2TB 3.5 inch",
           image: null,
           price: 1200000,
-          description: "Type: HDD / Capacity: 2TB / Size: 3.5 inch",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -654,7 +586,6 @@ module.exports = {
           name: "HDD WD BLUE 1TB",
           image: null,
           price: 990000,
-          description: "Type: HDD / Capacity: 1TB / Size: 3.5 inch",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -670,7 +601,6 @@ module.exports = {
           name: "HDD WD RED 1TB",
           image: null,
           price: 2100000,
-          description: "Type: HDD / Capacity: 1TB / Size: 3.5 inch",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -686,7 +616,6 @@ module.exports = {
           name: "HDD WD BLACK 1TB",
           image: null,
           price: 2300000,
-          description: "Type: HDD / Capacity: 1TB / Size: 3.5 inch",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -704,7 +633,6 @@ module.exports = {
           name: "SSD Gigabyte 2.5-Inch SATA III 120GB",
           image: null,
           price: 550000,
-          description: "Type: SSD / Capacity: 120GB / Size: 2.5 inch",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -720,7 +648,6 @@ module.exports = {
           name: "SSD Gigabyte 2.5-Inch SATA III 240GB",
           image: null,
           price: 850000,
-          description: "Type: SSD / Capacity: 240GB / Size: 2.5 inch",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -736,7 +663,6 @@ module.exports = {
           name: "SSD Gigabyte 2.5-Inch SATA III 500GB",
           image: null,
           price: 2200000,
-          description: "Type: SSD / Capacity: 500GB / Size: 2.5 inch",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -752,7 +678,6 @@ module.exports = {
           name: "SSD Gigabyte 2.5-Inch SATA III 1TB",
           image: null,
           price: 4500000,
-          description: "Type: SSD / Capacity: 1TB / Size: 2.5 inch",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -768,7 +693,6 @@ module.exports = {
           name: "SSD Gigabyte 2.5-Inch SATA III 2TB",
           image: null,
           price: 7300000,
-          description: "Type: SSD / Capacity: 2TB / Size: 2.5 inch",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -786,8 +710,6 @@ module.exports = {
           name: "ASUS GTX1050 TI 4GB",
           image: null,
           price: 5500000,
-          description:
-            "Graphic Engine: NVIDIA® GeForce GTX 1050 Ti / Video Memory: 4GB GDDR5 / CUDA Core: 768 / Memory Interface: 128 bit",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -803,8 +725,6 @@ module.exports = {
           name: "ASUS GTX1060 6GB",
           image: null,
           price: 6300000,
-          description:
-            "Graphic Engine: NVIDIA® GeForce GTX 1060 / Video Memory: 6GB GDDR5 / CUDA Core: 1230 / Memory Interface: 128 bit",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -820,8 +740,6 @@ module.exports = {
           name: "ASUS GTX1070 8GB",
           image: null,
           price: 9500000,
-          description:
-            "Graphic Engine: NVIDIA® GeForce GTX 1070 / Video Memory: 8GB GDDR5 / CUDA Core: 1530 / Memory Interface: 128 bit",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -837,8 +755,6 @@ module.exports = {
           name: "ASUS GTX1080 12GB",
           image: null,
           price: 15500000,
-          description:
-            "Graphic Engine: NVIDIA® GeForce GTX 1080 / Video Memory: 12GB GDDR5 / CUDA Core: 1820 / Memory Interface: 128 bit",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -854,8 +770,6 @@ module.exports = {
           name: "ASUS RTX2060 6GB",
           image: null,
           price: 85000000,
-          description:
-            "Graphic Engine: NVIDIA® GeForce RTX 2060 / Video Memory: 6GB GDDR5 / CUDA Core: 1520 / Memory Interface: 128 bit",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -871,8 +785,6 @@ module.exports = {
           name: "ASUS RTX2070 8GB",
           image: null,
           price: 16500000,
-          description:
-            "Graphic Engine: NVIDIA® GeForce GTX 2070 / Video Memory: 8GB GDDR5 / CUDA Core: 1930 / Memory Interface: 128 bit",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -888,8 +800,6 @@ module.exports = {
           name: "ASUS RTX2080 12GB",
           image: null,
           price: 25500000,
-          description:
-            "Graphic Engine: NVIDIA® GeForce GTX 2080 / Video Memory: 12GB GDDR5 / CUDA Core: 2130 / Memory Interface: 128 bit",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -905,8 +815,6 @@ module.exports = {
           name: "GIGABYTE GTX1050 TI 4GB",
           image: null,
           price: 5400000,
-          description:
-            "Graphic Engine: NVIDIA® GeForce GTX 1050 Ti / Video Memory: 4GB GDDR5 / CUDA Core: 748 / Memory Interface: 128 bit",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -922,8 +830,6 @@ module.exports = {
           name: "GIGABYTE GTX1060 6GB",
           image: null,
           price: 6300000,
-          description:
-            "Graphic Engine: NVIDIA® GeForce GTX 1060 / Video Memory: 6GB GDDR5 / CUDA Core: 1250 / Memory Interface: 128 bit",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -939,8 +845,6 @@ module.exports = {
           name: "GIGABYTE GTX1070 8GB",
           image: null,
           price: 9400000,
-          description:
-            "Graphic Engine: NVIDIA® GeForce GTX 1070 / Video Memory: 8GB GDDR5 / CUDA Core: 1540 / Memory Interface: 128 bit",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -956,8 +860,6 @@ module.exports = {
           name: "GIGABYTE GTX1080 12GB",
           image: null,
           price: 15000000,
-          description:
-            "Graphic Engine: NVIDIA® GeForce GTX 1080 / Video Memory: 12GB GDDR5 / CUDA Core: 1830 / Memory Interface: 128 bit",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -973,8 +875,6 @@ module.exports = {
           name: "GIGABYTE RTX2060 6GB",
           image: null,
           price: 84000000,
-          description:
-            "Graphic Engine: NVIDIA® GeForce RTX 2060 / Video Memory: 6GB GDDR5 / CUDA Core: 1480 / Memory Interface: 128 bit",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -990,8 +890,6 @@ module.exports = {
           name: "GIGABYTE RTX2070 8GB",
           image: null,
           price: 15500000,
-          description:
-            "Graphic Engine: NVIDIA® GeForce GTX 2070 / Video Memory: 8GB GDDR5 / CUDA Core: 1910 / Memory Interface: 128 bit",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -1007,8 +905,6 @@ module.exports = {
           name: "GIGABYTE RTX2080 12GB",
           image: null,
           price: 24500000,
-          description:
-            "Graphic Engine: NVIDIA® GeForce GTX 2080 / Video Memory: 12GB GDDR5 / CUDA Core: 2100 / Memory Interface: 128 bit",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -1024,8 +920,6 @@ module.exports = {
           name: "MSI GTX1050 TI 4GB",
           image: null,
           price: 5600000,
-          description:
-            "Graphic Engine: NVIDIA® GeForce GTX 1050 Ti / Video Memory: 4GB GDDR5 / CUDA Core: 820 / Memory Interface: 128 bit",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -1041,8 +935,6 @@ module.exports = {
           name: "MSI GTX1060 6GB",
           image: null,
           price: 6400000,
-          description:
-            "Graphic Engine: NVIDIA® GeForce GTX 1060 / Video Memory: 6GB GDDR5 / CUDA Core: 1330 / Memory Interface: 128 bit",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -1058,8 +950,6 @@ module.exports = {
           name: "MSI GTX1070 8GB",
           image: null,
           price: 9800000,
-          description:
-            "Graphic Engine: NVIDIA® GeForce GTX 1070 / Video Memory: 8GB GDDR5 / CUDA Core: 1580 / Memory Interface: 128 bit",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -1075,8 +965,6 @@ module.exports = {
           name: "MSI GTX1080 12GB",
           image: null,
           price: 15300000,
-          description:
-            "Graphic Engine: NVIDIA® GeForce GTX 1080 / Video Memory: 12GB GDDR5 / CUDA Core: 1920 / Memory Interface: 128 bit",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -1092,8 +980,6 @@ module.exports = {
           name: "MSI RTX2060 6GB",
           image: null,
           price: 83200000,
-          description:
-            "Graphic Engine: NVIDIA® GeForce RTX 2060 / Video Memory: 6GB GDDR5 / CUDA Core: 1550 / Memory Interface: 128 bit",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -1109,8 +995,6 @@ module.exports = {
           name: "MSI RTX2070 8GB",
           image: null,
           price: 16700000,
-          description:
-            "Graphic Engine: NVIDIA® GeForce GTX 2070 / Video Memory: 8GB GDDR5 / CUDA Core: 1970 / Memory Interface: 128 bit",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -1126,8 +1010,6 @@ module.exports = {
           name: "MSI RTX2080 12GB",
           image: null,
           price: 25800000,
-          description:
-            "Graphic Engine: NVIDIA® GeForce GTX 2080 / Video Memory: 12GB GDDR5 / CUDA Core: 2230 / Memory Interface: 128 bit",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -1145,8 +1027,6 @@ module.exports = {
           name: "PSU GIGABYTE P500B 500W 80PLUS BRONZE",
           image: null,
           price: 1300000,
-          description:
-            "Model: P500B / Output Capacity: 500W / Efficiency:	Up to 85% at typical load",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -1162,8 +1042,6 @@ module.exports = {
           name: "PSU GIGABYTE P650B 650W 80PLUS BRONZE",
           image: null,
           price: 1500000,
-          description:
-            "Model: P650B / Output Capacity: 650W / Efficiency:	Up to 85% at typical load",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -1179,8 +1057,6 @@ module.exports = {
           name: "PSU GIGABYTE P850B 850W 80PLUS BRONZE",
           image: null,
           price: 1800000,
-          description:
-            "Model: P850B / Output Capacity: 850W / Efficiency:	Up to 85% at typical load",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -1196,8 +1072,6 @@ module.exports = {
           name: "PSU GIGABYTE P1000B 1000W 80PLUS BRONZE",
           image: null,
           price: 2500000,
-          description:
-            "Model: P1000B / Output Capacity: 1000W / Efficiency:	Up to 85% at typical load",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -1213,8 +1087,6 @@ module.exports = {
           name: "PSU GIGABYTE P500B 500W 80PLUS GOLD",
           image: null,
           price: 1600000,
-          description:
-            "Model: P500B / Output Capacity: 500W / Efficiency:	Up to 90% at typical load",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,
@@ -1230,8 +1102,6 @@ module.exports = {
           name: "PSU GIGABYTE P650B 650W 80PLUS BRONZE",
           image: null,
           price: 1800000,
-          description:
-            "Model: P650B / Output Capacity: 650W / Efficiency:	Up to 90% at typical load",
           status: status.new,
           inventoryStatus: inventoryStatus.stocking,
           stockAmount: 1000,

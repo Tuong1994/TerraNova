@@ -1,7 +1,7 @@
 import { IRoute } from "../interfaces/route";
 import Dashboard from "../pages/Admin/Dashboard";
 import Product from "../pages/Admin/Product";
-import ProductCustom from "../pages/Admin/Product/ProductCustom";
+import ProductCustom from "../pages/Admin/Product/Add";
 import Customer from "../pages/Admin/Customer";
 import Course from "../pages/Admin/Course";
 import Order from "../pages/Admin/Order";

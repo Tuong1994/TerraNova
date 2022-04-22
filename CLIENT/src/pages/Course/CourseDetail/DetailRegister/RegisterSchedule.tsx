@@ -4,15 +4,17 @@ import moment from "moment";
 import Table from "../../../../components/Table";
 import TableCol from "../../../../components/Table/TableCol";
 import { ILangs } from "../../../../interfaces/lang";
+import { ICourse } from "../../../../models/Course";
 
 interface RegisterScheduleProps {
   langs: ILangs;
+  course: ICourse;
 }
 
 const RegisterSchedule: React.FunctionComponent<RegisterScheduleProps> = (
   props
 ) => {
-  const { langs } = props;
+  const { langs, course } = props;
 
   const schedule = [
     {
@@ -97,6 +99,7 @@ const RegisterSchedule: React.FunctionComponent<RegisterScheduleProps> = (
             })()}
           </Table>
         </Card.Wrapper>
+        
         <p className="table__title">{langs?.footer.address_2}</p>
         <Card.Wrapper className="table__wrapper">
           <Table
@@ -125,6 +128,12 @@ const RegisterSchedule: React.FunctionComponent<RegisterScheduleProps> = (
             })()}
           </Table>
         </Card.Wrapper>
+      </div>
+      <div className="schedule__fee">
+        <p>
+          {langs?.course.detail.register.schedule.fee} :{" "}
+          <span>{course.price?.toLocaleString()} VND</span>
+        </p>
       </div>
     </div>
   );

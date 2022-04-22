@@ -34,16 +34,7 @@ const Product: React.FunctionComponent<{}> = (props) => {
     if (productList) {
       const { productListPerPage } = productList;
       return productListPerPage?.map((product, index) => {
-        return (
-          <ProductAdminRow
-            key={index}
-            id={product.productId}
-            name={product.name}
-            price={product.price}
-            image={product.image || ""}
-            description={product.description}
-          />
-        );
+        return <ProductAdminRow product={product} key={index} />;
       });
     }
     return;
@@ -80,7 +71,7 @@ const Product: React.FunctionComponent<{}> = (props) => {
         >
           {renderProductList()}
         </Table>
-        
+
         <Pagination
           perPage={limits}
           total={totalProduct}

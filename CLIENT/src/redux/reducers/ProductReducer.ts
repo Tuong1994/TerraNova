@@ -1,17 +1,16 @@
 import { EProductActionTypes } from "../actionTypes/ProductActionTypes";
-import { ICategory, IAccessories } from "../../models/Product";
+import { ICategory, IProduct } from "../../models/Product";
 import { ProductAction } from "../actions/ProductAction";
 
 interface IStateDefault {
   categoryList: ICategory[];
-  productDetail: IAccessories;
+  productDetail: IProduct;
   productList: {
     totalProduct?: number;
     page?: number;
     limits?: number;
-    productListPerPage?: IAccessories[];
+    productListPerPage?: IProduct[];
     categoryId?: string;
-    categoryName?: string;
     producerName?: string;
   };
 }
@@ -24,7 +23,6 @@ const stateDefault: IStateDefault = {
     limits: 10,
     productListPerPage: [],
     categoryId: "",
-    categoryName: "",
     producerName: "",
   },
   productDetail: {
@@ -33,27 +31,10 @@ const stateDefault: IStateDefault = {
     name: "",
     image: null,
     price: 0,
-    description: "",
-    totalCores: "",
-    totalThreads: "",
-    baseFrequency: "",
-    cache: "",
-    busSpeed: "",
-    tdp: "",
-    socket: "",
-    chipset: "",
-    ram: "",
-    capacity: "",
-    ramBus: "",
-    type: "",
-    size: "",
-    graphicEngine: "",
-    videoMemory: "",
-    cudaCore: "",
-    memoryInterface: "",
-    model: "",
-    outputCapacity: "",
-    efficiency: "",
+    description: [],
+    status: 0,
+    inventoryStatus: 0,
+    stockAmount: 0,
   },
 };
 
@@ -80,6 +61,12 @@ export const ProductReducer = (state = stateDefault, action: ProductAction) => {
     case EProductActionTypes.GET_PRODUCT_DETAIL: {
       let newState = { ...state };
       newState.productDetail = action.payload;
+      state = newState;
+      return { ...state };
+    }
+    case EProductActionTypes.GET_PRODUCT_BY_FREE_TEXT: {
+      let newState = { ...state };
+      newState.productList = action.payload;
       state = newState;
       return { ...state };
     }

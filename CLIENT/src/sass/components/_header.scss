@@ -266,6 +266,9 @@
       }
       .login__wrapper {
         justify-content: center;
+        .button--round {
+          font-size: $body-2;
+        }
       }
     }
     .features__translate {

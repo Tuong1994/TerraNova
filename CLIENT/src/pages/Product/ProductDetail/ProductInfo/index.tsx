@@ -2,7 +2,7 @@ import React from "react";
 import {
   EInventoryStatus,
   EProductStatus,
-  IAccessories,
+  IProduct,
 } from "../../../../models/Product";
 import { useSelector } from "react-redux";
 import { ReducerState } from "../../../../redux/store";
@@ -13,7 +13,7 @@ import Badge from "../../../../components/Badge";
 import Rate from "../../../../components/Rate";
 
 interface IProductInfoProps {
-  product: IAccessories;
+  product: IProduct;
   amount: number;
   langs: ILangs;
   handleIncrease: () => void;

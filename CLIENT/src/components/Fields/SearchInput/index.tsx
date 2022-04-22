@@ -11,6 +11,7 @@ interface SearchInputProps {
   placeholder?: string;
   value?: string;
   onChange?(e: React.ChangeEvent<HTMLInputElement>): void;
+  onClick?(): void;
 }
 
 const SearchInput: React.FunctionComponent<SearchInputProps> = (props) => {
@@ -22,6 +23,7 @@ const SearchInput: React.FunctionComponent<SearchInputProps> = (props) => {
     placeholder,
     value,
     onChange,
+    onClick,
   } = props;
 
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
@@ -29,20 +31,25 @@ const SearchInput: React.FunctionComponent<SearchInputProps> = (props) => {
   const langs = utils.changeLang(lang);
 
   return (
-    <div className={`form__group ${groupClassName ? groupClassName : ""}`}>
+    <div className={`search__input ${groupClassName ? groupClassName : ""}`}>
       <div
-        className={`group__field group__search ${
+        className={`input__field ${
           fieldClassName ? fieldClassName : ""
         }`}
       >
         <input
           type="text"
           value={value}
-          placeholder={placeholder ? placeholder + "..." : langs?.form.search + "..."}
+          placeholder={
+            placeholder ? placeholder + "..." : langs?.form.search + "..."
+          }
           className={`field__control ${inputClassName ? inputClassName : ""}`}
           onChange={onChange}
         />
-        <div className={`field__icon ${iconClassName ? iconClassName : ""}`}>
+        <div
+          className={`field__icon ${iconClassName ? iconClassName : ""}`}
+          onClick={onClick}
+        >
           <i className="fa-solid fa-magnifying-glass"></i>
         </div>
       </div>

@@ -44,7 +44,7 @@ const CourseDetail: React.FunctionComponent<
       <DetailQuestion langs={langs} />
       <DetailInfo langs={langs} courseDetail={courseDetail} />
       <DetailLesson langs={langs} />
-      <DetailRegister langs={langs} />
+      <DetailRegister langs={langs} courseDetail={courseDetail} />
     </div>
   );
 };

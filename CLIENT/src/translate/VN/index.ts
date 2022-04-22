@@ -250,9 +250,13 @@ const VnLang = {
           fri: "T6",
           sat: "T7",
           sun: "CN",
+          fee: "Học phí"
         },
         form: {
-          title: "ĐĂNG KÝ KHÓA HỌC"
+          title: "ĐĂNG KÝ KHÓA HỌC",
+          subTitle: "Chọn địa chỉ bạn muốn học",
+          address_1: "102 Nguyễn Đình Chính, Phường 15, Quận Phú Nhuận, TP.HCM",
+          address_2: "12B Nguyễn Hữu Cảnh, Phường 19, Quận Bình Thạnh, TP.HCM",
         },
       },
     },
@@ -326,6 +330,7 @@ const VnLang = {
   button: {
     submit: "Gửi",
     seeMore: "Xem thêm",
+    register: "Đăng ký khóa học",
     addToCart: "Thêm vào giỏ hàng",
     buyProduct: "Mua sản phẩm",
     continueBuy: "Tiếp tục mua hàng",

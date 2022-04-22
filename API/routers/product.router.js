@@ -7,8 +7,9 @@ const {
   removeProduct,
   getProducerAndProduct,
   getProductByCategory,
-  getAccessoriesDetail,
+  getProductDetail,
   getProductByProducer,
+  getProductByFreeText,
 } = require("../controllers/product.controller");
 const {
   checkProductId,
@@ -38,10 +39,12 @@ productRouter.get(
 );
 
 productRouter.get(
-  "/getAccessoriesDetail",
+  "/getProductDetail",
   checkProductId,
-  getAccessoriesDetail
+  getProductDetail
 );
+
+productRouter.get("/getProductByFreeText", getProductByFreeText)
 
 productRouter.post(
   "/createProduct",

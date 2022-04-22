@@ -252,20 +252,56 @@
           }
           .table__wrapper {
             padding: $p-10;
+            &:nth-child(2) {
+              margin-bottom: $m-10 * 3;
+            }
           }
+        }
+        .schedule__fee {
+          font-size: $subtitle;
+          color: $tSecondary;
+          margin: $m-10 * 2 0;
+          span {
+            font-weight: $semiBold;
+          }
+        }
+        @include respond(tablet) {
+          width: $w-100;
+          margin-bottom: $m-10 * 2;
         }
       }
       .content__form {
         width: $w-100 / 2.1;
         .form__wrapper {
-          padding: $p-10;
+          padding: $p-10 * 2;
           .wrapper__title {
             font-size: $h6;
             font-weight: $semiBold;
             text-align: center;
           }
+          .wrapper__subtitle {
+            font-weight: $semiBold;
+            margin: $m-10 0;
+          }
+          .wrapper__button {
+            display: flex;
+            justify-content: center;
+            .button--round,
+            .button--disabled {
+              padding: $p-10;
+            }
+          }
+        }
+        @include respond(tablet) {
+          width: $w-100;
         }
       }
+      @include respond(tablet) {
+        flex-direction: column;
+      }
+    }
+    @include respond(laptop) {
+      padding: $p-10 * 5 $p-10 * 2;
     }
   }
 }

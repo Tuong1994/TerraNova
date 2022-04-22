@@ -10,6 +10,7 @@ import { ProductReducer } from "./reducers/ProductReducer";
 import { LoadingReducer } from "./reducers/LoadingReducer";
 import { ShipmentReducer } from "./reducers/ShipmentReducer";
 import { CourseReducer } from "./reducers/CourseReducer";
+import { CourseOrderReducer } from "./reducers/CourseOrderReducer";
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import reduxThunk from "redux-thunk";
 
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   SideBarReducer,
   ShipmentReducer,
   CourseReducer,
+  CourseOrderReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(reduxThunk));

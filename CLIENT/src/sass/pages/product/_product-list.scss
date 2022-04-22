@@ -17,9 +17,6 @@
     justify-content: center;
     .search__input {
       width: $w-100 - 40;
-      .input__fields {
-        border-radius: $round;
-      }
       @include respond(extraTablet) {
         width: $w-100 - 30;
       }
@@ -113,22 +110,24 @@
             .features__specs {
               width: $w-100;
               border-top: 1px solid $borderGrey;
-              display: flex;
-              flex-wrap: wrap;
-              align-items: center;
-              justify-content: space-between;
               .specs__item {
-                width: $w-100 / 2;
+                width: $w-100;
                 display: flex;
+                justify-content: space-between;
                 align-items: center;
                 padding: $p-10;
-                .item__icon {
-                  width: $w-10 * 3;
-                  height: $h-10 * 3;
-                  margin-right: $m-10;
+                .item__name {
+                  font-size: $body-1;
+                  @include respond(phone) {
+                    font-size: $body-2;
+                  }
                 }
                 .item__content {
-                  font-size: $body-2;
+                  font-size: $body-1;
+                  font-weight: $semiBold;
+                  @include respond(phone) {
+                    font-size: $body-2;
+                  }
                 }
               }
             }

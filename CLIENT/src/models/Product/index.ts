@@ -31,37 +31,23 @@ export interface IProducer {
   createdAt?: Date | string;
   updatedAt?: Date | string;
 }
-export interface IAccessories {
+
+export interface IDescription {
+  name?: string | number;
+  content?: string;
+}
+export interface IProduct {
+  id?: string;
   productId?: string;
   producerName?: string;
   productType?: string;
   name?: string;
   image?: any;
   price?: number;
-  description?: string;
+  description?: IDescription[];
   status?: number;
   inventoryStatus?: number;
   stockAmount?: number;
-  totalCores?: string;
-  totalThreads?: string;
-  baseFrequency?: string;
-  cache?: string;
-  busSpeed?: string;
-  tdp?: string;
-  socket?: string;
-  chipset?: string;
-  ram?: string;
-  capacity?: string;
-  ramBus?: string;
-  type?: string;
-  size?: string;
-  graphicEngine?: string;
-  videoMemory?: string;
-  cudaCore?: string;
-  memoryInterface?: string;
-  model: string;
-  outputCapacity?: string;
-  efficiency?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 }

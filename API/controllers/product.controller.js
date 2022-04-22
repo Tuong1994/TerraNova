@@ -1,10 +1,6 @@
-const { Category, Producer, Product, sequelize } = require("../models");
-const {
-  getProductFieldByCategory,
-  getProductFieldByProducer,
-  getProductDetailField,
-  getProductByFreeText,
-} = require("../interface/product");
+const { Producer, Product, Description } = require("../models");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 const getProducerAndProduct = async (req, res) => {
   try {
@@ -34,43 +30,19 @@ const getProductList = async (req, res) => {
   const pageNumber = parseInt(page);
   const itemPerPage = parseInt(limits);
   try {
-    const [result] = await sequelize.query(`
-      select 
-      products.id as productId, 
-      products.name,
-      products.image,
-      products.price,
-
-      pcspecs.totalCores,
-      pcspecs.totalThreads,
-      pcspecs.baseFrequency,
-      pcspecs.cache,
-      pcspecs.busSpeed,
-      pcspecs.tdp,
-      pcspecs.socket,
-      pcspecs.chipset,
-      pcspecs.ram,
-      pcspecs.capacity,
-      pcspecs.ramBus,
-      pcspecs.type,
-      pcspecs.size,
-      pcspecs.graphicEngine,
-      pcspecs.videoMemory,
-      pcspecs.cudaCore,
-      pcspecs.memoryInterface,
-      pcspecs.model,
-      pcspecs.outputCapacity,
-      pcspecs.Efficiency
-
-      from products
-      inner join pcspecs
-      on pcspecs.productId = products.id
-    `);
+    const products = await Product.findAll({
+      include: [
+        {
+          model: Description,
+          as: "description",
+        },
+      ],
+    });
     if (page) {
-      let total = result.length;
+      let total = products.length;
       let start = (pageNumber - 1) * itemPerPage;
       let end = start + itemPerPage;
-      const productListPerPage = result.slice(start, end);
+      const productListPerPage = products.slice(start, end);
       res.status(200).send({
         productListPerPage: productListPerPage,
         totalProduct: total,
@@ -84,36 +56,41 @@ const getProductList = async (req, res) => {
 };
 
 const getProductByCategory = async (req, res) => {
-  const { categoryId, page, limits, freeText } = req.query;
+  const { categoryId, page, limits } = req.query;
   const pageNumber = parseInt(page);
   const limitItem = parseInt(limits);
 
   try {
-    const categoryDetail = await Category.findOne({
-      where: {
-        id: categoryId,
-      },
-    });
     if (page) {
-      const selectedFields = () => {
-        if (freeText) {
-          return getProductByFreeText(categoryId, freeText);
-        } else {
-          return getProductFieldByCategory(categoryId);
-        }
-      };
-      const [result] = await sequelize.query(selectedFields());
-      let total = result.length;
+      const products = await Product.findAll({
+        where: {
+          categoryId: categoryId,
+        },
+        attributes: [
+          ["id", "productId"],
+          "name",
+          "image",
+          "price",
+          "productType",
+        ],
+        include: [
+          {
+            model: Description,
+            as: "description",
+            attributes: ["name", "content"],
+          },
+        ],
+      });
+
+      let total = products.length;
       let start = (pageNumber - 1) * limitItem;
       let end = start + limitItem;
-      let productList = result.slice(start, end);
-      let name = categoryDetail.name;
+      let productList = products.slice(start, end);
 
       res.status(200).send({
         totalProduct: total,
         page: page,
         limits: limits,
-        categoryName: name,
         productListPerPage: productList,
       });
     }
@@ -123,7 +100,7 @@ const getProductByCategory = async (req, res) => {
 };
 
 const getProductByProducer = async (req, res) => {
-  const { categoryId, producerId, page, limits, freeText } = req.query;
+  const { categoryId, producerId, page, limits } = req.query;
   const pageNumber = parseInt(page);
   const limitItem = parseInt(limits);
 
@@ -135,18 +112,31 @@ const getProductByProducer = async (req, res) => {
     });
 
     if (page) {
-      const selectedFields = () => {
-        if (freeText) {
-          return getProductByFreeText(categoryId, freeText);
-        } else {
-          return getProductFieldByProducer(categoryId, producerId);
-        }
-      };
-      const [result] = await sequelize.query(selectedFields());
-      let total = result.length;
+      const products = await Product.findAll({
+        where: {
+          categoryId: categoryId,
+          producerId: producerId,
+        },
+        attributes: [
+          ["id", "productId"],
+          "name",
+          "image",
+          "price",
+          "productType",
+        ],
+        include: [
+          {
+            model: Description,
+            as: "description",
+            attributes: ["name", "content"],
+          },
+        ],
+      });
+
+      let total = products.length;
       let start = (pageNumber - 1) * limitItem;
       let end = start + limitItem;
-      let productList = result.slice(start, end);
+      let productList = products.slice(start, end);
       res.status(200).send({
         totalProduct: total,
         page: page,
@@ -160,16 +150,64 @@ const getProductByProducer = async (req, res) => {
   }
 };
 
-const getAccessoriesDetail = async (req, res) => {
+const getProductDetail = async (req, res) => {
   const { productId, productType } = req.query;
   try {
-    const [result] = await sequelize.query(
-      getProductDetailField(productId, productType),
-      {
-        model: Product,
-      }
-    );
-    res.status(200).send(result);
+    const productDetail = await Product.findOne({
+      where: {
+        id: productId,
+        productType: productType,
+      },
+      include: [
+        {
+          model: Description,
+          as: "description",
+          attributes: ["name", "content"],
+        },
+      ],
+    });
+    res.status(200).send(productDetail);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const getProductByFreeText = async (req, res) => {
+  const { freeText } = req.query;
+  const _defaultCurrentPage = 1;
+  const _defaultItemPerPage = 10;
+  try {
+    const products = await Product.findAll({
+      where: {
+        name: {
+          [Op.like]: `%${freeText}%`,
+        },
+      },
+      attributes: [
+        ["id", "productId"],
+        "name",
+        "image",
+        "price",
+        "productType",
+      ],
+      include: [
+        {
+          model: Description,
+          as: "description",
+          attributes: ["name", "content"],
+        },
+      ],
+    });
+    let total = products.length;
+    let start = (_defaultCurrentPage - 1) * _defaultItemPerPage;
+    let end = start + _defaultItemPerPage;
+    const productListPerPage = products.slice(start, end);
+    res.status(200).send({
+      totalProduct: total,
+      page: _defaultCurrentPage,
+      limits: _defaultItemPerPage,
+      productListPerPage: productListPerPage,
+    });
   } catch (error) {
     res.status(500).send(error);
   }
@@ -228,7 +266,8 @@ module.exports = {
   getProductList,
   getProductByProducer,
   getProductByCategory,
-  getAccessoriesDetail,
+  getProductDetail,
+  getProductByFreeText,
   createProduct,
   updateProduct,
   removeProduct,
