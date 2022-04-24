@@ -42,7 +42,7 @@ const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
   };
 
   const getBadgeStatus = () => {
-    if (product?.inventoryStatus === EInventoryStatus.stocking) {
+    if (product?.inventoryStatus === EInventoryStatus.inStock) {
       return EBadgeStatus.success;
     } else if (product?.inventoryStatus === EInventoryStatus.outOfStock) {
       return EBadgeStatus.error;

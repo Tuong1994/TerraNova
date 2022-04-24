@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { QUERY } from "../../configs/setting";
 
 interface SubMenuProps {
   data: any;
@@ -102,7 +103,7 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
                                   categoryId: categoryId,
                                   producerId: producer.producerId,
                                 };
-                                localStorage.setItem("query", JSON.stringify(query));
+                                localStorage.setItem(QUERY, JSON.stringify(query));
                                 getProductByProducer(
                                   categoryId,
                                   producer.producerId

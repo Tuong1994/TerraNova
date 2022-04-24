@@ -4,9 +4,8 @@ module.exports = {
     await queryInterface.createTable('Lessons', {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       nameENG: {
         type: Sequelize.STRING
@@ -15,6 +14,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       nameCH: {
+        type: Sequelize.STRING
+      },
+      courseId: {
         type: Sequelize.STRING
       },
       createdAt: {

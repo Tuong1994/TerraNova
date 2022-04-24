@@ -23,6 +23,7 @@ import { IQueryList } from "../../../interfaces/query";
 import { createOrder } from "../../../redux/actionCreators/OrderCreators";
 import { ECartsActionTypes } from "../../../redux/actionTypes/CartsActionTypes";
 import { toast } from "react-toastify";
+import { CARTS } from "../../../configs/setting";
 import Table from "../../../components/Table";
 import CartsRow from "../../../components/TableRow/CartsRow";
 import CartsPayment from "./CartsPayment";
@@ -190,7 +191,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
         };
         dispatch(actions.openButtonLoading);
         setTimeout(() => {
-          localStorage.setItem("carts", JSON.stringify(stock));
+          localStorage.setItem(CARTS, JSON.stringify(stock));
           dispatch({
             type: ECartsActionTypes.UPDATE_TEMP_CARTS,
             payload: stock,
@@ -241,7 +242,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
       const stock = {
         products: newProducts,
       };
-      localStorage.setItem("carts", JSON.stringify(stock));
+      localStorage.setItem(CARTS, JSON.stringify(stock));
       dispatch({
         type: ECartsActionTypes.UPDATE_TEMP_CARTS,
         payload: stock,
@@ -307,7 +308,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
         )
       );
       setTimeout(() => {
-        localStorage.setItem("carts", JSON.stringify(stock));
+        localStorage.setItem(CARTS, JSON.stringify(stock));
         dispatch({
           type: ECartsActionTypes.UPDATE_TEMP_CARTS,
           payload: stock,

@@ -6,6 +6,8 @@ import { RouteComponentProps } from "react-router-dom";
 import { IRouteParams } from "../../../interfaces/route";
 import { IQueryList } from "../../../interfaces/query";
 import { getCourseDetail } from "../../../redux/actionCreators/CourseCreators";
+import { ACCOUNT } from "../../../configs/setting";
+import { history } from "../../../App";
 import DetailIntro from "./DetailIntro";
 import DetailQuestion from "./DetailQuestion";
 import DetailInfo from "./DetailInfo";
@@ -38,12 +40,16 @@ const CourseDetail: React.FunctionComponent<
     dispatch(getCourseDetail(query));
   }, []);
 
+  if(!localStorage.getItem(ACCOUNT)) {
+    history.push("/signIn")
+  }
+
   return (
     <div className="course-detail">
       <DetailIntro langs={langs} lang={lang} courseDetail={courseDetail} />
       <DetailQuestion langs={langs} />
       <DetailInfo langs={langs} courseDetail={courseDetail} />
-      <DetailLesson langs={langs} />
+      <DetailLesson langs={langs} courseDetail={courseDetail} />
       <DetailRegister langs={langs} courseDetail={courseDetail} />
     </div>
   );

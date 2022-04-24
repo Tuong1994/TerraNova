@@ -16,7 +16,7 @@ export enum EProductStatus {
 }
 
 export enum EInventoryStatus {
-  stocking = 1,
+  inStock = 1,
   outOfStock = 2,
 }
 export interface ICategory {

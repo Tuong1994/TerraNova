@@ -1,13 +1,17 @@
 import React from "react";
 import * as Card from "../../../../components/Card";
 import * as FormControl from "../../../../components/Fields";
-import Button from "../../../../components/Button";
-import ButtonLoading from "../../../../components/Loading/ButtonLoading";
+import * as yup from "yup";
 import { ILangs } from "../../../../interfaces/lang";
 import { Formik, Form, Field } from "formik";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../../redux/store";
 import { ICourse } from "../../../../models/Course";
+import { phoneRegex } from "../../../../configs/regex";
+import Button from "../../../../components/Button";
+import ButtonLoading from "../../../../components/Loading/ButtonLoading";
+import actions from "../../../../configs/actions";
+import { createCourseOrder } from "../../../../redux/actionCreators/CourseOrderCreators";
 
 interface RegisterFormProps {
   langs: ILangs;
@@ -20,10 +24,13 @@ const RegisterForm: React.FunctionComponent<RegisterFormProps> = (props) => {
   const { buttonLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
   );
+  const { user } = useSelector((state: ReducerState) => state.UserReducer);
+
+  const dispatch = useDispatch();
 
   const initialValues = {
-    courseId: course.id,
-    userId: "",
+    courseId: course?.id,
+    userId: user?.id,
     register: {
       name: "",
       email: "",
@@ -33,8 +40,30 @@ const RegisterForm: React.FunctionComponent<RegisterFormProps> = (props) => {
     },
   };
 
+  const validationSchema = yup.object().shape({
+    register: yup.object({
+      name: yup.string().required(langs?.validateMessages.required),
+      email: yup
+        .string()
+        .email(langs?.validateMessages.email)
+        .required(langs?.validateMessages.required),
+      phone: yup
+        .string()
+        .matches(phoneRegex, langs?.validateMessages.phone)
+        .required(langs?.validateMessages.required),
+      branch: yup.string().required(langs?.validateMessages.required),
+    }),
+  });
+
   const handleSubmit = (value: any, action: any) => {
-    
+    dispatch(createCourseOrder(value));
+    setTimeout(() => {
+      action.resetForm({
+        value: {
+          ...initialValues,
+        },
+      });
+    }, 1000);
   };
 
   return (
@@ -42,6 +71,7 @@ const RegisterForm: React.FunctionComponent<RegisterFormProps> = (props) => {
       <Formik
         enableReinitialize={true}
         initialValues={initialValues}
+        validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
         {(formikProps) => {

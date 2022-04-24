@@ -7,6 +7,15 @@ export interface ICourseCategory {
   updatedAt?: Date | string;
 }
 
+export interface ILesson {
+  id?: string;
+  lessonId?: string;
+  nameENG?: string;
+  nameVN?: string;
+  nameCH?: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+}
 export interface ICourse {
   id?: string;
   nameENG?: string;
@@ -18,6 +27,7 @@ export interface ICourse {
   image?: string;
   price?: number;
   trainingTime?: number;
+  lessons?: ILesson[];
   categoryId?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;

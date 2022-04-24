@@ -1,4 +1,10 @@
-const { CourseCategory, Course, CourseOrder, sequelize } = require("../models");
+const {
+  CourseCategory,
+  Course,
+  CourseOrder,
+  Lesson,
+  sequelize,
+} = require("../models");
 
 const getCategoryAndCourseList = async (req, res) => {
   try {
@@ -80,6 +86,11 @@ const getCourseDetail = async (req, res) => {
           model: CourseOrder,
           as: "students",
           attributes: ["userId", "register", "createdAt", "updatedAt"],
+        },
+        {
+          model: Lesson,
+          as: "lessons",
+          order: [["updatedAt", "DESC"]],
         },
       ],
     });

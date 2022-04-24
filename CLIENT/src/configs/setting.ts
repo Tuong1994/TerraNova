@@ -2,6 +2,9 @@ import { IQueryList } from "../interfaces/query";
 
 export const ACCESSTOKEN = "accessToken";
 export const ACCOUNT = "account";
+export const QUERY = "query";
+export const PRODUCTTYPE = "productType";
+export const CARTS = "carts";
 
 export const domain = "http://localhost:4000";
 

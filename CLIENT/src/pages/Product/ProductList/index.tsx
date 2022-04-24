@@ -13,11 +13,15 @@ import {
 import { IQueryList } from "../../../interfaces/query";
 import { ELangs } from "../../../interfaces/lang";
 import { EProductType } from "../../../models/Product";
+import { QUERY } from "../../../configs/setting";
 import Pagination from "../../../components/Pagination";
 import DataLoading from "../../../components/Loading/DataLoading";
 import NoData from "../../../components/NoData";
 import ProductCard from "./ProductCard";
 import utils from "../../../utils";
+
+const _productByCategory = "productByCategory";
+const _productByProducer = "productByProducer";
 
 const ProductList: React.FunctionComponent<
   RouteComponentProps<IRouteParams>
@@ -52,17 +56,17 @@ const ProductList: React.FunctionComponent<
   }, [freeText]);
 
   const _getProductList = () => {
-    if (path.includes("productByCategory")) {
+    if (path.includes(_productByCategory)) {
       let query: IQueryList = {
         categoryId: id,
         page: page,
         limits: 10,
       };
       dispatch(getProductByCategory(query));
-    } else if (path.includes("productByProducer")) {
-      if (localStorage.getItem("query")) {
+    } else if (path.includes(_productByProducer)) {
+      if (localStorage.getItem(QUERY)) {
         let ids: any = {};
-        let obj = localStorage.getItem("query");
+        let obj = localStorage.getItem(QUERY);
         ids = JSON.parse(obj || "");
         if (ids) {
           const query: IQueryList = {
@@ -105,9 +109,9 @@ const ProductList: React.FunctionComponent<
 
   // Show product list by path
   const renderProduct = () => {
-    if (path.includes("productByCategory")) {
+    if (path.includes(_productByCategory)) {
       return renderProductByCategory();
-    } else if (path.includes("productByProducer")) {
+    } else if (path.includes(_productByProducer)) {
       return renderProductByProducer();
     }
   };
@@ -151,13 +155,13 @@ const ProductList: React.FunctionComponent<
 
   // render title by path
   const renderTitle = () => {
-    if (path.includes("productByCategory")) {
+    if (path.includes(_productByCategory)) {
       if (freeText !== "") {
         return langs?.form.search;
       } else {
         return renderTitleByParams();
       }
-    } else if (path.includes("productByProducer")) {
+    } else if (path.includes(_productByProducer)) {
       if (freeText !== "") {
         return langs?.form.search;
       } else {
@@ -188,7 +192,7 @@ const ProductList: React.FunctionComponent<
       <div className="product-list__title">
         <h3>{renderTitle()}</h3>
       </div>
-      
+
       <div className="product-list__search">
         <FormControl.Search
           value={freeText}

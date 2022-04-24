@@ -19,6 +19,7 @@ import ProductRelated from "./ProductRelated";
 import ProductSpecs from "./ProductSpecs";
 import utils from "../../../utils";
 import actions from "../../../configs/actions";
+import { CARTS, PRODUCTTYPE } from "../../../configs/setting";
 
 const ProductDetail: React.FunctionComponent<
   RouteComponentProps<IRouteParams>
@@ -58,9 +59,9 @@ const ProductDetail: React.FunctionComponent<
   }, [productDetail, amount]);
 
   const _getProductDetail = () => {
-    if (localStorage.getItem("productType")) {
+    if (localStorage.getItem(PRODUCTTYPE)) {
       let type: any = {};
-      let obj = localStorage.getItem("productType");
+      let obj = localStorage.getItem(PRODUCTTYPE);
       type = JSON.parse(obj || "");
       if (type) {
         const query: IQueryList = {
@@ -122,7 +123,7 @@ const ProductDetail: React.FunctionComponent<
             const stock = {
               products: [{ ...newProducts }],
             };
-            localStorage.setItem("carts", JSON.stringify(stock));
+            localStorage.setItem(CARTS, JSON.stringify(stock));
             dispatch(actions.openButtonLoading);
             setTimeout(() => {
               dispatch({
@@ -159,7 +160,7 @@ const ProductDetail: React.FunctionComponent<
             const stock = {
               products: products,
             };
-            localStorage.setItem("carts", JSON.stringify(stock));
+            localStorage.setItem(CARTS, JSON.stringify(stock));
             dispatch(actions.openButtonLoading);
             setTimeout(() => {
               dispatch({
@@ -196,7 +197,7 @@ const ProductDetail: React.FunctionComponent<
           let stock = {
             products: carts[0].products,
           };
-          localStorage.setItem("carts", JSON.stringify(stock));
+          localStorage.setItem(CARTS, JSON.stringify(stock));
           dispatch(actions.openButtonLoading);
           setTimeout(() => {
             dispatch({
