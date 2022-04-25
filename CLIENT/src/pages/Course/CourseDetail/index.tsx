@@ -14,6 +14,7 @@ import DetailInfo from "./DetailInfo";
 import DetailLesson from "./DetailLesson";
 import DetailRegister from "./DetailRegister";
 import utils from "../../../utils";
+import RegisterModal from "./RegisterModal";
 
 interface CourseDetailProps extends IRouteParams {}
 
@@ -49,8 +50,10 @@ const CourseDetail: React.FunctionComponent<
       <DetailIntro langs={langs} lang={lang} courseDetail={courseDetail} />
       <DetailQuestion langs={langs} />
       <DetailInfo langs={langs} courseDetail={courseDetail} />
-      <DetailLesson langs={langs} courseDetail={courseDetail} />
+      <DetailLesson lang={lang} langs={langs} courseDetail={courseDetail} />
       <DetailRegister langs={langs} courseDetail={courseDetail} />
+
+      <RegisterModal lang={lang} langs={langs} courseDetail={courseDetail} />
     </div>
   );
 };

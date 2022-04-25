@@ -7,6 +7,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.STRING,
       },
+      course: {
+        type: Sequelize.JSON,
+      },
       courseId: {
         type: Sequelize.STRING,
       },

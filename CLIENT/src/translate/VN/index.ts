@@ -1,4 +1,5 @@
 const VnLang = {
+  // ==================== HEADER ====================
   headerMenu: {
     home: "Trang chủ",
     product: "Sản phẩm",
@@ -28,7 +29,21 @@ const VnLang = {
     accountSetting: "Thông tin tài khoản",
     logOut: "Đăng xuất",
   },
+
+  // ==================== FOOTER ====================
+  footer: {
+    partners: "Đối tác",
+    socials: "Nền tảng",
+    company: "CÔNG TY THƯƠNG MẠI TERRA NOVA",
+    address_1:
+      "Chi nhánh 1: 102 Nguyễn Đình Chính, Phường 15, Quận Phú Nhuận, TP.HCM",
+    address_2:
+      "Chi nhánh 2: 12B Nguyễn Hữu Cảnh, Phường 19, Quận Bình Thạnh, TP.HCM",
+  },
+
+  // ==================== HOME ====================
   home: {
+    // CAROUSEL
     carousel: {
       slideTitle_1: "LINH KIỆN MÁY TÍNH",
       slideContent_1: "Xây dựng máy tính dành riêng cho bạn",
@@ -37,6 +52,7 @@ const VnLang = {
       slideTitle_3: "PHIM",
       slideContent_3: "Tận hưởng khoảnh khắc với gia đình",
     },
+    // CONSULTATION
     consultation: {
       consultation: "Tư vấn",
       signUpConsultation: "Đăng ký tư vấn",
@@ -48,6 +64,7 @@ const VnLang = {
         note: "Cảm ơn bạn đã quan tâm, chúng tôi đã nhận được thông tin của bạn, chúng tôi sẽ liên lạc với bạn sớm nhất. Trong lúc đó, hãy tiếp tục ghé thăm website của chúng tôi để biết thêm thông tin.",
       },
     },
+    // CATEGORY
     categories: {
       title_1: "Sản phẩm",
       title_2: "Khóa học",
@@ -59,6 +76,7 @@ const VnLang = {
       content_3:
         "Terra Nova sẽ mang đến cho bạn những bộ phim hấp dẫn đến từ nhiều quốc gia.",
     },
+    // BANNER
     banner: {
       title_1: "LINH KIỆN MÁY TÍNH",
       title_2: "KHÓA HỌC",
@@ -79,6 +97,7 @@ const VnLang = {
       mobile: "Lập trình Mobile",
       fullstack: "Lập trình Fullstack",
     },
+    // PARTNERS
     partners: {
       title: "Đối tác của chúng tôi",
       asusContent: `ASUSTek Computer Inc. Tiếng Trung: 華碩 電腦 股份有限公司; bính âm: Huáshuò Diànnǎo Gǔfèn Yǒuxiàn Gōngsī; viết tắt là ASUSTeK hoặc ASUS) là một công ty phần cứng và điện tử máy tính và điện thoại đa quốc gia của Đài Loan có trụ sở chính tại Quận Beitou, Đài Bắc, Đài Loan. Các sản phẩm của nó bao gồm máy tính để bàn, máy tính xách tay, netbook, điện thoại di động, thiết bị mạng, màn hình, bộ định tuyến wi-fi, máy chiếu, bo mạch chủ, card đồ họa, bộ lưu trữ quang, sản phẩm đa phương tiện, thiết bị ngoại vi, thiết bị đeo được, máy trạm máy chủ và máy tính bảng. Công ty cũng là nhà sản xuất thiết bị gốc (OEM).`,
@@ -91,15 +110,20 @@ const VnLang = {
       lgContent: `LG Corporation (hoặc LG Group) (tiếng Hàn: 엘지), trước đây là Lucky-Goldstar từ năm 1983 đến 1995 (tiếng Hàn: Leokki Geumseong; tiếng Hàn: 럭키 금성; Hanja: 樂 喜 金星), là một tập đoàn tập đoàn đa quốc gia của Hàn Quốc được thành lập bởi Koo In -hwoi và được quản lý bởi các thế hệ kế tiếp của gia đình mình. Đây là chaebol lớn thứ tư ở Hàn Quốc. Trụ sở chính của nó là tại tòa nhà LG Twin Towers ở Yeouido-dong, Quận Yeongdeungpo, Seoul. LG sản xuất các sản phẩm điện tử, hóa chất, viễn thông và điều hành các công ty con như LG Electronics, Zenith, LG Display, LG Uplus, LG Innotek, LG Chem và LG Energy Solution tại hơn 80 quốc gia.`,
       samsungContent: `Tập đoàn Samsung (hay đơn giản là Samsung) (tiếng Hàn: 삼성) là một tập đoàn sản xuất đa quốc gia của Hàn Quốc có trụ sở chính tại Samsung Town, Seoul, Hàn Quốc. Nó bao gồm nhiều doanh nghiệp trực thuộc, hầu hết trong số họ được hợp nhất dưới thương hiệu Samsung và là chaebol (tập đoàn kinh doanh) lớn nhất Hàn Quốc. Tính đến năm 2020, Samsung có giá trị thương hiệu toàn cầu cao thứ 8. Samsung được thành lập bởi Lee Byung-chul vào năm 1938 với tư cách là một công ty thương mại. Trong ba thập kỷ tiếp theo, tập đoàn này đã đa dạng hóa sang các lĩnh vực bao gồm chế biến thực phẩm, dệt may, bảo hiểm, chứng khoán và bán lẻ. Samsung tham gia vào ngành công nghiệp điện tử vào cuối những năm 1960 và ngành xây dựng và đóng tàu vào giữa những năm 1970; những lĩnh vực này sẽ thúc đẩy sự phát triển tiếp theo của nó. Sau khi Lee qua đời vào năm 1987, Samsung được tách thành 5 tập đoàn kinh doanh: Tập đoàn Samsung, Tập đoàn Shinsegae, Tập đoàn CJ và Tập đoàn Hansol, và Tập đoàn Joongang.`,
     },
+    // ACHIEVEMENT
     achievement: {
       branches: "Chi nhánh",
       customers: "Khách hàng",
       partners: "Đối tác",
     },
   },
+
+  // ==================== PRODUCT LIST ====================
   productList: {
     title: "SẢN PHẨM",
   },
+
+  // ==================== PRODUCT DETAIL ====================
   productDetail: {
     generalInfo: "Thông tin chung",
     producer: "Nhà sản xuất",
@@ -110,15 +134,8 @@ const VnLang = {
     comments: "Bình luận",
     related: "Sản phẩm liên quan",
   },
-  footer: {
-    partners: "Đối tác",
-    socials: "Nền tảng",
-    company: "CÔNG TY THƯƠNG MẠI TERRA NOVA",
-    address_1:
-      "Chi nhánh 1: 102 Nguyễn Đình Chính, Phường 15, Quận Phú Nhuận, TP.HCM",
-    address_2:
-      "Chi nhánh 2: 12B Nguyễn Hữu Cảnh, Phường 19, Quận Bình Thạnh, TP.HCM",
-  },
+
+  // ==================== PRODUCT CARTS ====================
   productCarts: {
     title: "Giỏ hàng",
     summaryTitle: "Thông tin chung",
@@ -144,8 +161,11 @@ const VnLang = {
       note: "Chú ý: Vui lòng cung cấp thông tin chính xác tránh các vấn đề phát sinh và để việc vận chuyển thuận tiện hơn",
     },
   },
+
+  // ==================== COURSE ====================
   course: {
     title: "Khóa học",
+    // HOME
     home: {
       banner: {
         title: "Chào mừng đến với khóa học lập trình tại Tera Nova",
@@ -196,6 +216,7 @@ const VnLang = {
         title: "DANH MỤC KHÓA HỌC",
       },
     },
+    // ROUTE
     route: {
       intro: {
         title:
@@ -212,6 +233,7 @@ const VnLang = {
         title_2: "Khóa học Full-time",
       },
     },
+    // DETAIL
     detail: {
       intro: {
         content:
@@ -250,21 +272,36 @@ const VnLang = {
           fri: "T6",
           sat: "T7",
           sun: "CN",
-          fee: "Học phí"
+          fee: "Học phí",
         },
         form: {
           title: "ĐĂNG KÝ KHÓA HỌC",
-          subTitle: "Chọn địa chỉ bạn muốn học",
+          subTitle_1: "Chọn địa chỉ bạn muốn học",
+          subTitle_2: "Chọn lịch học",
           address_1: "102 Nguyễn Đình Chính, Phường 15, Quận Phú Nhuận, TP.HCM",
           address_2: "12B Nguyễn Hữu Cảnh, Phường 19, Quận Bình Thạnh, TP.HCM",
+        },
+        modal: {
+          title: "Đăng ký thành công",
+          contentTitle_1: "Học viên",
+          contentTitle_2: "Thông tin khóa học",
+          courseName: "Tên khóa học",
+          address: "Nơi học",
+          schedule: "Lịch học",
+          openingDate: "Ngày khai giảng",
+          note: "Cảm ơn bạn đã đăng ký khóa học tại Terra Nova, hẹn gặp bạn trong ngày khai giảng!!"
         },
       },
     },
   },
+
+  // ==================== ABOUT US ====================
   aboutUs: {
+    // BANNER
     banner: {
       title: "Giới thiệu về",
     },
+    // INTRO
     intro: {
       intro_1:
         "Mong muốn tạo ra một nền tảng để khách hàng có thể trải nghiệm và sử dụng các dịch vụ trực tuyến chất lượng, Terra Nova ra đời nhằm đáp ứng những nhu cầu đó.",
@@ -275,21 +312,27 @@ const VnLang = {
       course: "Khóa học",
       service: "Dịch vụ đặt vé xem phim trực tuyến",
     },
+    // VISION
     vision: {
       title: "Tầm nhìn của chúng tôi",
       content:
         "Mang đến cho bạn một nền tảng phổ biến, tiện dụng và thân thiện",
     },
+    // MISSION
     mission: {
       title: "Nhiệm vụ của chúng tôi",
       content:
         "Chúng tôi cung cấp nền tảng nơi bạn có thể sử dụng các dịch vụ như mua sản phẩm, khóa học hoặc đặt vé xem phim trực tuyến, v.v",
     },
   },
+
+  // ==================== USER ====================
   user: {
+    // SIDEBAR
     sidebar: {
       overview: "Tổng quan",
     },
+    // OVERVIEW
     overview: {
       hello: "Xin chào",
       overviewTitle: "Tổng quan",
@@ -298,6 +341,8 @@ const VnLang = {
       orderTitle: "Danh sách đơn hàng",
     },
   },
+
+  // ==================== TIME ====================
   time: {
     day: "ngày",
     month: "tháng",
@@ -312,21 +357,29 @@ const VnLang = {
     Months: "Tháng",
     Years: "Năm",
   },
+
+  // ==================== STATUS ====================
   status: {
     new: "Mới 100%",
     paid: "Đã thanh toán",
     stocking: "Còn hàng",
     outOfStock: "Hết hàng",
   },
+
+  // ==================== PAYMENT TYPE ====================
   paymentType: {
     cash: "Tiền mặt",
     zalo: "Ứng dụng Zalo - pay",
     vib: "Ngân hàng quốc tế VIB",
   },
+
+  // ==================== SHIPMENT TYPE ====================
   shipmentType: {
     noShipment: "Nhận tại cửa hàng",
     delivery: "Giao hàng tận nơi",
   },
+
+  // ==================== BUTTON ====================
   button: {
     submit: "Gửi",
     seeMore: "Xem thêm",
@@ -337,16 +390,23 @@ const VnLang = {
     addProduct: "Tạo sản phẩm",
     update: "Cập nhật",
     payment: "Thanh toán",
+    returnCoursePage: "Trở lại trang khóa học",
   },
+
+  // ==================== NO DATA ====================
   noData: {
     data: "Không tìm thấy dữ liệu",
     product: "Chưa có sản phẩm",
     order: "Chưa có đơn hàng",
   },
+
+  // ==================== CARTS ====================
   carts: {
     slots: "sl",
     total: "Tổng cộng",
   },
+
+  // ==================== TOAST MESSAGES ====================
   toastMessages: {
     success: {
       addToCart: "Thêm vào giỏ hàng thành công",
@@ -366,6 +426,8 @@ const VnLang = {
       onlyNumber: "Chỉ có thể nhập số",
     },
   },
+
+  // ==================== VALIDATE MESSAGES ====================
   validateMessages: {
     required: "Vui lòng không bỏ trống",
     date: "Vui lòng chọn ngày",
@@ -374,7 +436,10 @@ const VnLang = {
     password: "Mật khẩu không đúng",
     gender: "Vui lòng chọn giới tính",
     whiteSpace: "Không được có khoảng trắng giữa các ký tự",
+    choose: "Vui lòng chọn trường này",
   },
+
+  // ==================== FORM ====================
   form: {
     account: "Tài khoản",
     password: "Mật khẩu",
@@ -406,6 +471,8 @@ const VnLang = {
     noOption: "Không có dữ liệu",
     defaultOption: "Chọn...",
   },
+
+  // ==================== TABLE HEADER ====================
   tableHeader: {
     number: "STT",
     image: "Hình ảnh",
@@ -425,14 +492,20 @@ const VnLang = {
     openingDate: "Ngày khai giảng",
     createdAt: "Ngày tạo",
   },
+
+  // ==================== PAGINATION ====================
   pagination: {
     showing: "Hiển thị",
     of: "của",
     results: "kết quả",
   },
+
+  // ==================== RATE ====================
   rate: {
     voted: "bình chọn",
   },
+
+  // ==================== TRANSLATE ====================
   translate: {
     title: "Ngôn ngữ",
     VN: "Tiếng Việt",

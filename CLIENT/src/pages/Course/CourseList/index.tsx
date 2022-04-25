@@ -49,6 +49,8 @@ const CourseList: React.FunctionComponent<
       return coursesByCategory.categoryName.nameENG;
     } else if (lang === ELangs.VN) {
       return coursesByCategory.categoryName.nameVN;
+    } else if (lang === ELangs.CH) {
+      return coursesByCategory.categoryName.nameCH;
     }
   };
 

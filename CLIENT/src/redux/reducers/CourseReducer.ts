@@ -8,6 +8,7 @@ interface IStateDefault {
     categoryName: {
       nameVN: string;
       nameENG: string;
+      nameCH: string;
     };
     course: {
       courseList: ICourse[];
@@ -25,6 +26,7 @@ const stateDefault: IStateDefault = {
     categoryName: {
       nameVN: "",
       nameENG: "",
+      nameCH: "",
     },
     course: {
       courseList: [],

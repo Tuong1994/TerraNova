@@ -27,7 +27,7 @@ courseOrderRouter.post(
 
 courseOrderRouter.put("/updateCourseOrder", authenticate, updateCourseOrder);
 
-courseOrderRouter.delete("/removeCourseOrder", authenticate, removeCourseOrder);
+courseOrderRouter.delete("/removeCourseOrder", removeCourseOrder);
 
 module.exports = {
   courseOrderRouter,

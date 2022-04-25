@@ -28,7 +28,9 @@ const signIn = async (req, res) => {
           avatar: userLogin.avatar,
           role: userLogin.role,
         };
-        const accessToken = jwt.sign(payLoad, secretKey);
+        const accessToken = jwt.sign(payLoad, secretKey, {
+          expiresIn: 30 * 24 * 60 * 60
+        });
         res.status(200).send({
           message: "Login success",
           userInfo: payLoad,

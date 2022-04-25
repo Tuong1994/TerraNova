@@ -71,7 +71,7 @@ const getUserDetail = async (req, res) => {
           model: CourseOrder,
           as: "courses",
           order: [["createdAt", "DESC"]],
-          attributes: ["courseId", "createdAt", "updatedAt"],
+          attributes: ["courseId", "course", "createdAt", "updatedAt"],
         }
       ]
     });

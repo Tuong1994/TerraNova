@@ -24,11 +24,14 @@ const axiosClient = {
     }
   },
   
-  post: (apiPath: string, data: object = {}) => {
+  post: (apiPath: string, data: object = {}, token?: string) => {
     const call = axios({
       url: apiPath,
       method: EMethod.Post,
       data: data,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     });
     return call;
   },

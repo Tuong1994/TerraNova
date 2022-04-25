@@ -52,7 +52,7 @@ const getCourseByCategory = async (req, res) => {
       where: {
         id: categoryId,
       },
-      attributes: ["nameVN", "nameENG"],
+      attributes: ["nameVN", "nameENG", "nameCH"],
     });
     if (page) {
       const total = result.length;
@@ -90,7 +90,6 @@ const getCourseDetail = async (req, res) => {
         {
           model: Lesson,
           as: "lessons",
-          order: [["updatedAt", "DESC"]],
         },
       ],
     });

@@ -1,4 +1,5 @@
 const EngLang = {
+  // ==================== HEADER ====================
   headerMenu: {
     home: "Home",
     product: "Product",
@@ -28,7 +29,21 @@ const EngLang = {
     accountSetting: "Account Setting",
     logOut: "Log out",
   },
+
+   // ==================== FOOTER ====================
+   footer: {
+    partners: "Partners",
+    socials: "Socials",
+    company: "TERRA NOVA TRADING COMPANY",
+    address_1:
+      "Branches 1: 102 Nguyen Dinh Chinh Str, Ward 15, District Phu Nhuan, HCMC",
+    address_2:
+      "Branches 2: 12B Nguyen Huu Canh Str, Ward 19, District Binh Thanh, HCMC",
+  },
+
+  // ==================== HOME ====================
   home: {
+    // CAROUSEL
     carousel: {
       slideTitle_1: "PC ACCESSORIES",
       slideContent_1: "Build your own PC",
@@ -37,6 +52,7 @@ const EngLang = {
       slideTitle_3: "MOVIES",
       slideContent_3: "Enjoys with your family",
     },
+    // CONSULTATION
     consultation: {
       consultation: "Consultation",
       signUpConsultation: "Sign up for Consulation",
@@ -48,6 +64,7 @@ const EngLang = {
         note: "Thank you for your interest, we have received your information, we will contact you soon. In the meantime, please visit our website for more information.",
       },
     },
+    // CATEGORY
     categories: {
       title_1: "Products",
       title_2: "Courses",
@@ -59,6 +76,7 @@ const EngLang = {
       content_3:
         "Terra Nova will give you attractive movies from many countries.",
     },
+    // BANNER
     banner: {
       title_1: "PC ACCESSORIES",
       title_2: "COURSES",
@@ -79,6 +97,7 @@ const EngLang = {
       mobile: "Mobile Programming",
       fullstack: "Fullstack Programming",
     },
+    // PARTNERS
     partners: {
       title: "Our partners",
       asusContent: `ASUSTek Computer Inc. Chinese: 華碩電腦股份有限公司; pinyin: Huáshuò Diànnǎo Gǔfèn Yǒuxiàn Gōngsī; stylised as ASUSTeK or ASUS) is a Taiwanese multinational computer and phone hardware and electronics company headquartered in Beitou District, Taipei, Taiwan. Its products include desktop computers, laptops, netbooks, mobile phones, networking equipment, monitors, wi-fi routers, projectors, motherboards, graphics cards, optical storage, multimedia products, peripherals, wearables, servers workstations, and tablet PCs. The company is also an original equipment manufacturer (OEM).`,
@@ -92,15 +111,20 @@ const EngLang = {
       lgContent: `LG Corporation (or LG Group) (Korean: 엘지), formerly Lucky-Goldstar from 1983 to 1995 (Korean: Leokki Geumseong; Korean: 럭키금성; Hanja: 樂喜金星), is a South Korean multinational conglomerate corporation founded by Koo In-hwoi and managed by successive generations of his family. It is the fourth-largest chaebol in South Korea. Its headquarters are in the LG Twin Towers building in Yeouido-dong, Yeongdeungpo District, Seoul. LG makes electronics, chemicals, and telecommunications products and operates subsidiaries such as LG Electronics, Zenith, LG Display, LG Uplus, LG Innotek, LG Chem, and LG Energy Solution in over 80 countries.`,
       samsungContent: `The Samsung Group (or simply Samsung) (Korean: 삼성) is a South Korean multinational manufacturing conglomerate headquartered in Samsung Town, Seoul, South Korea. It comprises numerous affiliated businesses, most of them united under the Samsung brand, and is the largest South Korean chaebol (business conglomerate). As of 2020, Samsung has the 8th highest global brand value. Samsung was founded by Lee Byung-chul in 1938 as a trading company. Over the next three decades, the group diversified into areas including food processing, textiles, insurance, securities, and retail. Samsung entered the electronics industry in the late 1960s and the construction and shipbuilding industries in the mid-1970s; these areas would drive its subsequent growth. Following Lee's death in 1987, Samsung was separated into five business groups: Samsung Group, Shinsegae Group, CJ Group and Hansol Group, and Joongang Group.`,
     },
+    // ACHIEVEMENT
     achievement: {
       branches: "Branches",
       customers: "Customers",
       partners: "Partners",
     },
   },
+
+  // ==================== PRODUCT LIST ====================
   productList: {
     title: "PRODUCT",
   },
+
+  // ==================== PRODUCT DETAIL ====================
   productDetail: {
     generalInfo: "General information",
     producer: "Producer",
@@ -111,15 +135,8 @@ const EngLang = {
     comments: "Comments",
     related: "Related products",
   },
-  footer: {
-    partners: "Partners",
-    socials: "Socials",
-    company: "TERRA NOVA TRADING COMPANY",
-    address_1:
-      "Branches 1: 102 Nguyen Dinh Chinh Str, Ward 15, District Phu Nhuan, HCMC",
-    address_2:
-      "Branches 2: 12B Nguyen Huu Canh Str, Ward 19, District Binh Thanh, HCMC",
-  },
+
+  // ==================== PRODUCT CARTS ====================
   productCarts: {
     title: "Cart",
     summaryTitle: "General infomation",
@@ -145,8 +162,11 @@ const EngLang = {
       note: "Note: Please provide accurate information to avoid problems and make distribution more convenient",
     },
   },
+
+  // ==================== COURSE ====================
   course: {
     title: "Course",
+    // HOME
     home: {
       banner: {
         title: "Welcome to Terra Nova's Programming Course",
@@ -199,6 +219,7 @@ const EngLang = {
         title: "COURSE'S CATEGORIES",
       },
     },
+    // ROUTE
     route: {
       intro: {
         title:
@@ -215,6 +236,7 @@ const EngLang = {
         title_2: "Full-time course",
       },
     },
+    // DETAIL
     detail: {
       intro: {
         content:
@@ -258,19 +280,34 @@ const EngLang = {
         },
         form: {
           title: "COURSE REGISTER",
-          subTitle: "Choose where you want to learn",
+          subTitle_1: "Choose where you want to learn",
+          subTitle_2: "Choose a class schedule",
           address_1:
             "102 Nguyen Dinh Chinh Str, Ward 15, District Phu Nhuan, HCMC",
           address_2:
             "12B Nguyen Huu Canh Str, Ward 19, District Binh Thanh, HCMC",
         },
+        modal: {
+          title: "Register success",
+          contentTitle_1: "Student",
+          contentTitle_2: "Course information",
+          courseName: "Name",
+          address: "Place of study",
+          schedule: "Schedule",
+          openingDate: "Opening day",
+          note: "Thank you for signing up for the course at Terra Nova, see you on opening day!!",
+        },
       },
     },
   },
+
+  // ==================== ABOUT US ====================
   aboutUs: {
+    // BANNER
     banner: {
       title: "About",
     },
+    // INTRO
     intro: {
       intro_1:
         "Desire to create a platform where customers can experience and use quality online services, Terra Nova was born to meet those needs.",
@@ -281,21 +318,27 @@ const EngLang = {
       course: "Courses",
       service: "Online booking movie ticket service",
     },
+    // VISION
     vision: {
       title: "Our vision",
       content:
         "Bring to you the most popular, convenience and friendly platform.",
     },
+    // MISSION
     mission: {
       title: "Our mission",
       content:
         "We provide you a platform where you can use all kind services like purchase products, courses or online booking movie ticket, etc.",
     },
   },
+
+  // ==================== USER ====================
   user: {
+    // SIDEBAR
     sidebar: {
       overview: "Overview",
     },
+    // OVERVIEW
     overview: {
       hello: "Hello",
       overviewTitle: "Overview",
@@ -304,6 +347,8 @@ const EngLang = {
       orderTitle: "Orders",
     },
   },
+
+  // ==================== TIME ====================
   time: {
     day: "day",
     month: "month",
@@ -318,21 +363,29 @@ const EngLang = {
     Months: "Months",
     Years: "Years",
   },
+
+  // ==================== STATUS ====================
   status: {
     new: "New",
     paid: "Paid",
     stocking: "Stocking",
     outOfStock: "Out of stock",
   },
+
+  // ==================== PAYMENT TYPE ====================
   paymentType: {
     cash: "Cash",
     zalo: "Zalo - pay",
     vib: "VIB - Bank",
   },
+
+  // ==================== SHIPMENT TYPE ====================
   shipmentType: {
     noShipment: "Received in store",
     delivery: "Delivery",
   },
+
+  // ==================== BUTTON ====================
   button: {
     submit: "Submit",
     seeMore: "See more",
@@ -343,16 +396,23 @@ const EngLang = {
     addProduct: "Add product",
     update: "Update",
     payment: "Payment",
+    returnCoursePage: "Return to course page",
   },
+
+  // ==================== NO DATA ====================
   noData: {
     data: "No data founded",
     product: "No product yet",
     order: "No order yet",
   },
+
+  // ==================== CARTS ====================
   carts: {
     slots: "slots",
     total: "Total",
   },
+
+  // ==================== TOAST MESSAGES ====================
   toastMessages: {
     success: {
       addToCart: "Add to carts successed",
@@ -372,6 +432,8 @@ const EngLang = {
       onlyNumber: "Can type only number",
     },
   },
+
+  // ==================== VALIDATE MESSAGES ====================
   validateMessages: {
     required: "This field is required",
     date: "Please choose a date",
@@ -380,7 +442,10 @@ const EngLang = {
     password: "Password is incorrect",
     gender: "Please choose your gender",
     whiteSpace: "should not have whitespace character",
+    choose: "Please choose this field",
   },
+
+  // ==================== FORM ====================
   form: {
     account: "Account",
     password: "Password",
@@ -412,6 +477,8 @@ const EngLang = {
     noOption: "No option",
     defaultOption: "Select...",
   },
+
+  // ==================== TABLE HEADER ====================
   tableHeader: {
     number: "No.",
     image: "Image",
@@ -431,14 +498,20 @@ const EngLang = {
     openingDate: "Opening date",
     createdAt: "Created at",
   },
+
+  // ==================== PAGINATION ====================
   pagination: {
     showing: "Showing",
     of: "of",
     results: "results",
   },
+
+  // ==================== RATE ====================
   rate: {
     voted: "voted",
   },
+
+  // ==================== TRANSLATE ====================
   translate: {
     title: "Languages",
     VN: "Vietnamese",

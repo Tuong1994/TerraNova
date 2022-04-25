@@ -87,19 +87,19 @@ const Partners: React.FunctionComponent = (props) => {
       <Slider {...settings}>
         <div className="slider__item">
           {cardData.slice(0, 3).map((card) => {
-            return <PartnersCard card={card} />;
+            return <PartnersCard key={card.id} card={card} />;
           })}
         </div>
 
         <div className="slider__item">
           {cardData.slice(3, 6).map((card) => {
-            return <PartnersCard card={card} />;
+            return <PartnersCard key={card.id} card={card} />;
           })}
         </div>
 
         <div className="slider__item">
           {cardData.slice(6, 9).map((card) => {
-            return <PartnersCard card={card} />;
+            return <PartnersCard key={card.id} card={card} />;
           })}
         </div>
       </Slider>

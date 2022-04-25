@@ -2,7 +2,10 @@ const { key } = require("../../setting/setting");
 const jwt = require("jsonwebtoken");
 
 const authenticate = (req, res, next) => {
-  const token = req.header("accessToken");
+  // const token = req.header("accessToken");
+  const headers = req.header("Authorization");
+  const token = headers.slice(7, headers.length)
+
   try {
     const secretKey = key;
     const decode = jwt.verify(token, secretKey);

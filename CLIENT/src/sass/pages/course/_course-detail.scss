@@ -289,6 +289,7 @@
             .button--round,
             .button--disabled {
               padding: $p-10;
+              font-size: $default;
             }
           }
         }
@@ -302,6 +303,49 @@
     }
     @include respond(laptop) {
       padding: $p-10 * 5 $p-10 * 2;
+    }
+  }
+  .course-detail__modal {
+    .modal__content {
+      .content__card {
+        margin: $m-10 0;
+        padding: $p-10 * 2;
+        color: $tPrimary;
+        .card__title {
+          font-weight: $semiBold;
+          margin-bottom: $m-10;
+          padding: $p-10 0;
+          border-bottom: 1px solid $borderGrey;
+        }
+        .card__list {
+          .list__content {
+            padding: $p-10 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            p {
+              &:nth-child(2) {
+                font-weight: $semiBold;
+              }
+            }
+          }
+        }
+      }
+    }
+    .modal__button {
+      display: flex;
+      align-items: center;
+      p {
+        width: $w-100 - 30;
+        @include respond(phone) {
+          width: $w-100;
+          margin-bottom: $m-10;
+          text-align: center;
+        }
+      }
+      @include respond(phone) {
+        flex-direction: column;
+      }
     }
   }
 }

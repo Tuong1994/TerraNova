@@ -1,4 +1,5 @@
 const ChLang = {
+  // ==================== HEADER ====================
   headerMenu: {
     home: "主页",
     product: "产品",
@@ -28,7 +29,19 @@ const ChLang = {
     accountSetting: "帐户信息",
     logOut: "登出",
   },
+
+  // ==================== FOOTER ====================
+  footer: {
+    partners: "伙伴",
+    socials: "沟通",
+    company: "TERRA NOVA 贸易公司",
+    address_1: "一号分店：一零二号， 阮定清路， 十五坊， 富暖郡， 吴志明市",
+    address_2: "二号分店：十二B 阮友灿路， 十九坊，平盛郡, 吴志明市",
+  },
+
+  // ==================== HOME ====================
   home: {
+    // CAROUSEL
     carousel: {
       slideTitle_1: "电脑配件",
       slideContent_1: "构建你自己的电脑",
@@ -37,6 +50,7 @@ const ChLang = {
       slideTitle_3: "电影",
       slideContent_3: "享受与家人的时刻",
     },
+    // CONSULTATION
     consultation: {
       consultation: "建议",
       signUpConsultation: "报名咨询",
@@ -48,6 +62,7 @@ const ChLang = {
         note: "感谢您的关注，我们已收到您的信息，我们会尽快与您联系。同时，请继续访问我们的网站以获取更多信息。",
       },
     },
+    // CATEGORY
     categories: {
       title_1: "产品",
       title_2: "課程",
@@ -58,6 +73,7 @@ const ChLang = {
         "有许多有吸引力的课程，您可以选择适合您的课程。 Terra Nova 会让您满意。",
       content_3: "Terra Nova 将为您带来来自多个国家的精彩电影",
     },
+    // BANNER
     banner: {
       title_1: "电脑配件",
       title_2: "課程",
@@ -78,6 +94,7 @@ const ChLang = {
       mobile: "移动编程",
       fullstack: "全栈编程",
     },
+    // PARTNERS
     partners: {
       title: "我们的合作伙伴",
       asusContent: `华硕电脑公司中文：华硕电脑股份有限公司；拼音：Huáshuò Diànnǎo Gǔfèn Yǒuxiàn Gōngsī；简称ASUSTeK或ASUS）是一家台湾跨国电脑电子及硬件公司，总部位于台湾台北市北投区。其产品包括台式电脑、笔记本电脑、上网本、手机、网络设备、显示器、wi-fi路由器、投影仪、主板、显卡、套光存储、多媒体产品、外围设备、可穿戴设备、服务器工作站和平板电脑。该公司也是原始设备制造商（OEM）。`,
@@ -90,15 +107,20 @@ const ChLang = {
       lgContent: `LG Corporation（或 LG 集团）（韩语：엘지），前身是 Lucky-Goldstar，1983 年至 1995 年（韩语：Leokki Geumseong；韩语：럭키 금성；汉字：乐喜金星），是一家集团公司。由 Koo 创立的韩国跨国公司In-hwoi 并由其家族的几代人管理。它是韩国第四大财阀。其总部位于首尔永登浦区汝矣岛洞的 LG 双子塔大楼。 LG 生产电子、化学品和电信产品，并在 80 多个国家/地区经营子公司，例如 LG Electronics、Zenith、LG Display、LG Uplus、LG Innotek、LG Chem 和 LG Energy Solution。`,
       samsungContent: `三星公司（或简称三星）（韩语：삼성）是一家韩国跨国制造公司，总部位于韩国首尔三星镇。它由许多附属企业组成，其中大部分以三星品牌注册，是韩国最大的财阀（企业集团）。截至2020年，三星拥有全球第8大品牌价值。三星由李秉哲于1938年创立，是一家贸易公司。在接下来的 30 年里，该集团涉足食品加工、纺织、保险、证券和零售等行业。三星在 1960 年代后期进入电子行业，在 1970 年代中期进入建筑和造船行业；这些领域将推动其进一步发展。 1987年李光耀去世后，三星分为五个业务集团：三星公司、新世界公司、CJ集团和韩松公司以及中央公司。`,
     },
+    // ACHIEVEMENT
     achievement: {
       branches: "分支",
       customers: "顾客",
       partners: "伙伴",
     },
   },
+
+  // ==================== PRODUCT LIST ====================
   productList: {
     title: "产品",
   },
+
+  // ==================== PRODUCT DETAIL ====================
   productDetail: {
     generalInfo: "一般信息",
     producer: "制片人",
@@ -109,13 +131,8 @@ const ChLang = {
     comments: "评论",
     related: "相关产品",
   },
-  footer: {
-    partners: "伙伴",
-    socials: "沟通",
-    company: "TERRA NOVA 贸易公司",
-    address_1: "一号分店：一零二号， 阮定清路， 十五坊， 富暖郡， 吴志明市",
-    address_2: "二号分店：十二B 阮友灿路， 十九坊，平盛郡, 吴志明市",
-  },
+
+  // ==================== PRODUCT CARTS ====================
   productCarts: {
     title: "购物车",
     summaryTitle: "一般信息",
@@ -141,8 +158,11 @@ const ChLang = {
       note: "注意：请提供准确的信息，以避免出现问题，使运输更方便",
     },
   },
+
+  // ==================== COURSE ====================
   course: {
     title: "課程",
+    // HOME
     home: {
       banner: {
         title: "欢迎来到 Tera Nova 的编程课程",
@@ -192,6 +212,7 @@ const ChLang = {
         title: "课程清单",
       },
     },
+    // ROUTE
     route: {
       intro: {
         title: "改变你的职业生涯 - 在 Terra Nova 学习按照专业路线进行编程",
@@ -207,6 +228,7 @@ const ChLang = {
         title_2: "全日制课程",
       },
     },
+    // DETAIL
     detail: {
       intro: {
         content:
@@ -246,17 +268,32 @@ const ChLang = {
         },
         form: {
           title: "注册课程",
-          subTitle: "选择上学地址",
+          subTitle_1: "选择上学地址",
+          subTitle_2: "选择课程表",
           address_1: "一零二号， 阮定清路， 十五坊， 富暖郡， 吴志明市",
           address_2: "十二B 阮友灿路， 十九坊，平盛郡, 吴志明市",
+        },
+        modal: {
+          title: "登记成功",
+          contentTitle_1: "学生",
+          contentTitle_2: "课程信息",
+          courseName: "课程名称",
+          address: "学习地址",
+          schedule: "时间表",
+          openingDate: "开幕当天",
+          note: "感谢您报名参加 Terra Nova 的课程, 开学日见！！"
         },
       },
     },
   },
+
+  // ==================== ABOUT US ====================
   aboutUs: {
+    // BANNER
     banner: {
       title: "介绍一下",
     },
+    // INTRO
     intro: {
       intro_1:
         "为了为客户创建一个体验和使用优质在线服务的平台，Terra Nova 的诞生就是为了满足这些需求。",
@@ -267,20 +304,26 @@ const ChLang = {
       course: "课程",
       service: "网上电影订票服务",
     },
+    // VISION
     vision: {
       title: "我们的愿景",
       content: "为您带来一个流行、方便和用户友好的平台",
     },
+    // MISSION
     mission: {
       title: "我们的使命",
       content:
         "我们提供了一个平台，您可以在其中使用购买产品、课程或在线预订电影票等服务。",
     },
   },
+
+  // ==================== USER ====================
   user: {
+    // SIDEBAR
     sidebar: {
       overview: "概述",
     },
+    // OVERVIEW
     overview: {
       hello: "您好",
       overviewTitle: "概述",
@@ -289,6 +332,8 @@ const ChLang = {
       orderTitle: "订单",
     },
   },
+
+  // ==================== TIME ====================
   time: {
     day: "日",
     month: "月",
@@ -303,21 +348,29 @@ const ChLang = {
     Months: "月",
     Years: "年",
   },
+
+  // ==================== STATUS ====================
   status: {
     new: "100% 全新",
     paid: "已经付款",
     stocking: "有货",
     outOfStock: "缺货",
   },
+
+  // ==================== PAYMENT TYPE ====================
   paymentType: {
     cash: "现金",
     zalo: "Zalo 应用程序 - 支付",
     vib: "VIB国际银行",
   },
+
+  // ==================== SHIPMENT TYPE ====================
   shipmentType: {
     noShipment: "在商店取货",
     delivery: "交货",
   },
+
+  // ==================== BUTTON ====================
   button: {
     submit: "寄",
     seeMore: "看更多",
@@ -328,16 +381,23 @@ const ChLang = {
     addProduct: "创建产品",
     update: "更新",
     payment: "付款",
+    returnCoursePage: "返回课程页面",
   },
+
+  // ==================== NO DATA ====================
   noData: {
     data: "没有找到数据",
     product: "还没有产品",
     order: "还没有订单",
   },
+
+  // ==================== CARTS ====================
   carts: {
     slots: "数量",
     total: "总共",
   },
+
+  // ==================== TOAST MESSAGES ====================
   toastMessages: {
     success: {
       addToCart: "成功加入购物车",
@@ -357,6 +417,8 @@ const ChLang = {
       onlyNumber: "只能输入数字",
     },
   },
+
+  // ==================== VALIDATE MESSAGES ====================
   validateMessages: {
     required: "请不要留空",
     date: "请选择日期",
@@ -365,7 +427,10 @@ const ChLang = {
     password: "密码错误",
     gender: "请选择您的性别",
     whiteSpace: "字符之间不能有空格",
+    choose: "请选择此字段",
   },
+
+  // ==================== FORM ====================
   form: {
     account: "帐户",
     password: "密码",
@@ -397,6 +462,8 @@ const ChLang = {
     noOption: "没有资料",
     defaultOption: "选择。。。",
   },
+
+  // ==================== TABLE HEADER ====================
   tableHeader: {
     number: "数字顺序",
     image: "图片",
@@ -416,14 +483,20 @@ const ChLang = {
     openingDate: "开放日",
     createdAt: "创建日期",
   },
+
+  // ==================== PAGINATION ====================
   pagination: {
     showing: "显示",
     of: "的",
     results: "结果",
   },
+
+  // ==================== RATE ====================
   rate: {
     voted: "成票",
   },
+
+  // ==================== TRANSLATE ====================
   translate: {
     title: "语言",
     VN: "越文",

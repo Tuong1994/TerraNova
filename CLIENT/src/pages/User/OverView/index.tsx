@@ -1,11 +1,10 @@
 import React from "react";
-import * as Card from "../../../components/Card";
 import * as customHooks from "../../../hooks";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
-import utils from "../../../utils";
 import { IQueryList } from "../../../interfaces/query";
 import { getUserDetail } from "../../../redux/actionCreators/UserCreators";
+import utils from "../../../utils";
 import UserInfo from "./Info";
 import Order from "./Orders";
 
@@ -31,6 +30,8 @@ const OverView: React.FunctionComponent<OverViewProps> = (props) => {
     };
     dispatch(getUserDetail(query));
   };
+
+  console.log(user)
 
   return (
     <div className="overview">

@@ -13,6 +13,9 @@ module.exports = {
       nameVN: {
         type: Sequelize.STRING,
       },
+      nameCH: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

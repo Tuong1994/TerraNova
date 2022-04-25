@@ -1,5 +1,6 @@
 import { ICarts } from "../Carts";
 import { IOrder } from "./../Order/index";
+import { ICourseOrder } from "../CourseOrder";
 export interface IUser {
   id?: string;
   account?: string;
@@ -15,4 +16,5 @@ export interface IUser {
   role?: string;
   orders?: IOrder[];
   carts?: ICarts[];
+  courses?: ICourseOrder[];
 }

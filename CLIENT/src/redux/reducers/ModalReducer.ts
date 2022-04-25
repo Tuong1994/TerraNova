@@ -6,6 +6,7 @@ interface IModalStateDefault {
   isShipment: boolean;
   isPayment: boolean;
   isOrder: boolean;
+  isRegister: boolean;
 }
 
 const stateDefault: IModalStateDefault = {
@@ -13,6 +14,7 @@ const stateDefault: IModalStateDefault = {
   isShipment: false,
   isPayment: false,
   isOrder: false,
+  isRegister: false,
 };
 
 export const ModalReducer = (state = stateDefault, action: ModalAction) => {
@@ -41,6 +43,12 @@ export const ModalReducer = (state = stateDefault, action: ModalAction) => {
       state = newState;
       return { ...state };
     }
+    case EModalActionTypes.OPEN_REGISTER_MODAL: {
+      let newState = { ...state };
+      newState.isRegister = true;
+      state = newState;
+      return { ...state };
+    }
     case EModalActionTypes.CLOSE_CONSULT_MODAL: {
       let newState = { ...state };
       newState.isConsult = false;
@@ -65,7 +73,12 @@ export const ModalReducer = (state = stateDefault, action: ModalAction) => {
       state = newState;
       return { ...state };
     }
-
+    case EModalActionTypes.CLOSE_REGISTER_MODAL: {
+      let newState = { ...state };
+      newState.isRegister = false;
+      state = newState;
+      return { ...state };
+    }
     default:
       return { ...state };
   }

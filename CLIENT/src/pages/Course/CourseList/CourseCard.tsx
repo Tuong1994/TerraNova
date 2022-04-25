@@ -25,6 +25,8 @@ const CourseCard: React.FunctionComponent<CourseCardProps> = (props) => {
       ) : (
         <p className="content__name">{course.nameVN}</p>
       );
+    } else if (lang === ELangs.CH) {
+      return <p className="content__name">{course.nameCH}</p>
     }
   };
 

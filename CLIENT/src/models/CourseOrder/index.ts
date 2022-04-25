@@ -6,6 +6,14 @@ export interface ICourseOrder {
         email?: string;
         phone?: string;
         note?: string;
+        dateType?: string | number;
         branch?: string | number;
+    },
+    course?: {
+        nameENG?: string;
+        nameVN?: string;
+        nameCH?: string;
+        trainingTime?: number | string;
+        price?: number;
     }
 }

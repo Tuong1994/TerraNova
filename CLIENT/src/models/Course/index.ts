@@ -2,6 +2,7 @@ export interface ICourseCategory {
   id?: string;
   nameVN?: string;
   nameENG?: string;
+  nameCH?: string;
   courses?: ICourse[];
   createdAt?: Date | string;
   updatedAt?: Date | string;

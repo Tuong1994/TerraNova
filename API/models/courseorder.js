@@ -19,8 +19,9 @@ module.exports = (sequelize, DataTypes) => {
   }
   CourseOrder.init(
     {
-      courseId: DataTypes.STRING,
+      course: DataTypes.JSON,
       userId: DataTypes.STRING,
+      courseId: DataTypes.STRING,
       register: DataTypes.JSON,
     },
     {

@@ -8,10 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../../redux/store";
 import { ICourse } from "../../../../models/Course";
 import { phoneRegex } from "../../../../configs/regex";
+import { createCourseOrder } from "../../../../redux/actionCreators/CourseOrderCreators";
 import Button from "../../../../components/Button";
 import ButtonLoading from "../../../../components/Loading/ButtonLoading";
-import actions from "../../../../configs/actions";
-import { createCourseOrder } from "../../../../redux/actionCreators/CourseOrderCreators";
 
 interface RegisterFormProps {
   langs: ILangs;
@@ -29,34 +28,49 @@ const RegisterForm: React.FunctionComponent<RegisterFormProps> = (props) => {
   const dispatch = useDispatch();
 
   const initialValues = {
-    courseId: course?.id,
-    userId: user?.id,
-    register: {
-      name: "",
-      email: "",
-      phone: "",
-      note: "",
-      branch: 0,
-    },
+    name: `${user?.firstName} ${user?.lastName}`,
+    email: user?.email,
+    phone: user?.phone,
+    note: "",
+    dateType: "",
+    branch: "",
   };
 
   const validationSchema = yup.object().shape({
-    register: yup.object({
-      name: yup.string().required(langs?.validateMessages.required),
-      email: yup
-        .string()
-        .email(langs?.validateMessages.email)
-        .required(langs?.validateMessages.required),
-      phone: yup
-        .string()
-        .matches(phoneRegex, langs?.validateMessages.phone)
-        .required(langs?.validateMessages.required),
-      branch: yup.string().required(langs?.validateMessages.required),
-    }),
+    name: yup.string().required(langs?.validateMessages.required),
+    email: yup
+      .string()
+      .email(langs?.validateMessages.email)
+      .required(langs?.validateMessages.required),
+    phone: yup
+      .string()
+      .matches(phoneRegex, langs?.validateMessages.phone)
+      .required(langs?.validateMessages.required),
+    dateType: yup.string().required(langs?.validateMessages.choose),
+    branch: yup.string().required(langs?.validateMessages.choose),
   });
 
   const handleSubmit = (value: any, action: any) => {
-    dispatch(createCourseOrder(value));
+    const formData = {
+      courseId: course?.id,
+      userId: user?.id,
+      register: {
+        name: value.name,
+        email: value.email,
+        phone: value.phone,
+        note: value.note,
+        dateType: value.dateType,
+        branch: value.branch,
+      },
+      course: {
+        nameENG: course.nameENG,
+        nameVN: course.nameVN,
+        nameCH: course.nameCH,
+        trainingTime: course.trainingTime,
+        price: course.price
+      }
+    };
+    dispatch(createCourseOrder(formData));
     setTimeout(() => {
       action.resetForm({
         value: {
@@ -86,47 +100,81 @@ const RegisterForm: React.FunctionComponent<RegisterFormProps> = (props) => {
 
               <Form>
                 <Field
-                  name="register.name"
+                  name="name"
                   placeholder=" "
                   label={langs?.form.name}
                   icon={<i className="fas fa-user"></i>}
                   component={FormControl.Input}
                 />
                 <Field
-                  name="register.email"
+                  name="email"
                   placeholder=" "
                   label={langs?.form.email}
                   icon={<i className="fas fa-envelope"></i>}
                   component={FormControl.Input}
                 />
                 <Field
-                  name="register.phone"
+                  name="phone"
                   placeholder=" "
                   label={langs?.form.phone}
                   icon={<i className="fas fa-phone"></i>}
                   component={FormControl.Input}
                 />
                 <Field
-                  name="register.note"
+                  name="note"
                   placeholder=" "
                   label={langs?.form.note}
                   component={FormControl.TextArea}
                 />
 
                 <h3 className="wrapper__subtitle">
-                  {langs?.course.detail.register.form.subTitle}
+                  {langs?.course.detail.register.form.subTitle_1}
                 </h3>
 
                 <Field
-                  name="register.branch"
+                  name="branch"
                   value={1}
                   label={langs?.course.detail.register.form.address_1}
                   component={FormControl.Radio}
                 />
                 <Field
-                  name="register.branch"
+                  name="branch"
                   value={2}
                   label={langs?.course.detail.register.form.address_2}
+                  component={FormControl.Radio}
+                />
+
+                <h3 className="wrapper__subtitle">
+                  {langs?.course.detail.register.form.subTitle_2}
+                </h3>
+
+                <Field
+                  name="dateType"
+                  value={1}
+                  label={`
+                    ${langs?.course.detail.register.schedule.mon} +
+                    ${langs?.course.detail.register.schedule.wed} +
+                    ${langs?.course.detail.register.schedule.fri}
+                    `}
+                  component={FormControl.Radio}
+                />
+                <Field
+                  name="dateType"
+                  value={2}
+                  label={`
+                  ${langs?.course.detail.register.schedule.tue} +
+                  ${langs?.course.detail.register.schedule.thur} +
+                  ${langs?.course.detail.register.schedule.sat}
+                  `}
+                  component={FormControl.Radio}
+                />
+                <Field
+                  name="dateType"
+                  value={3}
+                  label={`
+                  ${langs?.course.detail.register.schedule.sat} +
+                  ${langs?.course.detail.register.schedule.sun}
+                  `}
                   component={FormControl.Radio}
                 />
 
