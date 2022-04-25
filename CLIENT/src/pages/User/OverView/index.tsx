@@ -7,6 +7,7 @@ import { getUserDetail } from "../../../redux/actionCreators/UserCreators";
 import utils from "../../../utils";
 import UserInfo from "./Info";
 import Order from "./Orders";
+import Course from "./Course";
 
 interface OverViewProps {}
 
@@ -38,6 +39,7 @@ const OverView: React.FunctionComponent<OverViewProps> = (props) => {
       <h3 className="overview__title">{langs?.user.overview.overviewTitle}</h3>
       <UserInfo langs={langs} user={user} />
       <Order user={user} langs={langs} />
+      <Course langs={langs} />
     </div>
   );
 };

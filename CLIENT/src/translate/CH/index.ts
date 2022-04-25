@@ -330,6 +330,7 @@ const ChLang = {
       accountInfo: "帐户信息",
       personalInfo: "个人信息",
       orderTitle: "订单",
+      courseTitle: "课程",
     },
   },
 
@@ -382,6 +383,7 @@ const ChLang = {
     update: "更新",
     payment: "付款",
     returnCoursePage: "返回课程页面",
+    registerCourse: "注册课程",
   },
 
   // ==================== NO DATA ====================
@@ -389,6 +391,7 @@ const ChLang = {
     data: "没有找到数据",
     product: "还没有产品",
     order: "还没有订单",
+    course: "您还没有注册任何课程",
   },
 
   // ==================== CARTS ====================
@@ -479,6 +482,8 @@ const ChLang = {
     paymentType: "付款",
     totalPay: "总钱",
     products: "产品",
+    courseId: "课程号码",
+    courseName: "课程名称",
     studyDates: "上学日",
     openingDate: "开放日",
     createdAt: "创建日期",

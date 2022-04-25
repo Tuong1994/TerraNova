@@ -345,6 +345,7 @@ const EngLang = {
       accountInfo: "Account infomation",
       personalInfo: "Personal information",
       orderTitle: "Orders",
+      courseTitle: "Courses",
     },
   },
 
@@ -397,6 +398,7 @@ const EngLang = {
     update: "Update",
     payment: "Payment",
     returnCoursePage: "Return to course page",
+    registerCourse: "Register course",
   },
 
   // ==================== NO DATA ====================
@@ -404,6 +406,7 @@ const EngLang = {
     data: "No data founded",
     product: "No product yet",
     order: "No order yet",
+    course: "You haven't registered for any course yet",
   },
 
   // ==================== CARTS ====================
@@ -494,6 +497,8 @@ const EngLang = {
     paymentType: "Payment",
     totalPay: "Total pay",
     products: "Total product",
+    courseId: "Course Id",
+    courseName: "Course name",
     studyDates: "Study dates",
     openingDate: "Opening date",
     createdAt: "Created at",

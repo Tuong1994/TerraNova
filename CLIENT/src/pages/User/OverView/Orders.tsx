@@ -30,7 +30,7 @@ const Order: React.FunctionComponent<OrderProps> = (props) => {
           isNodata={user?.orders || 0}
           noDataTitle={langs?.noData.order || ""}
           renderNoDataLink={() => (
-            <Link to="/" className="button--submit" type="button">
+            <Link to="/" className="button--submit">
               {langs?.button.buyProduct}
             </Link>
           )}

@@ -50,12 +50,24 @@
     }
   }
   .overview__order {
+    margin: $m-10 0;
     .order__title {
       font-size: $subtitle;
       font-weight: $semiBold;
       padding: $p-10 * 2 0;
     }
     .order__list {
+      padding: $p-10;
+    }
+  }
+  .overview__course {
+    margin: $m-10 0;
+    .course__title {
+      font-size: $subtitle;
+      font-weight: $semiBold;
+      padding: $p-10 * 2 0;
+    }
+    .course__list {
       padding: $p-10;
     }
   }

@@ -339,6 +339,7 @@ const VnLang = {
       accountInfo: "Thông tin tài khoản",
       personalInfo: "Thông tin cá nhân",
       orderTitle: "Danh sách đơn hàng",
+      courseTitle: "Danh sách khóa học",
     },
   },
 
@@ -391,6 +392,7 @@ const VnLang = {
     update: "Cập nhật",
     payment: "Thanh toán",
     returnCoursePage: "Trở lại trang khóa học",
+    registerCourse: "Đăng ký khóa học",
   },
 
   // ==================== NO DATA ====================
@@ -398,6 +400,7 @@ const VnLang = {
     data: "Không tìm thấy dữ liệu",
     product: "Chưa có sản phẩm",
     order: "Chưa có đơn hàng",
+    course: "Bạn chưa đăng ký khóa học nào",
   },
 
   // ==================== CARTS ====================
@@ -488,6 +491,8 @@ const VnLang = {
     paymentType: "Thanh toán",
     totalPay: "Tổng tiền",
     products: "Sản phẩm",
+    courseId: "Mã khóa học",
+    courseName: "Tên khóa học",
     studyDates: "Ngày học",
     openingDate: "Ngày khai giảng",
     createdAt: "Ngày tạo",
