@@ -337,16 +337,27 @@ const EngLang = {
     // SIDEBAR
     sidebar: {
       overview: "Overview",
+      update: "Update",
     },
     // OVERVIEW
     overview: {
       hello: "Hello",
-      overviewTitle: "Overview",
+      mainTitle: "Overview",
       accountInfo: "Account infomation",
       personalInfo: "Personal information",
       orderTitle: "Orders",
       courseTitle: "Courses",
     },
+    // UPDATE
+    update: {
+      mainTitle: "Update",
+      updatePassword: "Change password",
+    },
+    // INFO 
+    info: {
+      male: "Male",
+      female: "Female",
+    }
   },
 
   // ==================== TIME ====================
@@ -390,6 +401,7 @@ const EngLang = {
   button: {
     submit: "Submit",
     seeMore: "See more",
+    save: "Save",
     register: "Register course",
     addToCart: "Add to cart",
     buyProduct: "Buy product",
@@ -418,12 +430,14 @@ const EngLang = {
   // ==================== TOAST MESSAGES ====================
   toastMessages: {
     success: {
-      addToCart: "Add to carts successed",
-      updateCart: "Update successed",
-      removeCart: "Remove successed",
-      createOrder: "Payment successed",
-      signIn: "Sign in successed",
-      signUp: "Sign up successed",
+      addToCart: "Add to carts succecced",
+      updateCart: "Update succecced",
+      removeCart: "Remove succecced",
+      createOrder: "Payment succecced",
+      signIn: "Sign in succecced",
+      signUp: "Sign up succecced",
+      update: "Update succecced",
+      remove: "Remove succecced",
     },
     error: {
       addToCart: "Add to carts failed",
@@ -432,7 +446,10 @@ const EngLang = {
       createOrder: "Payment failed",
       signIn: "Account or password incorrect",
       signUp: "Sign up failed",
+      update: "Update failed",
+      remove: "Remove failed",
       onlyNumber: "Can type only number",
+      alreadyRegister: "You have already registered this course",
     },
   },
 
@@ -464,7 +481,9 @@ const EngLang = {
     male: "Male",
     female: "Female",
     comment: "Comment",
+    accountInfo: "Account information",
     personalInfo: "Personal information",
+    addressInfo: "Address information",
     signIn: "Sign in",
     signUp: "Sign up",
     dontHaveAcc: "Don't have account?",
@@ -501,6 +520,7 @@ const EngLang = {
     courseName: "Course name",
     studyDates: "Study dates",
     openingDate: "Opening date",
+    branch: "Branch",
     createdAt: "Created at",
   },
 

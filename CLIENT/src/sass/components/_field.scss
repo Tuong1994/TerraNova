@@ -33,6 +33,7 @@
     }
     .field__label {
       padding: $p-5;
+      font-size: $body-1;
       color: $tPrimary;
       background: $primary;
       user-select: none;
@@ -42,6 +43,9 @@
       left: 3%;
       transform: translateY(-50%);
       transition: all 0.3s ease;
+      @include respond(extraTablet) {
+        font-size: $body-1;
+      }
     }
     .field__label--select {
       font-size: $body-1;
@@ -53,7 +57,7 @@
       left: 3%;
       transform: translateY(-50%);
       @include respond(extraTablet) {
-        font-size: $body-2;
+        font-size: $body-1;
       }
     }
     .field__icon,

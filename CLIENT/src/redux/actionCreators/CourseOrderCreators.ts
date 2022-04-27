@@ -1,4 +1,7 @@
 import * as apiPath from "../../paths";
+import { getUserDetail } from "./UserCreators";
+import { getListQuery } from "./../../configs/setting";
+import { IQueryList } from "./../../interfaces/query";
 import { toast } from "react-toastify";
 import { Dispatch } from "redux";
 import { ICourseOrder } from "../../models/CourseOrder";
@@ -33,11 +36,30 @@ export const createCourseOrder = (
         dispatch(actions.closeButtonLoading);
         toast.success(success);
       } catch (error: any) {
-        if (error.response.status === 404) {
+        if (error.response.status === 401) {
           toast.error(err);
         }
         dispatch(actions.closeButtonLoading);
       }
     }, 1000);
+  };
+};
+
+export const removeCourseOrder = (
+  query: IQueryList,
+  success?: string,
+  err?: string
+) => {
+  return async (dispatch: any) => {
+    try {
+      await axiosClient.delete(
+        apiPath.courseOrderPaths.removeCourseOrder,
+        getListQuery(query as IQueryList)
+      );
+      dispatch(getUserDetail(query));
+      toast.success(success);
+    } catch (error) {
+      toast.error(err);
+    }
   };
 };

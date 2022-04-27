@@ -331,16 +331,27 @@ const VnLang = {
     // SIDEBAR
     sidebar: {
       overview: "Tổng quan",
+      update: "Cập nhật",
     },
     // OVERVIEW
     overview: {
       hello: "Xin chào",
-      overviewTitle: "Tổng quan",
+      mainTitle: "Tổng quan",
       accountInfo: "Thông tin tài khoản",
       personalInfo: "Thông tin cá nhân",
       orderTitle: "Danh sách đơn hàng",
       courseTitle: "Danh sách khóa học",
     },
+    // UPDATE
+    update: {
+      mainTitle: "Cập nhật",
+      updatePassword: "Thay đổi mật khẩu",
+    },
+    // INFO 
+    info: {
+      male: "Nam",
+      female: "Nữ",
+    }
   },
 
   // ==================== TIME ====================
@@ -384,6 +395,7 @@ const VnLang = {
   button: {
     submit: "Gửi",
     seeMore: "Xem thêm",
+    save: "Lưu",
     register: "Đăng ký khóa học",
     addToCart: "Thêm vào giỏ hàng",
     buyProduct: "Mua sản phẩm",
@@ -418,6 +430,8 @@ const VnLang = {
       createOrder: "Thanh toán thành công",
       signIn: "Đăng nhập thành công",
       signUp: "Đăng ký thành công",
+      update: "Cập nhật thành công",
+      remove: "Xóa thành công",
     },
     error: {
       addToCart: "Thêm vào giỏ hàng thất bại",
@@ -426,7 +440,10 @@ const VnLang = {
       createOrder: "Thanh toán thất bại",
       signIn: "Tài khoản hoặc mật khẩu không đúng",
       signUp: "Đăng ký thất bại",
+      update: "Cập nhật thất bại",
+      remove: "Xóa thất bại",
       onlyNumber: "Chỉ có thể nhập số",
+      alreadyRegister: "Bạn đã đăng ký khóa học này",
     },
   },
 
@@ -458,7 +475,9 @@ const VnLang = {
     male: "Nam",
     female: "Nữ",
     comment: "Ghi chú",
+    accountInfo: "Thông tin tài khoản",
     personalInfo: "Thông tin cá nhân",
+    addressInfo: "Thông tin địa chỉ",
     signIn: "Đăng nhập",
     signUp: "Đăng ký",
     dontHaveAcc: "Bạn chưa có tài khoản?",
@@ -494,6 +513,7 @@ const VnLang = {
     courseId: "Mã khóa học",
     courseName: "Tên khóa học",
     studyDates: "Ngày học",
+    branch: "Chi nhánh",
     openingDate: "Ngày khai giảng",
     createdAt: "Ngày tạo",
   },

@@ -77,16 +77,16 @@ const OrderModal: React.FunctionComponent<OrderModalProps> = (props) => {
       .required(langs?.validateMessages.required),
   });
 
-  const handleSubmit = (value: IUser, action: any) => {
+  const handleSubmit = (values: IUser, action: any) => {
     dispatch(actions.openButtonLoading);
     dispatch({
       type: EOrderActionTypes.ADD_ORDERER,
-      payload: value,
+      payload: values,
     });
     setTimeout(() => {
       handlePayment();
       action.resetForm({
-        value: {
+        values: {
           ...initialValues,
         },
       });

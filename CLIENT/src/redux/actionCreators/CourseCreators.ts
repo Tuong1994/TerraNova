@@ -71,8 +71,8 @@ export const updateCourse = (query: IQueryList, data: ICourse) => {
     try {
       await axiosClient.put(
         apiPath.coursePaths.updateCourse,
+        getListQuery(query as IQueryList),
         data,
-        getListQuery(query as IQueryList)
       );
     } catch (error) {
       console.log(error);

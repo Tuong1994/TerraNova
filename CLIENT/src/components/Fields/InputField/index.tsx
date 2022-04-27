@@ -36,7 +36,9 @@ const InputField: React.FunctionComponent<InputFieldProps> = (props) => {
       <div
         className={
           touched[name] && errors[name]
-            ? `group__field group__field--invalid ${fieldClassName ? fieldClassName : ""}`
+            ? `group__field group__field--invalid ${
+                fieldClassName ? fieldClassName : ""
+              }`
             : `group__field ${fieldClassName ? fieldClassName : ""}`
         }
       >
@@ -44,21 +46,38 @@ const InputField: React.FunctionComponent<InputFieldProps> = (props) => {
           {...field}
           type={type}
           placeholder={placeholder}
-          className={`field__control ${inputClassName ? inputClassName : ""}`}
+          className={`field__control ${type === "date" && "w-100"} ${
+            inputClassName ? inputClassName : ""
+          }`}
           onKeyPress={onKeyPress}
         />
         {label && (
-          <label htmlFor={name} className={`field__label ${labelClassName ? labelClassName : ""}`}>
+          <label
+            htmlFor={name}
+            className={`field__label ${labelClassName ? labelClassName : ""}`}
+          >
             {label}
           </label>
         )}
-        {touched[name] && errors[name] ? (
-          <div className="field__error-icon">
-            <i className="fas fa-exclamation-triangle"></i>
-          </div>
-        ) : (
-          icon && <div className={`field__icon ${iconClassName ? iconClassName : ""}`}>{icon}</div>
-        )}
+        {(() => {
+          if (type !== "date") {
+            return touched[name] && errors[name] ? (
+              <div className="field__error-icon">
+                <i className="fas fa-exclamation-triangle"></i>
+              </div>
+            ) : (
+              icon && (
+                <div
+                  className={`field__icon ${
+                    iconClassName ? iconClassName : ""
+                  }`}
+                >
+                  {icon}
+                </div>
+              )
+            );
+          }
+        })()}
       </div>
       {touched[name] && errors[name] ? (
         <div className="group__error">{errors[name]}</div>

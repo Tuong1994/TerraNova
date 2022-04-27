@@ -3,11 +3,13 @@ import pageTitleList from "../../configs/pageTitleList";
 
 interface ContentHeaderProps {
   name: string;
+  className?: string;
+  titleClassName?: string;
   right?(): React.ReactNode | React.ReactNode[];
 }
 
 const ContentHeader: React.FunctionComponent<ContentHeaderProps> = (props) => {
-  const { name, right } = props;
+  const { name, className, titleClassName, right } = props;
 
   const renderTitle = (title: string) => {
     switch (title) {
@@ -52,8 +54,15 @@ const ContentHeader: React.FunctionComponent<ContentHeaderProps> = (props) => {
   };
 
   return (
-    <div className="content-header">
-      <h1 className="content-header__title">{renderTitle(name)}</h1>
+    <div className={`content-header ${className ? className : ""}`}>
+      <h1
+        className={`content-header__title ${
+          titleClassName ? titleClassName : ""
+        }`}
+      >
+        {renderTitle(name) || name}
+      </h1>
+
       {(() => {
         if (right) {
           return <>{right()}</>;

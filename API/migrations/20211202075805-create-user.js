@@ -25,6 +25,15 @@ module.exports = {
       address: {
         type: Sequelize.STRING
       },
+      ward: {
+        type: Sequelize.INTEGER
+      },
+      district: {
+        type: Sequelize.INTEGER
+      },
+      province: {
+        type: Sequelize.INTEGER
+      },
       phone: {
         type: Sequelize.STRING
       },
@@ -32,7 +41,7 @@ module.exports = {
         type: Sequelize.DATEONLY
       },
       gender: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       avatar: {
         type: Sequelize.STRING

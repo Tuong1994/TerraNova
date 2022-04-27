@@ -1,7 +1,9 @@
 import * as apiPath from "../../paths/";
 import axiosClient from "../../axios";
 import actions from "../../configs/actions";
-import { history } from "../../App";
+import { getUserDetail } from "./UserCreators";
+import { ACCESSTOKEN, getListQuery } from "./../../configs/setting";
+import { IQueryList } from "./../../interfaces/query";
 import { IOrder } from "../../models/Order";
 import { EOrderActionTypes } from "../actionTypes/OrderActionTypes";
 import { EModalActionTypes } from "../actionTypes/ModalActionTypes";
@@ -39,5 +41,27 @@ export const createOrder = (data: IOrder, success?: string, err?: string) => {
         dispatch(actions.closeButtonLoading);
       }
     }, 1000);
+  };
+};
+
+export const removeOrder = (
+  query: IQueryList,
+  success?: string,
+  err?: string
+) => {
+  return async (dispatch: any) => {
+    const token = localStorage.getItem(ACCESSTOKEN) || "";
+    try {
+      await axiosClient.delete(
+        apiPath.orderPaths.removeOrder,
+        getListQuery(query as IQueryList),
+        token
+      );
+      dispatch(getOrderList());
+      dispatch(getUserDetail(query));
+      toast.success(success);
+    } catch (error) {
+      toast.error(err);
+    }
   };
 };

@@ -2,28 +2,16 @@ import React from "react";
 import * as customHook from "../../hooks/index";
 import Logo from "../../components/Logo";
 import SignInForm from "./SignInForm";
-import SignUpForm from "./SignUpForm";
 import { RouteComponentProps } from "react-router-dom";
 
-interface IUserLogProps extends RouteComponentProps {}
+interface ISignInProps extends RouteComponentProps {}
 
-const UserLog: React.FunctionComponent<IUserLogProps> = (props) => {
-  const path = props.match.path;
-  
+const SignIn: React.FunctionComponent<ISignInProps> = (props) => {
   customHook.useLoading();
 
-  const renderForm = () => {
-    if (path === "/signIn") {
-      return <SignInForm />;
-    } else if (path === "/signUp") {
-      return <SignUpForm />;
-    }
-  };
-
-
   return (
-    <div className="user-log">
-      <div className="user-log__logo">
+    <div className="sign-in">
+      <div className="sign-in__logo">
         <Logo className="logo__inner" />
         <ul className="logo__content">
           <li className="content__list">Build your own PC</li>
@@ -32,11 +20,11 @@ const UserLog: React.FunctionComponent<IUserLogProps> = (props) => {
         </ul>
       </div>
 
-      <div className="user-log__line"></div>
+      <div className="sign-in__line"></div>
 
-      {renderForm()}
+      <SignInForm />
     </div>
   );
 };
 
-export default UserLog;
+export default SignIn;

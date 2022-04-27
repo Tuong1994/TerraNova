@@ -101,7 +101,6 @@ const SelectField: React.FunctionComponent<SelectFieldProps> = (props) => {
 
   return (
     <React.Fragment>
-      {/* Label */}
       <div
         className={`form__group ${groupClassName ? groupClassName : ""}`}
         ref={controlRef}
@@ -155,6 +154,7 @@ const SelectField: React.FunctionComponent<SelectFieldProps> = (props) => {
         </div>
         {/* Input */}
 
+        {/* Error message */}
         {touched[name] && errors[name] ? (
           <div className="group__error">{errors[name]}</div>
         ) : null}

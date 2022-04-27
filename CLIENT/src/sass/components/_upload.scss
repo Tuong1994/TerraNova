@@ -1,0 +1,100 @@
+.upload {
+  width: $w-100;
+  .upload__area {
+    width: $w-100;
+    height: $h-10 * 20;
+    margin-bottom: $m-10;
+    border: 1px solid $borderGrey;
+    border-radius: $lightRound;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    &:hover .area__control {
+      opacity: 1;
+      visibility: visible;
+    }
+    &:hover .area__control .control__label {
+      transform: translateX(0);
+    }
+    .area__loading {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: $RGBA-dark-1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .loading__spinner {
+        width: $w-10 * 5;
+        height: $h-10 * 5;
+        border-radius: $circle;
+        border: 4px solid $borderGrey;
+        border-top-color: $borderBlue;
+        animation: spinner 1s linear infinite;
+      }
+    }
+    .area__preview {
+      width: $w-100;
+      height: $h-100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .preview__img {
+        width: $w-100;
+        height: $h-100;
+        .img__avatar {
+          width: $w-100;
+          height: $h-100;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+    }
+    .area__control {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: $RGBA-dark-1;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.5s ease;
+      z-index: 9;
+      .control__label {
+        width: $w-100;
+        height: $h-100;
+        cursor: pointer;
+        font-size: $h5;
+        color: $tSecondary;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: translateX(100%);
+        transition: all 0.8s ease;
+      }
+      .control__input {
+        display: none;
+      }
+    }
+  }
+  .upload__button {
+    width: $w-100;
+    display: flex;
+    justify-content: center;
+    .button--submit {
+      font-size: $body-2;
+    }
+  }
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

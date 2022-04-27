@@ -1,10 +1,13 @@
 import React from "react";
 import * as Card from "../../../components/Card";
-import Table from "../../../components/Table";
 import { ILangs } from "../../../interfaces/lang";
 import { Link } from "react-router-dom";
 import { IUser } from "../../../models/User";
+import { IQueryList } from "../../../interfaces/query";
+import { useDispatch } from "react-redux";
+import Table from "../../../components/Table";
 import OrderRow from "../../../components/TableRow/OrderRow";
+import { removeOrder } from "../../../redux/actionCreators/OrderCreators";
 
 interface OrderProps {
   user: IUser | null;
@@ -13,6 +16,22 @@ interface OrderProps {
 
 const Order: React.FunctionComponent<OrderProps> = (props) => {
   const { user, langs } = props;
+
+  const dispatch = useDispatch();
+
+  const _removeOrder = (id: string) => {
+    const query: IQueryList = {
+      orderId: id,
+      userId: user?.id,
+    };
+    dispatch(
+      removeOrder(
+        query,
+        langs?.toastMessages.success.remove,
+        langs?.toastMessages.error.remove
+      )
+    );
+  };
 
   return (
     <div className="overview__order">
@@ -26,6 +45,7 @@ const Order: React.FunctionComponent<OrderProps> = (props) => {
             { title: langs?.tableHeader.totalPay || "" },
             { title: langs?.tableHeader.paymentType || "" },
             { title: langs?.tableHeader.createdAt || "" },
+            { title: langs?.tableHeader.features || "" },
           ]}
           isNodata={user?.orders || 0}
           noDataTitle={langs?.noData.order || ""}
@@ -36,10 +56,17 @@ const Order: React.FunctionComponent<OrderProps> = (props) => {
           )}
         >
           {(() => {
-            if(user?.orders && user?.orders?.length > 0) {
-              return user?.orders.map((order, index) => {
-                return <OrderRow key={index} order={order} langs={langs} />
-              })
+            if (user?.orders && user?.orders?.length > 0) {
+              return user?.orders.map((order) => {
+                return (
+                  <OrderRow
+                    key={order.id}
+                    order={order}
+                    langs={langs}
+                    removeOrder={_removeOrder}
+                  />
+                );
+              });
             }
           })()}
         </Table>

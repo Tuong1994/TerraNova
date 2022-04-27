@@ -4,15 +4,19 @@ const jwt = require("jsonwebtoken");
 const authenticate = (req, res, next) => {
   // const token = req.header("accessToken");
   const headers = req.header("Authorization");
-  const token = headers.slice(7, headers.length)
 
   try {
     const secretKey = key;
-    const decode = jwt.verify(token, secretKey);
-    req.user = decode;
-    next();
+    if (headers) {
+      const token = headers.slice(7, headers.length);
+      const decode = jwt.verify(token, secretKey);
+      req.user = decode;
+      next();
+    } else {
+      res.status(401).send("You need to sign in first");
+    }
   } catch (error) {
-    res.status(401).send("You need to sign in first");
+    res.status(500).send(error);
   }
 };
 

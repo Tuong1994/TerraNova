@@ -22,10 +22,20 @@ const Menu: React.FunctionComponent<MenuProps> = (props) => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    if(lang) {
+    if (lang) {
       getMenuByLang();
     }
   }, [lang]);
+
+  // React.useEffect(() => {
+  //   if (localStorage.getItem("userMenu")) {
+  //     const menu = JSON.parse(localStorage.getItem("userMenu") || "");
+  //     dispatch({
+  //       type: ESideBarActionTypes.ADD_ID,
+  //       payload: menu.id,
+  //     });
+  //   }
+  // }, []);
 
   const getMenuByLang = () => {
     switch (lang) {
@@ -42,9 +52,10 @@ const Menu: React.FunctionComponent<MenuProps> = (props) => {
         break;
       }
     }
-  }
+  };
 
   const handleChangeMenu = (menu: any) => {
+    localStorage.setItem("userMenu", JSON.stringify(menu));
     dispatch({
       type: ESideBarActionTypes.ADD_ID,
       payload: menu.id,

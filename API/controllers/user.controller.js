@@ -5,18 +5,6 @@ const getUserList = async (req, res) => {
   try {
     const userList = await User.findAll({
       order: [["updatedAt", "DESC"]],
-      attributes: [
-        ["id", "userId"],
-        "account",
-        "firstName",
-        "lastName",
-        "email",
-        "phone",
-        "address",
-        "birthDay",
-        "gender",
-        "role",
-      ],
     });
     res.status(200).send(userList);
   } catch (error) {
@@ -39,6 +27,9 @@ const getUserDetail = async (req, res) => {
         "email",
         "phone",
         "address",
+        "ward",
+        "district",
+        "province",
         "birthDay",
         "gender",
         "role",
@@ -65,15 +56,28 @@ const getUserDetail = async (req, res) => {
         {
           model: Carts,
           as: "carts",
-          attributes: [["id", "cartsId"], "products", "userId", "createdAt", "updatedAt"],
+          attributes: [
+            ["id", "cartsId"],
+            "products",
+            "userId",
+            "createdAt",
+            "updatedAt",
+          ],
         },
         {
           model: CourseOrder,
           as: "courses",
           order: [["createdAt", "DESC"]],
-          attributes: ["courseId", "course", "createdAt", "updatedAt"],
-        }
-      ]
+          attributes: [
+            ["id", "courseOrderId"],
+            "courseId",
+            "course",
+            "register",
+            "createdAt",
+            "updatedAt",
+          ],
+        },
+      ],
     });
     res.status(200).send(userDetail);
   } catch (error) {
@@ -89,6 +93,9 @@ const createUser = async (req, res) => {
     lastName,
     email,
     address,
+    ward,
+    district,
+    province,
     phone,
     birthDay,
     gender,
@@ -106,6 +113,9 @@ const createUser = async (req, res) => {
       lastName,
       email,
       address,
+      ward,
+      district,
+      province,
       phone,
       birthDay,
       avatar: null,
@@ -127,6 +137,9 @@ const updateUser = async (req, res) => {
     lastName,
     email,
     address,
+    ward,
+    district,
+    province,
     phone,
     birthDay,
     gender,
@@ -141,6 +154,9 @@ const updateUser = async (req, res) => {
         lastName,
         email,
         address,
+        ward,
+        district,
+        province,
         phone,
         birthDay,
         gender,
@@ -190,7 +206,7 @@ const getUserWithOrder = async (req, res) => {
       include: [
         {
           model: Order,
-          as: "orderList"
+          as: "orderList",
         },
       ],
     });

@@ -1,9 +1,10 @@
-.user-log {
+.sign-in {
   padding: $p-10 * 10 $p-10 * 5;
   display: flex;
-  align-items: center;
   justify-content: space-around;
-  .user-log__logo {
+  position: relative;
+  background: $secondary;
+  .sign-in__logo {
     .logo__inner {
       cursor: unset;
       pointer-events: none;
@@ -11,15 +12,17 @@
       padding: 0;
       .logo__wrapper {
         color: $tPrimary;
-        border-color: $borderDark;
+        border-color: $borderWhite;
         .wrapper__left {
           font-size: $h1 + 100;
           margin-right: $m-10;
           color: $tBlue;
+          text-shadow: 0 0 5px $primary;
           animation: textRotate 4s ease-in-out infinite;
         }
         .wrapper__right {
           font-size: $h1;
+          color: $tSecondary;
         }
       }
     }
@@ -29,6 +32,7 @@
       .content__list {
         margin: $m-10 0;
         font-size: $subtitle;
+        color: $tSecondary;
         @include respond(phone) {
           font-size: $body-1;
         }
@@ -38,10 +42,10 @@
       display: none;
     }
   }
-  .user-log__line {
+  .sign-in__line {
     width: 4px;
-    height: $h-10 * 40;
-    background: $dark;
+    height: auto;
+    background: $primary;
     @include respond(laptop) {
       height: $h-10 * 60;
     }
@@ -49,12 +53,12 @@
       display: none;
     }
   }
-  .sign-in__form,
-  .sign-up__form {
+  .sign-in__form {
     width: $w-100 - 60;
     padding: $p-10 * 2;
     border: 1px solid $borderGrey;
     border-radius: $lightRound;
+    background-color: $primary;
     .form__title {
       font-size: $h3;
       font-weight: $medium;
@@ -96,84 +100,6 @@
     }
     @include respond(extraTablet) {
       width: $w-100;
-    }
-  }
-  .sign-up__form {
-    .form__wrapper {
-      .wrapper__title {
-        margin-top: $m-10 * 4;
-        font-weight: $medium;
-        font-size: $h6;
-      }
-      .wrapper__group {
-        display: flex;
-        justify-content: space-between;
-        .group__control {
-          width: $w-100 / 2.1;
-          @include respond(phone) {
-            width: $w-100;
-          }
-        }
-        .group__inner {
-          width: $w-100 / 2.1;
-          .inner__title {
-            font-size: $body-1;
-          }
-          .inner__control {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            .control__item {
-              display: flex;
-              .item__label {
-                font-size: $default;
-              }
-            }
-            @include respond(phone) {
-              justify-content: space-evenly;
-            }
-          }
-          @include respond(phone) {
-            width: $w-100;
-          }
-        }
-        .group__button {
-          width: $w-100 / 2.1;
-          display: flex;
-          align-items: center;
-          .button--submit {
-            width: $w-100;
-            padding: $p-10 $p-10 * 2;
-            font-size: $body-1;
-            span {
-              display: block;
-              width: $w-100;
-              text-align: center;
-            }
-          }
-          .button--disabled {
-            width: $w-100;
-            padding: $p-10 $p-10 * 2;
-            font-size: $body-1;
-          }
-          @include respond(phone) {
-            width: $w-100;
-          }
-        }
-        @include respond(phone) {
-          flex-direction: column;
-        }
-      }
-    }
-    .form__link {
-      width: $w-100;
-      margin-bottom: $m-10 * 2;
-      display: flex;
-      justify-content: center;
-      font-size: $body-1;
-      .link {
-        font-style: italic;
-      }
     }
   }
   @include respond(laptop) {

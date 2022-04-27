@@ -286,6 +286,7 @@
         .lang__list {
           width: $w-100;
           padding: $p-10;
+          cursor: pointer;
           .list__link {
             display: block;
             padding: $p-10 * 2 $p-10;

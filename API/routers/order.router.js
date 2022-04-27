@@ -21,14 +21,14 @@ orderRouter.post("/createOrder", createOrder);
 orderRouter.put(
   "/updateOrder",
   authenticate,
-  authorize(["ADMIN, USER"]),
+  authorize(["ADMIN", "USER"]),
   updateOrder
 );
 
 orderRouter.delete(
   "/removeOrder",
   authenticate,
-  authorize(["ADMIN, USER"]),
+  authorize(["ADMIN", "USER"]),
   removeOrder
 );
 

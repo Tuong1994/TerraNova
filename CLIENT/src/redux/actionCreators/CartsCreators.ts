@@ -54,8 +54,8 @@ export const updateCarts = (
       try {
         await axiosClient.put(
           apiPath.cartsPaths.updateCarts,
+          getListQuery(query as IQueryList),
           data,
-          getListQuery(query as IQueryList)
         );
         dispatch(getCartsList());
         dispatch(getUserDetail(userQuery as IQueryList))

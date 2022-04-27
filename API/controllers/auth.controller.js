@@ -22,6 +22,9 @@ const signIn = async (req, res) => {
           lastName: userLogin.lastName,
           email: userLogin.email,
           address: userLogin.address,
+          ward: userLogin.ward,
+          district: userLogin.district,
+          province: userLogin.province,
           phone: userLogin.phone,
           birthDay: userLogin.birthDay,
           gender: userLogin.gender,
@@ -29,7 +32,7 @@ const signIn = async (req, res) => {
           role: userLogin.role,
         };
         const accessToken = jwt.sign(payLoad, secretKey, {
-          expiresIn: 30 * 24 * 60 * 60
+          expiresIn: 30 * 24 * 60 * 60,
         });
         res.status(200).send({
           message: "Login success",
@@ -55,6 +58,9 @@ const signUp = async (req, res) => {
     lastName,
     email,
     address,
+    ward,
+    district,
+    province,
     phone,
     birthDay,
     gender,
@@ -71,6 +77,9 @@ const signUp = async (req, res) => {
       lastName,
       email,
       address,
+      ward,
+      district,
+      province,
       phone,
       birthDay,
       avatar: null,

@@ -76,12 +76,12 @@ const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
     province: yup.string().required(langs?.validateMessages.required),
   });
 
-  const handleSubmit = (value: IShipment, action: any) => {
+  const handleSubmit = (values: IShipment, action: any) => {
     dispatch(actions.openButtonLoading);
     setTimeout(() => {
       dispatch({
         type: EShipmentActionTypes.ADD_SHIPMENT,
-        payload: value,
+        payload: values,
       });
       action.resetForm({
         values: {

@@ -264,7 +264,7 @@ const ChLang = {
           fri: "星期五",
           sat: "星期六",
           sun: "星期日",
-          fee: "学费"
+          fee: "学费",
         },
         form: {
           title: "注册课程",
@@ -281,7 +281,7 @@ const ChLang = {
           address: "学习地址",
           schedule: "时间表",
           openingDate: "开幕当天",
-          note: "感谢您报名参加 Terra Nova 的课程, 开学日见！！"
+          note: "感谢您报名参加 Terra Nova 的课程, 开学日见！！",
         },
       },
     },
@@ -322,16 +322,27 @@ const ChLang = {
     // SIDEBAR
     sidebar: {
       overview: "概述",
+      update: "更新",
     },
     // OVERVIEW
     overview: {
       hello: "您好",
-      overviewTitle: "概述",
+      mainTitle: "概述",
       accountInfo: "帐户信息",
       personalInfo: "个人信息",
       orderTitle: "订单",
       courseTitle: "课程",
     },
+    // UPDATE
+    update: {
+      mainTitle: "更新",
+      updatePassword: "更改密码",
+    },
+    // INFO 
+    info: {
+      male: "男性",
+      female: "女性",
+    }
   },
 
   // ==================== TIME ====================
@@ -375,6 +386,7 @@ const ChLang = {
   button: {
     submit: "寄",
     seeMore: "看更多",
+    save: "節省",
     register: "登记课程",
     addToCart: "添加到购物车",
     buyProduct: "购买产品",
@@ -409,6 +421,8 @@ const ChLang = {
       createOrder: "付款成功",
       signIn: "登录成功",
       signUp: "登记成功",
+      update: "更新成功",
+      remove: "删除成功",
     },
     error: {
       addToCart: "失败加入购物车",
@@ -417,7 +431,10 @@ const ChLang = {
       createOrder: "付款失败",
       signIn: "帐户或密码错误",
       signUp: "登记失败",
+      update: "更新失敗",
+      remove: "删除失败",
       onlyNumber: "只能输入数字",
+      alreadyRegister: "您已註冊此課程",
     },
   },
 
@@ -449,7 +466,9 @@ const ChLang = {
     male: "男性",
     female: "女性",
     comment: "笔记",
+    accountInfo: "帐户信息",
     personalInfo: "个人信息",
+    addressInfo: "地址信息",
     signIn: "登录",
     signUp: "登记",
     dontHaveAcc: "您还没有帐户？",
@@ -486,6 +505,7 @@ const ChLang = {
     courseName: "课程名称",
     studyDates: "上学日",
     openingDate: "开放日",
+    branch: "分店",
     createdAt: "创建日期",
   },
 

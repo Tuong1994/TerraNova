@@ -77,9 +77,37 @@ export const getUserDetail = (query: IQueryList) => {
       dispatch({
         type: EUserActionTypes.GET_USER_DETAIL,
         payload: result.data,
-      })
+      });
     } catch (error) {
       console.log(error);
     }
+  };
+};
+
+export const updateUser = (
+  query: IQueryList,
+  data: IUser,
+  success?: string,
+  err?: string
+) => {
+  return (dispatch: any) => {
+    const token = localStorage.getItem(ACCESSTOKEN) || "";
+    dispatch(actions.openButtonLoading);
+    setTimeout(async () => {
+      try {
+        await axiosClient.put(
+          apiPath.userPaths.updateUser,
+          getListQuery(query as IQueryList),
+          data,
+          token
+        );
+        dispatch(getUserDetail(query));
+        dispatch(actions.closeButtonLoading);
+        toast.success(success);
+      } catch (error) {
+        toast.error(err);
+        dispatch(actions.closeButtonLoading);
+      }
+    }, 1000);
   };
 };

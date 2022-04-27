@@ -12,6 +12,7 @@ interface UserTemplateProps extends IRoute {
 
 const UserTemplate: React.FunctionComponent<UserTemplateProps> = (props) => {
   const { Component, ...restProps } = props;
+
   return (
     <Route
       {...restProps}

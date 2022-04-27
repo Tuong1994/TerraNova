@@ -6,7 +6,8 @@ import Customer from "../pages/Admin/Customer";
 import Course from "../pages/Admin/Course";
 import Order from "../pages/Admin/Order";
 import Home from "../pages/Home";
-import UserLog from "../pages/UserLog";
+import SignIn from "../pages/SignIn";
+import SignUp from "../pages/SignUp";
 import AboutUs from "../pages/AboutUs";
 import Movie from "../pages/Movie";
 import ProductList from "../pages/Product/ProductList";
@@ -17,6 +18,7 @@ import CourseHome from "../pages/Course/CourseHome";
 import CourseList from "../pages/Course/CourseList";
 import CourseRoute from "../pages/Course/CourseRoute";
 import CourseDetail from "../pages/Course/CourseDetail";
+import UserEdit from "../pages/User/Edit";
 
 
 export const adminRoutes: IRoute[] = [
@@ -73,6 +75,11 @@ export const userRoutes: IRoute[] = [
     exact: true,
     component: OverView,
   },
+  {
+    path: "/user/update",
+    exact: true,
+    component: UserEdit,
+  },
 ]
 
 export const homeRoutes: IRoute[] = [
@@ -94,12 +101,12 @@ export const homeRoutes: IRoute[] = [
   {
     path: "/signIn",
     exact: true,
-    component: UserLog,
+    component: SignIn,
   },
   {
     path: "/signUp",
     exact: true,
-    component: UserLog,
+    component: SignUp,
   },
   {
     path: "/productByCategory/:id",

@@ -40,6 +40,12 @@ export const userMenuENG = [
     name: lang.ENG.user.sidebar.overview,
     icon: "fa-solid fa-chart-column",
   },
+  {
+    id: "update",
+    path: "/user/update",
+    name: lang.ENG.user.sidebar.update,
+    icon: "far fa-edit",
+  },
 ];
 
 export const userMenuVN = [
@@ -49,6 +55,12 @@ export const userMenuVN = [
     name: lang.VN.user.sidebar.overview,
     icon: "fa-solid fa-chart-column",
   },
+  {
+    id: "update",
+    path: "/user/update",
+    name: lang.VN.user.sidebar.update,
+    icon: "far fa-edit",
+  },
 ];
 
 export const userMenuCH = [
@@ -57,6 +69,12 @@ export const userMenuCH = [
     path: "/user",
     name: lang.CH.user.sidebar.overview,
     icon: "fa-solid fa-chart-column",
+  },
+  {
+    id: "update",
+    path: "/user/update",
+    name: lang.CH.user.sidebar.update,
+    icon: "far fa-edit",
   },
 ];
 

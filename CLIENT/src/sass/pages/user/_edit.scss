@@ -1,0 +1,66 @@
+.user-edit {
+  .user-edit__form {
+    .form__info {
+      padding: $p-10 * 2;
+      margin-bottom: $m-10;
+      .info__title {
+        padding: $p-10 0;
+        font-size: $subtitle;
+        font-weight: $semiBold;
+      }
+      .info__content {
+        display: flex;
+        .content__avatar {
+          width: $w-100 - 70;
+          margin-right: $m-10 * 2;
+        }
+        .content__list {
+          .list__content {
+            width: $w-100;
+            margin-bottom: $m-10 * 2;
+            display: flex;
+            align-items: center;
+            strong {
+              margin: 0 $m-10;
+              font-weight: $semiBold;
+            }
+          }
+          .list__button {
+            text-align: center;
+          }
+        }
+      }
+    }
+    .form__control {
+      padding: $p-10 * 2;
+      .control__inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        .inner__group {
+          width: $w-100 / 2.1;
+          .group__item {
+            display: flex;
+            flex-wrap: wrap;
+            .item__label {
+              width: $w-100;
+              font-size: $body-1;
+            }
+            .item__group {
+              margin: $m-10 0;
+              .group__radio {
+                &:nth-child(1) {
+                  margin-right: $m-10 * 3;
+                }
+              }
+            }
+          }
+        }
+        .inner__button {
+          width: $w-100;
+          padding: $p-10 0;
+        }
+      }
+    }
+  }
+}

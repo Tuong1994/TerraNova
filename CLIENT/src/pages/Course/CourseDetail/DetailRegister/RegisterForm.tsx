@@ -50,30 +50,36 @@ const RegisterForm: React.FunctionComponent<RegisterFormProps> = (props) => {
     branch: yup.string().required(langs?.validateMessages.choose),
   });
 
-  const handleSubmit = (value: any, action: any) => {
+  const handleSubmit = (values: any, action: any) => {
     const formData = {
       courseId: course?.id,
       userId: user?.id,
       register: {
-        name: value.name,
-        email: value.email,
-        phone: value.phone,
-        note: value.note,
-        dateType: value.dateType,
-        branch: value.branch,
+        name: values.name,
+        email: values.email,
+        phone: values.phone,
+        note: values.note,
+        dateType: values.dateType,
+        branch: values.branch,
       },
       course: {
         nameENG: course.nameENG,
         nameVN: course.nameVN,
         nameCH: course.nameCH,
         trainingTime: course.trainingTime,
-        price: course.price
-      }
+        price: course.price,
+      },
     };
-    dispatch(createCourseOrder(formData));
+    dispatch(
+      createCourseOrder(
+        formData,
+        langs?.toastMessages.success.signIn,
+        langs?.toastMessages.error.alreadyRegister
+      )
+    );
     setTimeout(() => {
       action.resetForm({
-        value: {
+        values: {
           ...initialValues,
         },
       });

@@ -31,7 +31,7 @@ userRouter.post(
   createUser
 );
 
-userRouter.put("/updateUser", authenticate, authorize(["ADMIN"]), updateUser);
+userRouter.put("/updateUser", authenticate, authorize(["ADMIN", "USER"]), updateUser);
 
 userRouter.delete(
   "/removeUser",

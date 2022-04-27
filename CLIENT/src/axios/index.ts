@@ -36,19 +36,25 @@ const axiosClient = {
     return call;
   },
 
-  put: (apiPath: string, data: object = {}, query: string) => {
+  put: (apiPath: string, query: string, data: object = {}, token?: string) => {
     const call = axios({
       url: apiPath + query,
       method: EMethod.Put,
       data: data,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     })
     return call;
   },
 
-  delete: (apiPath: string, query: string) => {
+  delete: (apiPath: string, query: string, token?: string) => {
     const call = axios({
       url: apiPath + query,
       method: EMethod.Delete,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     });
     return call;
   }
