@@ -138,6 +138,11 @@
         margin: 0 $m-10;
       }
     }
+    .multiple__message {
+      font-size: $body-2;
+      font-style: italic;
+      color: $tGrey;
+    }
     .multiple__text {
       padding: $p-10 0;
     }

@@ -11,6 +11,7 @@ interface IAdminTemplateProps extends IRoute {
 
 const AdminTemplate: React.FunctionComponent<IAdminTemplateProps> = (props) => {
   let { Component, ...restProps } = props;
+
   return (
     <Route
       {...restProps}

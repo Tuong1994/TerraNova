@@ -26,6 +26,7 @@ const ChLang = {
     frontendProgramming: "前端编程",
     signIn: "登录",
     signUp: "登记",
+    admin: "管理",
     accountSetting: "帐户信息",
     logOut: "登出",
   },

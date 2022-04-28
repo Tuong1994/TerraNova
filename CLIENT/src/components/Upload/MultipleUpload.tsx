@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import { ILangs } from "../../interfaces/lang";
 import { ReducerState } from "../../redux/store";
 import Button from "../Button";
@@ -47,10 +48,27 @@ const MultipleUpload: React.FunctionComponent<MultipleUploadProps> = (
 
   const handleChange = (e: any) => {
     const files = e.target.files;
+    const acceptImgType = ["image/png", "image/jpeg"];
+
     if (files) {
-      setImgFileArr(files);
-    } else {
-      setImgFileArr([]);
+      let isValid = false;
+      Array.from(files).map((file: any) => {
+        if (file && file.type.substr(0, 5) !== "image") {
+          toast.error(langs?.toastMessages.error.file);
+          isValid = true;
+          if (!file && acceptImgType.includes(file["type"])) {
+            toast.error(langs?.toastMessages.error.file);
+            isValid = true;
+          }
+        } else {
+          isValid = false;
+        }
+      });
+      if (!isValid) {
+        setImgFileArr(files);
+      } else {
+        setImgFileArr([]);
+      }
     }
   };
 
@@ -66,7 +84,7 @@ const MultipleUpload: React.FunctionComponent<MultipleUploadProps> = (
           type="file"
           id="multiple"
           className="control__input"
-          accept="image/png, image/jpg"
+          accept="image/png, image/jpeg"
           multiple
           onChange={handleChange}
         />
@@ -84,6 +102,8 @@ const MultipleUpload: React.FunctionComponent<MultipleUploadProps> = (
           </Button>
         )}
       </form>
+
+      <p className="multiple__message">{langs?.form.fileType}</p>
 
       {/* Upload text */}
       <div className="multiple__text">

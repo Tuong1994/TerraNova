@@ -26,6 +26,7 @@ const EngLang = {
     frontendProgramming: "Frontend Programming",
     signIn: "Sign in",
     signUp: "Sign up",
+    admin: "Admin",
     accountSetting: "Account Setting",
     logOut: "Log out",
   },

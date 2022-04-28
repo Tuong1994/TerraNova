@@ -26,6 +26,7 @@ const VnLang = {
     frontendProgramming: "Lập trình Frontend",
     signIn: "Đăng nhập",
     signUp: "Đăng ký",
+    admin: "Quản trị",
     accountSetting: "Thông tin tài khoản",
     logOut: "Đăng xuất",
   },

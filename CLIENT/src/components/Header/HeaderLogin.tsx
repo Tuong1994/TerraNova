@@ -5,10 +5,11 @@ import { Link } from "react-router-dom";
 import { ReducerState } from "../../redux/store";
 import { EUserActionTypes } from "../../redux/actionTypes/UserActionTypes";
 import { ELoadingActionTypes } from "../../redux/actionTypes/LoadingActionTypes";
-import utils from "../../utils";
+import { history } from "../../App";
+import { ERole } from "../../models/User";
 import Carts from "../Carts";
 import ButtonLoading from "../Loading/ButtonLoading";
-import { history } from "../../App";
+import utils from "../../utils";
 
 const HeaderLogin: React.FunctionComponent<{}> = (props) => {
   const { user } = useSelector((state: ReducerState) => state.UserReducer);
@@ -35,7 +36,7 @@ const HeaderLogin: React.FunctionComponent<{}> = (props) => {
       dispatch({
         type: ELoadingActionTypes.CLOSE_BUTTON_LOADING,
       });
-      history.push("/")
+      history.push("/");
     }, 1000);
   };
 
@@ -58,7 +59,7 @@ const HeaderLogin: React.FunctionComponent<{}> = (props) => {
               {user?.firstName} {user?.lastName}
             </span>
           </div>
-          
+
           <Carts />
 
           <div
@@ -67,9 +68,18 @@ const HeaderLogin: React.FunctionComponent<{}> = (props) => {
             }
             ref={menuSettingRef}
           >
+            {user?.role === ERole.admin && (
+              <Link to="/admin" className="setting__link">
+                <i className="fa-solid fa-user-shield"></i>
+                <span>{langs?.headerMenu.admin}</span>
+              </Link>
+            )}
+
             <Link to="/user" className="setting__link">
-              {langs?.headerMenu.accountSetting}
+              <i className="fa-solid fa-gear"></i>
+              <span>{langs?.headerMenu.accountSetting}</span>
             </Link>
+
             <div
               className={
                 buttonLoading
@@ -79,6 +89,7 @@ const HeaderLogin: React.FunctionComponent<{}> = (props) => {
               onClick={handleLogout}
             >
               <ButtonLoading />
+              <i className="fa-solid fa-arrow-right-from-bracket"></i>
               <span>{langs?.headerMenu.logOut}</span>
             </div>
           </div>

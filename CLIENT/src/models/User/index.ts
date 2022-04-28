@@ -6,6 +6,11 @@ export enum EGender {
   male = 1,
   female = 2,
 }
+
+export enum ERole {
+  admin = "ADMIN",
+  user = "USER",
+}
 export interface IUser {
   id?: string;
   account?: string;

@@ -7,7 +7,6 @@ import { getUserDetail } from "../../../redux/actionCreators/UserCreators";
 import ContentHeader from "../../../components/ContentHeader";
 import UserEditForm from "./Form";
 import utils from "../../../utils";
-import Upload from "../../../components/Upload";
 
 interface UserEditProps {}
 
