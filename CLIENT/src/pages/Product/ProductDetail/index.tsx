@@ -83,7 +83,7 @@ const ProductDetail: React.FunctionComponent<
 
   const handleOrder = () => {
     if (amount > 0) {
-      // Carts has products
+      // Carts has products => Update carts
       if (carts && carts.length > 0) {
         const query: IQueryList = {
           cartsId: carts[0].cartsId,
@@ -174,7 +174,9 @@ const ProductDetail: React.FunctionComponent<
         }
 
         // Carts has no products
-      } else if (carts && carts.length === 0) {
+      } 
+      // Carts has no products => Create new carts
+      else if (carts && carts.length === 0) {
         carts.push({ products: [] });
         carts[0]?.products?.push(stock);
         if (utils.checkObjectEmpty(user)) {  // Check if user exist => call API create carts / if not => save temporary carts

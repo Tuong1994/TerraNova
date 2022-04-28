@@ -423,6 +423,7 @@ const ChLang = {
       signUp: "登记成功",
       update: "更新成功",
       remove: "删除成功",
+      upload: "上传成功",
     },
     error: {
       addToCart: "失败加入购物车",
@@ -433,8 +434,10 @@ const ChLang = {
       signUp: "登记失败",
       update: "更新失敗",
       remove: "删除失败",
+      upload: "上传失败",
       onlyNumber: "只能输入数字",
       alreadyRegister: "您已註冊此課程",
+      file: "无效文件",
     },
   },
 
@@ -483,6 +486,10 @@ const ChLang = {
     selectProvince: "选择省/市",
     noOption: "没有资料",
     defaultOption: "选择。。。",
+    chooseFile: "选择你的文件",
+    fileSelected: "个文件已选择",
+    noFileSelected: "尚未选择任何文件",
+    fileType: "仅上传扩展名为 *png、*jpg 的文件",
   },
 
   // ==================== TABLE HEADER ====================

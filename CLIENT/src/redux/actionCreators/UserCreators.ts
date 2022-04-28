@@ -111,3 +111,31 @@ export const updateUser = (
     }, 1000);
   };
 };
+
+export const uploadAvatar = (
+  query: IQueryList,
+  data: any,
+  success?: string,
+  err?: string
+) => {
+  return (dispatch: any) => {
+    const token = localStorage.getItem(ACCESSTOKEN) || "";
+    dispatch(actions.openButtonLoading);
+    setTimeout(async () => {
+      try {
+        await axiosClient.post(
+          apiPath.uploadPaths.uploadAvatar,
+          data,
+          token,
+          getListQuery(query as IQueryList)
+        );
+        dispatch(getUserDetail(query));
+        dispatch(actions.closeButtonLoading);
+        toast.success(success);
+      } catch (error) {
+        toast.error(err);
+        dispatch(actions.closeButtonLoading);
+      }
+    }, 1000);
+  };
+};

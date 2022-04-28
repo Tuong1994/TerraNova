@@ -438,6 +438,7 @@ const EngLang = {
       signUp: "Sign up succecced",
       update: "Update succecced",
       remove: "Remove succecced",
+      upload: "Upload succecced",
     },
     error: {
       addToCart: "Add to carts failed",
@@ -448,8 +449,10 @@ const EngLang = {
       signUp: "Sign up failed",
       update: "Update failed",
       remove: "Remove failed",
+      upload: "Upload failed",
       onlyNumber: "Can type only number",
       alreadyRegister: "You have already registered this course",
+      file: "File not valid",
     },
   },
 
@@ -498,6 +501,10 @@ const EngLang = {
     selectProvince: "Select province",
     noOption: "No option",
     defaultOption: "Select...",
+    chooseFile: "Choose your file",
+    fileSelected: "File selected",
+    noFileSelected: "No file selected",
+    fileType: "Only upload files with the extension *png, *jpg",
   },
 
   // ==================== TABLE HEADER ====================

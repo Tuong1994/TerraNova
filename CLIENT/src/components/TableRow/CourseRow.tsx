@@ -1,6 +1,5 @@
 import React from "react";
 import moment from "moment";
-import { Link } from "react-router-dom";
 import { ELangs, ILangs } from "../../interfaces/lang";
 import { ICourseOrder } from "../../models/CourseOrder";
 import TableCol from "../Table/TableCol";
@@ -55,9 +54,6 @@ const CourseRow: React.FunctionComponent<CourseRowProps> = (props) => {
       <TableCol>{moment(new Date()).format("DD/MM/YYYY")}</TableCol>
       <TableCol>{moment(courseOrder?.createdAt).format("DD/MM/YYYY")}</TableCol>
       <TableCol>
-        <Link to="/" className="button--edit">
-          <i className="far fa-edit"></i>
-        </Link>
         <div className="button--delete" onClick={() => removeCourseOrder(courseOrder?.courseOrderId || "")}>
           <i className="fas fa-trash-alt"></i>
         </div>

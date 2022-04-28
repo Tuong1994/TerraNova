@@ -12,7 +12,7 @@ const Avatar: React.FunctionComponent<AvatarProps> = (props) => {
 
   return (
     <div className="sidebar__avatar">
-      <img className="avatar__img" src="../img/avatar.png" alt="avatar" />
+      <img className="avatar__img" src={user?.avatar || "../img/avatar.png"} alt="avatar" />
       <div className="avatar__info">
         <p>{langs?.user.overview.hello}, {user?.firstName} {user?.lastName}</p>
       </div>

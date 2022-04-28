@@ -2,7 +2,10 @@
   .user-edit__form {
     .form__info {
       padding: $p-10 * 2;
-      margin-bottom: $m-10;
+      margin-bottom: $m-10 * 2;
+      background: $secondary;
+      color: $tSecondary;
+      border-color: $borderBlue;
       .info__title {
         padding: $p-10 0;
         font-size: $subtitle;

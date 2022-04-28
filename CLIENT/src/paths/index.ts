@@ -4,6 +4,7 @@ import { orderPaths } from "./Order";
 import { cartsPaths } from "./Carts";
 import { coursePaths } from "./Course";
 import { courseOrderPaths } from "./CourseOrder";
+import { uploadPaths } from './Upload';
 
 export {
   productPaths,
@@ -12,4 +13,5 @@ export {
   cartsPaths,
   coursePaths,
   courseOrderPaths,
+  uploadPaths
 };

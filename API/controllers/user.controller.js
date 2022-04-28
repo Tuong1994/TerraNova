@@ -32,6 +32,7 @@ const getUserDetail = async (req, res) => {
         "province",
         "birthDay",
         "gender",
+        "avatar",
         "role",
       ],
       include: [

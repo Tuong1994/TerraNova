@@ -1,6 +1,5 @@
 import moment from "moment";
 import React from "react";
-import { Link } from "react-router-dom";
 import { EBadgeStatus } from "../../interfaces/badge";
 import { ILangs } from "../../interfaces/lang";
 import { EPaymentTypes, EStatus, IOrder } from "../../models/Order";
@@ -59,9 +58,6 @@ const OrderRow: React.FunctionComponent<OrderRowProps> = (props) => {
         <div>{moment(order?.createdAt).format("MM/DD/YYYY")}</div>
       </TableCol>
       <TableCol>
-        <Link to="/" className="button--edit">
-          <i className="far fa-edit"></i>
-        </Link>
         <div
           className="button--delete"
           onClick={() => removeOrder(order?.id || order?.orderId || "")}

@@ -11,7 +11,10 @@ import Button from "../../../components/Button";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";
 import utils from "../../../utils";
 import { IQueryList } from "../../../interfaces/query";
-import { updateUser } from "../../../redux/actionCreators/UserCreators";
+import {
+  updateUser,
+  uploadAvatar,
+} from "../../../redux/actionCreators/UserCreators";
 import Upload from "../../../components/Upload";
 
 interface UserEditFormProps {
@@ -80,13 +83,29 @@ const UserEditForm: React.FunctionComponent<UserEditFormProps> = (props) => {
     );
   };
 
+  const handleUpload = (file: any) => {
+    const query: IQueryList = {
+      userId: user?.id,
+    };
+    const data = new FormData();
+    data.append("avatar", file);
+    dispatch(
+      uploadAvatar(
+        query,
+        data,
+        langs?.toastMessages.success.upload,
+        langs?.toastMessages.error.upload
+      )
+    );
+  };
+
   return (
     <div className="user-edit__form">
       <Card.Wrapper className="form__info">
         <h5 className="info__title">{langs?.user.overview.accountInfo}</h5>
         <div className="info__content">
           <div className="content__avatar">
-            <Upload />
+            <Upload defaultImg={user?.avatar} onSubmit={handleUpload} />
           </div>
           <div className="content__list">
             <div className="list__content">

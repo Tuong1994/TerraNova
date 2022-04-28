@@ -432,6 +432,7 @@ const VnLang = {
       signUp: "Đăng ký thành công",
       update: "Cập nhật thành công",
       remove: "Xóa thành công",
+      upload: "Upload thành công",
     },
     error: {
       addToCart: "Thêm vào giỏ hàng thất bại",
@@ -442,8 +443,10 @@ const VnLang = {
       signUp: "Đăng ký thất bại",
       update: "Cập nhật thất bại",
       remove: "Xóa thất bại",
+      upload: "Upload thất bại",
       onlyNumber: "Chỉ có thể nhập số",
       alreadyRegister: "Bạn đã đăng ký khóa học này",
+      file: "File không hợp lệ",
     },
   },
 
@@ -492,6 +495,10 @@ const VnLang = {
     selectProvince: "Chọn tỉnh/thành phố",
     noOption: "Không có dữ liệu",
     defaultOption: "Chọn...",
+    chooseFile: "Chọn file",
+    fileSelected: "File được chọn",
+    noFileSelected: "Chưa có file nào được chọn",
+    fileType: "Chỉ upload những file có đuôi là *png, *jpg",
   },
 
   // ==================== TABLE HEADER ====================

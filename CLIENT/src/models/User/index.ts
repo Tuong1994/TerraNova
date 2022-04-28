@@ -21,6 +21,7 @@ export interface IUser {
   province?: string | number;
   birthDay?: string;
   gender?: string | number;
+  avatar?: string;
   role?: string;
   orders?: IOrder[];
   carts?: ICarts[];
