@@ -346,13 +346,45 @@ const VnLang = {
     // UPDATE
     update: {
       mainTitle: "Cập nhật",
+      role: "Vai trò",
       updatePassword: "Thay đổi mật khẩu",
     },
     // INFO 
     info: {
       male: "Nam",
       female: "Nữ",
+      user: "Người dùng",
+      admin: "Quản trị",
     }
+  },
+
+  // ==================== ADMIN ====================
+  admin: {
+    pageTitle: {
+      dashBoard: "Dashboard",
+      customer: "Người dùng",
+      addCustomer: "Tạo mới người dùng",
+      editCustomer: "Chỉnh sửa người dùng",
+      product: "Sản phẩm",
+      addProduct: "Tạo sản phẩm",
+      editProduct: "Chỉnh sửa sản phẩm",
+      order: "Đơn hàng",
+      addOrder: "Tạo đơn hàng",
+      editOrder: "Chỉnh sửa đơn hàng",
+      movie: "Phim",
+      addMovie: "Thêm phim mới",
+      editMovie: "Chỉnh sửa phim",
+      course: "Khóa học",
+      addCourse: "Tạo khóa học",
+      editCourse: "Chỉnh sửa khóa học",
+    },
+    dashboard: {
+      totalRevenue: "Tổng doanh thu",
+      totalOrders: "Tổng số đơn hàng",
+      totalCustomers: "Tổng số khách hàng",
+      totalTickets: "Tổng số vé",
+      percent: "Phần trăm",
+    },
   },
 
   // ==================== TIME ====================
@@ -402,6 +434,9 @@ const VnLang = {
     buyProduct: "Mua sản phẩm",
     continueBuy: "Tiếp tục mua hàng",
     addProduct: "Tạo sản phẩm",
+    addOrder: "Tạo đơn hàng",
+    addMovie: "Thêm phim mới",
+    addUser: "Thêm người dùng",
     update: "Cập nhật",
     payment: "Thanh toán",
     returnCoursePage: "Trở lại trang khóa học",

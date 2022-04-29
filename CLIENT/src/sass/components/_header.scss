@@ -276,8 +276,14 @@
         }
       }
     }
-    .features__translate {
-      width: $w-100 - 80;
+    .features__others {
+      width: $w-100 - 60;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    @include respond(laptop) {
+      width: $w-100 - 70;
     }
     @include respond(extraTablet) {
       display: none;
@@ -293,6 +299,12 @@
     @include respond(extraTablet) {
       display: block;
     }
+  }
+  @include respond(laptop) {
+    padding: 0 $p-10 * 2;
+  }
+  @include respond(extraTablet) {
+    padding: 0 $p-10 * 5;
   }
 }
 

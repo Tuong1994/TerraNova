@@ -337,13 +337,45 @@ const ChLang = {
     // UPDATE
     update: {
       mainTitle: "更新",
+      role: "角色",
       updatePassword: "更改密码",
     },
-    // INFO 
+    // INFO
     info: {
       male: "男性",
       female: "女性",
-    }
+      user: "用户",
+      admin: "管理",
+    },
+  },
+
+  // ==================== ADMIN ====================
+  admin: {
+    pageTitle: {
+      dashBoard: "Dashboard",
+      customer: "客户",
+      addCustomer: "创建客戶",
+      editCustomer: "更新客戶",
+      product: "产品",
+      addProduct: "创建产品",
+      editProduct: "更新产品",
+      order: "订单",
+      addOrder: "创建订单",
+      editOrder: "更新订单",
+      movie: "电影",
+      addMovie: "创建电影",
+      editMovie: "更新电影",
+      course: "课程",
+      addCourse: "创建课程",
+      editCourse: "更新课程",
+    },
+    dashboard: {
+      totalRevenue: "总收入",
+      totalOrders: "总订单",
+      totalCustomers: "客户总数",
+      totalTickets: "门票总数",
+      percent: "百分",
+    },
   },
 
   // ==================== TIME ====================
@@ -393,6 +425,9 @@ const ChLang = {
     buyProduct: "购买产品",
     continueBuy: "继续购物",
     addProduct: "创建产品",
+    addOrder: "创建订单",
+    addMovie: "创建电影",
+    addUser: "创建客户",
     update: "更新",
     payment: "付款",
     returnCoursePage: "返回课程页面",

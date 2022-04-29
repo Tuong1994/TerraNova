@@ -12,7 +12,7 @@ const ProductAdminRow: React.FunctionComponent<IProductAdminRowProps> = (
 ) => {
   const {product } = props;
   return (
-    <tr>
+    <tr className="product-admin-row">
       <TableCol>{product.id || product.productId}</TableCol>
 
       <TableCol>
@@ -24,7 +24,9 @@ const ProductAdminRow: React.FunctionComponent<IProductAdminRowProps> = (
       </TableCol>
 
       <TableCol>
-        
+        <div className="image__col">
+          <img className="col__img" src="../img/product_img.jpg" alt="product" />
+        </div>
       </TableCol>
 
       <TableCol>

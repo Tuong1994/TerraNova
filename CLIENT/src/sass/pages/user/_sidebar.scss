@@ -23,6 +23,22 @@
       font-weight: $semiBold;
       color: $tSecondary;
     }
+    .avatar__admin {
+      padding: $p-10;
+      margin-bottom: $m-10 * 2;
+      font-size: $body-1;
+      background: $primary;
+      border-radius: $round;
+      text-decoration: none;
+      color: $tPrimary;
+      transition: all 0.5s ease;
+      &:hover {
+        box-shadow: 0 0 10px $primary;
+      }
+      i {
+        margin-right: $m-10;
+      }
+    }
     .avatar__line {
       width: $w-100;
       height: 2px;

@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "../../pages/Admin/Sidebar";
 import AdminTemplateHeader from "./AdminTemplateHeader";
-import RAdminTemplate from "../../responsive/RAdminTemplate/RAdminTemplate";
+import RAdminTemplate from "../../responsive/RAdminTemplate";
 import { IRoute } from "../../interfaces/route";
 import { Route, RouteComponentProps } from "react-router-dom";
 

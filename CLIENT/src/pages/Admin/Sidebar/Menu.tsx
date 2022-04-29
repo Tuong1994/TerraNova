@@ -1,27 +1,57 @@
 import React from "react";
-import { adminMenu } from "../../../configs/menuList";
+import { adminMenuCH, adminMenuENG, adminMenuVN } from "../../../configs/menuList";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
 import { ESideBarActionTypes } from "../../../redux/actionTypes/SideBarActionTypes";
+import { ELangs } from "../../../interfaces/lang";
 
-const Menu: React.FunctionComponent<{}> = (props) => {
+interface MenuProps {
+  lang: string;
+}
+
+const Menu: React.FunctionComponent<MenuProps> = (props) => {
+  const { lang } = props;
+
   const path = document.location.pathname;
   const id = path.slice(1, path.length);
 
   const { menuId } = useSelector((state: ReducerState) => state.SideBarReducer);
 
+  const [menuList, setMenuList] = React.useState<any>([]);
+
   const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    getMenuByLang();
+  }, [lang]);
+
+  const getMenuByLang = () => {
+    switch(lang) {
+      case ELangs.ENG: {
+        setMenuList(adminMenuENG);
+        break;
+      }
+      case ELangs.VN: {
+        setMenuList(adminMenuVN);
+        break;
+      }
+      case ELangs.CH: {
+        setMenuList(adminMenuCH);
+        break;
+      }
+    }
+  }
 
   const handleChangeMenu = (menu: any) => {
     dispatch({
       type: ESideBarActionTypes.ADD_ID,
-      payload: menu.id
-    })
+      payload: menu.id,
+    });
   };
 
   const renderMenu = () => {
-    return adminMenu.map((menu) => {
+    return menuList.map((menu: any) => {
       return (
         <Link
           key={menu.id}

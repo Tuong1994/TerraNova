@@ -106,6 +106,12 @@ const RHeaderMenu: React.FunctionComponent<IRHeaderMenuProps> = (props) => {
             <i className="fa-solid fa-angle-right"></i>
           </span>
         </div>
+        <div className="list__admin">
+          <Link to="/admin" className="admin__link">
+            <i className="fa-solid fa-user-shield"></i>
+            <span>{langs?.headerMenu.admin}</span>
+          </Link>
+        </div>
       </div>
     );
   };
@@ -169,12 +175,15 @@ const RHeaderMenu: React.FunctionComponent<IRHeaderMenuProps> = (props) => {
         }
         ref={menuRef}
       >
+        {/* User Log */}
         <div className="wrapper__login">{renderUserLogin()}</div>
 
         <div className="wrapper__line"></div>
 
+        {/* Menu */}
         <ul className="wrapper__menu">
           {renderHeaderMenu()}
+
           <ProductMenu
             menu={menuList}
             isShow={showProductMenu}

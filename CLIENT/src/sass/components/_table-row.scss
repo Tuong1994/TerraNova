@@ -50,3 +50,16 @@
     border: 0;
   }
 }
+
+.product-admin-row {
+  .image__col {
+    width: $w-100;
+    display: flex;
+    justify-content: center;
+    .col__img {
+      width: $w-10 * 5;
+      height: $h-10 * 5;
+      border-radius: $lightRound;
+    }
+  }
+}

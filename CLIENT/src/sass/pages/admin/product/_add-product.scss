@@ -1,0 +1,21 @@
+.add-product {
+  .add-product__wrapper {
+    width: $w-100;
+    display: flex;
+    justify-content: space-between;
+    .wrapper__item {
+      &:nth-child(1) {
+        width: $w-100 - 32;
+      }
+      &:nth-child(2) {
+        width: $w-100 - 70;
+      }
+      .item__status {
+        padding: $p-10 * 2;
+        .status__title {
+          font-weight: $semiBold;
+        }
+      }
+    }
+  }
+}

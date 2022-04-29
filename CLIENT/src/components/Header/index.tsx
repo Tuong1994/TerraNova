@@ -4,7 +4,7 @@ import HeaderMenu from "./HeaderMenu";
 import HeaderLogin from "./HeaderLogin";
 import HeaderButton from "./HeaderButton";
 import RHeaderMenu from "../../responsive/RHeader";
-import Translate from "../Translate";
+import HeaderFeatures from "./HeaderFeatures";
 
 const Header: React.FunctionComponent<{}> = (props) => {
   const [showMenu, setShowMenu] = React.useState<boolean>(false);
@@ -31,7 +31,7 @@ const Header: React.FunctionComponent<{}> = (props) => {
       <HeaderMenu />
       <div className="header__features">
         <HeaderLogin />
-        <Translate className="features__translate" />
+        <HeaderFeatures />
       </div>
       <HeaderButton setShowMenu={setShowMenu} />
       <RHeaderMenu showMenu={showMenu} setShowMenu={setShowMenu} />

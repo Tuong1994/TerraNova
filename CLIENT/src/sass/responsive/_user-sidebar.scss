@@ -1,28 +1,38 @@
 .user-sidebar__responsive {
   width: $w-100;
+  background: $secondary;
   display: none;
   position: sticky;
   top: 50px;
   z-index: 99;
   .responsive__wrapper {
-    width: $w-100;
-    padding: $p-10;
-    background: $secondary;
     display: flex;
-    .wrapper__link {
-      text-decoration: none;
-      display: block;
-      padding: 0 $p-10;
-      color: $tSecondary;
-      i {
-        font-size: $subtitle;
+    justify-content: space-between;
+    align-items: center;
+    .wrapper__list {
+      width: $w-100;
+      padding: $p-10;
+      display: flex;
+      .list__link {
+        text-decoration: none;
+        display: block;
+        padding: 0 $p-10;
+        color: $tSecondary;
+        i {
+          font-size: $subtitle;
+        }
       }
     }
+    .wrapper__admin {
+      padding: $p-10;
+      text-decoration: none;
+      color: $tSecondary;
+    }
     @include respond(extraTablet) {
-        padding: $p-10 * 2 $p-10;
+      padding: $p-10 * 2 $p-10;
     }
     @include respond(phone) {
-        padding: $p-10;
+      padding: $p-10;
     }
   }
   @include respond(extraTablet) {

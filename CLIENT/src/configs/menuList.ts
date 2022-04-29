@@ -1,6 +1,6 @@
 import * as lang from "../translate";
 
-export const adminMenu = [
+export const adminMenuENG = [
   {
     id: "admin",
     path: "/admin",
@@ -29,6 +29,72 @@ export const adminMenu = [
     id: "course",
     path: "/admin/course",
     name: "Course",
+    icon: "fas fa-book-open",
+  },
+];
+
+export const adminMenuVN = [
+  {
+    id: "admin",
+    path: "/admin",
+    name: "Dashboard",
+    icon: "fas fa-chart-line",
+  },
+  {
+    id: "order",
+    path: "/admin/order",
+    name: "Đơn hàng",
+    icon: "fas fa-shopping-cart",
+  },
+  {
+    id: "customer",
+    path: "/admin/customer",
+    name: "Khách hàng",
+    icon: "fas fa-user",
+  },
+  {
+    id: "product",
+    path: "/admin/product",
+    name: "Sản phẩm",
+    icon: "fas fa-tag",
+  },
+  {
+    id: "course",
+    path: "/admin/course",
+    name: "Khóa học",
+    icon: "fas fa-book-open",
+  },
+];
+
+export const adminMenuCH = [
+  {
+    id: "admin",
+    path: "/admin",
+    name: "Dashboard",
+    icon: "fas fa-chart-line",
+  },
+  {
+    id: "order",
+    path: "/admin/order",
+    name: "订单",
+    icon: "fas fa-shopping-cart",
+  },
+  {
+    id: "customer",
+    path: "/admin/customer",
+    name: "顾客",
+    icon: "fas fa-user",
+  },
+  {
+    id: "product",
+    path: "/admin/product",
+    name: "产品",
+    icon: "fas fa-tag",
+  },
+  {
+    id: "course",
+    path: "/admin/course",
+    name: "课程",
     icon: "fas fa-book-open",
   },
 ];

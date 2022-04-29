@@ -31,8 +31,8 @@ const EngLang = {
     logOut: "Log out",
   },
 
-   // ==================== FOOTER ====================
-   footer: {
+  // ==================== FOOTER ====================
+  footer: {
     partners: "Partners",
     socials: "Socials",
     company: "TERRA NOVA TRADING COMPANY",
@@ -277,7 +277,7 @@ const EngLang = {
           fri: "friday",
           sat: "saturday",
           sun: "sunday",
-          fee: "Course fee"
+          fee: "Course fee",
         },
         form: {
           title: "COURSE REGISTER",
@@ -352,12 +352,49 @@ const EngLang = {
     // UPDATE
     update: {
       mainTitle: "Update",
+      role: "Role",
       updatePassword: "Change password",
     },
-    // INFO 
+    // INFO
     info: {
       male: "Male",
       female: "Female",
+      user: "User",
+      admin: "Admin",
+    },
+  },
+
+  // ==================== ADMIN ====================
+  admin: {
+    pageTitle: {
+      dashBoard: "Dashboard",
+      customer: "Customer",
+      addCustomer: "Add customer",
+      editCustomer: "Edit customer",
+      product: "Product",
+      addProduct: "Add product",
+      editProduct: "Edit product",
+      order: "Order",
+      addOrder: "Add order",
+      editOrder: "Edit order",
+      movie: "Movie",
+      addMovie: "Add movie",
+      editMovie: "Edit movie",
+      course: "Course",
+      addCourse: "Add course",
+      editCourse: "Edit course",
+    },
+    dashboard: {
+      totalRevenue: "Total revenue",
+      totalOrders: "Total orders",
+      totalCustomers: "Total customers",
+      totalTickets: "Total tickets",
+      percent: "Percent",
+    },
+    product: {
+      addProduct: {
+        
+      },
     }
   },
 
@@ -381,7 +418,7 @@ const EngLang = {
   status: {
     new: "New",
     paid: "Paid",
-    stocking: "Stocking",
+    stocking: "In stock",
     outOfStock: "Out of stock",
   },
 
@@ -408,6 +445,10 @@ const EngLang = {
     buyProduct: "Buy product",
     continueBuy: "Continue to buy",
     addProduct: "Add product",
+    addCourse: "Add course",
+    addOrder: "Add order",
+    addMovie: "Add movie",
+    addUser: "Add user",
     update: "Update",
     payment: "Payment",
     returnCoursePage: "Return to course page",

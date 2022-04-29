@@ -4,7 +4,7 @@ import * as FormControl from "../../../components/Fields";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field } from "formik";
 import { ILangs } from "../../../interfaces/lang";
-import { EGender, IUser } from "../../../models/User";
+import { EGender, ERole, IUser } from "../../../models/User";
 import { ReducerState } from "../../../redux/store";
 import { EProvince } from "../../../models/Shipment";
 import Button from "../../../components/Button";
@@ -55,32 +55,14 @@ const UserEditForm: React.FunctionComponent<UserEditFormProps> = (props) => {
     }
   };
 
-  const initialValues = {
-    firstName: user?.firstName,
-    lastName: user?.lastName,
-    phone: user?.phone,
-    email: user?.email,
-    address: user?.address,
-    province: user?.province,
-    ward: user?.ward,
-    district: user?.district,
-    birthday: user?.birthDay,
-    gender: user?.gender,
-    role: "USER",
-  };
-
-  const handleSubmit = (values: IUser) => {
-    const query: IQueryList = {
-      userId: user?.id,
-    };
-    dispatch(
-      updateUser(
-        query,
-        values,
-        langs?.toastMessages.success.update,
-        langs?.toastMessages.error.update
-      )
-    );
+  const renderUserRole = () => {
+    if (user) {
+      if (user?.role === ERole.user) {
+        return langs?.user.info.user;
+      } else if (user?.role === ERole.admin) {
+        return langs?.user.info.admin;
+      }
+    }
   };
 
   const handleUpload = (file: any) => {
@@ -99,6 +81,34 @@ const UserEditForm: React.FunctionComponent<UserEditFormProps> = (props) => {
     );
   };
 
+  const initialValues = {
+    firstName: user?.firstName,
+    lastName: user?.lastName,
+    phone: user?.phone,
+    email: user?.email,
+    address: user?.address,
+    province: user?.province,
+    ward: user?.ward,
+    district: user?.district,
+    birthday: user?.birthDay,
+    gender: user?.gender,
+    role: user?.role,
+  };
+
+  const handleSubmit = (values: IUser) => {
+    const query: IQueryList = {
+      userId: user?.id,
+    };
+    dispatch(
+      updateUser(
+        query,
+        values,
+        langs?.toastMessages.success.update,
+        langs?.toastMessages.error.update
+      )
+    );
+  };
+
   return (
     <div className="user-edit__form">
       <Card.Wrapper className="form__info">
@@ -112,9 +122,13 @@ const UserEditForm: React.FunctionComponent<UserEditFormProps> = (props) => {
               <p>{langs?.form.account} : </p>
               <strong>{user?.account}</strong>
             </div>
-            <div className="button--submit list__button">
-              {langs?.user.update.updatePassword}
+            <div className="list__content">
+              <p>{langs?.user.update.role} : </p>
+              <strong>{renderUserRole()}</strong>
             </div>
+            <Button className="button--submit list__button">
+              {langs?.user.update.updatePassword}
+            </Button>
           </div>
         </div>
       </Card.Wrapper>

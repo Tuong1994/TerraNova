@@ -2,7 +2,7 @@ import React from "react";
 import * as Card from "../../../components/Card";
 import * as content from "../../../configs/shipment";
 import { ELangs, ILangs } from "../../../interfaces/lang";
-import { EGender, IUser } from "../../../models/User";
+import { EGender, ERole, IUser } from "../../../models/User";
 
 interface UserInfoProps {
   lang: string;
@@ -51,6 +51,16 @@ const UserInfo: React.FunctionComponent<UserInfoProps> = (props) => {
     }
   };
 
+  const renderRole = () => {
+    if (user) {
+      if (user?.role === ERole.admin) {
+        return langs?.user.info.admin;
+      } else if (user?.role === ERole.user) {
+        return langs?.user.info.user;
+      }
+    }
+  };
+
   return (
     <div className="overview__user">
       <Card.Wrapper className="user__info">
@@ -68,8 +78,15 @@ const UserInfo: React.FunctionComponent<UserInfoProps> = (props) => {
               <strong>{user?.email}</strong>
             </div>
           </li>
+          <li className="list__inner">
+            <div className="inner__content">
+              <p>{langs?.user.update.role} : </p>
+              <strong>{renderRole()}</strong>
+            </div>
+          </li>
         </ul>
       </Card.Wrapper>
+
       <Card.Wrapper className="user__info">
         <h5 className="info__title">{langs?.user.overview.personalInfo}</h5>
         <ul className="info__list">

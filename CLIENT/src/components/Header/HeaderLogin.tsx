@@ -7,7 +7,6 @@ import { EUserActionTypes } from "../../redux/actionTypes/UserActionTypes";
 import { ELoadingActionTypes } from "../../redux/actionTypes/LoadingActionTypes";
 import { history } from "../../App";
 import { ERole } from "../../models/User";
-import Carts from "../Carts";
 import ButtonLoading from "../Loading/ButtonLoading";
 import utils from "../../utils";
 
@@ -60,15 +59,14 @@ const HeaderLogin: React.FunctionComponent<{}> = (props) => {
             </span>
           </div>
 
-          <Carts />
-
+          {/* User setting */}
           <div
             className={
               isShow ? "user__setting user__setting--active" : "user__setting"
             }
             ref={menuSettingRef}
           >
-            {user?.role === ERole.admin && (
+            {user && user?.role === ERole.admin && (
               <Link to="/admin" className="setting__link">
                 <i className="fa-solid fa-user-shield"></i>
                 <span>{langs?.headerMenu.admin}</span>
@@ -104,7 +102,6 @@ const HeaderLogin: React.FunctionComponent<{}> = (props) => {
           <Link to="/signUp" className="button--round">
             {langs?.headerMenu.signUp}
           </Link>
-          <Carts />
         </div>
       );
     }

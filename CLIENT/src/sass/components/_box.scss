@@ -1,13 +1,14 @@
 .box {
-    width: $w-100;
-    padding: $p-10 * 2;
-    transition: all 0.3s ease;
-    &:hover {
-        background: $secondary;
-        color: $tSecondary;
-    }
-    .box__title {
-        font-weight: $semiBold;
-        margin-bottom: $m-10;
-    }
+  width: $w-100;
+  padding: $p-10 * 2;
+  border-radius: $lightRound;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  &:hover {
+    box-shadow: 0 0 10px $grey;
+  }
+  .box__title {
+    font-weight: $semiBold;
+    margin-bottom: $m-10;
+  }
 }

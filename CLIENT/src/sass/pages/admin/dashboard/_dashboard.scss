@@ -1,0 +1,45 @@
+.dashboard {
+  .dashboard__wrapper {
+    .wrapper__box {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: $m-10;
+      .box__item {
+        width: $w-100 / 4.1;
+        color: $tSecondary;
+        @include respond(extraTablet) {
+          width: $w-100 / 2.1;
+          margin-bottom: $m-10;
+        }
+        @include respond(phone) {
+          width: $w-100;
+          margin-bottom: $m-10;
+        }
+      }
+    }
+    .wrapper__card {
+      margin: $m-10 * 2 0;
+      padding: $p-10 * 2;
+      display: flex;
+      .card__title {
+        width: $w-100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        span {
+          font-weight: $semiBold;
+          &:first-child {
+            font-size: $subtitle;
+          }
+          &:last-child {
+            font-size: $body-1;
+            font-style: italic;
+            color: $tGrey;
+          }
+        }
+      }
+    }
+  }
+}

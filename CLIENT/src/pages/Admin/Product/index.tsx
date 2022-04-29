@@ -4,7 +4,6 @@ import Table from "../../../components/Table";
 import ProductAdminRow from "../../../components/TableRow/ProductAdminRow";
 import Card from "../../../components/Card/Card";
 import Pagination from "../../../components/Pagination";
-import pageTitleList from "../../../configs/pageTitleList";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
 import { getProductList } from "../../../redux/actionCreators/ProductCreators";
@@ -43,11 +42,11 @@ const Product: React.FunctionComponent<{}> = (props) => {
   return (
     <div className="product">
       <ContentHeader
-        name={pageTitleList.product}
+        name={langs?.admin.pageTitle.product || ""}
         right={() => {
           return (
             <Link to="/product/addProduct" className="button--add">
-              Add Product
+              {langs?.button.addProduct}
             </Link>
           );
         }}
@@ -58,7 +57,7 @@ const Product: React.FunctionComponent<{}> = (props) => {
             { title: langs?.tableHeader.number || "" },
             { title: langs?.tableHeader.productName || "" },
             { title: langs?.tableHeader.price || "" },
-            { title: langs?.tableHeader.description || "" },
+            { title: langs?.tableHeader.image || "" },
             { title: langs?.tableHeader.features || "" },
           ]}
           isNodata={productList?.productListPerPage}

@@ -1,12 +1,42 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { adminMenu } from "../../configs/menuList";
+import { adminMenuENG, adminMenuVN, adminMenuCH } from "../../configs/menuList";
+import { ELangs } from "../../interfaces/lang";
 
-const RAdminSidebar: React.FunctionComponent<{}> = (props) => {
+interface RAdminSidebarProps {
+  lang: string;
+}
+
+const RAdminSidebar: React.FunctionComponent<RAdminSidebarProps> = (props) => {
+  const { lang } = props;
+
+  const [menuList, setMenuList] = React.useState<any>([]);
+
+  React.useEffect(() => {
+    getMenuByLang();
+  }, [lang]);
+
+  const getMenuByLang = () => {
+    switch (lang) {
+      case ELangs.ENG: {
+        setMenuList(adminMenuENG);
+        break;
+      }
+      case ELangs.VN: {
+        setMenuList(adminMenuVN);
+        break;
+      }
+      case ELangs.CH: {
+        setMenuList(adminMenuCH);
+        break;
+      }
+    }
+  };
+
   const renderMenuList = () => {
-    return adminMenu.map((menu, index) => {
+    return menuList.map((menu: any) => {
       return (
-        <Link to={menu.path} key={index} className="link">
+        <Link to={menu.path} key={menu.id} className="link">
           <i className={`link__icon ${menu.icon}`}></i>
           <span className="link__name">{menu.name}</span>
         </Link>
@@ -14,9 +44,9 @@ const RAdminSidebar: React.FunctionComponent<{}> = (props) => {
     });
   };
   return (
-    <div className="menu__wrapper">
+    <React.Fragment>
       <div className="wrapper__link">{renderMenuList()}</div>
-    </div>
+    </React.Fragment>
   );
 };
 

@@ -100,6 +100,7 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
         );
         dispatch(getUserDetail(userQuery));
       }
+      
     } else {
       const products = tempCarts?.products;
       const newProducts = products?.filter(
@@ -144,6 +145,7 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
       } else {
         return <p className="list__no-data">{langs?.noData.product}</p>;
       }
+
     } else {
       if (tempCarts?.products && tempCarts?.products?.length > 0) {
         return tempCarts?.products?.map(

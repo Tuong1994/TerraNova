@@ -1,19 +1,4 @@
 .admin-template {
-  .admin-template__menu {
-    @include respond(extraTablet) {
-      display: none;
-    }
-  }
-  .admin-template__content {
-    .content__header {
-      @include respond(extraTablet) {
-        display: none;
-      }
-    }
-    @include respond(extraTablet) {
-      width: $w-100;
-    }
-  }
   .admin-template__responsive {
     width: $w-100;
     padding: $p-5 $p-10 * 3;
@@ -21,7 +6,7 @@
     background: $secondary;
     position: sticky;
     top: 0;
-    z-index: 9;
+    z-index: 9999;
     display: none;
     .responsive {
       width: $w-100;
@@ -29,14 +14,18 @@
       align-items: center;
       justify-content: space-between;
       .responsive__logo {
+        padding: 0;
         color: $tSecondary;
         display: flex;
         align-items: center;
-        border-bottom: 1px solid $borderWhite;
+        .logo__wrapper {
+          border: 0;
+        }
         .logo__left {
           font-size: $h2;
-          font-weight: $bold;
-          margin-right: $m-5;
+        }
+        .logo__right {
+          font-size: $default;
         }
       }
       .responsive__button {
@@ -55,31 +44,68 @@
         right: 0;
         bottom: 0;
         z-index: 99;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
         .menu__wrapper {
-          width: $w-100 - 30;
-          height: $h-100;
+          width: $w-100 - 20;
+          padding: $p-10 * 2 0;
+          height: $h-100-vh;
           background: $secondary;
+          transform: translate(-100%);
+          transition: all 0.5s ease;
+          position: fixed;
+          top: 0;
+          overflow: auto;
           .wrapper__link {
             width: $w-100;
             .link {
+              font-size: $body-1;
               display: block;
               padding: $p-10 $p-10 * 2;
               margin: $m-10 0;
               color: $tSecondary;
               text-decoration: none;
+              border-bottom: 1px solid $borderWhite;
               .link__icon {
                 margin-right: $m-10;
               }
             }
           }
         }
+        .menu__wrapper--active {
+          transform: translate(0);
+        }
+        .menu__close {
+          position: absolute;
+          top: 2%;
+          right: 5%;
+          font-size: $subtitle;
+          color: $tSecondary;
+        }
+        .menu__close--active {
+          animation: rotate 0.5s linear 1;
+        }
+      }
+      .responsive__menu--active {
+        opacity: 1;
+        visibility: visible;
       }
     }
-    // @include respond(extraTablet) {
-    //   display: block;
-    // }
+    @include respond(extraTablet) {
+      display: block;
+    }
   }
   @include respond(extraTablet) {
     flex-direction: column;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(180deg);
   }
 }
