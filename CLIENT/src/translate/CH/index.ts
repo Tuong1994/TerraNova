@@ -376,6 +376,16 @@ const ChLang = {
       totalTickets: "门票总数",
       percent: "百分",
     },
+    product: {
+      addProduct: {
+        subTitle_1: "状态",
+        subTitle_2: "信息",
+        subTitle_3: "描述",
+        subTitle_4: "估值",
+        subTitle_5: "起源",
+        descList: "描述列表",
+      },
+    },
   },
 
   // ==================== TIME ====================
@@ -432,6 +442,8 @@ const ChLang = {
     payment: "付款",
     returnCoursePage: "返回课程页面",
     registerCourse: "注册课程",
+    savePrice: "節省价格",
+    add: "添加",
   },
 
   // ==================== NO DATA ====================
@@ -526,6 +538,18 @@ const ChLang = {
     fileSelected: "个文件已选择",
     noFileSelected: "尚未选择任何文件",
     fileType: "仅上传扩展名为 *png、*jpg 的文件",
+    productName: "产品名称",
+    productType: "产品类别",
+    price: "价格",
+    status: "状态",
+    inventoryStatus: "库存状况",
+    stockAmount: "存货",
+    cost: "成本",
+    profit: "利润",
+    category: "类别",
+    producer: "制片人",
+    title: "标题",
+    content: "内容",
   },
 
   // ==================== TABLE HEADER ====================

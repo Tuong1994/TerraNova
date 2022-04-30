@@ -10,10 +10,88 @@
       &:nth-child(2) {
         width: $w-100 - 70;
       }
-      .item__status {
+      .item__inner {
         padding: $p-10 * 2;
-        .status__title {
+        .inner__title {
           font-weight: $semiBold;
+          margin-bottom: $m-10;
+        }
+        .inner__control {
+          margin: $m-10 0;
+        }
+      }
+      .item__info {
+        margin: $m-10 0;
+      }
+      .item__price {
+        margin: $m-10 0;
+        .price__detail {
+          width: $w-100;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          .detail__content {
+            font-weight: $semiBold;
+          }
+        }
+      }
+      .item__source {
+        margin: $m-10 0;
+      }
+      .item__description {
+        .description__button {
+          display: flex;
+          justify-content: flex-end;
+          .button--submit {
+            &:first-child {
+              i {
+                margin-right: $m-10;
+              }
+            }
+            &:last-child {
+              margin-left: $m-10;
+            }
+          }
+        }
+        .description__list {
+          width: $w-100;
+          margin: $m-10 0;
+          .list__title {
+            font-size: $body-1;
+            font-weight: $semiBold;
+          }
+          .list__item {
+            width: $w-100;
+            margin: $m-10 0;
+            padding: $p-10 $p-10 * 4;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid $borderGrey;
+            border-radius: $lightRound;
+            .item__content {
+              font-size: $body-1;
+              font-weight: $semiBold;
+              p {
+                margin: $m-5 0;
+              }
+            }
+            .item__icon {
+              width: $w-10 * 3;
+              height: $h-10 * 3;
+              font-size: $body-1;
+              text-align: center;
+              line-height: $h-10 * 3;
+              background: $secondary;
+              color: $tSecondary;
+              border-radius: $circle;
+              cursor: pointer;
+              transition: all 0.5s ease;
+              &:hover {
+                box-shadow: 0 0 10px $grey;
+              }
+            }
+          }
         }
       }
     }

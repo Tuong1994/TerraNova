@@ -28,9 +28,6 @@ module.exports = {
       productType: {
         type: Sequelize.STRING
       },
-      subMenuId: {
-        type: Sequelize.STRING
-      },
       categoryId: {
         type: Sequelize.STRING
       },

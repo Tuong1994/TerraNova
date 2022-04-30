@@ -33,7 +33,6 @@ module.exports = (sequelize, DataTypes) => {
       inventoryStatus: DataTypes.INTEGER,
       stockAmount: DataTypes.INTEGER,
       productType: DataTypes.STRING,
-      subMenuId: DataTypes.STRING,
       categoryId: DataTypes.STRING,
       producerId: DataTypes.STRING,
     },

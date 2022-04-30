@@ -1,3 +1,10 @@
+import {
+  EInventoryStatus,
+  EProducer,
+  EProductStatus,
+  EProductType,
+  EProfit,
+} from "./../models/Product/index";
 import { EPaymentTypes, EShipmentType } from "../models/Order";
 import { EWard, EDistrict, EProvince } from "./../models/Shipment";
 
@@ -90,6 +97,51 @@ export const optionsEng = {
       value: EPaymentTypes.vib,
       icon: "../img/icon/vib.png",
     },
+  ],
+  productStatus: [
+    { label: "New", value: EProductStatus.new },
+    { label: "90% new", value: EProductStatus.secondHand },
+  ],
+  inventoryStatus: [
+    { label: "In stock", value: EInventoryStatus.inStock },
+    { label: "Out of stock", value: EInventoryStatus.outOfStock },
+  ],
+  profit: [
+    { label: "50%", value: EProfit.half },
+    { label: "100%", value: EProfit.full },
+  ],
+  productCategory: [
+    { label: "CPU", value: EProductType.cpu },
+    { label: "RAM", value: EProductType.ram },
+    { label: "VGA", value: EProductType.vga },
+    { label: "HDD", value: EProductType.hdd },
+    { label: "SSD", value: EProductType.ssd },
+    { label: "PSU", value: EProductType.psu },
+    { label: "MAINBOARD", value: EProductType.mainboard },
+    { label: "MONITOR", value: EProductType.monitor },
+    { label: "PRINTER", value: EProductType.printer },
+    { label: "FAX", value: EProductType.fax },
+    { label: "LAPTOP", value: EProductType.laptop },
+    { label: "PC SET", value: EProductType.pcSet },
+  ],
+  producer: [
+    { label: "ASUS", value: EProducer.asus },
+    { label: "ASROCK", value: EProducer.asrock },
+    { label: "GIGABYTE", value: EProducer.gigabyte },
+    { label: "MSI", value: EProducer.msi },
+    { label: "INTEL", value: EProducer.intel },
+    { label: "AMD", value: EProducer.amd },
+    { label: "SEAGATE", value: EProducer.seagate },
+    { label: "WESTERN", value: EProducer.western },
+    { label: "KINGSTON", value: EProducer.kingston },
+    { label: "CORSAIR", value: EProducer.corsair },
+    { label: "DEEPCOOL", value: EProducer.deepcool },
+    { label: "COOLERMASTER", value: EProducer.coolermaster },
+    { label: "DELL", value: EProducer.dell },
+    { label: "HP", value: EProducer.hp },
+    { label: "SAMSUNG", value: EProducer.samsung },
+    { label: "LG", value: EProducer.lg },
+    { label: "VIEWSONIC", value: EProducer.viewsonic },
   ],
 };
 
@@ -186,6 +238,51 @@ export const optionsVn = {
       icon: "../img/icon/vib.png",
     },
   ],
+  productStatus: [
+    { label: "Mới", value: EProductStatus.new },
+    { label: "Mới 90%", value: EProductStatus.secondHand },
+  ],
+  inventoryStatus: [
+    { label: "Còn hàng", value: EInventoryStatus.inStock },
+    { label: "Hết hàng", value: EInventoryStatus.outOfStock },
+  ],
+  profit: [
+    { label: "50%", value: EProfit.half },
+    { label: "100%", value: EProfit.full },
+  ],
+  productCategory: [
+    { label: "CPU", value: EProductType.cpu },
+    { label: "RAM", value: EProductType.ram },
+    { label: "VGA", value: EProductType.vga },
+    { label: "HDD", value: EProductType.hdd },
+    { label: "SSD", value: EProductType.ssd },
+    { label: "PSU", value: EProductType.psu },
+    { label: "MAINBOARD", value: EProductType.mainboard },
+    { label: "MONITOR", value: EProductType.monitor },
+    { label: "PRINTER", value: EProductType.printer },
+    { label: "FAX", value: EProductType.fax },
+    { label: "LAPTOP", value: EProductType.laptop },
+    { label: "PC SET", value: EProductType.pcSet },
+  ],
+  producer: [
+    { label: "ASUS", value: EProducer.asus },
+    { label: "ASROCK", value: EProducer.asrock },
+    { label: "GIGABYTE", value: EProducer.gigabyte },
+    { label: "MSI", value: EProducer.msi },
+    { label: "INTEL", value: EProducer.intel },
+    { label: "AMD", value: EProducer.amd },
+    { label: "SEAGATE", value: EProducer.seagate },
+    { label: "WESTERN", value: EProducer.western },
+    { label: "KINGSTON", value: EProducer.kingston },
+    { label: "CORSAIR", value: EProducer.corsair },
+    { label: "DEEPCOOL", value: EProducer.deepcool },
+    { label: "COOLERMASTER", value: EProducer.coolermaster },
+    { label: "DELL", value: EProducer.dell },
+    { label: "HP", value: EProducer.hp },
+    { label: "SAMSUNG", value: EProducer.samsung },
+    { label: "LG", value: EProducer.lg },
+    { label: "VIEWSONIC", value: EProducer.viewsonic },
+  ],
 };
 
 export const optionsCh = {
@@ -278,4 +375,55 @@ export const optionsCh = {
       icon: "../img/icon/vib.png",
     },
   ],
+  productStatus: [
+    { label: "全新", value: EProductStatus.new },
+    { label: "90% 全新", value: EProductStatus.secondHand },
+  ],
+  inventoryStatus: [
+    { label: "有存货", value: EInventoryStatus.inStock },
+    { label: "缺货", value: EInventoryStatus.outOfStock },
+  ],
+  profit: [
+    { label: "50%", value: EProfit.half },
+    { label: "100%", value: EProfit.full },
+  ],
+  productCategory: [
+    { label: "CPU", value: EProductType.cpu },
+    { label: "RAM", value: EProductType.ram },
+    { label: "VGA", value: EProductType.vga },
+    { label: "HDD", value: EProductType.hdd },
+    { label: "SSD", value: EProductType.ssd },
+    { label: "PSU", value: EProductType.psu },
+    { label: "MAINBOARD", value: EProductType.mainboard },
+    { label: "MONITOR", value: EProductType.monitor },
+    { label: "PRINTER", value: EProductType.printer },
+    { label: "FAX", value: EProductType.fax },
+    { label: "LAPTOP", value: EProductType.laptop },
+    { label: "PC SET", value: EProductType.pcSet },
+  ],
+  producer: [
+    { label: "ASUS", value: EProducer.asus },
+    { label: "ASROCK", value: EProducer.asrock },
+    { label: "GIGABYTE", value: EProducer.gigabyte },
+    { label: "MSI", value: EProducer.msi },
+    { label: "INTEL", value: EProducer.intel },
+    { label: "AMD", value: EProducer.amd },
+    { label: "SEAGATE", value: EProducer.seagate },
+    { label: "WESTERN", value: EProducer.western },
+    { label: "KINGSTON", value: EProducer.kingston },
+    { label: "CORSAIR", value: EProducer.corsair },
+    { label: "DEEPCOOL", value: EProducer.deepcool },
+    { label: "COOLERMASTER", value: EProducer.coolermaster },
+    { label: "DELL", value: EProducer.dell },
+    { label: "HP", value: EProducer.hp },
+    { label: "SAMSUNG", value: EProducer.samsung },
+    { label: "LG", value: EProducer.lg },
+    { label: "VIEWSONIC", value: EProducer.viewsonic },
+  ],
 };
+
+type optionsEng = typeof optionsEng;
+type optionsVn = typeof optionsVn;
+type optionsCh = typeof optionsCh;
+
+export type IOptionsLang = optionsEng | optionsCh | optionsVn | undefined;

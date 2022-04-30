@@ -119,6 +119,7 @@ const SingleUpload: React.FunctionComponent<SingleUploadProps> = (props) => {
       {previewImg && (
         <div className="upload__button">
           <Button
+            type="button"
             className={`button--submit ${
               buttonLoading ? "button--disabled" : ""
             }`}

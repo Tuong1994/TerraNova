@@ -1,11 +1,26 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ReducerState } from "../../redux/store";
+import { IQueryList } from "../../interfaces/query";
+import { getUserDetail } from "../../redux/actionCreators/UserCreators";
 import Translate from "../../components/Translate";
 
 const AdminTemplateHeader: React.FunctionComponent<{}> = (props) => {
   const { user } = useSelector((state: ReducerState) => state.UserReducer);
+
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    _getUserDetail();
+  }, []);
+
+  const _getUserDetail = () => {
+    const query: IQueryList = {
+      userId: user?.id,
+    };
+    dispatch(getUserDetail(query));
+  };
 
   return (
     <div className="content__header">

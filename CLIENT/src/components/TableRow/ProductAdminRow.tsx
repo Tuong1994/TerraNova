@@ -20,7 +20,7 @@ const ProductAdminRow: React.FunctionComponent<IProductAdminRowProps> = (
       </TableCol>
 
       <TableCol>
-        <p>{product.price}</p>
+        <p>{product.price?.toLocaleString()} VND</p>
       </TableCol>
 
       <TableCol>

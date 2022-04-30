@@ -6,6 +6,7 @@ const { categoryRouter } = require("./category.router");
 const { courseOrderRouter } = require("./course-order.router");
 const { courseScheduleRouter } = require("./course-schedule.router");
 const { courseRouter } = require("./course.router");
+const { descriptionRouter } = require("./description.router");
 const { lessonRouter } = require("./lesson.router");
 const { orderRouter } = require("./order.router");
 const { productRouter } = require("./product.router");
@@ -23,6 +24,7 @@ rootRouter.use("/courseOrderManagement", courseOrderRouter);
 rootRouter.use("/uploadManagement", uploadRouter);
 rootRouter.use("/lessonManagement", lessonRouter);
 rootRouter.use("/courseScheduleManagement", courseScheduleRouter);
+rootRouter.use("/descriptionManagement", descriptionRouter);
 
 module.exports = {
   rootRouter,

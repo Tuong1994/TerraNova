@@ -393,9 +393,14 @@ const EngLang = {
     },
     product: {
       addProduct: {
-        
+        subTitle_1: "Status",
+        subTitle_2: "Infomation",
+        subTitle_3: "Description",
+        subTitle_4: "Pricing",
+        subTitle_5: "Source",
+        descList: "Description list",
       },
-    }
+    },
   },
 
   // ==================== TIME ====================
@@ -453,6 +458,8 @@ const EngLang = {
     payment: "Payment",
     returnCoursePage: "Return to course page",
     registerCourse: "Register course",
+    savePrice: "Save price",
+    add: "Add",
   },
 
   // ==================== NO DATA ====================
@@ -547,6 +554,18 @@ const EngLang = {
     fileSelected: "File selected",
     noFileSelected: "No file selected",
     fileType: "Only upload files with the extension *png, *jpg",
+    productName: "Product name",
+    productType: "Product type",
+    price: "Price",
+    status: "Status",
+    inventoryStatus: "Inventory status",
+    stockAmount: "Stock amount",
+    cost: "Cost",
+    profit: "Profit",
+    category: "Category",
+    producer: "Producer",
+    title: "Title",
+    content: "Content",
   },
 
   // ==================== TABLE HEADER ====================

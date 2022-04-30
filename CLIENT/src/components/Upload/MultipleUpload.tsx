@@ -90,6 +90,7 @@ const MultipleUpload: React.FunctionComponent<MultipleUploadProps> = (
         />
         {previewImgArr && previewImgArr.length > 0 && (
           <Button
+            type="button"
             className={`button--submit control__button ${
               buttonLoading ? "button--disabled" : ""
             }`}

@@ -46,9 +46,9 @@ const InputField: React.FunctionComponent<InputFieldProps> = (props) => {
           {...field}
           type={type}
           placeholder={placeholder}
-          className={`field__control ${type === "date" && "w-100"} ${
-            inputClassName ? inputClassName : ""
-          }`}
+          className={`field__control ${
+            type === "date" || !icon ? "w-100" : ""
+          } ${inputClassName ? inputClassName : ""}`}
           onKeyPress={onKeyPress}
         />
         {label && (

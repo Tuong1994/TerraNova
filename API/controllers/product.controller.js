@@ -214,16 +214,45 @@ const getProductByFreeText = async (req, res) => {
 };
 
 const createProduct = async (req, res) => {
-  const { name, price, description } = req.body;
+  const {
+    name,
+    price,
+    status,
+    inventoryStatus,
+    stockAmount,
+    productType,
+    description,
+    categoryId,
+    producerId,
+  } = req.body;
   try {
-    const productId = `#P_${Math.floor(Math.random * 10000)}`;
+    const productId = "P_" + Math.floor(Math.random() * 999999999).toString();
     const newProduct = await Product.create({
       id: productId,
       name,
       price,
-      description,
+      status,
+      inventoryStatus,
+      stockAmount,
+      productType,
+      categoryId,
+      producerId,
     });
-    res.status(200).send(newProduct);
+    if (newProduct) {
+      if (description.length > 0) {
+        const newArr = description.map((desc) => {
+          const descId = "D_" + Math.floor(Math.random() * 999999999).toString();
+          return {
+            id: descId,
+            name: desc.name,
+            content: desc.content,
+            productId: newProduct.id,
+          };
+        });
+        await Description.bulkCreate(newArr);
+        res.status(200).send(newArr);
+      }
+    }
   } catch (error) {
     res.status(500).send(error);
   }

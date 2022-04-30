@@ -290,7 +290,7 @@ const VnLang = {
           address: "Nơi học",
           schedule: "Lịch học",
           openingDate: "Ngày khai giảng",
-          note: "Cảm ơn bạn đã đăng ký khóa học tại Terra Nova, hẹn gặp bạn trong ngày khai giảng!!"
+          note: "Cảm ơn bạn đã đăng ký khóa học tại Terra Nova, hẹn gặp bạn trong ngày khai giảng!!",
         },
       },
     },
@@ -349,13 +349,13 @@ const VnLang = {
       role: "Vai trò",
       updatePassword: "Thay đổi mật khẩu",
     },
-    // INFO 
+    // INFO
     info: {
       male: "Nam",
       female: "Nữ",
       user: "Người dùng",
       admin: "Quản trị",
-    }
+    },
   },
 
   // ==================== ADMIN ====================
@@ -384,6 +384,16 @@ const VnLang = {
       totalCustomers: "Tổng số khách hàng",
       totalTickets: "Tổng số vé",
       percent: "Phần trăm",
+    },
+    product: {
+      addProduct: {
+        subTitle_1: "Tình trạng",
+        subTitle_2: "Thông tin",
+        subTitle_3: "Mô tả",
+        subTitle_4: "Định giá",
+        subTitle_5: "Xuất xứ",
+        descList: "Danh sách mô tả",
+      },
     },
   },
 
@@ -441,6 +451,8 @@ const VnLang = {
     payment: "Thanh toán",
     returnCoursePage: "Trở lại trang khóa học",
     registerCourse: "Đăng ký khóa học",
+    savePrice: "Lưu giá bán",
+    add: "Thêm",
   },
 
   // ==================== NO DATA ====================
@@ -535,6 +547,18 @@ const VnLang = {
     fileSelected: "File được chọn",
     noFileSelected: "Chưa có file nào được chọn",
     fileType: "Chỉ upload những file có đuôi là *png, *jpg",
+    productName: "Tên sản phẩm",
+    productType: "Loại sản phẩm",
+    price: "Giá",
+    status: "Tình trạng",
+    inventoryStatus: "Trạng thái tồn kho",
+    stockAmount: "Tồn kho",
+    cost: "Giá gốc",
+    profit: "Lợi nhuận",
+    category: "Danh mục",
+    producer: "Nhà sản xuất",
+    title: "Tiêu đề",
+    content: "Nội dung",
   },
 
   // ==================== TABLE HEADER ====================
