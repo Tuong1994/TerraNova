@@ -2,13 +2,21 @@
   .add-product__wrapper {
     width: $w-100;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     .wrapper__item {
       &:nth-child(1) {
         width: $w-100 - 32;
+        @include respond(tablet) {
+          width: $w-100;
+          margin-bottom: $m-10 * 2;
+        }
       }
       &:nth-child(2) {
         width: $w-100 - 70;
+        @include respond(tablet) {
+          width: $w-100;
+        }
       }
       .item__inner {
         padding: $p-10 * 2;

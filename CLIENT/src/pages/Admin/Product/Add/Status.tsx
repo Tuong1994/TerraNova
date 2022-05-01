@@ -7,11 +7,12 @@ import { IOptionsLang } from "../../../../configs/options";
 
 interface StatusFieldsProps {
   langs: ILangs;
+  isReset: boolean;
   options: IOptionsLang
 }
 
 const StatusFields: React.FunctionComponent<StatusFieldsProps> = (props) => {
-  const { langs, options } = props;
+  const { langs, isReset, options } = props;
 
   return (
     <Card.Wrapper className="item__inner item__status">
@@ -21,6 +22,7 @@ const StatusFields: React.FunctionComponent<StatusFieldsProps> = (props) => {
       <Field
         name="status"
         placeholder=" "
+        isReset={isReset}
         label={langs?.form.status}
         component={FormControl.Select}
         option={options?.productStatus}
@@ -29,6 +31,7 @@ const StatusFields: React.FunctionComponent<StatusFieldsProps> = (props) => {
       <Field
         name="inventoryStatus"
         placeholder=" "
+        isReset={isReset}
         label={langs?.form.inventoryStatus}
         component={FormControl.Select}
         option={options?.inventoryStatus}

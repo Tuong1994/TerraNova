@@ -8,11 +8,12 @@ import utils from "../../utils";
 interface UploadProps {
   defaultImg?: string;
   multiple?: boolean;
+  isSave?: boolean;
   onSubmit?: (file: any) => void;
 }
 
 const Upload: React.FunctionComponent<UploadProps> = (props) => {
-  const { defaultImg, multiple, onSubmit } = props;
+  const { defaultImg, isSave, multiple, onSubmit } = props;
 
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
@@ -28,6 +29,7 @@ const Upload: React.FunctionComponent<UploadProps> = (props) => {
       {multiple ? (
         <MultipleUpload
           langs={langs}
+          isSave={isSave}
           previewImgArr={previewImgArr}
           imgFileArr={imgFileArr}
           setPreviewImgArr={setPreviewImgArr}

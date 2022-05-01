@@ -8,16 +8,19 @@ import utils from "../../../../utils";
 
 interface PriceFieldsProps {
   langs: ILangs;
+  cost: number;
+  profit: number;
   price: number;
+  isReset: boolean;
   options: IOptionsLang;
   setPrice: React.Dispatch<React.SetStateAction<number>>;
+  setCost: React.Dispatch<React.SetStateAction<number>>;
+  setProfit: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const PriceFields: React.FunctionComponent<PriceFieldsProps> = (props) => {
-  const { langs, options, price, setPrice } = props;
-
-  const [cost, setCost] = React.useState<string>();
-  const [profit, setProfit] = React.useState<number>(0);
+  const { langs, options, cost, profit, price, isReset, setPrice, setCost, setProfit } =
+    props;
 
   React.useEffect(() => {
     getPrice();
@@ -25,9 +28,7 @@ const PriceFields: React.FunctionComponent<PriceFieldsProps> = (props) => {
 
   const getPrice = () => {
     if (cost) {
-      const newCost = parseInt(cost);
-      const newPrice = newCost + (newCost * profit) / 100;
-      console.log(newPrice)
+      const newPrice = cost + (cost * profit) / 100;
       setPrice(newPrice);
     }
   };
@@ -44,7 +45,7 @@ const PriceFields: React.FunctionComponent<PriceFieldsProps> = (props) => {
         placeholder=" "
         groupClassName="inner__control"
         onChange={(e) => {
-          const value = e.target.value;
+          const value = parseInt(e.target.value);
           setCost(value);
         }}
         onKeyPress={(e) =>
@@ -57,6 +58,7 @@ const PriceFields: React.FunctionComponent<PriceFieldsProps> = (props) => {
         component={FormControl.Select}
         groupClassName="inner__control"
         option={options?.profit}
+        isReset={isReset}
         onChange={(value: any) => {
           setProfit(value);
         }}

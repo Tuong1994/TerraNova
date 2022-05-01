@@ -8,6 +8,7 @@ import ButtonLoading from "../Loading/ButtonLoading";
 
 interface MultipleUploadProps {
   langs: ILangs;
+  isSave?: boolean;
   imgFileArr: any;
   previewImgArr: any;
   setPreviewImgArr: React.Dispatch<React.SetStateAction<any>>;
@@ -20,6 +21,7 @@ const MultipleUpload: React.FunctionComponent<MultipleUploadProps> = (
 ) => {
   const {
     langs,
+    isSave,
     imgFileArr,
     previewImgArr,
     setImgFileArr,
@@ -88,20 +90,28 @@ const MultipleUpload: React.FunctionComponent<MultipleUploadProps> = (
           multiple
           onChange={handleChange}
         />
-        {previewImgArr && previewImgArr.length > 0 && (
-          <Button
-            type="button"
-            className={`button--submit control__button ${
-              buttonLoading ? "button--disabled" : ""
-            }`}
-            onClick={() => {
-              onSubmit && onSubmit(imgFileArr);
-            }}
-          >
-            <ButtonLoading />
-            <span>{langs?.button.save}</span>
-          </Button>
-        )}
+        {(() => {
+          if (previewImgArr && previewImgArr.length > 0) {
+            if (isSave) {
+              return (
+                <Button
+                  type="button"
+                  className={`button--submit control__button ${
+                    buttonLoading ? "button--disabled" : ""
+                  }`}
+                  onClick={() => {
+                    onSubmit && onSubmit(imgFileArr);
+                  }}
+                >
+                  <ButtonLoading />
+                  <span>{langs?.button.save}</span>
+                </Button>
+              );
+            } else {
+              return null;
+            }
+          }
+        })()}
       </form>
 
       <p className="multiple__message">{langs?.form.fileType}</p>

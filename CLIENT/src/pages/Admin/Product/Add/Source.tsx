@@ -7,11 +7,12 @@ import { IOptionsLang } from "../../../../configs/options";
 
 interface SourceFieldsProps {
   langs: ILangs;
+  isReset: boolean;
   options: IOptionsLang;
 }
 
 const SourceFields: React.FunctionComponent<SourceFieldsProps> = (props) => {
-  const { langs, options } = props;
+  const { langs, options, isReset } = props;
 
   return (
     <Card.Wrapper className="item__inner item__source">
@@ -21,6 +22,7 @@ const SourceFields: React.FunctionComponent<SourceFieldsProps> = (props) => {
       <Field
         name="categoryId"
         placeholder=" "
+        isReset={isReset}
         label={langs?.form.category}
         component={FormControl.Select}
         option={options?.productCategory}
@@ -29,6 +31,7 @@ const SourceFields: React.FunctionComponent<SourceFieldsProps> = (props) => {
       <Field
         name="producerId"
         placeholder=" "
+        isReset={isReset}
         label={langs?.form.producer}
         component={FormControl.Select}
         option={options?.producer}

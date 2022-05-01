@@ -1,5 +1,18 @@
 const multer = require("multer");
 
+const productUpload = () => {
+  const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, "./public/img/product");
+    },
+    filename: (req, file, cb) => {
+      cb(null, `${Date.now()}_${file.originalname}`);
+    },
+  });
+  const upload = multer({ storage });
+  return upload.array("image", 10);
+};
+
 const courseUpload = () => {
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -27,6 +40,7 @@ const userUpload = () => {
 };
 
 module.exports = {
+  productUpload,
   courseUpload,
   userUpload,
 };

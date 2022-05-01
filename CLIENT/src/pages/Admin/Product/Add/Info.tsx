@@ -7,11 +7,12 @@ import { IOptionsLang } from "../../../../configs/options";
 
 interface InfoFieldsProps {
   langs: ILangs;
+  isReset: boolean;
   options: IOptionsLang;
 }
 
 const InfoFields: React.FunctionComponent<InfoFieldsProps> = (props) => {
-  const { langs, options } = props;
+  const { langs, isReset, options } = props;
 
   return (
     <Card.Wrapper className="item__inner item__info">
@@ -28,6 +29,7 @@ const InfoFields: React.FunctionComponent<InfoFieldsProps> = (props) => {
       <Field
         name="productType"
         placeholder=" "
+        isReset={isReset}
         label={langs?.form.productType}
         component={FormControl.Select}
         option={options?.productCategory}

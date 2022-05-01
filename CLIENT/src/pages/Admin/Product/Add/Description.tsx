@@ -15,6 +15,7 @@ const DescriptionFields: React.FunctionComponent<DescriptionFieldsProps> = (
   props
 ) => {
   const { langs, descArr, setDescArr } = props;
+  
   const [name, setName] = React.useState<string>("");
   const [content, setContent] = React.useState<string>("");
 

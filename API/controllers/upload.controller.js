@@ -1,5 +1,25 @@
-const { Course, User } = require("../models");
+const { Product, Course, User } = require("../models");
 const { domain } = require("../setting/setting");
+
+const uploadProductImg = async (req, res) => {
+  const { files } = req;
+  const { productId } = req.query;
+  const urlImgArr = files.map((file) => {
+    return `${domain}/${file.path}`;
+  });
+  try {
+    const productDetail = await Product.findOne({
+      where: {
+        id: productId,
+      },
+    });
+    productDetail.image = urlImgArr;
+    await productDetail.save();
+    res.status(200).send(productDetail);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
 
 const uploadCourseImg = async (req, res) => {
   const { file } = req;
@@ -38,6 +58,7 @@ const uploadAvatar = async (req, res) => {
 };
 
 module.exports = {
+  uploadProductImg,
   uploadCourseImg,
-  uploadAvatar
+  uploadAvatar,
 };

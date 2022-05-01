@@ -64,7 +64,7 @@ const SelectField: React.FunctionComponent<SelectFieldProps> = (props) => {
     if (isReset) {
       setNewValue("");
     }
-  }, [lang]);
+  }, [lang, isReset]);
 
   // Check value is not empty => Set default value
   React.useEffect(() => {

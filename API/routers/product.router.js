@@ -20,6 +20,7 @@ const {
   authenticate,
   authorize,
 } = require("../middlewares/auths/check-verify.middleware");
+const { productUpload } = require("../middlewares/upload/upload.middleware");
 
 
 productRouter.get("/getProducerAndProduct", getProducerAndProduct);
@@ -48,8 +49,9 @@ productRouter.get("/getProductByFreeText", getProductByFreeText)
 
 productRouter.post(
   "/createProduct",
-  authenticate,
-  authorize(["ADMIN"]),
+  // authenticate,
+  // authorize(["ADMIN"]),
+  productUpload(),
   createProduct
 );
 
@@ -63,8 +65,8 @@ productRouter.put(
 
 productRouter.delete(
   "/removeProduct",
-  authenticate,
-  authorize(["ADMIN"]),
+  // authenticate,
+  // authorize(["ADMIN"]),
   checkProductId,
   removeProduct
 );

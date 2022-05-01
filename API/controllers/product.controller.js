@@ -1,5 +1,6 @@
 const { Producer, Product, Description } = require("../models");
 const Sequelize = require("sequelize");
+const { domain } = require("../setting/setting");
 const Op = Sequelize.Op;
 
 const getProducerAndProduct = async (req, res) => {
@@ -214,6 +215,7 @@ const getProductByFreeText = async (req, res) => {
 };
 
 const createProduct = async (req, res) => {
+  const { files } = req;
   const {
     name,
     price,
@@ -227,10 +229,15 @@ const createProduct = async (req, res) => {
   } = req.body;
   try {
     const productId = "P_" + Math.floor(Math.random() * 999999999).toString();
+    const urlImgArr = files.map((file) => {
+      return `${domain}/${file.path}`;
+    });
+
     const newProduct = await Product.create({
       id: productId,
       name,
       price,
+      image: urlImgArr,
       status,
       inventoryStatus,
       stockAmount,
@@ -239,9 +246,10 @@ const createProduct = async (req, res) => {
       producerId,
     });
     if (newProduct) {
-      if (description.length > 0) {
+      if (Array.isArray(description) && description.length > 0) {
         const newArr = description.map((desc) => {
-          const descId = "D_" + Math.floor(Math.random() * 999999999).toString();
+          const descId =
+            "D_" + Math.floor(Math.random() * 999999999).toString();
           return {
             id: descId,
             name: desc.name,
@@ -250,7 +258,9 @@ const createProduct = async (req, res) => {
           };
         });
         await Description.bulkCreate(newArr);
-        res.status(200).send(newArr);
+        res.status(200).send(newProduct);
+      } else {
+        res.status(200).send(newProduct)
       }
     }
   } catch (error) {
