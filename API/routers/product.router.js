@@ -49,24 +49,24 @@ productRouter.get("/getProductByFreeText", getProductByFreeText)
 
 productRouter.post(
   "/createProduct",
-  // authenticate,
-  // authorize(["ADMIN"]),
+  authenticate,
+  authorize(["ADMIN"]),
   productUpload(),
   createProduct
 );
 
 productRouter.put(
   "/updateProduct",
-  authenticate,
-  authorize(["ADMIN"]),
-  checkProductId,
+  // authenticate,
+  // authorize(["ADMIN"]),
+  // checkProductId,
   updateProduct
 );
 
 productRouter.delete(
   "/removeProduct",
-  // authenticate,
-  // authorize(["ADMIN"]),
+  authenticate,
+  authorize(["ADMIN"]),
   checkProductId,
   removeProduct
 );

@@ -2,7 +2,6 @@ import React from "react";
 import * as Card from "../../../../components/Card";
 import { Link } from "react-router-dom";
 import { IProduct } from "../../../../models/Product";
-import { PRODUCTTYPE } from "../../../../configs/setting";
 import SpecsContent from "./SpecsContent";
 
 interface ProductCardProps {
@@ -16,9 +15,6 @@ const ProductCard: React.FunctionComponent<ProductCardProps> = (props) => {
     <Link
       to={`/productDetail/${product.productId}`}
       className="inner__link"
-      onClick={() => {
-        localStorage.setItem(PRODUCTTYPE, JSON.stringify(product.productType));
-      }}
     >
       <Card.Wrapper className="link__card">
         <Card.Img

@@ -3,7 +3,6 @@ import { IQueryList } from "../interfaces/query";
 export const ACCESSTOKEN = "accessToken";
 export const ACCOUNT = "account";
 export const QUERY = "query";
-export const PRODUCTTYPE = "productType";
 export const CARTS = "carts";
 
 export const domain = "http://localhost:4000";
@@ -20,6 +19,7 @@ export const getListQuery = (query: IQueryList): string => {
     userId,
     orderId,
     courseId,
+    descId,
     courseOrderId,
     productType,
     freeText,
@@ -37,6 +37,7 @@ export const getListQuery = (query: IQueryList): string => {
   userId && (rs += `&userId=${userId}`);
   orderId && (rs += `&orderId=${orderId}`);
   courseId && (rs += `&courseId=${courseId}`);
+  descId && (rs += `&descId=${descId}`);
   courseOrderId && (rs += `&courseOrderId=${courseOrderId}`);
   productType && (rs += `&productType=${productType}`);
   freeText && (rs += `&freeText=${freeText}`);

@@ -10,13 +10,14 @@ const getDescriptionList = async (req, res) => {
 };
 
 const createDescription = async (req, res) => {
-  const { name, content } = req.body;
+  const { name, content, productId } = req.body;
   try {
-    const descId = `#D_${Math.floor(Math.random * 10000)}`;
+    const descId = "D_" + Math.floor(Math.random * 999999999).toString();
     const newDescription = await Description.create({
       id: descId,
       name,
       content,
+      productId,
     });
     res.status(200).send(newDescription);
   } catch (error) {
@@ -26,10 +27,10 @@ const createDescription = async (req, res) => {
 
 const updateDescription = async (req, res) => {
   const { descId } = req.query;
-  const { name, content } = req.body;
+  const { name, content, productId } = req.body;
   try {
     await Description.update(
-      { name, content },
+      { name, content, productId },
       {
         where: {
           id: descId,

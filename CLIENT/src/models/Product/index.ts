@@ -69,14 +69,17 @@ export interface IProduct {
   id?: string;
   productId?: string;
   producerName?: string;
-  productType?: string;
   name?: string;
   image?: any;
+  cost?: number;
+  profit?: number;
   price?: number;
   description?: IDescription[];
   status?: number;
   inventoryStatus?: number;
   stockAmount?: number;
+  categoryId?: string;
+  producerId?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 }

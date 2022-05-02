@@ -5,14 +5,13 @@ import { Field } from "formik";
 import { ILangs } from "../../../../interfaces/lang";
 import { IOptionsLang } from "../../../../configs/options";
 import utils from "../../../../utils";
-import Button from "../../../../components/Button";
 
 interface PriceFieldsProps {
   langs: ILangs;
+  values: any;
   cost: string;
   profit: number;
   price: number;
-  isReset: boolean;
   options: IOptionsLang;
   setPrice: React.Dispatch<React.SetStateAction<number>>;
   setCost: React.Dispatch<React.SetStateAction<string>>;
@@ -23,17 +22,17 @@ const PriceFields: React.FunctionComponent<PriceFieldsProps> = (props) => {
   const {
     langs,
     options,
+    values,
     cost,
     profit,
     price,
-    isReset,
     setPrice,
     setCost,
     setProfit,
   } = props;
 
   React.useEffect(() => {
-    getPrice();
+    // getPrice();
   }, [cost, profit]);
 
   const getPrice = () => {
@@ -47,7 +46,7 @@ const PriceFields: React.FunctionComponent<PriceFieldsProps> = (props) => {
   return (
     <Card.Wrapper className="item__inner item__price">
       <h3 className="inner__title">
-        {langs?.admin.product.addProduct.subTitle_4}
+        {langs?.admin.product.editProduct.subTitle_4}
       </h3>
       <FormControl.InputCustom
         type="number"
@@ -56,11 +55,10 @@ const PriceFields: React.FunctionComponent<PriceFieldsProps> = (props) => {
         value={cost}
         label={langs?.form.cost}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setCost(e.target.value);
+          setCost(e.target.value)
         }}
         onKeyPress={(e: React.ChangeEvent<HTMLInputElement>) => {
           utils.checkKeyNumberType(e, langs?.toastMessages.error.onlyNumber);
-          setCost(e.target.value)
         }}
       />
       <Field
@@ -68,8 +66,8 @@ const PriceFields: React.FunctionComponent<PriceFieldsProps> = (props) => {
         label={langs?.form.profit}
         component={FormControl.Select}
         groupClassName="inner__control"
+        defaultValue={options?.profit.find((i) => i.value === values.profit)}
         option={options?.profit}
-        isReset={isReset}
         onChange={(value: any) => {
           setProfit(value);
         }}

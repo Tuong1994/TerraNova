@@ -13,6 +13,12 @@ module.exports = {
       image: {
         type: Sequelize.JSON
       },
+      cost: {
+        type: Sequelize.INTEGER
+      },
+      profit: {
+        type: Sequelize.INTEGER
+      },
       price: {
         type: Sequelize.INTEGER
       },
@@ -24,9 +30,6 @@ module.exports = {
       },
       stockAmount: {
         type: Sequelize.INTEGER
-      },
-      productType: {
-        type: Sequelize.STRING
       },
       categoryId: {
         type: Sequelize.STRING

@@ -1,3 +1,4 @@
+import { descriptionPaths } from './Description/index';
 import { userPaths } from "./User";
 import { productPaths } from "./Product";
 import { orderPaths } from "./Order";
@@ -13,5 +14,6 @@ export {
   cartsPaths,
   coursePaths,
   courseOrderPaths,
-  uploadPaths
+  uploadPaths,
+  descriptionPaths
 };

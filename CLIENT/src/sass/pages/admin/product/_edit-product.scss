@@ -1,5 +1,5 @@
-.add-product {
-  .add-product__wrapper {
+.edit-product {
+  .edit-product__wrapper {
     width: $w-100;
     display: flex;
     flex-wrap: wrap;
@@ -38,9 +38,6 @@
           display: flex;
           align-items: center;
           justify-content: flex-end;
-          .detail__button {
-            margin-right: $m-10;
-          }
           .detail__content {
             font-weight: $semiBold;
           }

@@ -1,11 +1,12 @@
+import { ACCESSTOKEN } from './../../configs/setting';
 import * as apiPath from "../../paths";
 import axiosClient from "../../axios";
+import actions from "../../configs/actions";
 import { EProductActionTypes } from "../actionTypes/ProductActionTypes";
 import { Dispatch } from "redux";
 import { getListQuery } from "../../configs/setting";
 import { IQueryList } from "../../interfaces/query";
 import { toast } from "react-toastify";
-import actions from "../../configs/actions";
 
 export const getProductList = (query: IQueryList, err?: string) => {
   return async (dispatch: Dispatch) => {
@@ -94,5 +95,43 @@ export const getProductByFreeText = (query: IQueryList, err?: string) => {
         dispatch(actions.closeDataLoading);
       }
     }, 1000);
+  };
+};
+
+export const createProduct = (data: any, success?: string, err?: string) => {
+  return (dispatch: Dispatch) => {
+    const token = localStorage.getItem(ACCESSTOKEN) || "";
+    dispatch(actions.openButtonLoading);
+    setTimeout(async () => {
+      try {
+        await axiosClient.post(apiPath.productPaths.createProduct, data, token);
+        dispatch(actions.closeButtonLoading);
+        toast.success(success);
+      } catch (error) {
+        dispatch(actions.closeButtonLoading);
+        toast.error(err);
+      }
+    }, 1000);
+  };
+};
+
+export const removeProduct = (
+  query: IQueryList,
+  success?: string,
+  err?: string
+) => {
+  return async (dispatch: any) => {
+    const token = localStorage.getItem(ACCESSTOKEN) || "";
+    try {
+      await axiosClient.delete(
+        apiPath.productPaths.removeProduct,
+        getListQuery(query as IQueryList),
+        token
+      );
+      dispatch(getProductList(query));
+      toast.success(success);
+    } catch (error) {
+      toast.error(err);
+    }
   };
 };

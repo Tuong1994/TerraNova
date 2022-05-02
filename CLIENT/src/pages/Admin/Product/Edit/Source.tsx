@@ -8,14 +8,20 @@ import { EProductType } from "../../../../models/Product";
 
 interface SourceFieldsProps {
   langs: ILangs;
-  isReset: boolean;
+  values: any;
   options: IOptionsLang;
 }
 
 const SourceFields: React.FunctionComponent<SourceFieldsProps> = (props) => {
-  const { langs, options, isReset } = props;
+  const { langs, values, options } = props;
 
   const [category, setCategory] = React.useState<string>("");
+
+  React.useEffect(() => {
+    if(values) {
+      setCategory(values.categoryId)
+    }
+  }, [values])
 
   const getProducerByCategory = () => {
     switch (category) {
@@ -58,14 +64,16 @@ const SourceFields: React.FunctionComponent<SourceFieldsProps> = (props) => {
   return (
     <Card.Wrapper className="item__inner item__source">
       <h3 className="inner__title">
-        {langs?.admin.product.addProduct.subTitle_5}
+        {langs?.admin.product.editProduct.subTitle_5}
       </h3>
       <Field
         name="categoryId"
         placeholder=" "
-        isReset={isReset}
         label={langs?.form.category}
         component={FormControl.Select}
+        defaultValue={options?.productCategory.find(
+          (i) => i.value === values.categoryId
+        )}
         option={options?.productCategory}
         groupClassName="inner__control"
         onChange={(value: any) => {
@@ -75,10 +83,12 @@ const SourceFields: React.FunctionComponent<SourceFieldsProps> = (props) => {
       <Field
         name="producerId"
         placeholder=" "
-        isReset={isReset}
         label={langs?.form.producer}
-        option={getProducerByCategory()}
         component={FormControl.Select}
+        defaultValue={getProducerByCategory()?.find(
+          (i) => i.value === values.producerId
+        )}
+        option={getProducerByCategory()}
         groupClassName="inner__control"
       />
     </Card.Wrapper>

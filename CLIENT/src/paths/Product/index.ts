@@ -6,4 +6,7 @@ export const productPaths = {
   getProductByProducer: `${domain}/api/productManagement/getProductByProducer`,
   getProductDetail: `${domain}/api/productManagement/getProductDetail`,
   getProductByFreeText: `${domain}/api/productManagement/getProductByFreeText`,
+  createProduct: `${domain}/api/productManagement/createProduct`,
+  updateProduct: `${domain}/api/productManagement/updateProduct`,
+  removeProduct: `${domain}/api/productManagement/removeProduct`,
 };

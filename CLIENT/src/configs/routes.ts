@@ -1,7 +1,6 @@
 import { IRoute } from "../interfaces/route";
+import * as Product from "../pages/Admin/Product"
 import Dashboard from "../pages/Admin/Dashboard";
-import Product from "../pages/Admin/Product";
-import AddProduct from "../pages/Admin/Product/Add";
 import Customer from "../pages/Admin/Customer";
 import Course from "../pages/Admin/Course";
 import Order from "../pages/Admin/Order";
@@ -40,12 +39,17 @@ export const adminRoutes: IRoute[] = [
   {
     path: "/admin/product",
     exact: true,
-    component: Product,
+    component: Product.List,
   },
   {
     path: "/product/addProduct",
     exact: true,
-    component: AddProduct,
+    component: Product.Add,
+  },
+  {
+    path: "/product/editProduct/:id",
+    exact: true,
+    component: Product.Edit,
   },
   {
     path: "/admin/course",

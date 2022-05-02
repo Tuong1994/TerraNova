@@ -67,8 +67,8 @@ const HeaderMenu: React.FunctionComponent<HeaderMenuProps> = (props) => {
     dispatch(actions.openPageLoading);
     const query: IQueryList = {
       categoryId: categoryId,
-      page: 1,
-      limits: 10,
+      page: _defaultCurrentPage,
+      limits: _defaultItemPerPage,
     };
     dispatch(getCourseByCategory(query));
     setTimeout(() => {

@@ -1,6 +1,6 @@
 const { Producer, Product, Description } = require("../models");
-const Sequelize = require("sequelize");
 const { domain } = require("../setting/setting");
+const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
 const getProducerAndProduct = async (req, res) => {
@@ -32,6 +32,7 @@ const getProductList = async (req, res) => {
   const itemPerPage = parseInt(limits);
   try {
     const products = await Product.findAll({
+      order: [["updatedAt", "DESC"]],
       include: [
         {
           model: Description,
@@ -67,13 +68,7 @@ const getProductByCategory = async (req, res) => {
         where: {
           categoryId: categoryId,
         },
-        attributes: [
-          ["id", "productId"],
-          "name",
-          "image",
-          "price",
-          "productType",
-        ],
+        attributes: [["id", "productId"], "name", "image", "price"],
         include: [
           {
             model: Description,
@@ -118,13 +113,7 @@ const getProductByProducer = async (req, res) => {
           categoryId: categoryId,
           producerId: producerId,
         },
-        attributes: [
-          ["id", "productId"],
-          "name",
-          "image",
-          "price",
-          "productType",
-        ],
+        attributes: [["id", "productId"], "name", "image", "price"],
         include: [
           {
             model: Description,
@@ -152,18 +141,17 @@ const getProductByProducer = async (req, res) => {
 };
 
 const getProductDetail = async (req, res) => {
-  const { productId, productType } = req.query;
+  const { productId } = req.query;
   try {
     const productDetail = await Product.findOne({
       where: {
         id: productId,
-        productType: productType,
       },
       include: [
         {
           model: Description,
           as: "description",
-          attributes: ["name", "content"],
+          attributes: ["id", "name", "content"],
         },
       ],
     });
@@ -184,13 +172,7 @@ const getProductByFreeText = async (req, res) => {
           [Op.like]: `%${freeText}%`,
         },
       },
-      attributes: [
-        ["id", "productId"],
-        "name",
-        "image",
-        "price",
-        "productType",
-      ],
+      attributes: [["id", "productId"], "name", "image", "price"],
       include: [
         {
           model: Description,
@@ -218,11 +200,12 @@ const createProduct = async (req, res) => {
   const { files } = req;
   const {
     name,
+    cost,
+    profit,
     price,
     status,
     inventoryStatus,
     stockAmount,
-    productType,
     description,
     categoryId,
     producerId,
@@ -236,18 +219,20 @@ const createProduct = async (req, res) => {
     const newProduct = await Product.create({
       id: productId,
       name,
+      cost,
+      profit,
       price,
       image: urlImgArr,
       status,
       inventoryStatus,
       stockAmount,
-      productType,
       categoryId,
       producerId,
     });
     if (newProduct) {
-      if (Array.isArray(description) && description.length > 0) {
-        const newArr = description.map((desc) => {
+      if (description) {
+        const descArr = JSON.parse(description);
+        const newArr = descArr.map((desc) => {
           const descId =
             "D_" + Math.floor(Math.random() * 999999999).toString();
           return {
@@ -260,7 +245,7 @@ const createProduct = async (req, res) => {
         await Description.bulkCreate(newArr);
         res.status(200).send(newProduct);
       } else {
-        res.status(200).send(newProduct)
+        res.status(200).send(newProduct);
       }
     }
   } catch (error) {
@@ -269,18 +254,45 @@ const createProduct = async (req, res) => {
 };
 
 const updateProduct = async (req, res) => {
+  const { files } = req;
   const { productId } = req.query;
-  const { name, price, description } = req.body;
+  const {
+    name,
+    defaultImgs,
+    cost,
+    profit,
+    price,
+    status,
+    inventoryStatus,
+    stockAmount,
+    categoryId,
+    producerId,
+  } = req.body;
   try {
-    await Product.update(
-      { name, price, description },
-      {
-        where: {
-          id: productId,
-        },
-      }
-    );
-    res.status(200).send("Update success");
+    console.log(defaultImgs)
+    // const urlImgArr = files.map((file) => {
+    //   return `${domain}/${file.path}`;
+    // });
+    // await Product.update(
+    //   {
+    //     name,
+    //     image: urlImgArr,
+    //     cost,
+    //     profit,
+    //     price,
+    //     status,
+    //     inventoryStatus,
+    //     stockAmount,
+    //     categoryId,
+    //     producerId,
+    //   },
+    //   {
+    //     where: {
+    //       id: productId,
+    //     },
+    //   }
+    // );
+    // res.status(200).send("Update success");
   } catch (error) {
     res.status(500).send(error);
   }

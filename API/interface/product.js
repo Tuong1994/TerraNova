@@ -13,7 +13,7 @@ const status = {
 };
 
 const inventoryStatus = {
-  stocking: 1,
+  inStock: 1,
   outOfStock: 2,
 };
 

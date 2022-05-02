@@ -3,11 +3,17 @@ import * as Card from "../../../../components/Card";
 import * as FormControl from "../../../../components/Fields";
 import { ILangs } from "../../../../interfaces/lang";
 import { IDescription } from "../../../../models/Product";
+import { useDispatch } from "react-redux";
+import { IQueryList } from "../../../../interfaces/query";
+import {
+  createDescription,
+  removeDescription,
+} from "../../../../redux/actionCreators/DescriptionCreators";
 import Button from "../../../../components/Button";
-import { toast } from "react-toastify";
 
 interface DescriptionFieldsProps {
   langs: ILangs;
+  productId?: string;
   descArr: IDescription[];
   setDescArr: React.Dispatch<React.SetStateAction<IDescription[]>>;
 }
@@ -15,35 +21,52 @@ interface DescriptionFieldsProps {
 const DescriptionFields: React.FunctionComponent<DescriptionFieldsProps> = (
   props
 ) => {
-  const { langs, descArr, setDescArr } = props;
-  
+  const { langs, productId, descArr, setDescArr } = props;
+
   const [name, setName] = React.useState<string>("");
   const [content, setContent] = React.useState<string>("");
 
+  const dispatch = useDispatch();
+
   const handleAdd = () => {
     const newDesc = {
-      id: Math.floor(Math.random() * 100000),
       name: name,
       content: content,
+      productId: productId,
     };
-    let tempArr = [...descArr];
-    tempArr.push(newDesc);
-    setDescArr(tempArr);
+    const query: IQueryList = {
+      productId: productId,
+    };
+    dispatch(
+      createDescription(
+        query,
+        newDesc,
+        langs?.toastMessages.success.create,
+        langs?.toastMessages.error.create
+      )
+    );
     setName("");
     setContent("");
-    toast.success(langs?.toastMessages.success.create)
   };
 
   const handleRemove = (id: any) => {
-    let tempArr = [...descArr];
-    setDescArr(tempArr.filter((i) => i.id !== id));
-    toast.success(langs?.toastMessages.success.remove)
+    const query: IQueryList = {
+      productId: productId,
+      descId: id,
+    };
+    dispatch(
+      removeDescription(
+        query,
+        langs?.toastMessages.success.remove,
+        langs?.toastMessages.error.remove
+      )
+    );
   };
 
   return (
     <Card.Wrapper className="item__inner item__description">
       <h3 className="inner__title">
-        {langs?.admin.product.addProduct.subTitle_3}
+        {langs?.admin.product.editProduct.subTitle_3}
       </h3>
       <FormControl.InputCustom
         placeholder=" "
@@ -74,7 +97,7 @@ const DescriptionFields: React.FunctionComponent<DescriptionFieldsProps> = (
       {descArr.length > 0 && (
         <div className="description__list">
           <h4 className="list__title">
-            {langs?.admin.product.addProduct.descList}
+            {langs?.admin.product.editProduct.descList}
           </h4>
           <ul>
             {(() => {

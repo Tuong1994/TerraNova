@@ -124,24 +124,56 @@ export const optionsEng = {
     { label: "LAPTOP", value: EProductType.laptop },
     { label: "PC SET", value: EProductType.pcSet },
   ],
-  producer: [
+  cpuProducer: [
+    { label: "INTEL", value: EProducer.intel },
+    { label: "AMD", value: EProducer.amd },
+  ],
+  ramProducer: [
+    { label: "GIGABYTE", value: EProducer.gigabyte },
+    { label: "CORSAIR", value: EProducer.corsair },
+    { label: "KINGSTON", value: EProducer.kingston },
+  ],
+  vgaProducer: [
     { label: "ASUS", value: EProducer.asus },
     { label: "ASROCK", value: EProducer.asrock },
     { label: "GIGABYTE", value: EProducer.gigabyte },
     { label: "MSI", value: EProducer.msi },
-    { label: "INTEL", value: EProducer.intel },
-    { label: "AMD", value: EProducer.amd },
+  ],
+  hddProducer: [
     { label: "SEAGATE", value: EProducer.seagate },
     { label: "WESTERN", value: EProducer.western },
-    { label: "KINGSTON", value: EProducer.kingston },
+  ],
+  ssdProducer: [
+    { label: "SEAGATE", value: EProducer.seagate },
+    { label: "WESTERN", value: EProducer.western },
+    { label: "GIGABYTE", value: EProducer.gigabyte },
+    { label: "SAMSUNG", value: EProducer.samsung },
+  ],
+  psuProducer: [
+    { label: "GIGABYTE", value: EProducer.gigabyte },
     { label: "CORSAIR", value: EProducer.corsair },
     { label: "DEEPCOOL", value: EProducer.deepcool },
     { label: "COOLERMASTER", value: EProducer.coolermaster },
-    { label: "DELL", value: EProducer.dell },
-    { label: "HP", value: EProducer.hp },
+  ],
+  mainboardProducer: [
+    { label: "ASUS", value: EProducer.asus },
+    { label: "ASROCK", value: EProducer.asrock },
+    { label: "GIGABYTE", value: EProducer.gigabyte },
+    { label: "MSI", value: EProducer.msi },
+  ],
+  monitorProducer: [
     { label: "SAMSUNG", value: EProducer.samsung },
     { label: "LG", value: EProducer.lg },
     { label: "VIEWSONIC", value: EProducer.viewsonic },
+  ],
+  printerProducer: [{ label: "SAMSUNG", value: EProducer.samsung }],
+  faxProducer: [{ label: "SAMSUNG", value: EProducer.samsung }],
+  laptopProducer: [
+    { label: "GIGABYTE", value: EProducer.gigabyte },
+    { label: "MSI", value: EProducer.msi },
+    { label: "ASUS", value: EProducer.asus },
+    { label: "DELL", value: EProducer.dell },
+    { label: "HP", value: EProducer.hp },
   ],
 };
 
@@ -264,24 +296,56 @@ export const optionsVn = {
     { label: "LAPTOP", value: EProductType.laptop },
     { label: "PC SET", value: EProductType.pcSet },
   ],
-  producer: [
+  cpuProducer: [
+    { label: "INTEL", value: EProducer.intel },
+    { label: "AMD", value: EProducer.amd },
+  ],
+  ramProducer: [
+    { label: "GIGABYTE", value: EProducer.gigabyte },
+    { label: "CORSAIR", value: EProducer.corsair },
+    { label: "KINGSTON", value: EProducer.kingston },
+  ],
+  vgaProducer: [
     { label: "ASUS", value: EProducer.asus },
     { label: "ASROCK", value: EProducer.asrock },
     { label: "GIGABYTE", value: EProducer.gigabyte },
     { label: "MSI", value: EProducer.msi },
-    { label: "INTEL", value: EProducer.intel },
-    { label: "AMD", value: EProducer.amd },
+  ],
+  hddProducer: [
     { label: "SEAGATE", value: EProducer.seagate },
     { label: "WESTERN", value: EProducer.western },
-    { label: "KINGSTON", value: EProducer.kingston },
+  ],
+  ssdProducer: [
+    { label: "SEAGATE", value: EProducer.seagate },
+    { label: "WESTERN", value: EProducer.western },
+    { label: "GIGABYTE", value: EProducer.gigabyte },
+    { label: "SAMSUNG", value: EProducer.samsung },
+  ],
+  psuProducer: [
+    { label: "GIGABYTE", value: EProducer.gigabyte },
     { label: "CORSAIR", value: EProducer.corsair },
     { label: "DEEPCOOL", value: EProducer.deepcool },
     { label: "COOLERMASTER", value: EProducer.coolermaster },
-    { label: "DELL", value: EProducer.dell },
-    { label: "HP", value: EProducer.hp },
+  ],
+  mainboardProducer: [
+    { label: "ASUS", value: EProducer.asus },
+    { label: "ASROCK", value: EProducer.asrock },
+    { label: "GIGABYTE", value: EProducer.gigabyte },
+    { label: "MSI", value: EProducer.msi },
+  ],
+  monitorProducer: [
     { label: "SAMSUNG", value: EProducer.samsung },
     { label: "LG", value: EProducer.lg },
     { label: "VIEWSONIC", value: EProducer.viewsonic },
+  ],
+  printerProducer: [{ label: "SAMSUNG", value: EProducer.samsung }],
+  faxProducer: [{ label: "SAMSUNG", value: EProducer.samsung }],
+  laptopProducer: [
+    { label: "GIGABYTE", value: EProducer.gigabyte },
+    { label: "MSI", value: EProducer.msi },
+    { label: "ASUS", value: EProducer.asus },
+    { label: "DELL", value: EProducer.dell },
+    { label: "HP", value: EProducer.hp },
   ],
 };
 
@@ -401,24 +465,56 @@ export const optionsCh = {
     { label: "LAPTOP", value: EProductType.laptop },
     { label: "PC SET", value: EProductType.pcSet },
   ],
-  producer: [
+  cpuProducer: [
+    { label: "INTEL", value: EProducer.intel },
+    { label: "AMD", value: EProducer.amd },
+  ],
+  ramProducer: [
+    { label: "GIGABYTE", value: EProducer.gigabyte },
+    { label: "CORSAIR", value: EProducer.corsair },
+    { label: "KINGSTON", value: EProducer.kingston },
+  ],
+  vgaProducer: [
     { label: "ASUS", value: EProducer.asus },
     { label: "ASROCK", value: EProducer.asrock },
     { label: "GIGABYTE", value: EProducer.gigabyte },
     { label: "MSI", value: EProducer.msi },
-    { label: "INTEL", value: EProducer.intel },
-    { label: "AMD", value: EProducer.amd },
+  ],
+  hddProducer: [
     { label: "SEAGATE", value: EProducer.seagate },
     { label: "WESTERN", value: EProducer.western },
-    { label: "KINGSTON", value: EProducer.kingston },
+  ],
+  ssdProducer: [
+    { label: "SEAGATE", value: EProducer.seagate },
+    { label: "WESTERN", value: EProducer.western },
+    { label: "GIGABYTE", value: EProducer.gigabyte },
+    { label: "SAMSUNG", value: EProducer.samsung },
+  ],
+  psuProducer: [
+    { label: "GIGABYTE", value: EProducer.gigabyte },
     { label: "CORSAIR", value: EProducer.corsair },
     { label: "DEEPCOOL", value: EProducer.deepcool },
     { label: "COOLERMASTER", value: EProducer.coolermaster },
-    { label: "DELL", value: EProducer.dell },
-    { label: "HP", value: EProducer.hp },
+  ],
+  mainboardProducer: [
+    { label: "ASUS", value: EProducer.asus },
+    { label: "ASROCK", value: EProducer.asrock },
+    { label: "GIGABYTE", value: EProducer.gigabyte },
+    { label: "MSI", value: EProducer.msi },
+  ],
+  monitorProducer: [
     { label: "SAMSUNG", value: EProducer.samsung },
     { label: "LG", value: EProducer.lg },
     { label: "VIEWSONIC", value: EProducer.viewsonic },
+  ],
+  printerProducer: [{ label: "SAMSUNG", value: EProducer.samsung }],
+  faxProducer: [{ label: "SAMSUNG", value: EProducer.samsung }],
+  laptopProducer: [
+    { label: "GIGABYTE", value: EProducer.gigabyte },
+    { label: "MSI", value: EProducer.msi },
+    { label: "ASUS", value: EProducer.asus },
+    { label: "DELL", value: EProducer.dell },
+    { label: "HP", value: EProducer.hp },
   ],
 };
 

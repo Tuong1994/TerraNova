@@ -120,7 +120,7 @@ const SelectField: React.FunctionComponent<SelectFieldProps> = (props) => {
             type="text"
             className={`field__control ${inputClassName ? inputClassName : ""}`}
             value={renderValue() || ""}
-            placeholder={placeholder}
+            placeholder={placeholder || newValue ? " " : ""}
             onChange={(e) => {
               setFreeText(e.target.value);
               onChange && onChange(null);

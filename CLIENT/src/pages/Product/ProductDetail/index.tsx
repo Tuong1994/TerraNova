@@ -19,7 +19,7 @@ import ProductRelated from "./ProductRelated";
 import ProductSpecs from "./ProductSpecs";
 import utils from "../../../utils";
 import actions from "../../../configs/actions";
-import { CARTS, PRODUCTTYPE } from "../../../configs/setting";
+import { CARTS } from "../../../configs/setting";
 
 const ProductDetail: React.FunctionComponent<
   RouteComponentProps<IRouteParams>
@@ -59,18 +59,10 @@ const ProductDetail: React.FunctionComponent<
   }, [productDetail, amount]);
 
   const _getProductDetail = () => {
-    if (localStorage.getItem(PRODUCTTYPE)) {
-      let type: any = {};
-      let obj = localStorage.getItem(PRODUCTTYPE);
-      type = JSON.parse(obj || "");
-      if (type) {
-        const query: IQueryList = {
-          productId: id,
-          productType: type,
-        };
-        dispatch(getProductDetail(query));
-      }
-    }
+    const query: IQueryList = {
+      productId: id,
+    };
+    dispatch(getProductDetail(query));
   };
 
   const handleIncrease = () => {

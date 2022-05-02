@@ -8,11 +8,14 @@ import ButtonLoading from "../Loading/ButtonLoading";
 
 interface MultipleUploadProps {
   langs: ILangs;
+  isReset?: boolean;
   isSave?: boolean;
+  defaultImgArr?: any;
   imgFileArr: any;
   previewImgArr: any;
   setPreviewImgArr: React.Dispatch<React.SetStateAction<any>>;
   setImgFileArr: React.Dispatch<React.SetStateAction<any>>;
+  onChange?: (value: any) => void;
   onSubmit?: (file: any) => void;
 }
 
@@ -22,10 +25,13 @@ const MultipleUpload: React.FunctionComponent<MultipleUploadProps> = (
   const {
     langs,
     isSave,
+    isReset,
+    defaultImgArr,
     imgFileArr,
     previewImgArr,
     setImgFileArr,
     setPreviewImgArr,
+    onChange,
     onSubmit,
   } = props;
 
@@ -34,6 +40,18 @@ const MultipleUpload: React.FunctionComponent<MultipleUploadProps> = (
   );
 
   const [isUploading, setIsUploading] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    if(defaultImgArr) {
+      setPreviewImgArr(defaultImgArr);
+    }
+  }, [defaultImgArr])
+
+  React.useEffect(() => {
+    if(isReset) {
+      setPreviewImgArr([]);
+    }
+  },[isReset])
 
   React.useEffect(() => {
     setIsUploading(true);
@@ -51,6 +69,8 @@ const MultipleUpload: React.FunctionComponent<MultipleUploadProps> = (
   const handleChange = (e: any) => {
     const files = e.target.files;
     const acceptImgType = ["image/png", "image/jpeg"];
+
+    console.log(files)
 
     if (files) {
       let isValid = false;
@@ -73,6 +93,10 @@ const MultipleUpload: React.FunctionComponent<MultipleUploadProps> = (
       }
     }
   };
+
+  React.useEffect(() => {
+    onChange && onChange(imgFileArr)
+  }, [imgFileArr])
 
   return (
     <div className="upload__multiple">
