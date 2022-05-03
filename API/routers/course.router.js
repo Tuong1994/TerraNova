@@ -7,6 +7,7 @@ const {
   createCourse,
   updateCourse,
   removeCourse,
+  getCourseList,
 } = require("../controllers/course.controller");
 const {
   checkCourseId,
@@ -18,6 +19,8 @@ const {
 
 
 courseRouter.get("/getCategoryAndCourseList", getCategoryAndCourseList);
+
+courseRouter.get("/getCourseList", getCourseList);
 
 courseRouter.get("/getCourseByCategory", getCourseByCategory);
 

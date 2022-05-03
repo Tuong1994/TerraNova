@@ -5,14 +5,14 @@ const path = require("path");
 const { rootRouter } = require("./routers/root.router");
 
 const publicDirectlyPath = path.join(__dirname, "/");
-app.use(express.json())
+app.use(express.json());
 app.use(express.static(publicDirectlyPath));
 app.use(
-    cors({
-        origin: "*",
-        credentials: true,
-    })
-)
+  cors({
+    origin: "*",
+    credentials: true,
+  })
+);
 app.use("/api", rootRouter);
 
 const PORT = process.env.PORT || 4000;

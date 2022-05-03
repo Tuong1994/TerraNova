@@ -6,7 +6,10 @@ import { IDescription } from "../../../../models/Product";
 import { RouteComponentProps } from "react-router-dom";
 import { IRouteParams } from "../../../../interfaces/route";
 import { IQueryList } from "../../../../interfaces/query";
-import { getProductDetail } from "../../../../redux/actionCreators/ProductCreators";
+import {
+  getProductDetail,
+  updateProduct,
+} from "../../../../redux/actionCreators/ProductCreators";
 import ContentHeader from "../../../../components/ContentHeader";
 import Upload from "../../../../components/Upload";
 import StatusFields from "./Status";
@@ -56,12 +59,16 @@ const EditProduct: React.FunctionComponent<
       setCost(productDetail?.cost?.toString() || "");
       setProfit(productDetail?.profit || 0);
       setPrice(productDetail?.price || 0);
-      setDefaultImgArr(productDetail?.image)
+      setDefaultImgArr(productDetail?.image);
     }
-  }, [productDetail]);
+  }, [productDetail, productDetail?.image]);
 
   const handleSelectedImg = (files: any) => {
     setImgArr(files);
+  };
+
+  const handleRemoveImg = (files: any) => {
+    setDefaultImgArr(files);
   };
 
   const initialValues = {
@@ -74,7 +81,11 @@ const EditProduct: React.FunctionComponent<
     stockAmount: productDetail?.stockAmount,
   };
 
-  const handleSubmit = (values: any, action: any) => {
+  const handleSubmit = (values: any) => {
+    const query: IQueryList = {
+      productId: productId,
+    };
+
     const data = new FormData();
     for (let key in values) {
       data.append(key, values[key]);
@@ -86,9 +97,15 @@ const EditProduct: React.FunctionComponent<
     data.append("price", price.toString());
     data.append("description", JSON.stringify(descArr));
     data.append("defaultImgs", JSON.stringify(defaultImgArr));
-    
-    console.log(data.get("defaultImgs"))
 
+    dispatch(
+      updateProduct(
+        query,
+        data,
+        langs?.toastMessages.success.update,
+        langs?.toastMessages.error.update
+      )
+    );
   };
 
   return (
@@ -117,9 +134,15 @@ const EditProduct: React.FunctionComponent<
                   );
                 }}
               />
+
               <div className="edit-product__wrapper">
                 <div className="wrapper__item">
-                  <Upload multiple={true} defaultImg={defaultImgArr} onChange={handleSelectedImg} />
+                  <Upload
+                    multiple={true}
+                    defaultImg={productDetail?.image}
+                    onChange={handleSelectedImg}
+                    onRemove={handleRemoveImg}
+                  />
                   <InfoFields langs={langs} />
                   <PriceFields
                     options={options}
@@ -140,8 +163,16 @@ const EditProduct: React.FunctionComponent<
                   />
                 </div>
                 <div className="wrapper__item">
-                  <StatusFields langs={langs} options={options} values={initialValues} />
-                  <SourceFields langs={langs} options={options} values={initialValues} />
+                  <StatusFields
+                    langs={langs}
+                    options={options}
+                    values={initialValues}
+                  />
+                  <SourceFields
+                    langs={langs}
+                    options={options}
+                    values={initialValues}
+                  />
                 </div>
               </div>
             </Form>

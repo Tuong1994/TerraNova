@@ -26,6 +26,9 @@
         background: $primary;
         color: $tPrimary;
       }
+      @include respond(phone) {
+        display: none;
+      }
     }
     .button__prev {
       border-top-left-radius: $semiRound;

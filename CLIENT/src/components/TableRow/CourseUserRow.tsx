@@ -4,14 +4,14 @@ import { ELangs, ILangs } from "../../interfaces/lang";
 import { ICourseOrder } from "../../models/CourseOrder";
 import TableCol from "../Table/TableCol";
 
-interface CourseRowProps {
+interface CourseUserRowProps {
   lang: string;
   langs: ILangs;
   courseOrder: ICourseOrder;
   removeCourseOrder(i: string): void;
 }
 
-const CourseRow: React.FunctionComponent<CourseRowProps> = (props) => {
+const CourseUserRow: React.FunctionComponent<CourseUserRowProps> = (props) => {
   const { lang, langs, courseOrder, removeCourseOrder } = props;
 
   const [courseDetail, setCourseDetail] = React.useState<any>({});
@@ -62,4 +62,4 @@ const CourseRow: React.FunctionComponent<CourseRowProps> = (props) => {
   );
 };
 
-export default CourseRow;
+export default CourseUserRow;

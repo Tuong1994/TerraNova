@@ -20,9 +20,9 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
     (state: ReducerState) => state.PaginationReducer
   );
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
-  const [pageNumberLimit] = React.useState<number>(5);
+  const [pageNumberLimit] = React.useState<number>(3);
   const [minPageNumber, setMinPageNumber] = React.useState<number>(0);
-  const [maxPageNumber, setMaxPageNumber] = React.useState<number>(5);
+  const [maxPageNumber, setMaxPageNumber] = React.useState<number>(3);
   const [start, setStart] = React.useState<number>(0);
   const [end, setEnd] = React.useState<number>(0);
 
@@ -120,19 +120,6 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
     }
   };
 
-  // Render result content
-  const renderContent = () => {
-    return (
-      <p>
-        {langs?.pagination.showing}{" "}
-        <span>{end == total ? start + 1 : start}</span> <span>-</span>{" "}
-        <span>{end <= total ? end : total - end + start + 10}</span>{" "}
-        <span>{langs?.pagination.of}</span> <span>{total}</span>{" "}
-        <span>{langs?.pagination.results}</span>
-      </p>
-    );
-  };
-
   // Right dots button
   let pageIncrementBtn: React.ReactNode | null = null;
   if (pageNumber.length > maxPageNumber) {
@@ -153,6 +140,19 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
     );
   }
 
+  // Render result content
+  const renderContent = () => {
+    return (
+      <p>
+        {langs?.pagination.showing}{" "}
+        <span>{end == total ? start + 1 : start}</span> <span>-</span>{" "}
+        <span>{end <= total ? end : total - end + start + 10}</span>{" "}
+        <span>{langs?.pagination.of}</span> <span>{total}</span>{" "}
+        <span>{langs?.pagination.results}</span>
+      </p>
+    );
+  };
+
   return (
     <div className={`pagination ${className ? className : ""}`}>
       <div className="pagination__content">
@@ -169,9 +169,13 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
             <i className="fa-solid fa-chevron-left"></i>
           </div>
           {/* Prev Btn */}
+
           {pageDecrementBtn} {/* Left dots button */}
+
           {renderPageNumber()}
+
           {pageIncrementBtn} {/* Right dots button */}
+
           {/* Next Btn */}
           <div
             className={`button__next ${

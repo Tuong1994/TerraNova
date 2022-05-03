@@ -1,7 +1,7 @@
-import { ACCESSTOKEN } from './../../configs/setting';
 import * as apiPath from "../../paths";
 import axiosClient from "../../axios";
 import actions from "../../configs/actions";
+import { ACCESSTOKEN } from "./../../configs/setting";
 import { EProductActionTypes } from "../actionTypes/ProductActionTypes";
 import { Dispatch } from "redux";
 import { getListQuery } from "../../configs/setting";
@@ -9,19 +9,24 @@ import { IQueryList } from "../../interfaces/query";
 import { toast } from "react-toastify";
 
 export const getProductList = (query: IQueryList, err?: string) => {
-  return async (dispatch: Dispatch) => {
-    try {
-      const result = await axiosClient.get(
-        apiPath.productPaths.getProductList,
-        getListQuery(query as IQueryList)
-      );
-      dispatch({
-        type: EProductActionTypes.GET_PRODUCT_LIST,
-        payload: result.data,
-      });
-    } catch (error: any) {
-      toast.error(err);
-    }
+  return (dispatch: Dispatch) => {
+    dispatch(actions.openDataLoading);
+    setTimeout(async () => {
+      try {
+        const result = await axiosClient.get(
+          apiPath.productPaths.getProductList,
+          getListQuery(query as IQueryList)
+        );
+        dispatch({
+          type: EProductActionTypes.GET_PRODUCT_LIST,
+          payload: result.data,
+        });
+        dispatch(actions.closeDataLoading);
+      } catch (error: any) {
+        dispatch(actions.closeDataLoading);
+        toast.error(err);
+      }
+    }, 1000);
   };
 };
 
@@ -105,6 +110,34 @@ export const createProduct = (data: any, success?: string, err?: string) => {
     setTimeout(async () => {
       try {
         await axiosClient.post(apiPath.productPaths.createProduct, data, token);
+        dispatch(actions.closeButtonLoading);
+        toast.success(success);
+      } catch (error) {
+        dispatch(actions.closeButtonLoading);
+        toast.error(err);
+      }
+    }, 1000);
+  };
+};
+
+export const updateProduct = (
+  query: IQueryList,
+  data: any,
+  success?: string,
+  err?: string
+) => {
+  return (dispatch: any) => {
+    const token = localStorage.getItem(ACCESSTOKEN) || "";
+    dispatch(actions.openButtonLoading);
+    setTimeout(async () => {
+      try {
+        await axiosClient.put(
+          apiPath.productPaths.updateProduct,
+          getListQuery(query as IQueryList),
+          data,
+          token
+        );
+        dispatch(getProductDetail(query));
         dispatch(actions.closeButtonLoading);
         toast.success(success);
       } catch (error) {

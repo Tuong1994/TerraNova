@@ -1,3 +1,4 @@
+const fs = require("fs");
 const { Producer, Product, Description } = require("../models");
 const { domain } = require("../setting/setting");
 const Sequelize = require("sequelize");
@@ -27,29 +28,89 @@ const getProducerAndProduct = async (req, res) => {
 };
 
 const getProductList = async (req, res) => {
-  const { page, limits } = req.query;
+  const { page, limits, filter, sortBy, freeText } = req.query;
   const pageNumber = parseInt(page);
   const itemPerPage = parseInt(limits);
   try {
-    const products = await Product.findAll({
-      order: [["updatedAt", "DESC"]],
-      include: [
-        {
-          model: Description,
-          as: "description",
+    let products = [];
+
+    let getSort = () => {
+      if (sortBy) {
+        if (sortBy === 1) {
+          return "DESC";
+        } else {
+          return "ASC";
+        }
+      }
+    };
+    
+    if (filter && filter !== "all") {
+      if (freeText) {
+        products = await Product.findAll({
+          order: [["updatedAt", getSort() || "DESC"]],
+          where: {
+            categoryId: filter,
+            name: {
+              [Op.like]: `%${freeText}%`,
+            }
+          },
+          include: [
+            {
+              model: Description,
+              as: "description",
+            },
+          ],
+        });
+      } else {
+        products = await Product.findAll({
+          order: [["updatedAt", getSort() || "DESC"]],
+          where: {
+            categoryId: filter,
+          },
+          include: [
+            {
+              model: Description,
+              as: "description",
+            },
+          ],
+        });
+      }
+    } else if (freeText) {
+      products = await Product.findAll({
+        order: [["updatedAt", getSort() || "DESC"]],
+        where: {
+          name: {
+            [Op.like]: `%${freeText}%`,
+          },
         },
-      ],
-    });
+        include: [
+          {
+            model: Description,
+            as: "description",
+          },
+        ],
+      });
+    } else {
+      products = await Product.findAll({
+        order: [["updatedAt", getSort() || "DESC"]],
+        include: [
+          {
+            model: Description,
+            as: "description",
+          },
+        ],
+      });
+    }
     if (page) {
       let total = products.length;
       let start = (pageNumber - 1) * itemPerPage;
       let end = start + itemPerPage;
       const productListPerPage = products.slice(start, end);
       res.status(200).send({
-        productListPerPage: productListPerPage,
         totalProduct: total,
         page: pageNumber,
         limits: itemPerPage,
+        productListPerPage: productListPerPage,
       });
     }
   } catch (error) {
@@ -258,7 +319,6 @@ const updateProduct = async (req, res) => {
   const { productId } = req.query;
   const {
     name,
-    defaultImgs,
     cost,
     profit,
     price,
@@ -267,32 +327,36 @@ const updateProduct = async (req, res) => {
     stockAmount,
     categoryId,
     producerId,
+    defaultImgs,
   } = req.body;
   try {
-    console.log(defaultImgs)
-    // const urlImgArr = files.map((file) => {
-    //   return `${domain}/${file.path}`;
-    // });
-    // await Product.update(
-    //   {
-    //     name,
-    //     image: urlImgArr,
-    //     cost,
-    //     profit,
-    //     price,
-    //     status,
-    //     inventoryStatus,
-    //     stockAmount,
-    //     categoryId,
-    //     producerId,
-    //   },
-    //   {
-    //     where: {
-    //       id: productId,
-    //     },
-    //   }
-    // );
-    // res.status(200).send("Update success");
+    const defaultImgArr = JSON.parse(defaultImgs);
+
+    const urlImgArr = files.map((file) => {
+      return `${domain}/${file.path}`;
+    });
+    const urlArr = defaultImgArr.concat(urlImgArr);
+
+    await Product.update(
+      {
+        name,
+        image: urlArr,
+        cost,
+        profit,
+        price,
+        status,
+        inventoryStatus,
+        stockAmount,
+        categoryId,
+        producerId,
+      },
+      {
+        where: {
+          id: productId,
+        },
+      }
+    );
+    res.status(200).send("Update success");
   } catch (error) {
     res.status(500).send(error);
   }

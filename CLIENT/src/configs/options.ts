@@ -1,3 +1,4 @@
+import { ECourseCategory } from "./../models/Course";
 import {
   EInventoryStatus,
   EProducer,
@@ -7,6 +8,7 @@ import {
 } from "./../models/Product/index";
 import { EPaymentTypes, EShipmentType } from "../models/Order";
 import { EWard, EDistrict, EProvince } from "./../models/Shipment";
+import { ESortBy } from "../interfaces/query";
 
 export const optionsEng = {
   province: [
@@ -174,6 +176,34 @@ export const optionsEng = {
     { label: "ASUS", value: EProducer.asus },
     { label: "DELL", value: EProducer.dell },
     { label: "HP", value: EProducer.hp },
+  ],
+  sortBy: [
+    { label: "Newest", value: ESortBy.newest },
+    { label: "Oldest", value: ESortBy.oldest },
+  ],
+  productFilter: [
+    { label: "ALL", value: "all" },
+    { label: "CPU", value: EProductType.cpu },
+    { label: "RAM", value: EProductType.ram },
+    { label: "VGA", value: EProductType.vga },
+    { label: "HDD", value: EProductType.hdd },
+    { label: "SSD", value: EProductType.ssd },
+    { label: "PSU", value: EProductType.psu },
+    { label: "MAINBOARD", value: EProductType.mainboard },
+    { label: "MONITOR", value: EProductType.monitor },
+    { label: "PRINTER", value: EProductType.printer },
+    { label: "FAX", value: EProductType.fax },
+    { label: "LAPTOP", value: EProductType.laptop },
+    { label: "PC SET", value: EProductType.pcSet },
+  ],
+  courseFilter: [
+    { label: "ALL", value: "all" },
+    { label: "MINDSET", value: ECourseCategory.mindset },
+    { label: "MOBILE", value: ECourseCategory.mobile },
+    { label: "FRONTEND", value: ECourseCategory.frontEnd },
+    { label: "BACKEND", value: ECourseCategory.backEnd },
+    { label: "FULLSTACK", value: ECourseCategory.fullStack },
+    { label: "DESIGN", value: ECourseCategory.design },
   ],
 };
 
@@ -347,6 +377,34 @@ export const optionsVn = {
     { label: "DELL", value: EProducer.dell },
     { label: "HP", value: EProducer.hp },
   ],
+  sortBy: [
+    { label: "Mới nhất", value: ESortBy.newest },
+    { label: "Cũ nhất", value: ESortBy.oldest },
+  ],
+  productFilter: [
+    { label: "Tất cả", value: "all" },
+    { label: "CPU", value: EProductType.cpu },
+    { label: "RAM", value: EProductType.ram },
+    { label: "VGA", value: EProductType.vga },
+    { label: "HDD", value: EProductType.hdd },
+    { label: "SSD", value: EProductType.ssd },
+    { label: "PSU", value: EProductType.psu },
+    { label: "MAINBOARD", value: EProductType.mainboard },
+    { label: "MONITOR", value: EProductType.monitor },
+    { label: "PRINTER", value: EProductType.printer },
+    { label: "FAX", value: EProductType.fax },
+    { label: "LAPTOP", value: EProductType.laptop },
+    { label: "PC SET", value: EProductType.pcSet },
+  ],
+  courseFilter: [
+    { label: "Tất cả", value: "all" },
+    { label: "MINDSET", value: ECourseCategory.mindset },
+    { label: "MOBILE", value: ECourseCategory.mobile },
+    { label: "FRONTEND", value: ECourseCategory.frontEnd },
+    { label: "BACKEND", value: ECourseCategory.backEnd },
+    { label: "FULLSTACK", value: ECourseCategory.fullStack },
+    { label: "DESIGN", value: ECourseCategory.design },
+  ],
 };
 
 export const optionsCh = {
@@ -515,6 +573,34 @@ export const optionsCh = {
     { label: "ASUS", value: EProducer.asus },
     { label: "DELL", value: EProducer.dell },
     { label: "HP", value: EProducer.hp },
+  ],
+  sortBy: [
+    { label: "最新", value: ESortBy.newest },
+    { label: "最老", value: ESortBy.oldest },
+  ],
+  productFilter: [
+    { label: "全部", value: "all" },
+    { label: "CPU", value: EProductType.cpu },
+    { label: "RAM", value: EProductType.ram },
+    { label: "VGA", value: EProductType.vga },
+    { label: "HDD", value: EProductType.hdd },
+    { label: "SSD", value: EProductType.ssd },
+    { label: "PSU", value: EProductType.psu },
+    { label: "MAINBOARD", value: EProductType.mainboard },
+    { label: "MONITOR", value: EProductType.monitor },
+    { label: "PRINTER", value: EProductType.printer },
+    { label: "FAX", value: EProductType.fax },
+    { label: "LAPTOP", value: EProductType.laptop },
+    { label: "PC SET", value: EProductType.pcSet },
+  ],
+  courseFilter: [
+    { label: "全部", value: "all" },
+    { label: "MINDSET", value: ECourseCategory.mindset },
+    { label: "MOBILE", value: ECourseCategory.mobile },
+    { label: "FRONTEND", value: ECourseCategory.frontEnd },
+    { label: "BACKEND", value: ECourseCategory.backEnd },
+    { label: "FULLSTACK", value: ECourseCategory.fullStack },
+    { label: "DESIGN", value: ECourseCategory.design },
   ],
 };
 

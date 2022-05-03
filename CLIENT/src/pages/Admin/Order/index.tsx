@@ -1,13 +1,5 @@
-import React from "react";
-import ContentHeader from "../../../components/ContentHeader";
-import pageTitleList from "../../../configs/pageTitleList";
+import List from "./List";
 
-const Order: React.FunctionComponent<{}> = props => {
-    return (
-        <div className="home">
-            <ContentHeader name={pageTitleList.order} />
-        </div>
-    )
+export {
+    List,
 }
-
-export default Order;

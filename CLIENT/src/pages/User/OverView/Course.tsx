@@ -5,9 +5,9 @@ import { ILangs } from "../../../interfaces/lang";
 import { Link } from "react-router-dom";
 import { IUser } from "../../../models/User";
 import { IQueryList } from "../../../interfaces/query";
-import Table from "../../../components/Table";
-import CourseRow from "../../../components/TableRow/CourseRow";
 import { removeCourseOrder } from "../../../redux/actionCreators/CourseOrderCreators";
+import Table from "../../../components/Table";
+import CourseUserRow from "../../../components/TableRow/CourseUserRow";
 
 interface CourseProps {
   lang: string;
@@ -63,7 +63,7 @@ const Course: React.FunctionComponent<CourseProps> = (props) => {
             if (user?.courses && user?.courses.length > 0) {
               return user?.courses.map((course) => {
                 return (
-                  <CourseRow
+                  <CourseUserRow
                     key={course.courseId}
                     lang={lang}
                     langs={langs}

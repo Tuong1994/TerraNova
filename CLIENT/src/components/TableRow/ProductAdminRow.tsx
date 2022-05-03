@@ -5,25 +5,18 @@ import { IProduct } from "../../models/Product";
 
 interface IProductAdminRowProps {
   product: IProduct;
+  index: number;
   handleRemove: (id: string) => void;
 }
 
 const ProductAdminRow: React.FunctionComponent<IProductAdminRowProps> = (
   props
 ) => {
-  const { product, handleRemove } = props;
+  const { product, index, handleRemove } = props;
 
   return (
     <tr className="product-admin-row">
-      <TableCol>{product.id || product.productId}</TableCol>
-
-      <TableCol>
-        <p>{product.name}</p>
-      </TableCol>
-
-      <TableCol>
-        <p>{product.price?.toLocaleString()} VND</p>
-      </TableCol>
+      <TableCol>{index + 1}</TableCol>
 
       <TableCol>
         <div className="image__col">
@@ -39,6 +32,16 @@ const ProductAdminRow: React.FunctionComponent<IProductAdminRowProps> = (
             alt="product"
           />
         </div>
+      </TableCol>
+
+      <TableCol><p>{product.id || product.productId}</p></TableCol>
+
+      <TableCol>
+        <p>{product.name}</p>
+      </TableCol>
+
+      <TableCol>
+        <p>{product.price?.toLocaleString()} VND</p>
       </TableCol>
 
       <TableCol>

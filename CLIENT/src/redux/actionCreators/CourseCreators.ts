@@ -5,6 +5,8 @@ import { IQueryList } from "../../interfaces/query";
 import { Dispatch } from "redux";
 import { getListQuery } from "../../configs/setting";
 import { ICourse } from "../../models/Course";
+import { toast } from "react-toastify";
+import actions from "../../configs/actions";
 
 export const getCategoryAndCourseList = () => {
   return async (dispatch: Dispatch) => {
@@ -19,6 +21,28 @@ export const getCategoryAndCourseList = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+};
+
+export const getCourseList = (query: IQueryList, err?: string) => {
+  return (dispatch: Dispatch) => {
+    dispatch(actions.openDataLoading);
+    setTimeout(async () => {
+      try {
+        const result = await axiosClient.get(
+          apiPath.coursePaths.getCourseList,
+          getListQuery(query as IQueryList)
+        );
+        dispatch({
+          type: ECourseActionTypes.GET_COURSE_LIST,
+          payload: result.data,
+        });
+        dispatch(actions.closeDataLoading);
+      } catch (error) {
+        dispatch(actions.closeDataLoading);
+        toast.error(err);
+      }
+    }, 1000);
   };
 };
 
@@ -72,7 +96,7 @@ export const updateCourse = (query: IQueryList, data: ICourse) => {
       await axiosClient.put(
         apiPath.coursePaths.updateCourse,
         getListQuery(query as IQueryList),
-        data,
+        data
       );
     } catch (error) {
       console.log(error);

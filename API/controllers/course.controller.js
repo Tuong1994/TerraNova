@@ -5,6 +5,8 @@ const {
   Lesson,
   sequelize,
 } = require("../models");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 const getCategoryAndCourseList = async (req, res) => {
   try {
@@ -17,6 +19,99 @@ const getCategoryAndCourseList = async (req, res) => {
       ],
     });
     res.status(200).send(categoryAndCourseList);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const getCourseList = async (req, res) => {
+  const { page, limits, filter, freeText, sortBy } = req.query;
+  const pageNumber = parseInt(page);
+  const itemPerPage = parseInt(limits);
+  try {
+    let courseList = [];
+
+    let getSort = () => {
+      if (sortBy) {
+        if (sortBy === 1) {
+          return "DESC";
+        } else {
+          return "ASC";
+        }
+      }
+    };
+
+    if (filter && filter !== "all") {
+      if (freeText) {
+        courseList = await Course.findAll({
+          order: [["updatedAt", getSort() || "DESC"]],
+          where: {
+            categoryId: filter,
+            nameENG: {
+              [Op.like]: `%${freeText}%`,
+            },
+          },
+          include: [
+            {
+              model: CourseCategory,
+              as: "category",
+            }
+          ]
+        });
+      } else {
+        courseList = await Course.findAll({
+          order: [["updatedAt", getSort() || "DESC"]],
+          where: {
+            categoryId: filter,
+          },
+          include: [
+            {
+              model: CourseCategory,
+              as: "category",
+            }
+          ]
+        });
+      }
+    } else if (freeText) {
+      courseList = await Course.findAll({
+        order: [["updatedAt", getSort() || "DESC"]],
+        where: {
+          categoryId: filter,
+          nameENG: {
+            [Op.like]: `%${freeText}%`,
+          },
+        },
+        include: [
+          {
+            model: CourseCategory,
+            as: "category",
+          }
+        ]
+      });
+    } else {
+      courseList = await Course.findAll({
+        order: [["updatedAt", getSort() || "DESC"]],
+        include: [
+          {
+            model: CourseCategory,
+            as: "category",
+          }
+        ]
+      });
+    }
+
+    if (page) {
+      const total = courseList.length;
+      const start = (pageNumber - 1) * itemPerPage;
+      const end = start + itemPerPage;
+      const courses = courseList.slice(start, end);
+      res.status(200).send({
+        total: total,
+        page: pageNumber,
+        limits: itemPerPage,
+        courseList: courses,
+      });
+    }
   } catch (error) {
     res.status(500).send(error);
   }
@@ -185,6 +280,7 @@ const removeCourse = async (req, res) => {
 
 module.exports = {
   getCategoryAndCourseList,
+  getCourseList,
   getCourseByCategory,
   getCourseDetail,
   createCourse,

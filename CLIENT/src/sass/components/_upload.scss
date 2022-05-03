@@ -128,6 +128,9 @@
         }
         span {
           margin-left: $m-10 * 2;
+          @include respond(phone) {
+            display: none;
+          }
         }
       }
       .control__input {
@@ -139,9 +142,13 @@
       }
     }
     .multiple__message {
-      font-size: $body-2;
+      text-align: center;
+      font-size: $body-1;
       font-style: italic;
       color: $tGrey;
+      @include respond(phone) {
+        font-size: $body-2;
+      }
     }
     .multiple__text {
       padding: $p-10 0;
@@ -202,6 +209,18 @@
           border-radius: $circle;
           cursor: pointer;
         }
+        @include respond(tablet) {
+          width: $w-100;
+        }
+      }
+      @include respond(laptop) {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      @include respond(tablet) {
+        grid-template-columns: 1fr 1fr;
+      }
+      @include respond(phone) {
+        grid-template-columns: auto;
       }
     }
   }

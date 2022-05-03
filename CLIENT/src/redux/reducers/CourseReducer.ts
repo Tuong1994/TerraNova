@@ -17,6 +17,12 @@ interface IStateDefault {
       limits: number;
     };
   };
+  courses: {
+    courseList: ICourse[];
+    total: number;
+    page: number;
+    limits: number;
+  };
   courseDetail: ICourse;
 }
 
@@ -35,6 +41,12 @@ const stateDefault: IStateDefault = {
       limits: 0,
     },
   },
+  courses: {
+    courseList: [],
+    total: 0,
+    page: 0,
+    limits: 0,
+  },
   courseDetail: {},
 };
 
@@ -43,6 +55,12 @@ export const CourseReducer = (state = stateDefault, action: CourseAction) => {
     case ECourseActionTypes.GET_CATEGORY_AND_COURSE_LIST: {
       let newState = { ...state };
       newState.categoryAndCourse = action.payload;
+      state = newState;
+      return { ...state };
+    }
+    case ECourseActionTypes.GET_COURSE_LIST: {
+      let newState = { ...state };
+      newState.courses = action.payload;
       state = newState;
       return { ...state };
     }

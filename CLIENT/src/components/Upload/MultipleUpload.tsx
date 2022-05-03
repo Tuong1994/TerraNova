@@ -15,8 +15,9 @@ interface MultipleUploadProps {
   previewImgArr: any;
   setPreviewImgArr: React.Dispatch<React.SetStateAction<any>>;
   setImgFileArr: React.Dispatch<React.SetStateAction<any>>;
-  onChange?: (value: any) => void;
-  onSubmit?: (file: any) => void;
+  onChange?: (files: any) => void;
+  onRemove?: (files: any) => void;
+  onSubmit?: (files: any) => void;
 }
 
 const MultipleUpload: React.FunctionComponent<MultipleUploadProps> = (
@@ -32,6 +33,7 @@ const MultipleUpload: React.FunctionComponent<MultipleUploadProps> = (
     setImgFileArr,
     setPreviewImgArr,
     onChange,
+    onRemove,
     onSubmit,
   } = props;
 
@@ -41,18 +43,32 @@ const MultipleUpload: React.FunctionComponent<MultipleUploadProps> = (
 
   const [isUploading, setIsUploading] = React.useState<boolean>(false);
 
+  // Set default array of image
   React.useEffect(() => {
-    if(defaultImgArr) {
+    if (defaultImgArr) {
       setPreviewImgArr(defaultImgArr);
-    }
-  }, [defaultImgArr])
-
-  React.useEffect(() => {
-    if(isReset) {
+    } else {
       setPreviewImgArr([]);
     }
-  },[isReset])
+  }, [defaultImgArr]);
 
+  // Reset preview image
+  React.useEffect(() => {
+    if (isReset) {
+      setPreviewImgArr([]);
+    }
+  }, [isReset]);
+
+  // Trigger onChange function when file was selected
+  React.useEffect(() => {
+    onChange && onChange(imgFileArr);
+  }, [imgFileArr]);
+
+  React.useEffect(() => {
+    onRemove && onRemove(previewImgArr);
+  }, [previewImgArr]);
+
+  // Set preview image
   React.useEffect(() => {
     setIsUploading(true);
     if (imgFileArr && imgFileArr.length > 0) {
@@ -68,10 +84,9 @@ const MultipleUpload: React.FunctionComponent<MultipleUploadProps> = (
 
   const handleChange = (e: any) => {
     const files = e.target.files;
-    const acceptImgType = ["image/png", "image/jpeg"];
+    const acceptImgType = ["image/png", "image/jpg", "image/jpeg"];
 
-    console.log(files)
-
+    // Validation
     if (files) {
       let isValid = false;
       Array.from(files).map((file: any) => {
@@ -82,10 +97,15 @@ const MultipleUpload: React.FunctionComponent<MultipleUploadProps> = (
             toast.error(langs?.toastMessages.error.file);
             isValid = true;
           }
+          if (file.size > 1000000) {
+            toast.error(langs?.toastMessages.error.fileSize);
+            isValid = true;
+          }
         } else {
           isValid = false;
         }
       });
+
       if (!isValid) {
         setImgFileArr(files);
       } else {
@@ -93,10 +113,6 @@ const MultipleUpload: React.FunctionComponent<MultipleUploadProps> = (
       }
     }
   };
-
-  React.useEffect(() => {
-    onChange && onChange(imgFileArr)
-  }, [imgFileArr])
 
   return (
     <div className="upload__multiple">
@@ -139,6 +155,7 @@ const MultipleUpload: React.FunctionComponent<MultipleUploadProps> = (
       </form>
 
       <p className="multiple__message">{langs?.form.fileType}</p>
+      <p className="multiple__message">{langs?.form.fileSize}</p>
 
       {/* Upload text */}
       <div className="multiple__text">

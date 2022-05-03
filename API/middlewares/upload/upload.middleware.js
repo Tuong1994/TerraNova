@@ -1,8 +1,5 @@
 const multer = require("multer");
 
-const FILESIZE = "1000000";
-const fileTypes = /jpeg|jpg|png/;
-
 const productUpload = () => {
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -14,15 +11,6 @@ const productUpload = () => {
   });
   const upload = multer({
     storage,
-    limits: { fileSize: FILESIZE },
-    fileFilter: (req, file, cb) => {
-      const mimeType = fileTypes.test(file.mimetype);
-      const extname = fileTypes.test(path.extname(file.originalname));
-      if (mimeType && extname) {
-        return cb(null, true);
-      }
-      cb("File is not valid");
-    },
   });
   return upload.array("image", 10);
 };
@@ -38,15 +26,6 @@ const courseUpload = () => {
   });
   const upload = multer({
     storage,
-    limits: { fileSize: FILESIZE },
-    fileFilter: (req, file, cb) => {
-      const mimeType = fileTypes.test(file.mimetype);
-      const extname = fileTypes.test(path.extname(file.originalname));
-      if (mimeType && extname) {
-        return cb(null, true);
-      }
-      cb("File is not valid");
-    },
   });
   return upload.single("image");
 };
@@ -62,15 +41,6 @@ const userUpload = () => {
   });
   const upload = multer({
     storage,
-    limits: { fileSize: FILESIZE },
-    fileFilter: (req, file, cb) => {
-      const mimeType = fileTypes.test(file.mimetype);
-      const extname = fileTypes.test(path.extname(file.originalname));
-      if (mimeType && extname) {
-        return cb(null, true);
-      }
-      cb("File is not valid");
-    },
   });
   return upload.single("avatar");
 };

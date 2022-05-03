@@ -12,4 +12,11 @@ export interface IQueryList {
   courseOrderId?: string;
   productType?: string;
   freeText?: string;
+  filter?: string;
+  sortBy?: number;
+}
+
+export enum ESortBy {
+  newest = 1,
+  oldest = 2,
 }

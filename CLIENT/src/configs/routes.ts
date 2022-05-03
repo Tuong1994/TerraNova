@@ -1,9 +1,9 @@
 import { IRoute } from "../interfaces/route";
 import * as Product from "../pages/Admin/Product"
+import * as Course from "../pages/Admin/Course";
+import * as Order from "../pages/Admin/Order";
+import * as Customer from "../pages/Admin/Customer";
 import Dashboard from "../pages/Admin/Dashboard";
-import Customer from "../pages/Admin/Customer";
-import Course from "../pages/Admin/Course";
-import Order from "../pages/Admin/Order";
 import Home from "../pages/Home";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
@@ -29,12 +29,12 @@ export const adminRoutes: IRoute[] = [
   {
     path: "/admin/order",
     exact: true,
-    component: Order,
+    component: Order.List,
   },
   {
     path: "/admin/customer",
     exact: true,
-    component: Customer,
+    component: Customer.List,
   },
   {
     path: "/admin/product",
@@ -54,17 +54,7 @@ export const adminRoutes: IRoute[] = [
   {
     path: "/admin/course",
     exact: true,
-    component: Course,
-  },
-  {
-    path: "/admin/course/addCourse",
-    exact: true,
-    component: Course,
-  },
-  {
-    path: "/admin/course/editCourse",
-    exact: true,
-    component: Course,
+    component: Course.List,
   },
 ];
 

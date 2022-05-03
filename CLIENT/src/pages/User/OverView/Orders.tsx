@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 import { IUser } from "../../../models/User";
 import { IQueryList } from "../../../interfaces/query";
 import { useDispatch } from "react-redux";
-import Table from "../../../components/Table";
-import OrderRow from "../../../components/TableRow/OrderRow";
 import { removeOrder } from "../../../redux/actionCreators/OrderCreators";
+import Table from "../../../components/Table";
+import OrderUserRow from "../../../components/TableRow/OrderUserRow";
 
 interface OrderProps {
   user: IUser | null;
@@ -59,7 +59,7 @@ const Order: React.FunctionComponent<OrderProps> = (props) => {
             if (user?.orders && user?.orders?.length > 0) {
               return user?.orders.map((order) => {
                 return (
-                  <OrderRow
+                  <OrderUserRow
                     key={order.id}
                     order={order}
                     langs={langs}

@@ -3,14 +3,15 @@ import TableNoData from "./TableNoData";
 import TableHeader from "./TableHeader";
 import ProductAdminRow from "../TableRow/ProductAdminRow";
 import CartsRow from "../TableRow/CartsRow";
-import OrderRow from "../TableRow/OrderRow";
+import OrderUserRow from "../TableRow/OrderUserRow";
+import CourseUserRow from "../TableRow/CourseUserRow";
 export interface ITableHeader {
   title: string;
   width?: string;
   className?: string;
 }
 
-type TableRowType = typeof ProductAdminRow | typeof CartsRow | typeof OrderRow;
+type TableRowType = typeof ProductAdminRow | typeof CartsRow | typeof OrderUserRow | typeof CourseUserRow;
 interface ITableProps {
   headers: ITableHeader[];
   headersClassName?: string;

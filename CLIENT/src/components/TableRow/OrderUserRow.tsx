@@ -6,13 +6,13 @@ import { EPaymentTypes, EStatus, IOrder } from "../../models/Order";
 import Badge from "../Badge";
 import TableCol from "../Table/TableCol";
 
-interface OrderRowProps {
+interface OrderUserRowProps {
   order: IOrder;
   langs: ILangs;
   removeOrder(i: string): void;
 }
 
-const OrderRow: React.FunctionComponent<OrderRowProps> = (props) => {
+const OrderUserRow: React.FunctionComponent<OrderUserRowProps> = (props) => {
   const { order, langs, removeOrder } = props;
 
   const renderPaymentType = () => {
@@ -69,4 +69,4 @@ const OrderRow: React.FunctionComponent<OrderRowProps> = (props) => {
   );
 };
 
-export default OrderRow;
+export default OrderUserRow;

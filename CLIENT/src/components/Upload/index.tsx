@@ -10,12 +10,13 @@ interface UploadProps {
   multiple?: boolean;
   isReset?: boolean;
   isSave?: boolean;
-  onChange?: (value: any) => void;
-  onSubmit?: (file: any) => void;
+  onChange?: (files: any) => void;
+  onRemove?: (files: any) => void;
+  onSubmit?: (files: any) => void;
 }
 
 const Upload: React.FunctionComponent<UploadProps> = (props) => {
-  const { defaultImg, isSave, isReset, multiple, onChange, onSubmit } = props;
+  const { defaultImg, isSave, isReset, multiple, onChange, onRemove, onSubmit } = props;
 
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
@@ -39,6 +40,7 @@ const Upload: React.FunctionComponent<UploadProps> = (props) => {
           setPreviewImgArr={setPreviewImgArr}
           setImgFileArr={setImgFileArr}
           onChange={onChange}
+          onRemove={onRemove}
           onSubmit={onSubmit}
         />
       ) : (

@@ -32,7 +32,7 @@ const PriceFields: React.FunctionComponent<PriceFieldsProps> = (props) => {
   } = props;
 
   React.useEffect(() => {
-    // getPrice();
+    getPrice();
   }, [cost, profit]);
 
   const getPrice = () => {

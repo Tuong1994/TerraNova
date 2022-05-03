@@ -512,6 +512,7 @@ const EngLang = {
       onlyNumber: "Can type only number",
       alreadyRegister: "You have already registered this course",
       file: "File not valid",
+      fileSize: "File size must equal or smaller than 1MB",
     },
   },
 
@@ -563,7 +564,8 @@ const EngLang = {
     chooseFile: "Choose your file",
     fileSelected: "File selected",
     noFileSelected: "No file selected",
-    fileType: "Only upload files with the extension *png, *jpg",
+    fileType: "Only upload files with the extension *png, *jpg, *jpeg",
+    fileSize: "File size smaller or equal to 1MB",
     productName: "Product name",
     productType: "Product type",
     price: "Price",
@@ -582,7 +584,11 @@ const EngLang = {
   tableHeader: {
     number: "No.",
     image: "Image",
+    userId: "User Id",
+    account: "Account",
     name: "Name",
+    role: "Role",
+    productId: "Product Id",
     productName: "Name",
     amount: "Amount",
     price: "Price",
@@ -599,6 +605,7 @@ const EngLang = {
     studyDates: "Study dates",
     openingDate: "Opening date",
     branch: "Branch",
+    category: "Category",
     createdAt: "Created at",
   },
 

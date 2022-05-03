@@ -57,9 +57,10 @@ productRouter.post(
 
 productRouter.put(
   "/updateProduct",
-  // authenticate,
-  // authorize(["ADMIN"]),
-  // checkProductId,
+  authenticate,
+  authorize(["ADMIN"]),
+  checkProductId,
+  productUpload(),
   updateProduct
 );
 

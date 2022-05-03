@@ -1,3 +1,11 @@
+export enum ECourseCategory {
+  design = "desgin",
+  mindset = "mindset",
+  frontEnd = "frontEnd",
+  backEnd = "backEnd",
+  fullStack = "fullStack",
+  mobile = "mobile",
+}
 export interface ICourseCategory {
   id?: string;
   nameVN?: string;
@@ -19,6 +27,7 @@ export interface ILesson {
 }
 export interface ICourse {
   id?: string;
+  courseId?: string;
   nameENG?: string;
   nameVN?: string;
   nameCH?: string;
@@ -30,6 +39,7 @@ export interface ICourse {
   trainingTime?: number;
   lessons?: ILesson[];
   categoryId?: string;
+  category?: ICourseCategory;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 }

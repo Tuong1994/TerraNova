@@ -1,44 +1,39 @@
 import React from "react";
 import * as Card from "../../../../components/Card";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../../redux/store";
-import {
-  getProductList,
-  removeProduct,
-} from "../../../../redux/actionCreators/ProductCreators";
+import { Link } from "react-router-dom";
 import { ESortBy, IQueryList } from "../../../../interfaces/query";
-import Table from "../../../../components/Table";
 import ContentHeader from "../../../../components/ContentHeader";
-import ProductAdminRow from "../../../../components/TableRow/ProductAdminRow";
-import Pagination from "../../../../components/Pagination";
-import Filter from "../../../../components/FIlter";
-import DataLoading from "../../../../components/Loading/DataLoading";
 import utils from "../../../../utils";
+import Table from "../../../../components/Table";
+import { getCourseList } from "../../../../redux/actionCreators/CourseCreators";
+import CourseAdminRow from "../../../../components/TableRow/CourseAdminRow";
+import DataLoading from "../../../../components/Loading/DataLoading";
+import Filter from "../../../../components/FIlter";
+import Pagination from "../../../../components/Pagination";
 
-const Product: React.FunctionComponent<{}> = (props) => {
-  const { productList } = useSelector(
-    (state: ReducerState) => state.ProductReducer
-  );
+const Course: React.FunctionComponent<{}> = (props) => {
   const { page } = useSelector(
     (state: ReducerState) => state.PaginationReducer
   );
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
+  const { courses } = useSelector((state: ReducerState) => state.CourseReducer);
   const { dataLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
   );
+
+  const dispatch = useDispatch();
 
   const [filter, setFilter] = React.useState<string>("all");
   const [sortBy, setSortBy] = React.useState<number>(ESortBy.newest);
   const [freeText, setFreeText] = React.useState<string>("");
   const typingRef = React.useRef<any>(null);
 
-  const { limits, totalProduct } = productList;
-
-  const dispatch = useDispatch();
-
   const langs = utils.changeLang(lang);
   const options = utils.getOptionByLang(lang);
+
+  const { total, limits } = courses;
 
   React.useEffect(() => {
     const query: IQueryList = {
@@ -48,10 +43,9 @@ const Product: React.FunctionComponent<{}> = (props) => {
       sortBy: sortBy,
       freeText: freeText,
     };
-    dispatch(getProductList(query));
-  }, [page, sortBy, filter, freeText]);
+    dispatch(getCourseList(query));
+  }, [page, filter, sortBy, freeText]);
 
-  // Search product
   const handleSearch = (v: string) => {
     if (typingRef.current) {
       clearTimeout(typingRef.current);
@@ -62,57 +56,39 @@ const Product: React.FunctionComponent<{}> = (props) => {
     }, 500);
   };
 
-  // Remove product
-  const handleRemoveProduct = (id: string) => {
-    const query: IQueryList = {
-      page: 1,
-      limits: 10,
-      productId: id,
-    };
-    dispatch(
-      removeProduct(
-        query,
-        langs?.toastMessages.success.remove,
-        langs?.toastMessages.error.remove
-      )
-    );
-  };
-
-  // Render product list
-  const renderProductList = () => {
-    if (productList) {
-      const { productListPerPage } = productList;
-      return productListPerPage?.map((product, index) => {
+  const renderCourseList = () => {
+    if (courses) {
+      const { courseList } = courses;
+      return courseList?.map((course, index) => {
         return (
-          <ProductAdminRow
-            key={product.id || product.productId}
-            product={product}
+          <CourseAdminRow
+            key={course.id || course.courseId}
+            lang={lang}
+            course={course}
             index={index}
-            handleRemove={handleRemoveProduct}
           />
         );
       });
     }
-    return;
   };
 
   return (
-    <div className="product">
+    <div className="course">
       <ContentHeader
-        name={langs?.admin.pageTitle.product || ""}
+        name={langs?.admin.pageTitle.course || ""}
         right={() => {
           return (
-            <Link to="/product/addProduct" className="button--add">
-              {langs?.button.addProduct}
+            <Link to="/admin/course" className="button--add">
+              {langs?.button.addCourse}
             </Link>
           );
         }}
       />
 
       <Filter
-        filterOptions={options?.productFilter}
         defaultFilterValue={filter}
         defaultSortValue={sortBy}
+        filterOptions={options?.courseFilter}
         onFilter={(value: any) => {
           setFilter(value);
         }}
@@ -127,22 +103,23 @@ const Product: React.FunctionComponent<{}> = (props) => {
           headers={[
             { title: langs?.tableHeader.number || "" },
             { title: langs?.tableHeader.image || "" },
-            { title: langs?.tableHeader.productId || "" },
-            { title: langs?.tableHeader.productName || "" },
+            { title: langs?.tableHeader.category || "" },
+            { title: langs?.tableHeader.courseId || "" },
+            { title: langs?.tableHeader.courseName || "" },
             { title: langs?.tableHeader.price || "" },
             { title: langs?.tableHeader.features || "" },
           ]}
-          isNodata={productList?.productListPerPage}
+          isNodata={courses?.courseList || 0}
           noDataTitle={langs?.noData.data || ""}
           renderNoDataLink={() => (
-            <Link to="/product/addProduct" className="button--add">
-              {langs?.button.addProduct}
+            <Link to="/admin/course" className="button--add">
+              {langs?.button.addCourse}
             </Link>
           )}
         >
           {(() => {
             if (!dataLoading) {
-              return renderProductList();
+              return renderCourseList();
             } else {
               return (
                 <div style={{ height: "400px" }}>
@@ -154,9 +131,9 @@ const Product: React.FunctionComponent<{}> = (props) => {
         </Table>
       </Card.Wrapper>
 
-      <Pagination perPage={limits} total={totalProduct} isShowContent={true} />
+      <Pagination perPage={limits} total={total} isShowContent={true} />
     </div>
   );
 };
 
-export default Product;
+export default Course;
