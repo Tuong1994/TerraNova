@@ -61,6 +61,11 @@ export const adminRoutes: IRoute[] = [
     exact: true,
     component: Course.Add,
   },
+  {
+    path: "/course/editCourse/:id",
+    exact: true,
+    component: Course.Edit,
+  },
 ];
 
 export const userRoutes: IRoute[] = [

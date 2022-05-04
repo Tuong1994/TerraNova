@@ -64,6 +64,7 @@ const MultipleUpload: React.FunctionComponent<MultipleUploadProps> = (
     onChange && onChange(imgFileArr);
   }, [imgFileArr]);
 
+  // Trigger onRemove function when click remove file
   React.useEffect(() => {
     onRemove && onRemove(previewImgArr);
   }, [previewImgArr]);

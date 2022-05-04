@@ -17,9 +17,9 @@ import LessonFields from "./Lesson";
 import ButtonLoading from "../../../../components/Loading/ButtonLoading";
 import utils from "../../../../utils";
 
-interface AddCourseProps {}
+interface EditCourseProps {}
 
-const AddCourse: React.FunctionComponent<AddCourseProps> = (props) => {
+const EditCourse: React.FunctionComponent<EditCourseProps> = (props) => {
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
   const { buttonLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
@@ -127,7 +127,7 @@ const AddCourse: React.FunctionComponent<AddCourseProps> = (props) => {
   };
 
   return (
-    <div className="add-course">
+    <div className="edit-course">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -138,7 +138,7 @@ const AddCourse: React.FunctionComponent<AddCourseProps> = (props) => {
           return (
             <Form>
               <ContentHeader
-                name={langs?.admin.pageTitle.addCourse || ""}
+                name={langs?.admin.pageTitle.editCourse || ""}
                 right={() => {
                   return !isValid ? (
                     <Button
@@ -160,7 +160,7 @@ const AddCourse: React.FunctionComponent<AddCourseProps> = (props) => {
                   );
                 }}
               />
-              <div className="add-course__wrapper">
+              <div className="edit-course__wrapper">
                 <div className="wrapper__item">
                   <InfoFields
                     langs={langs}
@@ -208,4 +208,4 @@ const AddCourse: React.FunctionComponent<AddCourseProps> = (props) => {
   );
 };
 
-export default AddCourse;
+export default EditCourse;

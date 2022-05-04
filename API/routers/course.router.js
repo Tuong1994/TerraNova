@@ -45,8 +45,8 @@ courseRouter.put(
 
 courseRouter.delete(
   "/removeCourse",
-  authenticate,
-  authorize(["ADMIN"]),
+  // authenticate,
+  // authorize(["ADMIN"]),
   checkCourseId,
   removeCourse
 );

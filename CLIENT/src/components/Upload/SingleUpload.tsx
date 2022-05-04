@@ -11,6 +11,7 @@ interface SingleUploadProps {
   defaultImg?: string;
   imgFile: any;
   previewImg: any;
+  isReset?: boolean;
   setPreviewImg: React.Dispatch<React.SetStateAction<any>>;
   setImgFile: React.Dispatch<React.SetStateAction<any>>;
   onChange?:(file: any) => void;
@@ -23,6 +24,7 @@ const SingleUpload: React.FunctionComponent<SingleUploadProps> = (props) => {
     defaultImg,
     imgFile,
     previewImg,
+    isReset,
     setPreviewImg,
     setImgFile,
     onChange,
@@ -34,6 +36,12 @@ const SingleUpload: React.FunctionComponent<SingleUploadProps> = (props) => {
   );
 
   const [isUploading, setIsUploading] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    if(isReset) {
+      setPreviewImg("");
+    }
+  }, [isReset])
 
   React.useEffect(() => {
     setIsUploading(true);

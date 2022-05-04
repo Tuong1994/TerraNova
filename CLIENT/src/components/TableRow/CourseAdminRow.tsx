@@ -74,7 +74,10 @@ const CourseAdminRow: React.FunctionComponent<CourseAdminRowProps> = (
         <p>{course.price?.toLocaleString()} VND</p>
       </TableCol>
       <TableCol>
-        <Link to={`/admin/course`} className="button--edit">
+        <Link
+          to={`/course/editCourse/${course.id || course.courseId}`}
+          className="button--edit"
+        >
           <i className="far fa-edit"></i>
         </Link>
         <div className="button--delete">

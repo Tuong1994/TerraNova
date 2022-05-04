@@ -35,7 +35,7 @@ const getCourseList = async (req, res) => {
 
     let getSort = () => {
       if (sortBy) {
-        if (sortBy === 1) {
+        if (parseInt(sortBy) === 1) {
           return "DESC";
         } else {
           return "ASC";
