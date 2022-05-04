@@ -36,14 +36,14 @@ const getProductList = async (req, res) => {
 
     let getSort = () => {
       if (sortBy) {
-        if (sortBy === 1) {
+        if (parseInt(sortBy) === 1) {
           return "DESC";
         } else {
           return "ASC";
         }
       }
     };
-    
+
     if (filter && filter !== "all") {
       if (freeText) {
         products = await Product.findAll({
@@ -52,7 +52,7 @@ const getProductList = async (req, res) => {
             categoryId: filter,
             name: {
               [Op.like]: `%${freeText}%`,
-            }
+            },
           },
           include: [
             {
@@ -330,17 +330,20 @@ const updateProduct = async (req, res) => {
     defaultImgs,
   } = req.body;
   try {
-    const defaultImgArr = JSON.parse(defaultImgs);
-
+    const defaultImgArr = [];
+    const urlArr = [];
     const urlImgArr = files.map((file) => {
       return `${domain}/${file.path}`;
     });
-    const urlArr = defaultImgArr.concat(urlImgArr);
+    if (defaultImgs) {
+      defaultImgArr = JSON.parse(defaultImgs);
+      urlArr = defaultImgArr.concat(urlImgArr);
+    }
 
     await Product.update(
       {
         name,
-        image: urlArr,
+        image: defaultImgs || urlImgArr || urlArr || null,
         cost,
         profit,
         price,

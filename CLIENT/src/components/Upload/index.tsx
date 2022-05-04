@@ -51,6 +51,7 @@ const Upload: React.FunctionComponent<UploadProps> = (props) => {
           imgFile={imgFile}
           setPreviewImg={setPreviewImg}
           setImgFile={setImgFile}
+          onChange={onChange}
           onSubmit={onSubmit}
         />
       )}

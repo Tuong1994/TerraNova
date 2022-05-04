@@ -1,4 +1,5 @@
 import React from "react";
+import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../../redux/store";
 import { Formik, Form } from "formik";
@@ -10,6 +11,7 @@ import {
   getProductDetail,
   updateProduct,
 } from "../../../../redux/actionCreators/ProductCreators";
+import { toast } from "react-toastify";
 import ContentHeader from "../../../../components/ContentHeader";
 import Upload from "../../../../components/Upload";
 import StatusFields from "./Status";
@@ -61,7 +63,7 @@ const EditProduct: React.FunctionComponent<
       setPrice(productDetail?.price || 0);
       setDefaultImgArr(productDetail?.image);
     }
-  }, [productDetail, productDetail?.image]);
+  }, [productDetail, productDetail?.price, productDetail?.image]);
 
   const handleSelectedImg = (files: any) => {
     setImgArr(files);
@@ -81,31 +83,56 @@ const EditProduct: React.FunctionComponent<
     stockAmount: productDetail?.stockAmount,
   };
 
+  const validationSchema = yup.object().shape({
+    name: yup.string().required(langs?.validateMessages.required),
+    categoryId: yup.string().required(langs?.validateMessages.choose),
+    producerId: yup.string().required(langs?.validateMessages.choose),
+    profit: yup.number().min(1, langs?.validateMessages.choose),
+    status: yup.number().min(1, langs?.validateMessages.choose),
+    inventoryStatus: yup.number().min(1, langs?.validateMessages.choose),
+  });
+
   const handleSubmit = (values: any) => {
-    const query: IQueryList = {
-      productId: productId,
-    };
+    let isValid = false;
 
-    const data = new FormData();
-    for (let key in values) {
-      data.append(key, values[key]);
+    if (cost === "" || cost === "0") {
+      toast.error(langs?.toastMessages.error.cost);
+      isValid = true;
+    } else if (descArr.length === 0) {
+      toast.error(langs?.toastMessages.error.descs);
+      isValid = true;
+    } else {
+      isValid = false;
     }
-    for (const key of Object.keys(imgArr)) {
-      data.append("image", imgArr[key]);
-    }
-    data.append("cost", cost);
-    data.append("price", price.toString());
-    data.append("description", JSON.stringify(descArr));
-    data.append("defaultImgs", JSON.stringify(defaultImgArr));
 
-    dispatch(
-      updateProduct(
-        query,
-        data,
-        langs?.toastMessages.success.update,
-        langs?.toastMessages.error.update
-      )
-    );
+    if (!isValid) {
+      const query: IQueryList = {
+        productId: productId,
+      };
+
+      const data = new FormData();
+      for (let key in values) {
+        data.append(key, values[key]);
+      }
+      for (const key of Object.keys(imgArr)) {
+        data.append("image", imgArr[key]);
+      }
+      if (defaultImgArr !== null && defaultImgArr.length > 0) {
+        data.append("defaultImgs", JSON.stringify(defaultImgArr));
+      }
+      data.append("cost", cost);
+      data.append("price", price.toString());
+      data.append("description", JSON.stringify(descArr));
+
+      dispatch(
+        updateProduct(
+          query,
+          data,
+          langs?.toastMessages.success.update,
+          langs?.toastMessages.error.update
+        )
+      );
+    }
   };
 
   return (
@@ -113,15 +140,24 @@ const EditProduct: React.FunctionComponent<
       <Formik
         enableReinitialize={true}
         initialValues={initialValues}
+        validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
         {(formikProps) => {
+          const { isValid } = formikProps;
           return (
             <Form autoComplete="off">
               <ContentHeader
                 name={langs?.admin.pageTitle.editProduct || ""}
                 right={() => {
-                  return (
+                  return !isValid ? (
+                    <Button
+                      className="button--disabled"
+                      style={{ fontSize: "16px" }}
+                    >
+                      {langs?.button.save}
+                    </Button>
+                  ) : (
                     <Button
                       type="submit"
                       className={`button--submit ${

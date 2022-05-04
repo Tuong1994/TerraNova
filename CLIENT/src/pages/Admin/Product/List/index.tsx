@@ -12,7 +12,7 @@ import Table from "../../../../components/Table";
 import ContentHeader from "../../../../components/ContentHeader";
 import ProductAdminRow from "../../../../components/TableRow/ProductAdminRow";
 import Pagination from "../../../../components/Pagination";
-import Filter from "../../../../components/FIlter";
+import Filter from "../../../../components/Filter";
 import DataLoading from "../../../../components/Loading/DataLoading";
 import utils from "../../../../utils";
 

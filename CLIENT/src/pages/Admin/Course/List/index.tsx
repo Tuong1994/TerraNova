@@ -10,7 +10,7 @@ import Table from "../../../../components/Table";
 import { getCourseList } from "../../../../redux/actionCreators/CourseCreators";
 import CourseAdminRow from "../../../../components/TableRow/CourseAdminRow";
 import DataLoading from "../../../../components/Loading/DataLoading";
-import Filter from "../../../../components/FIlter";
+import Filter from "../../../../components/Filter";
 import Pagination from "../../../../components/Pagination";
 
 const Course: React.FunctionComponent<{}> = (props) => {
@@ -78,7 +78,7 @@ const Course: React.FunctionComponent<{}> = (props) => {
         name={langs?.admin.pageTitle.course || ""}
         right={() => {
           return (
-            <Link to="/admin/course" className="button--add">
+            <Link to="/course/addCourse" className="button--add">
               {langs?.button.addCourse}
             </Link>
           );

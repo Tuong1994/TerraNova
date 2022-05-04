@@ -403,6 +403,19 @@ const VnLang = {
         descList: "Danh sách mô tả",
       },
     },
+    course: {
+      addCourse: {
+        subTitle_1: "Thông tin",
+        subTitle_2: "Mô tả",
+        subTitle_3: "Thời gian đào tạo (tháng)",
+        subTitle_4: "Danh mục",
+        subTitle_5: "Lịch học",
+        subTitle_6: "Định giá",
+        subTitle_7: "Bài học",
+        scheduleList: "Danh sách lịch học",
+        lessonList: "Danh sách bài học",
+      },
+    },
   },
 
   // ==================== TIME ====================
@@ -507,6 +520,10 @@ const VnLang = {
       alreadyRegister: "Bạn đã đăng ký khóa học này",
       file: "File không hợp lệ",
       fileSize: "File phải có kích cỡ nhỏ hơn hoặc bằng 1MB",
+      cost: "Bạn chưa định giá",
+      descs: "Bạn chưa setup mô tả",
+      schedule: "Bạn chưa setup lịch học",
+      lesson: "Bạn chưa setup bài học",
     },
   },
 
@@ -572,6 +589,19 @@ const VnLang = {
     producer: "Nhà sản xuất",
     title: "Tiêu đề",
     content: "Nội dung",
+    courseNameENG: "Tên khóa học (ENG)",
+    courseNameVN: "Tên khóa học (VN)",
+    courseNameCH: "Tên khóa học (CH)",
+    courseDescENG: "Mô tả (ENG)",
+    courseDescVN: "Mô tả (VN)",
+    courseDescCH: "Mô tả (CH)",
+    time: "Thời gian",
+    startDate: "Ngày khai giảng",
+    branch: "Chi nhánh",
+    dateType: "Ngày học",
+    lessonNameENG: "Tiêu đề (ENG)",
+    lessonNameVN: "Tiêu đề (VN)",
+    lessonNameCH: "Tiêu đề (CH)",
   },
 
   // ==================== TABLE HEADER ====================

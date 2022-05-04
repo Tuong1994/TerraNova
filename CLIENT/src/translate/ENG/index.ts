@@ -409,6 +409,19 @@ const EngLang = {
         descList: "Description list",
       },
     },
+    course: {
+      addCourse: {
+        subTitle_1: "Infomation",
+        subTitle_2: "Description",
+        subTitle_3: "Training time (month)",
+        subTitle_4: "Category",
+        subTitle_5: "Schedule",
+        subTitle_6: "Pricing",
+        subTitle_7: "Lesson",
+        scheduleList: "Schedule list",
+        lessonList: "Lesson list",
+      },
+    },
   },
 
   // ==================== TIME ====================
@@ -513,6 +526,10 @@ const EngLang = {
       alreadyRegister: "You have already registered this course",
       file: "File not valid",
       fileSize: "File size must equal or smaller than 1MB",
+      cost: "You haven't setup price",
+      descs: "You haven't setup description",
+      schedule: "You haven't setup schedule",
+      lesson: "You haven't setup lesson",
     },
   },
 
@@ -578,6 +595,19 @@ const EngLang = {
     producer: "Producer",
     title: "Title",
     content: "Content",
+    courseNameENG: "Course Name (ENG)",
+    courseNameVN: "Course Name (VN)",
+    courseNameCH: "Course Name (CH)",
+    courseDescENG: "Description (ENG)",
+    courseDescVN: "Description (VN)",
+    courseDescCH: "Description (CH)",
+    time: "Time",
+    startDate: "Opening day",
+    branch: "Branch",
+    dateType: "School day",
+    lessonNameENG: "Lesson title (ENG)",
+    lessonNameVN: "Lesson title (VN)",
+    lessonNameCH: "Lesson title (CH)",
   },
 
   // ==================== TABLE HEADER ====================

@@ -6,6 +6,17 @@ export enum ECourseCategory {
   fullStack = "fullStack",
   mobile = "mobile",
 }
+
+export enum EDateType {
+  even = 1,
+  odd = 2,
+  last = 3,
+}
+
+export enum EBranch {
+  one = 1,
+  two = 2,
+}
 export interface ICourseCategory {
   id?: string;
   nameVN?: string;

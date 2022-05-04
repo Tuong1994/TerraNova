@@ -12,11 +12,11 @@ const {
 const {
   checkCourseId,
 } = require("../middlewares/validations/check-exist.middleware");
+const { courseUpload } = require("../middlewares/upload/upload.middleware");
 const {
   authenticate,
   authorize,
 } = require("../middlewares/auths/check-verify.middleware");
-
 
 courseRouter.get("/getCategoryAndCourseList", getCategoryAndCourseList);
 
@@ -30,6 +30,7 @@ courseRouter.post(
   "/createCourse",
   authenticate,
   authorize(["ADMIN"]),
+  courseUpload(),
   createCourse
 );
 
@@ -38,6 +39,7 @@ courseRouter.put(
   authenticate,
   authorize(["ADMIN"]),
   checkCourseId,
+  courseUpload(),
   updateCourse
 );
 

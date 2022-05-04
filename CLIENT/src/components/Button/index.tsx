@@ -2,6 +2,7 @@ import React from "react";
 import { getClassName } from "../../interfaces/button";
 
 interface iButtonProps {
+  style?: React.CSSProperties;
   className?: string;
   activeIndex?: number;
   activeButton?: number;
@@ -11,7 +12,7 @@ interface iButtonProps {
 }
 
 const Button: React.FunctionComponent<iButtonProps> = (props) => {
-  const { className, type, activeIndex, activeButton, isDisabled, onClick } = props;
+  const { className, style, type, activeIndex, activeButton, isDisabled, onClick } = props;
 
   return (
     <button
@@ -23,6 +24,7 @@ const Button: React.FunctionComponent<iButtonProps> = (props) => {
       }
       onClick={onClick}
       disabled={isDisabled}
+      style={style}
     >
       {props.children}
     </button>

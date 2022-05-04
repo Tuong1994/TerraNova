@@ -1,71 +1,77 @@
 import React from "react";
 import * as yup from "yup";
-import { useDispatch, useSelector } from "react-redux";
-import { ReducerState } from "../../../../redux/store";
 import { Formik, Form } from "formik";
-import { IDescription } from "../../../../models/Product";
-import { createProduct } from "../../../../redux/actionCreators/ProductCreators";
+import { useSelector } from "react-redux";
+import { ReducerState } from "../../../../redux/store";
 import { toast } from "react-toastify";
 import ContentHeader from "../../../../components/ContentHeader";
-import Upload from "../../../../components/Upload";
-import StatusFields from "./Status";
-import InfoFields from "./Info";
-import utils from "../../../../utils";
-import PriceFields from "./Price";
-import SourceFields from "./Source";
-import DescriptionFields from "./Description";
 import Button from "../../../../components/Button";
+import InfoFields from "./Info";
+import DescFields from "./Desc";
+import TrainTimeFields from "./TrainTime";
+import CategoryFields from "./Category";
+import ScheduleFields from "./Schedule";
+import PriceFields from "./Price";
+import LessonFields from "./Lesson";
 import ButtonLoading from "../../../../components/Loading/ButtonLoading";
+import utils from "../../../../utils";
 
-const AddProduct: React.FunctionComponent<{}> = (props) => {
+interface AddCourseProps {}
+
+const AddCourse: React.FunctionComponent<AddCourseProps> = (props) => {
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
   const { buttonLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
   );
 
-  const dispatch = useDispatch();
-
   const [cost, setCost] = React.useState<string>("");
   const [profit, setProfit] = React.useState<number>(0);
   const [price, setPrice] = React.useState<number>(0);
-  const [descArr, setDescArr] = React.useState<IDescription[]>([]);
-  const [imgArr, setImgArr] = React.useState<any>();
+  const [scheduleArr, setScheduleArr] = React.useState<any>([]);
+  const [lessonArr, setLessonArr] = React.useState<any>([]);
+  const [imgUpload, setImgUpload] = React.useState<any>({});
   const [isReset, setIsReset] = React.useState<boolean>(false);
 
   const langs = utils.changeLang(lang);
   const options = utils.getOptionByLang(lang);
 
-  const handleSelectedImg = (files: any) => {
-    setImgArr(files);
+  const handleSelectedImg = (file: any) => {
+    setImgUpload(file);
   };
 
   const initialValues = {
-    name: "",
-    categoryId: "",
-    producerId: "",
+    nameENG: "",
+    nameVN: "",
+    nameCH: "",
+    descENG: "",
+    descVN: "",
+    descCH: "",
     profit: 0,
-    status: 0,
-    inventoryStatus: 0,
-    stockAmount: 0,
+    trainingTime: 0,
+    categoryId: "",
   };
 
   const validationSchema = yup.object().shape({
-    name: yup.string().required(langs?.validateMessages.required),
+    nameENG: yup.string().required(langs?.validateMessages.required),
+    nameVN: yup.string().required(langs?.validateMessages.required),
+    nameCH: yup.string().required(langs?.validateMessages.required),
+    descENG: yup.string().required(langs?.validateMessages.required),
+    descVN: yup.string().required(langs?.validateMessages.required),
+    descCH: yup.string().required(langs?.validateMessages.required),
+    trainingTime: yup.number().min(1, langs?.validateMessages.required),
     categoryId: yup.string().required(langs?.validateMessages.choose),
-    producerId: yup.string().required(langs?.validateMessages.choose),
-    profit: yup.number().min(1, langs?.validateMessages.choose),
-    status: yup.number().min(1, langs?.validateMessages.choose),
-    inventoryStatus: yup.number().min(1, langs?.validateMessages.choose),
   });
 
   const handleSubmit = (values: any, action: any) => {
     let isValid = false;
-
     if (cost === "") {
       toast.error(langs?.toastMessages.error.cost);
       isValid = true;
-    } else if (descArr.length === 0) {
-      toast.error(langs?.toastMessages.error.descs);
+    } else if (scheduleArr.length === 0) {
+      toast.error(langs?.toastMessages.error.schedule);
+      isValid = true;
+    } else if (lessonArr.length === 0) {
+      toast.error(langs?.toastMessages.error.lesson);
       isValid = true;
     } else {
       isValid = false;
@@ -73,34 +79,21 @@ const AddProduct: React.FunctionComponent<{}> = (props) => {
 
     if (!isValid) {
       const data = new FormData();
-      for (let key in values) {
+      for (let key of values) {
         data.append(key, values[key]);
       }
-      for (const key of Object.keys(imgArr)) {
-        data.append("image", imgArr[key]);
+      if (scheduleArr.length > 0) {
+        data.append("schedule", JSON.stringify(scheduleArr));
       }
-      data.append("cost", cost);
+      if (lessonArr.length > 0) {
+        data.append("lesson", JSON.stringify(lessonArr));
+      }
+      if (imgUpload) {
+        data.append("image", imgUpload);
+      }
       data.append("price", price.toString());
-      data.append("description", JSON.stringify(descArr));
-
-      dispatch(
-        createProduct(
-          data,
-          langs?.toastMessages.success.create,
-          langs?.toastMessages.error.create
-        )
-      );
-
-      if (isReset) {
-        setIsReset(false);
-      }
 
       setTimeout(() => {
-        setCost("");
-        setProfit(0);
-        setPrice(0);
-        setDescArr([]);
-        setIsReset(true);
         action.resetForm({
           values: {
             ...initialValues,
@@ -111,9 +104,8 @@ const AddProduct: React.FunctionComponent<{}> = (props) => {
   };
 
   return (
-    <div className="add-product">
+    <div className="add-course">
       <Formik
-        enableReinitialize={true}
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
@@ -121,23 +113,20 @@ const AddProduct: React.FunctionComponent<{}> = (props) => {
         {(formikProps) => {
           const { isValid } = formikProps;
           return (
-            <Form autoComplete="off">
+            <Form>
               <ContentHeader
-                name={langs?.admin.pageTitle.addProduct || ""}
+                name={langs?.admin.pageTitle.addCourse || ""}
                 right={() => {
                   return !isValid ? (
-                    <Button
-                      className="button--disabled"
-                      style={{ fontSize: "16px" }}
-                    >
+                    <Button className="button--disabled" style={{fontSize: "16px"}}>
                       {langs?.button.save}
                     </Button>
                   ) : (
                     <Button
-                      type="submit"
                       className={`button--submit ${
                         buttonLoading ? "button--disabled" : ""
                       }`}
+                      type="submit"
                     >
                       <ButtonLoading />
                       <span>{langs?.button.save}</span>
@@ -145,41 +134,37 @@ const AddProduct: React.FunctionComponent<{}> = (props) => {
                   );
                 }}
               />
-              <div className="add-product__wrapper">
+              <div className="add-course__wrapper">
                 <div className="wrapper__item">
-                  <Upload
-                    multiple={true}
-                    isReset={isReset}
-                    onChange={handleSelectedImg}
-                  />
-                  <InfoFields langs={langs} />
+                  <InfoFields langs={langs} onSelectImg={handleSelectedImg} />
+                  <DescFields langs={langs} />
                   <PriceFields
-                    options={options}
                     langs={langs}
+                    options={options}
+                    isReset={isReset}
                     cost={cost}
                     profit={profit}
                     price={price}
-                    isReset={isReset}
-                    setPrice={setPrice}
                     setCost={setCost}
                     setProfit={setProfit}
+                    setPrice={setPrice}
                   />
-                  <DescriptionFields
+                  <LessonFields
                     langs={langs}
-                    descArr={descArr}
-                    setDescArr={setDescArr}
+                    lessonArr={lessonArr}
+                    setLessonArr={setLessonArr}
                   />
                 </div>
                 <div className="wrapper__item">
-                  <StatusFields
+                  <TrainTimeFields langs={langs} />
+                  <CategoryFields langs={langs} options={options} />
+                  <ScheduleFields
                     langs={langs}
                     options={options}
+                    scheduleArr={scheduleArr}
                     isReset={isReset}
-                  />
-                  <SourceFields
-                    langs={langs}
-                    options={options}
-                    isReset={isReset}
+                    setScheduleArr={setScheduleArr}
+                    setIsReset={setIsReset}
                   />
                 </div>
               </div>
@@ -191,4 +176,4 @@ const AddProduct: React.FunctionComponent<{}> = (props) => {
   );
 };
 
-export default AddProduct;
+export default AddCourse;

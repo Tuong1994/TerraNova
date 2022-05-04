@@ -1,0 +1,162 @@
+.add-course {
+  .add-course__wrapper {
+    width: $w-100;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .wrapper__item {
+      &:nth-child(1) {
+        width: $w-100 - 32;
+        @include respond(tablet) {
+          width: $w-100;
+          margin-bottom: $m-10 * 2;
+        }
+      }
+      &:nth-child(2) {
+        width: $w-100 - 70;
+        @include respond(tablet) {
+          width: $w-100;
+        }
+      }
+      .item__inner {
+        margin-bottom: $m-10;
+        padding: $p-10 * 2;
+        overflow: unset;
+        .inner__title {
+          font-weight: $semiBold;
+          margin-bottom: $m-10;
+        }
+        .inner__control {
+          margin: $m-10 0;
+        }
+        .inner__add {
+          width: $w-100;
+          display: flex;
+          justify-content: flex-end;
+          .button--submit {
+            i {
+              margin-right: $m-10;
+            }
+          }
+        }
+        .inner__list {
+          .list__title {
+            font-size: $body-1;
+            font-weight: $semiBold;
+            margin: $m-10 0;
+          }
+          .list__card {
+            margin: $m-10 0;
+            padding: $p-10;
+            position: relative;
+            .card__inner {
+              font-size: $body-2;
+              font-weight: $semiBold;
+              .inner__list {
+                .list__content {
+                  display: flex;
+                  justify-content: space-between;
+                  p {
+                    width: $w-100 / 2.1;
+                    margin: $m-5 0;
+                  }
+                }
+              }
+            }
+            .card__close {
+              width: $w-10 * 2;
+              height: $h-10 * 2;
+              font-size: $body-2;
+              background: $secondary;
+              color: $tSecondary;
+              text-align: center;
+              line-height: $h-10 * 2;
+              border-radius: $circle;
+              position: absolute;
+              top: 5%;
+              right: 5%;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      .item__info {
+        .inner__control {
+          width: $w-100;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          .control__group {
+            &:nth-child(1) {
+              width: $w-100 - 60;
+              @include respond(phone) {
+                width: $w-100;
+              }
+            }
+            &:nth-child(2) {
+              width: $w-100 - 42;
+              @include respond(phone) {
+                width: $w-100;
+              }
+            }
+            .group__item {
+              margin: 0;
+              margin-bottom: $m-10 * 2;
+            }
+          }
+        }
+      }
+      .item__price {
+        margin: $m-10 0;
+        .price__detail {
+          width: $w-100;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          .detail__button {
+            margin-right: $m-10;
+          }
+          .detail__content {
+            font-weight: $semiBold;
+          }
+        }
+      }
+      .item__lesson {
+        .inner__list {
+          .list__card {
+            margin: $m-10 0;
+            padding: $p-10;
+            position: relative;
+            .card__inner {
+              font-size: $default;
+              font-weight: $semiBold;
+              .inner__list {
+                .list__content {
+                  display: flex;
+                  justify-content: space-between;
+                  p {
+                    margin: $m-5 $m-10;
+                  }
+                }
+              }
+            }
+            .card__close {
+              width: $w-10 * 3;
+              height: $h-10 * 3;
+              font-size: $body-2;
+              background: $secondary;
+              color: $tSecondary;
+              text-align: center;
+              line-height: $h-10 * 3;
+              border-radius: $circle;
+              position: absolute;
+              top: 10px;
+              right: 10px;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+}

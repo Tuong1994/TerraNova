@@ -13,6 +13,7 @@ interface SingleUploadProps {
   previewImg: any;
   setPreviewImg: React.Dispatch<React.SetStateAction<any>>;
   setImgFile: React.Dispatch<React.SetStateAction<any>>;
+  onChange?:(file: any) => void;
   onSubmit?: (file: any) => void;
 }
 
@@ -24,6 +25,7 @@ const SingleUpload: React.FunctionComponent<SingleUploadProps> = (props) => {
     previewImg,
     setPreviewImg,
     setImgFile,
+    onChange,
     onSubmit,
   } = props;
 
@@ -49,9 +51,13 @@ const SingleUpload: React.FunctionComponent<SingleUploadProps> = (props) => {
     }, 1000);
   }, [imgFile]);
 
+  React.useEffect(() => {
+    onChange && onChange(imgFile)
+  }, [imgFile])
+
   const handleChange = (e: any) => {
     const file = e.target.files[0];
-    const acceptImgType = ["image/png", "image/jpeg"];
+    const acceptImgType = ["image/png", "image/jpeg", "image/jpg"];
 
     if (file && file.type.substr(0, 5) === "image") {
       if (file && acceptImgType.includes(file["type"])) {
@@ -97,7 +103,7 @@ const SingleUpload: React.FunctionComponent<SingleUploadProps> = (props) => {
         </div>
 
         {/* Input controls */}
-        <form className="single__control">
+        <div className="single__control">
           <label htmlFor="single" className="control__label">
             <i className="fa fa-camera-retro"></i>
           </label>
@@ -108,7 +114,7 @@ const SingleUpload: React.FunctionComponent<SingleUploadProps> = (props) => {
             accept="image/png, image/jpeg"
             onChange={handleChange}
           />
-        </form>
+        </div>
       </div>
 
       <div className="upload__text">

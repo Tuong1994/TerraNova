@@ -81,6 +81,11 @@
       width: $w-100;
     }
   }
+  .group__field--disabled {
+    opacity: 0.6;
+    user-select: none;
+    pointer-events: none;
+  }
   .group__field--invalid {
     border-color: $borderError !important;
     animation: error 0.3s linear 1;

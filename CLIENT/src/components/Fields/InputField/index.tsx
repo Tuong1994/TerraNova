@@ -11,6 +11,7 @@ interface InputFieldProps extends FieldProps {
   inputClassName?: string;
   fieldClassName?: string;
   iconClassName?: string;
+  isDisabled?: boolean;
   onKeyPress?: (e: any) => void;
 }
 
@@ -27,6 +28,7 @@ const InputField: React.FunctionComponent<InputFieldProps> = (props) => {
     inputClassName,
     labelClassName,
     iconClassName,
+    isDisabled,
     onKeyPress,
   } = props;
   const { name } = field;
@@ -39,7 +41,7 @@ const InputField: React.FunctionComponent<InputFieldProps> = (props) => {
             ? `group__field group__field--invalid ${
                 fieldClassName ? fieldClassName : ""
               }`
-            : `group__field ${fieldClassName ? fieldClassName : ""}`
+            : `group__field ${fieldClassName ? fieldClassName : ""} ${isDisabled ? "group__field--disabled" : ""}`
         }
       >
         <input
@@ -50,6 +52,7 @@ const InputField: React.FunctionComponent<InputFieldProps> = (props) => {
             type === "date" || !icon ? "w-100" : ""
           } ${inputClassName ? inputClassName : ""}`}
           onKeyPress={onKeyPress}
+          disabled={isDisabled}
         />
         {label && (
           <label

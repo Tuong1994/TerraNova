@@ -3,7 +3,7 @@ import axiosClient from "../../axios";
 import { ECourseActionTypes } from "../actionTypes/CourseActionTypes";
 import { IQueryList } from "../../interfaces/query";
 import { Dispatch } from "redux";
-import { getListQuery } from "../../configs/setting";
+import { ACCESSTOKEN, getListQuery } from "../../configs/setting";
 import { ICourse } from "../../models/Course";
 import { toast } from "react-toastify";
 import actions from "../../configs/actions";
@@ -80,13 +80,20 @@ export const getCourseDetail = (query: IQueryList) => {
   };
 };
 
-export const createCourse = (data: ICourse) => {
-  return async (dispatch: Dispatch) => {
-    try {
-      await axiosClient.post(apiPath.coursePaths.createCourse, data);
-    } catch (error) {
-      console.log(error);
-    }
+export const createCourse = (data: any, success?: string, err?: string) => {
+  return (dispatch: Dispatch) => {
+    const token = localStorage.getItem(ACCESSTOKEN) || "";
+    dispatch(actions.openButtonLoading);
+    setTimeout(async () => {
+      try {
+        await axiosClient.post(apiPath.coursePaths.createCourse, data, token);
+        dispatch(actions.closeButtonLoading);
+        toast.success(success);
+      } catch (error) {
+        dispatch(actions.closeButtonLoading);
+        toast.error(err);
+      }
+    }, 1000);
   };
 };
 

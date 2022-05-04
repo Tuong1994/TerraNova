@@ -57,7 +57,7 @@ const SelectCustomField: React.FunctionComponent<SelectCustomFieldProps> = (
     if (isReset) {
       setNewValue("");
     }
-  }, [lang]);
+  }, [lang, isReset]);
 
   // Check value is not empty => Set default value
   React.useEffect(() => {
@@ -93,16 +93,6 @@ const SelectCustomField: React.FunctionComponent<SelectCustomFieldProps> = (
 
   return (
     <React.Fragment>
-      {/* Label */}
-      {label && (
-        <div
-          className={`form__label--select ${
-            labelClassName ? labelClassName : ""
-          }`}
-        >
-          {label}
-        </div>
-      )}
       <div
         className={`form__group ${groupClassName ? groupClassName : ""}`}
         ref={controlRef}
@@ -141,6 +131,17 @@ const SelectCustomField: React.FunctionComponent<SelectCustomFieldProps> = (
           >
             <i className="fa fa-angle-down"></i>
           </div>
+
+          {/* Label */}
+          {label && (
+            <div
+              className={`field__label field__label--select ${
+                labelClassName ? labelClassName : ""
+              }`}
+            >
+              {label}
+            </div>
+          )}
         </div>
         {/* Input */}
 

@@ -1,4 +1,4 @@
-import { ECourseCategory } from "./../models/Course";
+import { EBranch, ECourseCategory, EDateType } from "./../models/Course";
 import {
   EInventoryStatus,
   EProducer,
@@ -176,6 +176,23 @@ export const optionsEng = {
     { label: "ASUS", value: EProducer.asus },
     { label: "DELL", value: EProducer.dell },
     { label: "HP", value: EProducer.hp },
+  ],
+  courseCategory: [
+    { label: "MINDSET", value: ECourseCategory.mindset },
+    { label: "MOBILE", value: ECourseCategory.mobile },
+    { label: "FRONTEND", value: ECourseCategory.frontEnd },
+    { label: "BACKEND", value: ECourseCategory.backEnd },
+    { label: "FULLSTACK", value: ECourseCategory.fullStack },
+    { label: "DESIGN", value: ECourseCategory.design },
+  ],
+  dateType: [
+    { label: "mon + wed + fri", value: EDateType.even },
+    { label: "tues + thurs + sat", value: EDateType.odd },
+    { label: "sat + sun", value: EDateType.last },
+  ],
+  branch: [
+    { label: "1", value: EBranch.one },
+    { label: "2", value: EBranch.two },
   ],
   sortBy: [
     { label: "Newest", value: ESortBy.newest },
@@ -377,6 +394,23 @@ export const optionsVn = {
     { label: "DELL", value: EProducer.dell },
     { label: "HP", value: EProducer.hp },
   ],
+  courseCategory: [
+    { label: "MINDSET", value: ECourseCategory.mindset },
+    { label: "MOBILE", value: ECourseCategory.mobile },
+    { label: "FRONTEND", value: ECourseCategory.frontEnd },
+    { label: "BACKEND", value: ECourseCategory.backEnd },
+    { label: "FULLSTACK", value: ECourseCategory.fullStack },
+    { label: "DESIGN", value: ECourseCategory.design },
+  ],
+  dateType: [
+    { label: "T2 + T4 + T6", value: EDateType.even },
+    { label: "T3 + T5 + T7", value: EDateType.odd },
+    { label: "T7 + CN", value: EDateType.last },
+  ],
+  branch: [
+    { label: "1", value: EBranch.one },
+    { label: "2", value: EBranch.two },
+  ],
   sortBy: [
     { label: "Mới nhất", value: ESortBy.newest },
     { label: "Cũ nhất", value: ESortBy.oldest },
@@ -573,6 +607,23 @@ export const optionsCh = {
     { label: "ASUS", value: EProducer.asus },
     { label: "DELL", value: EProducer.dell },
     { label: "HP", value: EProducer.hp },
+  ],
+  courseCategory: [
+    { label: "MINDSET", value: ECourseCategory.mindset },
+    { label: "MOBILE", value: ECourseCategory.mobile },
+    { label: "FRONTEND", value: ECourseCategory.frontEnd },
+    { label: "BACKEND", value: ECourseCategory.backEnd },
+    { label: "FULLSTACK", value: ECourseCategory.fullStack },
+    { label: "DESIGN", value: ECourseCategory.design },
+  ],
+  dateType: [
+    { label: "星期一 + 星期三 + 星期五", value: EDateType.even },
+    { label: "星期二 + 星期四 + 星期六", value: EDateType.odd },
+    { label: "星期六 + 星期日", value: EDateType.last },
+  ],
+  branch: [
+    { label: "一", value: EBranch.one },
+    { label: "二", value: EBranch.two },
   ],
   sortBy: [
     { label: "最新", value: ESortBy.newest },

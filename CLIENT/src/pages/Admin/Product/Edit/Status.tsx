@@ -4,6 +4,7 @@ import * as Card from "../../../../components/Card";
 import { Field } from "formik";
 import { ILangs } from "../../../../interfaces/lang";
 import { IOptionsLang } from "../../../../configs/options";
+import { EInventoryStatus } from "../../../../models/Product";
 
 interface StatusFieldsProps {
   langs: ILangs;
@@ -13,6 +14,16 @@ interface StatusFieldsProps {
 
 const StatusFields: React.FunctionComponent<StatusFieldsProps> = (props) => {
   const { langs, values, options } = props;
+
+  const [isDisabled, setIsDisabled] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    if(values && values.inventoryStatus === EInventoryStatus.outOfStock) {
+      setIsDisabled(true);
+    } else {
+      setIsDisabled(false);
+    }
+  }, [values])
 
   return (
     <Card.Wrapper className="item__inner item__status">
@@ -36,6 +47,13 @@ const StatusFields: React.FunctionComponent<StatusFieldsProps> = (props) => {
         defaultValue={options?.inventoryStatus.find(i => i.value === values.inventoryStatus)}
         option={options?.inventoryStatus}
         groupClassName="inner__control"
+        onChange={(value: any) => {
+          if(value === EInventoryStatus.inStock) {
+            setIsDisabled(false);
+          } else if (value === EInventoryStatus.outOfStock) {
+            setIsDisabled(true);
+          }
+        }}
       />
       <Field
         name="stockAmount"
@@ -43,6 +61,7 @@ const StatusFields: React.FunctionComponent<StatusFieldsProps> = (props) => {
         label={langs?.form.stockAmount}
         component={FormControl.Input}
         groupClassName="inner__control"
+        isDisabled={isDisabled}
       />
     </Card.Wrapper>
   );

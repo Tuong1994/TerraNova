@@ -23,7 +23,7 @@ const ProductAdminRow: React.FunctionComponent<IProductAdminRowProps> = (
           <img
             className="col__img"
             src={(() => {
-              if (product.image !== null) {
+              if (product?.image !== null && product?.image?.length > 0) {
                 return product.image[0];
               } else {
                 return "../img/product_img.jpg";

@@ -2,10 +2,12 @@ const {
   CourseCategory,
   Course,
   CourseOrder,
+  CourseSchedule,
   Lesson,
   sequelize,
 } = require("../models");
 const Sequelize = require("sequelize");
+const { domain } = require("../setting/setting");
 const Op = Sequelize.Op;
 
 const getCategoryAndCourseList = async (req, res) => {
@@ -55,8 +57,8 @@ const getCourseList = async (req, res) => {
             {
               model: CourseCategory,
               as: "category",
-            }
-          ]
+            },
+          ],
         });
       } else {
         courseList = await Course.findAll({
@@ -68,8 +70,8 @@ const getCourseList = async (req, res) => {
             {
               model: CourseCategory,
               as: "category",
-            }
-          ]
+            },
+          ],
         });
       }
     } else if (freeText) {
@@ -85,8 +87,8 @@ const getCourseList = async (req, res) => {
           {
             model: CourseCategory,
             as: "category",
-          }
-        ]
+          },
+        ],
       });
     } else {
       courseList = await Course.findAll({
@@ -95,8 +97,8 @@ const getCourseList = async (req, res) => {
           {
             model: CourseCategory,
             as: "category",
-          }
-        ]
+          },
+        ],
       });
     }
 
@@ -195,6 +197,7 @@ const getCourseDetail = async (req, res) => {
 };
 
 const createCourse = async (req, res) => {
+  const { file } = req;
   const {
     categoryId,
     nameENG,
@@ -205,9 +208,12 @@ const createCourse = async (req, res) => {
     descCH,
     price,
     trainingTime,
+    schedule,
+    lesson,
   } = req.body;
   try {
     const courseId = "COU_" + Math.floor(Math.random() * 999999999).toString();
+    const urlImg = `${domain}/${file.path}`;
     const newCourse = await Course.create({
       id: courseId,
       nameENG,
@@ -216,10 +222,40 @@ const createCourse = async (req, res) => {
       descENG,
       descVN,
       descCH,
+      image: urlImg,
       price,
       trainingTime,
       categoryId,
     });
+
+    if (newCourse) {
+      if (schedule) {
+        const scheduleArr = JSON.parse(schedule);
+        const newArr = scheduleArr.map((i) => {
+          const scheduleId =
+            "SCH_" + Math.floor(Math.random() * 999999999).toString();
+          return {
+            id: scheduleId,
+            ...i,
+            courseId: newCourse.id,
+          };
+        });
+        await CourseSchedule.bulkCreate(newArr);
+      }
+      if (lesson) {
+        const lessonArr = JSON.parse(lesson);
+        const newArr = lessonArr.map((i) => {
+          const lessonId =
+            "LES_" + Math.floor(Math.random() * 999999999).toString();
+          return {
+            id: lessonId,
+            ...i,
+            courseId: newCourse.id,
+          };
+        });
+        await Lesson.bulkCreate(newArr);
+      }
+    }
     res.status(200).send(newCourse);
   } catch (error) {
     res.status(500).send(error);

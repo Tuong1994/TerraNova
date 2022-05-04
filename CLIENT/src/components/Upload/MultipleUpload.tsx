@@ -117,7 +117,7 @@ const MultipleUpload: React.FunctionComponent<MultipleUploadProps> = (
   return (
     <div className="upload__multiple">
       {/* Upload Control */}
-      <form className="multiple__control">
+      <div className="multiple__control">
         <label htmlFor="multiple" className="control__label">
           <i className="fa-solid fa-upload"></i>
           <span>{langs?.form.chooseFile}</span>
@@ -152,7 +152,7 @@ const MultipleUpload: React.FunctionComponent<MultipleUploadProps> = (
             }
           }
         })()}
-      </form>
+      </div>
 
       <p className="multiple__message">{langs?.form.fileType}</p>
       <p className="multiple__message">{langs?.form.fileSize}</p>
