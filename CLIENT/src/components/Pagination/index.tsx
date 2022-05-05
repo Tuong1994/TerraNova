@@ -33,6 +33,10 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
   const pageNumber: number[] = [];
 
   React.useEffect(() => {
+    if (page === 1) {
+      setMinPageNumber(0);
+      setMaxPageNumber(3);
+    }
     setStart((page - 1) * perPage + 1);
   }, [page, perPage]);
 
@@ -169,13 +173,9 @@ const Pagination: React.FunctionComponent<IPaginationProps> = (props) => {
             <i className="fa-solid fa-chevron-left"></i>
           </div>
           {/* Prev Btn */}
-
           {pageDecrementBtn} {/* Left dots button */}
-
           {renderPageNumber()}
-
           {pageIncrementBtn} {/* Right dots button */}
-
           {/* Next Btn */}
           <div
             className={`button__next ${

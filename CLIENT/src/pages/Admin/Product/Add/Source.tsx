@@ -58,7 +58,7 @@ const SourceFields: React.FunctionComponent<SourceFieldsProps> = (props) => {
   return (
     <Card.Wrapper className="item__inner item__source">
       <h3 className="inner__title">
-        {langs?.admin.product.addProduct.subTitle_5}
+        {langs?.admin.product.subTitle_5}
       </h3>
       <Field
         name="categoryId"

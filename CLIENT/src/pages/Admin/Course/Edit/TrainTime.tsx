@@ -16,7 +16,7 @@ const TrainTimeFields: React.FunctionComponent<TrainTimeFieldsProps> = (
   return (
     <Card.Wrapper className="item__inner item__time">
       <h3 className="inner__title">
-        {langs?.admin.course.addCourse.subTitle_3}
+        {langs?.admin.course.subTitle_3}
       </h3>
       <Field
         name="trainingTime"

@@ -17,7 +17,7 @@ const InfoFields: React.FunctionComponent<InfoFieldsProps> = (props) => {
   return (
     <Card.Wrapper className="item__inner item__info">
       <h3 className="inner__title">
-        {langs?.admin.course.addCourse.subTitle_1}
+        {langs?.admin.course.subTitle_1}
       </h3>
       <div className="inner__control">
         <div className="control__group">

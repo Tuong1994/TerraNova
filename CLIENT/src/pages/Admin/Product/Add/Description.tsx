@@ -43,7 +43,7 @@ const DescriptionFields: React.FunctionComponent<DescriptionFieldsProps> = (
   return (
     <Card.Wrapper className="item__inner item__description">
       <h3 className="inner__title">
-        {langs?.admin.product.addProduct.subTitle_3}
+        {langs?.admin.product.subTitle_3}
       </h3>
       <FormControl.InputCustom
         placeholder=" "
@@ -74,7 +74,7 @@ const DescriptionFields: React.FunctionComponent<DescriptionFieldsProps> = (
       {descArr.length > 0 && (
         <div className="description__list">
           <h4 className="list__title">
-            {langs?.admin.product.addProduct.descList}
+            {langs?.admin.product.descList}
           </h4>
           <ul>
             {(() => {

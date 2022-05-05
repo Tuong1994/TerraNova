@@ -20,7 +20,7 @@ const StatusFields: React.FunctionComponent<StatusFieldsProps> = (props) => {
   return (
     <Card.Wrapper className="item__inner item__status">
       <h3 className="inner__title">
-        {langs?.admin.product.addProduct.subTitle_1}
+        {langs?.admin.product.subTitle_1}
       </h3>
       <Field
         name="status"

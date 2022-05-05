@@ -7,11 +7,11 @@ import { ReducerState } from "../../../../redux/store";
 import { getUserList } from "../../../../redux/actionCreators/UserCreators";
 import ContentHeader from "../../../../components/ContentHeader";
 import Table from "../../../../components/Table";
-import utils from "../../../../utils";
 import UserAdminRow from "../../../../components/TableRow/UserAdminRow";
 import DataLoading from "../../../../components/Loading/DataLoading";
 import Pagination from "../../../../components/Pagination";
 import Filter from "../../../../components/Filter";
+import utils from "../../../../utils";
 
 const Customer: React.FunctionComponent<{}> = (props) => {
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
@@ -72,7 +72,7 @@ const Customer: React.FunctionComponent<{}> = (props) => {
         name={langs?.admin.pageTitle.customer || ""}
         right={() => {
           return (
-            <Link to="/admin/user" className="button--add">
+            <Link to="/admin/customer/addCustomer" className="button--add">
               {langs?.button.addUser}
             </Link>
           );
@@ -108,7 +108,7 @@ const Customer: React.FunctionComponent<{}> = (props) => {
           noDataTitle={langs?.noData.data || ""}
           renderNoDataLink={() => {
             return (
-              <Link to="/admin/customer" className="button--add">
+              <Link to="/admin/customer/addCustomer" className="button--add">
                 {langs?.button.addUser}
               </Link>
             );

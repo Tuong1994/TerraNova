@@ -1,7 +1,8 @@
 import React from "react";
 import * as FormControl from "../Fields";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../redux/store";
+import { EPaginationActionTypes } from "../../redux/actionTypes/PaginationActionTypes";
 import utils from "../../utils";
 
 interface FilterProps {
@@ -25,7 +26,16 @@ const Filter: React.FunctionComponent<FilterProps> = (props) => {
 
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
+  const dispatch = useDispatch();
+
   const options = utils.getOptionByLang(lang);
+
+  const handleResetPage = () => {
+    dispatch({
+      type: EPaginationActionTypes.CHANGE_PAGE,
+      payload: 1,
+    });
+  };
 
   return (
     <div className="filter">
@@ -35,7 +45,8 @@ const Filter: React.FunctionComponent<FilterProps> = (props) => {
           fieldClassName="search__input"
           onChange={(e) => {
             const value = e.target.value;
-            onSearch && onSearch(value)
+            onSearch && onSearch(value);
+            handleResetPage();
           }}
         />
       </div>
@@ -50,6 +61,7 @@ const Filter: React.FunctionComponent<FilterProps> = (props) => {
           )}
           onChange={(value: any) => {
             onFilter && onFilter(value);
+            handleResetPage();
           }}
         />
       </div>
@@ -62,6 +74,7 @@ const Filter: React.FunctionComponent<FilterProps> = (props) => {
           value={options?.sortBy.find((i) => i.value === defaultSortValue)}
           onChange={(value: any) => {
             onSort && onSort(value);
+            handleResetPage();
           }}
         />
       </div>

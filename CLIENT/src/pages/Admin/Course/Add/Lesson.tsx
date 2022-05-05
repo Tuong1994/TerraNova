@@ -52,7 +52,7 @@ const LessonFields: React.FunctionComponent<LessonFieldsProps> = (props) => {
   return (
     <Card.Wrapper className="item__inner item__lesson">
       <h3 className="inner__title">
-        {langs?.admin.course.addCourse.subTitle_7}
+        {langs?.admin.course.subTitle_7}
       </h3>
       <FormControl.InputCustom
         name="nameENG"
@@ -102,7 +102,7 @@ const LessonFields: React.FunctionComponent<LessonFieldsProps> = (props) => {
       {lessonArr.length > 0 && (
         <div className="inner__list">
           <h4 className="list__title">
-            {langs?.admin.course.addCourse.lessonList}
+            {langs?.admin.course.lessonList}
           </h4>
           {(() => {
             if (lessonArr && lessonArr.length > 0) {

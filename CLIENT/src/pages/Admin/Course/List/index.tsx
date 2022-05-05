@@ -142,7 +142,7 @@ const Course: React.FunctionComponent<{}> = (props) => {
           isNodata={courses?.courseList || 0}
           noDataTitle={langs?.noData.data || ""}
           renderNoDataLink={() => (
-            <Link to="/admin/course" className="button--add">
+            <Link to="/admin/course/addCourse" className="button--add">
               {langs?.button.addCourse}
             </Link>
           )}

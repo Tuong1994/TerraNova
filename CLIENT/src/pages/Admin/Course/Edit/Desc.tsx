@@ -14,7 +14,7 @@ const DescFields: React.FunctionComponent<DescFieldsProps> = (props) => {
   return (
     <Card.Wrapper className="item__inner item__desc">
       <h3 className="inner__title">
-        {langs?.admin.course.addCourse.subTitle_2}
+        {langs?.admin.course.subTitle_2}
       </h3>
       <Field
         name="descENG"

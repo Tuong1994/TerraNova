@@ -65,7 +65,7 @@ const ScheduleFields: React.FunctionComponent<ScheduleFieldsProps> = (
   return (
     <Card.Wrapper className="item__inner item__schedule">
       <h3 className="inner__title">
-        {langs?.admin.course.addCourse.subTitle_5}
+        {langs?.admin.course.subTitle_5}
       </h3>
       <FormControl.InputCustom
         type="date"
@@ -123,7 +123,7 @@ const ScheduleFields: React.FunctionComponent<ScheduleFieldsProps> = (
       {scheduleArr.length > 0 && (
         <div className="inner__list">
           <h4 className="list__title">
-            {langs?.admin.course.addCourse.scheduleList}
+            {langs?.admin.course.scheduleList}
           </h4>
           {(() => {
             if (scheduleArr && scheduleArr.length > 0) {

@@ -17,7 +17,7 @@ const CategoryFields: React.FunctionComponent<CategoryFieldsProps> = (
   const { langs, isReset, options } = props;
 
   return <Card.Wrapper className="item__inner item__category">
-      <h3 className="inner__title">{langs?.admin.course.addCourse.subTitle_4}</h3>
+      <h3 className="inner__title">{langs?.admin.course.subTitle_4}</h3>
       <Field
         name="categoryId"
         placeholder=" "

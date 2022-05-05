@@ -46,7 +46,7 @@ const PriceFields: React.FunctionComponent<PriceFieldsProps> = (props) => {
   return (
     <Card.Wrapper className="item__inner item__price">
       <h3 className="inner__title">
-        {langs?.admin.product.addProduct.subTitle_4}
+        {langs?.admin.product.subTitle_4}
       </h3>
       <FormControl.InputCustom
         type="number"

@@ -35,6 +35,7 @@ module.exports = {
         updatedAt: new Date(),
       },
     ];
+    
     for (let i = 0; i < 100; i++) {
       const hashPass = bcryptjs.hashSync(`acount_${i}`, salt)
       const user = {
