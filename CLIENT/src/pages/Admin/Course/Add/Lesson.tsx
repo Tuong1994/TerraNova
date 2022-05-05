@@ -108,7 +108,7 @@ const LessonFields: React.FunctionComponent<LessonFieldsProps> = (props) => {
             if (lessonArr && lessonArr.length > 0) {
               return lessonArr.map((lesson: any) => {
                 return (
-                  <Card.Wrapper className="list__card">
+                  <Card.Wrapper className="list__card" key={lesson.id}>
                     <ul className="card__inner">
                       <li className="inner__list">
                         <div className="list__content">

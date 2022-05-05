@@ -21,6 +21,8 @@ export const getListQuery = (query: IQueryList): string => {
     courseId,
     descId,
     courseOrderId,
+    courseScheduleId,
+    lessonId,
     productType,
     freeText,
     filter,
@@ -41,6 +43,8 @@ export const getListQuery = (query: IQueryList): string => {
   courseId && (rs += `&courseId=${courseId}`);
   descId && (rs += `&descId=${descId}`);
   courseOrderId && (rs += `&courseOrderId=${courseOrderId}`);
+  courseScheduleId && (rs += `&courseScheduleId=${courseScheduleId}`);
+  lessonId && (rs += `&lessonId=${lessonId}`);
   productType && (rs += `&productType=${productType}`);
   freeText && (rs += `&freeText=${freeText}`);
   filter && (rs += `&filter=${filter}`);

@@ -15,13 +15,12 @@ interface DescriptionFieldsProps {
   langs: ILangs;
   productId?: string;
   descArr: IDescription[];
-  setDescArr: React.Dispatch<React.SetStateAction<IDescription[]>>;
 }
 
 const DescriptionFields: React.FunctionComponent<DescriptionFieldsProps> = (
   props
 ) => {
-  const { langs, productId, descArr, setDescArr } = props;
+  const { langs, productId, descArr } = props;
 
   const [name, setName] = React.useState<string>("");
   const [content, setContent] = React.useState<string>("");

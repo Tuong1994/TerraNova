@@ -8,12 +8,13 @@ interface CourseAdminRowProps {
   lang: string;
   index: number;
   course: ICourse;
+  removeCourse: (course: ICourse) => void;
 }
 
 const CourseAdminRow: React.FunctionComponent<CourseAdminRowProps> = (
   props
 ) => {
-  const { lang, index, course } = props;
+  const { lang, index, course, removeCourse } = props;
 
   const renderCourseName = () => {
     switch (lang) {
@@ -75,12 +76,17 @@ const CourseAdminRow: React.FunctionComponent<CourseAdminRowProps> = (
       </TableCol>
       <TableCol>
         <Link
-          to={`/course/editCourse/${course.id || course.courseId}`}
+          to={`/admin/course/editCourse/${course.id || course.courseId}`}
           className="button--edit"
         >
           <i className="far fa-edit"></i>
         </Link>
-        <div className="button--delete">
+        <div
+          className="button--delete"
+          onClick={() => {
+            removeCourse(course);
+          }}
+        >
           <i className="fas fa-trash-alt"></i>
         </div>
       </TableCol>

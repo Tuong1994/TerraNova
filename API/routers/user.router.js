@@ -25,8 +25,8 @@ userRouter.get("/getUserDetail", checkUserId, getUserDetail);
 
 userRouter.post(
   "/createUser",
-  // authenticate,
-  // authorize(["ADMIN"]),
+  authenticate,
+  authorize(["ADMIN"]),
   checkAccount,
   createUser
 );

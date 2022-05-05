@@ -11,10 +11,11 @@ interface SingleUploadProps {
   defaultImg?: string;
   imgFile: any;
   previewImg: any;
+  isSave?: boolean;
   isReset?: boolean;
   setPreviewImg: React.Dispatch<React.SetStateAction<any>>;
   setImgFile: React.Dispatch<React.SetStateAction<any>>;
-  onChange?:(file: any) => void;
+  onChange?: (file: any) => void;
   onSubmit?: (file: any) => void;
 }
 
@@ -24,6 +25,7 @@ const SingleUpload: React.FunctionComponent<SingleUploadProps> = (props) => {
     defaultImg,
     imgFile,
     previewImg,
+    isSave,
     isReset,
     setPreviewImg,
     setImgFile,
@@ -37,12 +39,21 @@ const SingleUpload: React.FunctionComponent<SingleUploadProps> = (props) => {
 
   const [isUploading, setIsUploading] = React.useState<boolean>(false);
 
+  // Set preview image empty if isReset === true
   React.useEffect(() => {
-    if(isReset) {
+    if (isReset) {
       setPreviewImg("");
     }
-  }, [isReset])
+  }, [isReset]);
 
+  // Set default image for preview
+  React.useEffect(() => {
+    if (defaultImg) {
+      setPreviewImg(defaultImg);
+    }
+  }, [defaultImg]);
+
+  // Set preview image when img was selected
   React.useEffect(() => {
     setIsUploading(true);
     setTimeout(() => {
@@ -53,15 +64,20 @@ const SingleUpload: React.FunctionComponent<SingleUploadProps> = (props) => {
         };
         reader.readAsDataURL(imgFile);
       } else {
-        setPreviewImg("");
+        if (defaultImg) {
+          setPreviewImg(defaultImg);
+        } else {
+          setPreviewImg("");
+        }
       }
       setIsUploading(false);
     }, 1000);
-  }, [imgFile]);
+  }, [imgFile, defaultImg]);
 
+  // Trigger onChange function when img was selected
   React.useEffect(() => {
-    onChange && onChange(imgFile)
-  }, [imgFile])
+    onChange && onChange(imgFile);
+  }, [imgFile]);
 
   const handleChange = (e: any) => {
     const file = e.target.files[0];
@@ -71,10 +87,10 @@ const SingleUpload: React.FunctionComponent<SingleUploadProps> = (props) => {
       if (file && acceptImgType.includes(file["type"])) {
         setImgFile(file);
       } else {
-        setImgFile("");
+        toast.error(langs?.toastMessages.error.file);
       }
     } else {
-      toast.error(langs?.toastMessages.error.file);
+      setImgFile("");
     }
   };
 
@@ -93,7 +109,7 @@ const SingleUpload: React.FunctionComponent<SingleUploadProps> = (props) => {
           <div className="preview__img">
             <img
               className="img__avatar"
-              src={previewImg ? previewImg : defaultImg || "../img/avatar.png"}
+              src={previewImg ? previewImg : "/img/avatar.png"}
               alt="avatar"
             />
           </div>
@@ -103,6 +119,7 @@ const SingleUpload: React.FunctionComponent<SingleUploadProps> = (props) => {
               className="preview__close"
               onClick={() => {
                 setPreviewImg("");
+                setImgFile("");
               }}
             >
               <i className="fa fa-times"></i>
@@ -130,25 +147,31 @@ const SingleUpload: React.FunctionComponent<SingleUploadProps> = (props) => {
       </div>
 
       {/* Submit button */}
-      {previewImg && (
-        <div className="upload__button">
-          <Button
-            type="button"
-            className={`button--submit ${
-              buttonLoading ? "button--disabled" : ""
-            }`}
-            onClick={() => {
-              onSubmit && onSubmit(imgFile);
-              setTimeout(() => {
-                setPreviewImg("");
-              }, 1000);
-            }}
-          >
-            <ButtonLoading />
-            <span>{langs?.button.save}</span>
-          </Button>
-        </div>
-      )}
+      {(() => {
+        if (previewImg) {
+          if (isSave) {
+            return (
+              <div className="upload__button">
+                <Button
+                  type="button"
+                  className={`button--submit ${
+                    buttonLoading ? "button--disabled" : ""
+                  }`}
+                  onClick={() => {
+                    onSubmit && onSubmit(imgFile);
+                    setTimeout(() => {
+                      setPreviewImg("");
+                    }, 1000);
+                  }}
+                >
+                  <ButtonLoading />
+                  <span>{langs?.button.save}</span>
+                </Button>
+              </div>
+            );
+          }
+        }
+      })()}
     </React.Fragment>
   );
 };

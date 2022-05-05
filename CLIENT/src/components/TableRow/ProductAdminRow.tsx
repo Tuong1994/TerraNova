@@ -6,7 +6,7 @@ import { IProduct } from "../../models/Product";
 interface IProductAdminRowProps {
   product: IProduct;
   index: number;
-  handleRemove: (id: string) => void;
+  handleRemove: (product: IProduct) => void;
 }
 
 const ProductAdminRow: React.FunctionComponent<IProductAdminRowProps> = (
@@ -24,7 +24,7 @@ const ProductAdminRow: React.FunctionComponent<IProductAdminRowProps> = (
             className="col__img"
             src={(() => {
               if (product?.image !== null && product?.image?.length > 0) {
-                return product.image[0];
+                return product?.image[0];
               } else {
                 return "../img/product_img.jpg";
               }
@@ -45,13 +45,13 @@ const ProductAdminRow: React.FunctionComponent<IProductAdminRowProps> = (
       </TableCol>
 
       <TableCol>
-        <Link to={`/product/editProduct/${product.id || product.productId}`} className="button--edit">
+        <Link to={`/admin/product/editProduct/${product.id || product.productId}`} className="button--edit">
           <i className="far fa-edit"></i>
         </Link>
         <div
           className="button--delete"
           onClick={() => {
-            handleRemove(product.id || product.productId || "");
+            handleRemove(product);
           }}
         >
           <i className="fas fa-trash-alt"></i>

@@ -51,7 +51,7 @@ const HeaderLogin: React.FunctionComponent<{}> = (props) => {
           >
             <img
               className="info__avatar"
-              src={user?.avatar || "../img/avatar.png"}
+              src={user?.avatar || "/img/avatar.png"}
               alt="avatar"
             />
             <span>

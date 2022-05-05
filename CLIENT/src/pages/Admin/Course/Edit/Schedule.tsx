@@ -3,13 +3,20 @@ import * as Card from "../../../../components/Card";
 import * as FormControl from "../../../../components/Fields";
 import { IOptionsLang } from "../../../../configs/options";
 import { ILangs } from "../../../../interfaces/lang";
-import { EDateType } from "../../../../models/Course";
+import { EDateType, ICourse } from "../../../../models/Course";
 import { toast } from "react-toastify";
+import { IQueryList } from "../../../../interfaces/query";
+import { useDispatch } from "react-redux";
 import Button from "../../../../components/Button";
 import moment from "moment";
+import {
+  createCourseSchedule,
+  removeCourseSchedule,
+} from "../../../../redux/actionCreators/CourseScheduleCreators";
 
 interface ScheduleFieldsProps {
   langs: ILangs;
+  courseDetail: ICourse;
   options: IOptionsLang;
   scheduleArr: any;
   setScheduleArr: React.Dispatch<React.SetStateAction<any>>;
@@ -18,13 +25,14 @@ interface ScheduleFieldsProps {
 const ScheduleFields: React.FunctionComponent<ScheduleFieldsProps> = (
   props
 ) => {
-  const { langs, options, scheduleArr, setScheduleArr} =
-    props;
+  const { langs, courseDetail, options, scheduleArr, setScheduleArr } = props;
 
   const [startDate, setStartDate] = React.useState<string>("");
   const [dateType, setDateType] = React.useState<number>(0);
   const [branch, setBranch] = React.useState<number>(0);
-  const [isReset, setIsReset] = React.useState<boolean>(false)
+  const [isReset, setIsReset] = React.useState<boolean>(false);
+
+  const dispatch = useDispatch();
 
   const renderDateType = (v: number) => {
     if (v === EDateType.even) {
@@ -40,26 +48,44 @@ const ScheduleFields: React.FunctionComponent<ScheduleFieldsProps> = (
     if (isReset) {
       setIsReset(false);
     }
+    const query: IQueryList = {
+      courseId: courseDetail?.id || courseDetail?.courseId,
+    };
     const newSchedule = {
-      id: Math.floor(Math.random() * 100000),
       startDate: startDate,
       dateType: dateType,
       branch: branch,
+      courseId: courseDetail?.id || courseDetail?.courseId,
     };
-    let temp = [...scheduleArr];
-    temp.push(newSchedule);
-    setScheduleArr(temp);
+
+    dispatch(
+      createCourseSchedule(
+        newSchedule,
+        query,
+        langs?.toastMessages.success.create,
+        langs?.toastMessages.error.create
+      )
+    );
+
     setStartDate("");
     setDateType(0);
     setBranch(0);
     setIsReset(true);
-    toast.success(langs?.toastMessages.success.create);
   };
 
   const handleRemove = (id: any) => {
-    let temp = [...scheduleArr];
-    setScheduleArr(temp.filter((i) => i.id !== id));
-    toast.success(langs?.toastMessages.success.remove);
+    const query: IQueryList = {
+      courseId: courseDetail?.id || courseDetail?.courseId,
+      courseScheduleId: id,
+    };
+
+    dispatch(
+      removeCourseSchedule(
+        query,
+        langs?.toastMessages.success.remove,
+        langs?.toastMessages.error.remove
+      )
+    );
   };
 
   return (
@@ -120,16 +146,16 @@ const ScheduleFields: React.FunctionComponent<ScheduleFieldsProps> = (
         </Button>
       </div>
 
-      {scheduleArr.length > 0 && (
+      {scheduleArr?.length > 0 && (
         <div className="inner__list">
           <h4 className="list__title">
             {langs?.admin.course.addCourse.scheduleList}
           </h4>
           {(() => {
-            if (scheduleArr && scheduleArr.length > 0) {
+            if (scheduleArr && scheduleArr?.length > 0) {
               return scheduleArr.map((schedule: any) => {
                 return (
-                  <Card.Wrapper className="list__card">
+                  <Card.Wrapper className="list__card" key={schedule.id}>
                     <ul className="card__inner">
                       <li className="inner__list">
                         <div className="list__content">

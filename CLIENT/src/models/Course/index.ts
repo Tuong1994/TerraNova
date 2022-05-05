@@ -1,3 +1,6 @@
+import { ISchedule } from "../CourseSchedule";
+import { ILesson } from "../Lesson";
+
 export enum ECourseCategory {
   design = "desgin",
   mindset = "mindset",
@@ -26,16 +29,6 @@ export interface ICourseCategory {
   createdAt?: Date | string;
   updatedAt?: Date | string;
 }
-
-export interface ILesson {
-  id?: string;
-  lessonId?: string;
-  nameENG?: string;
-  nameVN?: string;
-  nameCH?: string;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-}
 export interface ICourse {
   id?: string;
   courseId?: string;
@@ -46,9 +39,12 @@ export interface ICourse {
   descVN?: string;
   descCH?: string;
   image?: string;
+  cost?: number;
+  profit?: number;
   price?: number;
   trainingTime?: number;
   lessons?: ILesson[];
+  schedules?: ISchedule[];
   categoryId?: string;
   category?: ICourseCategory;
   createdAt?: Date | string;

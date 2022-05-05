@@ -95,6 +95,7 @@ const AddCourse: React.FunctionComponent<AddCourseProps> = (props) => {
       if (imgUpload) {
         data.append("image", imgUpload);
       }
+      data.append("cost", cost);
       data.append("price", price.toString());
 
       dispatch(

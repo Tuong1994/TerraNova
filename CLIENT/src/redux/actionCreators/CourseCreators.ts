@@ -4,9 +4,10 @@ import { ECourseActionTypes } from "../actionTypes/CourseActionTypes";
 import { IQueryList } from "../../interfaces/query";
 import { Dispatch } from "redux";
 import { ACCESSTOKEN, getListQuery } from "../../configs/setting";
-import { ICourse } from "../../models/Course";
 import { toast } from "react-toastify";
 import actions from "../../configs/actions";
+
+const token = localStorage.getItem(ACCESSTOKEN) || "";
 
 export const getCategoryAndCourseList = () => {
   return async (dispatch: Dispatch) => {
@@ -63,7 +64,7 @@ export const getCourseByCategory = (query: IQueryList) => {
   };
 };
 
-export const getCourseDetail = (query: IQueryList) => {
+export const getCourseDetail = (query: IQueryList, err?: string) => {
   return async (dispatch: Dispatch) => {
     try {
       const result = await axiosClient.get(
@@ -75,14 +76,13 @@ export const getCourseDetail = (query: IQueryList) => {
         payload: result.data,
       });
     } catch (error) {
-      console.log(error);
+      toast.error(err);
     }
   };
 };
 
 export const createCourse = (data: any, success?: string, err?: string) => {
   return (dispatch: Dispatch) => {
-    const token = localStorage.getItem(ACCESSTOKEN) || "";
     dispatch(actions.openButtonLoading);
     setTimeout(async () => {
       try {
@@ -97,29 +97,51 @@ export const createCourse = (data: any, success?: string, err?: string) => {
   };
 };
 
-export const updateCourse = (query: IQueryList, data: ICourse) => {
-  return async (dispatch: Dispatch) => {
-    try {
-      await axiosClient.put(
-        apiPath.coursePaths.updateCourse,
-        getListQuery(query as IQueryList),
-        data
-      );
-    } catch (error) {
-      console.log(error);
-    }
+export const updateCourse = (
+  query: IQueryList,
+  data: any,
+  success?: string,
+  err?: string
+) => {
+  return (dispatch: any) => {
+    dispatch(actions.openButtonLoading);
+    setTimeout(async () => {
+      try {
+        await axiosClient.put(
+          apiPath.coursePaths.updateCourse,
+          getListQuery(query as IQueryList),
+          data,
+          token
+        );
+        dispatch(getCourseDetail(query));
+        dispatch(actions.closeButtonLoading);
+        toast.success(success);
+      } catch (error) {
+        dispatch(actions.closeButtonLoading);
+        toast.error(err);
+      }
+    }, 1000);
   };
 };
 
-export const removeCourse = (query: IQueryList) => {
-  return async (dispatch: Dispatch) => {
+export const removeCourse = (
+  query: IQueryList,
+  success?: string,
+  err?: string,
+  data?: any,
+) => {
+  return async (dispatch: any) => {
     try {
       await axiosClient.delete(
         apiPath.coursePaths.removeCourse,
-        getListQuery(query as IQueryList)
+        getListQuery(query as IQueryList),
+        token,
+        data
       );
+      dispatch(getCourseList(query));
+      toast.success(success);
     } catch (error) {
-      console.log(error);
+      toast.error(err);
     }
   };
 };

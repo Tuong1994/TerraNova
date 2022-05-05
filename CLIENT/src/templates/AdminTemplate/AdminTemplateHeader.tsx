@@ -30,7 +30,7 @@ const AdminTemplateHeader: React.FunctionComponent<{}> = (props) => {
             {user?.firstName} {user?.lastName}
           </span>
           <img
-            src={user?.avatar || "../img/avatar.png"}
+            src={user?.avatar || "/img/avatar.png"}
             alt=""
             className="link__img"
           />

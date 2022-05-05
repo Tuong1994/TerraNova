@@ -128,7 +128,7 @@
             padding: $p-10;
             position: relative;
             .card__inner {
-              font-size: $default;
+              font-size: $body-1;
               font-weight: $semiBold;
               .inner__list {
                 .list__content {
@@ -141,13 +141,13 @@
               }
             }
             .card__close {
-              width: $w-10 * 3;
-              height: $h-10 * 3;
+              width: $w-10 * 2;
+              height: $h-10 * 2;
               font-size: $body-2;
               background: $secondary;
               color: $tSecondary;
               text-align: center;
-              line-height: $h-10 * 3;
+              line-height: $h-10 * 2;
               border-radius: $circle;
               position: absolute;
               top: 10px;

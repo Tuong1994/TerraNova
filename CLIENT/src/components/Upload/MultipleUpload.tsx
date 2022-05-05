@@ -132,7 +132,7 @@ const MultipleUpload: React.FunctionComponent<MultipleUploadProps> = (
           onChange={handleChange}
         />
         {(() => {
-          if (previewImgArr && previewImgArr.length > 0) {
+          if (previewImgArr && previewImgArr?.length > 0) {
             if (isSave) {
               return (
                 <Button
@@ -170,21 +170,21 @@ const MultipleUpload: React.FunctionComponent<MultipleUploadProps> = (
       </div>
 
       {/* Upload preview */}
-      {previewImgArr.length > 0 && (
+      {previewImgArr?.length > 0 && (
         <div className="multiple__preview">
           {isUploading && (
             <div className="preview__loading">
               <div className="loading__spinner"></div>
             </div>
           )}
-          {previewImgArr.map((img: any, index: number) => {
+          {Array.isArray(previewImgArr) && previewImgArr?.map((img: any, index: number) => {
             return (
               <div className="preview__img" key={index}>
                 <div
                   className="img__button"
                   onClick={() => {
                     setPreviewImgArr(
-                      previewImgArr.filter((i: any) => i !== img)
+                      previewImgArr?.filter((i: any) => i !== img)
                     );
                   }}
                 >

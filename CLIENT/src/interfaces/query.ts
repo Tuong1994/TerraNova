@@ -10,6 +10,8 @@ export interface IQueryList {
   orderId?: string;
   descId?: string;
   courseOrderId?: string;
+  lessonId?: string;
+  courseScheduleId?: string;
   productType?: string;
   freeText?: string;
   filter?: string;

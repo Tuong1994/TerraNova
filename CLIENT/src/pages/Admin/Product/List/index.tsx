@@ -8,6 +8,7 @@ import {
   removeProduct,
 } from "../../../../redux/actionCreators/ProductCreators";
 import { ESortBy, IQueryList } from "../../../../interfaces/query";
+import { IProduct } from "../../../../models/Product";
 import Table from "../../../../components/Table";
 import ContentHeader from "../../../../components/ContentHeader";
 import ProductAdminRow from "../../../../components/TableRow/ProductAdminRow";
@@ -63,17 +64,22 @@ const Product: React.FunctionComponent<{}> = (props) => {
   };
 
   // Remove product
-  const handleRemoveProduct = (id: string) => {
+  const handleRemoveProduct = (product: IProduct) => {
+    const descIds = product?.description?.map((i) => {
+      return i.id;
+    });
     const query: IQueryList = {
-      page: 1,
-      limits: 10,
-      productId: id,
+      productId: product?.id || product?.productId,
     };
+    const data = {
+      descIds,
+    }
     dispatch(
       removeProduct(
         query,
         langs?.toastMessages.success.remove,
-        langs?.toastMessages.error.remove
+        langs?.toastMessages.error.remove,
+        data,
       )
     );
   };
@@ -102,7 +108,7 @@ const Product: React.FunctionComponent<{}> = (props) => {
         name={langs?.admin.pageTitle.product || ""}
         right={() => {
           return (
-            <Link to="/product/addProduct" className="button--add">
+            <Link to="/admin/product/addProduct" className="button--add">
               {langs?.button.addProduct}
             </Link>
           );

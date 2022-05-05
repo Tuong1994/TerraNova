@@ -31,19 +31,19 @@ const Translate: React.FunctionComponent<TranslateProps> = (props) => {
       id: 1,
       title: langs?.translate.VN,
       key: ELangs.VN,
-      imgSrc: "../img/flags/VN.png",
+      imgSrc: "/img/flags/VN.png",
     },
     {
       id: 2,
       title: langs?.translate.ENG,
       key: ELangs.ENG,
-      imgSrc: "../img/flags/ENG.png",
+      imgSrc: "/img/flags/ENG.png",
     },
     {
       id: 3,
       title: langs?.translate.CH,
       key: ELangs.CH,
-      imgSrc: "../img/flags/CH.png",
+      imgSrc: "/img/flags/CH.png",
     },
   ];
 

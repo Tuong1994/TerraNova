@@ -28,6 +28,12 @@ module.exports = {
       image: {
         type: Sequelize.STRING,
       },
+      cost: {
+        type: Sequelize.INTEGER,
+      },
+      profit: {
+        type: Sequelize.INTEGER,
+      },
       price: {
         type: Sequelize.INTEGER,
       },

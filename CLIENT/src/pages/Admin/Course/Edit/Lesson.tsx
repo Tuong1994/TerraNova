@@ -1,24 +1,32 @@
 import React from "react";
 import * as Card from "../../../../components/Card";
 import * as FormControl from "../../../../components/Fields";
-import { toast } from "react-toastify";
 import { ILangs } from "../../../../interfaces/lang";
+import { useDispatch } from "react-redux";
+import {
+  createLesson,
+  removeLesson,
+} from "../../../../redux/actionCreators/LessonCreators";
+import { IQueryList } from "../../../../interfaces/query";
 import Button from "../../../../components/Button";
+import { ICourse } from "../../../../models/Course";
 
 interface LessonFieldsProps {
   langs: ILangs;
+  courseDetail: ICourse;
   lessonArr: any;
-  setLessonArr: React.Dispatch<React.SetStateAction<any>>;
 }
 
 const LessonFields: React.FunctionComponent<LessonFieldsProps> = (props) => {
-  const { langs, lessonArr, setLessonArr } = props;
+  const { langs, courseDetail, lessonArr } = props;
 
   const [title, setTitle] = React.useState<any>({
     nameENG: "",
     nameVN: "",
     nameCH: "",
   });
+
+  const dispatch = useDispatch();
 
   const handleChange = (e: any) => {
     setTitle({
@@ -28,25 +36,42 @@ const LessonFields: React.FunctionComponent<LessonFieldsProps> = (props) => {
   };
 
   const handleAdd = () => {
+    const query: IQueryList = {
+      courseId: courseDetail?.id || courseDetail?.courseId,
+    };
     const newLesson = {
       ...title,
-      id: Math.floor(Math.random() * 1000000),
+      courseId: courseDetail?.id || courseDetail?.courseId,
     };
-    let temp = [...lessonArr];
-    temp.push(newLesson);
-    setLessonArr(temp);
+
+    dispatch(
+      createLesson(
+        newLesson,
+        query,
+        langs?.toastMessages.success.create,
+        langs?.toastMessages.error.create
+      )
+    );
+
     setTitle({
       nameENG: "",
       nameVN: "",
       nameCH: "",
     });
-    toast.success(langs?.toastMessages.success.create);
   };
 
   const handleRemove = (id: any) => {
-    let temp = [...lessonArr];
-    setLessonArr(temp.filter((i) => i.id !== id));
-    toast.success(langs?.toastMessages.success.remove);
+    const query: IQueryList = {
+      courseId: courseDetail?.id || courseDetail?.courseId,
+      lessonId: id,
+    };
+    dispatch(
+      removeLesson(
+        query,
+        langs?.toastMessages.success.remove,
+        langs?.toastMessages.error.remove
+      )
+    );
   };
 
   return (
@@ -99,16 +124,16 @@ const LessonFields: React.FunctionComponent<LessonFieldsProps> = (props) => {
         </Button>
       </div>
 
-      {lessonArr.length > 0 && (
+      {lessonArr?.length > 0 && (
         <div className="inner__list">
           <h4 className="list__title">
             {langs?.admin.course.addCourse.lessonList}
           </h4>
           {(() => {
-            if (lessonArr && lessonArr.length > 0) {
+            if (lessonArr && lessonArr?.length > 0) {
               return lessonArr.map((lesson: any) => {
                 return (
-                  <Card.Wrapper className="list__card">
+                  <Card.Wrapper className="list__card" key={lesson.id}>
                     <ul className="card__inner">
                       <li className="inner__list">
                         <div className="list__content">

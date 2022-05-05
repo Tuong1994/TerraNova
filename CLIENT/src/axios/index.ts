@@ -65,10 +65,11 @@ const axiosClient = {
     return call;
   },
 
-  delete: (apiPath: string, query: string, token?: string) => {
+  delete: (apiPath: string, query: string, token?: string, data?: any) => {
     const call = axios({
       url: apiPath + query,
       method: EMethod.Delete,
+      data: data,
       headers: {
         Authorization: `Bearer ${token}`,
       },

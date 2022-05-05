@@ -151,7 +151,8 @@ export const updateProduct = (
 export const removeProduct = (
   query: IQueryList,
   success?: string,
-  err?: string
+  err?: string,
+  data?: any,
 ) => {
   return async (dispatch: any) => {
     const token = localStorage.getItem(ACCESSTOKEN) || "";
@@ -159,7 +160,8 @@ export const removeProduct = (
       await axiosClient.delete(
         apiPath.productPaths.removeProduct,
         getListQuery(query as IQueryList),
-        token
+        token,
+        data
       );
       dispatch(getProductList(query));
       toast.success(success);

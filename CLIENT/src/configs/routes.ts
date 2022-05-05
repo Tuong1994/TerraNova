@@ -42,12 +42,12 @@ export const adminRoutes: IRoute[] = [
     component: Product.List,
   },
   {
-    path: "/product/addProduct",
+    path: "/admin/product/addProduct",
     exact: true,
     component: Product.Add,
   },
   {
-    path: "/product/editProduct/:id",
+    path: "/admin/product/editProduct/:id",
     exact: true,
     component: Product.Edit,
   },
@@ -57,12 +57,12 @@ export const adminRoutes: IRoute[] = [
     component: Course.List,
   },
   {
-    path: "/course/addCourse",
+    path: "/admin/course/addCourse",
     exact: true,
     component: Course.Add,
   },
   {
-    path: "/course/editCourse/:id",
+    path: "/admin/course/editCourse/:id",
     exact: true,
     component: Course.Edit,
   },

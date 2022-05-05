@@ -7,11 +7,15 @@ import { ESortBy, IQueryList } from "../../../../interfaces/query";
 import ContentHeader from "../../../../components/ContentHeader";
 import utils from "../../../../utils";
 import Table from "../../../../components/Table";
-import { getCourseList } from "../../../../redux/actionCreators/CourseCreators";
+import {
+  getCourseList,
+  removeCourse,
+} from "../../../../redux/actionCreators/CourseCreators";
 import CourseAdminRow from "../../../../components/TableRow/CourseAdminRow";
 import DataLoading from "../../../../components/Loading/DataLoading";
 import Filter from "../../../../components/Filter";
 import Pagination from "../../../../components/Pagination";
+import { ICourse } from "../../../../models/Course";
 
 const Course: React.FunctionComponent<{}> = (props) => {
   const { page } = useSelector(
@@ -56,6 +60,31 @@ const Course: React.FunctionComponent<{}> = (props) => {
     }, 500);
   };
 
+  const _removeCourse = (course: ICourse) => {
+    const lessonIds = course?.lessons?.map((i) => {
+      return i.id;
+    });
+    const scheduleIds = course?.schedules?.map((i) => {
+      return i.id;
+    });
+    const data = {
+      lessonIds,
+      scheduleIds,
+    };
+    const query: IQueryList = {
+      courseId: course?.id || course?.courseId,
+    };
+
+    dispatch(
+      removeCourse(
+        query,
+        langs?.toastMessages.success.remove,
+        langs?.toastMessages.error.remove,
+        data
+      )
+    );
+  };
+
   const renderCourseList = () => {
     if (courses) {
       const { courseList } = courses;
@@ -64,8 +93,9 @@ const Course: React.FunctionComponent<{}> = (props) => {
           <CourseAdminRow
             key={course.id || course.courseId}
             lang={lang}
-            course={course}
             index={index}
+            course={course}
+            removeCourse={_removeCourse}
           />
         );
       });
@@ -78,7 +108,7 @@ const Course: React.FunctionComponent<{}> = (props) => {
         name={langs?.admin.pageTitle.course || ""}
         right={() => {
           return (
-            <Link to="/course/addCourse" className="button--add">
+            <Link to="/admin/course/addCourse" className="button--add">
               {langs?.button.addCourse}
             </Link>
           );

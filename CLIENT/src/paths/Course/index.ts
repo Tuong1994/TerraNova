@@ -7,6 +7,6 @@ export const coursePaths = {
   getCourseDetail: `${domain}/api/courseManagement/getCourseDetail`,
   getCourseByIds: `${domain}/api/courseManagement/getCourseByIds`,
   createCourse: `${domain}/api/courseManagement/createCourse`,
-  updateCourse: `${domain}/api/courseManagment/updateCourse`,
+  updateCourse: `${domain}/api/courseManagement/updateCourse`,
   removeCourse: `${domain}/api/courseManagement/removeCourse`,
 };

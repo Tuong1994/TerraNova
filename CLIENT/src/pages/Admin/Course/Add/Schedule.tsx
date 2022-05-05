@@ -129,7 +129,7 @@ const ScheduleFields: React.FunctionComponent<ScheduleFieldsProps> = (
             if (scheduleArr && scheduleArr.length > 0) {
               return scheduleArr.map((schedule: any) => {
                 return (
-                  <Card.Wrapper className="list__card">
+                  <Card.Wrapper className="list__card" key={schedule.id}>
                     <ul className="card__inner">
                       <li className="inner__list">
                         <div className="list__content">

@@ -195,7 +195,6 @@ const EditProduct: React.FunctionComponent<
                     langs={langs}
                     productId={productId}
                     descArr={descArr}
-                    setDescArr={setDescArr}
                   />
                 </div>
                 <div className="wrapper__item">

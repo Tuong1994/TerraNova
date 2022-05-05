@@ -6,18 +6,36 @@ const {
   updateCourseSchedule,
   removeCourseSchedule,
 } = require("../controllers/course-schedule.controller");
+const {
+  authenticate,
+  authorize,
+} = require("../middlewares/auths/check-verify.middleware");
 const courseScheduleRouter = express.Router();
-
 
 courseScheduleRouter.get("/getCourseScheduleList", getCourseScheduleList);
 
 courseScheduleRouter.get("/getCourseScheduleDetail", getCourseScheduleDetail);
 
-courseScheduleRouter.post("/createCourseSchedule", createCourseSchedule);
+courseScheduleRouter.post(
+  "/createCourseSchedule",
+  authenticate,
+  authorize(["ADMIN"]),
+  createCourseSchedule
+);
 
-courseScheduleRouter.put("/updateCourseSchedule", updateCourseSchedule);
+courseScheduleRouter.put(
+  "/updateCourseSchedule",
+  authenticate,
+  authorize(["ADMIN"]),
+  updateCourseSchedule
+);
 
-courseScheduleRouter.delete("/removeCourseSchedule", removeCourseSchedule);
+courseScheduleRouter.delete(
+  "/removeCourseSchedule",
+  authenticate,
+  authorize(["ADMIN"]),
+  removeCourseSchedule
+);
 
 module.exports = {
   courseScheduleRouter,

@@ -2,7 +2,9 @@ const { Description } = require("../models");
 
 const getDescriptionList = async (req, res) => {
   try {
-    const descriptionList = await Description.findAll();
+    const descriptionList = await Description.findAll({
+      order: [["updatedAt", "DESC"]]
+    });
     res.status(200).send(descriptionList);
   } catch (error) {
     res.status(500).send(error);

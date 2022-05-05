@@ -32,7 +32,7 @@ const LoggedIn = (props: LoggedInProps, ref: any) => {
           setIsShow(!isShow);
         }}
       >
-        <img className="info__avatar" src="../img/avatar.png" alt="avatar" />
+        <img className="info__avatar" src={`${user?.avatar || "/img/avatar.png"}`} alt="avatar" />
         <span>
           {user?.firstName} {user?.lastName}
         </span>

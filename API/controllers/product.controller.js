@@ -1,4 +1,3 @@
-const fs = require("fs");
 const { Producer, Product, Description } = require("../models");
 const { domain } = require("../setting/setting");
 const Sequelize = require("sequelize");
@@ -330,11 +329,14 @@ const updateProduct = async (req, res) => {
     defaultImgs,
   } = req.body;
   try {
-    const defaultImgArr = [];
-    const urlArr = [];
-    const urlImgArr = files.map((file) => {
-      return `${domain}/${file.path}`;
-    });
+    let defaultImgArr = [];
+    let urlArr = [];
+    let urlImgArr = [];
+    if (files.length > 0) {
+      urlImgArr = files.map((file) => {
+        return `${domain}/${file.path}`;
+      });
+    }
     if (defaultImgs) {
       defaultImgArr = JSON.parse(defaultImgs);
       urlArr = defaultImgArr.concat(urlImgArr);
@@ -343,7 +345,7 @@ const updateProduct = async (req, res) => {
     await Product.update(
       {
         name,
-        image: defaultImgs || urlImgArr || urlArr || null,
+        image: JSON.parse(defaultImgs) || urlImgArr || urlArr || null,
         cost,
         profit,
         price,
@@ -367,12 +369,20 @@ const updateProduct = async (req, res) => {
 
 const removeProduct = async (req, res) => {
   const { productId } = req.query;
+  const { descIds } = req.body;
   try {
     await Product.destroy({
       where: {
         id: productId,
       },
     });
+    if(descIds) {
+      await Description.destroy({
+        where: {
+          id: descIds
+        }
+      })
+    }
     res.status(200).send("Remove success");
   } catch (error) {
     res.status(500).send(error);

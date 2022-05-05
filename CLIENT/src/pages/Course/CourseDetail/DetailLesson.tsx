@@ -1,7 +1,8 @@
 import React from "react";
 import * as Card from "../../../components/Card";
 import { ELangs, ILangs } from "../../../interfaces/lang";
-import { ICourse, ILesson } from "../../../models/Course";
+import { ICourse } from "../../../models/Course";
+import { ILesson } from "../../../models/Lesson";
 
 interface DetailLessonProps {
   lang: string;

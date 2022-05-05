@@ -11,7 +11,6 @@ interface PriceFieldsProps {
   cost: string;
   profit: number;
   price: number;
-  isReset: boolean;
   options: IOptionsLang;
   setPrice: React.Dispatch<React.SetStateAction<number>>;
   setCost: React.Dispatch<React.SetStateAction<string>>;
@@ -19,17 +18,8 @@ interface PriceFieldsProps {
 }
 
 const PriceFields: React.FunctionComponent<PriceFieldsProps> = (props) => {
-  const {
-    langs,
-    options,
-    cost,
-    profit,
-    price,
-    isReset,
-    setPrice,
-    setCost,
-    setProfit,
-  } = props;
+  const { langs, options, cost, profit, price, setPrice, setCost, setProfit } =
+    props;
 
   React.useEffect(() => {
     getPrice();
@@ -59,7 +49,7 @@ const PriceFields: React.FunctionComponent<PriceFieldsProps> = (props) => {
         }}
         onKeyPress={(e: React.ChangeEvent<HTMLInputElement>) => {
           utils.checkKeyNumberType(e, langs?.toastMessages.error.onlyNumber);
-          setCost(e.target.value)
+          setCost(e.target.value);
         }}
       />
       <Field
@@ -67,8 +57,8 @@ const PriceFields: React.FunctionComponent<PriceFieldsProps> = (props) => {
         label={langs?.form.profit}
         component={FormControl.Select}
         groupClassName="inner__control"
+        defaultValue={options?.profit.find((i) => i.value === profit)}
         option={options?.profit}
-        isReset={isReset}
         onChange={(value: any) => {
           setProfit(value);
         }}

@@ -3,16 +3,17 @@ import * as Card from "../../../../components/Card";
 import * as FormControl from "../../../../components/Fields";
 import { Field } from "formik";
 import { ILangs } from "../../../../interfaces/lang";
+import { ICourse } from "../../../../models/Course";
 import Upload from "../../../../components/Upload";
 
 interface InfoFieldsProps {
   langs: ILangs;
-  isReset: boolean;
+  courseDetail: ICourse;
   onSelectImg: (file: any) => void;
 }
 
 const InfoFields: React.FunctionComponent<InfoFieldsProps> = (props) => {
-  const { langs, isReset, onSelectImg } = props;
+  const { langs, courseDetail, onSelectImg } = props;
 
   return (
     <Card.Wrapper className="item__inner item__info">
@@ -21,7 +22,7 @@ const InfoFields: React.FunctionComponent<InfoFieldsProps> = (props) => {
       </h3>
       <div className="inner__control">
         <div className="control__group">
-          <Upload isReset={isReset} onChange={onSelectImg} />
+          <Upload defaultImg={courseDetail?.image} onChange={onSelectImg} />
         </div>
         <div className="control__group">
           <Field

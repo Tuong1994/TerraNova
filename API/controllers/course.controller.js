@@ -58,6 +58,19 @@ const getCourseList = async (req, res) => {
               model: CourseCategory,
               as: "category",
             },
+            {
+              model: CourseOrder,
+              as: "students",
+              attributes: ["userId", "register", "createdAt", "updatedAt"],
+            },
+            {
+              model: Lesson,
+              as: "lessons",
+            },
+            {
+              model: CourseSchedule,
+              as: "schedules",
+            },
           ],
         });
       } else {
@@ -70,6 +83,19 @@ const getCourseList = async (req, res) => {
             {
               model: CourseCategory,
               as: "category",
+            },
+            {
+              model: CourseOrder,
+              as: "students",
+              attributes: ["userId", "register", "createdAt", "updatedAt"],
+            },
+            {
+              model: Lesson,
+              as: "lessons",
+            },
+            {
+              model: CourseSchedule,
+              as: "schedules",
             },
           ],
         });
@@ -88,6 +114,19 @@ const getCourseList = async (req, res) => {
             model: CourseCategory,
             as: "category",
           },
+          {
+            model: CourseOrder,
+            as: "students",
+            attributes: ["userId", "register", "createdAt", "updatedAt"],
+          },
+          {
+            model: Lesson,
+            as: "lessons",
+          },
+          {
+            model: CourseSchedule,
+            as: "schedules",
+          },
         ],
       });
     } else {
@@ -97,6 +136,19 @@ const getCourseList = async (req, res) => {
           {
             model: CourseCategory,
             as: "category",
+          },
+          {
+            model: CourseOrder,
+            as: "students",
+            attributes: ["userId", "register", "createdAt", "updatedAt"],
+          },
+          {
+            model: Lesson,
+            as: "lessons",
+          },
+          {
+            model: CourseSchedule,
+            as: "schedules",
           },
         ],
       });
@@ -188,6 +240,10 @@ const getCourseDetail = async (req, res) => {
           model: Lesson,
           as: "lessons",
         },
+        {
+          model: CourseSchedule,
+          as: "schedules",
+        },
       ],
     });
     res.status(200).send(courseDetail);
@@ -206,6 +262,8 @@ const createCourse = async (req, res) => {
     descENG,
     descVN,
     descCH,
+    cost,
+    profit,
     price,
     trainingTime,
     schedule,
@@ -223,6 +281,8 @@ const createCourse = async (req, res) => {
       descVN,
       descCH,
       image: urlImg,
+      cost,
+      profit,
       price,
       trainingTime,
       categoryId,
@@ -233,7 +293,7 @@ const createCourse = async (req, res) => {
         const scheduleArr = JSON.parse(schedule);
         const newArr = scheduleArr.map((i) => {
           const scheduleId =
-            "SCH_" + Math.floor(Math.random() * 999999999).toString();
+            "COUS_" + Math.floor(Math.random() * 999999999).toString();
           return {
             id: scheduleId,
             ...i,
@@ -246,7 +306,7 @@ const createCourse = async (req, res) => {
         const lessonArr = JSON.parse(lesson);
         const newArr = lessonArr.map((i) => {
           const lessonId =
-            "LES_" + Math.floor(Math.random() * 999999999).toString();
+            "L_" + Math.floor(Math.random() * 999999999).toString();
           return {
             id: lessonId,
             ...i,
@@ -263,6 +323,7 @@ const createCourse = async (req, res) => {
 };
 
 const updateCourse = async (req, res) => {
+  const { file } = req;
   const { courseId } = req.query;
   const {
     categoryId,
@@ -272,19 +333,32 @@ const updateCourse = async (req, res) => {
     descENG,
     descVN,
     descCH,
+    defaultImg,
+    cost,
+    profit,
     price,
     trainingTime,
   } = req.body;
   try {
+    let urlImg = "";
+    if (file) {
+      urlImg = `${domain}/${file.path}`;
+    } else {
+      urlImg = defaultImg;
+    }
+
     await Course.update(
       {
         categoryId,
         nameENG,
         nameVN,
         nameCH,
+        image: urlImg,
         descENG,
         descVN,
         descCH,
+        cost,
+        profit,
         price,
         trainingTime,
       },
@@ -302,12 +376,27 @@ const updateCourse = async (req, res) => {
 
 const removeCourse = async (req, res) => {
   const { courseId } = req.query;
+  const { lessonIds, scheduleIds } = req.body;
   try {
     await Course.destroy({
       where: {
         id: courseId,
       },
     });
+    if (lessonIds) {
+      await Lesson.destroy({
+        where: {
+          id: lessonIds,
+        },
+      });
+    }
+    if (scheduleIds) {
+      await CourseSchedule.destroy({
+        where: {
+          id: scheduleIds,
+        },
+      });
+    }
     res.status(200).send("Remove success");
   } catch (error) {
     res.status(500).send(error);
