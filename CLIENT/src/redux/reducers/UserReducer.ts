@@ -10,13 +10,23 @@ if (localStorage.getItem(ACCOUNT)) {
 }
 interface IUserStateDefault {
   user: IUser | null;
-  userList: IUser[];
+  userList: {
+    total: number;
+    page: number;
+    limits: number;
+    users: IUser[];
+  };
   consultationDetail: IUser;
 }
 
 const stateDefault: IUserStateDefault = {
   user: userAccount,
-  userList: [],
+  userList: {
+    total: 0,
+    page: 0,
+    limits: 0,
+    users: [],
+  },
   consultationDetail: {},
 };
 

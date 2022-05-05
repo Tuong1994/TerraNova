@@ -1,12 +1,71 @@
-const bcryptjs = require("bcryptjs");
 const { User, Order, Carts, CourseOrder } = require("../models");
+const bcryptjs = require("bcryptjs");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 const getUserList = async (req, res) => {
+  const { page, limits, filter, freeText, sortBy } = req.query;
+  const pageNumber = parseInt(page);
+  const itemPerPage = parseInt(limits);
   try {
-    const userList = await User.findAll({
-      order: [["updatedAt", "DESC"]],
-    });
-    res.status(200).send(userList);
+    let userList = [];
+
+    let getSort = () => {
+      if (sortBy) {
+        if (parseInt(sortBy) === 1) {
+          return "DESC";
+        } else {
+          return "ASC";
+        }
+      }
+    };
+    
+    if (filter && filter !== "all") {
+      if (freeText) {
+        userList = await User.findAll({
+          order: [["updatedAt", getSort() || "DESC"]],
+          where: {
+            role: filter,
+            account: {
+              [Op.like]: `%${freeText}%`,
+            },
+          },
+        });
+      } else {
+        userList = await User.findAll({
+          order: [["updatedAt", getSort() || "DESC"]],
+          where: {
+            role: filter,
+          },
+        });
+      }
+    } else if (freeText) {
+      userList = await User.findAll({
+        order: [["updatedAt", getSort() || "DESC"]],
+        where: {
+          account: {
+            [Op.like]: `%${freeText}%`,
+          },
+        },
+      });
+    } else {
+      userList = await User.findAll({
+        order: [["updatedAt", getSort() || "DESC"]],
+      });
+    }
+
+    if (page) {
+      const total = userList.length;
+      const start = (pageNumber - 1) * itemPerPage;
+      const end = start + itemPerPage;
+      const userPerPage = userList.slice(start, end);
+      res.status(200).send({
+        total: total,
+        page: pageNumber,
+        limits: itemPerPage,
+        users: userPerPage,
+      });
+    }
   } catch (error) {
     res.status(500).send(error);
   }

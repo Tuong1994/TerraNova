@@ -13,6 +13,7 @@ export enum ERole {
 }
 export interface IUser {
   id?: string;
+  userId?: string;
   account?: string;
   password?: string;
   firstName?: string;
@@ -31,4 +32,6 @@ export interface IUser {
   orders?: IOrder[];
   carts?: ICarts[];
   courses?: ICourseOrder[];
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
 }

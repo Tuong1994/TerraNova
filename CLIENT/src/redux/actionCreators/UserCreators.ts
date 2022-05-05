@@ -51,19 +51,24 @@ export const signUp = (user: IUser, success?: string, err?: string) => {
 };
 
 export const getUserList = (query: IQueryList) => {
-  return async (dispatch: Dispatch) => {
-    try {
-      const result = await axiosClient.get(
-        apiPath.userPaths.getUserList,
-        getListQuery(query as IQueryList)
-      );
-      dispatch({
-        type: EUserActionTypes.GET_USER_LIST,
-        payload: result.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
+  return (dispatch: Dispatch) => {
+    dispatch(actions.openDataLoading);
+    setTimeout(async () => {
+      try {
+        const result = await axiosClient.get(
+          apiPath.userPaths.getUserList,
+          getListQuery(query as IQueryList)
+        );
+        dispatch({
+          type: EUserActionTypes.GET_USER_LIST,
+          payload: result.data,
+        });
+        dispatch(actions.closeDataLoading)
+      } catch (error: any) {
+        dispatch(actions.closeDataLoading)
+        toast.error(error?.response?.data)
+      }
+    }, 1000);
   };
 };
 

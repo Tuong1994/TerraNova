@@ -9,6 +9,7 @@ import {
 import { EPaymentTypes, EShipmentType } from "../models/Order";
 import { EWard, EDistrict, EProvince } from "./../models/Shipment";
 import { ESortBy } from "../interfaces/query";
+import { ERole } from "../models/User";
 
 export const optionsEng = {
   province: [
@@ -197,6 +198,11 @@ export const optionsEng = {
   sortBy: [
     { label: "Newest", value: ESortBy.newest },
     { label: "Oldest", value: ESortBy.oldest },
+  ],
+  userFilter: [
+    { label: "ALL", value: "all" },
+    { label: "ADMIN", value: ERole.admin },
+    { label: "USER", value: ERole.user },
   ],
   productFilter: [
     { label: "ALL", value: "all" },
@@ -415,6 +421,11 @@ export const optionsVn = {
     { label: "Mới nhất", value: ESortBy.newest },
     { label: "Cũ nhất", value: ESortBy.oldest },
   ],
+  userFilter: [
+    { label: "Tất cả", value: "all" },
+    { label: "Quản trị", value: ERole.admin },
+    { label: "Khách hàng", value: ERole.user },
+  ],
   productFilter: [
     { label: "Tất cả", value: "all" },
     { label: "CPU", value: EProductType.cpu },
@@ -628,6 +639,11 @@ export const optionsCh = {
   sortBy: [
     { label: "最新", value: ESortBy.newest },
     { label: "最老", value: ESortBy.oldest },
+  ],
+  userFilter: [
+    { label: "全部", value: "all" },
+    { label: "管理", value: ERole.admin },
+    { label: "客户", value: ERole.user },
   ],
   productFilter: [
     { label: "全部", value: "all" },
