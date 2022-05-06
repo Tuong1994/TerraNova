@@ -3,11 +3,11 @@ import * as Card from "../../../../components/Card";
 import { useSelector } from "react-redux";
 import { ReducerState } from "../../../../redux/store";
 import ContentHeader from "../../../../components/ContentHeader";
-import utils from "../../../../utils";
-import Table from "../../../../components/Table";
 import { Link } from "react-router-dom";
+import Table from "../../../../components/Table";
+import utils from "../../../../utils";
 
-const Order: React.FunctionComponent<{}> = (props) => {
+const OrderList: React.FunctionComponent<{}> = (props) => {
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
   const langs = utils.changeLang(lang);
@@ -40,4 +40,4 @@ const Order: React.FunctionComponent<{}> = (props) => {
   );
 };
 
-export default Order;
+export default OrderList;

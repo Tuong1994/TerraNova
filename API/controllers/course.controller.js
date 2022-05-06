@@ -270,8 +270,11 @@ const createCourse = async (req, res) => {
     lesson,
   } = req.body;
   try {
+    let urlImg = "";
+    if (file) {
+      urlImg = `${domain}/${file.path}`;
+    }
     const courseId = "COU_" + Math.floor(Math.random() * 999999999).toString();
-    const urlImg = `${domain}/${file.path}`;
     const newCourse = await Course.create({
       id: courseId,
       nameENG,

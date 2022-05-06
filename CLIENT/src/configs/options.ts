@@ -9,9 +9,17 @@ import {
 import { EPaymentTypes, EShipmentType } from "../models/Order";
 import { EWard, EDistrict, EProvince } from "./../models/Shipment";
 import { ESortBy } from "../interfaces/query";
-import { ERole } from "../models/User";
+import { EGender, ERole } from "../models/User";
 
 export const optionsEng = {
+  role: [
+    { label: "Admin", value: ERole.admin },
+    { label: "User", value: ERole.user },
+  ],
+  gender: [
+    { label: "Male", value: EGender.male },
+    { label: "Female", value: EGender.female },
+  ],
   province: [
     { label: "Ho Chi Minh", value: EProvince.HCM },
     { label: "Ha Noi", value: EProvince.HN },
@@ -231,6 +239,14 @@ export const optionsEng = {
 };
 
 export const optionsVn = {
+  role: [
+    { label: "Quản trị", value: ERole.admin },
+    { label: "Khách hàng", value: ERole.user },
+  ],
+  gender: [
+    { label: "Nam", value: EGender.male },
+    { label: "Nữ", value: EGender.female },
+  ],
   province: [
     { label: "Hồ Chí Minh", value: EProvince.HCM },
     { label: "Hà Nội", value: EProvince.HN },
@@ -453,6 +469,14 @@ export const optionsVn = {
 };
 
 export const optionsCh = {
+  role: [
+    { label: "管理", value: ERole.admin },
+    { label: "客户", value: ERole.user },
+  ],
+  gender: [
+    { label: "男性", value: EGender.male },
+    { label: "女性", value: EGender.female },
+  ],
   province: [
     { label: "吴志明市", value: EProvince.HCM },
     { label: "河内市", value: EProvince.HN },

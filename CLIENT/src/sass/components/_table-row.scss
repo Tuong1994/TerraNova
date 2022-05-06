@@ -61,6 +61,8 @@
     .col__img {
       width: $w-10 * 5;
       height: $h-10 * 5;
+      object-fit: cover;
+      object-position: center;
       border-radius: $lightRound;
     }
   }

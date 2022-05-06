@@ -41,7 +41,7 @@ const EditCourse: React.FunctionComponent<RouteComponentProps<IRouteParams>> = (
   const [price, setPrice] = React.useState<number>(0);
   const [scheduleArr, setScheduleArr] = React.useState<any>([]);
   const [lessonArr, setLessonArr] = React.useState<any>([]);
-  const [imgUpload, setImgUpload] = React.useState<any>({});
+  const [imgUpload, setImgUpload] = React.useState<any>(null);
   const [defaultImg, setDefaultImg] = React.useState<string>("");
 
   const dispatch = useDispatch();

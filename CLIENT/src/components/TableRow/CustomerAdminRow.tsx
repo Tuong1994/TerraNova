@@ -5,14 +5,17 @@ import { ILangs } from "../../interfaces/lang";
 import { ERole, IUser } from "../../models/User";
 import TableCol from "../Table/TableCol";
 
-interface UserAdminRowProps {
+interface CustomerAdminRowProps {
   langs: ILangs;
   user: IUser;
   index: number;
+  onRemove: (id: string) => void;
 }
 
-const UserAdminRow: React.FunctionComponent<UserAdminRowProps> = (props) => {
-  const { langs, user, index } = props;
+const CustomerAdminRow: React.FunctionComponent<CustomerAdminRowProps> = (
+  props
+) => {
+  const { langs, user, index, onRemove } = props;
 
   const renderRole = () => {
     if (user.role === ERole.admin) {
@@ -60,10 +63,18 @@ const UserAdminRow: React.FunctionComponent<UserAdminRowProps> = (props) => {
         <p>{moment(user.createdAt).format("DD/MM/YYYY")}</p>
       </TableCol>
       <TableCol>
-        <Link to={`/admin/user/`} className="button--edit">
+        <Link
+          to={`/admin/customer/editCustomer/${user?.id || user?.userId}`}
+          className="button--edit"
+        >
           <i className="far fa-edit"></i>
         </Link>
-        <div className="button--delete">
+        <div
+          className="button--delete"
+          onClick={() => {
+            onRemove(user?.id || user?.userId || "");
+          }}
+        >
           <i className="fas fa-trash-alt"></i>
         </div>
       </TableCol>
@@ -71,4 +82,4 @@ const UserAdminRow: React.FunctionComponent<UserAdminRowProps> = (props) => {
   );
 };
 
-export default UserAdminRow;
+export default CustomerAdminRow;

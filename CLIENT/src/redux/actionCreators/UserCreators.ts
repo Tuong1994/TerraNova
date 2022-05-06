@@ -10,6 +10,8 @@ import { history } from "../../App";
 import axiosClient from "../../axios";
 import actions from "../../configs/actions";
 
+const token = localStorage.getItem(ACCESSTOKEN) || "";
+
 export const signIn = (user: IUser, success?: string, err?: string) => {
   return (dispatch: Dispatch) => {
     dispatch(actions.openButtonLoading);
@@ -63,10 +65,10 @@ export const getUserList = (query: IQueryList) => {
           type: EUserActionTypes.GET_USER_LIST,
           payload: result.data,
         });
-        dispatch(actions.closeDataLoading)
+        dispatch(actions.closeDataLoading);
       } catch (error: any) {
-        dispatch(actions.closeDataLoading)
-        toast.error(error?.response?.data)
+        dispatch(actions.closeDataLoading);
+        toast.error(error?.response?.data);
       }
     }, 1000);
   };
@@ -89,14 +91,29 @@ export const getUserDetail = (query: IQueryList) => {
   };
 };
 
+export const createUser = (data: any, success?: string, err?: string) => {
+  return (dispatch: Dispatch) => {
+    dispatch(actions.openButtonLoading);
+    setTimeout(async () => {
+      try {
+        await axiosClient.post(apiPath.userPaths.createUser, data, token);
+        dispatch(actions.closeButtonLoading);
+        toast.success(success);
+      } catch (error) {
+        dispatch(actions.closeButtonLoading);
+        toast.error(err);
+      }
+    }, 1000);
+  };
+};
+
 export const updateUser = (
   query: IQueryList,
-  data: IUser,
+  data: any,
   success?: string,
   err?: string
 ) => {
   return (dispatch: any) => {
-    const token = localStorage.getItem(ACCESSTOKEN) || "";
     dispatch(actions.openButtonLoading);
     setTimeout(async () => {
       try {
@@ -117,6 +134,26 @@ export const updateUser = (
   };
 };
 
+export const removeUser = (
+  query: IQueryList,
+  success?: string,
+  err?: string
+) => {
+  return async (dispatch: any) => {
+    try {
+      await axiosClient.delete(
+        apiPath.userPaths.removeUser,
+        getListQuery(query as IQueryList),
+        token
+      );
+      dispatch(getUserList(query));
+      toast.success(success);
+    } catch (error) {
+      toast.error(err);
+    }
+  };
+};
+
 export const uploadAvatar = (
   query: IQueryList,
   data: any,
@@ -124,7 +161,6 @@ export const uploadAvatar = (
   err?: string
 ) => {
   return (dispatch: any) => {
-    const token = localStorage.getItem(ACCESSTOKEN) || "";
     dispatch(actions.openButtonLoading);
     setTimeout(async () => {
       try {

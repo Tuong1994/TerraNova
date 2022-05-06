@@ -17,7 +17,7 @@ import Filter from "../../../../components/Filter";
 import Pagination from "../../../../components/Pagination";
 import { ICourse } from "../../../../models/Course";
 
-const Course: React.FunctionComponent<{}> = (props) => {
+const CourseList: React.FunctionComponent<{}> = (props) => {
   const { page } = useSelector(
     (state: ReducerState) => state.PaginationReducer
   );
@@ -166,4 +166,4 @@ const Course: React.FunctionComponent<{}> = (props) => {
   );
 };
 
-export default Course;
+export default CourseList;

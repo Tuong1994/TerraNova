@@ -7,12 +7,12 @@ import { IOptionsLang } from "../../../../configs/options";
 
 interface RoleFieldsProps {
   langs: ILangs;
-  isReset: boolean;
+  values: any;
   options: IOptionsLang;
 }
 
 const RoleFields: React.FunctionComponent<RoleFieldsProps> = (props) => {
-  const { langs, options, isReset } = props;
+  const { langs, values, options } = props;
 
   return (
     <Card.Wrapper className="item__inner item__role">
@@ -20,8 +20,8 @@ const RoleFields: React.FunctionComponent<RoleFieldsProps> = (props) => {
       <Field
         name="role"
         placeholder=" "
-        isReset={isReset}
         label={langs?.form.role}
+        defaultValue={options?.role.find((i) => i.value === values.role)}
         option={options?.role}
         component={FormControl.Select}
       />

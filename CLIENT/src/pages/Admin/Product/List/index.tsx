@@ -17,7 +17,7 @@ import Filter from "../../../../components/Filter";
 import DataLoading from "../../../../components/Loading/DataLoading";
 import utils from "../../../../utils";
 
-const Product: React.FunctionComponent<{}> = (props) => {
+const ProductList: React.FunctionComponent<{}> = (props) => {
   const { productList } = useSelector(
     (state: ReducerState) => state.ProductReducer
   );
@@ -165,4 +165,4 @@ const Product: React.FunctionComponent<{}> = (props) => {
   );
 };
 
-export default Product;
+export default ProductList;

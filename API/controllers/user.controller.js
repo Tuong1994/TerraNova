@@ -1,4 +1,5 @@
 const { User, Order, Carts, CourseOrder } = require("../models");
+const { domain } = require("../setting/setting");
 const bcryptjs = require("bcryptjs");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
@@ -19,7 +20,7 @@ const getUserList = async (req, res) => {
         }
       }
     };
-    
+
     if (filter && filter !== "all") {
       if (freeText) {
         userList = await User.findAll({
@@ -66,6 +67,34 @@ const getUserList = async (req, res) => {
         users: userPerPage,
       });
     }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const getUserWithOrder = async (req, res) => {
+  try {
+    const userList = await User.findAll({
+      attributes: [
+        ["id", "userId"],
+        "account",
+        "firstName",
+        "lastName",
+        "email",
+        "phone",
+        "address",
+        "birthDay",
+        "gender",
+        "role",
+      ],
+      include: [
+        {
+          model: Order,
+          as: "orderList",
+        },
+      ],
+    });
+    res.status(200).send(userList);
   } catch (error) {
     res.status(500).send(error);
   }
@@ -146,6 +175,7 @@ const getUserDetail = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
+  const { file } = req;
   const {
     account,
     password,
@@ -162,6 +192,10 @@ const createUser = async (req, res) => {
     role,
   } = req.body;
   try {
+    let urlImg = "";
+    if (file) {
+      urlImg = `${domain}/${file.path}`;
+    }
     const userId = "U_" + Math.floor(Math.random() * 999999999).toString();
     const salt = bcryptjs.genSaltSync(10);
     const hashPassword = bcryptjs.hashSync(password, salt);
@@ -178,7 +212,7 @@ const createUser = async (req, res) => {
       province,
       phone,
       birthDay,
-      avatar: null,
+      avatar: urlImg,
       gender,
       role,
     });
@@ -190,9 +224,9 @@ const createUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   const { userId } = req.query;
+  const { file } = req;
   const {
     account,
-    password,
     firstName,
     lastName,
     email,
@@ -201,15 +235,21 @@ const updateUser = async (req, res) => {
     district,
     province,
     phone,
+    defaultImg,
     birthDay,
     gender,
     role,
   } = req.body;
   try {
+    let urlImg = "";
+    if(file) {
+      urlImg = `${domain}/${file.path}`
+    } else {
+      urlImg = defaultImg
+    }
     await User.update(
       {
         account,
-        password,
         firstName,
         lastName,
         email,
@@ -220,6 +260,7 @@ const updateUser = async (req, res) => {
         phone,
         birthDay,
         gender,
+        avatar: urlImg,
         role,
       },
       {
@@ -248,33 +289,9 @@ const removeUser = async (req, res) => {
   }
 };
 
-const getUserWithOrder = async (req, res) => {
-  try {
-    const userList = await User.findAll({
-      attributes: [
-        ["id", "userId"],
-        "account",
-        "firstName",
-        "lastName",
-        "email",
-        "phone",
-        "address",
-        "birthDay",
-        "gender",
-        "role",
-      ],
-      include: [
-        {
-          model: Order,
-          as: "orderList",
-        },
-      ],
-    });
-    res.status(200).send(userList);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-};
+const changePassword = async (req, res) => {
+
+}
 
 module.exports = {
   getUserList,

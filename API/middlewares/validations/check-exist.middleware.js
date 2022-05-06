@@ -1,4 +1,11 @@
-const { User, Product, Producer, Category, Course, CourseOrder } = require("../../models");
+const {
+  User,
+  Product,
+  Producer,
+  Category,
+  Course,
+  CourseOrder,
+} = require("../../models");
 
 const checkUserId = async (req, res, next) => {
   const { userId } = req.query;
@@ -139,7 +146,9 @@ const checkRegisterExits = async (req, res, next) => {
     });
     if (courseDetail) {
       if (courseDetail.students) {
-        const index = courseDetail.students.findIndex((i) => i.userId === userId);
+        const index = courseDetail.students.findIndex(
+          (i) => i.userId === userId
+        );
         if (index === -1) {
           next();
         } else {

@@ -4,16 +4,19 @@ import { Link } from "react-router-dom";
 import { ESortBy, IQueryList } from "../../../../interfaces/query";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../../redux/store";
-import { getUserList } from "../../../../redux/actionCreators/UserCreators";
+import {
+  getUserList,
+  removeUser,
+} from "../../../../redux/actionCreators/UserCreators";
 import ContentHeader from "../../../../components/ContentHeader";
 import Table from "../../../../components/Table";
-import UserAdminRow from "../../../../components/TableRow/UserAdminRow";
+import CustomerAdminRow from "../../../../components/TableRow/CustomerAdminRow";
 import DataLoading from "../../../../components/Loading/DataLoading";
 import Pagination from "../../../../components/Pagination";
 import Filter from "../../../../components/Filter";
 import utils from "../../../../utils";
 
-const Customer: React.FunctionComponent<{}> = (props) => {
+const CustomerList: React.FunctionComponent<{}> = (props) => {
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
   const { userList } = useSelector((state: ReducerState) => state.UserReducer);
   const { page } = useSelector(
@@ -57,11 +60,31 @@ const Customer: React.FunctionComponent<{}> = (props) => {
     }, 500);
   };
 
+  const handleRemove = (id: string) => {
+    const query: IQueryList = {
+      userId: id,
+    };
+    dispatch(
+      removeUser(
+        query,
+        langs?.toastMessages.success.remove,
+        langs?.toastMessages.error.remove
+      )
+    );
+  };
+
   const renderUserList = () => {
     if (userList) {
       const { users } = userList;
       return users.map((user, index) => {
-        return <UserAdminRow langs={langs} user={user} index={index} />;
+        return (
+          <CustomerAdminRow
+            langs={langs}
+            user={user}
+            index={index}
+            onRemove={handleRemove}
+          />
+        );
       });
     }
   };
@@ -133,4 +156,4 @@ const Customer: React.FunctionComponent<{}> = (props) => {
   );
 };
 
-export default Customer;
+export default CustomerList;

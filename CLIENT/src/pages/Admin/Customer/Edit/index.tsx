@@ -12,47 +12,69 @@ import Button from "../../../../components/Button";
 import utils from "../../../../utils";
 import AddressFields from "./Address";
 import ButtonLoading from "../../../../components/Loading/ButtonLoading";
-import { createUser } from "../../../../redux/actionCreators/UserCreators";
+import {
+  createUser,
+  getUserDetail,
+  updateUser,
+} from "../../../../redux/actionCreators/UserCreators";
+import { RouteComponentProps } from "react-router-dom";
+import { IRouteParams } from "../../../../interfaces/route";
+import { IQueryList } from "../../../../interfaces/query";
 
-interface AddCustomerProps {}
+const EditCustomer: React.FunctionComponent<
+  RouteComponentProps<IRouteParams>
+> = (props) => {
+  const userId = props.match.params.id;
 
-const AddCustomer: React.FunctionComponent<AddCustomerProps> = (props) => {
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
   const { buttonLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
   );
+  const { user } = useSelector((state: ReducerState) => state.UserReducer);
 
   const [imgUpload, setImgUpload] = React.useState<any>(null);
-  const [isReset, setIsReset] = React.useState<boolean>(false);
+  const [defaultImg, setDefaultImg] = React.useState<any>({});
 
   const dispatch = useDispatch();
 
   const langs = utils.changeLang(lang);
   const options = utils.getOptionByLang(lang);
 
+  React.useEffect(() => {
+    const query: IQueryList = {
+      userId: userId,
+    };
+
+    dispatch(getUserDetail(query));
+  }, []);
+
+  React.useEffect(() => {
+    if (user) {
+      setDefaultImg(user?.avatar);
+    }
+  }, [user]);
+
   const handleSelectedImg = (file: any) => {
     setImgUpload(file);
   };
 
   const initialValues = {
-    account: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    address: "",
-    ward: 0,
-    district: 0,
-    province: 0,
-    birthDay: "",
-    gender: 0,
-    role: "",
+    account: user?.account,
+    firstName: user?.firstName,
+    lastName: user?.lastName,
+    email: user?.email,
+    phone: user?.phone,
+    address: user?.address,
+    ward: user?.ward,
+    district: user?.district,
+    province: user?.province,
+    birthDay: user?.birthDay,
+    gender: user?.gender,
+    role: user?.role,
   };
 
   const validationSchema = yup.object().shape({
     account: yup.string().required(langs?.validateMessages.required),
-    password: yup.string().required(langs?.validateMessages.required),
     firstName: yup.string().required(langs?.validateMessages.required),
     lastName: yup.string().required(langs?.validateMessages.required),
     email: yup
@@ -72,7 +94,11 @@ const AddCustomer: React.FunctionComponent<AddCustomerProps> = (props) => {
     role: yup.string().required(langs?.validateMessages.choose),
   });
 
-  const handleSubmit = (values: any, action: any) => {
+  const handleSubmit = (values: any) => {
+    const query: IQueryList = {
+      userId: userId,
+    };
+
     const data = new FormData();
     for (let key in values) {
       data.append(key, values[key]);
@@ -80,27 +106,16 @@ const AddCustomer: React.FunctionComponent<AddCustomerProps> = (props) => {
     if (imgUpload) {
       data.append("avatar", imgUpload);
     }
-
-    if (isReset) {
-      setIsReset(false);
-    }
+    data.append("defaultImg", defaultImg);
 
     dispatch(
-      createUser(
+      updateUser(
+        query,
         data,
-        langs?.toastMessages.success.create,
-        langs?.toastMessages.error.create
+        langs?.toastMessages.success.update,
+        langs?.toastMessages.error.update
       )
     );
-
-    setTimeout(() => {
-      setIsReset(true);
-      action.resetForm({
-        values: {
-          ...initialValues,
-        },
-      });
-    }, 500);
   };
 
   return (
@@ -115,7 +130,7 @@ const AddCustomer: React.FunctionComponent<AddCustomerProps> = (props) => {
           return (
             <Form autoComplete="off">
               <ContentHeader
-                name={langs?.admin.pageTitle.addCustomer || ""}
+                name={langs?.admin.pageTitle.editCustomer || ""}
                 right={() => {
                   return !isValid ? (
                     <Button
@@ -141,24 +156,24 @@ const AddCustomer: React.FunctionComponent<AddCustomerProps> = (props) => {
                 <div className="wrapper__item">
                   <AccountFields
                     langs={langs}
-                    isReset={isReset}
+                    user={user}
                     onSelectedImg={handleSelectedImg}
                   />
                   <InfoFields
                     langs={langs}
-                    isReset={isReset}
+                    values={initialValues}
                     options={options}
                   />
                 </div>
                 <div className="wrapper__item">
                   <RoleFields
                     langs={langs}
-                    isReset={isReset}
+                    values={initialValues}
                     options={options}
                   />
                   <AddressFields
                     langs={langs}
-                    isReset={isReset}
+                    values={initialValues}
                     options={options}
                   />
                 </div>
@@ -171,4 +186,4 @@ const AddCustomer: React.FunctionComponent<AddCustomerProps> = (props) => {
   );
 };
 
-export default AddCustomer;
+export default EditCustomer;
