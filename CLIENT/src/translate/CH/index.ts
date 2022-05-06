@@ -407,8 +407,10 @@ const ChLang = {
       subTitle_5: "日程",
       subTitle_6: "定价",
       subTitle_7: "课程",
+      subTitle_8: "学生",
       scheduleList: "日程列表",
       lessonList: "课程列表",
+      studentList: "学生列表",
     },
   },
 

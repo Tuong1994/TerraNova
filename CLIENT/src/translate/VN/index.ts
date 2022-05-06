@@ -416,8 +416,10 @@ const VnLang = {
       subTitle_5: "Lịch học",
       subTitle_6: "Định giá",
       subTitle_7: "Bài học",
+      subTitle_8: "Học viên",
       scheduleList: "Danh sách lịch học",
       lessonList: "Danh sách bài học",
+      studentList: "Danh sách học viên",
     },
   },
 

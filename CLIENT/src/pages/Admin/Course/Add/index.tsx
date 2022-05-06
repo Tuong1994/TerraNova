@@ -15,6 +15,7 @@ import ScheduleFields from "./Schedule";
 import PriceFields from "./Price";
 import LessonFields from "./Lesson";
 import ButtonLoading from "../../../../components/Loading/ButtonLoading";
+import StudentFields from "./Student";
 import utils from "../../../../utils";
 
 interface AddCourseProps {}
@@ -67,7 +68,7 @@ const AddCourse: React.FunctionComponent<AddCourseProps> = (props) => {
 
   const handleSubmit = (values: any, action: any) => {
     let isValid = false;
-    
+
     if (cost === "") {
       toast.error(langs?.toastMessages.error.cost);
       isValid = true;
@@ -199,6 +200,7 @@ const AddCourse: React.FunctionComponent<AddCourseProps> = (props) => {
                     scheduleArr={scheduleArr}
                     setScheduleArr={setScheduleArr}
                   />
+                  <StudentFields langs={langs} />
                 </div>
               </div>
             </Form>

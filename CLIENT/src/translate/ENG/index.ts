@@ -422,8 +422,10 @@ const EngLang = {
       subTitle_5: "Schedule",
       subTitle_6: "Pricing",
       subTitle_7: "Lesson",
+      subTitle_8: "Student",
       scheduleList: "Schedule list",
       lessonList: "Lesson list",
+      studentList: "Student list",
     },
   },
 
