@@ -362,10 +362,15 @@ const EngLang = {
       user: "User",
       admin: "Admin",
     },
+    // PASSWORD MODAL
+    modal: {
+      title: "Change password",
+    }
   },
 
   // ==================== ADMIN ====================
   admin: {
+    // PAGE TITLE
     pageTitle: {
       dashBoard: "Dashboard",
       customer: "Customer",
@@ -384,6 +389,7 @@ const EngLang = {
       addCourse: "Add course",
       editCourse: "Edit course",
     },
+    // DASHBOARD
     dashboard: {
       totalRevenue: "Total revenue",
       totalOrders: "Total orders",
@@ -391,12 +397,14 @@ const EngLang = {
       totalTickets: "Total tickets",
       percent: "Percent",
     },
+    // CUSTOMER
     customer: {
       subTitle_1: "Account",
       subTitle_2: "Information",
       subTitle_3: "Address",
       subTitle_4: "Decentralization",
     },
+    // PRODUCT
     product: {
       subTitle_1: "Status",
       subTitle_2: "Infomation",
@@ -405,6 +413,7 @@ const EngLang = {
       subTitle_5: "Source",
       descList: "Description list",
     },
+    // COURSE
     course: {
       subTitle_1: "Infomation",
       subTitle_2: "Description",
@@ -524,6 +533,7 @@ const EngLang = {
       descs: "You haven't setup description",
       schedule: "You haven't setup schedule",
       lesson: "You haven't setup lesson",
+      password: "Password incorrect",
     },
   },
 
@@ -603,6 +613,8 @@ const EngLang = {
     lessonNameVN: "Lesson title (VN)",
     lessonNameCH: "Lesson title (CH)",
     role: "Role",
+    oldPassword: "Old password",
+    newPassword: "New passowrd",
   },
 
   // ==================== TABLE HEADER ====================
@@ -632,6 +644,7 @@ const EngLang = {
     branch: "Branch",
     category: "Category",
     createdAt: "Created at",
+    updatedAt: "Updated at"
   },
 
   // ==================== PAGINATION ====================

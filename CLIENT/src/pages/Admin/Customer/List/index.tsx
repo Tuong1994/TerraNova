@@ -125,6 +125,7 @@ const CustomerList: React.FunctionComponent<{}> = (props) => {
             { title: langs?.tableHeader.name || "" },
             { title: langs?.tableHeader.role || "" },
             { title: langs?.tableHeader.createdAt || "" },
+            { title: langs?.tableHeader.updatedAt || "" },
             { title: langs?.tableHeader.features || "" },
           ]}
           isNodata={userList.users || 0}

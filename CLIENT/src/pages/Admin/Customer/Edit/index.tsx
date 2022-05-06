@@ -13,13 +13,13 @@ import utils from "../../../../utils";
 import AddressFields from "./Address";
 import ButtonLoading from "../../../../components/Loading/ButtonLoading";
 import {
-  createUser,
   getUserDetail,
   updateUser,
 } from "../../../../redux/actionCreators/UserCreators";
 import { RouteComponentProps } from "react-router-dom";
 import { IRouteParams } from "../../../../interfaces/route";
 import { IQueryList } from "../../../../interfaces/query";
+import { IUser } from "../../../../models/User";
 
 const EditCustomer: React.FunctionComponent<
   RouteComponentProps<IRouteParams>
@@ -30,8 +30,9 @@ const EditCustomer: React.FunctionComponent<
   const { buttonLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
   );
-  const { user } = useSelector((state: ReducerState) => state.UserReducer);
+  const { userAdmin } = useSelector((state: ReducerState) => state.UserReducer);
 
+  const [userDetail, setUserDetail] = React.useState<IUser>({});
   const [imgUpload, setImgUpload] = React.useState<any>(null);
   const [defaultImg, setDefaultImg] = React.useState<any>({});
 
@@ -45,32 +46,38 @@ const EditCustomer: React.FunctionComponent<
       userId: userId,
     };
 
-    dispatch(getUserDetail(query));
+    dispatch(getUserDetail(query, true));
   }, []);
 
   React.useEffect(() => {
-    if (user) {
-      setDefaultImg(user?.avatar);
+    if (userAdmin) {
+      setUserDetail(userAdmin);
     }
-  }, [user]);
+  }, [userAdmin]);
+
+  React.useEffect(() => {
+    if (userDetail) {
+      setDefaultImg(userDetail?.avatar);
+    }
+  }, [userDetail]);
 
   const handleSelectedImg = (file: any) => {
     setImgUpload(file);
   };
 
   const initialValues = {
-    account: user?.account,
-    firstName: user?.firstName,
-    lastName: user?.lastName,
-    email: user?.email,
-    phone: user?.phone,
-    address: user?.address,
-    ward: user?.ward,
-    district: user?.district,
-    province: user?.province,
-    birthDay: user?.birthDay,
-    gender: user?.gender,
-    role: user?.role,
+    account: userDetail?.account,
+    firstName: userDetail?.firstName,
+    lastName: userDetail?.lastName,
+    email: userDetail?.email,
+    phone: userDetail?.phone,
+    address: userDetail?.address,
+    ward: userDetail?.ward,
+    district: userDetail?.district,
+    province: userDetail?.province,
+    birthDay: userDetail?.birthDay,
+    gender: userDetail?.gender,
+    role: userDetail?.role,
   };
 
   const validationSchema = yup.object().shape({
@@ -121,6 +128,7 @@ const EditCustomer: React.FunctionComponent<
   return (
     <div className="add-customer">
       <Formik
+        enableReinitialize={true}
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
@@ -156,7 +164,7 @@ const EditCustomer: React.FunctionComponent<
                 <div className="wrapper__item">
                   <AccountFields
                     langs={langs}
-                    user={user}
+                    user={userDetail}
                     onSelectedImg={handleSelectedImg}
                   />
                   <InfoFields

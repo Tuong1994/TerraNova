@@ -1,21 +1,22 @@
 import React from "react";
 import * as Card from "../../../components/Card";
 import * as FormControl from "../../../components/Fields";
+import {
+  updateUser,
+  uploadAvatar,
+} from "../../../redux/actionCreators/UserCreators";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field } from "formik";
 import { ILangs } from "../../../interfaces/lang";
 import { EGender, ERole, IUser } from "../../../models/User";
 import { ReducerState } from "../../../redux/store";
 import { EProvince } from "../../../models/Shipment";
+import { IQueryList } from "../../../interfaces/query";
+import { EModalActionTypes } from "../../../redux/actionTypes/ModalActionTypes";
 import Button from "../../../components/Button";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";
-import utils from "../../../utils";
-import { IQueryList } from "../../../interfaces/query";
-import {
-  updateUser,
-  uploadAvatar,
-} from "../../../redux/actionCreators/UserCreators";
 import Upload from "../../../components/Upload";
+import utils from "../../../utils";
 
 interface UserEditFormProps {
   lang: string;
@@ -115,7 +116,7 @@ const UserEditForm: React.FunctionComponent<UserEditFormProps> = (props) => {
         <h5 className="info__title">{langs?.user.overview.accountInfo}</h5>
         <div className="info__content">
           <div className="content__avatar">
-            <Upload defaultImg={user?.avatar} onSubmit={handleUpload} />
+            <Upload defaultImg={user?.avatar} isSave={true} onSubmit={handleUpload} />
           </div>
           <div className="content__list">
             <div className="list__content">
@@ -126,7 +127,14 @@ const UserEditForm: React.FunctionComponent<UserEditFormProps> = (props) => {
               <p>{langs?.user.update.role} : </p>
               <strong>{renderUserRole()}</strong>
             </div>
-            <Button className="button--submit list__button">
+            <Button
+              className="button--submit list__button"
+              onClick={() => {
+                dispatch({
+                  type: EModalActionTypes.OPEN_PASSWORD_MODAL,
+                });
+              }}
+            >
               {langs?.user.update.updatePassword}
             </Button>
           </div>
@@ -167,10 +175,17 @@ const UserEditForm: React.FunctionComponent<UserEditFormProps> = (props) => {
                   />
                   <Field
                     name="phone"
+                    type="number"
                     label={langs?.form.phone}
                     placeholder=" "
                     icon={<i className="fas fa-phone"></i>}
                     component={FormControl.Input}
+                    onKeyPress={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      utils.checkKeyNumberType(
+                        e,
+                        langs?.toastMessages.error.onlyNumber
+                      );
+                    }}
                   />
                   <Field
                     name="birthday"

@@ -30,6 +30,7 @@ const CustomerAdminRow: React.FunctionComponent<CustomerAdminRowProps> = (
       <TableCol>
         <p>{index + 1}</p>
       </TableCol>
+
       <TableCol>
         <div className="image__col">
           <img
@@ -45,23 +46,33 @@ const CustomerAdminRow: React.FunctionComponent<CustomerAdminRowProps> = (
           />
         </div>
       </TableCol>
+
       <TableCol>
         <p>{user?.id || user?.userId}</p>
       </TableCol>
+
       <TableCol>
         <p>{user.account}</p>
       </TableCol>
+
       <TableCol>
         <p>
           {user.firstName} {user.lastName}
         </p>
       </TableCol>
+
       <TableCol>
         <p>{renderRole()}</p>
       </TableCol>
+
       <TableCol>
         <p>{moment(user.createdAt).format("DD/MM/YYYY")}</p>
       </TableCol>
+
+      <TableCol>
+        <p>{moment(user.updatedAt).format("DD/MM/YYYY")}</p>
+      </TableCol>
+      
       <TableCol>
         <Link
           to={`/admin/customer/editCustomer/${user?.id || user?.userId}`}

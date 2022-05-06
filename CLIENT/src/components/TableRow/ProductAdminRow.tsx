@@ -1,7 +1,8 @@
 import React from "react";
-import TableCol from "../Table/TableCol";
 import { Link } from "react-router-dom";
 import { IProduct } from "../../models/Product";
+import TableCol from "../Table/TableCol";
+import moment from "moment";
 
 interface IProductAdminRowProps {
   product: IProduct;
@@ -42,6 +43,14 @@ const ProductAdminRow: React.FunctionComponent<IProductAdminRowProps> = (
 
       <TableCol>
         <p>{product.price?.toLocaleString()} VND</p>
+      </TableCol>
+
+      <TableCol>
+        <p>{moment(product.createdAt).format("DD/MM/YYYY")}</p>
+      </TableCol>
+
+      <TableCol>
+        <p>{moment(product.updatedAt).format("DD/MM/YYYY")}</p>
       </TableCol>
 
       <TableCol>

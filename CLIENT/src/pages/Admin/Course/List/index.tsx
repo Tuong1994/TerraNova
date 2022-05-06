@@ -137,6 +137,8 @@ const CourseList: React.FunctionComponent<{}> = (props) => {
             { title: langs?.tableHeader.courseId || "" },
             { title: langs?.tableHeader.courseName || "" },
             { title: langs?.tableHeader.price || "" },
+            { title: langs?.tableHeader.createdAt || "" },
+            { title: langs?.tableHeader.updatedAt || "" },
             { title: langs?.tableHeader.features || "" },
           ]}
           isNodata={courses?.courseList || 0}

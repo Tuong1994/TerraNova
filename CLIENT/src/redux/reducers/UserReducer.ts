@@ -10,6 +10,7 @@ if (localStorage.getItem(ACCOUNT)) {
 }
 interface IUserStateDefault {
   user: IUser | null;
+  userAdmin: IUser | null;
   userList: {
     total: number;
     page: number;
@@ -21,6 +22,7 @@ interface IUserStateDefault {
 
 const stateDefault: IUserStateDefault = {
   user: userAccount,
+  userAdmin: {},
   userList: {
     total: 0,
     page: 0,
@@ -59,6 +61,12 @@ export const UserReducer = (state = stateDefault, action: UserAction) => {
     case EUserActionTypes.GET_USER_DETAIL: {
       let newState = { ...state };
       newState.user = action.payload;
+      state = newState;
+      return { ...state };
+    }
+    case EUserActionTypes.GET_USER_ADMIN_DETAIL: {
+      let newState = { ...state };
+      newState.userAdmin = action.payload;
       state = newState;
       return { ...state };
     }

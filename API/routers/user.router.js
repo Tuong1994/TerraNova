@@ -7,6 +7,7 @@ const {
   updateUser,
   removeUser,
   getUserWithOrder,
+  changePassword,
 } = require("../controllers/user.controller");
 const {
   authenticate,
@@ -21,6 +22,8 @@ const {
 
 
 userRouter.get("/getUserList", getUserList);
+
+userRouter.get("/getUserWithOrder", getUserWithOrder);
 
 userRouter.get("/getUserDetail", checkUserId, getUserDetail);
 
@@ -42,7 +45,7 @@ userRouter.delete(
   removeUser
 );
 
-userRouter.get("/getUserWithOrder", getUserWithOrder);
+userRouter.post("/changePassword", authenticate, changePassword)
 
 module.exports = {
   userRouter,

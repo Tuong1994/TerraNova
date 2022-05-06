@@ -9,6 +9,7 @@ import UserTemplate from "./templates/UserTemplate";
 import PageLoading from "./components/Loading/PageLoading";
 import "react-toastify/dist/ReactToastify.css";
 import "./sass/main.scss";
+import PasswordModal from "./components/Password";
 
 export const history = createBrowserHistory();
 
@@ -61,6 +62,7 @@ const App: React.FunctionComponent<{}> = (props) => {
           {renderAdminRoutes()}
           <PageLoading />
           <ToastContainer />
+          <PasswordModal />
         </>
       </Switch>
     </Router>

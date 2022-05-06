@@ -347,10 +347,15 @@ const ChLang = {
       user: "用户",
       admin: "管理",
     },
+    // PASSWORD MODAL
+    modal: {
+      title: "更改密码",
+    },
   },
 
   // ==================== ADMIN ====================
   admin: {
+    // PAGE TITLE
     pageTitle: {
       dashBoard: "Dashboard",
       customer: "客户",
@@ -369,6 +374,7 @@ const ChLang = {
       addCourse: "创建课程",
       editCourse: "更新课程",
     },
+    // DASHBOARD
     dashboard: {
       totalRevenue: "总收入",
       totalOrders: "总订单",
@@ -376,12 +382,14 @@ const ChLang = {
       totalTickets: "门票总数",
       percent: "百分",
     },
+    // CUSTOMER
     customer: {
       subTitle_1: "帐户",
       subTitle_2: "信息",
       subTitle_3: "地址",
       subTitle_4: "权力下放",
     },
+    // PRODUCT
     product: {
       subTitle_1: "状态",
       subTitle_2: "信息",
@@ -390,6 +398,7 @@ const ChLang = {
       subTitle_5: "起源",
       descList: "描述列表",
     },
+    // COURSE
     course: {
       subTitle_1: "信息",
       subTitle_2: "描述",
@@ -509,6 +518,7 @@ const ChLang = {
       descs: "你没有设置描述",
       schedule: "你没有设置日程",
       lesson: "你没有设置课程",
+      password: "密码不对",
     },
   },
 
@@ -588,6 +598,8 @@ const ChLang = {
     lessonNameVN: "标题 (VN)",
     lessonNameCH: "标题 (CH)",
     role: "角色",
+    oldPassword: "旧密码",
+    newPassword: "新密码",
   },
 
   // ==================== TABLE HEADER ====================
@@ -617,6 +629,7 @@ const ChLang = {
     branch: "分店",
     category: "类别",
     createdAt: "创建日期",
+    updatedAt: "更新日期"
   },
 
   // ==================== PAGINATION ====================

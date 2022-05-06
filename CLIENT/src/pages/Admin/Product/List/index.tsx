@@ -136,6 +136,8 @@ const ProductList: React.FunctionComponent<{}> = (props) => {
             { title: langs?.tableHeader.productId || "" },
             { title: langs?.tableHeader.productName || "" },
             { title: langs?.tableHeader.price || "" },
+            { title: langs?.tableHeader.createdAt || "" },
+            { title: langs?.tableHeader.updatedAt || "" },
             { title: langs?.tableHeader.features || "" },
           ]}
           isNodata={productList?.productListPerPage}

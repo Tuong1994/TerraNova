@@ -356,10 +356,15 @@ const VnLang = {
       user: "Người dùng",
       admin: "Quản trị",
     },
+    // PASSWORD MODAL
+    modal: {
+      title: "Đổi mật khẩu",
+    }
   },
 
   // ==================== ADMIN ====================
   admin: {
+    // PAGE TITLE
     pageTitle: {
       dashBoard: "Dashboard",
       customer: "Người dùng",
@@ -378,6 +383,7 @@ const VnLang = {
       addCourse: "Tạo khóa học",
       editCourse: "Chỉnh sửa khóa học",
     },
+    // DASHBOARD
     dashboard: {
       totalRevenue: "Tổng doanh thu",
       totalOrders: "Tổng số đơn hàng",
@@ -385,12 +391,14 @@ const VnLang = {
       totalTickets: "Tổng số vé",
       percent: "Phần trăm",
     },
+    // CUSTOMER
     customer: {
       subTitle_1: "Tài khoản",
       subTitle_2: "Thông tin",
       subTitle_3: "Địa chỉ",
       subTitle_4: "Phân quyền",
     },
+    // PRODUCT
     product: {
       subTitle_1: "Tình trạng",
       subTitle_2: "Thông tin",
@@ -399,6 +407,7 @@ const VnLang = {
       subTitle_5: "Xuất xứ",
       descList: "Danh sách mô tả",
     },
+    // COURSE
     course: {
       subTitle_1: "Thông tin",
       subTitle_2: "Mô tả",
@@ -518,6 +527,7 @@ const VnLang = {
       descs: "Bạn chưa setup mô tả",
       schedule: "Bạn chưa setup lịch học",
       lesson: "Bạn chưa setup bài học",
+      password: "Mật khẩu không đúng",
     },
   },
 
@@ -597,6 +607,8 @@ const VnLang = {
     lessonNameVN: "Tiêu đề (VN)",
     lessonNameCH: "Tiêu đề (CH)",
     role: "Vai trò",
+    oldPassword: "Mật khẩu cũ",
+    newPassword: "Mật khẩu mới",
   },
 
   // ==================== TABLE HEADER ====================
@@ -626,6 +638,7 @@ const VnLang = {
     branch: "Chi nhánh",
     category: "Danh mục",
     createdAt: "Ngày tạo",
+    updatedAt: "Ngày cập nhật"
   },
 
   // ==================== PAGINATION ====================

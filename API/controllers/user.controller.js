@@ -242,10 +242,10 @@ const updateUser = async (req, res) => {
   } = req.body;
   try {
     let urlImg = "";
-    if(file) {
-      urlImg = `${domain}/${file.path}`
+    if (file) {
+      urlImg = `${domain}/${file.path}`;
     } else {
-      urlImg = defaultImg
+      urlImg = defaultImg;
     }
     await User.update(
       {
@@ -290,14 +290,36 @@ const removeUser = async (req, res) => {
 };
 
 const changePassword = async (req, res) => {
-
-}
+  const { userId, oldPassword, newPassword } = req.body;
+  try {
+    const user = await User.findOne({
+      where: {
+        id: userId,
+      },
+    });
+    if (user) {
+      const isAuth = bcryptjs.compareSync(oldPassword, user.password);
+      if (isAuth) {
+        const salt = bcryptjs.genSaltSync(10);
+        const hashPassword = bcryptjs.hashSync(newPassword, salt);
+        user.password = hashPassword;
+        await user.save();
+        res.status(200).send("Change password success");
+      } else {
+        res.status(403).send("Password is incorrect");
+      }
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
 
 module.exports = {
   getUserList,
   getUserDetail,
+  getUserWithOrder,
   createUser,
   updateUser,
   removeUser,
-  getUserWithOrder,
+  changePassword,
 };

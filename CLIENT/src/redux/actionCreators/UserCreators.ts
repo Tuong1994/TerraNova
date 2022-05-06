@@ -74,17 +74,24 @@ export const getUserList = (query: IQueryList) => {
   };
 };
 
-export const getUserDetail = (query: IQueryList) => {
+export const getUserDetail = (query: IQueryList, isAdmin?: boolean) => {
   return async (dispatch: Dispatch) => {
     try {
       const result = await axiosClient.get(
         apiPath.userPaths.getUserDetail,
         getListQuery(query as IQueryList)
       );
-      dispatch({
-        type: EUserActionTypes.GET_USER_DETAIL,
-        payload: result.data,
-      });
+      if (isAdmin) {
+        dispatch({
+          type: EUserActionTypes.GET_USER_ADMIN_DETAIL,
+          payload: result.data,
+        });
+      } else {
+        dispatch({
+          type: EUserActionTypes.GET_USER_DETAIL,
+          payload: result.data,
+        });
+      }
     } catch (error) {
       console.log(error);
     }
@@ -176,6 +183,26 @@ export const uploadAvatar = (
       } catch (error) {
         toast.error(err);
         dispatch(actions.closeButtonLoading);
+      }
+    }, 1000);
+  };
+};
+
+export const changePassword = (data: any, success?: string, err?: string) => {
+  return (dispatch: any) => {
+    dispatch(actions.openButtonLoading);
+    setTimeout(async () => {
+      try {
+        await axiosClient.post(apiPath.userPaths.changePassword, data, token);
+        toast.success(success);
+        setTimeout(() => {
+          dispatch(signIn(data));
+        }, 500);
+      } catch (error: any) {
+        if (error.response.status === 403) {
+          toast.error(err);
+        }
+        toast.error(error.response.message);
       }
     }, 1000);
   };

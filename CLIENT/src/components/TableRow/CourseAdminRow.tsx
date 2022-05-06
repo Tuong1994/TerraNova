@@ -3,6 +3,7 @@ import { ELangs } from "../../interfaces/lang";
 import { ICourse } from "../../models/Course";
 import { Link } from "react-router-dom";
 import TableCol from "../Table/TableCol";
+import moment from "moment";
 
 interface CourseAdminRowProps {
   lang: string;
@@ -47,6 +48,7 @@ const CourseAdminRow: React.FunctionComponent<CourseAdminRowProps> = (
   return (
     <tr className="course-admin-row">
       <TableCol>{index + 1}</TableCol>
+
       <TableCol>
         <div className="image__col">
           <img
@@ -62,18 +64,31 @@ const CourseAdminRow: React.FunctionComponent<CourseAdminRowProps> = (
           />
         </div>
       </TableCol>
+
       <TableCol>
         <p>{renderCategoryName()}</p>
       </TableCol>
+
       <TableCol>
         <p>{course.id || course.courseId}</p>
       </TableCol>
+
       <TableCol>
         <p>{renderCourseName()}</p>
       </TableCol>
+
       <TableCol>
         <p>{course.price?.toLocaleString()} VND</p>
       </TableCol>
+
+      <TableCol>
+        <p>{moment(course.createdAt).format("DD/MM/YYYY")}</p>
+      </TableCol>
+
+      <TableCol>
+        <p>{moment(course.updatedAt).format("DD/MM/YYYY")}</p>
+      </TableCol>
+      
       <TableCol>
         <Link
           to={`/admin/course/editCourse/${course.id || course.courseId}`}
