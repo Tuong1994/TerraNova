@@ -13,13 +13,14 @@ import {
 import { ICarts, IProductCarts } from "../../../models/Carts";
 import { ECartsActionTypes } from "../../../redux/actionTypes/CartsActionTypes";
 import { toast } from "react-toastify";
+import { CARTS } from "../../../configs/setting";
 import ProductSlider from "./ProductSilder";
 import ProductInfo from "./ProductInfo";
 import ProductRelated from "./ProductRelated";
 import ProductSpecs from "./ProductSpecs";
-import utils from "../../../utils";
 import actions from "../../../configs/actions";
-import { CARTS } from "../../../configs/setting";
+import utils from "../../../utils";
+import Comment from "../../../components/Comment";
 
 const ProductDetail: React.FunctionComponent<
   RouteComponentProps<IRouteParams>
@@ -212,7 +213,7 @@ const ProductDetail: React.FunctionComponent<
         <h3>{productDetail.name}</h3>
       </div>
       <div className="product-detail__content">
-        <ProductSlider />
+        <ProductSlider product={productDetail} />
         <ProductInfo
           product={productDetail}
           langs={langs}
@@ -225,6 +226,7 @@ const ProductDetail: React.FunctionComponent<
       </div>
       <div className="product-detail__specs">
         <ProductSpecs langs={langs} product={productDetail} />
+        <Comment />
       </div>
     </div>
   );

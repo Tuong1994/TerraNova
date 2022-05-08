@@ -13,7 +13,7 @@ interface TextAreaCustomFieldProps {
   inputClassName?: string;
   fieldClassName?: string;
   iconClassName?: string;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 const TextAreaCustomField: React.FunctionComponent<TextAreaCustomFieldProps> = (

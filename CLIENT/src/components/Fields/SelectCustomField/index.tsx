@@ -3,6 +3,8 @@ import * as customHooks from "../../../hooks";
 import { useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
 import utils from "../../../utils";
+import OptionList from "./OptionList";
+import Button from "../../Button";
 
 interface SelectCustomFieldProps {
   id?: any;
@@ -11,6 +13,7 @@ interface SelectCustomFieldProps {
   value?: any;
   option?: any;
   error?: string;
+  isPaging?: boolean;
   isReset?: boolean;
   placeholder?: string;
   groupClassName?: string;
@@ -31,6 +34,7 @@ const SelectCustomField: React.FunctionComponent<SelectCustomFieldProps> = (
     value,
     option,
     error,
+    isPaging,
     isReset,
     placeholder,
     groupClassName,
@@ -94,7 +98,7 @@ const SelectCustomField: React.FunctionComponent<SelectCustomFieldProps> = (
   return (
     <React.Fragment>
       <div
-        className={`form__group ${groupClassName ? groupClassName : ""}`}
+        className={`form__group form__group--custom ${groupClassName ? groupClassName : ""}`}
         ref={controlRef}
       >
         {/* Input */}
@@ -148,37 +152,20 @@ const SelectCustomField: React.FunctionComponent<SelectCustomFieldProps> = (
         {error && <div className="group__error">{error}</div>}
 
         {/* Options */}
-        <div
-          className={
-            isDropdown ? "group__option group__option--active" : "group__option"
-          }
-        >
-          {option && option?.length > 0 ? (
-            filter(option).map((item: any) => {
-              return (
-                <div
-                  key={item.label}
-                  className={
-                    value?.value === item[id]
-                      ? "option__item option__item--selected"
-                      : "option__item"
-                  }
-                  onClick={() => {
-                    setFreeText("");
-                    onChange && onChange(item[id]);
-                    getValue(item[name]);
-                    setIsDropdown(false);
-                  }}
-                >
-                  {item.icon && <img src={item.icon} alt="" />}
-                  <span>{item[name]}</span>
-                </div>
-              );
-            })
-          ) : (
-            <div className="option__nodata">{langs?.form.noOption}</div>
-          )}
-        </div>
+        <OptionList
+          id={id}
+          name={name}
+          value={value}
+          option={option}
+          isPaging={isPaging}
+          isDropdown={isDropdown}
+          langs={langs}
+          filter={filter}
+          onChange={onChange}
+          getValue={getValue}
+          setIsDropdown={setIsDropdown}
+          setFreeText={setFreeText}
+        />
         {/* Options */}
       </div>
     </React.Fragment>

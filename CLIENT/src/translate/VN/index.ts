@@ -165,7 +165,14 @@ const VnLang = {
 
   // ==================== COURSE ====================
   course: {
-    title: "Khóa học",
+    list: {
+      title: "Khóa học", 
+      lessonDesc: "bài học và dự án",
+      graduate: "Cấp chứng chỉ khóa học",
+      job: "Làm CV và kết nối việc làm",
+      online: "Video luyện tập online",
+    },
+    
     // HOME
     home: {
       banner: {
@@ -427,15 +434,19 @@ const VnLang = {
   time: {
     day: "ngày",
     month: "tháng",
+    week: "tuần",
     year: "năm",
     days: "ngày",
     months: "tháng",
+    weeks: "tuần",
     years: "năm",
     Day: "Ngày",
     Month: "Tháng",
+    Week: "Tuần",
     Year: "Năm",
     Days: "Ngày",
     Months: "Tháng",
+    Weeks: "Tuần",
     Years: "Năm",
   },
 
@@ -479,7 +490,12 @@ const VnLang = {
     returnCoursePage: "Trở lại trang khóa học",
     registerCourse: "Đăng ký khóa học",
     savePrice: "Lưu giá bán",
+    reply: "Trả lời",
+    edit: "Sửa",
+    delete: "Xóa",
     add: "Thêm",
+    post: "Đăng",
+    cancel: "Hủy bỏ",
   },
 
   // ==================== NO DATA ====================
@@ -662,6 +678,12 @@ const VnLang = {
     ENG: "Tiếng Anh",
     CH: "Tiếng Trung",
   },
+
+  // ==================== COMMENT ====================
+  comment: {
+    title: "Bình luận",
+    placeholder: "Để lại bình luận",
+  }
 };
 
 export type LangVN = typeof VnLang;

@@ -196,16 +196,38 @@
     .specs__wrapper {
       width: $w-100;
       .wrapper__title {
+        width: $w-100;
+        height: $h-10 * 3.5;
+        font-weight: $semiBold;
         display: flex;
         align-items: flex-end;
+        position: relative;
+        &::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          background: $secondary;
+          border-top-left-radius: $lightRound;
+          border-top-right-radius: $lightRound;
+          z-index: -1;
+        }
         .title__item {
-          width: $w-100 - 85;
+          width: $w-100 - 50;
+          height: $h-10 * 4;
           padding: $p-10;
-          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: $primary;
           border: 1px solid $borderGrey;
           border-bottom: 0;
           border-top-left-radius: $lightRound;
           border-top-right-radius: $lightRound;
+          position: relative;
+          z-index: 1;
           @include respond(extraTablet) {
             font-size: $body-1;
             width: $w-100 - 60;

@@ -162,7 +162,14 @@ const ChLang = {
 
   // ==================== COURSE ====================
   course: {
-    title: "課程",
+    list: {
+      title: "課程",
+      lessonDesc: "课程和项目",
+      graduate: "课程证书",
+      job: "制作简历并与工作联系起来",
+      online: "在线练习视频",
+    },
+
     // HOME
     home: {
       banner: {
@@ -418,15 +425,19 @@ const ChLang = {
   time: {
     day: "日",
     month: "月",
+    week: "星期",
     year: "年",
     days: "日",
     months: "月",
+    weeks: "星期",
     years: "年",
     Day: "日",
     Month: "月",
+    Week: "星期",
     Year: "年",
     Days: "日",
     Months: "月",
+    Weeks: "星期",
     Years: "年",
   },
 
@@ -470,7 +481,12 @@ const ChLang = {
     returnCoursePage: "返回课程页面",
     registerCourse: "注册课程",
     savePrice: "節省价格",
+    reply: "回复",
+    edit: "编辑",
+    delete: "删除",
     add: "添加",
+    post: "邮政",
+    cancel: "取消",
   },
 
   // ==================== NO DATA ====================
@@ -631,7 +647,7 @@ const ChLang = {
     branch: "分店",
     category: "类别",
     createdAt: "创建日期",
-    updatedAt: "更新日期"
+    updatedAt: "更新日期",
   },
 
   // ==================== PAGINATION ====================
@@ -652,6 +668,12 @@ const ChLang = {
     VN: "越文",
     ENG: "英文",
     CH: "中文",
+  },
+
+  // ==================== COMMENT ====================
+  comment: {
+    title: "评论",
+    placeholder: "发表评论",
   },
 };
 

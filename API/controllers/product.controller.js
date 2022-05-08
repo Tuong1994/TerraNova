@@ -215,7 +215,35 @@ const getProductDetail = async (req, res) => {
         },
       ],
     });
-    res.status(200).send(productDetail);
+    if (productDetail) {
+      const producerDetail = await Producer.findOne({
+        where: {
+          id: productDetail.producerId,
+        },
+      });
+      if (producerDetail) {
+        const product = {
+          id: productDetail.id,
+          name: productDetail.name,
+          image: productDetail.image,
+          cost: productDetail.cost,
+          profit: productDetail.profit,
+          price: productDetail.price,
+          status: productDetail.status,
+          inventoryStatus: productDetail.inventoryStatus,
+          stockAmount: productDetail.stockAmount,
+          categoryId: productDetail.categoryId,
+          producerId: productDetail.producerId,
+          producerName: producerDetail.name,
+          createdAt: productDetail.createdAt,
+          updatedAt: productDetail.updatedAt,
+          description: productDetail.description,
+        };
+        res.status(200).send(product);
+      } else {
+        res.status(200).send(productDetail);
+      }
+    }
   } catch (error) {
     res.status(500).send(error);
   }
@@ -376,12 +404,12 @@ const removeProduct = async (req, res) => {
         id: productId,
       },
     });
-    if(descIds) {
+    if (descIds) {
       await Description.destroy({
         where: {
-          id: descIds
-        }
-      })
+          id: descIds,
+        },
+      });
     }
     res.status(200).send("Remove success");
   } catch (error) {

@@ -189,6 +189,65 @@
   }
 }
 
+.form__group--custom {
+  .group__option {
+    width: $w-100;
+    max-height: 0;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    .option__wrapper {
+      width: $w-100;
+      padding: $p-5 0;
+      border-radius: $lightRound;
+      box-shadow: 0 0 15px $grey;
+      background: $primary;
+      overflow: auto;
+      .wrapper__item {
+        width: $w-100 !important;
+        padding: $p-10;
+        margin: $m-5 0;
+        display: flex;
+        align-items: center;
+        transition: all 0.5s ease;
+        cursor: pointer;
+        &:hover {
+          background: $secondary;
+          color: $tSecondary;
+        }
+        img {
+          width: $w-10 * 3;
+          height: $h-10 * 3;
+          margin-right: $m-10;
+          object-fit: cover;
+        }
+      }
+      .wrapper__item--selected {
+        background: $secondary;
+        color: $tSecondary;
+      }
+      .wrapper__nodata {
+        padding: $p-10;
+        text-align: center;
+      }
+    }
+    .option__pagination {
+      padding: $p-10;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+  .group__option--active {
+    max-height: $h-10 * 20;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
 .search__input {
   width: $w-100;
   margin: $m-10 * 2 0;

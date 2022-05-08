@@ -157,6 +157,26 @@
           }
         }
       }
+      .item__student {
+        .inner__list {
+          .card__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .inner__close {
+              width: $w-10 * 2;
+              height: $h-10 * 2;
+              font-size: $body-2;
+              background: $secondary;
+              color: $tSecondary;
+              text-align: center;
+              line-height: $h-10 * 2;
+              border-radius: $circle;
+              cursor: pointer;
+            }
+          }
+        }
+      }
     }
   }
 }

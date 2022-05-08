@@ -1,0 +1,156 @@
+.comment {
+  width: $w-100;
+  padding: $m-10 * 2 0;
+  .comment__title {
+    font-size: $subtitle;
+    font-weight: $semiBold;
+    margin: $m-10 0;
+  }
+  .comment__control {
+    width: $w-100;
+    padding: $p-10 * 2;
+    margin-bottom: $m-10 * 2;
+    .control__user {
+      padding: $p-10;
+      border-bottom: 1px solid $borderGrey;
+      display: flex;
+      align-items: center;
+      .user__avatar {
+        width: $w-10 * 4;
+        height: $h-10 * 4;
+        padding: $p-5;
+        border-radius: $circle;
+        background: $secondary;
+        overflow: hidden;
+        .avatar__img {
+          border-radius: $circle;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+      .user__name {
+        font-size: $body-1;
+        font-weight: $semiBold;
+        margin: 0 $m-10;
+      }
+    }
+  }
+  .comment__nested {
+    width: $w-100;
+    padding: $p-10 * 2;
+    .nested__item {
+      .item__inner {
+        width: $w-100;
+        padding: $p-10;
+        display: flex;
+        justify-content: space-between;
+        .inner__avatar {
+          width: $w-100 - 95;
+          display: flex;
+          justify-content: center;
+          .avatar__img {
+            width: $w-10 * 6;
+            height: $h-10 * 6;
+            padding: $p-5;
+            border-radius: $circle;
+            background: $secondary;
+            border-radius: $circle;
+            object-fit: cover;
+            object-position: center;
+            @include respond(phone) {
+              width: $w-10 * 3;
+              height: $h-10 * 3;
+            }
+          }
+          @include respond(laptop) {
+            width: $w-100 - 90;
+          }
+        }
+        .inner__content {
+          width: $w-100 - 5;
+          margin: 0 $m-10;
+          .content__name {
+            width: $w-100;
+            font-size: $default;
+            font-weight: $semiBold;
+            display: flex;
+            justify-content: space-between;
+            span {
+              &:nth-child(2) {
+                font-size: $body-1;
+                font-weight: $regular;
+              }
+            }
+            @include respond(phone) {
+              font-size: $body-1;
+            }
+          }
+          .content__area {
+            margin: $m-10 0;
+            padding: $p-10;
+            background: $lightGrey;
+            border-radius: $round;
+            p {
+              font-size: $body-1;
+              @include respond(phone) {
+                font-size: $body-2;
+              }
+            }
+          }
+          .content__features {
+            display: flex;
+            .features__button {
+              margin-right: $m-10;
+              padding: $p-5 $p-10;
+              font-size: $body-2;
+              border-radius: $round;
+              border: 1px solid $borderBlue;
+              cursor: pointer;
+              transition: all 0.5s ease;
+              &:hover {
+                background: $secondary;
+                color: $tSecondary;
+              }
+            }
+          }
+          .content__control {
+            width: $w-100;
+            margin-bottom: $m-10;
+            .control__button {
+              display: flex;
+              .button--submit {
+                margin-right: $m-10;
+              }
+            }
+          }
+          @include respond(tablet) {
+            width: $w-100 - 15;
+          }
+          @include respond(phone) {
+            width: $w-100 - 10;
+          }
+        }
+      }
+      .item__nested {
+        margin-left: $w-100 - 95;
+        @include respond(laptop) {
+          margin-left: $w-100 - 90;
+        }
+      }
+    }
+    .button--submit {
+      font-size: $body-2;
+    }
+    @include respond(phone) {
+      padding: $p-10;
+    }
+  }
+  .button--submit,
+  .button--disabled {
+    font-size: $default;
+    margin: 0;
+  }
+  @include respond(phone) {
+    padding: $p-10;
+  }
+}

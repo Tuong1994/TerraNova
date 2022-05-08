@@ -4,7 +4,6 @@ const {
   CourseOrder,
   CourseSchedule,
   Lesson,
-  sequelize,
 } = require("../models");
 const Sequelize = require("sequelize");
 const { domain } = require("../setting/setting");
@@ -176,27 +175,18 @@ const getCourseByCategory = async (req, res) => {
   const pageNumber = parseInt(page);
   const itemPerPage = parseInt(limits);
   try {
-    const [result] = await sequelize.query(
-      `
-        select 
-        courses.id, 
-        courses.nameENG, 
-        courses.nameVN, 
-        courses.nameCH,
-        courses.descENG, 
-        courses.descVN,
-        courses.descCH, 
-        courses.image, 
-        courses.price,
-        courses.trainingTime,
-        courses.createdAt, 
-        courses.updatedAt
-        from courses
-        inner join coursecategories
-        on coursecategories.id = courses.categoryId
-        where coursecategories.id = "${categoryId}"
-    `
-    );
+    const coursesByCategory = await Course.findAll({
+      where: {
+        categoryId: categoryId,
+      },
+      include: [
+        {
+          model: Lesson,
+          as: "lessons",
+        },
+      ],
+    });
+
     const categoryName = await CourseCategory.findOne({
       where: {
         id: categoryId,
@@ -204,17 +194,17 @@ const getCourseByCategory = async (req, res) => {
       attributes: ["nameVN", "nameENG", "nameCH"],
     });
     if (page) {
-      const total = result.length;
+      const total = coursesByCategory.length;
       const start = (pageNumber - 1) * itemPerPage;
       const end = start + itemPerPage;
-      const courses = result.slice(start, end);
+      const courses = coursesByCategory.slice(start, end);
       res.status(200).send({
         categoryName: categoryName,
         course: {
-          courseList: courses,
           total: total,
           page: pageNumber,
           limits: itemPerPage,
+          courseList: courses,
         },
       });
     }

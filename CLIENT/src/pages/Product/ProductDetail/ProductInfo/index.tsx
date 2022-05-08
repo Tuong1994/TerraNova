@@ -49,13 +49,21 @@ const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
     }
   };
 
+  const renderBadge = () => {
+    if (product?.inventoryStatus === EInventoryStatus.inStock) {
+      return <Badge status={getBadgeStatus()} title={langs?.status.stocking} />;
+    } else if (product?.inventoryStatus === EInventoryStatus.outOfStock) {
+      return (
+        <Badge status={getBadgeStatus()} title={langs?.status.outOfStock} />
+      );
+    }
+  };
+
   return (
     <div className="content__info">
       <h3 className="info__title">{langs?.productDetail.generalInfo}</h3>
 
-      <div className="info__badge">
-        <Badge status={getBadgeStatus()} title={langs?.status.stocking} />
-      </div>
+      <div className="info__badge">{renderBadge()}</div>
 
       <ul className="info__list">
         <li className="list__content">

@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
 import { FieldProps } from "formik";
 import utils from "../../../utils";
+import OptionList from "./OptionList";
 
 interface IOption {
   label?: string;
@@ -100,107 +101,81 @@ const SelectField: React.FunctionComponent<SelectFieldProps> = (props) => {
   };
 
   return (
-    <React.Fragment>
+    <div
+      className={`form__group ${groupClassName ? groupClassName : ""}`}
+      ref={controlRef}
+    >
+      {/* Input */}
       <div
-        className={`form__group ${groupClassName ? groupClassName : ""}`}
-        ref={controlRef}
+        className={
+          touched[name] && errors[name]
+            ? `group__field group__field--invalid ${
+                fieldClassName ? fieldClassName : ""
+              }`
+            : `group__field ${fieldClassName ? fieldClassName : ""}`
+        }
       >
-        {/* Input */}
+        <input
+          {...field}
+          type="text"
+          className={`field__control ${inputClassName ? inputClassName : ""}`}
+          value={renderValue() || ""}
+          placeholder={placeholder || newValue ? " " : ""}
+          onChange={(e) => {
+            setFreeText(e.target.value);
+            onChange && onChange(null);
+          }}
+          onClick={() => {
+            setIsDropdown(!isDropdown);
+          }}
+        />
+        {/* Icon arrow */}
         <div
-          className={
-            touched[name] && errors[name]
-              ? `group__field group__field--invalid ${
-                  fieldClassName ? fieldClassName : ""
-                }`
-              : `group__field ${fieldClassName ? fieldClassName : ""}`
-          }
+          className={`field__icon ${isDropdown ? "field__icon--active" : ""} ${
+            iconClassName ? iconClassName : ""
+          }`}
+          onClick={() => {
+            setIsDropdown(!isDropdown);
+          }}
         >
-          <input
-            {...field}
-            type="text"
-            className={`field__control ${inputClassName ? inputClassName : ""}`}
-            value={renderValue() || ""}
-            placeholder={placeholder || newValue ? " " : ""}
-            onChange={(e) => {
-              setFreeText(e.target.value);
-              onChange && onChange(null);
-            }}
-            onClick={() => {
-              setIsDropdown(!isDropdown);
-            }}
-          />
-          {/* Icon arrow */}
+          <i className="fa fa-angle-down"></i>
+        </div>
+
+        {/* Label */}
+        {label && (
           <div
-            className={`field__icon ${
-              isDropdown ? "field__icon--active" : ""
-            } ${iconClassName ? iconClassName : ""}`}
-            onClick={() => {
-              setIsDropdown(!isDropdown);
-            }}
+            className={`field__label field__label--select ${
+              labelClassName ? labelClassName : ""
+            }`}
           >
-            <i className="fa fa-angle-down"></i>
+            {label}
           </div>
-
-          {/* Label */}
-          {label && (
-            <div
-              className={`field__label field__label--select ${
-                labelClassName ? labelClassName : ""
-              }`}
-            >
-              {label}
-            </div>
-          )}
-        </div>
-        {/* Input */}
-
-        {/* Error message */}
-        {touched[name] && errors[name] ? (
-          <div className="group__error">{errors[name]}</div>
-        ) : null}
-
-        {/* Options */}
-        <div
-          className={
-            isDropdown
-              ? `group__option group__option--active ${
-                  optionClassName ? optionClassName : ""
-                }`
-              : `group__option ${optionClassName ? optionClassName : ""}`
-          }
-        >
-          {option && option?.length > 0 ? (
-            filter(option).map((item: any) => {
-              return (
-                <div
-                  key={item.label}
-                  className={
-                    value?.value === item.value
-                      ? `option__item option__item--selected ${
-                          selectClassName ? selectClassName : ""
-                        }`
-                      : `option__item ${selectClassName ? selectClassName : ""}`
-                  }
-                  onClick={() => {
-                    setFreeText("");
-                    setFieldValue(name, item.value);
-                    onChange && onChange(item.value);
-                    getValue(item.label);
-                    setIsDropdown(false);
-                  }}
-                >
-                  {item.icon && <img src={item.icon} alt="" />}
-                  <span>{item.label}</span>
-                </div>
-              );
-            })
-          ) : (
-            <div className="option__nodata">{langs?.form.noOption}</div>
-          )}
-        </div>
-        {/* Options */}
+        )}
       </div>
-    </React.Fragment>
+      {/* Input */}
+
+      {/* Error message */}
+      {touched[name] && errors[name] ? (
+        <div className="group__error">{errors[name]}</div>
+      ) : null}
+
+      {/* Options */}
+      <OptionList
+        name={name}
+        value={value}
+        option={option}
+        langs={langs}
+        isDropdown={isDropdown}
+        optionClassName={optionClassName}
+        selectClassName={selectClassName}
+        filter={filter}
+        getValue={getValue}
+        onChange={onChange}
+        setFieldValue={setFieldValue}
+        setIsDropdown={setIsDropdown}
+        setFreeText={setFreeText}
+      />
+    </div>
   );
 };
 

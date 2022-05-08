@@ -5,6 +5,7 @@ import Table from "../../../../components/Table";
 import TableCol from "../../../../components/Table/TableCol";
 import { ILangs } from "../../../../interfaces/lang";
 import { ICourse } from "../../../../models/Course";
+import { ISchedule } from "../../../../models/CourseSchedule";
 
 interface RegisterScheduleProps {
   langs: ILangs;
@@ -15,45 +16,6 @@ const RegisterSchedule: React.FunctionComponent<RegisterScheduleProps> = (
   props
 ) => {
   const { langs, course } = props;
-
-  const schedule = [
-    {
-      id: 1,
-      startDate: new Date(),
-      dateType: 1,
-      branch: 1,
-    },
-    {
-      id: 2,
-      startDate: new Date(),
-      dateType: 2,
-      branch: 1,
-    },
-    {
-      id: 3,
-      startDate: new Date(),
-      dateType: 3,
-      branch: 1,
-    },
-    {
-      id: 4,
-      startDate: new Date(),
-      dateType: 1,
-      branch: 2,
-    },
-    {
-      id: 5,
-      startDate: new Date(),
-      dateType: 2,
-      branch: 2,
-    },
-    {
-      id: 6,
-      startDate: new Date(),
-      dateType: 3,
-      branch: 2,
-    },
-  ];
 
   const renderStudyDates = (i: any) => {
     if (i === 1) {
@@ -78,14 +40,14 @@ const RegisterSchedule: React.FunctionComponent<RegisterScheduleProps> = (
               { title: langs?.tableHeader.studyDates || "" },
               { title: langs?.tableHeader.openingDate || "" },
             ]}
-            isNodata={schedule}
+            isNodata={course?.schedules || 0}
             noDataTitle=""
           >
             {(() => {
-              if (schedule && schedule.length > 0) {
-                return schedule
-                  .filter((i) => i.branch === 1)
-                  .map((i) => {
+              if (course?.schedules && course?.schedules?.length > 0) {
+                return course?.schedules
+                  .filter((i: ISchedule) => i.branch === 1)
+                  .map((i: ISchedule) => {
                     return (
                       <tr key={i.id}>
                         <TableCol>{renderStudyDates(i.dateType)}</TableCol>
@@ -107,14 +69,14 @@ const RegisterSchedule: React.FunctionComponent<RegisterScheduleProps> = (
               { title: langs?.tableHeader.studyDates || "" },
               { title: langs?.tableHeader.openingDate || "" },
             ]}
-            isNodata={schedule}
+            isNodata={course?.schedules || 0}
             noDataTitle=""
           >
             {(() => {
-              if (schedule && schedule.length > 0) {
-                return schedule
-                  .filter((i) => i.branch === 2)
-                  .map((i) => {
+              if (course?.schedules && course?.schedules?.length > 0) {
+                return course.schedules
+                  .filter((i: ISchedule) => i.branch === 2)
+                  .map((i: ISchedule) => {
                     return (
                       <tr key={i.id}>
                         <TableCol>{renderStudyDates(i.dateType)}</TableCol>

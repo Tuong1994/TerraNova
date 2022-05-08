@@ -2,15 +2,25 @@ import React from "react";
 import * as Card from "../../../components/Card";
 import { Link } from "react-router-dom";
 import { ICourse } from "../../../models/Course";
-import { ELangs } from "../../../interfaces/lang";
+import { ELangs, ILangs } from "../../../interfaces/lang";
 
 interface CourseCardProps {
   course: ICourse;
   lang: string;
+  langs: ILangs;
 }
 
 const CourseCard: React.FunctionComponent<CourseCardProps> = (props) => {
-  const { course, lang } = props;
+  const { course, lang, langs } = props;
+
+  const [studyWeeks, setStudyWeeks] = React.useState<number>(0);
+
+  React.useEffect(() => {
+    if (course && course.trainingTime) {
+      const weeks = (course.trainingTime * 4) / 1;
+      setStudyWeeks(weeks);
+    }
+  }, [course]);
 
   const renderCourseName = () => {
     if (lang === ELangs.ENG) {
@@ -26,7 +36,7 @@ const CourseCard: React.FunctionComponent<CourseCardProps> = (props) => {
         <p className="content__name">{course.nameVN}</p>
       );
     } else if (lang === ELangs.CH) {
-      return <p className="content__name">{course.nameCH}</p>
+      return <p className="content__name">{course.nameCH}</p>;
     }
   };
 
@@ -38,14 +48,28 @@ const CourseCard: React.FunctionComponent<CourseCardProps> = (props) => {
           src="../img/product_img.jpg"
           alt={course.nameENG}
         />
-        <Card.Body className="card__content">
-          {renderCourseName()}
-
-          {/* <p className="content__price">
-            {course?.price?.toLocaleString()} VND
-          </p> */}
-        </Card.Body>
-        <Card.Footer className="card__features"></Card.Footer>
+        <Card.Body className="card__content">{renderCourseName()}</Card.Body>
+        <Card.Footer className="card__desc">
+          <ul className="desc__list">
+            <li>
+              <div className="list__content">
+                <i className="fa-solid fa-calendar-days"></i>
+                <span>
+                  {course.trainingTime} {langs?.time.months} - {studyWeeks}{" "}
+                  {langs?.time.weeks}
+                </span>
+              </div>
+            </li>
+            <li>
+              <div className="list__content">
+                <i className="fa-solid fa-book-open"></i>
+                <span>
+                  {course?.lessons?.length} {langs?.course.list.lessonDesc}
+                </span>
+              </div>
+            </li>
+          </ul>
+        </Card.Footer>
       </Card.Wrapper>
     </Link>
   );

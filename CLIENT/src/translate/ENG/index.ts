@@ -166,7 +166,15 @@ const EngLang = {
 
   // ==================== COURSE ====================
   course: {
-    title: "Course",
+    // LIST
+    list: {
+      title: "Course",
+      lessonDesc: "lessons and projects",
+      graduate: "Course certificate",
+      job: "Make a CV and connect with jobs",
+      online: "Online practice videos",
+    },
+
     // HOME
     home: {
       banner: {
@@ -220,6 +228,7 @@ const EngLang = {
         title: "COURSE'S CATEGORIES",
       },
     },
+
     // ROUTE
     route: {
       intro: {
@@ -237,6 +246,7 @@ const EngLang = {
         title_2: "Full-time course",
       },
     },
+
     // DETAIL
     detail: {
       intro: {
@@ -433,15 +443,19 @@ const EngLang = {
   time: {
     day: "day",
     month: "month",
+    week: "week",
     year: "year",
     days: "days",
+    weeks: "weeks",
     months: "months",
     years: "years",
     Day: "Day",
     Month: "Month",
+    Week: "Week",
     Year: "Year",
     Days: "Days",
     Months: "Months",
+    Weeks: "Weeks",
     Years: "Years",
   },
 
@@ -485,7 +499,12 @@ const EngLang = {
     returnCoursePage: "Return to course page",
     registerCourse: "Register course",
     savePrice: "Save price",
+    reply: "Reply",
+    edit: "Edit",
+    delete: "Delete",
     add: "Add",
+    post: "Post",
+    cancel: "Cancel",
   },
 
   // ==================== NO DATA ====================
@@ -668,6 +687,12 @@ const EngLang = {
     ENG: "English",
     CH: "Chinese",
   },
+
+  // ==================== COMMENT ====================
+  comment: {
+    title: "Comments",
+    placeholder: "Leave a comment",
+  }
 };
 
 export type LangENG = typeof EngLang;

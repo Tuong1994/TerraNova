@@ -108,27 +108,16 @@
               color: $tRed;
             }
           }
-          .card__features {
+          .card__desc {
             width: $w-100;
-            .features__specs {
-              width: $w-100;
+            .desc__list {
               border-top: 1px solid $borderGrey;
-              display: flex;
-              flex-wrap: wrap;
-              align-items: center;
-              justify-content: space-between;
-              .specs__item {
-                width: $w-100 / 2;
-                display: flex;
-                align-items: center;
+              .list__content {
                 padding: $p-10;
-                .item__icon {
-                  width: $w-10 * 3;
-                  height: $h-10 * 3;
-                  margin-right: $m-10;
-                }
-                .item__content {
-                  font-size: $body-2;
+                display: flex;
+                justify-content: space-between;
+                i {
+                  font-size: $subtitle;
                 }
               }
             }

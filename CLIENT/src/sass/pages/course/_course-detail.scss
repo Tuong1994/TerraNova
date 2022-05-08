@@ -171,8 +171,11 @@
             }
           }
         }
-        @include respond(tablet) {
+        @include respond(extraTablet) {
           grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+        @include respond(tablet) {
+          grid-template-columns: 1fr 1fr 1fr;
         }
         @include respond(phone) {
           grid-template-columns: 1fr 1fr;
@@ -215,6 +218,35 @@
         opacity: 0.6;
         animation-delay: -5;
         animation: slide 20s linear infinite;
+      }
+    }
+  }
+  .course-detail__info {
+    width: $w-100;
+    padding: $p-10 * 5 $p-10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .info__inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: $p-10;
+      background: $secondary;
+      color: $tSecondary;
+      border-radius: $lightRound;
+      .inner__group {
+        margin: 0 $m-10 * 2;
+        .group__content {
+          font-size: $subtitle;
+          padding: $p-10 0;
+          display: flex;
+          justify-content: flex-start;
+          i {
+            margin-right: $m-10;
+          }
+        }
       }
     }
   }

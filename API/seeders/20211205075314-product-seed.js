@@ -876,7 +876,7 @@ module.exports = {
           image: null,
           cost: 0,
           profit: 50,
-          price: 84000000,
+          price: 11500000,
           status: status.new,
           inventoryStatus: inventoryStatus.inStock,
           stockAmount: 1000,

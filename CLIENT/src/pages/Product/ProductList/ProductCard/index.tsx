@@ -12,14 +12,17 @@ const ProductCard: React.FunctionComponent<ProductCardProps> = (props) => {
   const { product } = props;
 
   return (
-    <Link
-      to={`/productDetail/${product.productId}`}
-      className="inner__link"
-    >
+    <Link to={`/productDetail/${product.productId}`} className="inner__link">
       <Card.Wrapper className="link__card">
         <Card.Img
           className="card__image"
-          src="../img/product_img.jpg"
+          src={(() => {
+            if (product?.image !== null && product?.image?.length > 0) {
+              return product?.image[0];
+            } else {
+              return "../img/product_img.jpg";
+            }
+          })()}
           alt={product.name}
         />
         <Card.Body className="card__content">

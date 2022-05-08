@@ -59,7 +59,7 @@ const CourseList: React.FunctionComponent<
       const { course } = coursesByCategory;
       if (course.courseList && course.courseList.length > 0) {
         return course.courseList.map((item) => {
-          return <CourseCard key={item.id} course={item} lang={lang} />;
+          return <CourseCard key={item.id} course={item} lang={lang} langs={langs} />;
         });
       }
     }
@@ -68,7 +68,7 @@ const CourseList: React.FunctionComponent<
   return (
     <div className="course-list">
       <div className="course-list__title">
-        <h3>{langs?.course.title} - {renderTitle()}</h3>
+        <h3>{langs?.course.list.title} - {renderTitle()}</h3>
       </div>
       <div className="course-list__search">
         <FormControl.Search

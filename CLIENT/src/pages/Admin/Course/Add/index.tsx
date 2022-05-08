@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../../redux/store";
 import { toast } from "react-toastify";
 import { createCourse } from "../../../../redux/actionCreators/CourseCreators";
+import { IQueryList } from "../../../../interfaces/query";
+import { getUserList } from "../../../../redux/actionCreators/UserCreators";
 import ContentHeader from "../../../../components/ContentHeader";
 import Button from "../../../../components/Button";
 import InfoFields from "./Info";
@@ -25,7 +27,12 @@ const AddCourse: React.FunctionComponent<AddCourseProps> = (props) => {
   const { buttonLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
   );
+  const { userList } = useSelector((state: ReducerState) => state.UserReducer);
+  const { page } = useSelector(
+    (state: ReducerState) => state.PaginationReducer
+  );
 
+  const [students, setStudents] = React.useState<string[]>([]);
   const [cost, setCost] = React.useState<string>("");
   const [profit, setProfit] = React.useState<number>(0);
   const [price, setPrice] = React.useState<number>(0);
@@ -35,6 +42,14 @@ const AddCourse: React.FunctionComponent<AddCourseProps> = (props) => {
   const [isReset, setIsReset] = React.useState<boolean>(false);
 
   const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    const query: IQueryList = {
+      page: page,
+      limits: 10,
+    };
+    dispatch(getUserList(query));
+  }, []);
 
   const langs = utils.changeLang(lang);
   const options = utils.getOptionByLang(lang);
@@ -200,7 +215,12 @@ const AddCourse: React.FunctionComponent<AddCourseProps> = (props) => {
                     scheduleArr={scheduleArr}
                     setScheduleArr={setScheduleArr}
                   />
-                  <StudentFields langs={langs} />
+                  <StudentFields
+                    langs={langs}
+                    userList={userList.users}
+                    students={students}
+                    setStudents={setStudents}
+                  />
                 </div>
               </div>
             </Form>
