@@ -3,6 +3,7 @@ const rootRouter = express.Router();
 const { authRouter } = require("./auth.router");
 const { cartsRouter } = require("./carts.router");
 const { categoryRouter } = require("./category.router");
+const { commentRouter } = require("./comment.router");
 const { courseOrderRouter } = require("./course-order.router");
 const { courseScheduleRouter } = require("./course-schedule.router");
 const { courseRouter } = require("./course.router");
@@ -25,6 +26,7 @@ rootRouter.use("/uploadManagement", uploadRouter);
 rootRouter.use("/lessonManagement", lessonRouter);
 rootRouter.use("/courseScheduleManagement", courseScheduleRouter);
 rootRouter.use("/descriptionManagement", descriptionRouter);
+rootRouter.use("/commentManagement", commentRouter)
 
 module.exports = {
   rootRouter,

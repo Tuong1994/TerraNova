@@ -1,6 +1,9 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { ILangs } from "../../../interfaces/lang";
+import { EPaginationActionTypes } from "../../../redux/actionTypes/PaginationActionTypes";
 import Button from "../../Button";
+import DataLoading from "../../Loading/DataLoading";
 
 interface OptionListProps {
   id: any;
@@ -10,6 +13,9 @@ interface OptionListProps {
   langs: ILangs;
   isPaging?: boolean;
   isDropdown: boolean;
+  isSelected: number;
+  page: number;
+  totalPage?: number;
   filter: (v: any) => any;
   getValue: (v: any) => void;
   onChange?: (v: any) => void;
@@ -23,9 +29,12 @@ const OptionList: React.FunctionComponent<OptionListProps> = (props) => {
     name,
     value,
     option,
+    page,
+    totalPage,
     langs,
     isPaging,
     isDropdown,
+    isSelected,
     filter,
     getValue,
     onChange,
@@ -33,14 +42,37 @@ const OptionList: React.FunctionComponent<OptionListProps> = (props) => {
     setFreeText,
   } = props;
 
+  const dispatch = useDispatch();
+
+  const handlePrevPage = () => {
+    dispatch({
+      type: EPaginationActionTypes.CHANGE_PAGE,
+      payload: page - 1,
+    });
+  };
+
+  const handleNextPage = () => {
+    dispatch({
+      type: EPaginationActionTypes.CHANGE_PAGE,
+      payload: page + 1,
+    });
+  };
+
   return (
     <div
       className={
         isDropdown ? "group__option group__option--active" : "group__option"
       }
-    //   style={isPaging ? { maxHeight: "400px" } : {}}
     >
       <div className="option__wrapper">
+        {(() => {
+          if (isPaging) {
+            return <DataLoading spinnerClassName="wrapper__loading" />;
+          } else {
+            return null;
+          }
+        })()}
+
         {option && option?.length > 0 ? (
           filter &&
           filter(option)?.map((item: any) => {
@@ -61,6 +93,11 @@ const OptionList: React.FunctionComponent<OptionListProps> = (props) => {
               >
                 {item.icon && <img src={item.icon} alt="" />}
                 <span>{item[name]}</span>
+                {/* {isSelected !== -1 && (
+                  <span>
+                    <i className="fa-solid fa-check"></i>
+                  </span>
+                )} */}
               </div>
             );
           })
@@ -68,12 +105,21 @@ const OptionList: React.FunctionComponent<OptionListProps> = (props) => {
           <div className="wrapper__nodata">{langs?.form.noOption}</div>
         )}
       </div>
+
       {isPaging && (
         <div className="option__pagination">
-          <Button className="button--submit">
+          <Button
+            className={`button--round ${page === 1 ? "button--disabled" : ""}`}
+            onClick={handlePrevPage}
+          >
             <i className="fa-solid fa-angle-left"></i>
           </Button>
-          <Button className="button--submit">
+          <Button
+            className={`button--round ${
+              page === totalPage ? "button--disabled" : ""
+            }`}
+            onClick={handleNextPage}
+          >
             <i className="fa-solid fa-angle-right"></i>
           </Button>
         </div>

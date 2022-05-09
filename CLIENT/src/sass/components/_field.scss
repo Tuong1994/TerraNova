@@ -202,16 +202,18 @@
     transition: all 0.2s ease;
     .option__wrapper {
       width: $w-100;
+      max-height: $h-10 * 18;
       padding: $p-5 0;
       border-radius: $lightRound;
-      box-shadow: 0 0 15px $grey;
       background: $primary;
       overflow: auto;
+      position: relative;
       .wrapper__item {
         width: $w-100 !important;
         padding: $p-10;
         margin: $m-5 0;
         display: flex;
+        justify-content: space-between;
         align-items: center;
         transition: all 0.5s ease;
         cursor: pointer;
@@ -234,17 +236,32 @@
         padding: $p-10;
         text-align: center;
       }
+      .wrapper__loading {
+        width: $w-10 * 4;
+        height: $h-10 * 4;
+        border-width: 3px;
+      }
     }
     .option__pagination {
       padding: $p-10;
+      border-top: 1px solid $borderGrey;
       display: flex;
       justify-content: flex-end;
     }
   }
   .group__option--active {
-    max-height: $h-10 * 20;
+    max-height: $h-10 * 25;
     opacity: 1;
     visibility: visible;
+    .button--round {
+      margin: 0 $m-5;
+    }
+    .button--disabled {
+      font-size: $default;
+      padding: $p-5 $p-10;
+      color: $tPrimary !important;
+      border: 1px solid $borderGrey;
+    }
   }
 }
 

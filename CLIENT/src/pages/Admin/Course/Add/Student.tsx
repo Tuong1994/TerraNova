@@ -7,16 +7,19 @@ import { IUser } from "../../../../models/User";
 interface StudentFieldsProps {
   langs: ILangs;
   userList: IUser[];
+  totalUser: number;
   students: any;
   setStudents: React.Dispatch<React.SetStateAction<any>>;
 }
 
 const StudentFields: React.FunctionComponent<StudentFieldsProps> = (props) => {
-  const { langs, userList, students, setStudents } = props;
+  const { langs, userList, totalUser, students, setStudents } = props;
 
   const [users, setUsers] = React.useState<any>([]);
   const [studentSelected, setStudentSelected] = React.useState<string>();
   const [studentList, setStudentList] = React.useState<any>([]);
+
+  const totalPage = Math.ceil(totalUser / 10);
 
   React.useEffect(() => {
     if (userList) {
@@ -27,12 +30,16 @@ const StudentFields: React.FunctionComponent<StudentFieldsProps> = (props) => {
     }
   }, [userList]);
 
-  React.useEffect(() => {
+  // Set and render selected student list
+  React.useEffect(() => { 
     if (students.length > 0) {
-      let newStudent = users.find((i: any) => i.value === studentSelected);
-      let studentArr = [...studentList];
-      studentArr.push(newStudent);
-      setStudentList(studentArr);
+      let index = studentList.findIndex((i: any) => i.value === studentSelected);
+      if (index === -1) {
+        let newStudent = users.find((i: any) => i.value === studentSelected);
+        let studentArr = [...studentList];
+        studentArr.push(newStudent);
+        setStudentList(studentArr);
+      }
     }
   }, [students]);
 
@@ -43,6 +50,11 @@ const StudentFields: React.FunctionComponent<StudentFieldsProps> = (props) => {
     setStudents(ids);
   };
 
+  const handleRemove = (id: any) => {
+    let temp = [...studentList];
+    setStudentList(temp.filter((i) => i.value !== id));
+  };
+
   return (
     <Card.Wrapper className="item__inner item__student">
       <h3 className="inner__title">{langs?.admin.course.subTitle_8}</h3>
@@ -50,6 +62,7 @@ const StudentFields: React.FunctionComponent<StudentFieldsProps> = (props) => {
         placeholder=" "
         id="value"
         name="label"
+        totalPage={totalPage}
         isPaging={true}
         option={users}
         value={users.find((i: any) => i.value === studentSelected)}
@@ -68,7 +81,12 @@ const StudentFields: React.FunctionComponent<StudentFieldsProps> = (props) => {
                   <div className="inner__content">
                     <p>{i.label}</p>
                   </div>
-                  <div className="inner__close">
+                  <div
+                    className="inner__close"
+                    onClick={() => {
+                      handleRemove(i.value);
+                    }}
+                  >
                     <i className="fa fa-times"></i>
                   </div>
                 </div>

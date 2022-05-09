@@ -16,7 +16,7 @@ module.exports = {
     const hashPassword = bcryptjs.hashSync("123456", salt)
     const users = [
       {
-        id: `U_000000001`,
+        id: `U_0101`,
         account: `jack1994`,
         password: hashPassword,
         firstName: "Jack",

@@ -21,6 +21,8 @@ interface SelectCustomFieldProps {
   inputClassName?: string;
   fieldClassName?: string;
   iconClassName?: string;
+  totalPage?: number;
+  selectedItems?: any;
   onChange?(item: any): void;
 }
 
@@ -42,14 +44,20 @@ const SelectCustomField: React.FunctionComponent<SelectCustomFieldProps> = (
     inputClassName,
     fieldClassName,
     iconClassName,
+    totalPage,
+    selectedItems,
     onChange,
   } = props;
 
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
+  const { page } = useSelector(
+    (state: ReducerState) => state.PaginationReducer
+  );
 
   const [isDropdown, setIsDropdown] = React.useState<boolean>(false);
   const [newValue, setNewValue] = React.useState<any>();
   const [freeText, setFreeText] = React.useState<string>("");
+  const [isSelected, setIsSelected] = React.useState<number>(-1);
   const controlRef = React.useRef(null);
 
   customHooks.useClickOutSide(controlRef, setIsDropdown);
@@ -98,7 +106,9 @@ const SelectCustomField: React.FunctionComponent<SelectCustomFieldProps> = (
   return (
     <React.Fragment>
       <div
-        className={`form__group form__group--custom ${groupClassName ? groupClassName : ""}`}
+        className={`form__group form__group--custom ${
+          groupClassName ? groupClassName : ""
+        }`}
         ref={controlRef}
       >
         {/* Input */}
@@ -159,7 +169,10 @@ const SelectCustomField: React.FunctionComponent<SelectCustomFieldProps> = (
           option={option}
           isPaging={isPaging}
           isDropdown={isDropdown}
+          isSelected={isSelected}
           langs={langs}
+          page={page}
+          totalPage={totalPage}
           filter={filter}
           onChange={onChange}
           getValue={getValue}
