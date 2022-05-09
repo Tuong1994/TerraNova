@@ -22,7 +22,47 @@ const createComment = async (req, res) => {
       productId,
       courseId,
     });
+    res.status(200).send(newComment);
   } catch (error) {
     res.status(500).send(error);
   }
+};
+
+const updateComment = async (req, res) => {
+  const { commentId } = req.query;
+  const { body, userName, userId, parentId, productId, courseId } = req.body;
+  try {
+    await Comment.update(
+      { body, userName, userId, parentId, productId, courseId },
+      {
+        where: {
+          id: commentId,
+        },
+      }
+    );
+    res.status(200).send("Update success");
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const removeComment = async (req, res) => {
+  const { commentId } = req.query;
+  try {
+    await Comment.destroy({
+      where: {
+        id: commentId,
+      },
+    });
+    res.status(200).send("Remove success");
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+module.exports = {
+  getCommentList,
+  createComment,
+  updateComment,
+  removeComment,
 };

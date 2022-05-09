@@ -8,6 +8,7 @@ import { courseOrderPaths } from "./CourseOrder";
 import { courseSchedulePaths } from "./CourseSchedule";
 import { uploadPaths } from "./Upload";
 import { lessonPaths } from "./Lesson";
+import { commentPaths } from "./Comment";
 
 export {
   productPaths,
@@ -20,4 +21,5 @@ export {
   descriptionPaths,
   lessonPaths,
   courseSchedulePaths,
+  commentPaths,
 };

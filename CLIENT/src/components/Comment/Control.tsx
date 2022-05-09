@@ -7,7 +7,7 @@ import Button from "../../components/Button";
 interface CommentControlProps {
   langs: ILangs;
   user: IUser | null;
-  handleAdd: (comment: string, id?: string) => void;
+  handleAdd?: (comment: string, parentId?: string) => void;
 }
 
 const CommentControl: React.FunctionComponent<CommentControlProps> = (
@@ -49,7 +49,7 @@ const CommentControl: React.FunctionComponent<CommentControlProps> = (
           className={`button--submit ${isDisabled ? "button--disabled" : ""}`}
           isDisabled={isDisabled}
           onClick={() => {
-            handleAdd(comment);
+           handleAdd && handleAdd(comment);
             setComment("");
           }}
         >

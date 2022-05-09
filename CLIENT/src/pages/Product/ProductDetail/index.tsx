@@ -18,9 +18,9 @@ import ProductSlider from "./ProductSilder";
 import ProductInfo from "./ProductInfo";
 import ProductRelated from "./ProductRelated";
 import ProductSpecs from "./ProductSpecs";
+import Comment from "../../../components/Comment";
 import actions from "../../../configs/actions";
 import utils from "../../../utils";
-import Comment from "../../../components/Comment";
 
 const ProductDetail: React.FunctionComponent<
   RouteComponentProps<IRouteParams>
@@ -226,7 +226,7 @@ const ProductDetail: React.FunctionComponent<
       </div>
       <div className="product-detail__specs">
         <ProductSpecs langs={langs} product={productDetail} />
-        <Comment />
+        <Comment comments={productDetail.comments || []}  />
       </div>
     </div>
   );

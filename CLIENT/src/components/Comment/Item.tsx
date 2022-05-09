@@ -1,7 +1,7 @@
 import React from "react";
 import * as FormControl from "../../components/Fields";
 import { ILangs } from "../../interfaces/lang";
-import { IComment } from ".";
+import { IComment } from "../../models/Comment";
 import Button from "../../components/Button";
 import moment from "moment";
 
@@ -25,8 +25,6 @@ const CommentItem: React.FunctionComponent<CommentItemProps> = (props) => {
     }
   }, [replies]);
 
-  console.log(replyList)
-
   return (
     <div className="nested__item">
       <div className="item__inner">
@@ -46,6 +44,7 @@ const CommentItem: React.FunctionComponent<CommentItemProps> = (props) => {
             </div>
           ) : null}
 
+          {/* Edit control */}
           {isEdit && (
             <div className="content__control">
               <FormControl.InputCustom
@@ -65,6 +64,7 @@ const CommentItem: React.FunctionComponent<CommentItemProps> = (props) => {
             </div>
           )}
 
+          {/* Comment features */}
           <div className="content__features">
             <div className="features__button" onClick={() => setIsReply(true)}>
               {langs?.button.reply}
@@ -75,6 +75,7 @@ const CommentItem: React.FunctionComponent<CommentItemProps> = (props) => {
             <div className="features__button">{langs?.button.delete}</div>
           </div>
 
+          {/* Reply control */}
           {isReply && (
             <div className="content__control">
               <FormControl.InputCustom
@@ -97,7 +98,7 @@ const CommentItem: React.FunctionComponent<CommentItemProps> = (props) => {
       {replyList.length > 0 && (
         <div className="item__nested">
           {replyList.map((reply) => (
-            <CommentItem key={reply.id} langs={langs} comment={reply}  />
+            <CommentItem key={reply.id} langs={langs} comment={reply} />
           ))}
         </div>
       )}

@@ -31,10 +31,11 @@ const stateDefault: IStateDefault = {
     name: "",
     image: null,
     price: 0,
-    description: [],
     status: 0,
     inventoryStatus: 0,
     stockAmount: 0,
+    description: [],
+    comments: [],
   },
 };
 

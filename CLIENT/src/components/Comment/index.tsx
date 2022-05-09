@@ -4,56 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../redux/store";
 import { IQueryList } from "../../interfaces/query";
 import { getUserDetail } from "../../redux/actionCreators/UserCreators";
+import { IComment } from "../../models/Comment";
 import CommentItem from "./Item";
 import CommentControl from "./Control";
 import utils from "../../utils";
 
-interface CommentProps {}
-
-export interface IComment {
-  id?: any;
-  body?: string;
-  userName?: string;
-  userId?: string;
-  parentId?: any;
-  createdAt: Date | string;
+interface CommentProps {
+  comments: IComment[];
 }
 
 const Comment: React.FunctionComponent<CommentProps> = (props) => {
-  const commentsArr = [
-    {
-      id: 1,
-      body: "First comment",
-      userName: "Jack Ryan",
-      userId: "1",
-      parentId: null,
-      createdAt: new Date(),
-    },
-    {
-      id: 2,
-      body: "Second comment",
-      userName: "John Ryan",
-      userId: "2",
-      parentId: null,
-      createdAt: new Date(),
-    },
-    {
-      id: 3,
-      body: "First comment first child",
-      userName: "Jack Ryan",
-      userId: "1",
-      parentId: 1,
-      createdAt: new Date(),
-    },
-    {
-      id: 4,
-      body: "Second comment first child",
-      userName: "John Ryan",
-      userId: "2",
-      parentId: 2,
-      createdAt: new Date(),
-    },
-  ];
+  const { comments } = props;
 
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
   const { user } = useSelector((state: ReducerState) => state.UserReducer);
@@ -75,33 +36,26 @@ const Comment: React.FunctionComponent<CommentProps> = (props) => {
   }, []);
 
   React.useEffect(() => {
-    setCommentList(commentsArr);
-  }, []);
+    setCommentList(comments);
+  }, [comments]);
 
   React.useEffect(() => {
-    setRootComment(commentList.filter((i) => i.parentId === null))
-  }, [commentList])
+    setRootComment(commentList.filter((i) => i.parentId === null));
+  }, [commentList]);
 
   const getReplies = (id: string) => {
     return commentList
       .filter((i) => i.parentId === id)
       .sort(
         (a: IComment, b: IComment) =>
-          new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+          new Date(a.createdAt || "").getTime() -
+          new Date(b.createdAt || "").getTime()
       );
   };
 
   const handleAdd = (comment: string, parentId?: string) => {
-    const newComment = {
-      id: Math.random().toString(36).substr(2, 9),
-      body: comment,
-      userName: "John Ryan",
-      userId: "2",
-      parentId: parentId || null,
-      createdAt: new Date(),
-    };
-    setCommentList([newComment, ...commentList])
-  };
+
+  }
 
   return (
     <div className="comment">
@@ -111,18 +65,20 @@ const Comment: React.FunctionComponent<CommentProps> = (props) => {
         <CommentControl langs={langs} user={user} handleAdd={handleAdd} />
       </Card.Wrapper>
 
-      <Card.Wrapper className="comment__nested">
-        {rootComment.map((comment: any) => {
-          return (
-            <CommentItem
-              key={comment.id}
-              langs={langs}
-              comment={comment}
-              replies={getReplies}
-            />
-          );
-        })}
-      </Card.Wrapper>
+      {commentList.length > 0 && (
+        <Card.Wrapper className="comment__nested">
+          {rootComment.map((comment: any) => {
+            return (
+              <CommentItem
+                key={comment.id}
+                langs={langs}
+                comment={comment}
+                replies={getReplies}
+              />
+            );
+          })}
+        </Card.Wrapper>
+      )}
     </div>
   );
 };

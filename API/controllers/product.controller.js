@@ -1,4 +1,4 @@
-const { Producer, Product, Description } = require("../models");
+const { Producer, Product, Description, Comment } = require("../models");
 const { domain } = require("../setting/setting");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
@@ -213,8 +213,13 @@ const getProductDetail = async (req, res) => {
           as: "description",
           attributes: ["id", "name", "content"],
         },
+        {
+          model: Comment,
+          as: "comments"
+        },  
       ],
     });
+
     if (productDetail) {
       const producerDetail = await Producer.findOne({
         where: {
@@ -237,7 +242,8 @@ const getProductDetail = async (req, res) => {
           producerName: producerDetail.name,
           createdAt: productDetail.createdAt,
           updatedAt: productDetail.updatedAt,
-          description: productDetail.description,
+          description: productDetail.description || [],
+          comments: producerDetail.comments || [],
         };
         res.status(200).send(product);
       } else {
