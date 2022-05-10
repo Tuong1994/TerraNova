@@ -8,6 +8,8 @@ interface IModalStateDefault {
   isOrder: boolean;
   isRegister: boolean;
   isPassword: boolean;
+  isProductList: boolean;
+  isAddProduct: boolean;
 }
 
 const stateDefault: IModalStateDefault = {
@@ -17,6 +19,8 @@ const stateDefault: IModalStateDefault = {
   isOrder: false,
   isRegister: false,
   isPassword: false,
+  isProductList: false,
+  isAddProduct: false,
 };
 
 export const ModalReducer = (state = stateDefault, action: ModalAction) => {
@@ -57,6 +61,18 @@ export const ModalReducer = (state = stateDefault, action: ModalAction) => {
       state = newState;
       return { ...state };
     }
+    case EModalActionTypes.OPEN_PRODUCT_LIST_MODAL: {
+      let newState = { ...state };
+      newState.isProductList = true;
+      state = newState;
+      return { ...state };
+    }
+    case EModalActionTypes.OPEN_ADD_PRODUCT_MODAL: {
+      let newState = { ...state };
+      newState.isAddProduct = true;
+      state = newState;
+      return { ...state };
+    }
     case EModalActionTypes.CLOSE_CONSULT_MODAL: {
       let newState = { ...state };
       newState.isConsult = false;
@@ -90,6 +106,18 @@ export const ModalReducer = (state = stateDefault, action: ModalAction) => {
     case EModalActionTypes.CLOSE_PASSWORD_MODAL: {
       let newState = { ...state };
       newState.isPassword = false;
+      state = newState;
+      return { ...state };
+    }
+    case EModalActionTypes.CLOSE_PRODUCT_LIST_MODAL: {
+      let newState = { ...state };
+      newState.isProductList = false;
+      state = newState;
+      return { ...state };
+    }
+    case EModalActionTypes.CLOSE_ADD_PRODUCT_MODAL: {
+      let newState = { ...state };
+      newState.isAddProduct = false;
       state = newState;
       return { ...state };
     }

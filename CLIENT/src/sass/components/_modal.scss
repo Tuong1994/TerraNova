@@ -86,6 +86,11 @@
     padding: $p-10;
     font-size: $body-2;
   }
+  @include respond(extraSmallPhone) {
+    height: $h-10 * 30;
+    padding: $p-10;
+    font-size: $body-2;
+  }
 }
 
 .modal__footer {

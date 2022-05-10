@@ -6,6 +6,7 @@ import ContentHeader from "../../../../components/ContentHeader";
 import Button from "../../../../components/Button";
 import InfoFields from "./Info";
 import utils from "../../../../utils";
+import ListModal from "../Modal/ListModal";
 
 interface AddOrderProps {}
 
@@ -49,6 +50,8 @@ const AddOrder: React.FunctionComponent<AddOrderProps> = (props) => {
           );
         }}
       </Formik>
+      
+      <ListModal />
     </div>
   );
 };

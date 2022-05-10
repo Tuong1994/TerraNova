@@ -432,6 +432,10 @@ const VnLang = {
      order: {
       subTitle_1: "Thông tin",
       or: "Hoặc",
+      modal: {
+        title_1: "Chọn sản phẩm",
+        title_2: "Tạo sản phẩm mới",
+      },
     },
   },
 

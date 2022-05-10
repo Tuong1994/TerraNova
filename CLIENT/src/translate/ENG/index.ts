@@ -441,6 +441,10 @@ const EngLang = {
     order: {
       subTitle_1: "Infomation",
       or: "Or",
+      modal: {
+        title_1: "Choose products",
+        title_2: "Create new product",
+      },
     },
   },
 
@@ -512,7 +516,7 @@ const EngLang = {
     add: "Add",
     post: "Post",
     cancel: "Cancel",
-    chooseProduct: "Choose a product",
+    chooseProduct: "Choose products",
   },
 
   // ==================== NO DATA ====================

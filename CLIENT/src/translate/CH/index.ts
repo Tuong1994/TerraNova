@@ -423,6 +423,10 @@ const ChLang = {
      order: {
       subTitle_1: "信息",
       or: "或者",
+      modal: {
+        title_1: "选择产品",
+        title_2: "创建产品",
+      },
     },
   },
 

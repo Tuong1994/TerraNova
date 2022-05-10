@@ -32,9 +32,90 @@
           align-items: center;
           justify-content: center;
           span {
-              margin: 0 $m-10 * 2;
+            margin: 0 $m-10 * 2;
           }
         }
+      }
+    }
+  }
+}
+
+.list-modal {
+  .list-modal__body {
+    padding: 0;
+    position: relative;
+    .body__search {
+      background: $secondary;
+      padding: $p-5 $p-10;
+      position: sticky;
+      top: 0;
+      z-index: 9;
+      .search__group {
+        .group__control {
+          border-color: $borderWhite;
+          .control__input {
+            padding: $p-5 $p-10 * 2;
+            background-color: transparent;
+            color: $tSecondary;
+            &::placeholder {
+              color: $grey;
+            }
+          }
+          .control__icon {
+            padding: $p-5 $p-10;
+            border-left: 1px solid $borderWhite;
+          }
+        }
+      }
+    }
+    .body__list {
+      padding: $p-10 $p-10 * 2;
+      .list__item {
+        display: block;
+        margin: $m-10 0;
+        padding: $p-10 * 2 $p-10;
+        background: $primary;
+        color: $tPrimary;
+        border-radius: $lightRound;
+        cursor: pointer;
+        .item__group {
+          display: flex;
+          align-items: center;
+          .group__control {
+            width: $w-10 * 2;
+            height: $h-10 * 2;
+            margin-right: $m-10;
+          }
+          .group__label {
+            width: $w-100 - 10;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            p {
+              margin: 0 $m-10;
+              &:nth-child(1) {
+                font-weight: $semiBold;
+              }
+            }
+          }
+        }
+      }
+    }
+    .body__loading {
+      background: $RGBA-blue-1 !important;
+    }
+  }
+  .list-modal__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .footer__pagination {
+      display: flex;
+      align-items: center;
+      .button--round-disabled {
+        opacity: 0.6;
+        user-select: none;
+        pointer-events: none;
       }
     }
   }
