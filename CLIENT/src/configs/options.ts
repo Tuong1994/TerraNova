@@ -6,7 +6,7 @@ import {
   EProductType,
   EProfit,
 } from "./../models/Product/index";
-import { EPaymentTypes, EShipmentType } from "../models/Order";
+import { EPaymentTypes, EShipmentType, EStatus } from "../models/Order";
 import { EWard, EDistrict, EProvince } from "./../models/Shipment";
 import { ESortBy } from "../interfaces/query";
 import { EGender, ERole } from "../models/User";
@@ -235,6 +235,12 @@ export const optionsEng = {
     { label: "BACKEND", value: ECourseCategory.backEnd },
     { label: "FULLSTACK", value: ECourseCategory.fullStack },
     { label: "DESIGN", value: ECourseCategory.design },
+  ],
+  orderFilter: [
+    { label: "ALL", value: "all" },
+    { label: "PAID", value: EStatus.paid },
+    { label: "WAITING", value: EStatus.waiting },
+    { label: "DELIVERING", value: EStatus.delivering },
   ],
 };
 
@@ -466,6 +472,12 @@ export const optionsVn = {
     { label: "FULLSTACK", value: ECourseCategory.fullStack },
     { label: "DESIGN", value: ECourseCategory.design },
   ],
+  orderFilter: [
+    { label: "Tất cả", value: "all" },
+    { label: "PAID", value: EStatus.paid },
+    { label: "WAITING", value: EStatus.waiting },
+    { label: "DELIVERING", value: EStatus.delivering },
+  ],
 };
 
 export const optionsCh = {
@@ -692,6 +704,12 @@ export const optionsCh = {
     { label: "BACKEND", value: ECourseCategory.backEnd },
     { label: "FULLSTACK", value: ECourseCategory.fullStack },
     { label: "DESIGN", value: ECourseCategory.design },
+  ],
+  orderFilter: [
+    { label: "全部", value: "all" },
+    { label: "PAID", value: EStatus.paid },
+    { label: "WAITING", value: EStatus.waiting },
+    { label: "DELIVERING", value: EStatus.delivering },
   ],
 };
 

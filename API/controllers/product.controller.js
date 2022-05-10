@@ -243,7 +243,7 @@ const getProductDetail = async (req, res) => {
           createdAt: productDetail.createdAt,
           updatedAt: productDetail.updatedAt,
           description: productDetail.description || [],
-          comments: producerDetail.comments || [],
+          comments: productDetail.comments || [],
         };
         res.status(200).send(product);
       } else {

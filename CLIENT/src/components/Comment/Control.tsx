@@ -3,20 +3,23 @@ import * as FormControl from "../../components/Fields";
 import { ILangs } from "../../interfaces/lang";
 import { IUser } from "../../models/User";
 import Button from "../../components/Button";
+import ButtonLoading from "../Loading/ButtonLoading";
 
 interface CommentControlProps {
   langs: ILangs;
   user: IUser | null;
+  dataLoading: boolean;
   handleAdd?: (comment: string, parentId?: string) => void;
 }
 
 const CommentControl: React.FunctionComponent<CommentControlProps> = (
   props
 ) => {
-  const { langs, user, handleAdd } = props;
+  const { langs, user, dataLoading, handleAdd } = props;
 
-  const [comment, setComment] = React.useState<string>("");
-  const isDisabled = comment.length === 0;
+  const [text, setText] = React.useState<string>("");
+
+  const isDisabled = text.length === 0;
 
   return (
     <React.Fragment>
@@ -29,31 +32,38 @@ const CommentControl: React.FunctionComponent<CommentControlProps> = (
           />
         </div>
         <div className="user__name">
-          <p>
-            {user?.firstName} {user?.lastName}
-          </p>
+          {user ? (
+            <p>
+              {user?.firstName} {user?.lastName}
+            </p>
+          ) : (
+            <p>User</p>
+          )}
         </div>
       </div>
 
       <div className="control__field">
         <FormControl.TextAreaCustom
           placeholder={langs?.comment.placeholder}
-          value={comment}
+          value={text}
           onChange={(e) => {
             const value = e.target.value;
-            setComment(value);
+            setText(value);
           }}
         />
         <Button
           type="button"
-          className={`button--submit ${isDisabled ? "button--disabled" : ""}`}
+          className={`button--submit ${
+            isDisabled || dataLoading ? "button--disabled" : ""
+          }`}
           isDisabled={isDisabled}
           onClick={() => {
-           handleAdd && handleAdd(comment);
-            setComment("");
+            handleAdd && handleAdd(text);
+            setText("");
           }}
         >
-          {langs?.button.post}
+          <ButtonLoading />
+          <span>{langs?.button.post}</span>
         </Button>
       </div>
     </React.Fragment>

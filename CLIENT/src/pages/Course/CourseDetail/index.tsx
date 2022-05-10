@@ -13,8 +13,8 @@ import DetailQuestion from "./DetailQuestion";
 import DetailInfo from "./DetailInfo";
 import DetailLesson from "./DetailLesson";
 import DetailRegister from "./DetailRegister";
-import utils from "../../../utils";
 import RegisterModal from "./RegisterModal";
+import utils from "../../../utils";
 
 interface CourseDetailProps extends IRouteParams {}
 

@@ -15,6 +15,12 @@ const Badge: React.FunctionComponent<BadgeProps> = (props) => {
         case EBadgeStatus.success: {
           return "badge--success";
         }
+        case EBadgeStatus.warning: {
+          return "badge--warning"
+        }
+        case EBadgeStatus.info: {
+          return "badge--info"
+        }
         case EBadgeStatus.error: {
           return "badge--error";
         }

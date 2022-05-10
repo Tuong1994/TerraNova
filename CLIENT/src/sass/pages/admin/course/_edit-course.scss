@@ -49,6 +49,7 @@
             margin: $m-10 0;
             padding: $p-10;
             position: relative;
+            border-style: dashed;
             .card__inner {
               font-size: $body-2;
               font-weight: $semiBold;
@@ -127,17 +128,27 @@
             margin: $m-10 0;
             padding: $p-10;
             position: relative;
+            border-style: dashed;
             .card__inner {
               font-size: $body-1;
               font-weight: $semiBold;
               .inner__list {
                 .list__content {
                   display: flex;
-                  justify-content: space-between;
+                  justify-content: space-around;
                   p {
                     margin: $m-5 $m-10;
+                    &:nth-child(1) {
+                      width: $w-100 / 3;
+                    }
+                    &:nth-child(2) {
+                      width: $w-100 / 2.3;
+                    }
                   }
                 }
+              }
+              @include respond(phone) {
+                font-size: $body-2 !important;
               }
             }
             .card__close {
@@ -153,6 +164,16 @@
               top: 10px;
               right: 10px;
               cursor: pointer;
+              @include respond(phone) {
+                width: $w-10 * 1.5;
+                height: $h-10 * 1.5;
+                line-height: $h-10 * 1.5;
+                top: 5px;
+                right: 5px;
+              }
+            }
+            @include respond(phone) {
+              padding: $p-5;
             }
           }
         }

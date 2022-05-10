@@ -419,6 +419,11 @@ const ChLang = {
       lessonList: "课程列表",
       studentList: "学生列表",
     },
+     // ORDER
+     order: {
+      subTitle_1: "信息",
+      or: "或者",
+    },
   },
 
   // ==================== TIME ====================
@@ -444,9 +449,11 @@ const ChLang = {
   // ==================== STATUS ====================
   status: {
     new: "100% 全新",
-    paid: "已经付款",
     stocking: "有货",
     outOfStock: "缺货",
+    paid: "已经付款",
+    waiting: "等待",
+    delivering: "交付",
   },
 
   // ==================== PAYMENT TYPE ====================
@@ -487,6 +494,7 @@ const ChLang = {
     add: "添加",
     post: "邮政",
     cancel: "取消",
+    chooseProduct: "选择产品",
   },
 
   // ==================== NO DATA ====================

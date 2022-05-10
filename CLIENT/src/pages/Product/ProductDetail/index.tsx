@@ -86,14 +86,16 @@ const ProductDetail: React.FunctionComponent<
           (i) => i.productId === productDetail.productId
         ); // Find products in carts if exist
 
-        if (index !== -1) { // If products not exist => add new products into carts
+        if (index !== -1) {
+          // If products not exist => add new products into carts
           const newProducts: IProductCarts = {
             productId: products[index].productId,
             productName: products[index].productName,
             price: products[index].price,
             amount: (products[index].amount || 0) + amount,
           };
-          if (utils.checkObjectEmpty(user)) { // Check if user exist => call API create carts / if not => save temporary carts
+          if (utils.checkObjectEmpty(user)) {
+            // Check if user exist => call API create carts / if not => save temporary carts
             const newStock: ICarts = {
               cartsId: carts[0].cartsId,
               products: [{ ...newProducts }],
@@ -101,7 +103,7 @@ const ProductDetail: React.FunctionComponent<
             };
             const userQuery: IQueryList = {
               userId: user?.id,
-            }
+            };
 
             dispatch(
               updateCarts(
@@ -109,7 +111,7 @@ const ProductDetail: React.FunctionComponent<
                 query,
                 langs?.toastMessages.success.updateCart,
                 langs?.toastMessages.error.updateCart,
-                userQuery,
+                userQuery
               )
             );
           } else {
@@ -127,10 +129,11 @@ const ProductDetail: React.FunctionComponent<
               dispatch(actions.closeButtonLoading);
             }, 1000);
           }
-          
-        } else { // If products exist => update product's amount
+        } else {
+          // If products exist => update product's amount
           products.push(stock);
-          if (utils.checkObjectEmpty(user)) {  // Check if user exist => call API create carts / if not => save temporary carts
+          if (utils.checkObjectEmpty(user)) {
+            // Check if user exist => call API create carts / if not => save temporary carts
             const newStock: ICarts = {
               cartsId: carts[0].cartsId,
               products: products,
@@ -138,7 +141,7 @@ const ProductDetail: React.FunctionComponent<
             };
             const userQuery: IQueryList = {
               userId: user?.id,
-            }
+            };
 
             dispatch(
               updateCarts(
@@ -146,7 +149,7 @@ const ProductDetail: React.FunctionComponent<
                 query,
                 langs?.toastMessages.success.addToCart,
                 langs?.toastMessages.error.addToCart,
-                userQuery,
+                userQuery
               )
             );
           } else {
@@ -167,25 +170,26 @@ const ProductDetail: React.FunctionComponent<
         }
 
         // Carts has no products
-      } 
+      }
       // Carts has no products => Create new carts
       else if (carts && carts.length === 0) {
         carts.push({ products: [] });
         carts[0]?.products?.push(stock);
-        if (utils.checkObjectEmpty(user)) {  // Check if user exist => call API create carts / if not => save temporary carts
+        if (utils.checkObjectEmpty(user)) {
+          // Check if user exist => call API create carts / if not => save temporary carts
           let newStock: ICarts = {
             products: carts[0].products,
             userId: user?.id,
           };
           const query: IQueryList = {
             userId: user?.id,
-          }
+          };
           dispatch(
             createCarts(
               newStock,
               langs?.toastMessages.success.addToCart,
               langs?.toastMessages.error.addToCart,
-              query,
+              query
             )
           );
         } else {
@@ -226,7 +230,10 @@ const ProductDetail: React.FunctionComponent<
       </div>
       <div className="product-detail__specs">
         <ProductSpecs langs={langs} product={productDetail} />
-        <Comment comments={productDetail.comments || []}  />
+        <Comment
+          comments={productDetail.comments || []}
+          productId={productDetail?.id || productDetail?.productId}
+        />
       </div>
     </div>
   );

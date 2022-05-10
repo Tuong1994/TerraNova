@@ -428,6 +428,11 @@ const VnLang = {
       lessonList: "Danh sách bài học",
       studentList: "Danh sách học viên",
     },
+     // ORDER
+     order: {
+      subTitle_1: "Thông tin",
+      or: "Hoặc",
+    },
   },
 
   // ==================== TIME ====================
@@ -453,9 +458,11 @@ const VnLang = {
   // ==================== STATUS ====================
   status: {
     new: "Mới 100%",
-    paid: "Đã thanh toán",
     stocking: "Còn hàng",
     outOfStock: "Hết hàng",
+    paid: "Đã thanh toán",
+    waiting: "Đang chờ",
+    delivering: "Đang giao",
   },
 
   // ==================== PAYMENT TYPE ====================
@@ -496,6 +503,7 @@ const VnLang = {
     add: "Thêm",
     post: "Đăng",
     cancel: "Hủy bỏ",
+    chooseProduct: "Chọn sản phẩm",
   },
 
   // ==================== NO DATA ====================

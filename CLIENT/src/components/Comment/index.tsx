@@ -8,19 +8,32 @@ import { IComment } from "../../models/Comment";
 import CommentItem from "./Item";
 import CommentControl from "./Control";
 import utils from "../../utils";
+import {
+  createComment,
+  removeComment,
+  updateComment,
+} from "../../redux/actionCreators/CommentCreators";
+import { ACCOUNT } from "../../configs/setting";
+import { history } from "../../App";
 
 interface CommentProps {
   comments: IComment[];
+  productId?: string;
+  courseId?: string;
 }
 
 const Comment: React.FunctionComponent<CommentProps> = (props) => {
-  const { comments } = props;
+  const { comments, productId, courseId } = props;
 
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
   const { user } = useSelector((state: ReducerState) => state.UserReducer);
+  const { dataLoading } = useSelector(
+    (state: ReducerState) => state.LoadingReducer
+  );
 
   const [commentList, setCommentList] = React.useState<IComment[]>([]);
   const [rootComment, setRootComment] = React.useState<IComment[]>([]);
+  const [activeComment, setActiveComment] = React.useState<any>(null);
 
   const dispatch = useDispatch();
 
@@ -39,11 +52,13 @@ const Comment: React.FunctionComponent<CommentProps> = (props) => {
     setCommentList(comments);
   }, [comments]);
 
+  // Get root commnet list
   React.useEffect(() => {
-    setRootComment(commentList.filter((i) => i.parentId === null));
+    setRootComment(commentList.filter((i) => i.parentId === ""));
   }, [commentList]);
 
-  const getReplies = (id: string) => {
+  // Get replies comment list
+  const getReplies = (id?: string) => {
     return commentList
       .filter((i) => i.parentId === id)
       .sort(
@@ -53,16 +68,60 @@ const Comment: React.FunctionComponent<CommentProps> = (props) => {
       );
   };
 
+  // Add Comment
   const handleAdd = (comment: string, parentId?: string) => {
+    const userName = (user?.firstName || "") + " " + (user?.lastName || "");
+    const query: IQueryList = {
+      productId: productId,
+    };
+    const newComment = {
+      body: comment,
+      userName: userName,
+      userId: user?.id || user?.userId,
+      parentId: parentId || "",
+      productId: productId || "",
+      courseId: courseId || "",
+    };
+    if(!localStorage.getItem(ACCOUNT)) {
+      history.push("/signIn");
+      return
+    }
+    dispatch(createComment(newComment, query, setActiveComment));
+  };
 
-  }
+  // Update Comment
+  const handleUpdate = (editComment?: string, comment?: IComment) => {
+    const query: IQueryList = {
+      commentId: comment?.id,
+      productId: productId,
+    };
+    const commentUpdate = {
+      ...comment,
+      body: editComment,
+    };
+    dispatch(updateComment(query, commentUpdate, setActiveComment));
+  };
+
+  // Remove comment
+  const handleRemove = (commentId: string) => {
+    const query: IQueryList = {
+      productId: productId,
+      commentId: commentId,
+    };
+    dispatch(removeComment(query));
+  };
 
   return (
     <div className="comment">
       <h3 className="comment__title">{langs?.comment.title}</h3>
 
       <Card.Wrapper className="comment__control">
-        <CommentControl langs={langs} user={user} handleAdd={handleAdd} />
+        <CommentControl
+          langs={langs}
+          user={user}
+          dataLoading={dataLoading}
+          handleAdd={handleAdd}
+        />
       </Card.Wrapper>
 
       {commentList.length > 0 && (
@@ -73,7 +132,14 @@ const Comment: React.FunctionComponent<CommentProps> = (props) => {
                 key={comment.id}
                 langs={langs}
                 comment={comment}
+                user={user}
+                dataLoading={dataLoading}
+                activeComment={activeComment}
+                setActiveComment={setActiveComment}
                 replies={getReplies}
+                onAdd={handleAdd}
+                onUpdate={handleUpdate}
+                onRemove={handleRemove}
               />
             );
           })}

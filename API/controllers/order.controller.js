@@ -1,25 +1,70 @@
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 const { Order } = require("../models");
 
 const getOrderList = async (req, res) => {
+  const { page, limits, filter, freeText, sortBy } = req.query;
+  const pageNumber = parseInt(page);
+  const itemPerPage = parseInt(limits);
   try {
-    const orderList = await Order.findAll({
-      attributes: [
-        ["id", "orderId"],
-        "note",
-        "totalPay",
-        "paymentType",
-        "shipmentType",
-        "shipmentFee",
-        "shipmentDetail",
-        "status",
-        "products",
-        "userId",
-        "createdAt",
-        "updatedAt",
-      ],
-      order: [["updatedAt", "DESC"]],
-    });
-    res.status(200).send(orderList);
+    let orderList = [];
+
+    let getSort = () => {
+      if (sortBy) {
+        if (parseInt(sortBy) === 1) {
+          return "DESC";
+        } else {
+          return "ASC";
+        }
+      }
+    };
+
+    if (filter && filter !== "all") {
+      if (freeText) {
+        orderList = await Order.findAll({
+          order: [["updatedAt", getSort() || "DESC"]],
+          where: {
+            status: filter,
+            id: {
+              [Op.like]: `%${freeText}%`,
+            },
+          },
+        });
+      } else {
+        orderList = await Order.findAll({
+          order: [["updatedAt", getSort() || "DESC"]],
+          where: {
+            status: filter,
+          },
+        });
+      }
+    } else if (freeText) {
+      orderList = await Order.findAll({
+        order: [["updatedAt", getSort() || "DESC"]],
+        where: {
+          id: {
+            [Op.like]: `%${freeText}%`,
+          },
+        },
+      });
+    } else {
+      orderList = await Order.findAll({
+        order: [["updatedAt", getSort() || "DESC"]],
+      });
+    }
+
+    if (page) {
+      const total = orderList.length;
+      const start = (pageNumber - 1) * itemPerPage;
+      const end = start + itemPerPage;
+      const orders = orderList.slice(start, end);
+      res.status(200).send({
+        total: total,
+        page: pageNumber,
+        limits: itemPerPage,
+        orders: orders,
+      });
+    }
   } catch (error) {
     res.status(500).send(error);
   }

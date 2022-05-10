@@ -1,5 +1,6 @@
 export enum EOrderActionTypes {
     GET_ORDER_LIST = "GET_ORDER_LIST",
+    GET_ORDER_DETAIL = "GET_ORDER_DETAIL",
     UPDATE_ORDER = "UPDATE_ORDER",
     ADD_ORDERER = "ADD_ORDERER",
 }

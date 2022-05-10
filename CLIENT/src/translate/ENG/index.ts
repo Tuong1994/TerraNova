@@ -437,6 +437,11 @@ const EngLang = {
       lessonList: "Lesson list",
       studentList: "Student list",
     },
+    // ORDER
+    order: {
+      subTitle_1: "Infomation",
+      or: "Or",
+    },
   },
 
   // ==================== TIME ====================
@@ -462,9 +467,11 @@ const EngLang = {
   // ==================== STATUS ====================
   status: {
     new: "New",
-    paid: "Paid",
     stocking: "In stock",
     outOfStock: "Out of stock",
+    paid: "Paid",
+    waiting: "Waiting",
+    delivering: "Delivering",
   },
 
   // ==================== PAYMENT TYPE ====================
@@ -505,6 +512,7 @@ const EngLang = {
     add: "Add",
     post: "Post",
     cancel: "Cancel",
+    chooseProduct: "Choose a product",
   },
 
   // ==================== NO DATA ====================

@@ -54,6 +54,15 @@ const removeComment = async (req, res) => {
         id: commentId,
       },
     });
+    const childComment = await Comment.findOne({
+      where: {
+        parentId: commentId,
+      },
+    });
+    if (childComment) {
+      childComment.parentId = "";
+      await childComment.save();
+    }
     res.status(200).send("Remove success");
   } catch (error) {
     res.status(500).send(error);

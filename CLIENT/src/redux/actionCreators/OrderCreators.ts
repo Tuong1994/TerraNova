@@ -10,27 +10,57 @@ import { EModalActionTypes } from "../actionTypes/ModalActionTypes";
 import { Dispatch } from "redux";
 import { toast } from "react-toastify";
 
-export const getOrderList = () => {
-  return async (dispatch: Dispatch) => {
-    try {
-      const result = await axiosClient.get(apiPath.orderPaths.getOrderList);
-      dispatch({
-        type: EOrderActionTypes.GET_ORDER_LIST,
-        payload: result.data,
-      });
-    } catch (error: any) {
-      toast.error(error.response.data);
-    }
+export const getOrderList = (query: IQueryList) => {
+  return (dispatch: Dispatch) => {
+    dispatch(actions.openDataLoading);
+    setTimeout(async () => {
+      try {
+        const result = await axiosClient.get(
+          apiPath.orderPaths.getOrderList,
+          getListQuery(query as IQueryList)
+        );
+        dispatch({
+          type: EOrderActionTypes.GET_ORDER_LIST,
+          payload: result.data,
+        });
+        dispatch(actions.closeDataLoading);
+      } catch (error: any) {
+        toast.error(error.response.data);
+        dispatch(actions.closeDataLoading);
+      }
+    }, 1000);
   };
 };
 
-export const createOrder = (data: IOrder, success?: string, err?: string) => {
+export const getOrderDetail = (query: IQueryList) => {
+  return async (dispatch: Dispatch) => {
+    try {
+      const result = await axiosClient.get(
+        apiPath.orderPaths.getOrderDetail,
+        getListQuery(query as IQueryList),
+      )
+      dispatch({
+        type: EOrderActionTypes.GET_ORDER_DETAIL,
+        payload: result.data
+      })
+    } catch (error) { 
+      console.log(error)
+    }
+  }
+}
+
+export const createOrder = (
+  data: IOrder,
+  query: IQueryList,
+  success?: string,
+  err?: string
+) => {
   return (dispatch: Dispatch | any) => {
     dispatch(actions.openButtonLoading);
     setTimeout(async () => {
       try {
         await axiosClient.post(apiPath.orderPaths.createOrder, data);
-        dispatch(getOrderList());
+        dispatch(getOrderList(query));
         dispatch(actions.closeButtonLoading);
         dispatch({
           type: EModalActionTypes.OPEN_PAYMENT_MODAL,
@@ -57,7 +87,7 @@ export const removeOrder = (
         getListQuery(query as IQueryList),
         token
       );
-      dispatch(getOrderList());
+      dispatch(getOrderList(query));
       dispatch(getUserDetail(query));
       toast.success(success);
     } catch (error) {

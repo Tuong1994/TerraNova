@@ -32,6 +32,11 @@ export const adminRoutes: IRoute[] = [
     component: Order.List,
   },
   {
+    path: "/admin/order/addOrder",
+    exact: true,
+    component: Order.Add,
+  },
+  {
     path: "/admin/customer",
     exact: true,
     component: Customer.List,

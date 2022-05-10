@@ -105,12 +105,25 @@
               font-size: $body-2;
               border-radius: $round;
               border: 1px solid $borderBlue;
+              display: flex;
+              justify-content: center;
+              align-items: center;
               cursor: pointer;
               transition: all 0.5s ease;
               &:hover {
                 background: $secondary;
                 color: $tSecondary;
               }
+              .button__spinner {
+                width: $w-10;
+                height: $h-10;
+                border-width: 1px;
+              }
+            }
+            .features__button--disabled {
+              opacity: 0.6;
+              pointer-events: none;
+              user-select: none;
             }
           }
           .content__control {

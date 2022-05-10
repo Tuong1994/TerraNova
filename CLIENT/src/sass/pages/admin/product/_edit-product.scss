@@ -75,7 +75,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border: 1px solid $borderGrey;
+            border: 1px dashed $borderGrey;
             border-radius: $lightRound;
             .item__content {
               font-size: $body-1;
@@ -98,6 +98,14 @@
               &:hover {
                 box-shadow: 0 0 10px $grey;
               }
+              @include respond(phone) {
+                width: $w-10 * 2;
+                height: $h-10 * 2;
+                line-height: $h-10 * 2;
+              }
+            }
+            @include respond(phone) {
+              padding: $p-10;
             }
           }
         }

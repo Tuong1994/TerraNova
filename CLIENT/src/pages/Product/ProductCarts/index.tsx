@@ -256,6 +256,10 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
     if (utils.checkObjectEmpty(user)) {
       // Check if user exist
       if (user?.carts) {
+        const orderQuery: IQueryList = {
+          page: 1,
+          limits: 10,
+        }
         const newOrder: IOrder = {
           note: note,
           paymentType: paymentType,
@@ -270,6 +274,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
         dispatch(
           createOrder(
             newOrder,
+            orderQuery,
             langs?.toastMessages.success.createOrder,
             langs?.toastMessages.error.createOrder
           )
@@ -286,6 +291,10 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
       }
 
     } else {
+      const orderQuery: IQueryList = {
+        page: 1,
+        limits: 10,
+      }
       const newOrder: IOrder = {
         note: note,
         paymentType: paymentType,
@@ -303,6 +312,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
       dispatch(
         createOrder(
           newOrder,
+          orderQuery,
           langs?.toastMessages.success.createOrder,
           langs?.toastMessages.error.createOrder
         )

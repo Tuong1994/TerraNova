@@ -1,0 +1,41 @@
+.add-order {
+  .add-order__wrapper {
+    width: $w-100;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .wrapper__item {
+      &:nth-child(1) {
+        width: $w-100 - 32;
+        @include respond(phone) {
+          width: $w-100;
+        }
+      }
+      &:nth-child(2) {
+        width: $w-100 - 70;
+        @include respond(phone) {
+          width: $w-100;
+        }
+      }
+      .item__inner {
+        padding: $p-10 * 2;
+        margin-bottom: $m-10;
+        overflow: unset;
+        .inner__title {
+          font-weight: $semiBold;
+          margin-bottom: $m-10 * 2;
+        }
+      }
+      .item__info {
+        .inner__action {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          span {
+              margin: 0 $m-10 * 2;
+          }
+        }
+      }
+    }
+  }
+}
