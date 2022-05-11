@@ -62,7 +62,14 @@ const OrderList: React.FunctionComponent<{}> = (props) => {
     if (orderList) {
       const { orders } = orderList;
       return orders.map((order, index) => {
-        return <OrderAdminRow order={order} langs={langs} index={index} />;
+        return (
+          <OrderAdminRow
+            key={order.id}
+            order={order}
+            langs={langs}
+            index={index}
+          />
+        );
       });
     }
   };

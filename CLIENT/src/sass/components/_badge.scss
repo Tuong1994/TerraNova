@@ -5,6 +5,11 @@
   background: $secondary;
   color: $tSecondary;
   text-align: center;
+  span {
+    &:nth-child(2) {
+      margin-left: $m-10;
+    }                  
+  }
 }
 
 .badge--success {

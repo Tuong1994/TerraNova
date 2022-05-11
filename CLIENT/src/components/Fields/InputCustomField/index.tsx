@@ -12,8 +12,9 @@ interface InputFieldCustomProps {
   inputClassName?: string;
   fieldClassName?: string;
   iconClassName?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyPress?: (e: any) => void;
+  onBlur?: () => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const InputFieldCustom: React.FunctionComponent<InputFieldCustomProps> = (props) => {
@@ -29,8 +30,9 @@ const InputFieldCustom: React.FunctionComponent<InputFieldCustomProps> = (props)
     inputClassName,
     labelClassName,
     iconClassName,
-    onChange,
     onKeyPress,
+    onBlur,
+    onChange,
   } = props;
 
   return (
@@ -44,6 +46,7 @@ const InputFieldCustom: React.FunctionComponent<InputFieldCustomProps> = (props)
           className={`field__control ${!icon && "w-100"} ${
             inputClassName ? inputClassName : ""
           }`}
+          onBlur={onBlur}
           onChange={onChange}
           onKeyPress={onKeyPress}
         />

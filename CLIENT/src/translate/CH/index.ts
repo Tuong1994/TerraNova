@@ -421,7 +421,16 @@ const ChLang = {
     },
      // ORDER
      order: {
-      subTitle_1: "信息",
+      subTitle_1: "产品",
+      subTitle_2: "状态",
+      subTitle_3: "信息",
+      subTitle_4: "交货",
+      subTitle_5: "客户",
+      amount: "产品数量",
+      total: "总共",
+      shipFee: "运费",
+      totalPay: "总付款",
+      vat: "增值税 10%",
       or: "或者",
       modal: {
         title_1: "选择产品",
@@ -630,6 +639,7 @@ const ChLang = {
     role: "角色",
     oldPassword: "旧密码",
     newPassword: "新密码",
+    shipmentType: "如何收货",
   },
 
   // ==================== TABLE HEADER ====================

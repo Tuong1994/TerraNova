@@ -31,8 +31,8 @@ import ShipmentModal from "./ShipmentModal";
 import ButtonLoading from "../../../components/Loading/ButtonLoading";
 import PaymentModal from "./PaymentModal";
 import OrderModal from "./OrderModal";
-import utils from "../../../utils";
 import actions from "../../../configs/actions";
+import utils from "../../../utils";
 
 interface ProductCartsProps {}
 

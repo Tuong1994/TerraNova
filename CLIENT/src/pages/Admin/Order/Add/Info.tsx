@@ -3,35 +3,50 @@ import * as Card from "../../../../components/Card";
 import * as FormControl from "../../../../components/Fields";
 import { Field } from "formik";
 import { ILangs } from "../../../../interfaces/lang";
-import Button from "../../../../components/Button";
-import { useDispatch } from "react-redux";
-import { EModalActionTypes } from "../../../../redux/actionTypes/ModalActionTypes";
 
 interface InfoFieldsProps {
   langs: ILangs;
+  totalAmount: number;
+  total: number;
+  vat: number;
+  totalPay: number;
 }
 
 const InfoFields: React.FunctionComponent<InfoFieldsProps> = (props) => {
-  const { langs } = props;
-
-  const dispatch = useDispatch();
-
+  const { langs, totalAmount, total, vat, totalPay } = props;
   return (
     <Card.Wrapper className="item__inner item__info">
-      <h3 className="inner__title">{langs?.admin.order.subTitle_1}</h3>
-      <div className="inner__action">
-        <Button
-          className="button--submit"
-          onClick={() => {
-            dispatch({
-              type: EModalActionTypes.OPEN_PRODUCT_LIST_MODAL,
-            });
-          }}
-        >
-          {langs?.button.chooseProduct}
-        </Button>
-        <span>{langs?.admin.order.or}</span>
-        <Button className="button--add">{langs?.button.addProduct}</Button>
+      <h3 className="inner__title">{langs?.admin.order.subTitle_3}</h3>
+      <Field
+        name="note"
+        placeholder=" "
+        label={langs?.form.note}
+        component={FormControl.TextArea}
+      />
+      <div className="inner__detail">
+        <ul className="detail__list">
+          <li className="list__inner">
+            <p>{langs?.admin.order.amount} : </p>
+            <p>{totalAmount}</p>
+          </li>
+          <li className="list__inner">
+            <p>{langs?.admin.order.total} : </p>
+            <p>{total.toLocaleString()} VND</p>
+          </li>
+          <li className="list__inner">
+            <p>{langs?.admin.order.shipFee} : </p>
+            <p>{0} VND</p>
+          </li>
+          <hr />
+          <li className="list__inner">
+            <p>{langs?.admin.order.vat} : </p>
+            <p>{vat.toLocaleString()} VND</p>
+          </li>
+          <li className="list__inner">
+            <p>{langs?.admin.order.totalPay} : </p>
+            <p>{totalPay.toLocaleString()} VND</p>
+          </li>
+        </ul>
       </div>
     </Card.Wrapper>
   );

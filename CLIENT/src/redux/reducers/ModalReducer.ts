@@ -10,6 +10,7 @@ interface IModalStateDefault {
   isPassword: boolean;
   isProductList: boolean;
   isAddProduct: boolean;
+  isAddShipment: boolean;
 }
 
 const stateDefault: IModalStateDefault = {
@@ -21,6 +22,7 @@ const stateDefault: IModalStateDefault = {
   isPassword: false,
   isProductList: false,
   isAddProduct: false,
+  isAddShipment: false,
 };
 
 export const ModalReducer = (state = stateDefault, action: ModalAction) => {
@@ -73,6 +75,12 @@ export const ModalReducer = (state = stateDefault, action: ModalAction) => {
       state = newState;
       return { ...state };
     }
+    case EModalActionTypes.OPEN_ADD_SHIPMENT_MODAL: {
+      let newState = { ...state };
+      newState.isAddShipment = true;
+      state = newState;
+      return { ...state };
+    }
     case EModalActionTypes.CLOSE_CONSULT_MODAL: {
       let newState = { ...state };
       newState.isConsult = false;
@@ -118,6 +126,12 @@ export const ModalReducer = (state = stateDefault, action: ModalAction) => {
     case EModalActionTypes.CLOSE_ADD_PRODUCT_MODAL: {
       let newState = { ...state };
       newState.isAddProduct = false;
+      state = newState;
+      return { ...state };
+    }
+    case EModalActionTypes.OPEN_ADD_SHIPMENT_MODAL: {
+      let newState = { ...state };
+      newState.isAddShipment = false;
       state = newState;
       return { ...state };
     }

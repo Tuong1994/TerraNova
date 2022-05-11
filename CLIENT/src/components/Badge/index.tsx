@@ -5,27 +5,15 @@ interface BadgeProps {
   status?: number;
   title?: string;
   icon?: React.ReactNode;
-  isResponsive?: boolean;
+  className?: string;
   getStatus?: () => number;
   getTitle?: () => string;
   getIcon?: () => React.ReactNode;
 }
 
 const Badge: React.FunctionComponent<BadgeProps> = (props) => {
-  const { status, title, icon, isResponsive, getStatus, getTitle, getIcon } =
+  const { status, title, icon, className, getStatus, getTitle, getIcon } =
     props;
-
-  const [display, setDisplay] = React.useState<string>("");
-
-  React.useEffect(() => {
-    if (isResponsive) {
-      const size = window.innerWidth;
-      if (size <= 480) {
-        setDisplay("none");
-      }
-      console.log(size)
-    }
-  }, [isResponsive]);
 
   const getClassName = () => {
     if (status || getStatus) {
@@ -48,12 +36,10 @@ const Badge: React.FunctionComponent<BadgeProps> = (props) => {
   };
 
   return (
-    <div className={`badge ${getClassName()}`}>
-      <span style={isResponsive ? { display: display } : {}}>
-        {title || (getTitle && getTitle())}
-      </span>
+    <div className={`badge ${getClassName()} ${className ? className : ""}`}>
+      <span>{title || (getTitle && getTitle())}</span>
 
-      {isResponsive && <span>{icon || (getIcon && getIcon())}</span>}
+      <span>{icon || (getIcon && getIcon())}</span>
     </div>
   );
 };

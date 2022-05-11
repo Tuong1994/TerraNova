@@ -109,7 +109,15 @@ export const createProduct = (data: any, success?: string, err?: string) => {
     dispatch(actions.openButtonLoading);
     setTimeout(async () => {
       try {
-        await axiosClient.post(apiPath.productPaths.createProduct, data, token);
+        const result = await axiosClient.post(
+          apiPath.productPaths.createProduct,
+          data,
+          token
+        );
+        dispatch({
+          type: EProductActionTypes.CREATE_PRODUCT,
+          payload: result.data,
+        });
         dispatch(actions.closeButtonLoading);
         toast.success(success);
       } catch (error) {
@@ -152,7 +160,7 @@ export const removeProduct = (
   query: IQueryList,
   success?: string,
   err?: string,
-  data?: any,
+  data?: any
 ) => {
   return async (dispatch: any) => {
     const token = localStorage.getItem(ACCESSTOKEN) || "";

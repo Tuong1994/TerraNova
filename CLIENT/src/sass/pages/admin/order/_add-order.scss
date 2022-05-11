@@ -25,14 +25,86 @@
           font-weight: $semiBold;
           margin-bottom: $m-10 * 2;
         }
+        .inner__control {
+          margin: $m-10 0;
+        }
+        @include respond(phone) {
+          padding: $p-10;
+        }
       }
-      .item__info {
+      .item__product {
         .inner__action {
           display: flex;
           align-items: center;
           justify-content: center;
           span {
-            margin: 0 $m-10 * 2;
+            margin: $m-10 $m-10 * 2;
+          }
+          @include respond(phone) {
+            flex-direction: column;
+          }
+        }
+        .inner__list {
+          .list__item {
+            margin: $m-10 0;
+            padding: $p-10 $p-10 * 2;
+            font-size: $body-1;
+            border-style: dashed;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            .item__content {
+              text-align: center;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              &:nth-child(1) {
+                font-weight: $semiBold;
+              }
+              &:nth-child(1),
+              &:nth-child(2) {
+                width: $w-100 - 70;
+              }
+              &:nth-child(3) {
+                width: $w-100 - 85;
+              }
+              &:nth-child(4) {
+                width: $w-10 * 2;
+                height: $h-10 * 2;
+                padding: $p-10;
+                background: $red-1;
+                color: $tSecondary;
+                border-radius: $circle;
+                cursor: pointer;
+              }
+              .content__input {
+                margin: $m-5 0;
+              }
+              @include respond(phone) {
+                font-size: $body-2;
+              }
+            }
+            @include respond(phone) {
+              padding: $p-10;
+            }
+          }
+        }
+      }
+      .item__info {
+        .inner__detail {
+          .detail__list {
+            .list__inner {
+              padding: $p-10 0;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              p {
+                &:nth-child(2) {
+                  font-weight: $semiBold;
+                }
+              }
+            }
           }
         }
       }
@@ -40,10 +112,10 @@
   }
 }
 
+// LIST MODAL
 .list-modal {
   .list-modal__body {
     padding: 0;
-    position: relative;
     .body__search {
       background: $secondary;
       padding: $p-5 $p-10;
@@ -70,6 +142,7 @@
     }
     .body__list {
       padding: $p-10 $p-10 * 2;
+      position: relative;
       .list__item {
         display: block;
         margin: $m-10 0;
@@ -80,21 +153,47 @@
         cursor: pointer;
         .item__group {
           display: flex;
-          align-items: center;
           .group__control {
             width: $w-10 * 2;
             height: $h-10 * 2;
             margin-right: $m-10;
+            @include respond(phone) {
+              width: $w-10;
+              height: $h-10;
+              margin-right: $m-5;
+            }
           }
           .group__label {
             width: $w-100 - 10;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            p {
-              margin: 0 $m-10;
+            padding: 0 $p-10;
+            font-size: $body-1;
+            .label__name {
+              font-weight: $semiBold;
+            }
+            .label__note {
+              width: $w-100;
+              padding: $p-5 0;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            }
+            @include respond(phone) {
+              width: $w-100 - 5;
+            }
+          }
+          .group__badge {
+            span {
               &:nth-child(1) {
-                font-weight: $semiBold;
+                @include respond(phone) {
+                  display: none;
+                }
+              }
+              &:nth-child(2) {
+                display: none;
+                @include respond(phone) {
+                  display: block;
+                  margin: 0;
+                }
               }
             }
           }
@@ -103,6 +202,9 @@
     }
     .body__loading {
       background: $RGBA-blue-1 !important;
+      position: fixed;
+      top: 0;
+      left: 0;
     }
   }
   .list-modal__footer {
@@ -112,10 +214,28 @@
     .footer__pagination {
       display: flex;
       align-items: center;
+      .button--round {
+        margin: 0 $m-5;
+        font-size: $subtitle;
+      }
       .button--round-disabled {
         opacity: 0.6;
         user-select: none;
         pointer-events: none;
+      }
+    }
+  }
+}
+
+// ADD PRODUCT MODAL
+.add-product-modal {
+  .add-product-modal__body {
+    .body__card {
+      padding: $p-10 * 2;
+      overflow: unset;
+      .card__control {
+        margin: $m-10 0;
+        color: $tPrimary;
       }
     }
   }

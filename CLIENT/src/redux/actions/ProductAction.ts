@@ -26,10 +26,16 @@ interface GET_PRODUCT_BY_FREE_TEXT {
   payload: any;
 }
 
+interface CREATE_PRODUCT {
+  type: EProductActionTypes.CREATE_PRODUCT;
+  payload: any;
+}
+
 export type ProductAction =
   | GET_CATEGORY_LIST
   | GET_PRODUCT_LIST
   | GET_PRODUCT_BY_CATEGORY
   | GET_PRODUCT_BY_PRODUCER
   | GET_PRODUCT_DETAIL
-  | GET_PRODUCT_BY_FREE_TEXT;
+  | GET_PRODUCT_BY_FREE_TEXT
+  | CREATE_PRODUCT;

@@ -4,6 +4,7 @@ import { ProductAction } from "../actions/ProductAction";
 
 interface IStateDefault {
   categoryList: ICategory[];
+  newProduct: IProduct;
   productDetail: IProduct;
   productList: {
     totalProduct?: number;
@@ -17,6 +18,19 @@ interface IStateDefault {
 
 const stateDefault: IStateDefault = {
   categoryList: [],
+  newProduct: {
+    id: "",
+    productId: "",
+    producerName: "",
+    name: "",
+    image: null,
+    price: 0,
+    status: 0,
+    inventoryStatus: 0,
+    stockAmount: 0,
+    description: [],
+    comments: [],
+  },
   productList: {
     page: 1,
     totalProduct: 10,
@@ -26,6 +40,7 @@ const stateDefault: IStateDefault = {
     producerName: "",
   },
   productDetail: {
+    id: "",
     productId: "",
     producerName: "",
     name: "",
@@ -68,6 +83,12 @@ export const ProductReducer = (state = stateDefault, action: ProductAction) => {
     case EProductActionTypes.GET_PRODUCT_BY_FREE_TEXT: {
       let newState = { ...state };
       newState.productList = action.payload;
+      state = newState;
+      return { ...state };
+    }
+    case EProductActionTypes.CREATE_PRODUCT: {
+      let newState = { ...state };
+      newState.newProduct = action.payload;
       state = newState;
       return { ...state };
     }

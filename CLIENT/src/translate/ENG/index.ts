@@ -439,7 +439,16 @@ const EngLang = {
     },
     // ORDER
     order: {
-      subTitle_1: "Infomation",
+      subTitle_1: "Products",
+      subTitle_2: "Status",
+      subTitle_3: "Infomation",
+      subTitle_4: "Delivery",
+      subTitle_5: "Customer",
+      amount: "Amount of products",
+      total: "Total",
+      shipFee: "Ship fee",
+      totalPay: "Total payment",
+      vat: "VAT tax 10%",
       or: "Or",
       modal: {
         title_1: "Choose products",
@@ -648,6 +657,7 @@ const EngLang = {
     role: "Role",
     oldPassword: "Old password",
     newPassword: "New passowrd",
+    shipmentType: "Shipment Type",
   },
 
   // ==================== TABLE HEADER ====================

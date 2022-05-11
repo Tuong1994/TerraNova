@@ -430,7 +430,16 @@ const VnLang = {
     },
      // ORDER
      order: {
-      subTitle_1: "Thông tin",
+      subTitle_1: "Sản phẩm",
+      subTitle_2: "Trạng thái",
+      subTitle_3: "Thông tin",
+      subTitle_4: "Giao nhận",
+      subTitle_5: "Khách hàng",
+      amount: "Số lượng sản phẩm",
+      total: "Tổng cộng",
+      shipFee: "Phí vận chuyển",
+      totalPay: "Tổng giá trị đơn hàng",
+      vat: "Thuế VAT 10%",
       or: "Hoặc",
       modal: {
         title_1: "Chọn sản phẩm",
@@ -639,6 +648,7 @@ const VnLang = {
     role: "Vai trò",
     oldPassword: "Mật khẩu cũ",
     newPassword: "Mật khẩu mới",
+    shipmentType: "Hình thức nhận hàng",
   },
 
   // ==================== TABLE HEADER ====================
