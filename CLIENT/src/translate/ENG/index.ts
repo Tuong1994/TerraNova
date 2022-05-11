@@ -453,6 +453,7 @@ const EngLang = {
       modal: {
         title_1: "Choose products",
         title_2: "Create new product",
+        title_3: "Shipment",
       },
     },
   },

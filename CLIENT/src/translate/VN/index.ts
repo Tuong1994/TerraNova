@@ -444,6 +444,7 @@ const VnLang = {
       modal: {
         title_1: "Chọn sản phẩm",
         title_2: "Tạo sản phẩm mới",
+        title_3: "Vận chuyển",
       },
     },
   },

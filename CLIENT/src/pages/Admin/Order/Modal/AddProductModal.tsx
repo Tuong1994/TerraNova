@@ -7,20 +7,21 @@ import { ReducerState } from "../../../../redux/store";
 import { EModalActionTypes } from "../../../../redux/actionTypes/ModalActionTypes";
 import { ILangs } from "../../../../interfaces/lang";
 import { EProductType, IProduct } from "../../../../models/Product";
+import { IOptionsLang } from "../../../../configs/options";
 import { createProduct } from "../../../../redux/actionCreators/ProductCreators";
 import Button from "../../../../components/Button";
 import ButtonLoading from "../../../../components/Loading/ButtonLoading";
 import utils from "../../../../utils";
 
 interface AddProductModalProps {
-  lang: string;
   langs: ILangs;
+  options: IOptionsLang;
 }
 
 const AddProductModal: React.FunctionComponent<AddProductModalProps> = (
   props
 ) => {
-  const { lang, langs } = props;
+  const { langs, options } = props;
 
   const { isAddProduct } = useSelector(
     (state: ReducerState) => state.ModalReducer
@@ -38,8 +39,6 @@ const AddProductModal: React.FunctionComponent<AddProductModalProps> = (
   });
 
   const dispatch = useDispatch();
-
-  const options = utils.getOptionByLang(lang);
 
   const getProducerByCategory = () => {
     switch (category) {

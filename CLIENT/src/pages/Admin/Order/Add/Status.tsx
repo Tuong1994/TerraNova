@@ -3,13 +3,15 @@ import * as Card from "../../../../components/Card";
 import * as FormControl from "../../../../components/Fields";
 import { Field } from "formik";
 import { ILangs } from "../../../../interfaces/lang";
+import { IOptionsLang } from "../../../../configs/options";
 
 interface StatusFieldsProps {
   langs: ILangs;
+  options: IOptionsLang;
 }
 
 const StatusFields: React.FunctionComponent<StatusFieldsProps> = (props) => {
-  const { langs } = props;
+  const { langs, options } = props;
 
   return (
     <Card.Wrapper className="item__inner item__status">
@@ -19,6 +21,7 @@ const StatusFields: React.FunctionComponent<StatusFieldsProps> = (props) => {
         placeholder=" "
         label={langs?.form.status}
         component={FormControl.Select}
+        option={options?.orderStatus}
         groupClassName="inner__control"
       />
     </Card.Wrapper>

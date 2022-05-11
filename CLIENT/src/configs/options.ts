@@ -12,6 +12,11 @@ import { ESortBy } from "../interfaces/query";
 import { EGender, ERole } from "../models/User";
 
 export const optionsEng = {
+  orderStatus: [
+    { label: "PAID", value: EStatus.paid },
+    { label: "WAITING", value: EStatus.waiting },
+    { label: "DELIVERING", value: EStatus.delivering },
+  ],
   role: [
     { label: "Admin", value: ERole.admin },
     { label: "User", value: ERole.user },
@@ -245,6 +250,11 @@ export const optionsEng = {
 };
 
 export const optionsVn = {
+  orderStatus: [
+    { label: "ĐÃ THANH TOÁN", value: EStatus.paid },
+    { label: "ĐANG XỬ LÝ", value: EStatus.waiting },
+    { label: "ĐANG GIAO", value: EStatus.delivering },
+  ],
   role: [
     { label: "Quản trị", value: ERole.admin },
     { label: "Khách hàng", value: ERole.user },
@@ -474,13 +484,18 @@ export const optionsVn = {
   ],
   orderFilter: [
     { label: "Tất cả", value: "all" },
-    { label: "PAID", value: EStatus.paid },
-    { label: "WAITING", value: EStatus.waiting },
-    { label: "DELIVERING", value: EStatus.delivering },
+    { label: "ĐÃ THANH TOÁN", value: EStatus.paid },
+    { label: "ĐANG XỬ LÝ", value: EStatus.waiting },
+    { label: "ĐANG GIAO", value: EStatus.delivering },
   ],
 };
 
 export const optionsCh = {
+  orderStatus: [
+    { label: "支付", value: EStatus.paid },
+    { label: "等待进展", value: EStatus.waiting },
+    { label: "交货正在进行中", value: EStatus.delivering },
+  ],
   role: [
     { label: "管理", value: ERole.admin },
     { label: "客户", value: ERole.user },
@@ -707,9 +722,9 @@ export const optionsCh = {
   ],
   orderFilter: [
     { label: "全部", value: "all" },
-    { label: "PAID", value: EStatus.paid },
-    { label: "WAITING", value: EStatus.waiting },
-    { label: "DELIVERING", value: EStatus.delivering },
+    { label: "支付", value: EStatus.paid },
+    { label: "等待进展", value: EStatus.waiting },
+    { label: "交货正在进行中", value: EStatus.delivering },
   ],
 };
 

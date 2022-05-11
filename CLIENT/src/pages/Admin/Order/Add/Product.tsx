@@ -29,6 +29,7 @@ const ProductFields: React.FunctionComponent<ProductFieldsProps> = (props) => {
 
   const handleRemove = (id: string) => {
     setProducts(products.filter((i) => i.id !== id));
+    setAmountUpdate(0);
   };
 
   return (
@@ -66,7 +67,7 @@ const ProductFields: React.FunctionComponent<ProductFieldsProps> = (props) => {
 
       {/* Product list */}
       <div className="inner__list">
-        {products.map((product) => {
+        {products.map((product, index) => {
           return (
             <Card.Wrapper className="list__item" key={product.id}>
               <div className="item__content">

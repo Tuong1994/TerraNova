@@ -129,7 +129,7 @@ export const ModalReducer = (state = stateDefault, action: ModalAction) => {
       state = newState;
       return { ...state };
     }
-    case EModalActionTypes.OPEN_ADD_SHIPMENT_MODAL: {
+    case EModalActionTypes.CLOSE_ADD_SHIPMENT_MODAL: {
       let newState = { ...state };
       newState.isAddShipment = false;
       state = newState;

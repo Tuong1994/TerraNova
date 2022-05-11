@@ -240,3 +240,17 @@
     }
   }
 }
+
+// ADD SHIPMENT MODAL
+.add-shipment-modal {
+  .add-shipment-modal__body {
+    .body__card {
+      padding: $p-10 * 2;
+      overflow: unset;
+      .card__control {
+        margin: $m-10 0;
+        color: $tPrimary;
+      }
+    }
+  }
+}

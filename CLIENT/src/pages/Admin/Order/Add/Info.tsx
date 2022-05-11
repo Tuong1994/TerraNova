@@ -8,12 +8,13 @@ interface InfoFieldsProps {
   langs: ILangs;
   totalAmount: number;
   total: number;
+  shipmentFee: number;
   vat: number;
   totalPay: number;
 }
 
 const InfoFields: React.FunctionComponent<InfoFieldsProps> = (props) => {
-  const { langs, totalAmount, total, vat, totalPay } = props;
+  const { langs, totalAmount, total, shipmentFee, vat, totalPay } = props;
   return (
     <Card.Wrapper className="item__inner item__info">
       <h3 className="inner__title">{langs?.admin.order.subTitle_3}</h3>
@@ -35,7 +36,7 @@ const InfoFields: React.FunctionComponent<InfoFieldsProps> = (props) => {
           </li>
           <li className="list__inner">
             <p>{langs?.admin.order.shipFee} : </p>
-            <p>{0} VND</p>
+            <p>{shipmentFee.toLocaleString()} VND</p>
           </li>
           <hr />
           <li className="list__inner">
