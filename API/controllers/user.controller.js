@@ -67,6 +67,12 @@ const getUserList = async (req, res) => {
         users: userPerPage,
       });
     }
+    res.status(200).send({
+      total: userList.length,
+      page: 0,
+      limits: itemPerPage,
+      users: userList,
+    });
   } catch (error) {
     res.status(500).send(error);
   }

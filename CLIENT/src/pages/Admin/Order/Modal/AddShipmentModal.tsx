@@ -51,6 +51,7 @@ const AddShipmentModal: React.FunctionComponent<AddShipmentModalProps> = (
     dispatch({
       type: EModalActionTypes.CLOSE_ADD_SHIPMENT_MODAL,
     });
+    // Check if shipment type is delivery => not reset shipment type
     if (utils.checkObjectEmpty(shipment) === true) {
       setIsReset(false);
     } else if (utils.checkObjectEmpty(shipment === false)) {

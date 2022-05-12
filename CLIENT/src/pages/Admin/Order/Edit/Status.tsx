@@ -8,11 +8,12 @@ import { IOptionsLang } from "../../../../configs/options";
 interface StatusFieldsProps {
   langs: ILangs;
   options: IOptionsLang;
+  status: number;
   setStatus: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const StatusFields: React.FunctionComponent<StatusFieldsProps> = (props) => {
-  const { langs, options, setStatus } = props;
+  const { langs, options, status, setStatus } = props;
 
   return (
     <Card.Wrapper className="item__inner item__status">
@@ -22,6 +23,7 @@ const StatusFields: React.FunctionComponent<StatusFieldsProps> = (props) => {
         placeholder=" "
         component={FormControl.Select}
         option={options?.orderStatus}
+        defaultValue={options?.orderStatus.find(i => i.value === status)}
         groupClassName="inner__control"
         onChange={(value: any) => {
           setStatus(value);

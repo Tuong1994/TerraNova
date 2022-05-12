@@ -61,6 +61,7 @@ const DeliveryFields: React.FunctionComponent<DeliveryFieldsProps> = (
         label={langs?.form.shipmentType}
         component={FormControl.Select}
         option={options?.shipmentType}
+        defaultValue={options?.shipmentType.find(i => i.value === shipmentType)}
         groupClassName="inner__control"
         onChange={(value: any) => {
           setShipmentType(value);

@@ -37,7 +37,7 @@ const OrdererFields: React.FunctionComponent<OrdererFieldsProps> = (props) => {
         isPaging={true}
         totalPage={totalPage}
         option={orderers}
-        value={orderers.find((i: any) => i.value === userId)}
+        defaultValue={users.find((i: any) => i.value === userId)}
         groupClassName="inner__control"
         onChange={(value: any) => {
           setUserId(value);

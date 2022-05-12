@@ -77,6 +77,12 @@ const EditOrder: React.FunctionComponent<RouteComponentProps<IRouteParams>> = (
   React.useEffect(() => {
     if (orderDetail) {
       setProducts(orderDetail.products || []);
+      setTotalPay(orderDetail.totalPay || 0);
+      setStatus(orderDetail.status || 0);
+      setPaymentType(orderDetail.paymentType || 0);
+      setShipmentType(orderDetail.shipmentType || 0);
+      setShipmentFee(orderDetail.shipmentFee || 0);
+      setUserId(orderDetail.userId || "");
     }
   }, [orderDetail]);
 
@@ -143,15 +149,13 @@ const EditOrder: React.FunctionComponent<RouteComponentProps<IRouteParams>> = (
   }, [total, shipmentFee, vat]);
 
   const initialValues = {
-    note: "",
+    note: orderDetail.note,
     totalPay: totalPay,
     paymentType: paymentType,
     shipmentType: shipmentType,
     shipmentFee: shipmentFee,
     status: status,
   };
-
-  console.log(initialValues)
 
   const handleSubmit = (values: any, action: any) => {
     let isValid = false;
@@ -230,11 +234,13 @@ const EditOrder: React.FunctionComponent<RouteComponentProps<IRouteParams>> = (
                   <StatusFields
                     langs={langs}
                     options={options}
+                    status={status}
                     setStatus={setStatus}
                   />
                   <PaymentFields
                     langs={langs}
                     options={options}
+                    paymentType={paymentType}
                     setPaymentType={setPaymentType}
                   />
                   <OrdererFields

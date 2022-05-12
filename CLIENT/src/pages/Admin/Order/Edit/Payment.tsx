@@ -8,11 +8,12 @@ import { IOptionsLang } from "../../../../configs/options";
 interface PaymentFieldsProps {
   langs: ILangs;
   options: IOptionsLang;
+  paymentType: number;
   setPaymentType: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const PaymentFields: React.FunctionComponent<PaymentFieldsProps> = (props) => {
-  const { langs, options, setPaymentType } = props;
+  const { langs, options, paymentType, setPaymentType } = props;
 
   return (
     <Card.Wrapper className="item__inner item__payment">
@@ -22,9 +23,10 @@ const PaymentFields: React.FunctionComponent<PaymentFieldsProps> = (props) => {
         placeholder=" "
         option={options?.paymentType}
         component={FormControl.Select}
+        defaultValue={options?.paymentType.find((i) => i.value === paymentType)}
         groupClassName="inner__control"
         onChange={(value: any) => {
-            setPaymentType(value);
+          setPaymentType(value);
         }}
       />
     </Card.Wrapper>

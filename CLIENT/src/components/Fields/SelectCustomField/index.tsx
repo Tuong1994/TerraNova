@@ -13,6 +13,7 @@ interface SelectCustomFieldProps {
   value?: any;
   option?: any;
   error?: string;
+  defaultValue?: any;
   isPaging?: boolean;
   isReset?: boolean;
   placeholder?: string;
@@ -36,6 +37,7 @@ const SelectCustomField: React.FunctionComponent<SelectCustomFieldProps> = (
     value,
     option,
     error,
+    defaultValue,
     isPaging,
     isReset,
     placeholder,
@@ -100,6 +102,7 @@ const SelectCustomField: React.FunctionComponent<SelectCustomFieldProps> = (
   const renderValue = () => {
     if (freeText.length > 0) return freeText;
     if (value) return newValue;
+    if (defaultValue) return defaultValue.label;
     return "";
   };
 
