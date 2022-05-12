@@ -3,7 +3,10 @@ import * as Card from "../../../../components/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../../redux/store";
 import { ESortBy, IQueryList } from "../../../../interfaces/query";
-import { getOrderList } from "../../../../redux/actionCreators/OrderCreators";
+import {
+  getOrderList,
+  removeOrder,
+} from "../../../../redux/actionCreators/OrderCreators";
 import { Link } from "react-router-dom";
 import ContentHeader from "../../../../components/ContentHeader";
 import Table from "../../../../components/Table";
@@ -58,6 +61,19 @@ const OrderList: React.FunctionComponent<{}> = (props) => {
     }, 500);
   };
 
+  const handleRemove = (id: string) => {
+    const query: IQueryList = {
+      orderId: id,
+    };
+    dispatch(
+      removeOrder(
+        query,
+        langs?.toastMessages.success.remove,
+        langs?.toastMessages.error.remove
+      )
+    );
+  };
+
   const renderOrderList = () => {
     if (orderList) {
       const { orders } = orderList;
@@ -65,9 +81,10 @@ const OrderList: React.FunctionComponent<{}> = (props) => {
         return (
           <OrderAdminRow
             key={order.id}
+            index={index}
             order={order}
             langs={langs}
-            index={index}
+            removeOrder={handleRemove}
           />
         );
       });

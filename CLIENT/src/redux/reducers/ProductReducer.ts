@@ -18,19 +18,7 @@ interface IStateDefault {
 
 const stateDefault: IStateDefault = {
   categoryList: [],
-  newProduct: {
-    id: "",
-    productId: "",
-    producerName: "",
-    name: "",
-    image: null,
-    price: 0,
-    status: 0,
-    inventoryStatus: 0,
-    stockAmount: 0,
-    description: [],
-    comments: [],
-  },
+  newProduct: {},
   productList: {
     page: 1,
     totalProduct: 10,

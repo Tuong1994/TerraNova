@@ -16,34 +16,40 @@ module.exports = {
     const orders_3 = [];
     const products = [
       {
+        productId: "P_0016",
+        productName: "ASUS TUF H310-PLUS GAMING",
         price: 2500000,
         amount: 1,
-        productName: "ASUS TUF H310-PLUS GAMING",
       },
       {
+        productId: "P_0001",
+        productName: "Core i3 8100",
         price: 3500000,
         amount: 1,
-        productName: "Core i3 8100",
       },
       {
-        price: 2200000,
-        amount: 1,
+        productId: "P_0034",
         productName: "RAM GIGABYTE AORUS RGB (1x16GB)",
-      },
-      {
         price: 2200000,
         amount: 1,
-        productName: "SSD Gigabyte 2.5-Inch SATA III 500GB",
       },
       {
+        productId: "P_0043",
+        productName: "SSD Gigabyte 2.5-Inch SATA III 500GB",
+        price: 2200000,
+        amount: 1,
+      },
+      {
+        productId: "P_0051",
+        productName: "ASUS RTX2070 8GB",
         price: 16500000,
         amount: 1,
-        productName: "ASUS RTX2070 8GB",
       },
       {
+        productId: "P_0069",
+        productName: "PSU GIGABYTE P850B 850W 80PLUS BRONZE",
         price: 1800000,
         amount: 1,
-        productName: "PSU GIGABYTE P850B 850W 80PLUS BRONZE",
       },
     ];
     for (let i = 1; i < 20; i++) {

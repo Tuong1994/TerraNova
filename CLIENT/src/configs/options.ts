@@ -102,16 +102,16 @@ export const optionsEng = {
     { label: "Delivery", value: EShipmentType.delivery },
   ],
   paymentType: [
-    { label: "Cash", value: EPaymentTypes.cash, icon: "../img/icon/cash.png" },
+    { label: "Cash", value: EPaymentTypes.cash, icon: "/img/icon/cash.png" },
     {
       label: "Zalo - Pay",
       value: EPaymentTypes.zalo,
-      icon: "../img/icon/zalo.png",
+      icon: "/img/icon/zalo.png",
     },
     {
       label: "VIB - Bank",
       value: EPaymentTypes.vib,
-      icon: "../img/icon/vib.png",
+      icon: "/img/icon/vib.png",
     },
   ],
   productStatus: [
@@ -342,17 +342,17 @@ export const optionsVn = {
     {
       label: "Tiền mặt",
       value: EPaymentTypes.cash,
-      icon: "../img/icon/cash.png",
+      icon: "/img/icon/cash.png",
     },
     {
       label: "Ứng dụng Zalo - Pay",
       value: EPaymentTypes.zalo,
-      icon: "../img/icon/zalo.png",
+      icon: "/img/icon/zalo.png",
     },
     {
       label: "Ngân hàng quốc tế VIB",
       value: EPaymentTypes.vib,
-      icon: "../img/icon/vib.png",
+      icon: "/img/icon/vib.png",
     },
   ],
   productStatus: [
@@ -581,16 +581,16 @@ export const optionsCh = {
     { label: "交货", value: EShipmentType.delivery },
   ],
   paymentType: [
-    { label: "现金", value: EPaymentTypes.cash, icon: "../img/icon/cash.png" },
+    { label: "现金", value: EPaymentTypes.cash, icon: "/img/icon/cash.png" },
     {
       label: "Zalo 应用程序 - 支付",
       value: EPaymentTypes.zalo,
-      icon: "../img/icon/zalo.png",
+      icon: "/img/icon/zalo.png",
     },
     {
       label: "VIB国际银行",
       value: EPaymentTypes.vib,
-      icon: "../img/icon/vib.png",
+      icon: "/img/icon/vib.png",
     },
   ],
   productStatus: [

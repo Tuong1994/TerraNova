@@ -7,9 +7,9 @@ import AdminTemplate from "./templates/AdminTemplate";
 import HomeTemplate from "./templates/HomeTemplate";
 import UserTemplate from "./templates/UserTemplate";
 import PageLoading from "./components/Loading/PageLoading";
+import PasswordModal from "./components/Password";
 import "react-toastify/dist/ReactToastify.css";
 import "./sass/main.scss";
-import PasswordModal from "./components/Password";
 
 export const history = createBrowserHistory();
 

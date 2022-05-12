@@ -5,32 +5,32 @@ import { Field } from "formik";
 import { ILangs } from "../../../../interfaces/lang";
 import { IOptionsLang } from "../../../../configs/options";
 
-interface StatusFieldsProps {
+interface PaymentFieldsProps {
   langs: ILangs;
   options: IOptionsLang;
   isReset: boolean;
-  setStatus: React.Dispatch<React.SetStateAction<number>>;
+  setPaymentType: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const StatusFields: React.FunctionComponent<StatusFieldsProps> = (props) => {
-  const { langs, options, isReset, setStatus } = props;
+const PaymentFields: React.FunctionComponent<PaymentFieldsProps> = (props) => {
+  const { langs, options, isReset, setPaymentType } = props;
 
   return (
-    <Card.Wrapper className="item__inner item__status">
-      <h3 className="inner__title">{langs?.admin.order.subTitle_2}</h3>
+    <Card.Wrapper className="item__inner item__payment">
+      <h3 className="inner__title">{langs?.admin.order.subTitle_6}</h3>
       <Field
-        name="status"
+        name="paymentType"
         placeholder=" "
         isReset={isReset}
+        option={options?.paymentType}
         component={FormControl.Select}
-        option={options?.orderStatus}
         groupClassName="inner__control"
         onChange={(value: any) => {
-          setStatus(value);
+            setPaymentType(value);
         }}
       />
     </Card.Wrapper>
   );
 };
 
-export default StatusFields;
+export default PaymentFields;

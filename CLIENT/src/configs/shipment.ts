@@ -1,4 +1,5 @@
-import { EWard, EDistrict, EProvince } from "./../models/Shipment/index";
+import { EWard, EDistrict, EProvince } from "./../models/Shipment";
+import { ELangs } from "../interfaces/lang";
 
 const renderWardEng = (v: number) => {
   switch (v) {
@@ -558,6 +559,36 @@ const renderProvinceCh = (v: number) => {
   }
 };
 
+const renderWard = (lang: string, v: any) => {
+  if (lang === ELangs.ENG) {
+    return renderWardEng(Number(v));
+  } else if (lang === ELangs.VN) {
+    return renderWardVn(Number(v));
+  } else if (lang === ELangs.CH) {
+    return renderWardCh(Number(v));
+  }
+};
+
+const renderDistrict = (lang: string, v: any) => {
+  if (lang === ELangs.ENG) {
+    return renderDistrictEng(Number(v));
+  } else if (lang === ELangs.VN) {
+    return renderDistrictVn(Number(v));
+  } else if (lang === ELangs.CH) {
+    return renderDistrictCh(Number(v));
+  }
+};
+
+const renderProvince = (lang: string, v: any) => {
+  if (lang === ELangs.ENG) {
+    return renderProvinceEng(Number(v));
+  } else if (lang === ELangs.VN) {
+    return renderProvinceVn(Number(v));
+  } else if (lang === ELangs.CH) {
+    return renderProvinceCh(Number(v));
+  }
+};
+
 export {
   renderWardEng,
   renderWardVn,
@@ -568,4 +599,7 @@ export {
   renderProvinceEng,
   renderProvinceVn,
   renderProvinceCh,
+  renderWard,
+  renderDistrict,
+  renderProvince,
 };

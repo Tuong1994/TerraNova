@@ -11,10 +11,11 @@ interface OrderAdminRowProps {
   order: IOrder;
   langs: ILangs;
   index: number;
+  removeOrder: (id: string) => void;
 }
 
 const OrderAdminRow: React.FunctionComponent<OrderAdminRowProps> = (props) => {
-  const { order, langs, index } = props;
+  const { order, langs, index, removeOrder } = props;
 
   const renderPaymentType = () => {
     switch (order?.paymentType) {
@@ -95,10 +96,13 @@ const OrderAdminRow: React.FunctionComponent<OrderAdminRowProps> = (props) => {
       </TableCol>
 
       <TableCol>
-        <Link to={`/admin/product/editProduct/`} className="button--edit">
+        <Link to={`/admin/order/editOrder/${order?.id || order?.orderId}`} className="button--edit">
           <i className="far fa-edit"></i>
         </Link>
-        <div className="button--delete">
+        <div
+          className="button--delete"
+          onClick={() => removeOrder(order?.id || order?.orderId || "")}
+        >
           <i className="fas fa-trash-alt"></i>
         </div>
       </TableCol>

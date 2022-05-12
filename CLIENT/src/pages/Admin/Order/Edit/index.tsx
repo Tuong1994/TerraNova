@@ -1,12 +1,13 @@
 import React from "react";
 import { Formik, Form } from "formik";
+import { RouteComponentProps } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../../redux/store";
 import { IProductCarts } from "../../../../models/Carts";
 import { IQueryList } from "../../../../interfaces/query";
+import { IRouteParams } from "../../../../interfaces/route";
+import { getOrderDetail } from "../../../../redux/actionCreators/OrderCreators";
 import { getUserList } from "../../../../redux/actionCreators/UserCreators";
-import { EShipmentActionTypes } from "../../../../redux/actionTypes/ShipmentActionTypes";
-import { createOrder } from "../../../../redux/actionCreators/OrderCreators";
 import { toast } from "react-toastify";
 import ContentHeader from "../../../../components/ContentHeader";
 import Button from "../../../../components/Button";
@@ -22,9 +23,11 @@ import PaymentFields from "./Payment";
 import ButtonLoading from "../../../../components/Loading/ButtonLoading";
 import utils from "../../../../utils";
 
-interface AddOrderProps {}
+const EditOrder: React.FunctionComponent<RouteComponentProps<IRouteParams>> = (
+  props
+) => {
+  const orderId = props.match.params.id;
 
-const AddOrder: React.FunctionComponent<AddOrderProps> = (props) => {
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
   const { newProduct } = useSelector(
     (state: ReducerState) => state.ProductReducer
@@ -39,6 +42,9 @@ const AddOrder: React.FunctionComponent<AddOrderProps> = (props) => {
     (state: ReducerState) => state.LoadingReducer
   );
   const { userList } = useSelector((state: ReducerState) => state.UserReducer);
+  const { orderDetail } = useSelector(
+    (state: ReducerState) => state.OrderReducer
+  );
 
   const [products, setProducts] = React.useState<IProductCarts[]>([]);
   const [amountUpdate, setAmountUpdate] = React.useState<number>(0);
@@ -59,6 +65,20 @@ const AddOrder: React.FunctionComponent<AddOrderProps> = (props) => {
   const dispatch = useDispatch();
 
   const totalPage = Math.ceil(userList.total / userList.limits);
+
+  // Get Order Detail
+  React.useEffect(() => {
+    const query: IQueryList = {
+      orderId: orderId,
+    };
+    dispatch(getOrderDetail(query));
+  }, []);
+
+  React.useEffect(() => {
+    if (orderDetail) {
+      setProducts(orderDetail.products || []);
+    }
+  }, [orderDetail]);
 
   // Get user list
   React.useEffect(() => {
@@ -131,12 +151,10 @@ const AddOrder: React.FunctionComponent<AddOrderProps> = (props) => {
     status: status,
   };
 
+  console.log(initialValues)
+
   const handleSubmit = (values: any, action: any) => {
     let isValid = false;
-
-    if (isReset) {
-      setIsReset(true);
-    }
 
     if (products.length === 0) {
       toast.error(langs?.toastMessages.error.product);
@@ -161,42 +179,11 @@ const AddOrder: React.FunctionComponent<AddOrderProps> = (props) => {
         shipmentDetail: shipment,
         userId: userId,
       };
-
-      dispatch(
-        createOrder(
-          newOrder,
-          {},
-          langs?.toastMessages.success.create,
-          langs?.toastMessages.error.create
-        )
-      );
-      
-      setTimeout(() => {
-        dispatch({
-          type: EShipmentActionTypes.REMOVE_SHIPMENT,
-        });
-        setIsReset(true)
-        setProducts([]);
-        setTotal(0);
-        setTotalAmount(0);
-        setTotalPay(0);
-        setVat(0);
-        setShipmentType(0);
-        setShipmentFee(0);
-        setPaymentType(0);
-        setStatus(0);
-        setUserId("");
-        action.resetForm({
-          values: {
-            ...initialValues,
-          }
-        })
-      }, 1000)
     }
   };
 
   return (
-    <div className="add-order">
+    <div className="edit-order">
       <Formik
         enableReinitialize={true}
         initialValues={initialValues}
@@ -206,7 +193,7 @@ const AddOrder: React.FunctionComponent<AddOrderProps> = (props) => {
           return (
             <Form autoComplete="off">
               <ContentHeader
-                name={langs?.admin.pageTitle.addOrder || ""}
+                name={langs?.admin.pageTitle.editOrder || ""}
                 right={() => {
                   return (
                     <Button
@@ -221,7 +208,7 @@ const AddOrder: React.FunctionComponent<AddOrderProps> = (props) => {
                   );
                 }}
               />
-              <div className="add-order__wrapper">
+              <div className="edit-order__wrapper">
                 <div className="wrapper__item">
                   <ProductFields
                     langs={langs}
@@ -240,18 +227,20 @@ const AddOrder: React.FunctionComponent<AddOrderProps> = (props) => {
                   />
                 </div>
                 <div className="wrapper__item">
-                  <StatusFields langs={langs} isReset={isReset} options={options} setStatus={setStatus} />
+                  <StatusFields
+                    langs={langs}
+                    options={options}
+                    setStatus={setStatus}
+                  />
                   <PaymentFields
                     langs={langs}
                     options={options}
-                    isReset={isReset}
                     setPaymentType={setPaymentType}
                   />
                   <OrdererFields
                     langs={langs}
                     totalPage={totalPage}
                     users={userList.users}
-                    isReset={isReset}
                     userId={userId}
                     setUserId={setUserId}
                   />
@@ -286,4 +275,4 @@ const AddOrder: React.FunctionComponent<AddOrderProps> = (props) => {
   );
 };
 
-export default AddOrder;
+export default EditOrder;

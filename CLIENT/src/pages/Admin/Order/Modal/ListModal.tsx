@@ -116,7 +116,7 @@ const ListModal: React.FunctionComponent<ListModalProps> = (props) => {
         setSelectItems(temp);
       } else {
         const newProduct = {
-          id: product.id,
+          productId: product.id,
           productName: product.name,
           price: product.price,
           amount: 1,

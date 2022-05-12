@@ -41,7 +41,9 @@ const InputField: React.FunctionComponent<InputFieldProps> = (props) => {
             ? `group__field group__field--invalid ${
                 fieldClassName ? fieldClassName : ""
               }`
-            : `group__field ${fieldClassName ? fieldClassName : ""} ${isDisabled ? "group__field--disabled" : ""}`
+            : `group__field ${fieldClassName ? fieldClassName : ""} ${
+                isDisabled ? "group__field--disabled" : ""
+              }`
         }
       >
         <input

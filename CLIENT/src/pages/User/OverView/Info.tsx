@@ -1,7 +1,7 @@
 import React from "react";
 import * as Card from "../../../components/Card";
 import * as content from "../../../configs/shipment";
-import { ELangs, ILangs } from "../../../interfaces/lang";
+import { ILangs } from "../../../interfaces/lang";
 import { EGender, ERole, IUser } from "../../../models/User";
 
 interface UserInfoProps {
@@ -18,36 +18,6 @@ const UserInfo: React.FunctionComponent<UserInfoProps> = (props) => {
       return langs?.user.info.male;
     } else if (user?.gender === EGender.female) {
       return langs?.user.info.female;
-    }
-  };
-
-  const renderWard = () => {
-    if (lang === ELangs.ENG) {
-      return content.renderWardEng(Number(user?.ward));
-    } else if (lang === ELangs.VN) {
-      return content.renderWardVn(Number(user?.ward));
-    } else if (lang === ELangs.CH) {
-      return content.renderWardCh(Number(user?.ward));
-    }
-  };
-
-  const renderDistrict = () => {
-    if (lang === ELangs.ENG) {
-      return content.renderDistrictEng(Number(user?.district));
-    } else if (lang === ELangs.VN) {
-      return content.renderDistrictVn(Number(user?.district));
-    } else if (lang === ELangs.CH) {
-      return content.renderDistrictCh(Number(user?.district));
-    }
-  };
-
-  const renderProvince = () => {
-    if (lang === ELangs.ENG) {
-      return content.renderProvinceEng(Number(user?.province));
-    } else if (lang === ELangs.VN) {
-      return content.renderProvinceVn(Number(user?.province));
-    } else if (lang === ELangs.CH) {
-      return content.renderProvinceCh(Number(user?.province));
     }
   };
 
@@ -113,19 +83,19 @@ const UserInfo: React.FunctionComponent<UserInfoProps> = (props) => {
           <li className="list__inner">
             <div className="inner__content">
               <p>{langs?.form.ward} : </p>
-              <strong>{renderWard()}</strong>
+              <strong>{content.renderWard(lang, user?.ward)}</strong>
             </div>
           </li>
           <li className="list__inner">
             <div className="inner__content">
               <p>{langs?.form.district} : </p>
-              <strong>{renderDistrict()}</strong>
+              <strong>{content.renderDistrict(lang, user?.district)}</strong>
             </div>
           </li>
           <li className="list__inner">
             <div className="inner__content">
               <p>{langs?.form.province} : </p>
-              <strong>{renderProvince()}</strong>
+              <strong>{content.renderProvince(lang, user?.province)}</strong>
             </div>
           </li>
           <li className="list__inner">

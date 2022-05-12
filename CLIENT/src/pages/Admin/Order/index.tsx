@@ -1,4 +1,5 @@
 import List from "./List";
 import Add from "./Add";
+import Edit from "./Edit";
 
-export { List, Add };
+export { List, Add, Edit };

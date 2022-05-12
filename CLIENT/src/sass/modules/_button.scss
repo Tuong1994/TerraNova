@@ -149,8 +149,8 @@
 .button--submit {
   margin: 0;
   padding: $p-10;
-  font-size: $default;
 
+  font-size: $default;
   font-weight: $medium;
   text-align: center;
   text-decoration: none !important;
@@ -202,16 +202,17 @@
 }
 
 .button--disabled {
+  margin: 0;
   padding: $p-10;
-  margin: $m-10 0;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
+  font-size: $default;
+  font-weight: $medium;
   text-decoration: none !important;
   text-align: center;
-  font-size: $body-1;
 
   color: $tSecondary !important;
   background: $grey;

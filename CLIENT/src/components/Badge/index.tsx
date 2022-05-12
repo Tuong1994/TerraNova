@@ -39,7 +39,7 @@ const Badge: React.FunctionComponent<BadgeProps> = (props) => {
     <div className={`badge ${getClassName()} ${className ? className : ""}`}>
       <span>{title || (getTitle && getTitle())}</span>
 
-      <span>{icon || (getIcon && getIcon())}</span>
+      {icon || getIcon ? <span>{icon || (getIcon && getIcon())}</span> : null}
     </div>
   );
 };

@@ -77,18 +77,6 @@ const getOrderDetail = async (req, res) => {
       where: {
         id: orderId,
       },
-      attributes: [
-        ["id", "orderId"],
-        "note",
-        "totalPay",
-        "paymentType",
-        "shipmentType",
-        "shipmentFee",
-        "shipmentDetail",
-        "status",
-        "products",
-        "userId",
-      ],
     });
     if (orderDetail) {
       res.status(200).send(orderDetail);

@@ -67,7 +67,7 @@ const OptionList: React.FunctionComponent<OptionListProps> = (props) => {
       <div className="option__wrapper">
         {(() => {
           if (isPaging) {
-            return <DataLoading spinnerClassName="wrapper__loading" />;
+            return <DataLoading className="wrapper__loading" spinnerClassName="loading__spinner" />;
           } else {
             return null;
           }
@@ -78,7 +78,7 @@ const OptionList: React.FunctionComponent<OptionListProps> = (props) => {
           filter(option)?.map((item: any) => {
             return (
               <div
-                key={item.label}
+                key={item[id]}
                 className={
                   value?.value === item[id]
                     ? "wrapper__item wrapper__item--selected"

@@ -126,8 +126,8 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
   React.useEffect(() => {
     if (utils.checkObjectEmpty(shipment)) {
       const fee = utils.getShipmentFee(
-        parseInt(shipment.province || ""),
-        parseInt(shipment.district || "")
+        parseInt(shipment.province || "0"),
+        parseInt(shipment.district || "0")
       );
       setShipmentFee(fee || 0);
     } else {
@@ -135,7 +135,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
     }
   }, [shipment]);
 
-  // Update Item
+  // Update products in carts
   const handleUpdateItem = () => {
     if (utils.checkObjectEmpty(productUpdate)) {
       if (utils.checkObjectEmpty(user)) {
@@ -203,7 +203,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
     }
   };
 
-  // Remove item
+  // Remove products in carts
   const handleRemoveItem = (item: IProductCarts) => {
     if (utils.checkObjectEmpty(user)) {
       // Check if user exist => call API create carts / if not => save temporary carts

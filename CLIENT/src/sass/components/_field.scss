@@ -237,9 +237,11 @@
         text-align: center;
       }
       .wrapper__loading {
-        width: $w-10 * 4;
-        height: $h-10 * 4;
-        border-width: 3px;
+        .loading__spinner {
+          width: $w-10 * 4;
+          height: $h-10 * 4;
+          border-width: 3px;
+        }
       }
     }
     .option__pagination {

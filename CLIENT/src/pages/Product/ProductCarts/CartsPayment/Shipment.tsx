@@ -4,7 +4,6 @@ import * as content from "../../../../configs/shipment";
 import { useSelector } from "react-redux";
 import { IShipment } from "../../../../models/Shipment";
 import { ReducerState } from "../../../../redux/store";
-import { ELangs } from "../../../../interfaces/lang";
 import utils from "../../../../utils";
 
 interface ShipmentProps {
@@ -17,36 +16,6 @@ const Shipment: React.FunctionComponent<ShipmentProps> = (props) => {
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
   const langs = utils.changeLang(lang);
-
-  const renderWard = () => {
-    if (lang === ELangs.ENG) {
-      return content.renderWardEng(parseInt(shipment?.ward || ""));
-    } else if (lang === ELangs.VN) {
-      return content.renderWardVn(parseInt(shipment?.ward || ""));
-    } else if (lang === ELangs.CH) {
-      return content.renderWardCh(parseInt(shipment?.ward || ""));
-    }
-  };
-
-  const renderDistrict = () => {
-    if (lang === ELangs.ENG) {
-      return content.renderDistrictEng(parseInt(shipment?.district || ""));
-    } else if (lang === ELangs.VN) {
-      return content.renderDistrictVn(parseInt(shipment?.district || ""));
-    } else if (lang === ELangs.CH) {
-      return content.renderDistrictCh(parseInt(shipment?.district || ""));
-    }
-  };
-
-  const renderProvince = () => {
-    if (lang === ELangs.ENG) {
-      return content.renderProvinceEng(parseInt(shipment?.province || ""));
-    } else if (lang === ELangs.VN) {
-      return content.renderProvinceVn(parseInt(shipment?.province || ""));
-    } else if (lang === ELangs.CH) {
-      return content.renderProvinceCh(parseInt(shipment?.province || ""));
-    }
-  }
 
   return (
     <Card.Wrapper className="info__card">
@@ -85,19 +54,19 @@ const Shipment: React.FunctionComponent<ShipmentProps> = (props) => {
           <li className="inner__list">
             <div className="list__item">
               <p>{langs?.form.ward} : </p>
-              <strong>{renderWard()}</strong>
+              <strong>{content.renderWard(lang, parseInt(shipment?.ward || ""))}</strong>
             </div>
           </li>
           <li className="inner__list">
             <div className="list__item">
               <p>{langs?.form.district} : </p>
-              <strong>{renderDistrict()}</strong>
+              <strong>{content.renderDistrict(lang, parseInt(shipment?.district || ""))}</strong>
             </div>
           </li>
           <li className="inner__list">
             <div className="list__item">
               <p>{langs?.form.province} : </p>
-              <strong>{renderProvince()}</strong>
+              <strong>{content.renderProvince(lang, parseInt(shipment?.province || ""))}</strong>
             </div>
           </li>
         </ul>
