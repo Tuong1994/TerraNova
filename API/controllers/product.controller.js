@@ -1,4 +1,4 @@
-const { Producer, Product, Description, Comment } = require("../models");
+const { Producer, Product, Description, Comment, Rate } = require("../models");
 const { domain } = require("../setting/setting");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
@@ -216,7 +216,11 @@ const getProductDetail = async (req, res) => {
         {
           model: Comment,
           as: "comments"
-        },  
+        }, 
+        {
+          model: Rate,
+          as: "rates",
+        } 
       ],
     });
 
@@ -244,6 +248,7 @@ const getProductDetail = async (req, res) => {
           updatedAt: productDetail.updatedAt,
           description: productDetail.description || [],
           comments: productDetail.comments || [],
+          rates: productDetail.rates || [],
         };
         res.status(200).send(product);
       } else {

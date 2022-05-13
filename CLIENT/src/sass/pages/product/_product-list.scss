@@ -109,7 +109,9 @@
             width: $w-100;
             .features__specs {
               width: $w-100;
-              border-top: 1px solid $borderGrey;
+              background: $blue-1;
+              border-radius: $lightRound;
+              color: $tSecondary;
               .specs__item {
                 width: $w-100;
                 display: flex;

@@ -131,6 +131,10 @@ const ChLang = {
     specs: "规格",
     comments: "评论",
     related: "相关产品",
+    vat: "价格不含增值税",
+    modal: {
+      title: "产品评论"
+    },
   },
 
   // ==================== PRODUCT CARTS ====================
@@ -539,6 +543,7 @@ const ChLang = {
       update: "更新成功",
       remove: "删除成功",
       upload: "上传成功",
+      rate: "感谢您的评论"
     },
     error: {
       addToCart: "失败加入购物车",
@@ -567,6 +572,7 @@ const ChLang = {
       shipmentType: "您还没有选择交货方式",
       status: "您还没有选择将态",
       orderder: "您还没有选择订购者",
+      rate: "系统有问题，无法评论"
     },
   },
 

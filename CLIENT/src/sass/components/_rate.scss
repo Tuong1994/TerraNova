@@ -1,15 +1,26 @@
 .rate {
   width: $w-100;
   display: flex;
+  justify-content: center;
   align-items: center;
   .rate__star {
+    padding: $p-10 * 2;
     display: flex;
-    margin-right: $m-10;
     .star__item {
+      margin: 0 $m-10;
       cursor: pointer;
-      .fa-star {
-        font-size: $h3;
-        transition: all 0.3s ease;
+      .item__icon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .fa-star {
+          font-size: $h2;
+          transition: all 0.3s ease;
+        }
+        .icon {
+          font-size: $h3;
+          color: $tSecondary;
+        }
       }
       input[type="radio"] {
         display: none;
@@ -18,12 +29,5 @@
     @include respond(phone) {
       margin: $m-10 0;
     }
-  }
-  .rate__content {
-    opacity: 0.8;
-  }
-  @include respond(phone) {
-    flex-direction: column;
-    align-items: flex-start;
   }
 }

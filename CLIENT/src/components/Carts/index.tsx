@@ -30,6 +30,7 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
   const { user } = useSelector((state: ReducerState) => state.UserReducer);
 
   const [isShow, setIsShow] = React.useState<boolean>(false);
+  const [totalAmount, setTotalAmount] = React.useState<number>(0);
   const [totalPrice, setTotalPrice] = React.useState<number>(0);
 
   const cartsRef = React.useRef(null);
@@ -50,8 +51,8 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
     dispatch(getCartsList());
   }, []);
 
+  // Calculate total price
   React.useEffect(() => {
-    // Calculate total price
     let sum = 0;
     if (utils.checkObjectEmpty(user)) {
       if (user?.carts && user?.carts?.length > 0) {
@@ -71,6 +72,23 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
       setTotalPrice(sum);
     }
   }, [user?.carts, tempCarts]);
+
+  // Get total amount
+  React.useEffect(() => {
+    if (user?.carts && user?.carts[0]?.products) {
+      const amount = user?.carts[0]?.products?.reduce((total, product) => {
+        return (total += product.amount || 0); 
+      }, 0)
+      setTotalAmount(amount || 0)
+    } else if (tempCarts?.products) {
+     const amount = tempCarts?.products?.reduce((total, product) => {
+      return (total += product.amount || 0)
+     }, 0)
+     setTotalAmount(amount || 0)
+    } else {
+      setTotalAmount(0)
+    }
+  }, [user?.carts, tempCarts])
 
   const handleRemoveItem = (item: IProductCarts) => {
     if (utils.checkObjectEmpty(user)) {
@@ -242,7 +260,8 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
       </div>
 
       <div className="carts__total">
-        {(() => {
+        {totalAmount}
+        {/* {(() => {
           if (user?.carts && user?.carts[0]?.products) {
             return user?.carts[0]?.products?.length;
           } else if (tempCarts?.products?.length) {
@@ -250,7 +269,7 @@ const Carts: React.FunctionComponent<ICartsProps> = (props) => {
           } else {
             return 0;
           }
-        })()}
+        })()} */}
       </div>
 
       <div

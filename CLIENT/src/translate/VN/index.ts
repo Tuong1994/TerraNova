@@ -134,6 +134,10 @@ const VnLang = {
     specs: "Thông số kỹ thuật",
     comments: "Bình luận",
     related: "Sản phẩm liên quan",
+    vat: "Giá chưa gồm VAT",
+    modal: {
+      title: "Đánh giá sản phẩm"
+    },
   },
 
   // ==================== PRODUCT CARTS ====================
@@ -548,6 +552,7 @@ const VnLang = {
       update: "Cập nhật thành công",
       remove: "Xóa thành công",
       upload: "Upload thành công",
+      rate: "Cảm ơn bạn đã đánh giá"
     },
     error: {
       addToCart: "Thêm vào giỏ hàng thất bại",
@@ -576,6 +581,7 @@ const VnLang = {
       shipmentType: "Bạn chưa chọn hình thức giao hàng",
       status: "Bạn chưa chọn trạng thái",
       orderder: "Bạn chưa chọn người đặt hàng",
+      rate: "Hệ thống đang gặp sự cố, không thể đánh giá"
     },
   },
 

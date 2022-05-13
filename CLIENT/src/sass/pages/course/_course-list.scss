@@ -111,7 +111,9 @@
           .card__desc {
             width: $w-100;
             .desc__list {
-              border-top: 1px solid $borderGrey;
+              border-radius: $lightRound;
+              background: $blue-1;
+              color: $tSecondary;
               .list__content {
                 padding: $p-10;
                 display: flex;

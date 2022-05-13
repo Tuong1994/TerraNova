@@ -21,10 +21,14 @@ import ProductSpecs from "./ProductSpecs";
 import Comment from "../../../components/Comment";
 import actions from "../../../configs/actions";
 import utils from "../../../utils";
+import RateModal from "./RateModal";
+import { createRate } from "../../../redux/actionCreators/RateCreators";
 
 const ProductDetail: React.FunctionComponent<
   RouteComponentProps<IRouteParams>
 > = (props) => {
+  const id = props.match.params.id;
+
   const { productDetail } = useSelector(
     (state: ReducerState) => state.ProductReducer
   );
@@ -34,9 +38,9 @@ const ProductDetail: React.FunctionComponent<
 
   const [stock, setStock] = React.useState<IProductCarts>({});
   const [amount, setAmount] = React.useState<number>(0);
+  const [ratePoint, setRatePoint] = React.useState<number>(0);
 
   const dispatch = useDispatch();
-  const id = props.match.params.id;
 
   const langs = utils.changeLang(lang);
 
@@ -211,6 +215,25 @@ const ProductDetail: React.FunctionComponent<
     }
   };
 
+  const handleRate = () => {
+    const query: IQueryList = {
+      productId: id,
+    };
+    const newRate = {
+      ratePoint: ratePoint,
+      productId: id,
+      userId: user?.id,
+    };
+    dispatch(
+      createRate(
+        newRate,
+        query,
+        langs?.toastMessages.success.rate,
+        langs?.toastMessages.error.rate
+      )
+    );
+  };
+
   return (
     <div className="product-detail">
       <div className="product-detail__title">
@@ -222,6 +245,7 @@ const ProductDetail: React.FunctionComponent<
           product={productDetail}
           langs={langs}
           amount={amount}
+          ratePoint={ratePoint}
           handleIncrease={handleIncrease}
           handleDecrease={handleDecrease}
           handleOrder={handleOrder}
@@ -235,6 +259,11 @@ const ProductDetail: React.FunctionComponent<
           productId={productDetail?.id || productDetail?.productId}
         />
       </div>
+      <RateModal
+        langs={langs}
+        setRatePoint={setRatePoint}
+        onSubmit={handleRate}
+      />
     </div>
   );
 };

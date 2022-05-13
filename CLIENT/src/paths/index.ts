@@ -9,6 +9,7 @@ import { courseSchedulePaths } from "./CourseSchedule";
 import { uploadPaths } from "./Upload";
 import { lessonPaths } from "./Lesson";
 import { commentPaths } from "./Comment";
+import { ratePaths } from "./Rate";
 
 export {
   productPaths,
@@ -22,4 +23,5 @@ export {
   lessonPaths,
   courseSchedulePaths,
   commentPaths,
+  ratePaths,
 };

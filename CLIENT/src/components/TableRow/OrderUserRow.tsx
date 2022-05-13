@@ -15,6 +15,15 @@ interface OrderUserRowProps {
 const OrderUserRow: React.FunctionComponent<OrderUserRowProps> = (props) => {
   const { order, langs, removeOrder } = props;
 
+  const [totalAmount, setTotalAmount] = React.useState<number>(0);
+
+  React.useEffect(() => {
+    const amount = order?.products?.reduce((total, product) => {
+      return (total += product.amount || 0)
+    }, 0)
+    setTotalAmount(amount || 0)
+  }, [order])
+
   const renderPaymentType = () => {
     switch (order?.paymentType) {
       case EPaymentTypes.cash: {
@@ -46,7 +55,7 @@ const OrderUserRow: React.FunctionComponent<OrderUserRowProps> = (props) => {
         </div>
       </TableCol>
       <TableCol>
-        <div>{order?.products?.length}</div>
+        <div>{totalAmount}</div>
       </TableCol>
       <TableCol>
         <div>{order?.totalPay?.toLocaleString()} VND</div>

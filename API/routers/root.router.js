@@ -11,6 +11,7 @@ const { descriptionRouter } = require("./description.router");
 const { lessonRouter } = require("./lesson.router");
 const { orderRouter } = require("./order.router");
 const { productRouter } = require("./product.router");
+const { rateRouter } = require("./rate.router");
 const { uploadRouter } = require("./upload.router");
 const { userRouter } = require("./user.router");
 
@@ -27,6 +28,7 @@ rootRouter.use("/lessonManagement", lessonRouter);
 rootRouter.use("/courseScheduleManagement", courseScheduleRouter);
 rootRouter.use("/descriptionManagement", descriptionRouter);
 rootRouter.use("/commentManagement", commentRouter)
+rootRouter.use("/rateManagement", rateRouter);
 
 module.exports = {
   rootRouter,

@@ -135,6 +135,10 @@ const EngLang = {
     specs: "Specifications",
     comments: "Comments",
     related: "Related products",
+    vat: "Price does not include VAT",
+    modal: {
+      title: "Product rating"
+    },
   },
 
   // ==================== PRODUCT CARTS ====================
@@ -557,6 +561,7 @@ const EngLang = {
       update: "Update succecced",
       remove: "Remove succecced",
       upload: "Upload succecced",
+      rate: "Thank you for rating"
     },
     error: {
       addToCart: "Add to carts failed",
@@ -585,6 +590,7 @@ const EngLang = {
       shipmentType: "You haven't choose shipment type",
       status: "You haven't choose status",
       orderder: "You haven't choose orderer",
+      rate: "The system is having problems, cannot rate"
     },
   },
 

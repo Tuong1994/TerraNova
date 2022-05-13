@@ -10,12 +10,13 @@ import { ILangs } from "../../../../interfaces/lang";
 import { EBadgeStatus } from "../../../../interfaces/badge";
 import ButtonLoading from "../../../../components/Loading/ButtonLoading";
 import Badge from "../../../../components/Badge";
-import Rate from "../../../../components/Rate";
+import ProductRate from "../ProductRate";
 
 interface IProductInfoProps {
   product: IProduct;
   amount: number;
   langs: ILangs;
+  ratePoint: number;
   handleIncrease: () => void;
   handleDecrease: () => void;
   handleOrder: () => void;
@@ -83,8 +84,12 @@ const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
         </li>
       </ul>
 
+      <div className="info__note">
+        <p>{`(${langs?.productDetail.vat})`}</p>
+      </div>
+
       <div className="info__rate">
-        <Rate />
+        <ProductRate />
       </div>
 
       <div className="info__amount">
