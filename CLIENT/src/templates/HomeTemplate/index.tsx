@@ -10,14 +10,22 @@ interface IHomeTemplateProps extends IRoute {
 
 const HomeTemplate: React.FunctionComponent<IHomeTemplateProps> = (props) => {
   let { Component, ...restProps } = props;
+
   return (
     <Route
       {...restProps}
       render={(propsRoute: RouteComponentProps) => {
         return (
-          <div>
+          <div className="home-template">
             <Header />
-            <Component {...propsRoute} />
+            <div
+              className={`home-template__content ${
+                document.location.pathname === "/" &&
+                "home-template__content-home"
+              } `}
+            >
+              <Component {...propsRoute} />
+            </div>
             <Footer />
           </div>
         );

@@ -2,30 +2,59 @@ import React from "react";
 import * as Card from "../../../../components/Card";
 import * as FormControl from "../../../../components/Fields";
 import { ILangs } from "../../../../interfaces/lang";
-import { IUser } from "../../../../models/User";
+import { useDispatch } from "react-redux";
+import actions from "../../../../configs/actions";
 
 interface OrdererFieldsProps {
-  totalPage: number;
-  users: IUser[];
+  userList: any;
   langs: ILangs;
   userId: string;
   setUserId: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const OrdererFields: React.FunctionComponent<OrdererFieldsProps> = (props) => {
-  const { langs, totalPage, users, userId, setUserId } = props;
+  const { langs, userList, userId, setUserId } = props;
 
   const [orderers, setOrderers] = React.useState<any>([]);
+  const [currentPage, setCurrentPage] = React.useState<number>(1);
+  const [defaultUser, setDefaultUser] = React.useState<string>("");
+  const dispatch = useDispatch();
+
+  const { users, total, limits } = userList;
+
+  const totalPage = Math.ceil(total / limits);
+  const start = (currentPage - 1) * limits;
+  const end = start + limits;
+  const userArr = users.slice(start, end);
 
   React.useEffect(() => {
-    if (users && users.length > 0) {
-      const newArr = users.map((user) => {
+    if (userArr && userArr.length > 0) {
+      const newArr = userArr.map((user: any) => {
         const userName = `${user.firstName} ${user.lastName}`;
         return { label: userName, value: user.id };
       });
-      setOrderers(newArr)
+      setOrderers(newArr);
     }
+    const user = users.find((i: any) => i.id === userId);
+    const userName = `${user?.firstName} ${user?.lastName}`;
+    setDefaultUser(userName)
   }, [users]);
+
+  const handlePrev = () => {
+    dispatch(actions.openDataLoading);
+    setCurrentPage((prev) => prev - 1);
+    setTimeout(() => {
+      dispatch(actions.closeDataLoading);
+    }, 500);
+  };
+
+  const handleNext = () => {
+    dispatch(actions.openDataLoading);
+    setCurrentPage((prev) => prev + 1);
+    setTimeout(() => {
+      dispatch(actions.closeDataLoading);
+    }, 500);
+  };
 
   return (
     <Card.Wrapper className="item__inner item__customer">
@@ -37,8 +66,10 @@ const OrdererFields: React.FunctionComponent<OrdererFieldsProps> = (props) => {
         isPaging={true}
         totalPage={totalPage}
         option={orderers}
-        defaultValue={users.find((i: any) => i.value === userId)}
+        defaultValue={defaultUser}
         groupClassName="inner__control"
+        onPrev={handlePrev}
+        onNext={handleNext}
         onChange={(value: any) => {
           setUserId(value);
         }}

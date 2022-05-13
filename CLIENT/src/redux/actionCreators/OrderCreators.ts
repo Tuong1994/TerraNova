@@ -10,6 +10,8 @@ import { EModalActionTypes } from "../actionTypes/ModalActionTypes";
 import { Dispatch } from "redux";
 import { toast } from "react-toastify";
 
+const token = localStorage.getItem(ACCESSTOKEN) || "";
+
 export const getOrderList = (query: IQueryList) => {
   return (dispatch: Dispatch) => {
     dispatch(actions.openDataLoading);
@@ -37,17 +39,17 @@ export const getOrderDetail = (query: IQueryList) => {
     try {
       const result = await axiosClient.get(
         apiPath.orderPaths.getOrderDetail,
-        getListQuery(query as IQueryList),
-      )
+        getListQuery(query as IQueryList)
+      );
       dispatch({
         type: EOrderActionTypes.GET_ORDER_DETAIL,
-        payload: result.data
-      })
-    } catch (error) { 
-      console.log(error)
+        payload: result.data,
+      });
+    } catch (error) {
+      console.log(error);
     }
-  }
-}
+  };
+};
 
 export const createOrder = (
   data: IOrder,
@@ -55,7 +57,7 @@ export const createOrder = (
   success?: string,
   err?: string
 ) => {
-  return (dispatch: Dispatch | any) => {
+  return (dispatch: any) => {
     dispatch(actions.openButtonLoading);
     setTimeout(async () => {
       try {
@@ -74,13 +76,39 @@ export const createOrder = (
   };
 };
 
+export const updateOrder = (
+  query: IQueryList,
+  data: IOrder,
+  success?: string,
+  err?: string
+) => {
+  return (dispatch: any) => {
+    dispatch(actions.openButtonLoading);
+    setTimeout(async () => {
+      try {
+        await axiosClient.put(
+          apiPath.orderPaths.updateOrder,
+          getListQuery(query as IQueryList),
+          data,
+          token
+        );
+        dispatch(getOrderDetail(query));
+        dispatch(actions.closeButtonLoading);
+        toast.success(success);
+      } catch (error) {
+        dispatch(actions.closeButtonLoading);
+        toast.error(err);
+      }
+    }, 1000);
+  };
+};
+
 export const removeOrder = (
   query: IQueryList,
   success?: string,
   err?: string
 ) => {
   return async (dispatch: any) => {
-    const token = localStorage.getItem(ACCESSTOKEN) || "";
     try {
       await axiosClient.delete(
         apiPath.orderPaths.removeOrder,

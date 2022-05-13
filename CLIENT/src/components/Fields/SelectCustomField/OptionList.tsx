@@ -19,6 +19,8 @@ interface OptionListProps {
   filter: (v: any) => any;
   getValue: (v: any) => void;
   onChange?: (v: any) => void;
+  onPrev?: () => void;
+  onNext?: () => void;
   setIsDropdown: React.Dispatch<React.SetStateAction<boolean>>;
   setFreeText: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -38,6 +40,8 @@ const OptionList: React.FunctionComponent<OptionListProps> = (props) => {
     filter,
     getValue,
     onChange,
+    onPrev,
+    onNext,
     setIsDropdown,
     setFreeText,
   } = props;
@@ -108,20 +112,32 @@ const OptionList: React.FunctionComponent<OptionListProps> = (props) => {
 
       {isPaging && (
         <div className="option__pagination">
-          <Button
+          <div
             className={`button--round ${page === 1 ? "button--disabled" : ""}`}
-            onClick={handlePrevPage}
+            onClick={() => {
+              if(onPrev) {
+                return onPrev()
+              } else {
+                return handlePrevPage()
+              }
+            }}
           >
             <i className="fa-solid fa-angle-left"></i>
-          </Button>
-          <Button
+          </div>
+          <div
             className={`button--round ${
               page === totalPage ? "button--disabled" : ""
             }`}
-            onClick={handleNextPage}
+            onClick={() => {
+              if(onNext) {
+                return onNext()
+              } else {
+                handleNextPage()
+              }
+            }}
           >
             <i className="fa-solid fa-angle-right"></i>
-          </Button>
+          </div>
         </div>
       )}
     </div>

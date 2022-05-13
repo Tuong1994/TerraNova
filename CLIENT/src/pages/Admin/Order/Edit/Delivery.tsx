@@ -37,13 +37,17 @@ const DeliveryFields: React.FunctionComponent<DeliveryFieldsProps> = (
     setIsReset,
   } = props;
 
+  const [isSetup, setIsSetup] = React.useState<boolean>(false);
+
   const dispatch = useDispatch();
 
   React.useEffect(() => {
     if (shipmentType === EShipmentType.delivery) {
-      dispatch({
-        type: EModalActionTypes.OPEN_ADD_SHIPMENT_MODAL,
-      });
+      if (isSetup) {
+        dispatch({
+          type: EModalActionTypes.OPEN_ADD_SHIPMENT_MODAL,
+        });
+      }
     } else if (shipmentType === EShipmentType.noShipment) {
       dispatch({
         type: EShipmentActionTypes.REMOVE_SHIPMENT,
@@ -61,10 +65,15 @@ const DeliveryFields: React.FunctionComponent<DeliveryFieldsProps> = (
         label={langs?.form.shipmentType}
         component={FormControl.Select}
         option={options?.shipmentType}
-        defaultValue={options?.shipmentType.find(i => i.value === shipmentType)}
+        defaultValue={options?.shipmentType.find(
+          (i) => i.value === shipmentType
+        )}
         groupClassName="inner__control"
         onChange={(value: any) => {
           setShipmentType(value);
+          if (value === EShipmentType.delivery) {
+            setIsSetup(true);
+          }
         }}
       />
 

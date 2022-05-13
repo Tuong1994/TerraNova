@@ -28,6 +28,7 @@ export const getListQuery = (query: IQueryList): string => {
     freeText,
     filter,
     sortBy,
+    isPaging,
   } = query || ({} as IQueryList);
 
   page < 1 && (page = 1);
@@ -51,5 +52,6 @@ export const getListQuery = (query: IQueryList): string => {
   freeText && (rs += `&freeText=${freeText}`);
   filter && (rs += `&filter=${filter}`);
   sortBy && (rs += `&sortBy=${sortBy}`);
+  isPaging && (rs += `&isPaging=${isPaging}`)
   return rs;
 };

@@ -41,6 +41,7 @@ const CustomerList: React.FunctionComponent<{}> = (props) => {
 
   React.useEffect(() => {
     const query: IQueryList = {
+      isPaging: true,
       page: page,
       limits: 10,
       filter: filter,
@@ -79,6 +80,7 @@ const CustomerList: React.FunctionComponent<{}> = (props) => {
       return users.map((user, index) => {
         return (
           <CustomerAdminRow
+            key={user.id || user.userId}
             langs={langs}
             user={user}
             index={index}

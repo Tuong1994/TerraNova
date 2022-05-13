@@ -1,6 +1,7 @@
 .user-template {
   .user-template__content {
     display: flex;
+    padding-top: $p-10 * 5;
     .content__inner {
       width: $w-100 - 25;
       padding: $p-10 * 5;

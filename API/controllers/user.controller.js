@@ -5,7 +5,7 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
 const getUserList = async (req, res) => {
-  const { page, limits, filter, freeText, sortBy } = req.query;
+  const { isPaging, page, limits, filter, freeText, sortBy } = req.query;
   const pageNumber = parseInt(page);
   const itemPerPage = parseInt(limits);
   try {
@@ -55,24 +55,27 @@ const getUserList = async (req, res) => {
       });
     }
 
-    if (page) {
-      const total = userList.length;
-      const start = (pageNumber - 1) * itemPerPage;
-      const end = start + itemPerPage;
-      const userPerPage = userList.slice(start, end);
+    if (isPaging) {
+      if (page) {
+        const total = userList.length;
+        const start = (pageNumber - 1) * itemPerPage;
+        const end = start + itemPerPage;
+        const userPerPage = userList.slice(start, end);
+        res.status(200).send({
+          total: total,
+          page: pageNumber,
+          limits: itemPerPage,
+          users: userPerPage,
+        });
+      }
+    } else {
       res.status(200).send({
-        total: total,
-        page: pageNumber,
+        total: userList.length,
+        page: 0,
         limits: itemPerPage,
-        users: userPerPage,
+        users: userList,
       });
     }
-    res.status(200).send({
-      total: userList.length,
-      page: 0,
-      limits: itemPerPage,
-      users: userList,
-    });
   } catch (error) {
     res.status(500).send(error);
   }

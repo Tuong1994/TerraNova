@@ -1,5 +1,6 @@
 export interface IQueryList {
-  page?: number;
+  isPaging?: boolean;
+  page?: number | string;
   limits?: number;
   categoryId?: string;
   producerId?: string;

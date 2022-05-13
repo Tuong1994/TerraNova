@@ -6,8 +6,12 @@ import { ReducerState } from "../../../../redux/store";
 import { IProductCarts } from "../../../../models/Carts";
 import { IQueryList } from "../../../../interfaces/query";
 import { IRouteParams } from "../../../../interfaces/route";
-import { getOrderDetail } from "../../../../redux/actionCreators/OrderCreators";
+import {
+  getOrderDetail,
+  updateOrder,
+} from "../../../../redux/actionCreators/OrderCreators";
 import { getUserList } from "../../../../redux/actionCreators/UserCreators";
+import { EShipmentActionTypes } from "../../../../redux/actionTypes/ShipmentActionTypes";
 import { toast } from "react-toastify";
 import ContentHeader from "../../../../components/ContentHeader";
 import Button from "../../../../components/Button";
@@ -35,9 +39,6 @@ const EditOrder: React.FunctionComponent<RouteComponentProps<IRouteParams>> = (
   const { shipment } = useSelector(
     (state: ReducerState) => state.ShipmentReducer
   );
-  const { page } = useSelector(
-    (state: ReducerState) => state.PaginationReducer
-  );
   const { buttonLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
   );
@@ -64,8 +65,6 @@ const EditOrder: React.FunctionComponent<RouteComponentProps<IRouteParams>> = (
 
   const dispatch = useDispatch();
 
-  const totalPage = Math.ceil(userList.total / userList.limits);
-
   // Get Order Detail
   React.useEffect(() => {
     const query: IQueryList = {
@@ -83,17 +82,21 @@ const EditOrder: React.FunctionComponent<RouteComponentProps<IRouteParams>> = (
       setShipmentType(orderDetail.shipmentType || 0);
       setShipmentFee(orderDetail.shipmentFee || 0);
       setUserId(orderDetail.userId || "");
+      dispatch({
+        type: EShipmentActionTypes.ADD_SHIPMENT,
+        payload: orderDetail.shipmentDetail
+      })
     }
   }, [orderDetail]);
 
   // Get user list
   React.useEffect(() => {
     const query: IQueryList = {
-      page: page,
+      page: 1,
       limits: 10,
     };
     dispatch(getUserList(query));
-  }, [page]);
+  }, []);
 
   // Handle auto select new product after created
   React.useEffect(() => {
@@ -177,12 +180,23 @@ const EditOrder: React.FunctionComponent<RouteComponentProps<IRouteParams>> = (
     }
 
     if (!isValid) {
-      const newOrder = {
+      const query: IQueryList = {
+        orderId: orderId,
+      };
+      const orderUpdate = {
         ...values,
         products: products,
         shipmentDetail: shipment,
         userId: userId,
       };
+      dispatch(
+        updateOrder(
+          query,
+          orderUpdate,
+          langs?.toastMessages.success.update,
+          langs?.toastMessages.error.update
+        )
+      );
     }
   };
 
@@ -245,8 +259,7 @@ const EditOrder: React.FunctionComponent<RouteComponentProps<IRouteParams>> = (
                   />
                   <OrdererFields
                     langs={langs}
-                    totalPage={totalPage}
-                    users={userList.users}
+                    userList={userList}
                     userId={userId}
                     setUserId={setUserId}
                   />

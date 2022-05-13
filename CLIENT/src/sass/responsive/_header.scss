@@ -1,6 +1,6 @@
 .header__responsive {
   width: $w-100;
-  height: $h-100;
+  height: $h-100-vh;
   background: $RGBA-dark-2;
   position: fixed;
   top: 0;
@@ -14,8 +14,8 @@
     font-size: $h6;
     color: $tSecondary;
     position: absolute;
-    top: 2%;
-    right: 5%;
+    top: 10px;
+    right: 10px;
   }
   .responsive__button--active {
     animation: rotate 0.5s linear 1;

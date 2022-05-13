@@ -67,6 +67,7 @@ const CourseCategory: React.FunctionComponent<CourseCategoryProps> = (
           );
         })}
       </div>
+      <div className="category__wave"></div>
     </div>
   );
 };

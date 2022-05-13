@@ -2,12 +2,19 @@
   width: $w-100;
   height: $h-10 * 7;
   padding: 0 $p-10 * 5;
-  background: $primary;
-  border-bottom: 1px solid $borderGrey;
+  background: $RGBA-white-2;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  -moz-backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px $lightGrey;
   display: flex;
   justify-content: space-between;
   align-items: center;
   transition: all 0.5s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
   .header__logo {
     width: $w-100 - 80;
     padding: 0;
@@ -17,10 +24,12 @@
       .wrapper__left {
         font-size: $h2;
         color: $tBlue;
+        text-shadow: 0 0 5px $primary;
       }
       .wrapper__right {
         font-size: $body-1;
         font-weight: $medium;
+        color: $tSecondary;
       }
     }
   }
@@ -30,7 +39,9 @@
       list-style: none;
       position: relative;
       &:hover .list__link {
-        color: $tBlue;
+        background: $blue-1;
+        color: $tSecondary;
+        border-radius: $lightRound;
       }
       &:hover .list__dropdown {
         top: 90%;
@@ -51,7 +62,7 @@
         text-decoration: none;
         font-size: $body-1;
         font-weight: $medium;
-        color: $tPrimary;
+        color: $tSecondary;
         transition: all 0.3s ease;
       }
       // Course dropdown
@@ -71,7 +82,12 @@
         transition: all 0.5s ease;
         .dropdown__list {
           position: relative;
-          .list__link {
+          .list__item {
+            display: block;
+            padding: $p-10 * 2;
+            text-decoration: none;
+            font-size: $body-1;
+            font-weight: $medium;
             color: $tSecondary;
             transition: all 0.3s ease;
             &:hover {
@@ -158,19 +174,27 @@
                 color: $tSecondary;
               }
               .subtabs__content {
+                margin: $m-5 0;
+                padding: 0 $p-10 * 7;
                 height: 0;
-                overflow: hidden;
-                padding: $p-5 $p-10 * 7;
                 display: flex;
+                align-items: center;
+                overflow: hidden;
                 transition: all 0.5s ease;
                 .content__link {
-                  display: block;
-                  padding: $p-10 $p-10 * 2;
+                  margin: 0 $m-10;
+                  padding: $p-5 $p-10 * 2;
                   text-decoration: none;
                   font-weight: $medium;
-                  font-size: $body-1;
+                  font-size: $body-2;
+                  border: 1px solid $borderBlue;
+                  border-radius: $round;
+                  display: flex;
+                  align-items: center;
+                  transition: all 0.5s ease;
                   &:hover {
-                    color: $tPrimary;
+                    background: $secondary;
+                    color: $tSecondary;
                   }
                 }
               }
@@ -209,7 +233,7 @@
           border-radius: $lightRound;
           text-decoration: none;
           font-size: $body-1;
-          color: $tPrimary;
+          color: $tSecondary;
           display: flex;
           align-items: center;
           transition: all 0.3s ease;
@@ -281,6 +305,15 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      .others__item {
+        color: $tSecondary;
+        .item__inner {
+          color: $tPrimary;
+          &:hover {
+            color: $tSecondary;
+          }
+        }
+      }
     }
     @include respond(laptop) {
       width: $w-100 - 70;
@@ -295,6 +328,7 @@
       padding: $p-10;
       border: 1px solid $borderGrey;
       border-radius: $lightRound;
+      color: $tSecondary;
     }
     @include respond(extraTablet) {
       display: block;
@@ -309,9 +343,5 @@
 }
 
 .header--active {
-  position: fixed;
-  top: 0;
-  z-index: 9999;
-  height: $h-10 * 5;
-  // color: $tSecondary;
+  background: $RGBA-blue-1;
 }

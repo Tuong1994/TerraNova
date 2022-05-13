@@ -12,8 +12,71 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    const salt = bcryptjs.genSaltSync(10)
-    const hashPassword = bcryptjs.hashSync("123456", salt)
+
+    const arrFirstName = [
+      "Jack",
+      "Williams",
+      "Jason",
+      "Barry",
+      "Ken",
+      "Kevin",
+      "Issac",
+      "Leon",
+      "Bruce",
+      "Clark",
+      "Tony",
+      "Clint",
+      "Steve",
+      "John",
+      "Chris",
+      "Lisa",
+      "Anabelle",
+      "Elizabeh",
+      "Anna",
+      "Hannah",
+      "Sarah",
+      "Tiffany",
+      "Christine",
+      "Martha",
+      "Jill",
+      "Claire",
+      "Ada",
+      "Michelle",
+    ];
+
+    const arrLastName = [
+      "Johnson",
+      "McCoy",
+      "Baker",
+      "Wayne",
+      "Kent",
+      "Barton",
+      "Warren",
+      "Washington",
+      "Kenway",
+      "Franklin",
+      "Olsen",
+      "Swan",
+      "Turner",
+      "Jones",
+      "Weasley",
+      "Granger",
+      "Potter",
+      "Nigma",
+      "Cobblepot",
+      "Stewart",
+      "Jordan",
+      "Allen",
+      "West",
+      "Grayson",
+      "Todd",
+      "Drake",
+      "Kane",
+      "Gordon",
+    ];
+
+    const salt = bcryptjs.genSaltSync(10);
+    const hashPassword = bcryptjs.hashSync("123456", salt);
     const users = [
       {
         id: `U_0101`,
@@ -35,21 +98,21 @@ module.exports = {
         updatedAt: new Date(),
       },
     ];
-    
+
     for (let i = 0; i < 100; i++) {
-      const hashPass = bcryptjs.hashSync(`acount_${i}`, salt)
+      const hashPass = bcryptjs.hashSync(`acount_${i}`, salt);
       const user = {
         id: `U_000${i}`,
         account: `acount_${i}`,
         password: hashPass,
-        firstName: "First Name",
-        lastName: "Last Name",
-        email: "user@gmail.com",
-        address: "Adress",
+        firstName: arrFirstName[Math.floor(Math.random() * arrFirstName.length)],
+        lastName: arrLastName[Math.floor(Math.random() * arrLastName.length)],
+        email: `${arrFirstName[Math.floor(Math.random() * arrFirstName.length)]}@gmail.com`,
+        address: "",
         ward: 0,
         district: 0,
         province: 0,
-        phone: "Phone",
+        phone: "",
         birthDay: new Date(),
         gender: 1,
         avatar: "",

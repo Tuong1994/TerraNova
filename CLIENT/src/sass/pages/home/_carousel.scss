@@ -1,6 +1,6 @@
 .home__carousel {
   display: flex;
-  height: $h-10 * 50;
+  height: $h-100-vh;
   .carousel__form {
     width: $w-100 - 70;
     padding: $p-10 * 3;
@@ -59,13 +59,13 @@
     }
   }
   .carousel__slider {
-    width: $w-100 - 30;
+    width: $w-100;
     height: $h-100;
     .slider {
       width: $w-100;
       .slider__item {
         width: $w-100;
-        height: $h-10 * 50;
+        height: $h-100-vh;
         background-repeat: no-repeat !important;
         background-position: center !important;
         background-size: cover !important;
@@ -75,6 +75,8 @@
           padding: $p-10 * 5;
           display: flex;
           flex-direction: column;
+          align-items: center;
+          justify-content: center;
           position: relative;
           &::after {
             content: "";
@@ -92,6 +94,16 @@
             &:nth-child(1) {
               font-size: $h1;
               font-weight: $medium;
+              @include respond(phone) {
+                font-size: $h5;
+                margin-bottom: $m-10 * 2;
+              }
+            }
+            @include respond(tablet) {
+              font-size: $h6;
+            }
+            @include respond(phone) {
+              font-size: $body-1;
             }
           }
         }
@@ -105,9 +117,6 @@
       .slider__item-three {
         background: url("../../../assets/img/movie.jpg");
       }
-    }
-    @include respond(tablet) {
-      display: none;
     }
   }
 

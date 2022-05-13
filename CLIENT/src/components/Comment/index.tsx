@@ -5,9 +5,6 @@ import { ReducerState } from "../../redux/store";
 import { IQueryList } from "../../interfaces/query";
 import { getUserDetail } from "../../redux/actionCreators/UserCreators";
 import { IComment } from "../../models/Comment";
-import CommentItem from "./Item";
-import CommentControl from "./Control";
-import utils from "../../utils";
 import {
   createComment,
   removeComment,
@@ -15,6 +12,9 @@ import {
 } from "../../redux/actionCreators/CommentCreators";
 import { ACCOUNT } from "../../configs/setting";
 import { history } from "../../App";
+import CommentItem from "./Item";
+import CommentControl from "./Control";
+import utils from "../../utils";
 
 interface CommentProps {
   comments: IComment[];

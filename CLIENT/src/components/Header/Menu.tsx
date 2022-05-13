@@ -49,7 +49,7 @@ const Menu: React.FunctionComponent<MenuProps> = (props) => {
               <li className="dropdown__list" key={subMenu.subMenuId}>
                 <Link
                   to={`/courseByCategory/${subMenu.subMenuId}`}
-                  className="list__link"
+                  className="list__item"
                   onClick={() => getCourseByCategory(subMenu.subMenuId)}
                 >
                   {subMenu.name}

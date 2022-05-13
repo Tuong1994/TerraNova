@@ -376,6 +376,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    position: relative;
     .category__title {
       font-size: $h4;
       font-weight: $semiBold;
@@ -387,11 +388,45 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: relative;
+      z-index: 1;
       .list__item {
         width: $w-100;
         display: flex;
         justify-content: center;
         align-items: center;
+      }
+    }
+    .category__wave {
+      width: $w-100;
+      height: $h-10 * 14.3;
+      background: url("../../../assets/img/wave.png");
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      animation: slide 10s linear infinite;
+      &::before {
+        content: "";
+        width: $w-100;
+        height: $h-10 * 14.3;
+        background: url("../../../assets/img/wave.png");
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0.4;
+        animation: slide-reverse 10s linear infinite;
+      }
+      &::after {
+        content: "";
+        width: $w-100;
+        height: $h-10 * 14.3;
+        background: url("../../../assets/img/wave.png");
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0.6;
+        animation-delay: -5;
+        animation: slide 20s linear infinite;
       }
     }
     @include respond(laptop) {
@@ -400,5 +435,23 @@
     @include respond(extraTablet) {
       display: none;
     }
+  }
+}
+
+@keyframes slide {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: 1360px;
+  }
+}
+
+@keyframes slide-reverse {
+  0% {
+    background-position: 1360px;
+  }
+  100% {
+    background-position: 0;
   }
 }

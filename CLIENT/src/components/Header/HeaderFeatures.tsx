@@ -6,8 +6,8 @@ interface HeaderFeaturesProps {}
 
 const HeaderFeatures: React.FunctionComponent<HeaderFeaturesProps> = props => {
     return <div className="features__others">
-        <Carts />
-        <Translate />
+        <Carts className="others__item" />
+        <Translate className="others__item" childClass="item__inner" />
     </div>
 }
 

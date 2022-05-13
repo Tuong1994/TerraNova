@@ -1,9 +1,10 @@
 .user-sidebar__responsive {
   width: $w-100;
-  background: $secondary;
+  background: $primary;
+  border-bottom: 1px solid $borderGrey;
   display: none;
   position: sticky;
-  top: 50px;
+  top: 70px;
   z-index: 99;
   .responsive__wrapper {
     display: flex;
@@ -17,7 +18,7 @@
         text-decoration: none;
         display: block;
         padding: 0 $p-10;
-        color: $tSecondary;
+        color: $tPrimary;
         i {
           font-size: $subtitle;
         }
@@ -26,7 +27,7 @@
     .wrapper__admin {
       padding: $p-10;
       text-decoration: none;
-      color: $tSecondary;
+      color: $tPrimary;
     }
     @include respond(extraTablet) {
       padding: $p-10 * 2 $p-10;

@@ -32,9 +32,6 @@ const AddOrder: React.FunctionComponent<AddOrderProps> = (props) => {
   const { shipment } = useSelector(
     (state: ReducerState) => state.ShipmentReducer
   );
-  const { page } = useSelector(
-    (state: ReducerState) => state.PaginationReducer
-  );
   const { buttonLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
   );
@@ -58,16 +55,14 @@ const AddOrder: React.FunctionComponent<AddOrderProps> = (props) => {
 
   const dispatch = useDispatch();
 
-  const totalPage = Math.ceil(userList.total / userList.limits);
-
   // Get user list
   React.useEffect(() => {
     const query: IQueryList = {
-      page: page,
+      page: 1,
       limits: 10,
     };
     dispatch(getUserList(query));
-  }, [page]);
+  }, []);
 
   // Handle auto select new product after created
   React.useEffect(() => {
@@ -249,8 +244,7 @@ const AddOrder: React.FunctionComponent<AddOrderProps> = (props) => {
                   />
                   <OrdererFields
                     langs={langs}
-                    totalPage={totalPage}
-                    users={userList.users}
+                    userList={userList}
                     isReset={isReset}
                     userId={userId}
                     setUserId={setUserId}

@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
 import utils from "../../../utils";
 import OptionList from "./OptionList";
-import Button from "../../Button";
 
 interface SelectCustomFieldProps {
   id?: any;
@@ -25,6 +24,8 @@ interface SelectCustomFieldProps {
   totalPage?: number;
   selectedItems?: any;
   onChange?(item: any): void;
+  onPrev?(): void;
+  onNext?(): void;
 }
 
 const SelectCustomField: React.FunctionComponent<SelectCustomFieldProps> = (
@@ -102,7 +103,7 @@ const SelectCustomField: React.FunctionComponent<SelectCustomFieldProps> = (
   const renderValue = () => {
     if (freeText.length > 0) return freeText;
     if (value) return newValue;
-    if (defaultValue) return defaultValue.label;
+    if (defaultValue) return defaultValue.label || defaultValue;
     return "";
   };
 

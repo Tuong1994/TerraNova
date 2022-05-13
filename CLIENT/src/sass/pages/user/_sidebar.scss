@@ -1,6 +1,7 @@
 .user-template__sidebar {
   width: $w-100 - 75;
   height: $h-100-vh;
+  padding-top: $p-10 * 5;
   background: $secondary;
   position: sticky;
   top: 50px;

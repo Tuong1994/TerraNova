@@ -67,6 +67,7 @@ const RCourseCategory: React.FunctionComponent<RCourseCategoryProps> = (
           );
         })}
       </div>
+      <div className="responsive__wave"></div>
     </div>
   );
 };

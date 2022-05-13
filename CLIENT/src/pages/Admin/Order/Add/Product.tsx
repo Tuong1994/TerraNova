@@ -23,8 +23,10 @@ const ProductFields: React.FunctionComponent<ProductFieldsProps> = (props) => {
 
   const handleUpdate = (id: string) => {
     const index = products.findIndex((i) => i.id === id);
-    products[index].amount = amountUpdate;
-    setProducts(products);
+    if (products[index]) {
+      products[index].amount = amountUpdate;
+      setProducts(products);
+    }
   };
 
   const handleRemove = (id: string) => {
@@ -51,7 +53,7 @@ const ProductFields: React.FunctionComponent<ProductFieldsProps> = (props) => {
         </Button>
 
         <span>{langs?.admin.order.or}</span>
-        
+
         <Button
           type="button"
           className="button--add"
@@ -69,7 +71,10 @@ const ProductFields: React.FunctionComponent<ProductFieldsProps> = (props) => {
       <div className="inner__list">
         {products.map((product) => {
           return (
-            <Card.Wrapper className="list__item" key={product.id || product.productId}>
+            <Card.Wrapper
+              className="list__item"
+              key={product.id || product.productId}
+            >
               <div className="item__content">
                 <p>{product.productName}</p>
               </div>

@@ -9,10 +9,11 @@ import utils from "../../utils";
 
 interface TranslateProps {
   className?: string;
+  childClass?: string;
 }
 
 const Translate: React.FunctionComponent<TranslateProps> = (props) => {
-  const { className } = props;
+  const { className, childClass } = props;
 
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
@@ -102,7 +103,7 @@ const Translate: React.FunctionComponent<TranslateProps> = (props) => {
           return (
             <div
               key={item.id}
-              className="menu__item"
+              className={`menu__item ${childClass ? childClass : ""}`}
               onClick={() => changeLang(item.key)}
             >
               <span className="item__title">{item.title}</span>
