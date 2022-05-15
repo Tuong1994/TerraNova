@@ -14,10 +14,11 @@ interface RateModalProps {
   langs: ILangs;
   onSubmit: () => void;
   setRatePoint: React.Dispatch<React.SetStateAction<number>>;
+  setRateNote: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const RateModal: React.FunctionComponent<RateModalProps> = (props) => {
-  const { langs, onSubmit, setRatePoint } = props;
+  const { langs, onSubmit, setRateNote, setRatePoint } = props;
 
   const { isRate } = useSelector((state: ReducerState) => state.ModalReducer);
   const { buttonLoading } = useSelector(
@@ -45,6 +46,7 @@ const RateModal: React.FunctionComponent<RateModalProps> = (props) => {
       <Modal.Body className="product-rate-modal__body">
         <Card.Wrapper className="body__wrapper">
           <Rate
+            starClass="wrapper__stars"
             onChange={(value: any) => {
               setRatePoint(value);
             }}
@@ -53,6 +55,10 @@ const RateModal: React.FunctionComponent<RateModalProps> = (props) => {
             placeholder=" "
             label={langs?.form.note}
             groupClassName="wrapper__control"
+            onChange={(e) => {
+              const value = e.target.value;
+              setRateNote(value);
+            }}
           />
         </Card.Wrapper>
       </Modal.Body>

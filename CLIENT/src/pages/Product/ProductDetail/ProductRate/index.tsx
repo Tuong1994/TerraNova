@@ -1,19 +1,36 @@
 import React from "react";
 import { history } from "../../../../App";
 import { ACCESSTOKEN } from "../../../../configs/setting";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { EModalActionTypes } from "../../../../redux/actionTypes/ModalActionTypes";
-import { ReducerState } from "../../../../redux/store";
-import utils from "../../../../utils";
+import { IProduct } from "../../../../models/Product";
+import { ILangs } from "../../../../interfaces/lang";
 
-interface ProductRateProps {}
+interface ProductRateProps {
+  langs: ILangs;
+  product: IProduct;
+}
 
 const ProductRate: React.FunctionComponent<ProductRateProps> = (props) => {
-  const { lang } = useSelector((state: ReducerState) => state.LangReducer);
+  const { product, langs } = props;
 
   const dispatch = useDispatch();
 
-  const langs = utils.changeLang(lang);
+  const [point, setPoint] = React.useState<number>(0);
+
+  React.useEffect(() => {
+    if (product) {
+      setPoint(product.ratePoint || 0);
+    }
+  }, [product]);
+
+  const getColor = (i: number) => {
+    if (i <= point) {
+      return "#ffc107";
+    } else {
+      return "#e4e5e9";
+    }
+  };
 
   return (
     <div className="rate__wrapper">
@@ -30,15 +47,18 @@ const ProductRate: React.FunctionComponent<ProductRateProps> = (props) => {
         }}
       >
         {[...Array(5)].map((star: any, i: number) => {
+          const ratingValue = i + 1
           return (
             <label className="star__item" key={i}>
-              <i className="fas fa-star" style={{ color: "#e4e5e9" }}></i>
+              <i className="fas fa-star" style={{ color: getColor(ratingValue) }}></i>
             </label>
           );
         })}
       </div>
       <div className="wrapper__content">
-        <p>0/5 - (1 {langs?.rate.voted})</p>
+        <p>
+          {point}/5 - ({product.rates?.length} {langs?.rate.voted})
+        </p>
       </div>
     </div>
   );

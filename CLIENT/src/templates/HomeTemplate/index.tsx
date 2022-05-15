@@ -20,8 +20,10 @@ const HomeTemplate: React.FunctionComponent<IHomeTemplateProps> = (props) => {
             <Header />
             <div
               className={`home-template__content ${
-                document.location.pathname === "/" &&
-                "home-template__content-home"
+                document.location.pathname === "/" ||
+                document.location.pathname === "/movie"
+                  ? "home-template__content-home"
+                  : ""
               } `}
             >
               <Component {...propsRoute} />

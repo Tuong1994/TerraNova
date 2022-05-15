@@ -24,12 +24,13 @@ const getRateDetail = async (req, res) => {
 };
 
 const createRate = async (req, res) => {
-  const { ratePoint, userId, courseId, productId } = req.body;
+  const { ratePoint, note, userId, courseId, productId } = req.body;
   try {
     const rateId = "RA_" + Math.floor(Math.random() * 999999999).toString();
     const newRate = await Rate.create({
       id: rateId,
       ratePoint,
+      note,
       userId,
       courseId,
       productId,
@@ -42,10 +43,10 @@ const createRate = async (req, res) => {
 
 const updateRate = async (req, res) => {
   const { rateId } = req.query;
-  const { ratePoint, userId, courseId, productId } = req.body;
+  const { ratePoint, note, userId, courseId, productId } = req.body;
   try {
     await Rate.update(
-      { ratePoint, userId, courseId, productId },
+      { ratePoint, note, userId, courseId, productId },
       {
         where: {
           id: rateId,

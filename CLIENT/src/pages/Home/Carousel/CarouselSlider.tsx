@@ -22,6 +22,7 @@ const CarouselSlider: React.FunctionComponent<{}> = (props) => {
     autoplaySpeed: 4000,
     className: "slider",
   };
+  
   return (
     <div className="carousel__slider">
       <Slider {...settings}>

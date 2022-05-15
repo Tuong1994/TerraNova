@@ -310,9 +310,18 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        .wrapper__stars {
+          @include respond(phone) {
+            font-size: $subtitle;
+            margin: 0;
+          }
+        }
         .wrapper__control {
           width: $w-100;
         }
+      }
+      @include respond(phone) {
+        height: $h-10 * 20;
       }
     }
   }

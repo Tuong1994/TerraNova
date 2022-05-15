@@ -26,7 +26,10 @@ const Header: React.FunctionComponent<{}> = (props) => {
   }, [props]);
 
   const styled = () => {
-    if (document.location.pathname !== "/") {
+    if (
+      document.location.pathname !== "/" &&
+      document.location.pathname !== "/movie"
+    ) {
       return { backgroundColor: "rgba(66, 114, 216, 0.9)" };
     } else {
       return {};
@@ -34,7 +37,10 @@ const Header: React.FunctionComponent<{}> = (props) => {
   };
 
   return (
-    <div className={headerActive ? "header header--active" : "header"} style={styled()}>
+    <div
+      className={headerActive ? "header header--active" : "header"}
+      style={styled()}
+    >
       <Logo className="header__logo" />
       <HeaderMenu />
       <div className="header__features">

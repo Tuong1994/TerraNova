@@ -258,7 +258,6 @@ const createCourse = async (req, res) => {
     trainingTime,
     schedule,
     lesson,
-    students,
   } = req.body;
   try {
     let urlImg = "";

@@ -1,4 +1,3 @@
-import { SideBarReducer } from "./reducers/SideBarReducer";
 import { ToastReducer } from "./reducers/ToastReducer";
 import { LangReducer } from "./reducers/LangReducer";
 import { OrderReducer } from "./reducers/OrderReducer";
@@ -24,7 +23,6 @@ const rootReducer = combineReducers({
   CartsReducer,
   LangReducer,
   ToastReducer,
-  SideBarReducer,
   ShipmentReducer,
   CourseReducer,
   CourseOrderReducer,

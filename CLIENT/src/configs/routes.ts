@@ -8,7 +8,7 @@ import Home from "../pages/Home";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import AboutUs from "../pages/AboutUs";
-import Movie from "../pages/Movie";
+import MovieHome from "../pages/Movie/MovieHome";
 import ProductList from "../pages/Product/ProductList";
 import ProductDetail from "../pages/Product/ProductDetail";
 import ProductCarts from "../pages/Product/ProductCarts";
@@ -115,7 +115,7 @@ export const homeRoutes: IRoute[] = [
   {
     path: "/movie",
     exact: true,
-    component: Movie,
+    component: MovieHome,
   },
   {
     path: "/signIn",

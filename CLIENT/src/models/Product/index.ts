@@ -1,4 +1,5 @@
 import { IComment } from "../Comment";
+import { IRate } from "../Rate";
 
 export enum EProductType {
   cpu = "cpu",
@@ -81,6 +82,8 @@ export interface IProduct {
   stockAmount?: number;
   description?: IDescription[];
   comments?: IComment[];
+  rates?: IRate[];
+  ratePoint?: number;
   categoryId?: string;
   producerId?: string;
   createdAt?: Date | string;

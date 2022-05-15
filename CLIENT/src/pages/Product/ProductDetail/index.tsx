@@ -39,6 +39,7 @@ const ProductDetail: React.FunctionComponent<
   const [stock, setStock] = React.useState<IProductCarts>({});
   const [amount, setAmount] = React.useState<number>(0);
   const [ratePoint, setRatePoint] = React.useState<number>(0);
+  const [rateNote, setRateNote] = React.useState<string>("")
 
   const dispatch = useDispatch();
 
@@ -221,6 +222,7 @@ const ProductDetail: React.FunctionComponent<
     };
     const newRate = {
       ratePoint: ratePoint,
+      note: rateNote,
       productId: id,
       userId: user?.id,
     };
@@ -262,6 +264,7 @@ const ProductDetail: React.FunctionComponent<
       <RateModal
         langs={langs}
         setRatePoint={setRatePoint}
+        setRateNote={setRateNote}
         onSubmit={handleRate}
       />
     </div>

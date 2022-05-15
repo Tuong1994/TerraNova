@@ -1,25 +1,16 @@
 'use strict';
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Rates', {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable('Cineplexes', {
       id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING,
-      },
-      ratePoint: {
-        type: Sequelize.INTEGER
-      },
-      note: {
-        type: Sequelize.STRING(2500)
-      },
-      userId: {
         type: Sequelize.STRING
       },
-      productId: {
+      name: {
         type: Sequelize.STRING
       },
-      courseId: {
+      logo: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -32,7 +23,7 @@ module.exports = {
       }
     });
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Rates');
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable('Cineplexes');
   }
 };

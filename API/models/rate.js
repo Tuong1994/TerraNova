@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   Rate.init(
     {
       ratePoint: DataTypes.INTEGER,
+      note: DataTypes.STRING,
       userId: DataTypes.STRING,
       productId: DataTypes.STRING,
       courseId: DataTypes.STRING,

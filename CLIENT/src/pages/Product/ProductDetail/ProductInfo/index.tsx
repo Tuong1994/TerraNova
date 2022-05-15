@@ -89,7 +89,7 @@ const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
       </div>
 
       <div className="info__rate">
-        <ProductRate />
+        <ProductRate langs={langs} product={product} />
       </div>
 
       <div className="info__amount">

@@ -1,16 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { history } from "../../App";
-import { ACCESSTOKEN } from "../../configs/setting";
 import { ReducerState } from "../../redux/store";
 import utils from "../../utils";
 
 interface RateProps {
+  className?: string;
+  starClass?: string;
   onChange?: (v: any) => void;
 }
 
 const Rate: React.FunctionComponent<RateProps> = (props) => {
-  const { onChange } = props;
+  const { className, starClass, onChange } = props;
 
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
@@ -51,22 +51,18 @@ const Rate: React.FunctionComponent<RateProps> = (props) => {
   };
 
   return (
-    <div className="rate">
+    <div className={`rate ${className ? className : ""}`}>
       <div className="rate__star">
         {starArr.map((star: any, i: number) => {
           const ratingValue = i + 1;
           return (
-            <label className="star__item" key={star.id}>
+            <label className={`star__item ${starClass ? starClass : ""}`} key={star.id}>
               <input
                 type="radio"
                 name="rating"
                 value={ratingValue}
                 onClick={() => {
-                  if (!localStorage.getItem(ACCESSTOKEN)) {
-                    history.push("/signIn");
-                  } else {
-                    setRating(ratingValue);
-                  }
+                  setRating(ratingValue);
                 }}
                 onChange={() => {
                   if (ratingValue !== null) {
