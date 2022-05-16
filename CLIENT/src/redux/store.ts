@@ -10,6 +10,10 @@ import { LoadingReducer } from "./reducers/LoadingReducer";
 import { ShipmentReducer } from "./reducers/ShipmentReducer";
 import { CourseReducer } from "./reducers/CourseReducer";
 import { CourseOrderReducer } from "./reducers/CourseOrderReducer";
+import { VideoReducer } from "./reducers/VideoReducer";
+import { CineplexReducer } from "./reducers/CineplexReducer";
+import { CinemaReducer } from "./reducers/CinemaReducer";
+import { MovieReducer } from "./reducers/MovieReducer";
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import reduxThunk from "redux-thunk";
 
@@ -26,6 +30,10 @@ const rootReducer = combineReducers({
   ShipmentReducer,
   CourseReducer,
   CourseOrderReducer,
+  VideoReducer,
+  CineplexReducer,
+  CinemaReducer,
+  MovieReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(reduxThunk));

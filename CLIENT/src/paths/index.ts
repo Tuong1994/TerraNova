@@ -10,6 +10,9 @@ import { uploadPaths } from "./Upload";
 import { lessonPaths } from "./Lesson";
 import { commentPaths } from "./Comment";
 import { ratePaths } from "./Rate";
+import { cineplexPaths } from "./Cineplex";
+import { cinemaPaths } from "./Cinema";
+import { moviePaths } from "./Movie";
 
 export {
   productPaths,
@@ -24,4 +27,7 @@ export {
   courseSchedulePaths,
   commentPaths,
   ratePaths,
+  cineplexPaths,
+  cinemaPaths,
+  moviePaths,
 };

@@ -12,6 +12,7 @@ interface IModalStateDefault {
   isAddProduct: boolean;
   isAddShipment: boolean;
   isRate: boolean;
+  isTrailer: boolean;
 }
 
 const stateDefault: IModalStateDefault = {
@@ -25,6 +26,7 @@ const stateDefault: IModalStateDefault = {
   isAddProduct: false,
   isAddShipment: false,
   isRate: false,
+  isTrailer: false,
 };
 
 export const ModalReducer = (state = stateDefault, action: ModalAction) => {
@@ -89,6 +91,12 @@ export const ModalReducer = (state = stateDefault, action: ModalAction) => {
       state = newState;
       return { ...state };
     }
+    case EModalActionTypes.OPEN_TRAILER_MODAL: {
+      let newState = { ...state };
+      newState.isTrailer = true;
+      state = newState;
+      return { ...state };
+    }
     case EModalActionTypes.CLOSE_CONSULT_MODAL: {
       let newState = { ...state };
       newState.isConsult = false;
@@ -146,6 +154,12 @@ export const ModalReducer = (state = stateDefault, action: ModalAction) => {
     case EModalActionTypes.CLOSE_RATING_MODAL: {
       let newState = { ...state };
       newState.isRate = false;
+      state = newState;
+      return { ...state };
+    }
+    case EModalActionTypes.CLOSE_TRAILER_MODAL: {
+      let newState = { ...state };
+      newState.isTrailer = false;
       state = newState;
       return { ...state };
     }

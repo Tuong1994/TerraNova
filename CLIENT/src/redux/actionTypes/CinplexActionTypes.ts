@@ -1,0 +1,3 @@
+export enum ECineplexActionTypes {
+    GET_CINEPLEX_WITH_CINEMA_AND_MOVIE = "GET_CINEPLEX_WITH_CINEMA_AND_MOVIE"
+}

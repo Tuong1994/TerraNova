@@ -1,0 +1,68 @@
+.trailer__backdrop {
+  width: $w-100;
+  height: $h-100-vh;
+  background: $RGBA-dark-1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 9999999;
+  .backdrop__content {
+    width: $w-100 - 50;
+    height: $h-10 * 40;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100%);
+    transition: all 0.5s ease;
+    .content__icon {
+      width: $w-100;
+      padding: $p-10;
+      display: flex;
+      justify-content: flex-end;
+      .icon__wrapper {
+        width: $w-10 * 3;
+        height: $h-10 * 3;
+        color: $tSecondary;
+        background: $secondary;
+        border-radius: $circle;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+    }
+    .content__media {
+      width: $w-100;
+      height: $h-100 - 10;
+      border-radius: $lightRound;
+      overflow: hidden;
+      .media {
+        width: $w-100;
+        height: $h-100;
+      }
+    }
+    @include respond(tablet) {
+      width: $w-100 - 30;
+      height: $h-10 * 28;
+    }
+    @include respond(phone) {
+      width: $w-100 - 10;
+      height: $h-10 * 25;
+    }
+  }
+  .backdrop__content--active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+  }
+}
+
+.trailer__backdrop--active {
+  opacity: 1;
+  visibility: visible;
+}

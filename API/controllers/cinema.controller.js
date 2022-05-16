@@ -1,9 +1,18 @@
-const { Cinema } = require("../models");
+const { Cinema, Movie } = require("../models");
 
 const getCinemaList = async (req, res) => {
   try {
     const cinemaList = await Cinema.findAll({
       order: [["updatedAt", "DESC"]],
+      include: [
+        {
+          model: Movie,
+          as: "movies",
+          through: {
+            attributes: [],
+          },
+        },
+      ],
     });
     res.status(200).send(cinemaList);
   } catch (error) {
@@ -28,8 +37,7 @@ const getCinemaDetail = async (req, res) => {
 const createCinema = async (req, res) => {
   const { name, address } = req.body;
   try {
-    const cinemaId =
-      "CINE_" + Math.floor(Math.random() * 999999999).toString();
+    const cinemaId = "CINE_" + Math.floor(Math.random() * 999999999).toString();
     const newCinema = await Cinema.create({
       id: cinemaId,
       name,

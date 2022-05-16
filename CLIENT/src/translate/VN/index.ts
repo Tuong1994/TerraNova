@@ -116,6 +116,7 @@ const VnLang = {
       branches: "Chi nhánh",
       customers: "Khách hàng",
       partners: "Đối tác",
+      slogan: "Đưa đến những dịch vụ tốt nhất",
     },
   },
 
@@ -305,6 +306,15 @@ const VnLang = {
         },
       },
     },
+  },
+
+  // ==================== MOVIE ====================
+  movie: {
+    home: {
+      carousel: {
+        content: "Nội dung",
+      }
+    }
   },
 
   // ==================== ABOUT US ====================

@@ -117,6 +117,7 @@ const EngLang = {
       branches: "Branches",
       customers: "Customers",
       partners: "Partners",
+      slogan: "Provide the best services"
     },
   },
 
@@ -314,6 +315,15 @@ const EngLang = {
         },
       },
     },
+  },
+
+  // ==================== MOVIE ====================
+  movie: {
+    home: {
+      carousel: {
+        content: "Content",
+      }
+    }
   },
 
   // ==================== ABOUT US ====================

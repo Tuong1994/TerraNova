@@ -1,32 +1,94 @@
 .home__achievement {
   padding: $p-10 * 10 $p-10 * 5;
-  height: $h-10 * 60;
-  background: $blue-1;
+  background: $RGBA-blue-1;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
-  .achievement__wrapper {
-    font-weight: $medium;
-    text-align: center;
-    color: $tSecondary;
-    .wrapper__icon {
-      font-size: $h2;
-      margin-bottom: $m-10;
+  align-items: flex-end;
+  justify-content: space-evenly;
+  .achievement__card {
+    width: $w-100 - 70;
+    height: $h-10 * 30;
+    padding: $p-10 * 2;
+    background: $blue-1;
+    box-shadow: 0 10px 20px $blue-2;
+    border-radius: $round;
+    position: relative;
+    &:hover .card__bg {
+      transform: translateY(-50%);
+      box-shadow: 0 10px 20px $dark;
     }
-    .wrapper__number {
-      font-size: $h1;
-      color: $tPrimary;
-      margin-bottom: $m-10;
+    &:hover .card__content {
+      opacity: 1;
     }
-    .wrapper__title {
+    .card__bg {
+      width: $w-100;
+      height: $h-100;
+      padding: $p-10;
+      border-radius: $round;
+      background: url("../../../assets/img/acheivement_bg.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       font-size: $h3;
+      transform: translateY(0);
+      transition: all 0.5s ease;
+    }
+    .card__content {
+      width: $w-100;
+      height: $h-100 - 50;
+      padding: $p-10 * 5;
+      color: $tSecondary;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      opacity: 0;
+      transition-delay: 1s;
+      transition: all 0.5s ease;
+    }
+    @include respond(extraTablet) {
+      width: $w-100 - 60;
     }
     @include respond(tablet) {
-      margin: $m-10 * 2 0;
+      display: none;
     }
   }
-  @include respond(tablet) {
-    flex-direction: column;
-    height: auto;
+  .achievement__content {
+    width: $w-100 - 70;
+    .content__wrapper {
+      font-weight: $medium;
+      text-align: center;
+      color: $tSecondary;
+      margin: $m-10 * 3 0;
+      .wrapper__icon {
+        font-size: $h3;
+        margin-bottom: $m-10;
+      }
+      .wrapper__number {
+        font-size: $h2;
+        color: $tPrimary;
+        margin-bottom: $m-10;
+      }
+      .wrapper__title {
+        font-size: $h4;
+      }
+      @include respond(tablet) {
+        margin: $m-10 * 2 0;
+      }
+    }
+    @include respond(tablet) {
+      width: $w-100;
+      display: flex;
+      justify-content: space-between;
+    }
+    @include respond(phone) {
+      width: $w-100;
+      flex-direction: column;
+    }
+  }
+  @include respond(extraTablet) {
+    justify-content: space-between;
   }
 }

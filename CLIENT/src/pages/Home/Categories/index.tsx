@@ -30,7 +30,7 @@ const Categories: React.FunctionComponent<{}> = (props) => {
           <p className="body__content">{langs?.home.categories.content_2}</p>
         </div>
         <div className="card__button">
-          <Link to="/" className="button--round">
+          <Link to="/course" className="button--round">
             {langs?.button.seeMore}
           </Link>
         </div>
@@ -42,7 +42,7 @@ const Categories: React.FunctionComponent<{}> = (props) => {
           <p className="body__content">{langs?.home.categories.content_3}</p>
         </div>
         <div className="card__button">
-          <Link to="/" className="button--round">
+          <Link to="/movie" className="button--round">
             {langs?.button.seeMore}
           </Link>
         </div>

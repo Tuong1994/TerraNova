@@ -113,6 +113,7 @@ const ChLang = {
       branches: "分支",
       customers: "顾客",
       partners: "伙伴",
+      slogan: "提供最好的服务",
     },
   },
 
@@ -133,7 +134,7 @@ const ChLang = {
     related: "相关产品",
     vat: "价格不含增值税",
     modal: {
-      title: "产品评论"
+      title: "产品评论",
     },
   },
 
@@ -299,6 +300,15 @@ const ChLang = {
     },
   },
 
+  // ==================== MOVIE ====================
+  movie: {
+    home: {
+      carousel: {
+        content: "内容",
+      }
+    }
+  },
+
   // ==================== ABOUT US ====================
   aboutUs: {
     // BANNER
@@ -423,8 +433,8 @@ const ChLang = {
       lessonList: "课程列表",
       studentList: "学生列表",
     },
-     // ORDER
-     order: {
+    // ORDER
+    order: {
       subTitle_1: "产品",
       subTitle_2: "状态",
       subTitle_3: "信息",
@@ -543,7 +553,7 @@ const ChLang = {
       update: "更新成功",
       remove: "删除成功",
       upload: "上传成功",
-      rate: "感谢您的评论"
+      rate: "感谢您的评论",
     },
     error: {
       addToCart: "失败加入购物车",
@@ -572,7 +582,7 @@ const ChLang = {
       shipmentType: "您还没有选择交货方式",
       status: "您还没有选择将态",
       orderder: "您还没有选择订购者",
-      rate: "系统有问题，无法评论"
+      rate: "系统有问题，无法评论",
     },
   },
 

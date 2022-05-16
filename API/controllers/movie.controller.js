@@ -1,11 +1,75 @@
 const { Movie } = require("../models");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 const getMovieList = async (req, res) => {
+  const { isPaging, page, limits, filter, freeText, sortBy } = req.query;
+  const pageNumber = parseInt(page);
+  const itemPerPage = parseInt(limits);
   try {
-    const movieList = await Movie.findAll({
-      order: [["updatedAt", "DESC"]],
-    });
-    res.status(200).send(movieList);
+    let movieList = [];
+
+    let getSort = () => {
+      if (sortBy) {
+        if (parseInt(sortBy) === 1) {
+          return "DESC";
+        } else {
+          return "ASC";
+        }
+      }
+    };
+
+    if (filter) {
+      if (freeText) {
+        movieList = await Movie.findAll({
+          order: [["updatedAt", getSort() || "DESC"]],
+          where: {
+            nameEng: {
+              [Op.like]: `%${freeText}%`,
+            },
+          },
+        });
+      } else {
+        movieList = await Movie.findAll({
+          order: [["updatedAt", getSort() || "DESC"]],
+        });
+      }
+    } else if (freeText) {
+      movieList = await Movie.findAll({
+        order: [["updatedAt", getSort() || "DESC"]],
+        where: {
+          nameEng: {
+            [Op.like]: `%${freeText}%`,
+          },
+        },
+      });
+    } else {
+      movieList = await Movie.findAll({
+        order: [["updatedAt", getSort() || "DESC"]],
+      });
+    }
+
+    if (isPaging) {
+      if (page) {
+        const total = movieList.length;
+        const start = (pageNumber - 1) * itemPerPage;
+        const end = state + itemPerPage;
+        const list = movieList.slice(start, end);
+        res.status(200).send({
+          total: total,
+          page: pageNumber,
+          limits: itemPerPage,
+          movies: list,
+        });
+      }
+    } else {
+      res.status(200).send({
+        total: total,
+        page: 0,
+        limits: itemPerPage,
+        movies: list,
+      });
+    }
   } catch (error) {
     res.status(500).send(error);
   }

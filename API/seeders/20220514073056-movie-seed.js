@@ -11,7 +11,6 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-
     await queryInterface.bulkInsert(
       "Movies",
       [
@@ -20,7 +19,7 @@ module.exports = {
           nameVN: 'CHUYỆN "MA" ĐÔ THỊ',
           nameENG: "URBAN MYTHS",
           nameCH: "都市神话",
-          trailer: "https://www.youtube.com/watch?v=rLXl5qE-i9o",
+          trailer: "https://www.youtube.com/embed/rLXl5qE-i9o",
           image: "",
           duration: "230",
           descVN:
@@ -38,7 +37,7 @@ module.exports = {
           nameVN: "HARRY POTTER VÀ HÒN ĐÁ PHÙ THỦY",
           nameENG: "Harry Potter and the Philosopher's Stone",
           nameCH: "哈利·波特与魔法石",
-          trailer: "https://www.youtube.com/watch?v=lzZ_Z1Sfczg",
+          trailer: "https://www.youtube.com/embed/lzZ_Z1Sfczg",
           image: "",
           duration: "230",
           descVN:
@@ -56,7 +55,7 @@ module.exports = {
           nameVN: "HARRY POTTER AND CĂN PHÒNG BÍ MẬT",
           nameENG: "Harry Potter and the Chamber of Secrets",
           nameCH: "哈利·波特与密室",
-          trailer: "https://www.youtube.com/watch?v=TdYq3WrTCBA",
+          trailer: "https://www.youtube.com/embed/TdYq3WrTCBA",
           image: "",
           duration: "230",
           descVN:
@@ -74,7 +73,7 @@ module.exports = {
           nameVN: "HARRY POTTER VÀ TÊN TÙ NHÂN NGỤC AZKABAN",
           nameENG: "Harry Potter and the Prisoner of Azkaban",
           nameCH: "哈利波特与阿兹卡班的囚徒",
-          trailer: "https://www.youtube.com/watch?v=lAxgztbYDbs",
+          trailer: "https://www.youtube.com/embed/lAxgztbYDbs",
           image: "",
           duration: "230",
           descVN:
@@ -92,7 +91,7 @@ module.exports = {
           nameVN: "HARRY POTTER VÀ CHIẾC CỐC LỬA",
           nameENG: "Harry Potter and The Goblet Of Fire",
           nameCH: "哈利·波特与火焰杯",
-          trailer: "https://www.youtube.com/watch?v=3EGojp4Hh6I",
+          trailer: "https://www.youtube.com/embed/3EGojp4Hh6I",
           image: "",
           duration: "230",
           descVN:
@@ -110,7 +109,7 @@ module.exports = {
           nameVN: "HARRY POTTER VÀ HỘI PHƯỢNG HOÀNG",
           nameENG: "Harry Potter and The Order Of The Phoenix",
           nameCH: "哈利波特与凤凰社",
-          trailer: "https://www.youtube.com/watch?v=y6ZW7KXaXYk",
+          trailer: "https://www.youtube.com/embed/y6ZW7KXaXYk",
           image: "",
           duration: "230",
           descVN:
@@ -128,7 +127,7 @@ module.exports = {
           nameVN: "HARRY POTTER VÀ HOÀNG TỬ LAI",
           nameENG: "Harry Potter and The Half Blood Prince",
           nameCH: "哈利·波特与混血王子",
-          trailer: "https://www.youtube.com/watch?v=JYLdTuL9Wjw",
+          trailer: "https://www.youtube.com/embed/JYLdTuL9Wjw",
           image: "",
           duration: "230",
           descVN:
@@ -146,7 +145,7 @@ module.exports = {
           nameVN: "HARRY POTTER VÀ BẢO BỐI TỬ THẦN PHẦN I",
           nameENG: "Harry Potter and The Deathly Hallows Part 1",
           nameCH: "哈利波特与死亡圣器第 1 部分",
-          trailer: "https://www.youtube.com/watch?v=MxqsmsA8y5k",
+          trailer: "https://www.youtube.com/embed/MxqsmsA8y5k",
           image: "",
           duration: "230",
           descVN:
@@ -164,7 +163,7 @@ module.exports = {
           nameVN: "HARRY POTTER VÀ BẢO BỐI TỬ THẦN PHẦN II",
           nameENG: "Harry Potter and The Deathly Hallows Part 2",
           nameCH: "哈利波特与死亡圣器第 2 部分",
-          trailer: "https://www.youtube.com/watch?v=5NYt1qirBWg",
+          trailer: "https://www.youtube.com/embed/5NYt1qirBWg",
           image: "",
           duration: "230",
           descVN:
@@ -182,7 +181,7 @@ module.exports = {
           nameVN: "NHỮNG BÍ MẬT CỦA DUMBLEDORE",
           nameENG: "Fantastic Beasts: The Secrets of Dumbledore",
           nameCH: "神奇动物：邓布利多的秘密",
-          trailer: "https://www.youtube.com/watch?v=DRc7YVRF6MY",
+          trailer: "https://www.youtube.com/embed/DRc7YVRF6MY",
           image: "",
           duration: "230",
           descVN:
@@ -200,7 +199,7 @@ module.exports = {
           nameVN: "KẺ THỨ BA",
           nameENG: "The Third Man",
           nameCH: "第三男人",
-          trailer: "https://www.youtube.com/watch?v=I0AVVZx0O3o",
+          trailer: "https://www.youtube.com/embed/I0AVVZx0O3o",
           image: "",
           duration: "230",
           descVN:
@@ -218,7 +217,7 @@ module.exports = {
           nameVN: "NGƯỜI KHỞI LỬA",
           nameENG: "Firestarter",
           nameCH: "起火者",
-          trailer: "https://www.youtube.com/watch?v=21rAuAZ-0TI",
+          trailer: "https://www.youtube.com/embed/21rAuAZ-0TI",
           image: "",
           duration: "230",
           descVN:
@@ -235,7 +234,7 @@ module.exports = {
           nameVN: "NGHỀ SIÊU DỄ",
           nameENG: "Extremely Easy Job",
           nameCH: "极其简单的工作",
-          trailer: "https://www.youtube.com/watch?v=1anBxcsV5b8",
+          trailer: "https://www.youtube.com/embed/1anBxcsV5b8",
           image: "",
           duration: "230",
           descVN:
@@ -253,7 +252,7 @@ module.exports = {
           nameVN: "RỪNG SĂN NGƯỜI",
           nameENG: "Warhunt",
           nameCH: "猎战",
-          trailer: "https://www.youtube.com/watch?v=BRXHdMcU_co",
+          trailer: "https://www.youtube.com/embed/BRXHdMcU_co",
           image: "",
           duration: "230",
           descVN:
@@ -271,7 +270,7 @@ module.exports = {
           nameVN: "TĂNG TỐC.. VỀ PHÍA EM",
           nameENG: "Fast & Feel Love ",
           nameCH: "快速感受爱",
-          trailer: "https://www.youtube.com/watch?v=h261_whvLPM",
+          trailer: "https://www.youtube.com/embed/h261_whvLPM",
           image: "",
           duration: "230",
           descVN:
@@ -289,7 +288,7 @@ module.exports = {
           nameVN: "ÁN MẠNG LIÊN HOÀN LÚC NỬA ĐÊM",
           nameENG: "Haunted Tales",
           nameCH: "闹鬼的故事",
-          trailer: "https://www.youtube.com/watch?v=Jt8KkskJmlE",
+          trailer: "https://www.youtube.com/embed/Jt8KkskJmlE",
           image: "",
           duration: "230",
           descVN:
@@ -306,7 +305,7 @@ module.exports = {
           nameVN: "NHÍM SONIC 2",
           nameENG: "Sonic the Hedgehog 2",
           nameCH: "刺猬索尼克2",
-          trailer: "https://www.youtube.com/watch?v=JmJfFmoMDwE",
+          trailer: "https://www.youtube.com/embed/JmJfFmoMDwE",
           image: "",
           duration: "230",
           descVN:
@@ -324,7 +323,7 @@ module.exports = {
           nameVN: "NHỮNG BÍ MẬT CỦA DUMBLEDORE",
           nameENG: "Fantastic Beasts: The Secrets of Dumbledore",
           nameCH: "神奇动物：邓布利多的秘密",
-          trailer: "https://www.youtube.com/watch?v=DRc7YVRF6MY",
+          trailer: "https://www.youtube.com/embed/DRc7YVRF6MY",
           image: "",
           duration: "230",
           descVN:
@@ -342,7 +341,7 @@ module.exports = {
           nameVN: "NGƯỜI DƠI",
           nameENG: "THE BATMAN",
           nameCH: "蝙蝠侠",
-          trailer: "https://www.youtube.com/watch?v=mqqft2x_Aa4",
+          trailer: "https://www.youtube.com/embed/mqqft2x_Aa4",
           image: "",
           duration: "230",
           descVN:
@@ -360,7 +359,7 @@ module.exports = {
           nameVN: "SPIDER MAN NO WAY HOME",
           nameENG: "SPIDER MAN NO WAY HOME",
           nameCH: "蜘蛛侠无路可归",
-          trailer: "https://www.youtube.com/watch?v=OB3g37GTALc&t=1s",
+          trailer: "https://www.youtube.com/embed/OB3g37GTALc&t=1s",
           image: "",
           duration: "230",
           descVN:
@@ -378,7 +377,7 @@ module.exports = {
           nameVN: "DORAEMON: NOBITA VÀ CUỘC CHIẾN VŨ TRỤ TÍ HON 2021",
           nameENG: "DORAEMON: NOBITA AND THE MINIMAL COSTORY WAR 2021",
           nameCH: "哆啦A梦：大雄与迷你世界大战 2021",
-          trailer: "https://www.youtube.com/watch?v=XsWx71aokYE",
+          trailer: "https://www.youtube.com/embed/XsWx71aokYE",
           image: "",
           duration: "230",
           descVN:
@@ -396,7 +395,7 @@ module.exports = {
           nameVN: "THẾ GIỚI KHỦNG LONG: LÃNH ĐỊA",
           nameENG: "Jurassic World Dominion",
           nameCH: "恐龙世界：陆地",
-          trailer: "https://www.youtube.com/watch?v=wPOKNuV9BT0",
+          trailer: "https://www.youtube.com/embed/wPOKNuV9BT0",
           image: "",
           duration: "230",
           descVN:
@@ -414,7 +413,7 @@ module.exports = {
           nameVN: "CẢNH SÁT VŨ TRỤ LIGHTYEAR",
           nameENG: "LIGHTYEAR SPACE POLICE",
           nameCH: "光年太空警察",
-          trailer: "https://www.youtube.com/watch?v=hB_JdXDnZVQ",
+          trailer: "https://www.youtube.com/embed/hB_JdXDnZVQ",
           image: "",
           duration: "230",
           descVN:
@@ -432,7 +431,7 @@ module.exports = {
           nameVN: "ĐIỆN THOẠI ĐEN",
           nameENG: "The Black Phone",
           nameCH: "黑色电话",
-          trailer: "https://www.youtube.com/watch?v=oJr_dYFUaCM",
+          trailer: "https://www.youtube.com/embed/oJr_dYFUaCM",
           image: "",
           duration: "230",
           descVN:
@@ -450,7 +449,7 @@ module.exports = {
           nameVN: "AVATAR: DÒNG CHẢY CỦA NƯỚC",
           nameENG: "Avatar: The Way of Water",
           nameCH: "阿凡达：水的流动",
-          trailer: "https://www.youtube.com/watch?v=S3dNmMZE9sc",
+          trailer: "https://www.youtube.com/embed/S3dNmMZE9sc",
           image: "",
           duration: "230",
           descVN:
@@ -468,7 +467,7 @@ module.exports = {
           nameVN: "LIÊN MINH SIÊU THÚ DC",
           nameENG: "DC League of Super-Pets",
           nameCH: "DC 超级宠物联盟",
-          trailer: "https://www.youtube.com/watch?v=o3bc3RXi0Tc",
+          trailer: "https://www.youtube.com/embed/o3bc3RXi0Tc",
           image: "",
           duration: "230",
           descVN:
@@ -486,7 +485,7 @@ module.exports = {
           nameVN: "Doctor Strange in the Multiverse of Madness",
           nameENG: "Doctor Strange in the Multiverse of Madness",
           nameCH: "疯狂多元宇宙中的奇异博士",
-          trailer: "https://www.youtube.com/watch?v=aWzlQ2N6qqg",
+          trailer: "https://www.youtube.com/embed/aWzlQ2N6qqg",
           image: "",
           duration: "230",
           descVN:
@@ -505,7 +504,7 @@ module.exports = {
           nameENG: " Sharkbail",
           nameCH: "鲨鱼诱饵",
           trailer:
-            "https://www.youtube.com/watch?v=iDZPSiZEDao&ab_channel=AnhNg%E1%BB%AFKeyMeans",
+            "https://www.youtube.com/embed/iDZPSiZEDao&ab_channel=AnhNg%E1%BB%AFKeyMeans",
           image: "",
           duration: "230",
           descVN:
