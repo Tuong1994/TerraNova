@@ -3,7 +3,7 @@ import { CineplexAction } from "../actions/CineplexAction";
 import { ECineplexActionTypes } from "../actionTypes/CinplexActionTypes";
 
 interface IStateDefault {
-  cineplexWithCinemaAndMovie: {
+  cineplexList: {
     total: number;
     page: number;
     limits: number;
@@ -12,7 +12,7 @@ interface IStateDefault {
 }
 
 const stateDefault: IStateDefault = {
-  cineplexWithCinemaAndMovie: {
+  cineplexList: {
     total: 0,
     page: 0,
     limits: 0,
@@ -27,7 +27,7 @@ export const CineplexReducer = (
   switch (action.type) {
     case ECineplexActionTypes.GET_CINEPLEX_WITH_CINEMA_AND_MOVIE: {
       let newState = { ...state };
-      newState.cineplexWithCinemaAndMovie = action.payload;
+      newState.cineplexList = action.payload;
       state = newState;
       return { ...state };
     }

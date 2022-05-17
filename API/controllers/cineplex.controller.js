@@ -1,11 +1,41 @@
-const { Cineplex } = require("../models");
+const { Cineplex, Cinema, Movie } = require("../models");
 
 const getCineplexList = async (req, res) => {
+  const { page, limits } = req.query;
+  const pageNumber = parseInt(page);
+  const itemPerPage = parseInt(limits);
+
   try {
     const cineplexList = await Cineplex.findAll({
       order: [["updatedAt", "DESC"]],
+      include: [
+        {
+          model: Cinema,
+          as: "cinemas",
+          include: [
+            {
+              model: Movie,
+              as: "movieList",
+              through: {
+                attributes: [],
+              },
+            },
+          ],
+        },
+      ],
     });
-    res.status(200).send(cineplexList);
+    if (page) {
+      const total = cineplexList.length;
+      const start = (pageNumber - 1) * itemPerPage;
+      const end = start + itemPerPage;
+      const list = cineplexList.slice(start, end);
+      res.status(200).send({
+        total: total,
+        page: pageNumber,
+        limits: itemPerPage,
+        cineplexes: list,
+      });
+    }
   } catch (error) {
     res.status(500).send(error);
   }
@@ -32,7 +62,7 @@ const createCineplex = async (req, res) => {
       "CPLEX_" + Math.floor(Math.random() * 999999999).toString();
     const newCineplex = await Cineplex.create({
       id: cineplexId,
-      name
+      name,
     });
     res.status(200).send(newCineplex);
   } catch (error) {

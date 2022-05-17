@@ -7,6 +7,7 @@ export interface ICinema {
   address?: string;
   cineplexId?: string;
   movies?: IMovie[];
+  movieList?: IMovie[];
   createdAt?: Date | string;
   updatedAt?: Date | string;
 }

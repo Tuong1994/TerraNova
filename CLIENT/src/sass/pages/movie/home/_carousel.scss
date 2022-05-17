@@ -72,7 +72,15 @@
         .detail__title {
           font-size: $h3;
           font-weight: $semiBold;
-          margin-bottom: $m-10 * 2;
+        }
+        .detail__button {
+          width: $w-100 - 80;
+          margin: $m-10 * 2 0;
+          display: flex;
+          justify-content: center;
+          @include respond(laptop) {
+            width: $w-100 - 70;
+          }
         }
         .detail__text {
           line-height: $h-10 * 2.5;

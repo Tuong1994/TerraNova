@@ -7,13 +7,18 @@ import { getMovieList } from "../../../redux/actionCreators/MovieCreators";
 import TrailerModal from "../../../components/Trailer";
 import MovieCarousel from "./MovieCarousel";
 import MovieList from "./MovieList";
-import utils from "../../../utils";
 import RMovieList from "../../../responsive/RMovieList";
+import utils from "../../../utils";
+import MovieCinema from "./MovieCinema";
+import { getCineplexList } from "../../../redux/actionCreators/CineplexCreators";
 
 const MovieHome: React.FunctionComponent<{}> = (props) => {
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
   const { movieList } = useSelector(
     (state: ReducerState) => state.MovieReducer
+  );
+  const { cineplexList } = useSelector(
+    (state: ReducerState) => state.CineplexReducer
   );
 
   const dispatch = useDispatch();
@@ -23,12 +28,14 @@ const MovieHome: React.FunctionComponent<{}> = (props) => {
   const langs = utils.changeLang(lang);
 
   const { movies } = movieList;
+  const { cineplexes } = cineplexList;
 
   React.useEffect(() => {
     const query: IQueryList = {
       isPaging: false,
     };
     dispatch(getMovieList(query));
+    dispatch(getCineplexList(query));
   }, []);
 
   return (
@@ -36,6 +43,7 @@ const MovieHome: React.FunctionComponent<{}> = (props) => {
       <MovieCarousel lang={lang} langs={langs} movies={movies} />
       <MovieList lang={lang} langs={langs} movies={movies} />
       <RMovieList lang={lang} langs={langs} movies={movies} />
+      <MovieCinema lang={lang} langs={langs} cineplexes={cineplexes} />
 
       <TrailerModal />
     </div>

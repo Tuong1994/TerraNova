@@ -4,6 +4,7 @@ import { EModalActionTypes } from "../../../../redux/actionTypes/ModalActionType
 import { EVideoActionTypes } from "../../../../redux/actionTypes/VideoActionTypes";
 import { IMovie } from "../../../../models/Movie";
 import { ILangs } from "../../../../interfaces/lang";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -62,6 +63,7 @@ const MovieCarousel: React.FunctionComponent<MovieCarouselProps> = (props) => {
           return (
             <div className="carousel__slide" key={slide.id}>
               <img className="slide__bg" src={slide.bg} alt={slide.name} />
+
               <div className="slide__content">
                 <div className="content__button">
                   <div
@@ -81,8 +83,12 @@ const MovieCarousel: React.FunctionComponent<MovieCarouselProps> = (props) => {
                     <i className="fa-solid fa-play"></i>
                   </div>
                 </div>
+
                 <div className="content__detail">
                   <h1 className="detail__title">{slide.name}</h1>
+                  <Link to="/movie" className="button--submit detail__button">
+                    {langs?.button.bookTicket}
+                  </Link>
                   <p className="detail__text">
                     {langs?.movie.home.carousel.content} : {slide.desc}
                   </p>
