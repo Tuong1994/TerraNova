@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
 import { IQueryList } from "../../../interfaces/query";
 import { getMovieList } from "../../../redux/actionCreators/MovieCreators";
+import { getCineplexList } from "../../../redux/actionCreators/CineplexCreators";
 import TrailerModal from "../../../components/Trailer";
 import MovieCarousel from "./MovieCarousel";
 import MovieList from "./MovieList";
 import RMovieList from "../../../responsive/RMovieList";
 import utils from "../../../utils";
 import MovieCinema from "./MovieCinema";
-import { getCineplexList } from "../../../redux/actionCreators/CineplexCreators";
 
 const MovieHome: React.FunctionComponent<{}> = (props) => {
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
