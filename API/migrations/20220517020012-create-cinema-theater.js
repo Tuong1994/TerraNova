@@ -1,7 +1,7 @@
 "use strict";
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Cinema_Movies", {
+    await queryInterface.createTable("Cinema_Theaters", {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -14,10 +14,10 @@ module.exports = {
           key: "id",
         },
       },
-      movie_id: {
+      theater_id: {
         type: Sequelize.STRING,
         references: {
-          model: "Movies",
+          model: "Theaters",
           key: "id",
         },
       },
@@ -32,6 +32,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Cinema_Movies");
+    await queryInterface.dropTable("Cinema_Theaters");
   },
 };

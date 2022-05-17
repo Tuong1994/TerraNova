@@ -117,7 +117,7 @@ const EngLang = {
       branches: "Branches",
       customers: "Customers",
       partners: "Partners",
-      slogan: "Provide the best services"
+      slogan: "Quality, prestige is the key to success"
     },
   },
 
@@ -322,6 +322,10 @@ const EngLang = {
     home: {
       carousel: {
         content: "Content",
+      },
+      list: {
+        tabTitle_1: "Now showing",
+        tabTitle_2: "Coming soon",
       }
     }
   },
@@ -542,6 +546,7 @@ const EngLang = {
     post: "Post",
     cancel: "Cancel",
     chooseProduct: "Choose products",
+    bookTicket: "Book ticket",
   },
 
   // ==================== NO DATA ====================

@@ -113,7 +113,7 @@ const ChLang = {
       branches: "分支",
       customers: "顾客",
       partners: "伙伴",
-      slogan: "提供最好的服务",
+      slogan: "质量、信誉是成功的关键",
     },
   },
 
@@ -305,8 +305,12 @@ const ChLang = {
     home: {
       carousel: {
         content: "内容",
-      }
-    }
+      },
+      list: {
+        tabTitle_1: "正在上映",
+        tabTitle_2: "快来了",
+      },
+    },
   },
 
   // ==================== ABOUT US ====================
@@ -524,6 +528,7 @@ const ChLang = {
     post: "邮政",
     cancel: "取消",
     chooseProduct: "选择产品",
+    bookTicket: "订票",
   },
 
   // ==================== NO DATA ====================

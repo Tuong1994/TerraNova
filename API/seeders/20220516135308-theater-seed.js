@@ -11,17 +11,73 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    const arr = [];
-    for (let i = 0; i < 10; i++) {
-      arr.push({
-        id: "TH_" + Math.floor(Math.random() * 999999999).toString(),
-        name: `${i}`,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      });
-    }
 
-    await queryInterface.bulkInsert("Theaters", arr, {});
+    await queryInterface.bulkInsert(
+      "Theaters",
+      [
+        {
+          id: "TH_0001",
+          name: "01",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          id: "TH_0002",
+          name: "02",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          id: "TH_0003",
+          name: "03",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          id: "TH_0004",
+          name: "04",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          id: "TH_0005",
+          name: "05",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          id: "TH_0006",
+          name: "06",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          id: "TH_0007",
+          name: "07",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          id: "TH_0008",
+          name: "08",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          id: "TH_0009",
+          name: "09",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          id: "TH_0010",
+          name: "10",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+      {}
+    );
   },
 
   down: async (queryInterface, Sequelize) => {

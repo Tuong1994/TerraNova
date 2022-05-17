@@ -116,7 +116,7 @@ const VnLang = {
       branches: "Chi nhánh",
       customers: "Khách hàng",
       partners: "Đối tác",
-      slogan: "Đưa đến những dịch vụ tốt nhất",
+      slogan: "Chất lượng, uy tín là chìa khóa thành công",
     },
   },
 
@@ -313,6 +313,10 @@ const VnLang = {
     home: {
       carousel: {
         content: "Nội dung",
+      },
+      list: {
+        tabTitle_1: "Đang chiếu",
+        tabTitle_2: "Sắp chiếu",
       }
     }
   },
@@ -533,6 +537,7 @@ const VnLang = {
     post: "Đăng",
     cancel: "Hủy bỏ",
     chooseProduct: "Chọn sản phẩm",
+    bookTicket: "Đặt vé",
   },
 
   // ==================== NO DATA ====================

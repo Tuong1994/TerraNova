@@ -1,8 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { EModalActionTypes } from "../../../redux/actionTypes/ModalActionTypes";
-import { EVideoActionTypes } from "../../../redux/actionTypes/VideoActionTypes";
-import { ILangs } from "../../../interfaces/lang";
+import { EModalActionTypes } from "../../../../redux/actionTypes/ModalActionTypes";
+import { EVideoActionTypes } from "../../../../redux/actionTypes/VideoActionTypes";
+import { IMovie } from "../../../../models/Movie";
+import { ILangs } from "../../../../interfaces/lang";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -10,10 +11,11 @@ import "slick-carousel/slick/slick-theme.css";
 interface MovieCarouselProps {
   lang: string;
   langs: ILangs;
+  movies: IMovie[];
 }
 
 const MovieCarousel: React.FunctionComponent<MovieCarouselProps> = (props) => {
-  const { langs } = props;
+  const { movies, langs } = props;
 
   const dispatch = useDispatch();
 

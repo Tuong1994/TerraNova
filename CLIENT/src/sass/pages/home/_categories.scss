@@ -2,7 +2,7 @@
   width: $w-100;
   height: $h-10 * 50;
   padding: $p-10 * 5;
-  background: $primary;
+  background: url("../../../assets/img/blue-background.jpg");
 
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
   -webkit-clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
@@ -18,15 +18,14 @@
   .categories__card {
     width: $w-100 / 3.1;
     padding: $p-10 * 4;
+    border-color: $borderBlue;
+    box-shadow: 0 10px 20px $blue-2;
     color: $tSecondary;
     transition: all 0.5s ease;
     background: $secondary;
     overflow: hidden;
     position: relative;
     z-index: 1;
-    &:hover {
-      box-shadow: 0 0 10px $dark;
-    }
     &:nth-child(1) {
       height: $h-10 * 40;
       @include respond(laptop) {

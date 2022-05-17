@@ -1,4 +1,4 @@
-const { Cinema, Movie } = require("../models");
+const { Cinema, Theater, Movie } = require("../models");
 
 const getCinemaList = async (req, res) => {
   try {
@@ -6,11 +6,20 @@ const getCinemaList = async (req, res) => {
       order: [["updatedAt", "DESC"]],
       include: [
         {
-          model: Movie,
-          as: "movies",
+          model: Theater,
+          as: "theaters",
           through: {
             attributes: [],
           },
+          include: [
+            {
+              model: Movie,
+              as: "movies",
+              through: {
+                attributes: [],
+              },
+            },
+          ],
         },
       ],
     });

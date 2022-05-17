@@ -1,6 +1,6 @@
 .home__achievement {
   padding: $p-10 * 10 $p-10 * 5;
-  background: $RGBA-blue-1;
+  background: url("../../../assets/img/blue-background.jpg");
   display: flex;
   align-items: flex-end;
   justify-content: space-evenly;
@@ -13,7 +13,7 @@
     border-radius: $round;
     position: relative;
     &:hover .card__bg {
-      transform: translateY(-50%);
+      transform: translateY(-40%);
       box-shadow: 0 10px 20px $dark;
     }
     &:hover .card__content {
@@ -38,6 +38,7 @@
     }
     .card__content {
       width: $w-100;
+      font-size: $subtitle;
       height: $h-100 - 50;
       padding: $p-10 * 5;
       color: $tSecondary;
