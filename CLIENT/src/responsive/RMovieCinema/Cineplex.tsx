@@ -28,7 +28,7 @@ const Cineplex: React.FunctionComponent<CineplexProps> = (props) => {
       </div>
 
       <div className={`item__content ${tabActive && "item__content--active"}`}>
-        {cineplex?.cinemas?.map((cinema) => {
+        {cineplex?.cinemas?.slice(0, 5).map((cinema) => {
           return (
             <Cinema key={cinema.id} lang={lang} langs={langs} cinema={cinema} />
           );

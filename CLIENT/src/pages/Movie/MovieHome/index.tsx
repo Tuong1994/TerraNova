@@ -9,10 +9,10 @@ import TrailerModal from "../../../components/Trailer";
 import MovieCarousel from "./MovieCarousel";
 import MovieList from "./MovieList";
 import RMovieList from "../../../responsive/RMovieList";
-import utils from "../../../utils";
 import MovieCinema from "./MovieCinema";
 import RMovieCinema from "../../../responsive/RMovieCinema";
 import Consultation from "../../../components/Consultation/ConsultationForm";
+import utils from "../../../utils";
 
 const MovieHome: React.FunctionComponent<{}> = (props) => {
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);

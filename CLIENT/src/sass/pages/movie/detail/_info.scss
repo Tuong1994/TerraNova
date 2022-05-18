@@ -12,100 +12,99 @@
     right: 0;
     bottom: 0;
     background: linear-gradient(to bottom, transparent 20%, $RGBA-dark-1 50%);
-  }
-}
-
-.movie-detail__info {
-  padding: $p-10 * 5 $p-10 * 20;
-  position: relative;
-  z-index: 9;
-  .info__card {
-    width: $w-100;
-    height: $h-10 * 30;
-    padding: $p-10 * 2;
-    border: 0;
-    background: $RGBA-white-2;
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    -moz-backdrop-filter: blur(10px);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    overflow: hidden;
-    .card__image {
-      width: $w-100 - 75;
-      height: $h-100;
-      border-radius: $lightRound;
-      overflow: hidden;
-      position: relative;
-      &:hover .image__overlay {
-        opacity: 1;
-        visibility: visible;
-      }
-      &:hover .image {
-        transform: scale(1.2);
-      }
-      .image {
-        width: $w-100;
-        height: $h-100;
-        object-fit: cover;
-        object-position: center;
-        transition: all 0.5s ease;
-      }
-      .image__overlay {
-        width: $w-100;
-        height: $h-100;
-        background: $RGBA-dark-1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        top: 0;
-        left: 0;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.5s ease;
-      }
-    }
-    .card__content {
-      width: $w-100 - 50;
-      color: $tSecondary;
-      margin: 0 $m-10;
-      h3 {
-        font-size: $subtitle;
-        font-weight: $semiBold;
-        margin: $m-10 0;
-      }
-    }
-    .card__rate {
-      width: $w-100 - 70;
+  }
+  .movie-detail__info {
+    padding: $p-10 * 5 $p-10 * 20;
+    position: relative;
+    z-index: 9;
+    .info__card {
+      width: $w-100;
+      height: $h-10 * 30;
+      padding: $p-10 * 2;
+      border: 0;
+      background: $RGBA-white-2;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      -moz-backdrop-filter: blur(10px);
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
-      justify-content: center;
-      .rate__point {
-        width: $w-10 * 15;
-        height: $h-10 * 15;
-        margin-bottom: $m-10 * 2;
-        font-size: $h5;
-        color: $tSecondary;
-        border: 10px solid $borderBlue;
-        border-radius: $circle;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+      justify-content: space-between;
+      overflow: hidden;
+      .card__image {
+        width: $w-100 - 75;
+        height: $h-100;
+        border-radius: $lightRound;
+        overflow: hidden;
+        position: relative;
+        &:hover .image__overlay {
+          opacity: 1;
+          visibility: visible;
+        }
+        &:hover .image {
+          transform: scale(1.2);
+        }
+        .image {
+          width: $w-100;
+          height: $h-100;
+          object-fit: cover;
+          object-position: center;
+          transition: all 0.5s ease;
+        }
+        .image__overlay {
+          width: $w-100;
+          height: $h-100;
+          background: $RGBA-dark-1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: absolute;
+          top: 0;
+          left: 0;
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.5s ease;
+        }
       }
-      .rate__icon {
-        width: $w-100;
+      .card__content {
+        width: $w-100 - 50;
+        color: $tSecondary;
+        margin: 0 $m-10;
+        h3 {
+          font-size: $subtitle;
+          font-weight: $semiBold;
+          margin: $m-10 0;
+        }
+      }
+      .card__rate {
+        width: $w-100 - 70;
         display: flex;
+        flex-direction: column;
+        align-items: center;
         justify-content: center;
-        font-size: $h4;
+        .rate__point {
+          width: $w-10 * 15;
+          height: $h-10 * 15;
+          margin-bottom: $m-10 * 2;
+          font-size: $h5;
+          color: $tSecondary;
+          border: 10px solid $borderBlue;
+          border-radius: $circle;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .rate__icon {
+          width: $w-100;
+          display: flex;
+          justify-content: center;
+          font-size: $h4;
+        }
       }
     }
   }
 }
-
 @keyframes pulse {
   100% {
     transform: scale(1.2);

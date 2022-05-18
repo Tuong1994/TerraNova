@@ -15,7 +15,6 @@ const MovieCinema: React.FunctionComponent<MovieCinemaProps> = (props) => {
 
   const [tabActive, setTabActive] = React.useState<number>(0);
 
-
   return (
     <div className="movie-home__cinema">
       <Card.Wrapper className="cinema__tabs">

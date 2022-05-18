@@ -38,7 +38,7 @@ const SubTabs: React.FunctionComponent<SubTabsProps> = (props) => {
       }`}
     >
       <div className="subtabs__title">
-        {cineplex?.cinemas?.map((cinema, index) => {
+        {cineplex?.cinemas?.slice(0, 8).map((cinema, index) => {
           return (
             <div
               className={`title__item ${
@@ -68,8 +68,9 @@ const SubTabs: React.FunctionComponent<SubTabsProps> = (props) => {
               className={`content__inner ${
                 subTabActive === index && "content__inner--active"
               }`}
+              key={cinema.id}
             >
-              {cinema?.movieList?.map((movie) => {
+              {cinema?.movieList?.slice(0, 12).map((movie) => {
                 return (
                   <div key={movie.id} className="inner__item">
                     <img
@@ -79,7 +80,10 @@ const SubTabs: React.FunctionComponent<SubTabsProps> = (props) => {
                     />
                     <div className="item__detail">
                       <p className="detail__name">{renderMovieName(movie)}</p>
-                      <Link to={`/movieDetail/${movie.id}`} className="button--submit detail__link">
+                      <Link
+                        to={`/movieDetail/${movie.id}`}
+                        className="button--submit detail__link"
+                      >
                         {langs?.button.bookTicket}
                       </Link>
                     </div>

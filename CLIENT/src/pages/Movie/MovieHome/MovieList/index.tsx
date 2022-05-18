@@ -16,19 +16,33 @@ interface MovieListProps {
 const MovieList: React.FunctionComponent<MovieListProps> = (props) => {
   const { movies, lang, langs } = props;
 
-  const [convertArr, setConvertArr] = React.useState<any>([]);
+  const [nowShowingArr, setNowShowingArr] = React.useState<any>([]);
+  const [commingSoonArr, setCommingSoonArr] = React.useState<any>([]);
   const [tabActive, setTabActive] = React.useState<number>(1);
 
   React.useEffect(() => {
     if (movies) {
-      setConvertArr(
-        movies?.reduce(
-          (rows, key, index) =>
-            (index % 6 === 0
-              ? rows.push([key])
-              : rows[rows.length - 1].push(key)) && rows,
-          [] as any[]
-        )
+      setNowShowingArr(
+        movies
+          ?.slice(0, 20)
+          .reduce(
+            (rows, key, index) =>
+              (index % 6 === 0
+                ? rows.push([key])
+                : rows[rows.length - 1].push(key)) && rows,
+            [] as any[]
+          )
+      );
+      setCommingSoonArr(
+        movies
+          ?.slice(0, 10)
+          .reduce(
+            (rows, key, index) =>
+              (index % 6 === 0
+                ? rows.push([key])
+                : rows[rows.length - 1].push(key)) && rows,
+            [] as any[]
+          )
       );
     }
   }, [movies]);
@@ -76,9 +90,13 @@ const MovieList: React.FunctionComponent<MovieListProps> = (props) => {
         </div>
       </div>
       <div className="list__content">
-        <div className={`content__inner ${tabActive === 1 && "content__inner--active"}`}>
+        <div
+          className={`content__inner ${
+            tabActive === 1 && "content__inner--active"
+          }`}
+        >
           <Slider {...settings}>
-            {convertArr.map((slide: any, index: number) => {
+            {nowShowingArr.map((slide: any, index: number) => {
               return (
                 <div className="inner__slide" key={index}>
                   {slide?.map((movie: any) => {
@@ -96,10 +114,14 @@ const MovieList: React.FunctionComponent<MovieListProps> = (props) => {
             })}
           </Slider>
         </div>
-        
-        <div className={`content__inner ${tabActive === 2 && "content__inner--active"}`}>
+
+        <div
+          className={`content__inner ${
+            tabActive === 2 && "content__inner--active"
+          }`}
+        >
           <Slider {...settings}>
-            {convertArr.map((slide: any, index: number) => {
+            {commingSoonArr.map((slide: any, index: number) => {
               return (
                 <div className="inner__slide" key={index}>
                   {slide?.map((movie: any) => {

@@ -1,9 +1,9 @@
-import moment from "moment";
 import React from "react";
 import * as Card from "../../../components/Card";
-import PlayButton from "../../../components/PlayButton";
 import { ELangs, ILangs } from "../../../interfaces/lang";
 import { IMovie } from "../../../models/Movie";
+import PlayButton from "../../../components/PlayButton";
+import moment from "moment";
 
 interface MovieInfoProps {
   lang: string;
@@ -43,13 +43,13 @@ const MovieInfo: React.FunctionComponent<MovieInfoProps> = (props) => {
         </div>
 
         <div className="card__content">
+          <h3>
+            {langs?.movie.detail.movieName} : {renderMovieName()}
+          </h3>
           <p>
             {langs?.movie.detail.releaseDay} :{" "}
             {moment(movie.releaseDay).format("DD/MM/YYYY")}
           </p>
-          <h3>
-            {langs?.movie.detail.movieName} : {renderMovieName()}
-          </h3>
         </div>
 
         <div className="card__rate">

@@ -7,8 +7,8 @@ import { ReducerState } from "../../../redux/store";
 import { IQueryList } from "../../../interfaces/query";
 import { getMovieDetail } from "../../../redux/actionCreators/MovieCreators";
 import MovieInfo from "./Info";
-import utils from "../../../utils";
 import TrailerModal from "../../../components/Trailer";
+import utils from "../../../utils";
 
 const MovieDetail: React.FunctionComponent<
   RouteComponentProps<IRouteParams>
