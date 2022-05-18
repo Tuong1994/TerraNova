@@ -11,6 +11,8 @@ import MovieList from "./MovieList";
 import RMovieList from "../../../responsive/RMovieList";
 import utils from "../../../utils";
 import MovieCinema from "./MovieCinema";
+import RMovieCinema from "../../../responsive/RMovieCinema";
+import Consultation from "../../../components/Consultation/ConsultationForm";
 
 const MovieHome: React.FunctionComponent<{}> = (props) => {
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
@@ -41,9 +43,14 @@ const MovieHome: React.FunctionComponent<{}> = (props) => {
   return (
     <div className="movie-home">
       <MovieCarousel lang={lang} langs={langs} movies={movies} />
+
       <MovieList lang={lang} langs={langs} movies={movies} />
       <RMovieList lang={lang} langs={langs} movies={movies} />
+
       <MovieCinema lang={lang} langs={langs} cineplexes={cineplexes} />
+      <RMovieCinema lang={lang} langs={langs} cineplexes={cineplexes} />
+
+      <Consultation />
 
       <TrailerModal />
     </div>

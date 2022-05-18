@@ -117,7 +117,7 @@ const EngLang = {
       branches: "Branches",
       customers: "Customers",
       partners: "Partners",
-      slogan: "Quality, prestige is the key to success"
+      slogan: "Quality, prestige is the key to success",
     },
   },
 
@@ -138,7 +138,7 @@ const EngLang = {
     related: "Related products",
     vat: "Price does not include VAT",
     modal: {
-      title: "Product rating"
+      title: "Product rating",
     },
   },
 
@@ -326,8 +326,12 @@ const EngLang = {
       list: {
         tabTitle_1: "Now showing",
         tabTitle_2: "Coming soon",
-      }
-    }
+      },
+    },
+    detail: {
+      movieName: "Name",
+      releaseDay: "Release day"
+    },
   },
 
   // ==================== ABOUT US ====================
@@ -393,7 +397,7 @@ const EngLang = {
     // PASSWORD MODAL
     modal: {
       title: "Change password",
-    }
+    },
   },
 
   // ==================== ADMIN ====================
@@ -576,7 +580,7 @@ const EngLang = {
       update: "Update succecced",
       remove: "Remove succecced",
       upload: "Upload succecced",
-      rate: "Thank you for rating"
+      rate: "Thank you for rating",
     },
     error: {
       addToCart: "Add to carts failed",
@@ -605,7 +609,7 @@ const EngLang = {
       shipmentType: "You haven't choose shipment type",
       status: "You haven't choose status",
       orderder: "You haven't choose orderer",
-      rate: "The system is having problems, cannot rate"
+      rate: "The system is having problems, cannot rate",
     },
   },
 
@@ -717,7 +721,7 @@ const EngLang = {
     branch: "Branch",
     category: "Category",
     createdAt: "Created at",
-    updatedAt: "Updated at"
+    updatedAt: "Updated at",
   },
 
   // ==================== PAGINATION ====================
@@ -744,7 +748,7 @@ const EngLang = {
   comment: {
     title: "Comments",
     placeholder: "Leave a comment",
-  }
+  },
 };
 
 export type LangENG = typeof EngLang;

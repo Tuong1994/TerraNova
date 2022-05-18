@@ -317,8 +317,12 @@ const VnLang = {
       list: {
         tabTitle_1: "Đang chiếu",
         tabTitle_2: "Sắp chiếu",
-      }
-    }
+      },
+    },
+    detail: {
+      movieName: "Tên phim",
+      releaseDay: "Ngày khởi chiếu"
+    },
   },
 
   // ==================== ABOUT US ====================

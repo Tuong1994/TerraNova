@@ -13,16 +13,16 @@ import {
 import { ICarts, IProductCarts } from "../../../models/Carts";
 import { ECartsActionTypes } from "../../../redux/actionTypes/CartsActionTypes";
 import { toast } from "react-toastify";
+import { createRate } from "../../../redux/actionCreators/RateCreators";
 import { CARTS } from "../../../configs/setting";
 import ProductSlider from "./ProductSilder";
 import ProductInfo from "./ProductInfo";
 import ProductRelated from "./ProductRelated";
 import ProductSpecs from "./ProductSpecs";
+import RateModal from "../../../components/RateModal";
 import Comment from "../../../components/Comment";
 import actions from "../../../configs/actions";
 import utils from "../../../utils";
-import RateModal from "./RateModal";
-import { createRate } from "../../../redux/actionCreators/RateCreators";
 
 const ProductDetail: React.FunctionComponent<
   RouteComponentProps<IRouteParams>

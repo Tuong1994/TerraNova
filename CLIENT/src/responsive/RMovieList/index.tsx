@@ -56,6 +56,7 @@ const RMovieList: React.FunctionComponent<RMovieListProps> = (props) => {
 
   return (
     <div className="movie-list__responsive">
+      {/* Tabs title */}
       <div className="responsive__title">
         <div
           className={`title__item ${tabActive === 1 && "title__item--active"}`}
@@ -71,6 +72,7 @@ const RMovieList: React.FunctionComponent<RMovieListProps> = (props) => {
         </div>
       </div>
 
+      {/* Tabs content */}
       <div className="responsive__content">
         <div
           className={`content__inner ${

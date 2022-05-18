@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import PlayButton from "../../../../components/PlayButton";
 
 interface MovieCarouselProps {
   lang: string;
@@ -66,22 +67,7 @@ const MovieCarousel: React.FunctionComponent<MovieCarouselProps> = (props) => {
 
               <div className="slide__content">
                 <div className="content__button">
-                  <div
-                    className="button__play"
-                    onClick={() => {
-                      dispatch({
-                        type: EVideoActionTypes.ADD_LINK,
-                        payload: slide.video,
-                      });
-                      setTimeout(() => {
-                        dispatch({
-                          type: EModalActionTypes.OPEN_TRAILER_MODAL,
-                        });
-                      }, 300);
-                    }}
-                  >
-                    <i className="fa-solid fa-play"></i>
-                  </div>
+                  <PlayButton payload={slide.video} className="button__play" />
                 </div>
 
                 <div className="content__detail">

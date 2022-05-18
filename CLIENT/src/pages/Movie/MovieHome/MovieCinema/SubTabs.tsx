@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ILangs } from "../../../../interfaces/lang";
+import { ELangs, ILangs } from "../../../../interfaces/lang";
 import { ICineplex } from "../../../../models/Cineplex";
+import { IMovie } from "../../../../models/Movie";
 
 interface SubTabsProps {
+  lang: string;
   langs: ILangs;
   tabActive: number;
   index: number;
@@ -11,9 +13,23 @@ interface SubTabsProps {
 }
 
 const SubTabs: React.FunctionComponent<SubTabsProps> = (props) => {
-  const { langs, cineplex, tabActive, index } = props;
+  const { lang, langs, cineplex, tabActive, index } = props;
 
   const [subTabActive, setSubTabActive] = React.useState<number>(0);
+
+  const renderMovieName = (movie: IMovie) => {
+    switch (lang) {
+      case ELangs.ENG: {
+        return movie.nameENG;
+      }
+      case ELangs.VN: {
+        return movie.nameVN;
+      }
+      case ELangs.CH: {
+        return movie.nameCH;
+      }
+    }
+  };
 
   return (
     <div
@@ -62,8 +78,8 @@ const SubTabs: React.FunctionComponent<SubTabsProps> = (props) => {
                       alt={movie.nameENG}
                     />
                     <div className="item__detail">
-                      <p className="detail__name">{movie.nameENG}</p>
-                      <Link to="/movie" className="button--submit detail__link">
+                      <p className="detail__name">{renderMovieName(movie)}</p>
+                      <Link to={`/movieDetail/${movie.id}`} className="button--submit detail__link">
                         {langs?.button.bookTicket}
                       </Link>
                     </div>

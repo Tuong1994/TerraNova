@@ -1,14 +1,14 @@
 import React from "react";
-import * as Modal from "../../../../components/Modal";
-import * as Card from "../../../../components/Card";
-import * as FormControl from "../../../../components/Fields";
+import * as Modal from "../Modal";
+import * as Card from "../Card";
+import * as FormControl from "../Fields";
 import { useDispatch, useSelector } from "react-redux";
-import { ILangs } from "../../../../interfaces/lang";
-import { ReducerState } from "../../../../redux/store";
-import { EModalActionTypes } from "../../../../redux/actionTypes/ModalActionTypes";
-import Rate from "../../../../components/Rate";
-import Button from "../../../../components/Button";
-import ButtonLoading from "../../../../components/Loading/ButtonLoading";
+import { ILangs } from "../../interfaces/lang";
+import { ReducerState } from "../../redux/store";
+import { EModalActionTypes } from "../../redux/actionTypes/ModalActionTypes";
+import Rate from "../Rate";
+import Button from "../Button";
+import ButtonLoading from "../Loading/ButtonLoading";
 
 interface RateModalProps {
   langs: ILangs;

@@ -14,6 +14,9 @@ export interface IQueryList {
   lessonId?: string;
   courseScheduleId?: string;
   commentId?: string;
+  cineplexId?: string;
+  cinemaId?: string;
+  movieId?: string;
   productType?: string;
   freeText?: string;
   filter?: string;

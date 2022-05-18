@@ -1,0 +1,108 @@
+.movie-cinema__responsive {
+  padding: $p-10 * 2;
+  display: none;
+  .responsive__card {
+    .card__item {
+      .item__title {
+        width: $w-100;
+        padding: $p-10 $p-10 * 2;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid $borderGrey;
+        .title__logo {
+          width: $w-10 * 5;
+          height: $h-10 * 5;
+        }
+        .fa-solid {
+          transform: rotate(0);
+          transition: all 0.3s ease;
+        }
+        .fa--active {
+          transform: rotate(180deg);
+        }
+      }
+      .item__content {
+        height: 0;
+        overflow: auto;
+        transition: all 0.3s ease;
+        .content__cinema {
+          padding: $p-10;
+          .cinema__title {
+            padding: $p-5;
+            display: flex;
+            border-bottom: 1px solid $borderGrey;
+            border-radius: $lightRound;
+            transition: all 0.5s ease;
+            .title__image {
+              width: $w-10 * 5;
+              height: $h-10 * 5;
+              border-radius: $lightRound;
+              margin-right: $m-10;
+              object-fit: cover;
+              object-position: center;
+            }
+            .title__detail {
+              p {
+                margin-bottom: $m-5;
+                &:nth-child(1) {
+                  font-size: $body-1;
+                  font-weight: $semiBold;
+                }
+                &:nth-child(2) {
+                  font-size: $body-2;
+                }
+              }
+            }
+          }
+          .cinema__title--active {
+            background: $secondary;
+            color: $tSecondary;
+          }
+          .cinema__content {
+            height: 0;
+            overflow: auto;
+            transition: all 0.3s ease;
+            .content__movie {
+              padding: $p-10;
+              display: flex;
+              .movie__image {
+                width: $w-10 * 5;
+                height: $h-10 * 5;
+                margin-right: $m-10;
+                border-radius: $lightRound;
+                object-fit: cover;
+                object-position: center;
+              }
+              .movie__content {
+                .content__name {
+                  font-size: $body-2;
+                  font-weight: $semiBold;
+                  margin-bottom: $m-5;
+                  text-transform: uppercase;
+                }
+                .content__link {
+                  width: $w-10 * 12;
+                  padding: $p-5 $p-10;
+                  font-size: $body-1;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                }
+              }
+            }
+          }
+          .cinema__content--active {
+            height: $h-10 * 40;
+          }
+        }
+      }
+      .item__content--active {
+        height: $h-10 * 40;
+      }
+    }
+  }
+  @include respond(tablet) {
+    display: block;
+  }
+}

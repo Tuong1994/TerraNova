@@ -38,32 +38,6 @@
           width: $w-10 * 10;
           height: $h-10 * 10;
           font-size: $h4;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: $tSecondary;
-          background: $secondary;
-          border-radius: $circle;
-          cursor: pointer;
-          position: relative;
-          &::after,
-          &::before {
-            content: "";
-            width: $w-100;
-            height: $h-100;
-            position: absolute;
-            top: 0;
-            left: 0;
-            background: $secondary;
-            border-radius: $circle;
-            z-index: -1;
-          }
-          &::after {
-            animation: pulse 2s ease-out infinite;
-          }
-          &::before {
-            animation: pulse 2s 1s ease-out infinite;
-          }
         }
       }
       .content__detail {
@@ -146,12 +120,5 @@
   }
   @include respond(tablet) {
     display: none;
-  }
-}
-
-@keyframes pulse {
-  100% {
-    transform: scale(1.5);
-    opacity: 0;
   }
 }

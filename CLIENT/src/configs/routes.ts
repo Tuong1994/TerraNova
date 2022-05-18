@@ -8,7 +8,6 @@ import Home from "../pages/Home";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import AboutUs from "../pages/AboutUs";
-import MovieHome from "../pages/Movie/MovieHome";
 import ProductList from "../pages/Product/ProductList";
 import ProductDetail from "../pages/Product/ProductDetail";
 import ProductCarts from "../pages/Product/ProductCarts";
@@ -17,6 +16,8 @@ import CourseHome from "../pages/Course/CourseHome";
 import CourseList from "../pages/Course/CourseList";
 import CourseRoute from "../pages/Course/CourseRoute";
 import CourseDetail from "../pages/Course/CourseDetail";
+import MovieDetail from "../pages/Movie/MovieDetail";
+import MovieHome from "../pages/Movie/MovieHome";
 import UserEdit from "../pages/User/Edit";
 
 
@@ -116,6 +117,11 @@ export const homeRoutes: IRoute[] = [
     path: "/movie",
     exact: true,
     component: MovieHome,
+  },
+  {
+    path: "/movieDetail/:id",
+    exact: true,
+    component: MovieDetail,
   },
   {
     path: "/signIn",

@@ -311,6 +311,10 @@ const ChLang = {
         tabTitle_2: "快来了",
       },
     },
+    detail: {
+      movieName: "电影名称",
+      releaseDay: "发布日期"
+    },
   },
 
   // ==================== ABOUT US ====================

@@ -145,4 +145,10 @@
       }
     }
   }
+  @include respond(laptop) {
+    padding: $p-10 * 5 $p-10 * 2;
+  }
+  @include respond(tablet) {
+    display: none;
+  }
 }

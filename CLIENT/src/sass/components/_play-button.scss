@@ -1,0 +1,36 @@
+.play-button {
+  width: $w-10 * 5;
+  height: $h-10 * 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $tSecondary;
+  background: $secondary;
+  border-radius: $circle;
+  cursor: pointer;
+  position: relative;
+  &::after,
+  &::before {
+    content: "";
+    width: $w-100;
+    height: $h-100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: $secondary;
+    border-radius: $circle;
+  }
+  &::after {
+    animation: pulse 2s ease-out infinite;
+  }
+  &::before {
+    animation: pulse 2s 1s ease-out infinite;
+  }
+}
+
+@keyframes pulse {
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}

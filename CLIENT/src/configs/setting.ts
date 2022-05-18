@@ -22,8 +22,11 @@ export const getListQuery = (query: IQueryList): string => {
     descId,
     courseOrderId,
     courseScheduleId,
-    commentId,
     lessonId,
+    commentId,
+    cineplexId,
+    cinemaId,
+    movieId,
     productType,
     freeText,
     filter,
@@ -52,6 +55,9 @@ export const getListQuery = (query: IQueryList): string => {
   freeText && (rs += `&freeText=${freeText}`);
   filter && (rs += `&filter=${filter}`);
   sortBy && (rs += `&sortBy=${sortBy}`);
-  isPaging && (rs += `&isPaging=${isPaging}`)
+  isPaging && (rs += `&isPaging=${isPaging}`);
+  cineplexId && (rs += `&cineplexId=${cineplexId}`);
+  cinemaId && (rs += `&cinemaId=${cinemaId}`);
+  movieId && (rs += `&movieId=${movieId}`);
   return rs;
 };

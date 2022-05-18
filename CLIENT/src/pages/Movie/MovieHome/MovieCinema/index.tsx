@@ -15,7 +15,6 @@ const MovieCinema: React.FunctionComponent<MovieCinemaProps> = (props) => {
 
   const [tabActive, setTabActive] = React.useState<number>(0);
 
-  console.log(cineplexes);
 
   return (
     <div className="movie-home__cinema">
@@ -46,6 +45,7 @@ const MovieCinema: React.FunctionComponent<MovieCinemaProps> = (props) => {
                 key={cineplex.id}
                 cineplex={cineplex}
                 index={index}
+                lang={lang}
                 langs={langs}
                 tabActive={tabActive}
               />

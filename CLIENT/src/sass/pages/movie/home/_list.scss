@@ -84,36 +84,6 @@
               opacity: 0;
               visibility: hidden;
               transition: all 0.5s ease;
-              .overlay__play {
-                width: $w-10 * 5;
-                height: $h-10 * 5;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                border-radius: $circle;
-                background: $secondary;
-                color: $tSecondary;
-                cursor: pointer;
-                position: relative;
-                &::after,
-                &::before {
-                  content: "";
-                  position: absolute;
-                  top: 0;
-                  bottom: 0;
-                  left: 0;
-                  right: 0;
-                  background: $secondary;
-                  border-radius: $circle;
-                  z-index: 1;
-                }
-                &::after {
-                  animation: pulse 2s ease-out infinite;
-                }
-                &::before {
-                  animation: pulse 2s 1s ease-out infinite;
-                }
-              }
             }
           }
           .card__name {
@@ -202,12 +172,5 @@
   }
   @include respond(phone) {
     display: none;
-  }
-}
-
-@keyframes pulse {
-  100% {
-    transform: scale(1.5);
-    opacity: 0;
   }
 }
