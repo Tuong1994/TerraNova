@@ -6,9 +6,11 @@ import { IRouteParams } from "../../../interfaces/route";
 import { ReducerState } from "../../../redux/store";
 import { IQueryList } from "../../../interfaces/query";
 import { getMovieDetail } from "../../../redux/actionCreators/MovieCreators";
+import { EMovieActionTypes } from "../../../redux/actionTypes/MovieActionTypes";
 import MovieInfo from "./Info";
 import TrailerModal from "../../../components/Trailer";
 import utils from "../../../utils";
+import MovieTabs from "./Tabs";
 
 const MovieDetail: React.FunctionComponent<
   RouteComponentProps<IRouteParams>
@@ -27,6 +29,15 @@ const MovieDetail: React.FunctionComponent<
   customHooks.useLoading();
 
   React.useEffect(() => {
+    if (movieId) {
+      dispatch({
+        type: EMovieActionTypes.ADD_ID,
+        payload: movieId,
+      });
+    }
+  }, [movieId]);
+
+  React.useEffect(() => {
     const query: IQueryList = {
       movieId: movieId,
     };
@@ -43,6 +54,7 @@ const MovieDetail: React.FunctionComponent<
       }}
     >
       <MovieInfo lang={lang} langs={langs} movie={movieDetail} />
+      <MovieTabs langs={langs} movie={movieDetail} />
 
       <TrailerModal />
     </div>

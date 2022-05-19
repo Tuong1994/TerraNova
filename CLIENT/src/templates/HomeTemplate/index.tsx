@@ -1,6 +1,8 @@
 import React from "react";
 import { Route, RouteComponentProps } from "react-router-dom";
 import { IRoute } from "../../interfaces/route";
+import { useSelector } from "react-redux";
+import { ReducerState } from "../../redux/store";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 
@@ -10,6 +12,8 @@ interface IHomeTemplateProps extends IRoute {
 
 const HomeTemplate: React.FunctionComponent<IHomeTemplateProps> = (props) => {
   let { Component, ...restProps } = props;
+
+  const { movieId } = useSelector((state: ReducerState) => state.MovieReducer);
 
   return (
     <Route
@@ -21,7 +25,8 @@ const HomeTemplate: React.FunctionComponent<IHomeTemplateProps> = (props) => {
             <div
               className={`home-template__content ${
                 document.location.pathname === "/" ||
-                document.location.pathname === "/movie"
+                document.location.pathname === "/movie" ||
+                document.location.pathname === `/movieDetail/${movieId}`
                   ? "home-template__content-home"
                   : ""
               } `}

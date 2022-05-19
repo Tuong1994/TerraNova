@@ -3,6 +3,7 @@ import { MovieAction } from "../actions/MovieAction";
 import { EMovieActionTypes } from "../actionTypes/MovieActionTypes";
 
 interface IStateDefault {
+  movieId: string;
   movieList: {
     total: number;
     page: number;
@@ -13,6 +14,7 @@ interface IStateDefault {
 }
 
 const stateDefault: IStateDefault = {
+  movieId: "",
   movieList: {
     total: 0,
     page: 0,
@@ -24,6 +26,12 @@ const stateDefault: IStateDefault = {
 
 export const MovieReducer = (state = stateDefault, action: MovieAction) => {
   switch (action.type) {
+    case EMovieActionTypes.ADD_ID: {
+      let newState = { ...state };
+      newState.movieId = action.payload;
+      state = newState;
+      return { ...state };
+    }
     case EMovieActionTypes.GET_MOVIE_LIST: {
       let newState = { ...state };
       newState.movieList = action.payload;

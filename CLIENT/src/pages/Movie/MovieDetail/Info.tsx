@@ -58,6 +58,7 @@ const MovieInfo: React.FunctionComponent<MovieInfoProps> = (props) => {
             {[...Array(5)].map((v, i) => {
               return (
                 <i
+                  key={i}
                   className="fa-solid fa-star"
                   style={{ color: "#e4e5e9" }}
                 ></i>

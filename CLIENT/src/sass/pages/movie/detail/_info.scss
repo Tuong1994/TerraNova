@@ -11,11 +11,12 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to bottom, transparent 20%, $RGBA-dark-1 50%);
+    background: linear-gradient(to bottom, transparent 20%, $RGBA-dark-2 50%);
     backdrop-filter: blur(10px);
   }
   .movie-detail__info {
     padding: $p-10 * 5 $p-10 * 20;
+    padding-top: $p-10 * 15;
     position: relative;
     z-index: 9;
     .info__card {
@@ -29,7 +30,6 @@
       -moz-backdrop-filter: blur(10px);
       display: flex;
       flex-direction: row;
-      align-items: center;
       justify-content: space-between;
       overflow: hidden;
       .card__image {
@@ -72,9 +72,10 @@
         color: $tSecondary;
         margin: 0 $m-10;
         h3 {
-          font-size: $subtitle;
+          font-size: $h6;
           font-weight: $semiBold;
-          margin: $m-10 0;
+          margin-bottom: $m-10 * 2;
+          text-transform: uppercase;
         }
       }
       .card__rate {

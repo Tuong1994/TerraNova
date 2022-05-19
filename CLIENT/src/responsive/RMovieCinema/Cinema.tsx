@@ -28,7 +28,7 @@ const Cinema: React.FunctionComponent<CinemaProps> = (props) => {
       </div>
 
       <div className={`cinema__content ${active && "cinema__content--active"}`}>
-        {cinema?.movieList?.slice(0, 10).map((movie) => {
+        {cinema?.movieList?.map((movie) => {
           return (
             <Movie key={movie.id} lang={lang} langs={langs} movie={movie} />
           );

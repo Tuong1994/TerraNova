@@ -1,12 +1,16 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { ReducerState } from "../../redux/store";
 import Logo from "../Logo";
 import HeaderMenu from "./HeaderMenu";
 import HeaderLogin from "./HeaderLogin";
 import HeaderButton from "./HeaderButton";
-import RHeaderMenu from "../../responsive/RHeader";
 import HeaderFeatures from "./HeaderFeatures";
+import RHeaderMenu from "../../responsive/RHeader";
 
 const Header: React.FunctionComponent<{}> = (props) => {
+  const { movieId } = useSelector((state: ReducerState) => state.MovieReducer);
+
   const [showMenu, setShowMenu] = React.useState<boolean>(false);
   const [headerActive, setHeaderActive] = React.useState<boolean>(false);
 
@@ -28,13 +32,16 @@ const Header: React.FunctionComponent<{}> = (props) => {
   const styled = () => {
     if (
       document.location.pathname !== "/" &&
-      document.location.pathname !== "/movie"
+      document.location.pathname !== "/movie" &&
+      document.location.pathname !== `/movieDetail/${movieId}`
     ) {
       return { backgroundColor: "rgba(66, 114, 216, 0.9)" };
     } else {
       return {};
     }
   };
+
+  console.log(movieId);
 
   return (
     <div
@@ -45,7 +52,7 @@ const Header: React.FunctionComponent<{}> = (props) => {
       <HeaderMenu />
       <div className="header__features">
         <HeaderLogin />
-        <HeaderFeatures />
+        <HeaderFeatures movieId={movieId} />
       </div>
       <HeaderButton setShowMenu={setShowMenu} />
       <RHeaderMenu showMenu={showMenu} setShowMenu={setShowMenu} />

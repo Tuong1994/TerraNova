@@ -321,7 +321,10 @@ const VnLang = {
     },
     detail: {
       movieName: "Tên phim",
-      releaseDay: "Ngày khởi chiếu"
+      releaseDay: "Ngày khởi chiếu",
+      tabTitle_1: "Lịch chiếu",
+      tabTitle_2: "Thông tin",
+      tabTitle_3: "Bình luận",
     },
   },
 

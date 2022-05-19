@@ -330,7 +330,10 @@ const EngLang = {
     },
     detail: {
       movieName: "Name",
-      releaseDay: "Release day"
+      releaseDay: "Release day",
+      tabTitle_1: "Showtimes",
+      tabTitle_2: "Infomation",
+      tabTitle_3: "Comments",
     },
   },
 

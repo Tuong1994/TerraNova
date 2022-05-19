@@ -62,7 +62,7 @@ const Cineplex: React.FunctionComponent<CineplexProps> = (props) => {
         }`}
       >
         <DataLoading />
-        {cineplex?.cinemas?.slice(0, 5).map((cinema) => {
+        {cineplex?.cinemas?.map((cinema) => {
           return (
             <Cinema key={cinema.id} lang={lang} langs={langs} cinema={cinema} />
           );

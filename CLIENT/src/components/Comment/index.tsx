@@ -20,10 +20,11 @@ interface CommentProps {
   comments: IComment[];
   productId?: string;
   courseId?: string;
+  isTitle?: boolean;
 }
 
 const Comment: React.FunctionComponent<CommentProps> = (props) => {
-  const { comments, productId, courseId } = props;
+  const { comments, productId, courseId, isTitle } = props;
 
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
   const { user } = useSelector((state: ReducerState) => state.UserReducer);
@@ -113,7 +114,7 @@ const Comment: React.FunctionComponent<CommentProps> = (props) => {
 
   return (
     <div className="comment">
-      <h3 className="comment__title">{langs?.comment.title}</h3>
+      {isTitle && <h3 className="comment__title">{langs?.comment.title}</h3>}
 
       <Card.Wrapper className="comment__control">
         <CommentControl

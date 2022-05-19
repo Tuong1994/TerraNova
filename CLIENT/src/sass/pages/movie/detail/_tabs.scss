@@ -1,0 +1,36 @@
+.movie-detail__tabs {
+  padding: $p-10 * 5 $p-10 * 20;
+  position: relative;
+  z-index: 9;
+  .tabs__wrapper {
+    width: $w-100;
+    .wrapper__title {
+      display: flex;
+      justify-content: center;
+      padding: $p-10 * 2 0;
+      .title__item {
+        margin: 0 $m-10 * 2;
+      }
+      .title__item--active {
+        &::after {
+          width: $w-100;
+        }
+      }
+    }
+    .wrapper__content {
+      width: $w-100;
+      .content__item {
+        display: none;
+        .item__showtimes {
+          padding: $p-10 * 2;
+        }
+        .item__detail {
+          color: $tSecondary;
+        }
+      }
+      .content__item--active {
+        display: block;
+      }
+    }
+  }
+}

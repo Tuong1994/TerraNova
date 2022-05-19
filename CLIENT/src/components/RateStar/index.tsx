@@ -3,13 +3,13 @@ import { useSelector } from "react-redux";
 import { ReducerState } from "../../redux/store";
 import utils from "../../utils";
 
-interface RateProps {
+interface RateStarProps {
   className?: string;
   starClass?: string;
   onChange?: (v: any) => void;
 }
 
-const Rate: React.FunctionComponent<RateProps> = (props) => {
+const RateStar: React.FunctionComponent<RateStarProps> = (props) => {
   const { className, starClass, onChange } = props;
 
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
@@ -86,4 +86,4 @@ const Rate: React.FunctionComponent<RateProps> = (props) => {
   );
 };
 
-export default Rate;
+export default RateStar;

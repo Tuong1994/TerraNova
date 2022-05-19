@@ -313,7 +313,10 @@ const ChLang = {
     },
     detail: {
       movieName: "电影名称",
-      releaseDay: "发布日期"
+      releaseDay: "发布日期",
+      tabTitle_1: "放映时间",
+      tabTitle_2: "信息",
+      tabTitle_3: "评论",
     },
   },
 

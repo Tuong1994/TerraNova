@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ILangs } from "../../interfaces/lang";
 import { ReducerState } from "../../redux/store";
 import { EModalActionTypes } from "../../redux/actionTypes/ModalActionTypes";
-import Rate from "../Rate";
+import RateStar from "../RateStar";
 import Button from "../Button";
 import ButtonLoading from "../Loading/ButtonLoading";
 
@@ -45,7 +45,7 @@ const RateModal: React.FunctionComponent<RateModalProps> = (props) => {
       />
       <Modal.Body className="product-rate-modal__body">
         <Card.Wrapper className="body__wrapper">
-          <Rate
+          <RateStar
             starClass="wrapper__stars"
             onChange={(value: any) => {
               setRatePoint(value);

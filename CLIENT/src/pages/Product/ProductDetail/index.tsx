@@ -39,7 +39,7 @@ const ProductDetail: React.FunctionComponent<
   const [stock, setStock] = React.useState<IProductCarts>({});
   const [amount, setAmount] = React.useState<number>(0);
   const [ratePoint, setRatePoint] = React.useState<number>(0);
-  const [rateNote, setRateNote] = React.useState<string>("")
+  const [rateNote, setRateNote] = React.useState<string>("");
 
   const dispatch = useDispatch();
 
@@ -257,6 +257,7 @@ const ProductDetail: React.FunctionComponent<
       <div className="product-detail__specs">
         <ProductSpecs langs={langs} product={productDetail} />
         <Comment
+          isTitle={true}
           comments={productDetail.comments || []}
           productId={productDetail?.id || productDetail?.productId}
         />
