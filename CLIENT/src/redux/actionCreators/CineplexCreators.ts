@@ -27,3 +27,25 @@ export const getCineplexList = (query: IQueryList) => {
     }, 1000);
   };
 };
+
+export const getCineplexDetail = (query: IQueryList) => {
+  return (dispatch: Dispatch) => {
+    dispatch(actions.openDataLoading);
+    setTimeout(async () => {
+      try {
+        const result = await axiosClient.get(
+          apiPath.cineplexPaths.getCineplexDetail,
+          getListQuery(query as IQueryList)
+        );
+        dispatch({
+          type: ECineplexActionTypes.GET_CINEPLEX_DETAIL,
+          payload: result.data,
+        });
+        dispatch(actions.closeDataLoading);
+      } catch (error) {
+        console.log(error);
+        dispatch(actions.closeDataLoading);
+      }
+    }, 1000);
+  };
+};

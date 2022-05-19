@@ -19,12 +19,12 @@ const getMovieList = async (req, res) => {
       }
     };
 
-    if (filter) {
+    if (filter && filter !== 0) {
       if (freeText) {
         movieList = await Movie.findAll({
           order: [["updatedAt", getSort() || "DESC"]],
           where: {
-            id: filter,
+            status: filter,
             nameEng: {
               [Op.like]: `%${freeText}%`,
             },
@@ -34,7 +34,7 @@ const getMovieList = async (req, res) => {
         movieList = await Movie.findAll({
           order: [["updatedAt", getSort() || "DESC"]],
           where: {
-            id: filter,
+            status: filter,
           },
         });
       }
@@ -57,7 +57,7 @@ const getMovieList = async (req, res) => {
       if (page) {
         const total = movieList.length;
         const start = (pageNumber - 1) * itemPerPage;
-        const end = state + itemPerPage;
+        const end = start + itemPerPage;
         const list = movieList.slice(start, end);
         res.status(200).send({
           total: total,

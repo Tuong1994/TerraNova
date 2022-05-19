@@ -8,21 +8,6 @@ const getCineplexList = async (req, res) => {
   try {
     const cineplexList = await Cineplex.findAll({
       order: [["updatedAt", "DESC"]],
-      include: [
-        {
-          model: Cinema,
-          as: "cinemas",
-          include: [
-            {
-              model: Movie,
-              as: "movieList",
-              through: {
-                attributes: [],
-              },
-            },
-          ],
-        },
-      ],
     });
     if (page) {
       const total = cineplexList.length;
@@ -48,6 +33,23 @@ const getCineplexDetail = async (req, res) => {
       where: {
         id: cineplexId,
       },
+      include: [
+        {
+          model: Cinema,
+          as: "cinemas",
+          attributes: ["id", "name", "image", "address"],
+          include: [
+            {
+              model: Movie,
+              as: "movieList",
+              attributes: ["id", "nameENG", "nameVN", "nameCH", "image"],
+              through: {
+                attributes: [],
+              },
+            },
+          ],
+        },
+      ],
     });
     res.status(200).send(cineplexDetail);
   } catch (error) {

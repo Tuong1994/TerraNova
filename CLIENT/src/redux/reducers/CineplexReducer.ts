@@ -9,6 +9,7 @@ interface IStateDefault {
     limits: number;
     cineplexes: ICineplex[];
   };
+  cineplexDetail: ICineplex;
 }
 
 const stateDefault: IStateDefault = {
@@ -18,6 +19,7 @@ const stateDefault: IStateDefault = {
     limits: 0,
     cineplexes: [],
   },
+  cineplexDetail: {},
 };
 
 export const CineplexReducer = (
@@ -28,6 +30,12 @@ export const CineplexReducer = (
     case ECineplexActionTypes.GET_CINEPLEX_WITH_CINEMA_AND_MOVIE: {
       let newState = { ...state };
       newState.cineplexList = action.payload;
+      state = newState;
+      return { ...state };
+    }
+    case ECineplexActionTypes.GET_CINEPLEX_DETAIL: {
+      let newState = { ...state };
+      newState.cineplexDetail = action.payload;
       state = newState;
       return { ...state };
     }

@@ -19,7 +19,7 @@ export interface IQueryList {
   movieId?: string;
   productType?: string;
   freeText?: string;
-  filter?: string;
+  filter?: string | number;
   sortBy?: number;
 }
 

@@ -33,6 +33,11 @@ module.exports = (sequelize, DataTypes) => {
       duration: DataTypes.STRING,
       trailer: DataTypes.STRING,
       releaseDay: DataTypes.STRING,
+      status: DataTypes.INTEGER,
+      type: DataTypes.INTEGER,
+      actors: DataTypes.STRING,
+      director: DataTypes.STRING,
+      country: DataTypes.INTEGER,
     },
     {
       sequelize,

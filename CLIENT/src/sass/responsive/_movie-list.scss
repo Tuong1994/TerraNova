@@ -1,160 +1,133 @@
 .movie-list__responsive {
   padding: $p-10 * 8 $p-10 * 2 $p-10 * 2 $p-10 * 2;
   display: none;
-  .responsive__title {
-    width: $w-100;
-    height: $h-10 * 8;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .title__item {
-      margin: 0 $m-10;
-      padding: $p-10;
-      font-size: $body-2;
-      border-radius: $lightRound;
-      background: $secondary;
-      color: $tSecondary;
-      cursor: pointer;
-      transition: all 0.5s ease;
-    }
-    .title__item--active {
-      box-shadow: 0 0 10px $blue-2;
-      font-size: $body-1;
-    }
-  }
   .responsive__content {
     width: $w-100;
     position: relative;
-    .content__inner {
+    .content__list {
       width: $w-100;
       height: $h-100;
-      display: none;
-      .inner__list {
-        .slide__card {
+      .slide__card {
+        width: $w-100;
+        margin: $m-10 * 2 0;
+        position: relative;
+        &:hover .card__image .image {
+          transform: scale(1.2);
+        }
+        &:hover .card__image .image__overlay {
+          opacity: 1;
+          visibility: visible;
+        }
+        &:hover .card__name .name__text {
+          opacity: 0;
+          visibility: hidden;
+        }
+        &:hover .card__name .name__link {
+          opacity: 1;
+          visibility: visible;
+        }
+        .card__image {
           width: $w-100;
-          margin: $m-10 * 2 0;
+          height: $h-10 * 30;
+          margin-bottom: $m-10;
+          border-radius: $lightRound;
+          overflow: hidden;
           position: relative;
-          &:hover .card__image .image {
-            transform: scale(1.2);
+          .image {
+            object-fit: cover;
+            object-position: center;
+            transform: scale(1);
+            transition: all 0.5s ease;
           }
-          &:hover .card__image .image__overlay {
-            opacity: 1;
-            visibility: visible;
-          }
-          &:hover .card__name .name__text {
-            opacity: 0;
-            visibility: hidden;
-          }
-          &:hover .card__name .name__link {
-            opacity: 1;
-            visibility: visible;
-          }
-          .card__image {
+          .image__overlay {
             width: $w-100;
-            height: $h-10 * 30;
-            margin-bottom: $m-10;
-            border-radius: $lightRound;
-            overflow: hidden;
-            position: relative;
-            .image {
-              object-fit: cover;
-              object-position: center;
-              transform: scale(1);
-              transition: all 0.5s ease;
-            }
-            .image__overlay {
-              width: $w-100;
-              height: $h-100;
-              background: $RGBA-dark-1;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              position: absolute;
-              top: 0;
-              left: 0;
-              opacity: 0;
-              visibility: hidden;
-              transition: all 0.5s ease;
-              .overlay__play {
-                width: $w-10 * 5;
-                height: $h-10 * 5;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                border-radius: $circle;
-                background: $secondary;
-                color: $tSecondary;
-                cursor: pointer;
-                position: relative;
-                &::after,
-                &::before {
-                  content: "";
-                  position: absolute;
-                  top: 0;
-                  bottom: 0;
-                  left: 0;
-                  right: 0;
-                  background: $secondary;
-                  border-radius: $circle;
-                  z-index: 1;
-                }
-                &::after {
-                  animation: pulse 2s ease-out infinite;
-                }
-                &::before {
-                  animation: pulse 2s 1s ease-out infinite;
-                }
-              }
-            }
-          }
-          .card__name {
-            height: $h-10 * 5;
+            height: $h-100;
+            background: $RGBA-dark-1;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: $body-1;
-            font-weight: $semiBold;
-            text-align: center;
-            text-transform: uppercase;
-            position: relative;
-            .name__text {
-              opacity: 1;
-              transition: all 0.5s ease;
-            }
-            .name__link {
-              width: $w-100;
-              height: $h-100;
-              position: absolute;
-              top: 0;
-              left: 0;
-              opacity: 0;
-              visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+            .overlay__play {
+              width: $w-10 * 5;
+              height: $h-10 * 5;
               display: flex;
               justify-content: center;
               align-items: center;
+              border-radius: $circle;
+              background: $secondary;
+              color: $tSecondary;
+              cursor: pointer;
+              position: relative;
+              &::after,
+              &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: $secondary;
+                border-radius: $circle;
+                z-index: 1;
+              }
+              &::after {
+                animation: pulse 2s ease-out infinite;
+              }
+              &::before {
+                animation: pulse 2s 1s ease-out infinite;
+              }
             }
           }
         }
-      }
-      .inner__load {
-        width: $w-100;
-        padding: $p-10 * 2;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        .load__button {
-          background: $secondary;
-          color: $tSecondary;
+        .card__name {
+          height: $h-10 * 5;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           font-size: $body-1;
-          padding: $p-10 $p-10 * 2;
-          border: 0;
-          border-radius: $lightRound;
-          outline: none;
+          font-weight: $semiBold;
+          text-align: center;
+          text-transform: uppercase;
+          position: relative;
+          .name__text {
+            opacity: 1;
+            transition: all 0.5s ease;
+          }
+          .name__link {
+            width: $w-100;
+            height: $h-100;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
         }
       }
     }
-    .content__inner--active {
-      display: block;
+    .content__load {
+      width: $w-100;
+      padding: $p-10 * 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .load__button {
+        background: $secondary;
+        color: $tSecondary;
+        font-size: $body-1;
+        padding: $p-10 $p-10 * 2;
+        border: 0;
+        border-radius: $lightRound;
+        outline: none;
+      }
     }
   }
   @include respond(phone) {

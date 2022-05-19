@@ -2,18 +2,22 @@ import React from "react";
 import * as Card from "../../../../components/Card";
 import { ILangs } from "../../../../interfaces/lang";
 import { ICineplex } from "../../../../models/Cineplex";
+import DataLoading from "../../../../components/Loading/DataLoading";
 import SubTabs from "./SubTabs";
+import utils from "../../../../utils";
 
 interface MovieCinemaProps {
   lang: string;
   langs: ILangs;
   cineplexes: ICineplex[];
+  cineplex: ICineplex;
+  setCineplexId: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const MovieCinema: React.FunctionComponent<MovieCinemaProps> = (props) => {
-  const { lang, langs, cineplexes } = props;
+  const { lang, langs, cineplexes, cineplex, setCineplexId } = props;
 
-  const [tabActive, setTabActive] = React.useState<number>(0);
+  const [tabActive, setTabActive] = React.useState<number>(-1);
 
   return (
     <div className="movie-home__cinema">
@@ -26,7 +30,10 @@ const MovieCinema: React.FunctionComponent<MovieCinemaProps> = (props) => {
                   tabActive === index && "title__item--active"
                 }`}
                 key={cineplex.id}
-                onClick={() => setTabActive(index)}
+                onClick={() => {
+                  setCineplexId(cineplex.id || "");
+                  setTabActive(index);
+                }}
               >
                 <img
                   className="item__logo"
@@ -38,18 +45,19 @@ const MovieCinema: React.FunctionComponent<MovieCinemaProps> = (props) => {
           })}
         </div>
         <div className="tabs__content">
-          {cineplexes?.map((cineplex, index) => {
-            return (
-              <SubTabs
-                key={cineplex.id}
-                cineplex={cineplex}
-                index={index}
-                lang={lang}
-                langs={langs}
-                tabActive={tabActive}
-              />
-            );
-          })}
+          {utils.checkObjectEmpty(cineplex) ? (
+            <React.Fragment>
+              <DataLoading />
+              <SubTabs cineplex={cineplex} lang={lang} langs={langs} />
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              <DataLoading />
+              <div className="content__nodata">
+                <p>Choose cinema to book ticket</p>
+              </div>
+            </React.Fragment>
+          )}
         </div>
       </Card.Wrapper>
     </div>

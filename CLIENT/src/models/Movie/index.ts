@@ -1,3 +1,8 @@
+export enum EMovieStatus {
+  showing = 1,
+  comming = 2,
+}
+
 export interface IMovie {
   id?: string;
   movieId?: string;
@@ -11,6 +16,7 @@ export interface IMovie {
   duration?: string;
   trailer?: string;
   releaseDay?: Date | string;
+  status?: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 }

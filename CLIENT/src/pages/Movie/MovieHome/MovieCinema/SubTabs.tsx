@@ -7,13 +7,11 @@ import { IMovie } from "../../../../models/Movie";
 interface SubTabsProps {
   lang: string;
   langs: ILangs;
-  tabActive: number;
-  index: number;
   cineplex: ICineplex;
 }
 
 const SubTabs: React.FunctionComponent<SubTabsProps> = (props) => {
-  const { lang, langs, cineplex, tabActive, index } = props;
+  const { lang, langs, cineplex } = props;
 
   const [subTabActive, setSubTabActive] = React.useState<number>(0);
 
@@ -33,12 +31,10 @@ const SubTabs: React.FunctionComponent<SubTabsProps> = (props) => {
 
   return (
     <div
-      className={`content__subtabs ${
-        tabActive === index && "content__subtabs--active"
-      }`}
+      className="content__subtabs"
     >
       <div className="subtabs__title">
-        {cineplex?.cinemas?.slice(0, 8).map((cinema, index) => {
+        {cineplex?.cinemas?.map((cinema, index) => {
           return (
             <div
               className={`title__item ${
@@ -70,12 +66,12 @@ const SubTabs: React.FunctionComponent<SubTabsProps> = (props) => {
               }`}
               key={cinema.id}
             >
-              {cinema?.movieList?.slice(0, 12).map((movie) => {
+              {cinema?.movieList?.map((movie) => {
                 return (
                   <div key={movie.id} className="inner__item">
                     <img
                       className="item__image"
-                      src="/img/movie/the_batman.jpg"
+                      src="/img/movie/secret_of_dumbledore.jpg"
                       alt={movie.nameENG}
                     />
                     <div className="item__detail">

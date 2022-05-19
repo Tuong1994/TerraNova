@@ -37,6 +37,21 @@ module.exports = {
       releaseDay: {
         type: Sequelize.STRING,
       },
+      status: {
+        type: Sequelize.INTEGER,
+      },
+      type: {
+        type: Sequelize.INTEGER,
+      },
+      actors: {
+        type: Sequelize.STRING,
+      },
+      director: {
+        type: Sequelize.STRING,
+      },
+      country: {
+        type: Sequelize.INTEGER,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

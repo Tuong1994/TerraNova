@@ -1,4 +1,5 @@
 import React from "react";
+import DataLoading from "../../components/Loading/DataLoading";
 import { ILangs } from "../../interfaces/lang";
 import { ICineplex } from "../../models/Cineplex";
 import Cinema from "./Cinema";
@@ -6,28 +7,61 @@ import Cinema from "./Cinema";
 interface CineplexProps {
   lang: string;
   langs: ILangs;
+  index: number;
+  tabActive: any;
+  i: ICineplex;
   cineplex: ICineplex;
+  setCineplexId: React.Dispatch<React.SetStateAction<string>>;
+  setTabActive: React.Dispatch<React.SetStateAction<any>>;
 }
 
 const Cineplex: React.FunctionComponent<CineplexProps> = (props) => {
-  const { lang, langs, cineplex } = props;
-
-  const [tabActive, setTabActive] = React.useState<boolean>(false);
+  const {
+    i,
+    index,
+    lang,
+    langs,
+    cineplex,
+    tabActive,
+    setCineplexId,
+    setTabActive,
+  } = props;
 
   return (
     <div className="card__item">
-      <div className="item__title" onClick={() => setTabActive(!tabActive)}>
-        <img
-          className="title__logo"
-          src={`/img/logo/${cineplex.logo}`}
-          alt={cineplex.name}
-        />
+      <div
+        className="item__title"
+        onClick={() => {
+          setCineplexId(i.id || "");
+          if (tabActive.active) {
+            setTabActive({
+              active: false,
+              index: index,
+            });
+          } else {
+            setTabActive({
+              active: true,
+              index: index,
+            });
+          }
+        }}
+      >
+        <img className="title__logo" src={`/img/logo/${i.logo}`} alt={i.name} />
         <i
-          className={`fa-solid fa-angle-down ${tabActive && "fa--active"}`}
+          className={`fa-solid fa-angle-down ${
+            tabActive.active && tabActive.index === index && "fa--active"
+          }`}
         ></i>
       </div>
 
-      <div className={`item__content ${tabActive && "item__content--active"}`}>
+      <div
+        className={`item__content ${
+          tabActive.active &&
+          tabActive.index === index &&
+          "item__content--active"
+        }`}
+      >
+        <DataLoading />
         {cineplex?.cinemas?.slice(0, 5).map((cinema) => {
           return (
             <Cinema key={cinema.id} lang={lang} langs={langs} cinema={cinema} />

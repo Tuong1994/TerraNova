@@ -1,4 +1,5 @@
 "use strict";
+const { movieStatus } = require("../interface/movie");
 const { Cinema, Movie } = require("../models");
 
 module.exports = {
@@ -14,7 +15,11 @@ module.exports = {
      */
     const arr = [];
     const cinemaList = await Cinema.findAll();
-    const movieList = await Movie.findAll();
+    const movieList = await Movie.findAll({
+      where: {
+        status: movieStatus.showing
+      }
+    });
 
     if (cinemaList && movieList) {
       for (let i = 0; i < cinemaList.length; i++) {
