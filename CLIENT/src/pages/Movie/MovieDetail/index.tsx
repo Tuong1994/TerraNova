@@ -54,7 +54,7 @@ const MovieDetail: React.FunctionComponent<
       }}
     >
       <MovieInfo lang={lang} langs={langs} movie={movieDetail} />
-      <MovieTabs langs={langs} movie={movieDetail} />
+      <MovieTabs lang={lang} langs={langs} movie={movieDetail} />
 
       <TrailerModal />
     </div>

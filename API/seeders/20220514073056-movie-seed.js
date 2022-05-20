@@ -201,7 +201,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: "M_009",
+          id: "M_0009",
           nameVN: "SINH VẬT HUYỀN BÝ",
           nameENG: "Fantastic Beast and Where To Find Them",
           nameCH: "神奇动物在哪里",

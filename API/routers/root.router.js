@@ -11,6 +11,7 @@ const { courseScheduleRouter } = require("./course-schedule.router");
 const { courseRouter } = require("./course.router");
 const { descriptionRouter } = require("./description.router");
 const { lessonRouter } = require("./lesson.router");
+const { movieScheduleRouter } = require("./movie-schedule.router");
 const { movieRouter } = require("./movie.router");
 const { orderRouter } = require("./order.router");
 const { productRouter } = require("./product.router");
@@ -39,6 +40,7 @@ rootRouter.use("/cinemaManagement", cinemaRouter);
 rootRouter.use("/movieManagement", movieRouter);
 rootRouter.use("/theaterManagement", theaterRouter);
 rootRouter.use("/seatManagement", seatRouter);
+rootRouter.use("/movieScheduleManagement", movieScheduleRouter)
 
 module.exports = {
   rootRouter,

@@ -11,7 +11,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to bottom, transparent 20%, $RGBA-dark-2 50%);
+    background: linear-gradient(to bottom, transparent 20%, $RGBA-dark-4 50%);
     backdrop-filter: blur(10px);
   }
   .movie-detail__info {
@@ -29,6 +29,7 @@
       -webkit-backdrop-filter: blur(10px);
       -moz-backdrop-filter: blur(10px);
       display: flex;
+      flex-wrap: wrap;
       flex-direction: row;
       justify-content: space-between;
       overflow: hidden;
@@ -66,9 +67,13 @@
           visibility: hidden;
           transition: all 0.5s ease;
         }
+        @include respond(tablet) {
+          width: $w-100;
+          margin-bottom: $m-10 * 2;
+        }
       }
       .card__content {
-        width: $w-100 - 50;
+        width: $w-100 - 60;
         color: $tSecondary;
         margin: 0 $m-10;
         h3 {
@@ -76,6 +81,27 @@
           font-weight: $semiBold;
           margin-bottom: $m-10 * 2;
           text-transform: uppercase;
+          span {
+            color: $tBlue;
+          }
+          @include respond(tablet) {
+            font-size: $subtitle;
+          }
+          @include respond(phone) {
+            font-size: $default;
+          }
+        }
+        p {
+          span {
+            color: $tBlue;
+          }
+        }
+        @include respond(laptop) {
+          width: $w-100 - 60;
+        }
+        @include respond(tablet) {
+          width: $w-100;
+          margin: 0;
         }
       }
       .card__rate {
@@ -102,13 +128,26 @@
           justify-content: center;
           font-size: $h4;
         }
+        @include respond(tablet) {
+          display: none;
+        }
+      }
+      @include respond(tablet) {
+        padding: $p-10 * 2;
+        height: auto;
+      }
+      @include respond(phone) {
+        padding: $p-10;
+        height: auto;
       }
     }
-  }
-}
-@keyframes pulse {
-  100% {
-    transform: scale(1.2);
-    opacity: 0;
+    @include respond(laptop) {
+      padding: $p-10 * 5 $p-10 * 2;
+      padding-top: $p-10 * 11;
+    }
+    @include respond(phone) {
+      padding: $p-10 * 5 $p-10;
+      padding-top: $p-10 * 11;
+    }
   }
 }

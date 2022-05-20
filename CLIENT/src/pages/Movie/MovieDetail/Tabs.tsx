@@ -6,12 +6,13 @@ import Detail from "./Detail";
 import ShowTimes from "./ShowTimes";
 
 interface MovieTabsProps {
+  lang: string;
   langs: ILangs;
   movie: IMovie;
 }
 
 const MovieTabs: React.FunctionComponent<MovieTabsProps> = (props) => {
-  const { langs } = props;
+  const { lang, langs, movie } = props;
 
   const [tabActive, setTabActive] = React.useState<number>(1);
 
@@ -28,7 +29,8 @@ const MovieTabs: React.FunctionComponent<MovieTabsProps> = (props) => {
               setTabActive(1);
             }}
           >
-            {langs?.movie.detail.tabTitle_1}
+            <i className="fa-solid fa-calendar"></i>
+            <span>{langs?.movie.detail.tabTitle_1}</span>
           </div>
           <div
             className={`button--fill title__item ${
@@ -38,7 +40,8 @@ const MovieTabs: React.FunctionComponent<MovieTabsProps> = (props) => {
               setTabActive(2);
             }}
           >
-            {langs?.movie.detail.tabTitle_2}
+            <i className="fa-solid fa-list"></i>
+            <span>{langs?.movie.detail.tabTitle_2}</span>
           </div>
           <div
             className={`button--fill title__item ${
@@ -48,7 +51,8 @@ const MovieTabs: React.FunctionComponent<MovieTabsProps> = (props) => {
               setTabActive(3);
             }}
           >
-            {langs?.movie.detail.tabTitle_3}
+            <i className="fa-solid fa-comment"></i>
+            <span>{langs?.movie.detail.tabTitle_3}</span>
           </div>
         </div>
 
@@ -66,7 +70,7 @@ const MovieTabs: React.FunctionComponent<MovieTabsProps> = (props) => {
               tabActive === 2 && "content__item--active"
             }`}
           >
-            <Detail />
+            <Detail lang={lang} langs={langs} movie={movie} />
           </div>
           <div
             className={`content__item ${

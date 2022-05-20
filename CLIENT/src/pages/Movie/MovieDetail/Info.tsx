@@ -44,11 +44,11 @@ const MovieInfo: React.FunctionComponent<MovieInfoProps> = (props) => {
 
         <div className="card__content">
           <h3>
-            {langs?.movie.detail.movieName} : {renderMovieName()}
+            {langs?.movie.detail.movieName} : <span>{renderMovieName()}</span>
           </h3>
           <p>
             {langs?.movie.detail.releaseDay} :{" "}
-            {moment(movie.releaseDay).format("DD/MM/YYYY")}
+            <span>{moment(movie.releaseDay).format("DD/MM/YYYY")}</span>
           </p>
         </div>
 

@@ -10,6 +10,20 @@
       padding: $p-10 * 2 0;
       .title__item {
         margin: 0 $m-10 * 2;
+        .fa-solid {
+          display: none;
+          @include respond(phone) {
+            display: block;
+          }
+        }
+        span {
+          @include respond(phone) {
+            display: none;
+          }
+        }
+        @include respond(phone) {
+          margin: 0 $m-10;
+        }
       }
       .title__item--active {
         &::after {
@@ -25,12 +39,67 @@
           padding: $p-10 * 2;
         }
         .item__detail {
+          padding: $p-10 * 2;
+          font-size: $body-1;
           color: $tSecondary;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          .detail__info {
+            width: $w-100 / 2.1;
+            .info__item {
+              width: $w-100;
+              padding-bottom: $p-10 * 2;
+              display: flex;
+              justify-content: space-between;
+              p {
+                width: $w-100 / 2.1;
+              }
+            }
+            @include respond(tablet) {
+              width: $w-100;
+              margin-bottom: $m-10 * 2;
+            }
+          }
+          .detail__content {
+            width: $w-100 / 2.1;
+            p {
+              text-align: justify;
+              &:nth-child(1) {
+                margin-bottom: $m-10;
+              }
+              &:nth-child(2) {
+                line-height: $h-10 * 2;
+              }
+            }
+            @include respond(tablet) {
+              width: $w-100;
+            }
+          }
+          @include respond(phone) {
+            padding: $p-10 * 2 $p-10;
+          }
         }
       }
       .content__item--active {
         display: block;
+        animation: fadeIn 1s ease-out 1;
       }
     }
+  }
+  @include respond(laptop) {
+    padding: $p-10 * 5 $p-10 * 2;
+  }
+  @include respond(phone) {
+    padding: $p-10 * 5 $p-10;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
