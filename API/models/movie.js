@@ -7,12 +7,20 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ Cinema, Theater, MovieSchedule, Cinema_Movie, Theater_Movie }) {
+    static associate({
+      Cineplex,
+      Cinema,
+      Theater,
+      MovieSchedule,
+      Cineplex_Movie,
+      Cinema_Movie,
+      Theater_Movie,
+    }) {
       // define association here
       this.belongsToMany(Cinema, {
         through: Cinema_Movie,
         foreignKey: "movie_id",
-        as: "movieList",
+        as: "cinemas",
       });
       this.belongsToMany(Theater, {
         foreignKey: "movie_id",
@@ -22,7 +30,12 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(MovieSchedule, {
         foreignKey: "movieId",
         as: "schedules",
-      })
+      });
+      this.belongsToMany(Cineplex, {
+        foreignKey: "movie_id",
+        through: Cineplex_Movie,
+        as: "cineplexes",
+      });
     }
   }
   Movie.init(

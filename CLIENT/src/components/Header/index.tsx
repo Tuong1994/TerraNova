@@ -41,8 +41,6 @@ const Header: React.FunctionComponent<{}> = (props) => {
     }
   };
 
-  console.log(movieId);
-
   return (
     <div
       className={headerActive ? "header header--active" : "header"}

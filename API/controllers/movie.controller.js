@@ -1,4 +1,10 @@
-const { Movie } = require("../models");
+const {
+  Cineplex,
+  Cinema,
+  Theater,
+  Movie,
+  MovieSchedule,
+} = require("../models");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
@@ -86,6 +92,12 @@ const getMovieDetail = async (req, res) => {
       where: {
         id: movieId,
       },
+      include: [
+       {
+         model: MovieSchedule,
+         as: "schedules",
+       }
+      ],
     });
     res.status(200).send(movieDetail);
   } catch (error) {

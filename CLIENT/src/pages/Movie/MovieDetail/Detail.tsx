@@ -74,6 +74,8 @@ const Detail: React.FunctionComponent<DetailProps> = (props) => {
     }
   };
 
+  console.log(movie)
+
   return (
     <div className="item__detail">
       <div className="detail__info">
