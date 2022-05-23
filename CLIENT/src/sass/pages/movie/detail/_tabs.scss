@@ -37,6 +37,128 @@
         display: none;
         .item__showtimes {
           padding: $p-10 * 2;
+          display: flex;
+          flex-direction: row;
+          .showtimes__tabs {
+            width: $w-100 - 80;
+            margin-right: $m-10;
+            .tabs__logo {
+              width: $w-100;
+              padding: $p-10;
+              border-radius: $lightRound;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              opacity: 0.5;
+              overflow: hidden;
+              transition: all 0.5s ease;
+              cursor: pointer;
+              .logo__image {
+                width: $w-10 * 5;
+                height: $h-10 * 5;
+              }
+            }
+            .tabs__logo--active {
+              opacity: 1;
+              background: $secondary;
+            }
+          }
+          .showtimes__content {
+            width: $w-100 - 20;
+            .content__date {
+              min-width: $w-100;
+              overflow-x: auto;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              .date__title {
+                min-width: $w-10 * 15;
+                padding: $p-10;
+                margin-bottom: $m-10;
+                border-left: 1px solid $borderGrey;
+                border-right: 1px solid $borderGrey;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                p {
+                  &:nth-child(1) {
+                    margin-bottom: $m-10;
+                    font-weight: $semiBold;
+                  }
+                  &:nth-child(2) {
+                    font-size: $body-1;
+                  }
+                }
+              }
+            }
+            .content__inner {
+              width: $w-100;
+              height: $h-10 * 40;
+              overflow: auto;
+              .inner__cinema {
+                display: none;
+                .cinema__item {
+                  padding: $p-10;
+                  border-bottom: 1px solid $borderGrey;
+                  .item__info {
+                    display: flex;
+                    .info__image {
+                      width: $w-10 * 5;
+                      height: $h-10 * 5;
+                      margin-right: $m-10;
+                      border-radius: $lightRound;
+                      object-fit: cover;
+                      object-position: center;
+                    }
+                    .info__content {
+                      p {
+                        &:nth-child(1) {
+                          font-weight: $semiBold;
+                          margin-bottom: $m-10;
+                        }
+                        &:nth-child(2) {
+                          font-size: $body-1;
+                        }
+                      }
+                    }
+                  }
+                  .item__theater {
+                    .theater__item {
+                      width: $w-100;
+                      margin: $m-10 0;
+                      .item__name {
+                        width: $w-100;
+                        padding: $p-5 $p-10;
+                        font-size: $body-1;
+                        border-radius: $round;
+                        background: $secondary;
+                        color: $tSecondary;
+                      }
+                      .item__schedule {
+                        padding: $p-10 0;
+                        display: grid;
+                        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+                        grid-column-gap: 10px;
+                        grid-row-gap: 10px;
+                        .schedule__link {
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          font-size: $body-2;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              .inner__cinema--active {
+                display: block;
+                animation: fadeIn 1s ease-out 1;
+              }
+            }
+          }
         }
         .item__detail {
           padding: $p-10 * 2;

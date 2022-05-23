@@ -72,9 +72,8 @@ const MovieList: React.FunctionComponent<MovieListProps> = (props) => {
         <DataLoading />
         {movies.map((movie) => {
           return (
-            <div className="content__inner">
+            <div className="content__inner" key={movie.id}>
               <MovieCard
-                key={movie.id}
                 langs={langs}
                 movie={movie}
                 renderMovieName={renderMovieName}

@@ -319,6 +319,7 @@ const EngLang = {
 
   // ==================== MOVIE ====================
   movie: {
+    // HOME
     home: {
       carousel: {
         content: "Content",
@@ -328,6 +329,7 @@ const EngLang = {
         tabTitle_2: "Coming soon",
       },
     },
+    // DETAIL
     detail: {
       movieName: "Name",
       releaseDay: "Release day",
@@ -339,7 +341,9 @@ const EngLang = {
       actors: "Actors",
       type: "Type",
       country: "Country",
+      theater: "Theater",
     },
+    // MOVIE TYPE
     movieType: {
       action: "Action",
       comedy: "Comedy",
@@ -349,6 +353,7 @@ const EngLang = {
       drama: "Drama",
       adventure: "Adventure",
     },
+    // MOVIE COUNTRY
     movieCountry: {
       america: "America",
       korean: "Korean",
@@ -524,6 +529,13 @@ const EngLang = {
     Months: "Months",
     Weeks: "Weeks",
     Years: "Years",
+    mon: "monday",
+    tue: "tuesday",
+    wed: "wednesday",
+    thur: "thursday",
+    fri: "friday",
+    sat: "saturday",
+    sun: "sunday",
   },
 
   // ==================== STATUS ====================

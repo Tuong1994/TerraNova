@@ -302,6 +302,7 @@ const ChLang = {
 
   // ==================== MOVIE ====================
   movie: {
+    // HOME
     home: {
       carousel: {
         content: "内容",
@@ -311,6 +312,7 @@ const ChLang = {
         tabTitle_2: "快来了",
       },
     },
+    // DETAIL
     detail: {
       movieName: "电影名称",
       releaseDay: "发布日期",
@@ -322,7 +324,9 @@ const ChLang = {
       actors: "演员",
       type: "类型",
       country: "国家",
+      theater: "剧院",
     },
+    // MOVIE TYPE
     movieType: {
       action: "行动",
       comedy: "喜剧",
@@ -332,6 +336,7 @@ const ChLang = {
       drama: "戏剧",
       adventure: "冒险",
     },
+    // MOVIE COUNTRY
     movieCountry: {
       america: "美国",
       korean: "韩国",
@@ -506,6 +511,13 @@ const ChLang = {
     Months: "月",
     Weeks: "星期",
     Years: "年",
+    mon: "星期一",
+    tue: "星期二",
+    wed: "星期三",
+    thur: "星期四",
+    fri: "星期五",
+    sat: "星期六",
+    sun: "星期日",
   },
 
   // ==================== STATUS ====================

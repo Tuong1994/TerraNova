@@ -31,3 +31,29 @@
     }
   }
 }
+
+.rate-modal {
+  .rate-modal__body {
+    width: $w-100;
+    height: auto;
+    .body__wrapper {
+      width: $w-100;
+      padding: $p-10 * 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .wrapper__stars {
+        @include respond(phone) {
+          font-size: $subtitle;
+          margin: 0;
+        }
+      }
+      .wrapper__control {
+        width: $w-100;
+      }
+    }
+    @include respond(phone) {
+      height: $h-10 * 20;
+    }
+  }
+}

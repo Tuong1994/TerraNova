@@ -7,10 +7,12 @@ import { ReducerState } from "../../../redux/store";
 import { IQueryList } from "../../../interfaces/query";
 import { getMovieDetail } from "../../../redux/actionCreators/MovieCreators";
 import { EMovieActionTypes } from "../../../redux/actionTypes/MovieActionTypes";
+import { EModalActionTypes } from "../../../redux/actionTypes/ModalActionTypes";
 import MovieInfo from "./Info";
-import TrailerModal from "../../../components/Trailer";
-import utils from "../../../utils";
 import MovieTabs from "./Tabs";
+import TrailerModal from "../../../components/Trailer";
+import RateModal from "../../../components/RateModal";
+import utils from "../../../utils";
 
 const MovieDetail: React.FunctionComponent<
   RouteComponentProps<IRouteParams>
@@ -26,7 +28,7 @@ const MovieDetail: React.FunctionComponent<
 
   const langs = utils.changeLang(lang);
 
-  customHooks.useLoading();
+  customHooks.useLoading(movieDetail);
 
   React.useEffect(() => {
     if (movieId) {
@@ -44,6 +46,12 @@ const MovieDetail: React.FunctionComponent<
     dispatch(getMovieDetail(query));
   }, []);
 
+  const handleShowRateModal = () => {
+    dispatch({
+      type: EModalActionTypes.OPEN_RATING_MODAL,
+    });
+  };
+
   return (
     <div
       className="movie-detail"
@@ -53,10 +61,16 @@ const MovieDetail: React.FunctionComponent<
         })`,
       }}
     >
-      <MovieInfo lang={lang} langs={langs} movie={movieDetail} />
+      <MovieInfo lang={lang} langs={langs} movie={movieDetail} onShow={handleShowRateModal} />
       <MovieTabs lang={lang} langs={langs} movie={movieDetail} />
 
       <TrailerModal />
+      <RateModal
+        langs={langs}
+        onSubmit={() => {}}
+        setRateNote={() => {}}
+        setRatePoint={() => {}}
+      />
     </div>
   );
 };

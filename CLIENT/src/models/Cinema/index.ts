@@ -1,4 +1,5 @@
 import { IMovie } from "../Movie";
+import { ITheater } from "../Theater";
 
 export interface ICinema {
   id?: string;
@@ -8,6 +9,7 @@ export interface ICinema {
   cineplexId?: string;
   movies?: IMovie[];
   movieList?: IMovie[];
+  theaters?: ITheater[];
   createdAt?: Date | string;
   updatedAt?: Date | string;
 }

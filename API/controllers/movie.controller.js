@@ -93,10 +93,44 @@ const getMovieDetail = async (req, res) => {
         id: movieId,
       },
       include: [
-       {
-         model: MovieSchedule,
-         as: "schedules",
-       }
+        {
+          model: Cineplex,
+          as: "cineplexes",
+          attributes: ["id", "name", "logo"],
+          through: {
+            attributes: [],
+            where: {
+              movie_id: movieId
+            }
+          },
+          include: [
+            {
+              model: Cinema,
+              as: "cinemas",
+              attributes: ["id", "name", "address", "image"],
+              include: [
+                {
+                  model: Theater,
+                  as: "theaters",
+                  attributes: ["id", "name"],
+                  through: {
+                    attributes: [],
+                  },  
+                  include: [
+                    {
+                      model: MovieSchedule,
+                      as: "schedules",
+                      attributes: ["id", "showTime", "movieId", "theaterId"],
+                      where: {
+                        movieId: movieId
+                      }
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
       ],
     });
     res.status(200).send(movieDetail);

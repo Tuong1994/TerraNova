@@ -1,7 +1,7 @@
 import React from "react";
-import Comment from "../../../components/Comment";
 import { ILangs } from "../../../interfaces/lang";
 import { IMovie } from "../../../models/Movie";
+import Comment from "../../../components/Comment";
 import Detail from "./Detail";
 import ShowTimes from "./ShowTimes";
 
@@ -63,7 +63,7 @@ const MovieTabs: React.FunctionComponent<MovieTabsProps> = (props) => {
               tabActive === 1 && "content__item--active"
             }`}
           >
-            <ShowTimes />
+            <ShowTimes langs={langs} movie={movie} />
           </div>
           <div
             className={`content__item ${

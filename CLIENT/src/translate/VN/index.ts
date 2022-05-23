@@ -310,6 +310,7 @@ const VnLang = {
 
   // ==================== MOVIE ====================
   movie: {
+    // HOME
     home: {
       carousel: {
         content: "Nội dung",
@@ -319,6 +320,7 @@ const VnLang = {
         tabTitle_2: "Sắp chiếu",
       },
     },
+    // DETAIL
     detail: {
       movieName: "Tên phim",
       releaseDay: "Ngày khởi chiếu",
@@ -330,7 +332,9 @@ const VnLang = {
       actors: "Diễn viên",
       type: "Thể loại",
       country: "Nước SX",
+      theater: "Rạp",
     },
+    // MOVIE TYPE
     movieType: {
       action: "Hành động",
       comedy: "Hài hước",
@@ -340,6 +344,7 @@ const VnLang = {
       drama: "Tâm lý",
       adventure: "Phiêu lưu",
     },
+    // MOVIE COUNTRY
     movieCountry: {
       america: "Mỹ",
       korean: "Hàn Quốc",
@@ -515,6 +520,13 @@ const VnLang = {
     Months: "Tháng",
     Weeks: "Tuần",
     Years: "Năm",
+    mon: "Thứ 2",
+    tue: "Thứ 3",
+    wed: "Thứ 4",
+    thur: "Thứ 5",
+    fri: "Thứ 6",
+    sat: "Thứ 7",
+    sun: "CN",
   },
 
   // ==================== STATUS ====================

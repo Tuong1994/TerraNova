@@ -110,6 +110,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
         .rate__point {
           width: $w-10 * 15;
           height: $h-10 * 15;

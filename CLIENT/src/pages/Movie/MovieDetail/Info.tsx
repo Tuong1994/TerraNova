@@ -9,10 +9,11 @@ interface MovieInfoProps {
   lang: string;
   langs: ILangs;
   movie: IMovie;
+  onShow: () => void;
 }
 
 const MovieInfo: React.FunctionComponent<MovieInfoProps> = (props) => {
-  const { lang, langs, movie } = props;
+  const { lang, langs, movie, onShow } = props;
 
   const renderMovieName = () => {
     switch (lang) {
@@ -52,7 +53,7 @@ const MovieInfo: React.FunctionComponent<MovieInfoProps> = (props) => {
           </p>
         </div>
 
-        <div className="card__rate">
+        <div className="card__rate" onClick={onShow}>
           <div className="rate__point">0/5</div>
           <div className="rate__icon">
             {[...Array(5)].map((v, i) => {

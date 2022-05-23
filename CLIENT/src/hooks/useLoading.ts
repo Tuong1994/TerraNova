@@ -16,12 +16,13 @@ const useLoading = (data?: any) => {
           type: ELoadingActionTypes.CLOSE_PAGE_LOADING,
         });
       }, 4000);
+    } else {
+      setTimeout(() => {
+        dispatch({
+          type: ELoadingActionTypes.CLOSE_PAGE_LOADING,
+        });
+      }, 2000);
     }
-    setTimeout(() => {
-      dispatch({
-        type: ELoadingActionTypes.CLOSE_PAGE_LOADING,
-      });
-    }, 2000);
   }, []);
 };
 

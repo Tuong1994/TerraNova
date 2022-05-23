@@ -775,7 +775,7 @@ module.exports = {
             "Pandora (Korean: 판도라; RR: Pandora) is a 2016 South Korean disaster film written and directed by Park Jung-woo, starring Kim Nam-Gil. The film was released in South Korea on December 7, 2016",
           descCH:
             "潘多拉（韩语：판도라；RR：潘多拉）是一部 2016 年的韩国灾难片，由朴正宇编剧和导演，金南佶主演。影片于2016年12月7日在韩国上映",
-          releaseDay: "2022-12-07T00:00:00",
+          releaseDay: "2016-12-07T00:00:00",
           actors: "Kim Nam-gil, Kim Young-ae, Kim Ju-hyeon, Moon Jeong-hee",
           director: "Park Jung-woo",
           status: movieStatus.showing,

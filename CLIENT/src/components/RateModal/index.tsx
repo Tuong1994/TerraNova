@@ -37,13 +37,13 @@ const RateModal: React.FunctionComponent<RateModalProps> = (props) => {
     <Modal.Wrapper
       isShowing={isRate}
       onHide={handleHideModal}
-      className="product-rate-modal"
+      className="rate-modal"
     >
       <Modal.Header
         title={langs?.productDetail.modal.title}
         onHide={handleHideModal}
       />
-      <Modal.Body className="product-rate-modal__body">
+      <Modal.Body className="rate-modal__body">
         <Card.Wrapper className="body__wrapper">
           <RateStar
             starClass="wrapper__stars"
