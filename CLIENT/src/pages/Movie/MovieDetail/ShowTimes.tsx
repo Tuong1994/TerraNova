@@ -122,7 +122,6 @@ const ShowTimes: React.FunctionComponent<ShowTimesProps> = (props) => {
                 {cineplex.cinemas?.map((cinema) => {
                   return (
                     <div className="cinema__item" key={cinema.id}>
-
                       <div className="item__info">
                         <img
                           className="info__image"
@@ -143,10 +142,19 @@ const ShowTimes: React.FunctionComponent<ShowTimesProps> = (props) => {
                                 {langs?.movie.detail.theater} {theater.name}
                               </p>
                               <div className="item__schedule">
-                                  {theater.schedules?.map(schedule => {
-                                      return <Link to={`/movieDetail/${movie.id}`} className="button--round schedule__link">
-                                          {moment(schedule.showTime).format("hh:mm: A")}
+                                {theater.schedules
+                                  ?.slice(0, 10).filter(schedule => schedule.showTime?.toString().includes("09-06"))
+                                  .map((schedule: any) => {
+                                    return (
+                                      <Link
+                                        to={`/movieDetail/${movie.id}`}
+                                        className="button--round schedule__link"
+                                      >
+                                        {moment(schedule.showTime).format(
+                                          "hh:mm: A"
+                                        )}
                                       </Link>
+                                    );
                                   })}
                               </div>
                             </div>
