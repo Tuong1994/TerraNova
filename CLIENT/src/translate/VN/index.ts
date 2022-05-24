@@ -333,6 +333,7 @@ const VnLang = {
       type: "Thể loại",
       country: "Nước SX",
       theater: "Rạp",
+      noShowTime: "Hiện tại chưa có lịch chiếu",
     },
     // MOVIE TYPE
     movieType: {

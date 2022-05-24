@@ -20,8 +20,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   MovieSchedule.init({
-    showtime: DataTypes.DATE,
+    showTime: DataTypes.STRING,
     movieId: DataTypes.STRING,
+    cinemaId: DataTypes.STRING,
     theaterId: DataTypes.STRING,
   }, {
     sequelize,

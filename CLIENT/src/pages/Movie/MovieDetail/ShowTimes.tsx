@@ -15,7 +15,9 @@ const ShowTimes: React.FunctionComponent<ShowTimesProps> = (props) => {
   const { langs, movie } = props;
 
   const [tabsActive, setTabActive] = React.useState<number>(0);
+  const [dateActive, setDateActive] = React.useState<number>(0);
   const [dateArr, setDateArr] = React.useState<string[]>([]);
+  const [dateSelected, setDateSelected] = React.useState<string>("");
 
   React.useEffect(() => {
     //   GET SHOWTIME ARRAY
@@ -38,15 +40,21 @@ const ShowTimes: React.FunctionComponent<ShowTimesProps> = (props) => {
     // Remove duplicate date in array
     flatArr?.forEach((i: any) => {
       const date = new Date(i.showTime);
-      const newDate = `${date.getFullYear()}-${
-        date.getMonth() + 1
-      }-${date.getDate()}`;
+      const newDate = `${date.getFullYear()}-${date.getMonth() + 1}-${
+        date.getDate() < 10 ? "0" + date.getDate() : date.getDate()
+      }`;
       if (!newArr.includes(newDate)) {
         newArr.push(newDate);
       }
     });
     setDateArr(newArr);
   }, [movie]);
+
+  React.useEffect(() => {
+    if (dateArr.length > 0) {
+      setDateSelected(dateArr[0]);
+    }
+  }, [dateArr]);
 
   const renderDay = (v: number) => {
     switch (v) {
@@ -76,6 +84,7 @@ const ShowTimes: React.FunctionComponent<ShowTimesProps> = (props) => {
 
   return (
     <Card.Wrapper className="item__showtimes">
+      {/* Cineplex */}
       <div className="showtimes__tabs">
         {movie.cineplexes?.map((cineplex, index) => {
           return (
@@ -97,10 +106,20 @@ const ShowTimes: React.FunctionComponent<ShowTimesProps> = (props) => {
       </div>
 
       <div className="showtimes__content">
+        {/* Date */}
         <div className="content__date">
-          {dateArr.map((date, index) => {
+          {dateArr.slice(0, dateArr.length - 1).map((date, index) => {
             return (
-              <div className="date__title" key={index}>
+              <div
+                key={index}
+                className={`date__title ${
+                  dateActive === index && "date__title--active"
+                }`}
+                onClick={() => {
+                  setDateActive(index);
+                  setDateSelected(date);
+                }}
+              >
                 <p>
                   {new Date(date).getDate()}/{new Date(date).getMonth() + 1}
                 </p>
@@ -111,62 +130,77 @@ const ShowTimes: React.FunctionComponent<ShowTimesProps> = (props) => {
         </div>
 
         <div className="content__inner">
-          {movie.cineplexes?.map((cineplex, index) => {
-            return (
-              <div
-                className={`inner__cinema ${
-                  tabsActive === index && "inner__cinema--active"
-                }`}
-                key={cineplex.id}
-              >
-                {cineplex.cinemas?.map((cinema) => {
-                  return (
-                    <div className="cinema__item" key={cinema.id}>
-                      <div className="item__info">
-                        <img
-                          className="info__image"
-                          src="/img/cinema.png"
-                          alt={cinema.name}
-                        />
-                        <div className="info__content">
-                          <p>{cinema.name}</p>
-                          <p>{cinema.address}</p>
+          {dateArr.length > 0 ? (
+            movie.cineplexes?.map((cineplex, index) => {
+              return (
+                <div
+                  className={`inner__cinema ${
+                    tabsActive === index && "inner__cinema--active"
+                  }`}
+                  key={cineplex.id}
+                >
+                  {/* Cinema */}
+                  {cineplex.cinemas?.slice(0, 5).map((cinema) => {
+                    return (
+                      <div className="cinema__item" key={cinema.id}>
+                        <div className="item__info">
+                          <img
+                            className="info__image"
+                            src="/img/cinema.png"
+                            alt={cinema.name}
+                          />
+                          <div className="info__content">
+                            <p>{cinema.name}</p>
+                            <p>{cinema.address}</p>
+                          </div>
+                        </div>
+                        
+                        {/* Theater */}
+                        <div className="item__theater">
+                          {cinema.theaters?.map((theater) => {
+                            return (
+                              <div className="theater__item" key={theater.id}>
+                                <p className="item__name">
+                                  {langs?.movie.detail.theater} {theater.name}
+                                </p>
+
+                                <div className="item__schedule">
+                                  {theater.schedules
+                                    ?.filter((schedule) =>
+                                      schedule.showTime
+                                        ?.toString()
+                                        .includes(dateSelected)
+                                    )
+                                    .slice(0, 10)
+                                    .map((schedule: any) => {
+                                      return (
+                                        <Link
+                                          key={schedule.id}
+                                          to={`/movieDetail/${movie.id}`}
+                                          className="button--round schedule__link"
+                                        >
+                                          {moment(schedule.showTime).format(
+                                            "hh:mm: A"
+                                          )}
+                                        </Link>
+                                      );
+                                    })}
+                                </div>
+                              </div>
+                            );
+                          })}
                         </div>
                       </div>
-
-                      <div className="item__theater">
-                        {cinema.theaters?.map((theater) => {
-                          return (
-                            <div className="theater__item" key={theater.id}>
-                              <p className="item__name">
-                                {langs?.movie.detail.theater} {theater.name}
-                              </p>
-                              <div className="item__schedule">
-                                {theater.schedules
-                                  ?.slice(0, 10).filter(schedule => schedule.showTime?.toString().includes("09-06"))
-                                  .map((schedule: any) => {
-                                    return (
-                                      <Link
-                                        to={`/movieDetail/${movie.id}`}
-                                        className="button--round schedule__link"
-                                      >
-                                        {moment(schedule.showTime).format(
-                                          "hh:mm: A"
-                                        )}
-                                      </Link>
-                                    );
-                                  })}
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            );
-          })}
+                    );
+                  })}
+                </div>
+              );
+            })
+          ) : (
+            <div className="inner__nodata">
+              <p>{langs?.movie.detail.noShowTime}</p>
+            </div>
+          )}
         </div>
       </div>
     </Card.Wrapper>

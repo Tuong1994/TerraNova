@@ -342,6 +342,7 @@ const EngLang = {
       type: "Type",
       country: "Country",
       theater: "Theater",
+      noShowTime: "There are currently no showtimes",
     },
     // MOVIE TYPE
     movieType: {

@@ -325,6 +325,7 @@ const ChLang = {
       type: "类型",
       country: "国家",
       theater: "剧院",
+      noShowTime: "目前没有放映时间",
     },
     // MOVIE TYPE
     movieType: {

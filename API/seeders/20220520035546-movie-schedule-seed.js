@@ -13,17 +13,18 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    const arr = movieSchedule.map((i, index) => {
+    const arr = movieSchedule.slice(0, 500).map((i, index) => {
       return {
         id: "MS_000" + (index + 1),
-        showTime: i.showTime,
+        showtime: i.showTime,
         theaterId: i.theaterId,
         movieId: i.movieId,
+        cinemaId: i.cinemaId,
         createdAt: new Date(),
         updatedAt: new Date(),
-      }
-    })
-    
+      };
+    });
+
     await queryInterface.bulkInsert("MovieSchedules", arr, {});
   },
 

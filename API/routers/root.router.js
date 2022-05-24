@@ -18,6 +18,7 @@ const { productRouter } = require("./product.router");
 const { rateRouter } = require("./rate.router");
 const { seatRouter } = require("./seat.router");
 const { theaterRouter } = require("./theater.router");
+const { ticketRouter } = require("./ticket.router");
 const { uploadRouter } = require("./upload.router");
 const { userRouter } = require("./user.router");
 
@@ -40,7 +41,8 @@ rootRouter.use("/cinemaManagement", cinemaRouter);
 rootRouter.use("/movieManagement", movieRouter);
 rootRouter.use("/theaterManagement", theaterRouter);
 rootRouter.use("/seatManagement", seatRouter);
-rootRouter.use("/movieScheduleManagement", movieScheduleRouter)
+rootRouter.use("/movieScheduleManagement", movieScheduleRouter);
+rootRouter.use("/ticketManagement", ticketRouter);
 
 module.exports = {
   rootRouter,

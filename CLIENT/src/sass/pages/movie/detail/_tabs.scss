@@ -92,6 +92,8 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                opacity: 0.5;
+                transition: all 0.5s ease;
                 cursor: pointer;
                 p {
                   &:nth-child(1) {
@@ -102,6 +104,11 @@
                     font-size: $body-1;
                   }
                 }
+              }
+              .date__title--active {
+                opacity: 1;
+                background: $blue-1;
+                color: $tSecondary;
               }
             }
             .content__inner {
@@ -169,6 +176,17 @@
                     }
                   }
                 }
+              }
+              .inner__nodata {
+                width: $w-100;
+                height: $h-100;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: $subtitle;
+                font-weight: $semiBold;
+                opacity: 0.5;
               }
               .inner__cinema--active {
                 display: block;
