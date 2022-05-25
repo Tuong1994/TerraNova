@@ -1,3 +1,4 @@
+import { TicketReducer } from './reducers/TicketReducer';
 import { ToastReducer } from "./reducers/ToastReducer";
 import { LangReducer } from "./reducers/LangReducer";
 import { OrderReducer } from "./reducers/OrderReducer";
@@ -36,6 +37,7 @@ const rootReducer = combineReducers({
   CinemaReducer,
   MovieReducer,
   MovieScheduleReducer,
+  TicketReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(reduxThunk));

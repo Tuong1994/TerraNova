@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../../../components/Button";
 import { ILangs } from "../../../interfaces/lang";
-import { ISeat } from "../../../models/Seat";
+import { ESeatType, ISeat } from "../../../models/Seat";
 
 interface TheatreProps {
   langs: ILangs;
@@ -32,7 +32,27 @@ const Theatre: React.FunctionComponent<TheatreProps> = (props) => {
   }, [seats]);
 
   const renderSeat = () => {
-    if (seats && seats.length > 0) {
+    if (convertArr.length > 0) {
+      return convertArr.map((i: any, index: number) => {
+        return (
+          <div className="seats__line">
+            <div className="line__name">{lineArr[index]}</div>
+            <div className="line__button">
+              {i.map((j: any) => {
+                const vipClass =
+                  j.type === ESeatType.vip ? "button__inner--vip" : "";
+                const isBooked = j.isBooked ? "button__inner--booked": "";
+                return (
+                  <Button className={`button__inner ${vipClass} ${isBooked}`}>
+                    <p className="inner__name">{j.isBooked ? <i className="fa fa-times"></i> : j.name}</p>
+                    <div className="inner__line"></div>
+                  </Button>
+                );
+              })}
+            </div>
+          </div>
+        );
+      });
     }
   };
 
@@ -45,7 +65,7 @@ const Theatre: React.FunctionComponent<TheatreProps> = (props) => {
         <div>{langs?.movie.bookTicket.theatre.screen}</div>
       </div>
 
-      <div className="theatre__seats">{}</div>
+      <div className="theatre__seats">{renderSeat()}</div>
     </div>
   );
 };

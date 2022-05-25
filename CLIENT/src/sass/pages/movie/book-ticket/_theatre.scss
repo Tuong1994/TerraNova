@@ -12,11 +12,66 @@
       background: $darkGrey;
       color: $tSecondary;
       border-radius: $lightRound;
-      box-shadow: 0 50px 50px $darkGrey;
+      box-shadow: 0 30px 50px $darkGrey;
     }
     .theatre__seats {
-      .seats__button {
-        display: inline-block;
+      padding: $p-10 * 5;
+      .seats__line {
+        padding: $p-10;
+        display: flex;
+        align-items: center;
+        .line__name {
+          width: $w-100 - 95;
+          margin-right: $m-10 * 2;
+          font-size: $subtitle;
+          font-weight: $semiBold;
+        }
+        .line__button {
+          width: $w-100 - 5;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .button__inner {
+            width: $w-10 * 5;
+            padding: $p-5 $p-10;
+            margin: 0 $m-10;
+            border: 1px solid transparent;
+            border-radius: $lightRound;
+            box-shadow: 0 0 10px $blue-1;
+            background: $secondary;
+            color: $tSecondary;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.5s ease;
+            &:hover {
+              background: $primary;
+              border-color: $borderBlue;
+              color: $tBlue;
+            }
+            &:hover .inner__line {
+              background: $secondary;
+            }
+            .inner__name {
+              font-size: $body-1;
+            }
+            .inner__line {
+              width: $w-100;
+              height: 5px;
+              margin: $m-5 0;
+              background: $primary;
+              border-radius: $lightRound;
+              transition: all 0.5s ease;
+            }
+          }
+          .button__inner--vip {
+            background: $green-1;
+          }
+          .button__inner--booked {
+            background: $red-1;
+          }
+        }
       }
     }
   }

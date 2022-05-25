@@ -9,9 +9,9 @@ import { getMovieScheduleDetail } from "../../../redux/actionCreators/MovieSched
 import { IMovieInfo } from "../../../models/MovieSchedule";
 import { ISeat } from "../../../models/Seat";
 import Step from "./Step";
-import utils from "../../../utils";
 import Theatre from "./Theatre";
 import BookInfo from "./BookInfo";
+import utils from "../../../utils";
 
 const BookTicket: React.FunctionComponent<RouteComponentProps<IRouteParams>> = (
   props
