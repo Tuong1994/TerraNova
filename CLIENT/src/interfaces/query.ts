@@ -17,6 +17,7 @@ export interface IQueryList {
   cineplexId?: string;
   cinemaId?: string;
   movieId?: string;
+  movieScheduleId?: string;
   productType?: string;
   freeText?: string;
   filter?: string | number;

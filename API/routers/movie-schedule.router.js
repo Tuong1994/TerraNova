@@ -1,6 +1,7 @@
 const express = require("express");
 const {
   getMovieScheduleList,
+  getMovieScheduleDetail,
   createMovieSchedule,
   updateMovieSchedule,
   removeMovieSchedule,
@@ -13,6 +14,8 @@ const movieScheduleRouter = express.Router();
 
 
 movieScheduleRouter.get("/getMovieScheduleList", getMovieScheduleList);
+
+movieScheduleRouter.get("/getMovieScheduleDetail", getMovieScheduleDetail);
 
 movieScheduleRouter.post(
   "/createMovieSchedule",

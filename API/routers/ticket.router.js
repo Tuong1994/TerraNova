@@ -1,9 +1,8 @@
-const { getTicketDetail } = require("../controllers/ticket.controller");
-
+const { bookTicket } = require("../controllers/ticket.controller");
 const express = require("express");
 const ticketRouter = express.Router();
 
-ticketRouter.get("/getTicketDetail", getTicketDetail);
+ticketRouter.post("/bookTicket", bookTicket)
 
 module.exports = {
   ticketRouter,

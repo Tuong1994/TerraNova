@@ -1,0 +1,23 @@
+.book-ticket__content {
+  display: flex;
+  .content__theatre {
+    width: $w-100 - 25;
+    padding: $p-10 * 5 $p-10 * 2;
+    .theatre__screen {
+      width: $w-100;
+      padding: $p-5;
+      margin-bottom: $m-10 * 5;
+      font-size: $body-2;
+      text-align: center;
+      background: $darkGrey;
+      color: $tSecondary;
+      border-radius: $lightRound;
+      box-shadow: 0 50px 50px $darkGrey;
+    }
+    .theatre__seats {
+      .seats__button {
+        display: inline-block;
+      }
+    }
+  }
+}

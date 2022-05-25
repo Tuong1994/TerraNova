@@ -311,6 +311,9 @@ const ChLang = {
         tabTitle_1: "正在上映",
         tabTitle_2: "快来了",
       },
+      cinema: {
+        chooseCinema: "选择剧院订票",
+      },
     },
     // DETAIL
     detail: {
@@ -326,6 +329,17 @@ const ChLang = {
       country: "国家",
       theater: "剧院",
       noShowTime: "目前没有放映时间",
+    },
+    // BOOK TICKET
+    bookTicket: {
+      step: {
+        step_1: "选择座位",
+        step_2: "选择付款方式",
+        step_3: "订票",
+      },
+      theatre: {
+        screen: "屏幕",
+      },
     },
     // MOVIE TYPE
     movieType: {

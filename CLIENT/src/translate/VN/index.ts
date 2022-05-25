@@ -319,6 +319,9 @@ const VnLang = {
         tabTitle_1: "Đang chiếu",
         tabTitle_2: "Sắp chiếu",
       },
+      cinema: {
+        chooseCinema: "Chọn rạp để đặt vé",
+      },
     },
     // DETAIL
     detail: {
@@ -334,6 +337,17 @@ const VnLang = {
       country: "Nước SX",
       theater: "Rạp",
       noShowTime: "Hiện tại chưa có lịch chiếu",
+    },
+    // BOOK TICKET
+    bookTicket: {
+      step: {
+        step_1: "Chọn chỗ ngồi",
+        step_2: "Chọn hình thức thanh toán",
+        step_3: "Đặt vé",
+      },
+      theatre: {
+        screen: "Màn hình",
+      },
     },
     // MOVIE TYPE
     movieType: {

@@ -13,7 +13,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    const arr = movieSchedule.slice(0, 500).map((i, index) => {
+    const arr = movieSchedule.slice(0, 100).map((i, index) => {
       return {
         id: "MS_000" + (index + 1),
         showtime: i.showTime,

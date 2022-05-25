@@ -1,4 +1,4 @@
-const { MovieSchedule } = require("../models");
+const { MovieSchedule, Cinema, Movie, Theater, Seat } = require("../models");
 
 const getMovieScheduleList = async (req, res) => {
   try {
@@ -6,6 +6,64 @@ const getMovieScheduleList = async (req, res) => {
       order: [["updatedAt", "DESC"]],
     });
     res.status(200).send(movieScheduleList);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const getMovieScheduleDetail = async (req, res) => {
+  const { movieScheduleId } = req.query;
+  try {
+    const movieScheduleDetail = await MovieSchedule.findOne({
+      where: {
+        id: movieScheduleId,
+      },
+      include: [
+        {
+          model: Seat,
+          as: "seats",
+          through: {
+            attributes: [],
+          },
+        },
+      ],
+    });
+    if (movieScheduleDetail) {
+      const cinemaDetail = await Cinema.findOne({
+        where: {
+          id: movieScheduleDetail.cinemaId,
+        },
+      });
+      const theaterDetail = await Theater.findOne({
+        where: {
+          id: movieScheduleDetail.theaterId,
+        },
+      });
+      const movieDetail = await Movie.findOne({
+        where: {
+          id: movieScheduleDetail.movieId,
+        },
+      });
+
+      if (cinemaDetail && theaterDetail && movieDetail) {
+        const movieInfo = {
+          cinemaId: cinemaDetail.id,
+          cinemaName: cinemaDetail.name,
+          address: cinemaDetail.address,
+          movieId: movieDetail.id,
+          movieNameENG: movieDetail.nameENG,
+          movieNameVN: movieDetail.nameVN,
+          movieNameCH: movieDetail.nameCH,
+          theaterId: theaterDetail.id,
+          theaterName: theaterDetail.name,
+        };
+        res.send({
+          id: movieScheduleDetail.id,
+          movieInfo: movieInfo,
+          seats: movieScheduleDetail.seats,
+        });
+      }
+    }
   } catch (error) {
     res.status(500).send(error);
   }
@@ -61,6 +119,7 @@ const removeMovieSchedule = async (req, res) => {
 
 module.exports = {
   getMovieScheduleList,
+  getMovieScheduleDetail,
   createMovieSchedule,
   updateMovieSchedule,
   removeMovieSchedule,

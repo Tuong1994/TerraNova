@@ -176,7 +176,7 @@ const ShowTimes: React.FunctionComponent<ShowTimesProps> = (props) => {
                                       return (
                                         <Link
                                           key={schedule.id}
-                                          to={`/movieDetail/${movie.id}`}
+                                          to={`/bookTicket/${schedule.id}`}
                                           className="button--round schedule__link"
                                         >
                                           {moment(schedule.showTime).format(

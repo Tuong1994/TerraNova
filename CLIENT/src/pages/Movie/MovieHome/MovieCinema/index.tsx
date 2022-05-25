@@ -54,7 +54,7 @@ const MovieCinema: React.FunctionComponent<MovieCinemaProps> = (props) => {
             <React.Fragment>
               <DataLoading />
               <div className="content__nodata">
-                <p>Choose cinema to book ticket</p>
+                <p>{langs?.movie.home.cinema.chooseCinema}</p>
               </div>
             </React.Fragment>
           )}

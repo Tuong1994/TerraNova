@@ -14,6 +14,7 @@ import { VideoReducer } from "./reducers/VideoReducer";
 import { CineplexReducer } from "./reducers/CineplexReducer";
 import { CinemaReducer } from "./reducers/CinemaReducer";
 import { MovieReducer } from "./reducers/MovieReducer";
+import { MovieScheduleReducer } from "./reducers/MovieScheduleReducer";
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import reduxThunk from "redux-thunk";
 
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
   CineplexReducer,
   CinemaReducer,
   MovieReducer,
+  MovieScheduleReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(reduxThunk));

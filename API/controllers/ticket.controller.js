@@ -1,53 +1,21 @@
-const {
-  Ticket,
-  MovieSchedule,
-  Cinema,
-  Movie,
-  Theater,
-  Seat,
-} = require("../models");
+const { Ticket } = require("../models");
 
-const getTicketDetail = async (req, res) => {
-  const { movieScheduleId } = req.query;
+const bookTicket = async (req, res) => {
+  const { movieScheduleId, seats, userId } = req.body;
   try {
-    const movieScheduleDetail = await MovieSchedule.findOne({
-      where: {
-        id: movieScheduleId,
-      },
+    const ticketId = "T_" + Math.floor(Math.random() * 999999999).toString();
+    const newBookTicket = await Ticket.create({
+      id: ticketId,
+      movieScheduleId,
+      seats,
+      userId,
     });
-    if (movieScheduleDetail) {
-      const cinemaDetail = await Cinema.findOne({
-        where: {
-          id: movieScheduleDetail.cinemaId,
-        },
-      });
-      const theaterDetail = await Theater.findOne({
-        where: {
-          id: movieScheduleDetail.theaterId,
-        },
-        include: [
-          {
-            model: Seat,
-            as: "seats",
-            through: {
-              attributes: [],
-            },
-          },
-        ],
-      });
-      const movieDetail = await Movie.findOne({
-        where: {
-          id: movieScheduleDetail.movieId,
-        },
-      });
-
-      res.send(theaterDetail);
-    }
+    res.status(200).send(newBookTicket);
   } catch (error) {
     res.status(500).send(error);
   }
 };
 
 module.exports = {
-  getTicketDetail,
+  bookTicket,
 };

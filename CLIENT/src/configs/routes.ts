@@ -16,8 +16,9 @@ import CourseHome from "../pages/Course/CourseHome";
 import CourseList from "../pages/Course/CourseList";
 import CourseRoute from "../pages/Course/CourseRoute";
 import CourseDetail from "../pages/Course/CourseDetail";
-import MovieDetail from "../pages/Movie/MovieDetail";
 import MovieHome from "../pages/Movie/MovieHome";
+import MovieDetail from "../pages/Movie/MovieDetail";
+import BookTicket from "../pages/Movie/BookTicket";
 import UserEdit from "../pages/User/Edit";
 
 
@@ -122,6 +123,11 @@ export const homeRoutes: IRoute[] = [
     path: "/movieDetail/:id",
     exact: true,
     component: MovieDetail,
+  },
+  {
+    path: "/bookTicket/:id",
+    exact: true,
+    component: BookTicket,
   },
   {
     path: "/signIn",

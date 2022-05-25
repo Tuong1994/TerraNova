@@ -13,6 +13,7 @@ import { ratePaths } from "./Rate";
 import { cineplexPaths } from "./Cineplex";
 import { cinemaPaths } from "./Cinema";
 import { moviePaths } from "./Movie";
+import { movieSchedulePaths } from "./MovieSchedule";
 
 export {
   productPaths,
@@ -30,4 +31,5 @@ export {
   cineplexPaths,
   cinemaPaths,
   moviePaths,
+  movieSchedulePaths,
 };

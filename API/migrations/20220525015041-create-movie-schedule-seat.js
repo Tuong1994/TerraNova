@@ -1,20 +1,25 @@
 "use strict";
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Tickets", {
+    await queryInterface.createTable("MovieSchedule_Seats", {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.STRING,
       },
-      movieScheduleId: {
+      movieSchedule_id: {
         type: Sequelize.STRING,
+        references: {
+          model: "MovieSchedules",
+          key: "id",
+        },
       },
-      seats: {
-        type: Sequelize.JSON,
-      },
-      userId: {
+      seat_id: {
         type: Sequelize.STRING,
+        references: {
+          model: "Seats",
+          key: "id",
+        },
       },
       createdAt: {
         allowNull: false,
@@ -27,6 +32,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Tickets");
+    await queryInterface.dropTable("MovieSchedule_Seats");
   },
 };

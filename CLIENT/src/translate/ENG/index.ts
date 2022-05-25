@@ -328,6 +328,9 @@ const EngLang = {
         tabTitle_1: "Now showing",
         tabTitle_2: "Coming soon",
       },
+      cinema: {
+        chooseCinema: "Choose cinema to book tickets",
+      },
     },
     // DETAIL
     detail: {
@@ -343,6 +346,17 @@ const EngLang = {
       country: "Country",
       theater: "Theater",
       noShowTime: "There are currently no showtimes",
+    },
+    // BOOK TICKET
+    bookTicket: {
+      step: {
+        step_1: "Pick a seat",
+        step_2: "Choose payment type",
+        step_3: "Book ticket",
+      },
+      theatre: {
+        screen: "Screen",
+      },
     },
     // MOVIE TYPE
     movieType: {
