@@ -356,6 +356,25 @@ const EngLang = {
       },
       theatre: {
         screen: "Screen",
+        holdingTime: "Seat holding time",
+        note: "Note",
+        vip: "Vip",
+        regular: "Regular",
+        booked: "Booked",
+        booking: "Booking",
+      },
+      bookInfo: {
+        seat: "Seat",
+        movieName: "Movie",
+        cinemaName: "Cinema",
+        address: "Address",
+        showTime: "Show time",
+        theater: "Theater",
+        contact: "Contact info",
+        payment: "Payment type",
+        instruct: "Please select the seat to display the appropriate form of payment",
+        note_1: "Tickets purchased cannot be exchanged or refunded",
+        note_2: "Ticket code will be sent via Email entered"
       },
     },
     // MOVIE TYPE

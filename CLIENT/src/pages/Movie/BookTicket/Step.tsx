@@ -13,16 +13,16 @@ const Step: React.FunctionComponent<StepProps> = (props) => {
 
   return (
     <div className="book-ticket__step">
-      <div className={`step__item ${stepOne && "step__item--active"}`}>
+      <div className={`step__item ${stepOne ? "step__item--active" : ""}`}>
         <p>{langs?.movie.bookTicket.step.step_1}</p>
       </div>
-      <div className={`step__item ${stepTwo && "step__item--active"}`}>
+      <div className={`step__item ${stepTwo ? "step__item--active" : ""}`}>
         <p>{langs?.movie.bookTicket.step.step_2}</p>
         <div className="item__line">
           <div className="line__inner"></div>
         </div>
       </div>
-      <div className={`step__item ${stepThree && "step__item--active"}`}>
+      <div className={`step__item ${stepThree ? "step__item--active" : ""}`}>
         <p>{langs?.movie.bookTicket.step.step_3}</p>
         <div className="item__line">
           <div className="line__inner"></div>

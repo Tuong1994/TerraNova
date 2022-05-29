@@ -1,7 +1,26 @@
-.content__book-info {
-  width: $w-100 - 70;
+.responsive__book-info {
+  width: $w-100;
+  height: $h-100-vh;
   padding: $p-10 * 2 $p-10;
   border-left: 1px solid $borderGrey;
+  background: $primary;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999999;
+  overflow: auto;
+  .book-info__close {
+    width: $w-100;
+    padding: $p-10;
+    border-bottom: 1px solid $borderGrey;
+    display: flex;
+    .close__btn {
+      padding: $p-5 $p-10;
+      border: 1px solid $borderGrey;
+      border-radius: $lightRound;
+    }
+  }
   .book-info__price {
     width: $w-100;
     padding: $p-10 * 2 0;
@@ -16,7 +35,7 @@
   }
   .book-info__content {
     padding: $p-10 0;
-    font-size: $body-1;
+    font-size: $body-2;
     border: 1px solid $borderGrey;
     border-radius: $lightRound;
     .content__item {
@@ -24,7 +43,11 @@
       display: flex;
       justify-content: space-between;
       p {
+        &:nth-child(1) {
+          width: $w-100 - 70;
+        }
         &:nth-child(2) {
+          width: $w-100 - 30;
           font-weight: $semiBold;
         }
       }
@@ -106,6 +129,6 @@
     justify-content: flex-end;
   }
   @include respond(phone) {
-    display: none;
+    display: block;
   }
 }

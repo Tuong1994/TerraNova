@@ -12,6 +12,8 @@ import Step from "./Step";
 import Theatre from "./Theatre";
 import BookInfo from "./BookInfo";
 import utils from "../../../utils";
+import BookAction from "./BookAction";
+import RBookInfo from "../../../responsive/RBookInfo";
 
 const BookTicket: React.FunctionComponent<RouteComponentProps<IRouteParams>> = (
   props
@@ -21,6 +23,9 @@ const BookTicket: React.FunctionComponent<RouteComponentProps<IRouteParams>> = (
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
   const { movieScheduleDetail } = useSelector(
     (state: ReducerState) => state.MovieScheduleReducer
+  );
+  const { listBookedSeat } = useSelector(
+    (state: ReducerState) => state.TicketReducer
   );
 
   const [stepOne, setStepOne] = React.useState<boolean>(false);
@@ -49,6 +54,10 @@ const BookTicket: React.FunctionComponent<RouteComponentProps<IRouteParams>> = (
     }
   }, [movieScheduleDetail]);
 
+  const handleBookTicket = () => {
+    setStepThree(true);
+  };
+
   return (
     <div className="book-ticket">
       <Step
@@ -58,8 +67,34 @@ const BookTicket: React.FunctionComponent<RouteComponentProps<IRouteParams>> = (
         stepThree={stepThree}
       />
       <div className="book-ticket__content">
-        <Theatre langs={langs} seats={seats} />
-        <BookInfo langs={langs} />
+        <Theatre
+          langs={langs}
+          movieInfo={movieInfo}
+          seats={seats}
+          listBookedSeat={listBookedSeat}
+          setStepOne={setStepOne}
+          setStepTwo={setStepTwo}
+          setStepThree={setStepThree}
+        />
+        <BookAction langs={langs} listBookedSeat={listBookedSeat} />
+        <BookInfo
+          lang={lang}
+          langs={langs}
+          movieInfo={movieInfo}
+          listBookedSeat={listBookedSeat}
+          stepTwo={stepTwo}
+          setStepTwo={setStepTwo}
+          onBookTicket={handleBookTicket}
+        />
+        <RBookInfo
+          lang={lang}
+          langs={langs}
+          movieInfo={movieInfo}
+          listBookedSeat={listBookedSeat}
+          stepTwo={stepTwo}
+          setStepTwo={setStepTwo}
+          onBookTicket={handleBookTicket}
+        />
       </div>
     </div>
   );

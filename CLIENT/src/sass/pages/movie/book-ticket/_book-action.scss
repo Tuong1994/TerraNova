@@ -1,0 +1,32 @@
+.content__book-action {
+  width: $w-100;
+  padding: $p-10 $p-10 * 2;
+  display: none;
+  .book-action__card {
+    width: $w-100;
+    overflow: unset;
+    padding: $p-10;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    .card__seat {
+      width: $w-100 - 35;
+      font-size: $body-1;
+      font-weight: $semiBold;
+      span {
+        color: $tBlue;
+      }
+    }
+    .card__action {
+      width: $w-100 - 65;
+      .action__button {
+        width: $w-100;
+        font-size: $body-2;
+      }
+    }
+  }
+  @include respond(phone) {
+    display: block;
+  }
+}

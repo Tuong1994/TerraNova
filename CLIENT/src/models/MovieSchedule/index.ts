@@ -10,6 +10,7 @@ export interface IMovieInfo {
   movieNameCH?: string;
   theaterId?: string;
   theaterName?: string;
+  schedule?: string;
 }
 export interface IMovieSchedule {
   id?: string;

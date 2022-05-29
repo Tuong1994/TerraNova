@@ -1,12 +1,12 @@
 import React from "react";
-import * as FormControl from "../../../components/Fields";
-import { ELangs, ILangs } from "../../../interfaces/lang";
-import { IMovieInfo } from "../../../models/MovieSchedule";
-import { ISeat } from "../../../models/Seat";
-import Button from "../../../components/Button";
+import * as FormControl from "../../components/Fields";
+import { ELangs, ILangs } from "../../interfaces/lang";
+import { IMovieInfo } from "../../models/MovieSchedule";
+import { ISeat } from "../../models/Seat";
+import Button from "../../components/Button";
 import moment from "moment";
 
-interface BookInfoProps {
+interface RBookInfoProps {
   lang: string;
   langs: ILangs;
   movieInfo: IMovieInfo;
@@ -16,7 +16,7 @@ interface BookInfoProps {
   setStepTwo: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const BookInfo: React.FunctionComponent<BookInfoProps> = (props) => {
+const RBookInfo: React.FunctionComponent<RBookInfoProps> = (props) => {
   const {
     lang,
     langs,
@@ -24,7 +24,7 @@ const BookInfo: React.FunctionComponent<BookInfoProps> = (props) => {
     listBookedSeat,
     stepTwo,
     setStepTwo,
-    onBookTicket
+    onBookTicket,
   } = props;
 
   const renderTotal = () => {
@@ -58,11 +58,17 @@ const BookInfo: React.FunctionComponent<BookInfoProps> = (props) => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setStepTwo(true)
-  }
+    setStepTwo(true);
+  };
 
   return (
-    <div className="content__book-info">
+    <div className="responsive__book-info">
+      <div className="book-info__close">
+        <div className="close__btn">
+          <i className="fa-solid fa-angle-left"></i>
+        </div>
+      </div>
+
       {/* Price */}
       <div className="book-info__price">
         <p>{renderTotal().toLocaleString()} VND</p>
@@ -186,11 +192,13 @@ const BookInfo: React.FunctionComponent<BookInfoProps> = (props) => {
             {langs?.button.bookTicket}
           </Button>
         ) : (
-          <Button className="button--submit" onClick={onBookTicket}>{langs?.button.bookTicket}</Button>
+          <Button className="button--submit" onClick={onBookTicket}>
+            {langs?.button.bookTicket}
+          </Button>
         )}
       </div>
     </div>
   );
 };
 
-export default BookInfo;
+export default RBookInfo;

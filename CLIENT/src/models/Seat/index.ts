@@ -6,6 +6,7 @@ export interface ISeat {
   id?: string;
   seatId?: string;
   name?: string;
+  lineName?: string;
   type?: number;
   isBooked?: boolean;
   price?: number;

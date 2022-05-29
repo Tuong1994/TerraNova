@@ -18,7 +18,7 @@ export const TicketReducer = (state = stateDefault, action: TicketAction) => {
         (i) => i.id === action.payload.id
       );
       if (index !== -1) {
-        newState.listBookedSeat.slice(index, 1);
+        newState.listBookedSeat.splice(index, 1);
       } else {
         newState.listBookedSeat.push(action.payload);
       }

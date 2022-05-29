@@ -339,7 +339,26 @@ const ChLang = {
       },
       theatre: {
         screen: "屏幕",
+        holdingTime: "座位保持时间",
+        note: "笔记",
+        vip: "贵宾",
+        regular: "普通r",
+        booked: "已预订",
+        booking: "预订"
       },
+      bookInfo: {
+        seat: "椅子",
+        movieName: "电影",
+        cinemaName: "剧院群",
+        address: "地址",
+        showTime: "放映时间",
+        theater: "剧院",
+        contact: "联系方式",
+        payment: "付款方式",
+        instruct: "请选择座位以显示适当的付款方式",
+        note_1: "已购票不可换票或退款",
+        note_2: "门票代码将通过输入的电子邮件发送"
+      }
     },
     // MOVIE TYPE
     movieType: {

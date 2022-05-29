@@ -56,6 +56,7 @@ const getMovieScheduleDetail = async (req, res) => {
           movieNameCH: movieDetail.nameCH,
           theaterId: theaterDetail.id,
           theaterName: theaterDetail.name,
+          schedules: movieScheduleDetail.showtime,
         };
         res.send({
           id: movieScheduleDetail.id,

@@ -137,7 +137,7 @@ const VnLang = {
     related: "Sản phẩm liên quan",
     vat: "Giá chưa gồm VAT",
     modal: {
-      title: "Đánh giá sản phẩm"
+      title: "Đánh giá sản phẩm",
     },
   },
 
@@ -171,13 +171,13 @@ const VnLang = {
   // ==================== COURSE ====================
   course: {
     list: {
-      title: "Khóa học", 
+      title: "Khóa học",
       lessonDesc: "bài học và dự án",
       graduate: "Cấp chứng chỉ khóa học",
       job: "Làm CV và kết nối việc làm",
       online: "Video luyện tập online",
     },
-    
+
     // HOME
     home: {
       banner: {
@@ -347,6 +347,26 @@ const VnLang = {
       },
       theatre: {
         screen: "Màn hình",
+        holdingTime: "Thời gian giữ ghế",
+        note: "Chú thích",
+        vip: "Vip",
+        regular: "Thường",
+        booked: "Đã đặt",
+        booking: "Đang đặt",
+        theater: "Rạp",
+      },
+      bookInfo: {
+        seat: "Ghế",
+        movieName: "Phim",
+        cinemaName: "Cụm rạp",
+        address: "Địa chỉ",
+        showTime: "Lịch chiếu",
+        theater: "Rạp",
+        contact: "Thông tin liên hệ",
+        payment: "Hình thức thanh toán",
+        instruct: "Vui lòng chọn ghế để hiển thị hình thức thanh toán phù hợp",
+        note_1: "Vé đã mua không thể đổi hoặc hoàn tiền",
+        note_2: "Mã vé sẽ được gửi qua Email đã nhập"
       },
     },
     // MOVIE TYPE
@@ -433,7 +453,7 @@ const VnLang = {
     // PASSWORD MODAL
     modal: {
       title: "Đổi mật khẩu",
-    }
+    },
   },
 
   // ==================== ADMIN ====================
@@ -495,8 +515,8 @@ const VnLang = {
       lessonList: "Danh sách bài học",
       studentList: "Danh sách học viên",
     },
-     // ORDER
-     order: {
+    // ORDER
+    order: {
       subTitle_1: "Sản phẩm",
       subTitle_2: "Trạng thái",
       subTitle_3: "Thông tin",
@@ -623,7 +643,7 @@ const VnLang = {
       update: "Cập nhật thành công",
       remove: "Xóa thành công",
       upload: "Upload thành công",
-      rate: "Cảm ơn bạn đã đánh giá"
+      rate: "Cảm ơn bạn đã đánh giá",
     },
     error: {
       addToCart: "Thêm vào giỏ hàng thất bại",
@@ -652,7 +672,7 @@ const VnLang = {
       shipmentType: "Bạn chưa chọn hình thức giao hàng",
       status: "Bạn chưa chọn trạng thái",
       orderder: "Bạn chưa chọn người đặt hàng",
-      rate: "Hệ thống đang gặp sự cố, không thể đánh giá"
+      rate: "Hệ thống đang gặp sự cố, không thể đánh giá",
     },
   },
 
@@ -764,7 +784,7 @@ const VnLang = {
     branch: "Chi nhánh",
     category: "Danh mục",
     createdAt: "Ngày tạo",
-    updatedAt: "Ngày cập nhật"
+    updatedAt: "Ngày cập nhật",
   },
 
   // ==================== PAGINATION ====================
@@ -791,7 +811,7 @@ const VnLang = {
   comment: {
     title: "Bình luận",
     placeholder: "Để lại bình luận",
-  }
+  },
 };
 
 export type LangVN = typeof VnLang;
