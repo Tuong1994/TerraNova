@@ -24,9 +24,20 @@
       display: flex;
       justify-content: space-between;
       p {
+        &:nth-child(1) {
+          @include respond(laptop) {
+            width: $w-100 - 70;
+          }
+        }
         &:nth-child(2) {
           font-weight: $semiBold;
+          @include respond(laptop) {
+            width: $w-100 - 30;
+          }
         }
+      }
+      @include respond(laptop) {
+        font-size: $body-2;
       }
     }
   }
@@ -105,7 +116,10 @@
     display: flex;
     justify-content: flex-end;
   }
-  @include respond(phone) {
+  @include respond(laptop) {
+    width: $w-100 - 65;
+  }
+  @include respond(tablet) {
     display: none;
   }
 }

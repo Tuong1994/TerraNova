@@ -12,8 +12,10 @@ interface RBookInfoProps {
   movieInfo: IMovieInfo;
   listBookedSeat: ISeat[];
   stepTwo: boolean;
+  open: boolean;
   onBookTicket: () => void;
   setStepTwo: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const RBookInfo: React.FunctionComponent<RBookInfoProps> = (props) => {
@@ -23,7 +25,9 @@ const RBookInfo: React.FunctionComponent<RBookInfoProps> = (props) => {
     movieInfo,
     listBookedSeat,
     stepTwo,
+    open,
     setStepTwo,
+    setOpen,
     onBookTicket,
   } = props;
 
@@ -62,9 +66,9 @@ const RBookInfo: React.FunctionComponent<RBookInfoProps> = (props) => {
   };
 
   return (
-    <div className="responsive__book-info">
+    <div className={`responsive__book-info ${open ? "responsive__book-info--active" : ""}`}>
       <div className="book-info__close">
-        <div className="close__btn">
+        <div className="close__btn" onClick={() => setOpen(false)}>
           <i className="fa-solid fa-angle-left"></i>
         </div>
       </div>

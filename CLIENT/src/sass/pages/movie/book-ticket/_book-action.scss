@@ -23,10 +23,12 @@
       .action__button {
         width: $w-100;
         font-size: $body-2;
+        display: flex;
+        justify-content: center;
       }
     }
   }
-  @include respond(phone) {
+  @include respond(tablet) {
     display: block;
   }
 }

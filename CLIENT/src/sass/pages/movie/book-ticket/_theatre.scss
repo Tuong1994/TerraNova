@@ -111,6 +111,10 @@
                 display: none;
               }
             }
+            @include respond(laptop) {
+              width: $w-10 * 4;
+              padding: $p-5;
+            }
             @include respond(phone) {
               width: $w-10 * 2;
               padding: $p-5;
@@ -126,6 +130,12 @@
             background: $red-2;
           }
         }
+      }
+      @include respond(laptop) {
+        padding: $p-10 * 3;
+      }
+      @include respond(tablet) {
+        padding: $p-10 * 3 $p-10 * 5;
       }
       @include respond(phone) {
         padding: $p-10 * 3 0;
@@ -169,11 +179,15 @@
           }
         }
       }
-      @include respond(phone) {
+      @include respond(extraTablet) {
         padding: 0;
       }
     }
-    @include respond(phone) {
+    @include respond(laptop) {
+      width: $w-100 - 35;
+      padding: $p-10 * 3 $p-10 * 2;
+    }
+    @include respond(tablet) {
       width: $w-100;
       padding: $p-10 * 3 $p-10 * 2;
     }

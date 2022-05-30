@@ -10,6 +10,8 @@
   left: 0;
   z-index: 999999;
   overflow: auto;
+  transform: translateX(-100%);
+  transition: all 0.5s ease;
   .book-info__close {
     width: $w-100;
     padding: $p-10;
@@ -35,7 +37,6 @@
   }
   .book-info__content {
     padding: $p-10 0;
-    font-size: $body-2;
     border: 1px solid $borderGrey;
     border-radius: $lightRound;
     .content__item {
@@ -51,6 +52,13 @@
           font-weight: $semiBold;
         }
       }
+    }
+    @include respond(tablet) {
+      font-size: $body-1;
+      padding: $p-10;
+    }
+    @include respond(phone) {
+      font-size: $body-2;
     }
   }
   .book-info__seat {
@@ -128,7 +136,15 @@
     display: flex;
     justify-content: flex-end;
   }
+  @include respond(tablet) {
+    display: block;
+    padding: $p-10 * 2;
+  }
   @include respond(phone) {
     display: block;
   }
+}
+
+.responsive__book-info--active {
+  transform: translateX(0);
 }

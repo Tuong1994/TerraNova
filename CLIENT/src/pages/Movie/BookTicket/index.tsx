@@ -31,6 +31,7 @@ const BookTicket: React.FunctionComponent<RouteComponentProps<IRouteParams>> = (
   const [stepOne, setStepOne] = React.useState<boolean>(false);
   const [stepTwo, setStepTwo] = React.useState<boolean>(false);
   const [stepThree, setStepThree] = React.useState<boolean>(false);
+  const [openBookInfo, setOpenBookInfo] = React.useState<boolean>(false);
   const [movieInfo, setMovieInfo] = React.useState<IMovieInfo>({});
   const [seats, setSeats] = React.useState<ISeat[]>([]);
 
@@ -76,7 +77,11 @@ const BookTicket: React.FunctionComponent<RouteComponentProps<IRouteParams>> = (
           setStepTwo={setStepTwo}
           setStepThree={setStepThree}
         />
-        <BookAction langs={langs} listBookedSeat={listBookedSeat} />
+        <BookAction
+          langs={langs}
+          listBookedSeat={listBookedSeat}
+          setOpenBookInfo={setOpenBookInfo}
+        />
         <BookInfo
           lang={lang}
           langs={langs}
@@ -92,7 +97,9 @@ const BookTicket: React.FunctionComponent<RouteComponentProps<IRouteParams>> = (
           movieInfo={movieInfo}
           listBookedSeat={listBookedSeat}
           stepTwo={stepTwo}
+          open={openBookInfo}
           setStepTwo={setStepTwo}
+          setOpen={setOpenBookInfo}
           onBookTicket={handleBookTicket}
         />
       </div>

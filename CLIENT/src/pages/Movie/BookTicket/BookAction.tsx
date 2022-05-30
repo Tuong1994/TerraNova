@@ -7,10 +7,11 @@ import { ISeat } from "../../../models/Seat";
 interface BookActionProps {
   langs: ILangs;
   listBookedSeat: ISeat[];
+  setOpenBookInfo: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const BookAction: React.FunctionComponent<BookActionProps> = (props) => {
-  const { langs, listBookedSeat } = props;
+  const { langs, listBookedSeat, setOpenBookInfo } = props;
 
   const renderBookedSeat = () => {
     return listBookedSeat.map((i) => {
@@ -36,6 +37,7 @@ const BookAction: React.FunctionComponent<BookActionProps> = (props) => {
             className={`button--submit action__button ${
               !listBookedSeat.length ? "button--disabled" : ""
             }`}
+            onClick={() => setOpenBookInfo(true)}
           >
             {langs?.button.bookTicket}
           </Button>

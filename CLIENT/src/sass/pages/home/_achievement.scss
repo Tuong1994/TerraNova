@@ -10,11 +10,10 @@
     padding: $p-10 * 2;
     background: $blue-1;
     box-shadow: 0 10px 20px $blue-2;
-    border-radius: $round;
+    border-radius: $lightRound;
     position: relative;
     &:hover .card__bg {
       transform: translateY(-40%);
-      box-shadow: 0 10px 20px $dark;
     }
     &:hover .card__content {
       opacity: 1;
@@ -23,8 +22,8 @@
       width: $w-100;
       height: $h-100;
       padding: $p-10;
-      border-radius: $round;
-      background: url("../../../assets/img/acheivement_bg.jpg");
+      border-radius: $lightRound;
+      background: $blue-2;
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
@@ -46,8 +45,7 @@
       bottom: 0;
       left: 0;
       opacity: 0;
-      transition-delay: 1s;
-      transition: all 0.5s ease;
+      transition: all 0.3s ease;
     }
     @include respond(extraTablet) {
       width: $w-100 - 60;

@@ -55,7 +55,7 @@
       }
     }
   }
-  @include respond(phone) {
+  @include respond(tablet) {
     display: none;
   }
 }
