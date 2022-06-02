@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   MovieSchedule_Seat.init({
     movieSchedule_id: DataTypes.STRING,
-    seat_id: DataTypes.STRING
+    seat_id: DataTypes.STRING,
+    isBooked: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'MovieSchedule_Seat',

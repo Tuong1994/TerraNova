@@ -1,4 +1,11 @@
-const { MovieSchedule, Cinema, Movie, Theater, Seat } = require("../models");
+const {
+  MovieSchedule,
+  Cinema,
+  Movie,
+  Theater,
+  Seat,
+  MovieSchedule_Seat,
+} = require("../models");
 
 const getMovieScheduleList = async (req, res) => {
   try {
@@ -44,26 +51,43 @@ const getMovieScheduleDetail = async (req, res) => {
           id: movieScheduleDetail.movieId,
         },
       });
+      const scheduleSeatList = await MovieSchedule_Seat.findAll({
+        where: {
+          movieSchedule_id: movieScheduleId,
+          isBooked: true,
+        },
+      });
 
-      if (cinemaDetail && theaterDetail && movieDetail) {
-        const movieInfo = {
-          cinemaId: cinemaDetail.id,
-          cinemaName: cinemaDetail.name,
-          address: cinemaDetail.address,
-          movieId: movieDetail.id,
-          movieNameENG: movieDetail.nameENG,
-          movieNameVN: movieDetail.nameVN,
-          movieNameCH: movieDetail.nameCH,
-          theaterId: theaterDetail.id,
-          theaterName: theaterDetail.name,
-          schedules: movieScheduleDetail.showtime,
-        };
-        res.send({
-          id: movieScheduleDetail.id,
-          movieInfo: movieInfo,
-          seats: movieScheduleDetail.seats,
-        });
+      let seatList = [];
+      if (scheduleSeatList?.length > 0) {
+        seatList = scheduleSeatList?.reduce((arr, item) => {
+          const arr_1 = arr.filter((i) => i.id !== item.seat_id);
+          const arr_2 = arr.filter((i) => i.id === item.seat_id);
+          return arr_2;
+        }, movieScheduleDetail.seats);
       }
+
+      res.send(seatList);
+
+      // if (cinemaDetail && theaterDetail && movieDetail) {
+      //   const movieInfo = {
+      //     cinemaId: cinemaDetail.id,
+      //     cinemaName: cinemaDetail.name,
+      //     address: cinemaDetail.address,
+      //     movieId: movieDetail.id,
+      //     movieNameENG: movieDetail.nameENG,
+      //     movieNameVN: movieDetail.nameVN,
+      //     movieNameCH: movieDetail.nameCH,
+      //     theaterId: theaterDetail.id,
+      //     theaterName: theaterDetail.name,
+      //     schedules: movieScheduleDetail.showtime,
+      //   };
+      //   res.send({
+      //     id: movieScheduleDetail.id,
+      //     movieInfo: movieInfo,
+      //     seats: movieScheduleDetail.seats,
+      //   });
+      // }
     }
   } catch (error) {
     res.status(500).send(error);

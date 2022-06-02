@@ -127,6 +127,9 @@
           }
           .button__inner--booked {
             background: $red-2;
+            &:hover {
+              background: $red-2;
+            }
           }
         }
       }

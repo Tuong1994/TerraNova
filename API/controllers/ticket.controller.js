@@ -1,48 +1,82 @@
-const { Ticket, MovieSchedule, Seat } = require("../models");
+const { Ticket, MovieSchedule_Seat } = require("../models");
 
-const bookTicket = async (req, res) => {
+const getTicketList = async (req, res) => {
+  try {
+    const ticketList = await Ticket.findAll({
+      order: [["updatedAt", "DESC"]],
+    });
+    res.status(200).send(ticketList);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const createTicket = async (req, res) => {
   const { movieScheduleId, seats, userId } = req.body;
   try {
-    // const ticketId = "T_" + Math.floor(Math.random() * 999999999).toString();
-    // const newBookTicket = await Ticket.create({
-    //   id: ticketId,
-    //   movieScheduleId,
-    //   seats,
-    //   userId,
-    // });
-    const movieScheduleDetail = await MovieSchedule.findOne({
-      where: {
-        id: movieScheduleId,
-      },
-      include: [
-        {
-          model: Seat,
-          as: "seats",
-          through: {
-            attributes: [],
-          },
-        },
-      ],
+    const ticketId = "T_" + Math.floor(Math.random() * 999999999).toString();
+    const newBookTicket = await Ticket.create({
+      id: ticketId,
+      movieScheduleId,
+      seats,
+      userId,
     });
-
-    if(movieScheduleDetail) {
-      for(let i = 0; i < seats.length; i++) {
-        const seatId = seats[i].id;
-        const index = movieScheduleDetail?.seats?.findIndex(i => i.id === seatId);
-        if(index !== -1) {
-          // movieScheduleDetail.seats[index].isBooked = true
-          // await movieScheduleDetail?.seats?.save();
-          console.log(movieScheduleDetail.seats[index].isBooked)
+    for (let i = 0; i < seats.length; i++) {
+      await MovieSchedule_Seat.update(
+        {
+          movieSchedule_id: movieScheduleId,
+          seat_id: seats[i].id,
+          isBooked: true,
+        },
+        {
+          where: {
+            movieSchedule_id: movieScheduleId,
+            seat_id: seats[i].id,
+          },
         }
-      }
-      res.status(200).send(movieScheduleDetail);
+      );
     }
+    res.status(200).send(newBookTicket)
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
 
+const updateTicket = async (req, res) => {
+  const { ticketId } = req.query;
+  const { movieScheduleId, seats, userId } = req.body;
+  try {
+    await Ticket.update(
+      { movieScheduleId, seats, userId },
+      {
+        where: {
+          id: ticketId,
+        },
+      }
+    );
+    res.status(200).send("Update success");
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const removeTicket = async (req, res) => {
+  const { ticketId } = req.query;
+  try {
+    await Ticket.destroy({
+      where: {
+        id: ticketId,
+      },
+    });
+    res.status(200).send(error);
   } catch (error) {
     res.status(500).send(error);
   }
 };
 
 module.exports = {
-  bookTicket,
+  getTicketList,
+  createTicket,
+  updateTicket,
+  removeTicket,
 };

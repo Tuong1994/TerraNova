@@ -21,6 +21,9 @@ module.exports = {
           key: "id",
         },
       },
+      isBooked: {
+        type: Sequelize.BOOLEAN,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

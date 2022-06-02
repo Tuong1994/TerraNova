@@ -25,6 +25,7 @@ module.exports = {
             id: "MS-S_" + Math.floor(Math.random() * 999999999).toString(),
             movieSchedule_id: movieScheduleId,
             seat_id: seatId,
+            isBooked: false,
             createdAt: new Date(),
             updatedAt: new Date(),
           });
