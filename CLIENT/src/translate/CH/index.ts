@@ -344,7 +344,7 @@ const ChLang = {
         vip: "贵宾",
         regular: "普通r",
         booked: "已预订",
-        booking: "预订"
+        booking: "预订",
       },
       bookInfo: {
         seat: "椅子",
@@ -357,8 +357,21 @@ const ChLang = {
         payment: "付款方式",
         instruct: "请选择座位以显示适当的付款方式",
         note_1: "已购票不可换票或退款",
-        note_2: "门票代码将通过输入的电子邮件发送"
-      }
+        note_2: "门票代码将通过输入的电子邮件发送",
+      },
+      modal: {
+        title: "订票成功",
+        subTitle_1: "信息",
+        subTitle_2: "联系",
+        regards: "感谢您的预订",
+        return: "返回电影页面",
+        continue: "继续预订",
+      },
+      timeOut: {
+        title: "订票超时",
+        note: "预约时间为5分钟，请在此时间内预约",
+        reBook: "重新预订",
+      },
     },
     // MOVIE TYPE
     movieType: {
@@ -634,6 +647,7 @@ const ChLang = {
       remove: "删除成功",
       upload: "上传成功",
       rate: "感谢您的评论",
+      bookingTicket: "订票成功",
     },
     error: {
       addToCart: "失败加入购物车",
@@ -646,6 +660,7 @@ const ChLang = {
       update: "更新失败",
       remove: "删除失败",
       upload: "上传失败",
+      bookingTicket: "订票失败",
       onlyNumber: "只能输入数字",
       alreadyRegister: "您已註冊此課程",
       file: "无效文件",

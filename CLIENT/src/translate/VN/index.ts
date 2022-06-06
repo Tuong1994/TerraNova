@@ -368,6 +368,19 @@ const VnLang = {
         note_1: "Vé đã mua không thể đổi hoặc hoàn tiền",
         note_2: "Mã vé sẽ được gửi qua Email đã nhập"
       },
+      modal: {
+        title: "Đặt vé thành công",
+        subTitle_1: "Thông tin",
+        subTitle_2: "Liên hệ",
+        regards: "Cảm ơn bạn đã đặt vé",
+        return: "Quay lại trang phim",
+        continue: "Tiếp tục đặt vé",
+      },
+      timeOut: {
+        title: "Hết thời gian đặt vé",
+        note: "Thời gian đặt vé là 5 phút, vui lòng đặt vé trong khoảng thời gian này",
+        reBook: "Đặt vé lại",
+      },
     },
     // MOVIE TYPE
     movieType: {
@@ -644,6 +657,7 @@ const VnLang = {
       remove: "Xóa thành công",
       upload: "Upload thành công",
       rate: "Cảm ơn bạn đã đánh giá",
+      bookingTicket: "Đặt vé thành công",
     },
     error: {
       addToCart: "Thêm vào giỏ hàng thất bại",
@@ -656,6 +670,7 @@ const VnLang = {
       update: "Cập nhật thất bại",
       remove: "Xóa thất bại",
       upload: "Upload thất bại",
+      bookingTicket: "Đặt vé thất bại",
       onlyNumber: "Chỉ có thể nhập số",
       alreadyRegister: "Bạn đã đăng ký khóa học này",
       file: "File không hợp lệ",

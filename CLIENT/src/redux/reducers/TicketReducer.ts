@@ -1,13 +1,16 @@
-import { TicketAction } from "./../actions/TicketAction";
 import { ISeat } from "../../models/Seat";
+import { TicketAction } from "./../actions/TicketAction";
 import { ETicketActionTypes } from "../actionTypes/TicketActionTypes";
+import { ITicket } from "../../models/Ticket";
 
 interface IStateDefault {
   listBookedSeat: ISeat[];
+  ticket: ITicket;
 }
 
 const stateDefault: IStateDefault = {
   listBookedSeat: [],
+  ticket: {},
 };
 
 export const TicketReducer = (state = stateDefault, action: TicketAction) => {
@@ -22,6 +25,12 @@ export const TicketReducer = (state = stateDefault, action: TicketAction) => {
       } else {
         newState.listBookedSeat.push(action.payload);
       }
+      state = newState;
+      return { ...state };
+    }
+    case ETicketActionTypes.BOOK_TICKET: {
+      let newState = { ...state };
+      newState.ticket = action.payload;
       state = newState;
       return { ...state };
     }

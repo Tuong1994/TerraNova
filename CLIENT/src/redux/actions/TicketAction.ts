@@ -5,4 +5,9 @@ interface ADD_SEAT {
   payload: any;
 }
 
-export type TicketAction = ADD_SEAT;
+interface BOOK_TICKET {
+  type: ETicketActionTypes.BOOK_TICKET;
+  payload: any;
+}
+
+export type TicketAction = ADD_SEAT | BOOK_TICKET;

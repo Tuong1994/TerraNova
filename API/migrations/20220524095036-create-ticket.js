@@ -10,11 +10,17 @@ module.exports = {
       movieScheduleId: {
         type: Sequelize.STRING,
       },
+      userId: {
+        type: Sequelize.STRING,
+      },
       seats: {
         type: Sequelize.JSON,
       },
-      userId: {
-        type: Sequelize.STRING,
+      contact: {
+        type: Sequelize.JSON,
+      },
+      paymentType: {
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,

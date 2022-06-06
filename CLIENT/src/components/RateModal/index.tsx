@@ -6,19 +6,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { ILangs } from "../../interfaces/lang";
 import { ReducerState } from "../../redux/store";
 import { EModalActionTypes } from "../../redux/actionTypes/ModalActionTypes";
-import RateStar from "../RateStar";
+import RateStar from "./Star";
 import Button from "../Button";
 import ButtonLoading from "../Loading/ButtonLoading";
 
 interface RateModalProps {
   langs: ILangs;
+  title: string;
   onSubmit: () => void;
   setRatePoint: React.Dispatch<React.SetStateAction<number>>;
   setRateNote: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const RateModal: React.FunctionComponent<RateModalProps> = (props) => {
-  const { langs, onSubmit, setRateNote, setRatePoint } = props;
+  const { title, langs, onSubmit, setRateNote, setRatePoint } = props;
 
   const { isRate } = useSelector((state: ReducerState) => state.ModalReducer);
   const { buttonLoading } = useSelector(
@@ -40,7 +41,7 @@ const RateModal: React.FunctionComponent<RateModalProps> = (props) => {
       className="rate-modal"
     >
       <Modal.Header
-        title={langs?.productDetail.modal.title}
+        title={title}
         onHide={handleHideModal}
       />
       <Modal.Body className="rate-modal__body">

@@ -264,6 +264,7 @@ const ProductDetail: React.FunctionComponent<
       </div>
       <RateModal
         langs={langs}
+        title={langs?.productDetail.modal.title || ""}
         setRatePoint={setRatePoint}
         setRateNote={setRateNote}
         onSubmit={handleRate}

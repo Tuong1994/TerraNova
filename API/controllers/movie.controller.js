@@ -4,6 +4,7 @@ const {
   Theater,
   Movie,
   MovieSchedule,
+  Rate,
 } = require("../models");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
@@ -100,8 +101,8 @@ const getMovieDetail = async (req, res) => {
           through: {
             attributes: [],
             where: {
-              movie_id: movieId
-            }
+              movie_id: movieId,
+            },
           },
           include: [
             {
@@ -115,15 +116,15 @@ const getMovieDetail = async (req, res) => {
                   attributes: ["id", "name"],
                   through: {
                     attributes: [],
-                  },  
+                  },
                   include: [
                     {
                       model: MovieSchedule,
                       as: "schedules",
                       attributes: ["id", "showTime", "movieId", "theaterId"],
                       where: {
-                        movieId: movieId
-                      }
+                        movieId: movieId,
+                      },
                     },
                   ],
                 },
@@ -131,9 +132,63 @@ const getMovieDetail = async (req, res) => {
             },
           ],
         },
+        {
+          model: Rate,
+          as: "rates",
+        },
       ],
     });
-    res.status(200).send(movieDetail);
+    if (movieDetail) {
+      let ratePoint = 0;
+      if (movieDetail.rates.length > 0) {
+        const fivePointRes = movieDetail.rates.filter((i) => i.ratePoint === 5);
+        const fourPointRes = movieDetail.rates.filter((i) => i.ratePoint === 4);
+        const threePointRes = movieDetail.rates.filter(
+          (i) => i.ratePoint === 3
+        );
+        const twoPointRes = movieDetail.rates.filter((i) => i.ratePoint === 2);
+        const onePointRes = movieDetail.rates.filter((i) => i.ratePoint === 1);
+        const totalScores =
+          fivePointRes.length * 5 +
+          fourPointRes.length * 4 +
+          threePointRes.length * 3 +
+          twoPointRes.length * 2 +
+          onePointRes.length * 1;
+        const totalRes =
+          fivePointRes.length +
+          fourPointRes.length +
+          threePointRes.length +
+          twoPointRes.length +
+          onePointRes.length;
+        ratePoint = Math.ceil(totalScores / totalRes);
+
+        const movie = {
+          id: movieDetail.id,
+          nameENG: movieDetail.nameENG,
+          nameVN: movieDetail.nameVN,
+          nameCH: movieDetail.nameCH,
+          descENG: movieDetail.descENG,
+          descVN: movieDetail.descVN,
+          descCH: movieDetail.descCH,
+          image: movieDetail.image,
+          duration: movieDetail.duration,
+          trailer: movieDetail.trailer,
+          releaseDay: movieDetail.releaseDay,
+          status: movieDetail.status,
+          type: movieDetail.type,
+          actors: movieDetail.actors,
+          director: movieDetail.director,
+          country: movieDetail.country,
+          createdAt: movieDetail.createdAt,
+          updatedAt: movieDetail.updatedAt,
+          cineplexes: movieDetail.cineplexes || [],
+          ratePoint: ratePoint,
+        };
+        res.status(200).send(movie)
+      } else {
+        res.status(200).send(movieDetail);
+      }
+    }
   } catch (error) {
     res.status(500).send(error);
   }

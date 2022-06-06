@@ -13,6 +13,8 @@ interface IModalStateDefault {
   isAddShipment: boolean;
   isRate: boolean;
   isTrailer: boolean;
+  isBookingTicket: boolean;
+  isTimeOut: boolean;
 }
 
 const stateDefault: IModalStateDefault = {
@@ -27,6 +29,8 @@ const stateDefault: IModalStateDefault = {
   isAddShipment: false,
   isRate: false,
   isTrailer: false,
+  isBookingTicket: false,
+  isTimeOut: false,
 };
 
 export const ModalReducer = (state = stateDefault, action: ModalAction) => {
@@ -97,6 +101,18 @@ export const ModalReducer = (state = stateDefault, action: ModalAction) => {
       state = newState;
       return { ...state };
     }
+    case EModalActionTypes.OPEN_BOOKING_TICKET_MODAL: {
+      let newState = { ...state };
+      newState.isBookingTicket = true;
+      state = newState;
+      return { ...state };
+    }
+    case EModalActionTypes.OPEN_TIMEOUT_MODAL: {
+      let newState = { ...state };
+      newState.isTimeOut = true;
+      state = newState;
+      return { ...state };
+    }
     case EModalActionTypes.CLOSE_CONSULT_MODAL: {
       let newState = { ...state };
       newState.isConsult = false;
@@ -160,6 +176,18 @@ export const ModalReducer = (state = stateDefault, action: ModalAction) => {
     case EModalActionTypes.CLOSE_TRAILER_MODAL: {
       let newState = { ...state };
       newState.isTrailer = false;
+      state = newState;
+      return { ...state };
+    }
+    case EModalActionTypes.CLOSE_BOOKING_TICKET_MODAL: {
+      let newState = { ...state };
+      newState.isBookingTicket = false;
+      state = newState;
+      return { ...state };
+    }
+    case EModalActionTypes.CLOSE_TIMEOUT_MODAL: {
+      let newState = { ...state };
+      newState.isTimeOut = false;
       state = newState;
       return { ...state };
     }

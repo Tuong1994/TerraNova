@@ -60,34 +60,46 @@ const getMovieScheduleDetail = async (req, res) => {
 
       let seatList = [];
       if (scheduleSeatList?.length > 0) {
-        seatList = scheduleSeatList?.reduce((arr, item) => {
-          const arr_1 = arr.filter((i) => i.id !== item.seat_id);
-          const arr_2 = arr.filter((i) => i.id === item.seat_id);
-          return arr_2;
+        const idArr = scheduleSeatList.map((i) => {
+          return i.seat_id;
+        });
+
+        seatList = idArr?.reduce((arr, item) => {
+          const index = arr.findIndex((i) => i.id === item);
+          if (index !== -1) {
+            arr[index].isBooked = true;
+          }
+          return arr;
         }, movieScheduleDetail.seats);
       }
 
-      res.send(seatList);
-
-      // if (cinemaDetail && theaterDetail && movieDetail) {
-      //   const movieInfo = {
-      //     cinemaId: cinemaDetail.id,
-      //     cinemaName: cinemaDetail.name,
-      //     address: cinemaDetail.address,
-      //     movieId: movieDetail.id,
-      //     movieNameENG: movieDetail.nameENG,
-      //     movieNameVN: movieDetail.nameVN,
-      //     movieNameCH: movieDetail.nameCH,
-      //     theaterId: theaterDetail.id,
-      //     theaterName: theaterDetail.name,
-      //     schedules: movieScheduleDetail.showtime,
-      //   };
-      //   res.send({
-      //     id: movieScheduleDetail.id,
-      //     movieInfo: movieInfo,
-      //     seats: movieScheduleDetail.seats,
-      //   });
-      // }
+      if (cinemaDetail && theaterDetail && movieDetail) {
+        const movieInfo = {
+          cinemaId: cinemaDetail.id,
+          cinemaName: cinemaDetail.name,
+          address: cinemaDetail.address,
+          movieId: movieDetail.id,
+          movieNameENG: movieDetail.nameENG,
+          movieNameVN: movieDetail.nameVN,
+          movieNameCH: movieDetail.nameCH,
+          theaterId: theaterDetail.id,
+          theaterName: theaterDetail.name,
+          schedules: movieScheduleDetail.showtime,
+        };
+        if (seatList.length > 0) {
+          res.send({
+            id: movieScheduleDetail.id,
+            movieInfo: movieInfo,
+            seats: seatList,
+          });
+        } else {
+          res.send({
+            id: movieScheduleDetail.id,
+            movieInfo: movieInfo,
+            seats: movieScheduleDetail.seats,
+          });
+        }
+      }
     }
   } catch (error) {
     res.status(500).send(error);

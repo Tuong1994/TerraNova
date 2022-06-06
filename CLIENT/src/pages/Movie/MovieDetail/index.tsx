@@ -67,6 +67,7 @@ const MovieDetail: React.FunctionComponent<
       <TrailerModal />
       <RateModal
         langs={langs}
+        title={""}
         onSubmit={() => {}}
         setRateNote={() => {}}
         setRatePoint={() => {}}

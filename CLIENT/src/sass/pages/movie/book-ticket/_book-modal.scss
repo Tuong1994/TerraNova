@@ -1,0 +1,81 @@
+.book-modal {
+  .book-modal__body {
+    .body__card {
+      margin: $m-10 0;
+      padding: $p-10;
+      color: $tPrimary;
+      .card__title {
+        font-weight: $semiBold;
+        margin-bottom: $m-10;
+      }
+      .card__content {
+        width: $w-100;
+        .content__item {
+          padding: $p-5 0;
+          display: flex;
+          justify-content: space-between;
+          p {
+            &:nth-child(1) {
+              width: $w-100 - 70;
+            }
+            &:nth-child(2) {
+              width: $w-100 - 32;
+              font-weight: $semiBold;
+            }
+          }
+        }
+      }
+      .card__seat {
+        p {
+          span {
+            color: $tBlue;
+            font-weight: $semiBold;
+          }
+        }
+      }
+      .card__payment {
+        display: flex;
+        justify-content: space-between;
+        p {
+          &:nth-child(2) {
+            font-weight: $semiBold;
+          }
+        }
+      }
+    }
+  }
+  .book-modal__footer {
+    .footer__note {
+      margin-bottom: $m-10;
+      font-size: $body-1;
+      font-style: italic;
+      p {
+        padding: $p-5;
+        @include respond(extraTablet) {
+          padding: 0;
+        }
+      }
+      @include respond(extraTablet) {
+        font-size: $body-2;
+        margin-bottom: $m-5;
+      }
+    }
+    .footer__action {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      .action__item {
+        font-size: $default;
+        @include respond(extraTablet) {
+          font-size: $body-1;
+        }
+        @include respond(tablet) {
+          font-size: $body-2 - 2;
+        }
+      }
+      @include respond(phone) {
+        justify-content: center;
+      }
+    }
+  }
+}

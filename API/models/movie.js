@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       Cineplex_Movie,
       Cinema_Movie,
       Theater_Movie,
+      Rate,
     }) {
       // define association here
       this.belongsToMany(Cinema, {
@@ -27,14 +28,18 @@ module.exports = (sequelize, DataTypes) => {
         through: Theater_Movie,
         as: "movies",
       });
-      this.hasMany(MovieSchedule, {
-        foreignKey: "movieId",
-        as: "schedules",
-      });
       this.belongsToMany(Cineplex, {
         foreignKey: "movie_id",
         through: Cineplex_Movie,
         as: "cineplexes",
+      });
+      this.hasMany(MovieSchedule, {
+        foreignKey: "movieId",
+        as: "schedules",
+      });
+      this.hasMany(Rate, {
+        foreignKey: "movieId",
+        as: "rates",
       });
     }
   }

@@ -372,9 +372,23 @@ const EngLang = {
         theater: "Theater",
         contact: "Contact info",
         payment: "Payment type",
-        instruct: "Please select the seat to display the appropriate form of payment",
+        instruct:
+          "Please select the seat to display the appropriate form of payment",
         note_1: "Tickets purchased cannot be exchanged or refunded",
-        note_2: "Ticket code will be sent via Email entered"
+        note_2: "Ticket code will be sent via Email entered",
+      },
+      modal: {
+        title: "Booking success",
+        subTitle_1: "Infomation",
+        subTitle_2: "Contact Info",
+        regards: "Thank you for booking ticket",
+        return: "Return movie page",
+        continue: "Continue booking",
+      },
+      timeOut: {
+        title: "Time out to book tickets",
+        note: "Booking time is 5 minutes, please book within this time",
+        reBook: "Re-booking",
       },
     },
     // MOVIE TYPE
@@ -652,6 +666,7 @@ const EngLang = {
       remove: "Remove succecced",
       upload: "Upload succecced",
       rate: "Thank you for rating",
+      bookingTicket: "Booking ticket succecced",
     },
     error: {
       addToCart: "Add to carts failed",
@@ -664,6 +679,7 @@ const EngLang = {
       update: "Update failed",
       remove: "Remove failed",
       upload: "Upload failed",
+      bookingTicket: "Booking ticket failed",
       onlyNumber: "Can type only number",
       alreadyRegister: "You have already registered this course",
       file: "File not valid",

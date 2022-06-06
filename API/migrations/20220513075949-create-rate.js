@@ -22,6 +22,9 @@ module.exports = {
       courseId: {
         type: Sequelize.STRING
       },
+      movieId: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -127,8 +127,15 @@
           }
           .button__inner--booked {
             background: $red-2;
+            user-select: none;
+            pointer-events: none;
             &:hover {
               background: $red-2;
+              color: $tSecondary;
+              border-color: transparent;
+            }
+            &:hover .inner__line {
+              background: $primary;
             }
           }
         }

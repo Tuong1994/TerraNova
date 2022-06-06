@@ -1,0 +1,28 @@
+.timeout-modal {
+  .timeout-modal__body {
+    height: auto;
+    border-top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .body__title {
+      width: $w-100;
+      text-align: center;
+      font-size: $h6;
+      font-weight: $semiBold;
+      padding: $p-10 0;
+      border-bottom: 1px solid $borderWhite;
+    }
+    .body__content {
+      padding: $p-10 0;
+      color: $tRed;
+    }
+  }
+  .timeout-modal__footer {
+      width: $w-100;
+      .footer__action {
+          font-size: $default;
+      }
+  }
+}

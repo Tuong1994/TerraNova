@@ -1,72 +1,52 @@
 import React from "react";
 import * as FormControl from "../../components/Fields";
-import { ELangs, ILangs } from "../../interfaces/lang";
+import { ILangs } from "../../interfaces/lang";
 import { IMovieInfo } from "../../models/MovieSchedule";
 import { ISeat } from "../../models/Seat";
 import Button from "../../components/Button";
 import moment from "moment";
+import ButtonLoading from "../../components/Loading/ButtonLoading";
+import { EPaymentTypes } from "../../models/Order";
 
 interface RBookInfoProps {
-  lang: string;
   langs: ILangs;
   movieInfo: IMovieInfo;
   listBookedSeat: ISeat[];
+  buttonLoading: boolean;
   stepTwo: boolean;
   open: boolean;
+  renderMovieName: () => React.ReactNode;
+  renderBookedSeat: () => React.ReactNode;
+  renderTotal: () => React.ReactNode;
   onBookTicket: () => void;
-  setStepTwo: React.Dispatch<React.SetStateAction<boolean>>;
+  onChangeContract: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangePayment: (e: React.ChangeEvent<HTMLInputElement>) => void;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const RBookInfo: React.FunctionComponent<RBookInfoProps> = (props) => {
   const {
-    lang,
     langs,
     movieInfo,
     listBookedSeat,
+    buttonLoading,
     stepTwo,
     open,
-    setStepTwo,
     setOpen,
+    renderMovieName,
+    renderBookedSeat,
+    renderTotal,
     onBookTicket,
+    onChangeContract,
+    onChangePayment,
   } = props;
 
-  const renderTotal = () => {
-    return listBookedSeat.reduce((total, seat) => {
-      return (total += seat.price || 0);
-    }, 0);
-  };
-
-  const renderMovieName = () => {
-    switch (lang) {
-      case ELangs.ENG: {
-        return movieInfo.movieNameENG;
-      }
-      case ELangs.VN: {
-        return movieInfo.movieNameVN;
-      }
-      case ELangs.CH: {
-        return movieInfo.movieNameCH;
-      }
-    }
-  };
-
-  const renderBookedSeat = () => {
-    return listBookedSeat.map((i) => {
-      return (
-        <React.Fragment key={i.id}>
-          {i.lineName} - {i.name},{" "}
-        </React.Fragment>
-      );
-    });
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setStepTwo(true);
-  };
-
   return (
-    <div className={`responsive__book-info ${open ? "responsive__book-info--active" : ""}`}>
+    <div
+      className={`responsive__book-info ${
+        open ? "responsive__book-info--active" : ""
+      }`}
+    >
       <div className="book-info__close">
         <div className="close__btn" onClick={() => setOpen(false)}>
           <i className="fa-solid fa-angle-left"></i>
@@ -75,7 +55,7 @@ const RBookInfo: React.FunctionComponent<RBookInfoProps> = (props) => {
 
       {/* Price */}
       <div className="book-info__price">
-        <p>{renderTotal().toLocaleString()} VND</p>
+        <p>{renderTotal()?.toLocaleString()} VND</p>
       </div>
 
       {/* Schedule Info */}
@@ -114,8 +94,18 @@ const RBookInfo: React.FunctionComponent<RBookInfoProps> = (props) => {
         <p className="contact__title">
           {langs?.movie.bookTicket.bookInfo.contact}
         </p>
-        <FormControl.InputCustom placeholder=" " label={langs?.form.email} />
-        <FormControl.InputCustom placeholder=" " label={langs?.form.phone} />
+        <FormControl.InputCustom
+          name="email"
+          placeholder=" "
+          label={langs?.form.email}
+          onChange={(e) => onChangeContract(e)}
+        />
+        <FormControl.InputCustom
+          name="phone"
+          placeholder=" "
+          label={langs?.form.phone}
+          onChange={(e) => onChangeContract(e)}
+        />
       </div>
 
       {/* Payment type */}
@@ -136,7 +126,8 @@ const RBookInfo: React.FunctionComponent<RBookInfoProps> = (props) => {
                 type="radio"
                 className="group__radio"
                 name="paymentType"
-                onChange={(e) => handleChange(e)}
+                value={EPaymentTypes.cash}
+                onChange={(e) => onChangePayment(e)}
               />
               <label htmlFor="cash" className="group__label">
                 <img
@@ -153,7 +144,8 @@ const RBookInfo: React.FunctionComponent<RBookInfoProps> = (props) => {
                 type="radio"
                 className="group__radio"
                 name="paymentType"
-                onChange={(e) => handleChange(e)}
+                value={EPaymentTypes.zalo}
+                onChange={(e) => onChangePayment(e)}
               />
               <label htmlFor="zalo" className="group__label">
                 <img
@@ -170,7 +162,8 @@ const RBookInfo: React.FunctionComponent<RBookInfoProps> = (props) => {
                 type="radio"
                 className="group__radio"
                 name="paymentType"
-                onChange={(e) => handleChange(e)}
+                value={EPaymentTypes.vib}
+                onChange={(e) => onChangePayment(e)}
               />
               <label htmlFor="vib" className="group__label">
                 <img
@@ -196,8 +189,14 @@ const RBookInfo: React.FunctionComponent<RBookInfoProps> = (props) => {
             {langs?.button.bookTicket}
           </Button>
         ) : (
-          <Button className="button--submit" onClick={onBookTicket}>
-            {langs?.button.bookTicket}
+          <Button
+            className={`button--submit ${
+              buttonLoading ? "button--disabled" : ""
+            }`}
+            onClick={onBookTicket}
+          >
+            <ButtonLoading />
+            <span>{langs?.button.bookTicket}</span>
           </Button>
         )}
       </div>

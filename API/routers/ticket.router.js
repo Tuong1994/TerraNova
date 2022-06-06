@@ -14,13 +14,13 @@ ticketRouter.get("/getTicketList", getTicketList);
 
 ticketRouter.post(
   "/bookTicket",
-  //  authenticate,
+   authenticate,
   createTicket
 );
 
 ticketRouter.put("/updateTicket", updateTicket);
 
-ticketRouter.delete("removeTicket", removeTicket);
+ticketRouter.delete("/removeTicket", removeTicket);
 
 module.exports = {
   ticketRouter,

@@ -131,6 +131,8 @@ const MultipleUpload: React.FunctionComponent<MultipleUploadProps> = (
           multiple
           onChange={handleChange}
         />
+
+        {/* Button Save */}
         {(() => {
           if (previewImgArr && previewImgArr?.length > 0) {
             if (isSave) {
