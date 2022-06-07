@@ -45,6 +45,7 @@ const BookTicket: React.FunctionComponent<RouteComponentProps<IRouteParams>> = (
   const [openBookInfo, setOpenBookInfo] = React.useState<boolean>(false);
   const [movieInfo, setMovieInfo] = React.useState<IMovieInfo>({});
   const [seats, setSeats] = React.useState<ISeat[]>([]);
+  const [totalPay, setTotalPay] = React.useState<number>(0);
   const [paymentType, setPaymentType] = React.useState<number>(0);
   const [contact, setContact] = React.useState<IContact>({
     email: "",
@@ -97,7 +98,9 @@ const BookTicket: React.FunctionComponent<RouteComponentProps<IRouteParams>> = (
 
   const renderTotal = () => {
     return listBookedSeat.reduce((total, seat) => {
-      return (total += seat.price || 0);
+      const totalPay = (total += seat.price || 0);
+      setTotalPay(totalPay);
+      return totalPay;
     }, 0);
   };
 
@@ -123,6 +126,8 @@ const BookTicket: React.FunctionComponent<RouteComponentProps<IRouteParams>> = (
       userId: user?.id,
       seats: listBookedSeat,
       contact: contact,
+      info: movieInfo,
+      totalPay: totalPay,
       paymentType: paymentType,
     };
     dispatch(

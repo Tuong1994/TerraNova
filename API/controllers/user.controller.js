@@ -1,4 +1,4 @@
-const { User, Order, Carts, CourseOrder } = require("../models");
+const { User, Order, Carts, CourseOrder, Ticket } = require("../models");
 const { domain } = require("../setting/setting");
 const bcryptjs = require("bcryptjs");
 const Sequelize = require("sequelize");
@@ -165,7 +165,6 @@ const getUserDetail = async (req, res) => {
         {
           model: CourseOrder,
           as: "courses",
-          order: [["createdAt", "DESC"]],
           attributes: [
             ["id", "courseOrderId"],
             "courseId",
@@ -175,6 +174,10 @@ const getUserDetail = async (req, res) => {
             "updatedAt",
           ],
         },
+        {
+          model: Ticket,
+          as: "tickets"
+        }
       ],
     });
     res.status(200).send(userDetail);

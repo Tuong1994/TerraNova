@@ -346,6 +346,9 @@ const EngLang = {
       country: "Country",
       theater: "Theater",
       noShowTime: "There are currently no showtimes",
+      rateModal: {
+        title: "Movie rating",
+      },
     },
     // BOOK TICKET
     bookTicket: {
@@ -458,6 +461,7 @@ const EngLang = {
       personalInfo: "Personal information",
       orderTitle: "Orders",
       courseTitle: "Courses",
+      ticketTitle: "Tickets",
     },
     // UPDATE
     update: {
@@ -644,6 +648,7 @@ const EngLang = {
     product: "No product yet",
     order: "No order yet",
     course: "You haven't registered for any course yet",
+    ticket: "You haven't booked any tickets",
   },
 
   // ==================== CARTS ====================
@@ -807,6 +812,11 @@ const EngLang = {
     openingDate: "Opening date",
     branch: "Branch",
     category: "Category",
+    ticketId: "Ticket Id",
+    movie: "Movie",
+    cinema: "Cinema",
+    showTime: "Show time",
+    seats: "Seats",
     createdAt: "Created at",
     updatedAt: "Updated at",
   },

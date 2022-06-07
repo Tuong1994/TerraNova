@@ -337,6 +337,9 @@ const VnLang = {
       country: "Nước SX",
       theater: "Rạp",
       noShowTime: "Hiện tại chưa có lịch chiếu",
+      rateModal: {
+        title: "Đánh giá phim",
+      },
     },
     // BOOK TICKET
     bookTicket: {
@@ -449,6 +452,7 @@ const VnLang = {
       personalInfo: "Thông tin cá nhân",
       orderTitle: "Danh sách đơn hàng",
       courseTitle: "Danh sách khóa học",
+      ticketTitle: "Danh sách vé",
     },
     // UPDATE
     update: {
@@ -635,6 +639,7 @@ const VnLang = {
     product: "Chưa có sản phẩm",
     order: "Chưa có đơn hàng",
     course: "Bạn chưa đăng ký khóa học nào",
+    ticket: "Bạn chưa đặt vé",
   },
 
   // ==================== CARTS ====================
@@ -798,6 +803,11 @@ const VnLang = {
     openingDate: "Ngày khai giảng",
     branch: "Chi nhánh",
     category: "Danh mục",
+    ticketId: "Mã vé",
+    movie: "Phim",
+    cinema: "Rạp",
+    showTime: "Suất chiếu",
+    seats: "Tổng Ghế",
     createdAt: "Ngày tạo",
     updatedAt: "Ngày cập nhật",
   },

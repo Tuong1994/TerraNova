@@ -63,4 +63,15 @@
       padding: $p-5;
     }
   }
+  .overview__ticket {
+    margin: $m-10 0;
+    .ticket__title {
+      font-size: $subtitle;
+      font-weight: $semiBold;
+      padding: $p-10 * 2 0;
+    }
+    .ticket__list {
+      padding: $p-5;
+    }
+  }
 }

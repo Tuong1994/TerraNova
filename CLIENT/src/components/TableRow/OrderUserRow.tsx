@@ -3,8 +3,8 @@ import React from "react";
 import { EBadgeStatus } from "../../interfaces/badge";
 import { ILangs } from "../../interfaces/lang";
 import { EPaymentTypes, EStatus, IOrder } from "../../models/Order";
-import Badge from "../Badge";
 import TableCol from "../Table/TableCol";
+import Badge from "../Badge";
 
 interface OrderUserRowProps {
   order: IOrder;

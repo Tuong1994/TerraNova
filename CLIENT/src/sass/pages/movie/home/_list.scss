@@ -78,6 +78,15 @@
             transition: all 0.5s ease;
           }
         }
+        .card__rate {
+          font-size: $body-2;
+          padding: $p-10;
+          background: $RGBA-dark-1;
+          border-radius: $lightRound;
+          position: absolute;
+          top: 5px;
+          right: 5px;
+        }
         .card__name {
           height: $h-10 * 5;
           display: flex;

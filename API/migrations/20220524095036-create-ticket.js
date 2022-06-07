@@ -16,8 +16,14 @@ module.exports = {
       seats: {
         type: Sequelize.JSON,
       },
+      info: {
+        type: Sequelize.JSON,
+      },
       contact: {
         type: Sequelize.JSON,
+      },
+      totalPay: {
+        type: Sequelize.INTEGER,
       },
       paymentType: {
         type: Sequelize.INTEGER,

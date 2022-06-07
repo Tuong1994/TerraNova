@@ -36,6 +36,12 @@ const getMovieList = async (req, res) => {
               [Op.like]: `%${freeText}%`,
             },
           },
+          include: [
+            {
+              model: Rate,
+              as: "rates"
+            }
+          ]
         });
       } else {
         movieList = await Movie.findAll({
@@ -43,6 +49,12 @@ const getMovieList = async (req, res) => {
           where: {
             status: filter,
           },
+          include: [
+            {
+              model: Rate,
+              as: "rates"
+            }
+          ]
         });
       }
     } else if (freeText) {
@@ -53,19 +65,79 @@ const getMovieList = async (req, res) => {
             [Op.like]: `%${freeText}%`,
           },
         },
+        include: [
+          {
+            model: Rate,
+            as: "rates"
+          }
+        ]
       });
     } else {
       movieList = await Movie.findAll({
         order: [["updatedAt", getSort() || "DESC"]],
+        include: [
+          {
+            model: Rate,
+            as: "rates"
+          }
+        ]
+      });
+    }
+
+    let movies = [];
+    if (movieList.length > 0) {
+      movies = movieList.map((m) => {
+        let ratePoint = 0;
+        if (m.rates.length > 0) {
+          const fivePointRes = m.rates.filter((i) => i.ratePoint === 5);
+          const fourPointRes = m.rates.filter((i) => i.ratePoint === 4);
+          const threePointRes = m.rates.filter((i) => i.ratePoint === 3);
+          const twoPointRes = m.rates.filter((i) => i.ratePoint === 2);
+          const onePointRes = m.rates.filter((i) => i.ratePoint === 1);
+          const totalScores =
+            fivePointRes.length * 5 +
+            fourPointRes.length * 4 +
+            threePointRes.length * 3 +
+            twoPointRes.length * 2 +
+            onePointRes.length * 1;
+          const totalRes =
+            fivePointRes.length +
+            fourPointRes.length +
+            threePointRes.length +
+            twoPointRes.length +
+            onePointRes.length;
+          ratePoint = Math.ceil(totalScores / totalRes);
+        }
+        return {
+          id: m.id,
+          nameENG: m.nameENG,
+          nameVN: m.nameVN,
+          nameCH: m.nameCH,
+          descENG: m.descENG,
+          descVN: m.descVN,
+          descCH: m.descCH,
+          image: m.image,
+          duration: m.duration,
+          trailer: m.trailer,
+          releaseDay: m.releaseDay,
+          status: m.status,
+          type: m.type,
+          actors: m.actors,
+          director: m.director,
+          country: m.country,
+          createdAt: m.createdAt,
+          updatedAt: m.updatedAt,
+          ratePoint: ratePoint,
+        };
       });
     }
 
     if (isPaging) {
       if (page) {
-        const total = movieList.length;
+        const total = movies.length;
         const start = (pageNumber - 1) * itemPerPage;
         const end = start + itemPerPage;
-        const list = movieList.slice(start, end);
+        const list = movies.slice(start, end);
         res.status(200).send({
           total: total,
           page: pageNumber,
@@ -75,10 +147,10 @@ const getMovieList = async (req, res) => {
       }
     } else {
       res.status(200).send({
-        total: movieList.length,
+        total: movies.length,
         page: 0,
         limits: itemPerPage,
-        movies: movieList,
+        movies: movies,
       });
     }
   } catch (error) {
@@ -184,7 +256,7 @@ const getMovieDetail = async (req, res) => {
           cineplexes: movieDetail.cineplexes || [],
           ratePoint: ratePoint,
         };
-        res.status(200).send(movie)
+        res.status(200).send(movie);
       } else {
         res.status(200).send(movieDetail);
       }

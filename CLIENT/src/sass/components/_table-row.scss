@@ -51,6 +51,18 @@
   }
 }
 
+.ticket-row {
+  &:last-child {
+    border: 0;
+  }
+  .ticket-row__col {
+    align-items: center;
+    .col__inner {
+      height: $h-100;
+    }
+  }
+}
+
 .user-admin-row,
 .product-admin-row,
 .course-admin-row {

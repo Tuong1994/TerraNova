@@ -1,7 +1,7 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { history } from "../../../../App";
 import { ACCESSTOKEN } from "../../../../configs/setting";
-import { useDispatch } from "react-redux";
 import { EModalActionTypes } from "../../../../redux/actionTypes/ModalActionTypes";
 import { IProduct } from "../../../../models/Product";
 import { ILangs } from "../../../../interfaces/lang";

@@ -43,6 +43,7 @@ export interface IMovie {
   actors?: string;
   director?: string;
   cineplexes?: ICineplex[];
+  ratePoint?: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 }

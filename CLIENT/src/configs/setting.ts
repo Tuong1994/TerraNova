@@ -28,6 +28,7 @@ export const getListQuery = (query: IQueryList): string => {
     cinemaId,
     movieId,
     movieScheduleId,
+    ticketId,
     productType,
     freeText,
     filter,
@@ -61,5 +62,6 @@ export const getListQuery = (query: IQueryList): string => {
   cinemaId && (rs += `&cinemaId=${cinemaId}`);
   movieId && (rs += `&movieId=${movieId}`);
   movieScheduleId && (rs += `&movieScheduleId=${movieScheduleId}`);
+  ticketId && (rs += `&ticketId=${ticketId}`)
   return rs;
 };

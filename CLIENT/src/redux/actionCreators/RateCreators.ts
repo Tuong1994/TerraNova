@@ -8,6 +8,8 @@ import { ACCESSTOKEN } from "../../configs/setting";
 import { IQueryList } from "../../interfaces/query";
 import { getProductDetail } from "./ProductCreators";
 import { EModalActionTypes } from "../actionTypes/ModalActionTypes";
+import utils from "../../utils";
+import { getMovieDetail } from "./MovieCreators";
 
 const token = localStorage.getItem(ACCESSTOKEN) || "";
 
@@ -22,7 +24,14 @@ export const createRate = (
     setTimeout(async () => {
       try {
         await axiosClient.post(apiPath.ratePaths.createRate, data, token);
-        dispatch(getProductDetail(query));
+        
+        if(utils.checkObjectEmpty(query)) {
+          if(query?.productId) {
+            dispatch(getProductDetail(query));
+          } else if (query?.movieId) {
+            dispatch(getMovieDetail(query))
+          }
+        }
         dispatch(actions.closeButtonLoading);
         dispatch({
           type: EModalActionTypes.CLOSE_RATING_MODAL,

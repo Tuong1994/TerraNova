@@ -1,6 +1,7 @@
 import { ICarts } from "../Carts";
 import { IOrder } from "./../Order/index";
 import { ICourseOrder } from "../CourseOrder";
+import { ITicket } from "../Ticket";
 
 export enum EGender {
   male = 1,
@@ -31,6 +32,7 @@ export interface IUser {
   role?: string;
   orders?: IOrder[];
   carts?: ICarts[];
+  tickets?: ITicket[];
   courses?: ICourseOrder[];
   createdAt?: Date | string;
   updatedAt?: Date | string;

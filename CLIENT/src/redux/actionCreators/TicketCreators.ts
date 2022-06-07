@@ -1,10 +1,11 @@
 import * as apiPath from "../../paths";
 import { ITicket } from "../../models/Ticket";
-import { ACCESSTOKEN } from "../../configs/setting";
+import { ACCESSTOKEN, getListQuery } from "../../configs/setting";
 import { getMovieScheduleDetail } from "./MovieScheduleCreators";
 import { IQueryList } from "../../interfaces/query";
 import { ETicketActionTypes } from "../actionTypes/TicketActionTypes";
 import { EModalActionTypes } from "../actionTypes/ModalActionTypes";
+import { getUserDetail } from "./UserCreators";
 import { toast } from "react-toastify";
 import axiosClient from "../../axios";
 import actions from "../../configs/actions";
@@ -33,13 +34,33 @@ export const bookTicket = (
         dispatch(getMovieScheduleDetail(query));
         dispatch(actions.closeButtonLoading);
         dispatch({
-          type: EModalActionTypes.OPEN_BOOKING_TICKET_MODAL
-        })
+          type: EModalActionTypes.OPEN_BOOKING_TICKET_MODAL,
+        });
         toast.success(success);
       } catch (error) {
         toast.error(err);
         dispatch(actions.closeButtonLoading);
       }
     }, 1000);
+  };
+};
+
+export const removeTicket = (
+  query: IQueryList,
+  success?: string,
+  err?: string
+) => {
+  return async (dispatch: any) => {
+    try {
+      await axiosClient.delete(
+        apiPath.ticketPaths.removeTicket,
+        getListQuery(query as IQueryList),
+        token
+      );
+      dispatch(getUserDetail(query));
+      toast.success(success);
+    } catch (error) {
+      toast.error(err);
+    }
   };
 };

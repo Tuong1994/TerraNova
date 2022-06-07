@@ -20,7 +20,7 @@ ticketRouter.post(
 
 ticketRouter.put("/updateTicket", updateTicket);
 
-ticketRouter.delete("/removeTicket", removeTicket);
+ticketRouter.delete("/removeTicket", authenticate, removeTicket);
 
 module.exports = {
   ticketRouter,

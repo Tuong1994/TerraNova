@@ -8,6 +8,7 @@ import { IQueryList } from "../../../interfaces/query";
 import { getMovieDetail } from "../../../redux/actionCreators/MovieCreators";
 import { EMovieActionTypes } from "../../../redux/actionTypes/MovieActionTypes";
 import { EModalActionTypes } from "../../../redux/actionTypes/ModalActionTypes";
+import { createRate } from "../../../redux/actionCreators/RateCreators";
 import MovieInfo from "./Info";
 import MovieTabs from "./Tabs";
 import TrailerModal from "../../../components/Trailer";
@@ -23,6 +24,9 @@ const MovieDetail: React.FunctionComponent<
   const { movieDetail } = useSelector(
     (state: ReducerState) => state.MovieReducer
   );
+  const { user } = useSelector((state: ReducerState) => state.UserReducer);
+  const [ratePoint, setRatePoint] = React.useState<number>(0);
+  const [rateNote, setRateNote] = React.useState<string>("");
 
   const dispatch = useDispatch();
 
@@ -52,6 +56,27 @@ const MovieDetail: React.FunctionComponent<
     });
   };
 
+  const handleRate = () => {
+    const query: IQueryList = {
+      movieId: movieDetail?.id,
+    };
+    const newRate = {
+      ratePoint: ratePoint,
+      note: rateNote,
+      movieId: movieDetail?.id,
+      userId: user?.id,
+    };
+
+    dispatch(
+      createRate(
+        newRate,
+        query,
+        langs?.toastMessages.success.rate,
+        langs?.toastMessages.error.rate
+      )
+    );
+  };
+
   return (
     <div
       className="movie-detail"
@@ -61,16 +86,23 @@ const MovieDetail: React.FunctionComponent<
         })`,
       }}
     >
-      <MovieInfo lang={lang} langs={langs} movie={movieDetail} onShow={handleShowRateModal} />
+      <MovieInfo
+        lang={lang}
+        langs={langs}
+        movie={movieDetail}
+        onShow={handleShowRateModal}
+      />
+
       <MovieTabs lang={lang} langs={langs} movie={movieDetail} />
 
       <TrailerModal />
+
       <RateModal
         langs={langs}
-        title={""}
-        onSubmit={() => {}}
-        setRateNote={() => {}}
-        setRatePoint={() => {}}
+        title={langs?.movie.detail.rateModal.title || ""}
+        onSubmit={handleRate}
+        setRateNote={setRateNote}
+        setRatePoint={setRatePoint}
       />
     </div>
   );

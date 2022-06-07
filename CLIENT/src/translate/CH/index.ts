@@ -329,6 +329,9 @@ const ChLang = {
       country: "国家",
       theater: "剧院",
       noShowTime: "目前没有放映时间",
+      rateModal: {
+        title: "电影评论",
+      },
     },
     // BOOK TICKET
     bookTicket: {
@@ -439,6 +442,7 @@ const ChLang = {
       personalInfo: "个人信息",
       orderTitle: "订单",
       courseTitle: "课程",
+      ticketTitle: "电影票",
     },
     // UPDATE
     update: {
@@ -625,6 +629,7 @@ const ChLang = {
     product: "还没有产品",
     order: "还没有订单",
     course: "您还没有注册任何课程",
+    ticket: "你还没有订票",
   },
 
   // ==================== CARTS ====================
@@ -788,6 +793,11 @@ const ChLang = {
     openingDate: "开放日",
     branch: "分店",
     category: "类别",
+    ticketId: "票号",
+    movie: "电影",
+    cinema: "电影院",
+    showTime: "开演时间",
+    seats: "总座位",
     createdAt: "创建日期",
     updatedAt: "更新日期",
   },

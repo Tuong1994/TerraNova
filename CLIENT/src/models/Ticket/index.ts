@@ -1,3 +1,4 @@
+import { IMovieInfo } from "../MovieSchedule";
 import { ISeat } from "./../Seat/index";
 
 export interface IContact {
@@ -10,7 +11,9 @@ export interface ITicket {
   movieScheduleId?: string;
   userId?: string;
   seats?: ISeat[];
+  info?: IMovieInfo;
   contact?: IContact;
+  totalPay?: number;
   paymentType?: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;

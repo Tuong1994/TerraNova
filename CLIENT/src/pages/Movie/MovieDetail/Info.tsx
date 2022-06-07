@@ -15,6 +15,14 @@ interface MovieInfoProps {
 const MovieInfo: React.FunctionComponent<MovieInfoProps> = (props) => {
   const { lang, langs, movie, onShow } = props;
 
+  const [point, setPoint] = React.useState<number>(0);
+
+  React.useEffect(() => {
+    if (movie) {
+      setPoint(movie.ratePoint || 0);
+    }
+  }, [movie]);
+
   const renderMovieName = () => {
     switch (lang) {
       case ELangs.ENG: {
@@ -26,6 +34,14 @@ const MovieInfo: React.FunctionComponent<MovieInfoProps> = (props) => {
       case ELangs.CH: {
         return movie.nameCH;
       }
+    }
+  };
+
+  const getColor = (i: number) => {
+    if (i <= point) {
+      return "#ffc107";
+    } else {
+      return "#e4e5e9";
     }
   };
 
@@ -54,14 +70,15 @@ const MovieInfo: React.FunctionComponent<MovieInfoProps> = (props) => {
         </div>
 
         <div className="card__rate" onClick={onShow}>
-          <div className="rate__point">0/5</div>
+          <div className="rate__point">{point}/5</div>
           <div className="rate__icon">
             {[...Array(5)].map((v, i) => {
+              const ratingValue = i + 1;
               return (
                 <i
                   key={i}
                   className="fa-solid fa-star"
-                  style={{ color: "#e4e5e9" }}
+                  style={{ color: getColor(ratingValue) }}
                 ></i>
               );
             })}

@@ -12,7 +12,7 @@ const getTicketList = async (req, res) => {
 };
 
 const createTicket = async (req, res) => {
-  const { movieScheduleId, userId, seats, contact, paymentType } = req.body;
+  const { movieScheduleId, userId, seats, contact, info, totalPay, paymentType } = req.body;
   try {
     const ticketId = "T_" + Math.floor(Math.random() * 999999999).toString();
     const newBookTicket = await Ticket.create({
@@ -21,6 +21,8 @@ const createTicket = async (req, res) => {
       userId,
       seats,
       contact,
+      info,
+      totalPay,
       paymentType,
     });
     for (let i = 0; i < seats.length; i++) {
@@ -46,10 +48,10 @@ const createTicket = async (req, res) => {
 
 const updateTicket = async (req, res) => {
   const { ticketId } = req.query;
-  const { movieScheduleId, seats, userId, contact, paymentType } = req.body;
+  const { movieScheduleId, seats, userId, contact, info, totalPay, paymentType } = req.body;
   try {
     await Ticket.update(
-      { movieScheduleId, seats, userId, contact, paymentType },
+      { movieScheduleId, seats, userId, contact, info, totalPay, paymentType },
       {
         where: {
           id: ticketId,

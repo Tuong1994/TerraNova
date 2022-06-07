@@ -9,6 +9,7 @@ import Order from "./Orders";
 import Course from "./Course";
 import utils from "../../../utils";
 import ContentHeader from "../../../components/ContentHeader";
+import Ticket from "./Ticket";
 
 interface OverViewProps {}
 
@@ -39,6 +40,7 @@ const OverView: React.FunctionComponent<OverViewProps> = (props) => {
       <UserInfo lang={lang} langs={langs} user={user} />
       <Order langs={langs} user={user} />
       <Course lang={lang} langs={langs} user={user} />
+      <Ticket lang={lang} langs={langs} user={user} />
     </div>
   );
 };
