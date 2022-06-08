@@ -10,12 +10,25 @@ import { EPaymentTypes, EShipmentType, EStatus } from "../models/Order";
 import { EWard, EDistrict, EProvince } from "./../models/Shipment";
 import { ESortBy } from "../interfaces/query";
 import { EGender, ERole } from "../models/User";
+import { EMovieCountry, EMovieStatus } from "../models/Movie";
 
 export const optionsEng = {
   orderStatus: [
     { label: "PAID", value: EStatus.paid },
     { label: "WAITING", value: EStatus.waiting },
     { label: "DELIVERING", value: EStatus.delivering },
+  ],
+  movieStatus: [
+    { label: "SHOWING", value: EMovieStatus.showing },
+    { label: "COMMING", value: EMovieStatus.comming },
+  ],
+  movieCountry: [
+    { label: "AMERICA", value: EMovieCountry.america },
+    { label: "AUSTRALIA", value: EMovieCountry.australia },
+    { label: "CHINA", value: EMovieCountry.china },
+    { label: "KOREAN", value: EMovieCountry.korean },
+    { label: "ENGLAND", value: EMovieCountry.england },
+    { label: "VIETNAM", value: EMovieCountry.vietnam },
   ],
   role: [
     { label: "Admin", value: ERole.admin },
@@ -247,6 +260,11 @@ export const optionsEng = {
     { label: "WAITING", value: EStatus.waiting },
     { label: "DELIVERING", value: EStatus.delivering },
   ],
+  movieFilter: [
+    { label: "ALL", value: 0 },
+    { label: "NOW SHOWING", value: EMovieStatus.showing },
+    { label: "COMMING SOON", value: EMovieStatus.comming },
+  ],
 };
 
 export const optionsVn = {
@@ -254,6 +272,18 @@ export const optionsVn = {
     { label: "ĐÃ THANH TOÁN", value: EStatus.paid },
     { label: "ĐANG XỬ LÝ", value: EStatus.waiting },
     { label: "ĐANG GIAO", value: EStatus.delivering },
+  ],
+  movieStatus: [
+    { label: "ĐANG CHIẾU", value: EMovieStatus.showing },
+    { label: "SẮP CHIẾU", value: EMovieStatus.comming },
+  ],
+  movieCountry: [
+    { label: "MỸ", value: EMovieCountry.america },
+    { label: "ÚC", value: EMovieCountry.australia },
+    { label: "TRUNG QUỐC", value: EMovieCountry.china },
+    { label: "HÀN QUỐC", value: EMovieCountry.korean },
+    { label: "ANH QUỐC", value: EMovieCountry.england },
+    { label: "VIỆT NAM", value: EMovieCountry.vietnam },
   ],
   role: [
     { label: "Quản trị", value: ERole.admin },
@@ -488,6 +518,11 @@ export const optionsVn = {
     { label: "ĐANG XỬ LÝ", value: EStatus.waiting },
     { label: "ĐANG GIAO", value: EStatus.delivering },
   ],
+  movieFilter: [
+    { label: "Tất cả", value: 0 },
+    { label: "ĐANG CHIẾU", value: EMovieStatus.showing },
+    { label: "SẮP CHIẾU", value: EMovieStatus.comming },
+  ],
 };
 
 export const optionsCh = {
@@ -495,6 +530,18 @@ export const optionsCh = {
     { label: "支付", value: EStatus.paid },
     { label: "等待进展", value: EStatus.waiting },
     { label: "交货正在进行中", value: EStatus.delivering },
+  ],
+  movieStatus: [
+    { label: "正在上映", value: EMovieStatus.showing },
+    { label: "快来了", value: EMovieStatus.comming },
+  ],
+  movieCountry: [
+    { label: "美国", value: EMovieCountry.america },
+    { label: "澳大利亚", value: EMovieCountry.australia },
+    { label: "中国", value: EMovieCountry.china },
+    { label: "韩国", value: EMovieCountry.korean },
+    { label: "英国", value: EMovieCountry.england },
+    { label: "越南", value: EMovieCountry.vietnam },
   ],
   role: [
     { label: "管理", value: ERole.admin },
@@ -725,6 +772,11 @@ export const optionsCh = {
     { label: "支付", value: EStatus.paid },
     { label: "等待进展", value: EStatus.waiting },
     { label: "交货正在进行中", value: EStatus.delivering },
+  ],
+  movieFilter: [
+    { label: "全部", value: 0 },
+    { label: "正在上映", value: EMovieStatus.showing },
+    { label: "快来了", value: EMovieStatus.comming },
   ],
 };
 

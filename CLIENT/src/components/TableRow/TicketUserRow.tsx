@@ -6,12 +6,14 @@ import TableCol from "../Table/TableCol";
 
 interface TicketUserRowProps {
   lang: string;
-  langs?: ILangs;
+  langs: ILangs;
   ticket: ITicket;
+  setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
+  setTicketId: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const TicketUserRow: React.FunctionComponent<TicketUserRowProps> = (props) => {
-  const { lang, langs, ticket } = props;
+  const { lang, langs, ticket, setIsShow, setTicketId } = props;
 
   const renderMovieName = () => {
     switch (lang) {
@@ -62,7 +64,13 @@ const TicketUserRow: React.FunctionComponent<TicketUserRowProps> = (props) => {
         <div>{renderPaymentType()}</div>
       </TableCol>
       <TableCol>
-        <div className="button--delete">
+        <div
+          className="button--delete"
+          onClick={() => {
+            setTicketId(ticket.id || "");
+            setIsShow(true)
+          }}
+        >
           <i className="fas fa-trash-alt"></i>
         </div>
       </TableCol>

@@ -552,6 +552,16 @@ const VnLang = {
         title_3: "Vận chuyển",
       },
     },
+     // MOVIE
+     movie: {
+      subTitle_1: "Thông tin",
+      subTitle_2: "Mô tả",
+      subTitle_3: "Trạng thái",
+      subTitle_4: "Quốc gia",
+      subTitle_5: "Trailer",
+      subTitle_6: "Chi tiết",
+      note: "VD: https://youtu.be/SskR7qaIJFE ",
+    },
   },
 
   // ==================== TIME ====================
@@ -589,6 +599,8 @@ const VnLang = {
     paid: "Đã thanh toán",
     waiting: "Đang chờ",
     delivering: "Đang giao",
+    showing: "Đang chiếu",
+    comming: "Sắp chiếu",
   },
 
   // ==================== PAYMENT TYPE ====================
@@ -631,6 +643,8 @@ const VnLang = {
     cancel: "Hủy bỏ",
     chooseProduct: "Chọn sản phẩm",
     bookTicket: "Đặt vé",
+    yes: "Có",
+    no: "Không",
   },
 
   // ==================== NO DATA ====================
@@ -775,6 +789,12 @@ const VnLang = {
     oldPassword: "Mật khẩu cũ",
     newPassword: "Mật khẩu mới",
     shipmentType: "Hình thức nhận hàng",
+    movieNameENG: "Tên phim (ENG)",
+    movieNameVN: "Tên phim (VN)",
+    movieNameCH: "Tên phim (CH)",
+    movieDescENG: "Mô tả (ENG)",
+    movieDescVN: "Mô tả (VN)",
+    movieDescCH: "Mô tả (CH)",
   },
 
   // ==================== TABLE HEADER ====================
@@ -808,6 +828,10 @@ const VnLang = {
     cinema: "Rạp",
     showTime: "Suất chiếu",
     seats: "Tổng Ghế",
+    movieName: "Tên phim",
+    movieStatus: "Trạng thái",
+    movieType: "Thể loại",
+    movieCountry: "Quốc gia",
     createdAt: "Ngày tạo",
     updatedAt: "Ngày cập nhật",
   },
@@ -836,6 +860,16 @@ const VnLang = {
   comment: {
     title: "Bình luận",
     placeholder: "Để lại bình luận",
+  },
+
+  // ==================== REMOVE MODAL ====================
+  removeModal: {
+    orderTitle: "Hủy đơn hàng",
+    courseTitle: "Hủy đăng ký khóa học",
+    ticketTitle: "Hủy vé xem phim",
+    orderCancel: "Bạn có muốn hủy đơn hàng?",
+    courseCancel: "Bạn có muốn hủy khóa học?",
+    ticketCancel: "Bạn có muốn hủy đặt vé?",
   },
 };
 

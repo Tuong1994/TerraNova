@@ -542,6 +542,16 @@ const ChLang = {
         title_3: "交货",
       },
     },
+    // MOVIE
+    movie: {
+      subTitle_1: "信息",
+      subTitle_2: "描述",
+      subTitle_3: "将态",
+      subTitle_4: "国家",
+      subTitle_5: "预告片",
+      subTitle_6: "细节",
+      note: "假如: https://youtu.be/SskR7qaIJFE ",
+    },
   },
 
   // ==================== TIME ====================
@@ -579,6 +589,8 @@ const ChLang = {
     paid: "已经付款",
     waiting: "等待",
     delivering: "交付",
+    showing: "正在上映",
+    comming: "快来了",
   },
 
   // ==================== PAYMENT TYPE ====================
@@ -621,6 +633,8 @@ const ChLang = {
     cancel: "取消",
     chooseProduct: "选择产品",
     bookTicket: "订票",
+    yes: "是的",
+    no: "不",
   },
 
   // ==================== NO DATA ====================
@@ -765,6 +779,12 @@ const ChLang = {
     oldPassword: "旧密码",
     newPassword: "新密码",
     shipmentType: "如何收货",
+    movieNameENG: "电影名称 (ENG)",
+    movieNameVN: "电影名称 (VN)",
+    movieNameCH: "电影名称 (CH)",
+    movieDescENG: "描述 (ENG)",
+    movieDescVN: "描述 (VN)",
+    movieDescCH: "描述 (CH)",
   },
 
   // ==================== TABLE HEADER ====================
@@ -798,6 +818,10 @@ const ChLang = {
     cinema: "电影院",
     showTime: "开演时间",
     seats: "总座位",
+    movieName: "电影名称",
+    movieStatus: "状态",
+    movieType: "类别",
+    movieCountry: "国家",
     createdAt: "创建日期",
     updatedAt: "更新日期",
   },
@@ -826,6 +850,16 @@ const ChLang = {
   comment: {
     title: "评论",
     placeholder: "发表评论",
+  },
+
+  // ==================== REMOVE MODAL ====================
+  removeModal: {
+    orderTitle: "取消订单",
+    courseTitle: "取消课程注册",
+    ticketTitle: "取消电影票",
+    orderCancel: "您想取消订单吗?",
+    courseCancel: "你想取消课程吗?",
+    ticketCancel: "您想取消预订吗?",
   },
 };
 

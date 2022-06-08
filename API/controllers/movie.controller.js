@@ -32,7 +32,7 @@ const getMovieList = async (req, res) => {
           order: [["updatedAt", getSort() || "DESC"]],
           where: {
             status: filter,
-            nameEng: {
+            nameENG: {
               [Op.like]: `%${freeText}%`,
             },
           },
@@ -61,7 +61,7 @@ const getMovieList = async (req, res) => {
       movieList = await Movie.findAll({
         order: [["updatedAt", getSort() || "DESC"]],
         where: {
-          nameEng: {
+          nameENG: {
             [Op.like]: `%${freeText}%`,
           },
         },

@@ -3,32 +3,26 @@ import * as Card from "../../../../components/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../../redux/store";
 import { ESortBy, IQueryList } from "../../../../interfaces/query";
-import {
-  getOrderList,
-  removeOrder,
-} from "../../../../redux/actionCreators/OrderCreators";
+import { getMovieList } from "../../../../redux/actionCreators/MovieCreators";
 import { Link } from "react-router-dom";
-import ContentHeader from "../../../../components/ContentHeader";
 import Table from "../../../../components/Table";
+import ContentHeader from "../../../../components/ContentHeader";
 import Filter from "../../../../components/Filter";
-import OrderAdminRow from "../../../../components/TableRow/OrderAdminRow";
+import MovieAdminRow from "../../../../components/TableRow/MovieAdminRow";
 import DataLoading from "../../../../components/Loading/DataLoading";
 import Pagination from "../../../../components/Pagination";
 import utils from "../../../../utils";
 
-const OrderList: React.FunctionComponent<{}> = (props) => {
+const MovieList: React.FunctionComponent<{}> = (props) => {
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
-  const { page } = useSelector(
-    (state: ReducerState) => state.PaginationReducer
-  );
-  const { orderList } = useSelector(
-    (state: ReducerState) => state.OrderReducer
-  );
   const { dataLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
   );
+  const { movieList } = useSelector(
+    (state: ReducerState) => state.MovieReducer
+  );
 
-  const [filter, setFilter] = React.useState<string>("all");
+  const [filter, setFilter] = React.useState<number>(0);
   const [freeText, setFreeText] = React.useState<string>("");
   const [sortBy, setSortBy] = React.useState<number>(ESortBy.newest);
   const typingRef = React.useRef<any>(null);
@@ -38,18 +32,19 @@ const OrderList: React.FunctionComponent<{}> = (props) => {
   const langs = utils.changeLang(lang);
   const options = utils.getOptionByLang(lang);
 
-  const { total, limits } = orderList;
+  const { total, limits } = movieList;
 
   React.useEffect(() => {
     const query: IQueryList = {
-      page: page,
+      isPaging: true,
+      page: 1,
       limits: 10,
       filter: filter,
       freeText: freeText,
       sortBy: sortBy,
     };
-    dispatch(getOrderList(query));
-  }, [page, filter, freeText, sortBy]);
+    dispatch(getMovieList(query));
+  }, [filter, freeText, sortBy]);
 
   const handleSearch = (v: string) => {
     if (typingRef.current) {
@@ -61,30 +56,17 @@ const OrderList: React.FunctionComponent<{}> = (props) => {
     }, 500);
   };
 
-  const handleRemove = (id: string) => {
-    const query: IQueryList = {
-      orderId: id,
-    };
-    dispatch(
-      removeOrder(
-        query,
-        langs?.toastMessages.success.remove,
-        langs?.toastMessages.error.remove
-      )
-    );
-  };
-
-  const renderOrderList = () => {
-    if (orderList) {
-      const { orders } = orderList;
-      return orders.map((order, index) => {
+  const renderMovieList = () => {
+    if (movieList) {
+      const { movies } = movieList;
+      return movies.map((movie, index) => {
         return (
-          <OrderAdminRow
-            key={order.id}
-            index={index}
-            order={order}
+          <MovieAdminRow
+            key={movie.id}
+            lang={lang}
             langs={langs}
-            removeOrder={handleRemove}
+            movie={movie}
+            index={index}
           />
         );
       });
@@ -92,14 +74,12 @@ const OrderList: React.FunctionComponent<{}> = (props) => {
   };
 
   return (
-    <div className="order">
+    <div className="movie">
       <ContentHeader
-        name={langs?.admin.pageTitle.order || ""}
+        name={langs?.admin.pageTitle.movie || ""}
         right={() => {
           return (
-            <Link to="/admin/order/addOrder" className="button--add">
-              {langs?.button.addOrder}
-            </Link>
+            <Link to="/admin/movie/addMovie" className="button--add">{langs?.button.addMovie}</Link>
           );
         }}
       />
@@ -107,11 +87,11 @@ const OrderList: React.FunctionComponent<{}> = (props) => {
       <Filter
         defaultFilterValue={filter}
         defaultSortValue={sortBy}
-        filterOptions={options?.orderFilter}
-        onFilter={(value) => {
+        filterOptions={options?.movieFilter}
+        onFilter={(value: any) => {
           setFilter(value);
         }}
-        onSort={(value) => {
+        onSort={(value: any) => {
           setSortBy(value);
         }}
         onSearch={handleSearch}
@@ -121,28 +101,28 @@ const OrderList: React.FunctionComponent<{}> = (props) => {
         <Table
           headers={[
             { title: langs?.tableHeader.number || "" },
-            { title: langs?.tableHeader.orderId || "" },
-            { title: langs?.tableHeader.products || "" },
-            { title: langs?.tableHeader.orderStatus || "" },
-            { title: langs?.tableHeader.price || "" },
-            { title: langs?.tableHeader.paymentType || "" },
+            { title: langs?.tableHeader.image || "" },
+            { title: langs?.tableHeader.movieName || "" },
+            { title: langs?.tableHeader.movieType || "" },
+            { title: langs?.tableHeader.movieCountry || "" },
+            { title: langs?.tableHeader.movieStatus || "" },
             { title: langs?.tableHeader.createdAt || "" },
             { title: langs?.tableHeader.updatedAt || "" },
             { title: langs?.tableHeader.features || "" },
           ]}
-          isNodata={orderList.orders || 0}
+          isNodata={movieList.movies || 0}
           noDataTitle={langs?.noData.data || ""}
           renderNoDataLink={() => {
             return (
-              <Link to="/admin/order/addOrder" className="button--add">
-                {langs?.button.addOrder}
+              <Link to="/admin/movie/addMovie" className="button--add">
+                {langs?.button.addMovie}
               </Link>
             );
           }}
         >
           {(() => {
             if (!dataLoading) {
-              return renderOrderList();
+              return renderMovieList();
             } else {
               return (
                 <div style={{ height: "400px" }}>
@@ -154,9 +134,9 @@ const OrderList: React.FunctionComponent<{}> = (props) => {
         </Table>
       </Card.Wrapper>
 
-      <Pagination total={total} perPage={limits} isShowContent={true} />
+      <Pagination perPage={limits} total={total} isShowContent={true} />
     </div>
   );
 };
 
-export default OrderList;
+export default MovieList;

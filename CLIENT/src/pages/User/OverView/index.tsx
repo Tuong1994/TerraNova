@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
 import { IQueryList } from "../../../interfaces/query";
 import { getUserDetail } from "../../../redux/actionCreators/UserCreators";
+import ContentHeader from "../../../components/ContentHeader";
 import UserInfo from "./Info";
 import Order from "./Orders";
 import Course from "./Course";
-import utils from "../../../utils";
-import ContentHeader from "../../../components/ContentHeader";
 import Ticket from "./Ticket";
+import utils from "../../../utils";
 
 interface OverViewProps {}
 

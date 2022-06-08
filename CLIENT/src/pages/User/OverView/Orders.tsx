@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { removeOrder } from "../../../redux/actionCreators/OrderCreators";
 import Table from "../../../components/Table";
 import OrderUserRow from "../../../components/TableRow/OrderUserRow";
+import RemoveModal from "../../../components/Remove";
 
 interface OrderProps {
   user: IUser | null;
@@ -17,11 +18,14 @@ interface OrderProps {
 const Order: React.FunctionComponent<OrderProps> = (props) => {
   const { user, langs } = props;
 
+  const [isShow, setIsShow] = React.useState<boolean>(false);
+  const [orderId, setOrderId] = React.useState<string>("");
+
   const dispatch = useDispatch();
 
-  const _removeOrder = (id: string) => {
+  const _removeOrder = () => {
     const query: IQueryList = {
-      orderId: id,
+      orderId: orderId,
       userId: user?.id,
     };
     dispatch(
@@ -63,7 +67,8 @@ const Order: React.FunctionComponent<OrderProps> = (props) => {
                     key={order.id}
                     order={order}
                     langs={langs}
-                    removeOrder={_removeOrder}
+                    setIsShow={setIsShow}
+                    setOrderId={setOrderId}
                   />
                 );
               });
@@ -71,6 +76,20 @@ const Order: React.FunctionComponent<OrderProps> = (props) => {
           })()}
         </Table>
       </Card.Wrapper>
+
+      <RemoveModal
+        show={isShow}
+        title={langs?.removeModal.orderTitle}
+        content={() => {
+          return (
+            <div>
+              <p>{langs?.removeModal.orderCancel}</p>
+            </div>
+          );
+        }}
+        onHide={() => setIsShow(false)}
+        onRemove={_removeOrder}
+      />
     </div>
   );
 };

@@ -1,0 +1,70 @@
+.add-movie {
+  .add-movie__wrapper {
+    width: $w-100;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .wrapper__item {
+      &:nth-child(1) {
+        width: $w-100 - 32;
+        @include respond(phone) {
+          width: $w-100;
+        }
+      }
+      &:nth-child(2) {
+        width: $w-100 - 70;
+        @include respond(phone) {
+          width: $w-100;
+        }
+      }
+      .item__inner {
+        padding: $p-10 * 2;
+        margin-bottom: $m-10;
+        overflow: unset;
+        .inner__title {
+          font-weight: $semiBold;
+          margin-bottom: $m-10 * 2;
+        }
+        .inner__control {
+          margin: $m-5 0;
+        }
+        @include respond(phone) {
+          padding: $p-10;
+        }
+      }
+      .item__info {
+        .inner__control {
+          width: $w-100;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          .control__group {
+            &:nth-child(1) {
+              width: $w-100 - 60;
+              @include respond(phone) {
+                width: $w-100;
+              }
+            }
+            &:nth-child(2) {
+              width: $w-100 - 42;
+              @include respond(phone) {
+                width: $w-100;
+              }
+            }
+            .group__item {
+              margin: 0;
+              margin-bottom: $m-10 * 2;
+            }
+          }
+        }
+      }
+      .item__trailer {
+        .inner__note {
+          font-size: $body-1;
+          font-style: italic;
+          color: $tGrey;
+        }
+      }
+    }
+  }
+}

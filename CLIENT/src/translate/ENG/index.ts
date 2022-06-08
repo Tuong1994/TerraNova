@@ -561,6 +561,16 @@ const EngLang = {
         title_3: "Shipment",
       },
     },
+    // MOVIE
+    movie: {
+      subTitle_1: "Infomation",
+      subTitle_2: "Description",
+      subTitle_3: "Status",
+      subTitle_4: "Country",
+      subTitle_5: "Trailer",
+      subTitle_6: "Detail",
+      note: "Exp: https://youtu.be/SskR7qaIJFE ",
+    },
   },
 
   // ==================== TIME ====================
@@ -598,6 +608,8 @@ const EngLang = {
     paid: "Paid",
     waiting: "Waiting",
     delivering: "Delivering",
+    showing: "Now showing",
+    comming: "Coming soon",
   },
 
   // ==================== PAYMENT TYPE ====================
@@ -640,6 +652,8 @@ const EngLang = {
     cancel: "Cancel",
     chooseProduct: "Choose products",
     bookTicket: "Book ticket",
+    yes: "Yes",
+    no: "No",
   },
 
   // ==================== NO DATA ====================
@@ -784,6 +798,12 @@ const EngLang = {
     oldPassword: "Old password",
     newPassword: "New passowrd",
     shipmentType: "Shipment Type",
+    movieNameENG: "Movie Name (ENG)",
+    movieNameVN: "Movie Name (VN)",
+    movieNameCH: "Movie Name (CH)",
+    movieDescENG: "Description (ENG)",
+    movieDescVN: "Description (VN)",
+    movieDescCH: "Description (CH)",
   },
 
   // ==================== TABLE HEADER ====================
@@ -817,6 +837,10 @@ const EngLang = {
     cinema: "Cinema",
     showTime: "Show time",
     seats: "Seats",
+    movieName: "Movie name",
+    movieStatus: "Status",
+    movieType: "Type",
+    movieCountry: "Country",
     createdAt: "Created at",
     updatedAt: "Updated at",
   },
@@ -845,6 +869,16 @@ const EngLang = {
   comment: {
     title: "Comments",
     placeholder: "Leave a comment",
+  },
+
+  // ==================== REMOVE MODAL ====================
+  removeModal: {
+    orderTitle: "Cancel order",
+    courseTitle: "Cancel the course registration",
+    ticketTitle: "Cancel movie tickets",
+    orderCancel: "Do you want to cancel this order?",
+    courseCancel: "Do you want to cancel this course?",
+    ticketCancel: "Do you want to cancel this ticket?",
   },
 };
 

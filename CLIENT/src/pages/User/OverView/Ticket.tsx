@@ -3,8 +3,12 @@ import * as Card from "../../../components/Card";
 import { Link } from "react-router-dom";
 import { ILangs } from "../../../interfaces/lang";
 import { IUser } from "../../../models/User";
+import { IQueryList } from "../../../interfaces/query";
+import { useDispatch } from "react-redux";
+import { removeTicket } from "../../../redux/actionCreators/TicketCreators";
 import Table from "../../../components/Table";
 import TicketUserRow from "../../../components/TableRow/TicketUserRow";
+import RemoveModal from "../../../components/Remove";
 
 interface TicketProps {
   lang: string;
@@ -14,6 +18,25 @@ interface TicketProps {
 
 const Ticket: React.FunctionComponent<TicketProps> = (props) => {
   const { lang, langs, user } = props;
+
+  const [isShow, setIsShow] = React.useState<boolean>(false);
+  const [ticketId, setTicketId] = React.useState<string>("");
+
+  const dispatch = useDispatch();
+
+  const _removeTicket = () => {
+    const query: IQueryList = {
+      ticketId: ticketId,
+      userId: user?.id,
+    };
+    dispatch(
+      removeTicket(
+        query,
+        langs?.toastMessages.success.remove,
+        langs?.toastMessages.error.remove
+      )
+    );
+  };
 
   return (
     <div className="overview__ticket">
@@ -48,6 +71,8 @@ const Ticket: React.FunctionComponent<TicketProps> = (props) => {
                     lang={lang}
                     langs={langs}
                     ticket={ticket}
+                    setIsShow={setIsShow}
+                    setTicketId={setTicketId}
                   />
                 );
               });
@@ -55,6 +80,20 @@ const Ticket: React.FunctionComponent<TicketProps> = (props) => {
           })()}
         </Table>
       </Card.Wrapper>
+
+      <RemoveModal
+        show={isShow}
+        title={langs?.removeModal.ticketTitle}
+        content={() => {
+          return (
+            <div>
+              <p>{langs?.removeModal.ticketCancel}</p>
+            </div>
+          );
+        }}
+        onHide={() => setIsShow(false)}
+        onRemove={_removeTicket}
+      />
     </div>
   );
 };

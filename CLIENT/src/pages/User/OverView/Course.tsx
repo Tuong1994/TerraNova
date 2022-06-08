@@ -8,6 +8,7 @@ import { IQueryList } from "../../../interfaces/query";
 import { removeCourseOrder } from "../../../redux/actionCreators/CourseOrderCreators";
 import Table from "../../../components/Table";
 import CourseUserRow from "../../../components/TableRow/CourseUserRow";
+import RemoveModal from "../../../components/Remove";
 
 interface CourseProps {
   lang: string;
@@ -18,11 +19,14 @@ interface CourseProps {
 const Course: React.FunctionComponent<CourseProps> = (props) => {
   const { lang, langs, user } = props;
 
+  const [isShow, setIsShow] = React.useState<boolean>(false);
+  const [courseId, setCourseId] = React.useState<string>("");
+
   const dispatch = useDispatch();
 
-  const _removeCourseOrder = (id: string) => {
+  const _removeCourseOrder = () => {
     const query: IQueryList = {
-      courseOrderId: id,
+      courseOrderId: courseId,
       userId: user?.id,
     };
     dispatch(
@@ -68,7 +72,8 @@ const Course: React.FunctionComponent<CourseProps> = (props) => {
                     lang={lang}
                     langs={langs}
                     courseOrder={course}
-                    removeCourseOrder={_removeCourseOrder}
+                    setIsShow={setIsShow}
+                    setCourseId={setCourseId}
                   />
                 );
               });
@@ -76,6 +81,20 @@ const Course: React.FunctionComponent<CourseProps> = (props) => {
           })()}
         </Table>
       </Card.Wrapper>
+
+      <RemoveModal
+        show={isShow}
+        title={langs?.removeModal.courseTitle}
+        content={() => {
+          return (
+            <div>
+              <p>{langs?.removeModal.courseCancel}</p>
+            </div>
+          );
+        }}
+        onHide={() => setIsShow(false)}
+        onRemove={_removeCourseOrder}
+      />
     </div>
   );
 };

@@ -3,6 +3,7 @@ import * as Product from "../pages/Admin/Product"
 import * as Course from "../pages/Admin/Course";
 import * as Order from "../pages/Admin/Order";
 import * as Customer from "../pages/Admin/Customer";
+import * as Movie from "../pages/Admin/Movie";
 import Dashboard from "../pages/Admin/Dashboard";
 import Home from "../pages/Home";
 import SignIn from "../pages/SignIn";
@@ -87,6 +88,16 @@ export const adminRoutes: IRoute[] = [
     path: "/admin/course/editCourse/:id",
     exact: true,
     component: Course.Edit,
+  },
+  {
+    path: "/admin/movie",
+    exact: true,
+    component: Movie.List,
+  },
+  {
+    path: "/admin/movie/addMovie",
+    exact: true,
+    component: Movie.Add,
   },
 ];
 

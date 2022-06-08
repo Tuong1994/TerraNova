@@ -7,7 +7,7 @@ import utils from "../../utils";
 
 interface FilterProps {
   defaultSortValue?: number;
-  defaultFilterValue?: string;
+  defaultFilterValue?: string | number;
   filterOptions?: any;
   onSort?: (v: number) => void;
   onFilter?: (v: string) => void;

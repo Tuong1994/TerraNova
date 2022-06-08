@@ -2,16 +2,28 @@ import React from "react";
 import TableNoData from "./TableNoData";
 import TableHeader from "./TableHeader";
 import ProductAdminRow from "../TableRow/ProductAdminRow";
+import CourseAdminRow from "../TableRow/CourseAdminRow";
+import OrderAdminRow from "../TableRow/OrderAdminRow";
+import MovieAdminRow from "../TableRow/MovieAdminRow";
 import CartsRow from "../TableRow/CartsRow";
 import OrderUserRow from "../TableRow/OrderUserRow";
 import CourseUserRow from "../TableRow/CourseUserRow";
+import TicketUserRow from "../TableRow/TicketUserRow";
 export interface ITableHeader {
   title: string;
   width?: string;
   className?: string;
 }
 
-type TableRowType = typeof ProductAdminRow | typeof CartsRow | typeof OrderUserRow | typeof CourseUserRow;
+type TableRowType =
+  | typeof ProductAdminRow
+  | typeof CourseAdminRow
+  | typeof OrderAdminRow
+  | typeof MovieAdminRow
+  | typeof CartsRow
+  | typeof OrderUserRow
+  | typeof CourseUserRow
+  | typeof TicketUserRow;
 interface ITableProps {
   headers: ITableHeader[];
   headersClassName?: string;

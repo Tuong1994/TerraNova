@@ -31,6 +31,12 @@ export const adminMenuENG = [
     name: "Course",
     icon: "fas fa-book-open",
   },
+  {
+    id: "movie",
+    path: "/admin/movie",
+    name: "Movie",
+    icon: "fa-solid fa-clapperboard",
+  },
 ];
 
 export const adminMenuVN = [
@@ -64,6 +70,12 @@ export const adminMenuVN = [
     name: "Khóa học",
     icon: "fas fa-book-open",
   },
+  {
+    id: "movie",
+    path: "/admin/movie",
+    name: "Phim",
+    icon: "fa-solid fa-clapperboard",
+  },
 ];
 
 export const adminMenuCH = [
@@ -96,6 +108,12 @@ export const adminMenuCH = [
     path: "/admin/course",
     name: "课程",
     icon: "fas fa-book-open",
+  },
+  {
+    id: "movie",
+    path: "/admin/movie",
+    name: "电影",
+    icon: "fa-solid fa-clapperboard",
   },
 ];
 

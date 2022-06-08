@@ -9,11 +9,12 @@ import Badge from "../Badge";
 interface OrderUserRowProps {
   order: IOrder;
   langs: ILangs;
-  removeOrder(i: string): void;
+  setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
+  setOrderId: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const OrderUserRow: React.FunctionComponent<OrderUserRowProps> = (props) => {
-  const { order, langs, removeOrder } = props;
+  const { order, langs, setIsShow, setOrderId } = props;
 
   const [totalAmount, setTotalAmount] = React.useState<number>(0);
 
@@ -69,7 +70,10 @@ const OrderUserRow: React.FunctionComponent<OrderUserRowProps> = (props) => {
       <TableCol>
         <div
           className="button--delete"
-          onClick={() => removeOrder(order?.id || order?.orderId || "")}
+          onClick={() => {
+            setIsShow(true)
+            setOrderId(order?.id || order?.orderId || "")
+          }}
         >
           <i className="fas fa-trash-alt"></i>
         </div>

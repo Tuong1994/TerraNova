@@ -8,11 +8,12 @@ interface CourseUserRowProps {
   lang: string;
   langs: ILangs;
   courseOrder: ICourseOrder;
-  removeCourseOrder(i: string): void;
+  setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
+  setCourseId: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const CourseUserRow: React.FunctionComponent<CourseUserRowProps> = (props) => {
-  const { lang, langs, courseOrder, removeCourseOrder } = props;
+  const { lang, langs, courseOrder, setCourseId, setIsShow } = props;
 
   const [courseDetail, setCourseDetail] = React.useState<any>({});
   const [register, setRegister] = React.useState<any>({});
@@ -46,15 +47,35 @@ const CourseUserRow: React.FunctionComponent<CourseUserRowProps> = (props) => {
 
   return (
     <tr className="course-row">
-      <TableCol>{courseOrder?.courseId}</TableCol>
-      <TableCol>{renderCourseName()}</TableCol>
-      <TableCol>{courseDetail?.price?.toLocaleString()} VND</TableCol>
-      <TableCol>{renderSchedule(Number(register.dateType))}</TableCol>
-      <TableCol>{register.branch}</TableCol>
-      <TableCol>{moment(new Date()).format("DD/MM/YYYY")}</TableCol>
-      <TableCol>{moment(courseOrder?.createdAt).format("DD/MM/YYYY")}</TableCol>
       <TableCol>
-        <div className="button--delete" onClick={() => removeCourseOrder(courseOrder?.courseOrderId || "")}>
+        <p>{courseOrder?.courseId}</p>
+      </TableCol>
+      <TableCol>
+        <p>{renderCourseName()}</p>
+      </TableCol>
+      <TableCol>
+        <p>{courseDetail?.price?.toLocaleString()} VND</p>
+      </TableCol>
+      <TableCol>
+        <p>{renderSchedule(Number(register.dateType))}</p>
+      </TableCol>
+      <TableCol>
+        <p>{register.branch}</p>
+      </TableCol>
+      <TableCol>
+        <p>{moment(new Date()).format("DD/MM/YYYY")}</p>
+      </TableCol>
+      <TableCol>
+        <p>{moment(courseOrder?.createdAt).format("DD/MM/YYYY")}</p>
+      </TableCol>
+      <TableCol>
+        <div
+          className="button--delete"
+          onClick={() => {
+            setCourseId(courseDetail?.courseId || "");
+            setIsShow(true);
+          }}
+        >
           <i className="fas fa-trash-alt"></i>
         </div>
       </TableCol>
