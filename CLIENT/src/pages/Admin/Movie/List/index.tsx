@@ -3,7 +3,10 @@ import * as Card from "../../../../components/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../../redux/store";
 import { ESortBy, IQueryList } from "../../../../interfaces/query";
-import { getMovieList } from "../../../../redux/actionCreators/MovieCreators";
+import {
+  getMovieList,
+  removeMovie,
+} from "../../../../redux/actionCreators/MovieCreators";
 import { Link } from "react-router-dom";
 import Table from "../../../../components/Table";
 import ContentHeader from "../../../../components/ContentHeader";
@@ -11,6 +14,7 @@ import Filter from "../../../../components/Filter";
 import MovieAdminRow from "../../../../components/TableRow/MovieAdminRow";
 import DataLoading from "../../../../components/Loading/DataLoading";
 import Pagination from "../../../../components/Pagination";
+import RemoveModal from "../../../../components/Remove";
 import utils from "../../../../utils";
 
 const MovieList: React.FunctionComponent<{}> = (props) => {
@@ -22,6 +26,8 @@ const MovieList: React.FunctionComponent<{}> = (props) => {
     (state: ReducerState) => state.MovieReducer
   );
 
+  const [isShow, setIsShow] = React.useState<boolean>(false);
+  const [movieId, setMovieId] = React.useState<string>("");
   const [filter, setFilter] = React.useState<number>(0);
   const [freeText, setFreeText] = React.useState<string>("");
   const [sortBy, setSortBy] = React.useState<number>(ESortBy.newest);
@@ -56,6 +62,21 @@ const MovieList: React.FunctionComponent<{}> = (props) => {
     }, 500);
   };
 
+  const _removeMovie = () => {
+    const query: IQueryList = {
+      isPaging: true,
+      movieId: movieId,
+    };
+    dispatch(
+      removeMovie(
+        query,
+        langs?.toastMessages.success.remove,
+        langs?.toastMessages.error.remove
+      )
+    );
+    setIsShow(false);
+  };
+
   const renderMovieList = () => {
     if (movieList) {
       const { movies } = movieList;
@@ -67,6 +88,8 @@ const MovieList: React.FunctionComponent<{}> = (props) => {
             langs={langs}
             movie={movie}
             index={index}
+            setIsShow={setIsShow}
+            setMovieId={setMovieId}
           />
         );
       });
@@ -79,7 +102,9 @@ const MovieList: React.FunctionComponent<{}> = (props) => {
         name={langs?.admin.pageTitle.movie || ""}
         right={() => {
           return (
-            <Link to="/admin/movie/addMovie" className="button--add">{langs?.button.addMovie}</Link>
+            <Link to="/admin/movie/addMovie" className="button--add">
+              {langs?.button.addMovie}
+            </Link>
           );
         }}
       />
@@ -135,6 +160,18 @@ const MovieList: React.FunctionComponent<{}> = (props) => {
       </Card.Wrapper>
 
       <Pagination perPage={limits} total={total} isShowContent={true} />
+      <RemoveModal
+        show={isShow}
+        content={() => {
+          return (
+            <div>
+              <p>{langs?.removeModal.movieRemove}</p>
+            </div>
+          );
+        }}
+        onHide={() => setIsShow(false)}
+        onRemove={_removeMovie}
+      />
     </div>
   );
 };

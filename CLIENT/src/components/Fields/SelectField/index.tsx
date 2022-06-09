@@ -100,6 +100,18 @@ const SelectField: React.FunctionComponent<SelectFieldProps> = (props) => {
     return "";
   };
 
+  const getClassName = () => {
+    if (!isDropdown) {
+      return touched[name] && errors[name]
+        ? `group__field group__field--invalid ${
+            fieldClassName ? fieldClassName : ""
+          }`
+        : `group__field ${fieldClassName ? fieldClassName : ""}`;
+    } else {
+      return `group__field ${fieldClassName ? fieldClassName : ""}`;
+    }
+  };
+
   return (
     <div
       className={`form__group ${groupClassName ? groupClassName : ""}`}
@@ -107,13 +119,7 @@ const SelectField: React.FunctionComponent<SelectFieldProps> = (props) => {
     >
       {/* Input */}
       <div
-        className={
-          touched[name] && errors[name]
-            ? `group__field group__field--invalid ${
-                fieldClassName ? fieldClassName : ""
-              }`
-            : `group__field ${fieldClassName ? fieldClassName : ""}`
-        }
+        className={getClassName()}
       >
         <input
           {...field}
@@ -155,9 +161,13 @@ const SelectField: React.FunctionComponent<SelectFieldProps> = (props) => {
       {/* Input */}
 
       {/* Error message */}
-      {touched[name] && errors[name] ? (
-        <div className="group__error">{errors[name]}</div>
-      ) : null}
+      {(() => {
+        if (!isDropdown) {
+          return touched[name] && errors[name] ? (
+            <div className="group__error">{errors[name]}</div>
+          ) : null;
+        }
+      })()}
 
       {/* Options */}
       <OptionList

@@ -74,13 +74,13 @@ const EditProduct: React.FunctionComponent<
   };
 
   const initialValues = {
-    name: productDetail?.name,
-    categoryId: productDetail?.categoryId,
-    producerId: productDetail?.producerId,
-    profit: productDetail?.profit,
-    status: productDetail?.status,
-    inventoryStatus: productDetail?.inventoryStatus,
-    stockAmount: productDetail?.stockAmount,
+    name: productDetail.name || "",
+    categoryId: productDetail.categoryId || "",
+    producerId: productDetail.producerId || "",
+    profit: productDetail.profit || "",
+    status: productDetail.status || "",
+    inventoryStatus: productDetail.inventoryStatus || "",
+    stockAmount: productDetail.stockAmount || "",
   };
 
   const validationSchema = yup.object().shape({

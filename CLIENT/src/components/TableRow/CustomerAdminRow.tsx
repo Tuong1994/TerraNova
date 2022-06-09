@@ -1,21 +1,22 @@
-import moment from "moment";
 import React from "react";
 import { Link } from "react-router-dom";
 import { ILangs } from "../../interfaces/lang";
 import { ERole, IUser } from "../../models/User";
 import TableCol from "../Table/TableCol";
+import moment from "moment";
 
 interface CustomerAdminRowProps {
   langs: ILangs;
   user: IUser;
   index: number;
-  onRemove: (id: string) => void;
+  setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
+  setUserId: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const CustomerAdminRow: React.FunctionComponent<CustomerAdminRowProps> = (
   props
 ) => {
-  const { langs, user, index, onRemove } = props;
+  const { langs, user, index, setIsShow, setUserId } = props;
 
   const renderRole = () => {
     if (user.role === ERole.admin) {
@@ -72,7 +73,7 @@ const CustomerAdminRow: React.FunctionComponent<CustomerAdminRowProps> = (
       <TableCol>
         <p>{moment(user.updatedAt).format("DD/MM/YYYY")}</p>
       </TableCol>
-      
+
       <TableCol>
         <Link
           to={`/admin/customer/editCustomer/${user?.id || user?.userId}`}
@@ -83,7 +84,8 @@ const CustomerAdminRow: React.FunctionComponent<CustomerAdminRowProps> = (
         <div
           className="button--delete"
           onClick={() => {
-            onRemove(user?.id || user?.userId || "");
+            setIsShow(true);
+            setUserId(user?.id || user?.userId || "");
           }}
         >
           <i className="fas fa-trash-alt"></i>

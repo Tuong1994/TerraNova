@@ -30,6 +30,19 @@ const courseUpload = () => {
   return upload.single("image");
 };
 
+const movieUpload = () => {
+  const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, "./public/img/movie");
+    },
+    filename: (req, file, cb) => {
+      cb(null, `${Date.now()}_${file.originalname}`);
+    },
+  });
+  const upload = multer({ storage });
+  return upload.single("image");
+};
+
 const userUpload = () => {
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -49,4 +62,5 @@ module.exports = {
   productUpload,
   courseUpload,
   userUpload,
+  movieUpload,
 };

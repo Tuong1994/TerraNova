@@ -15,10 +15,12 @@ interface MovieAdminRowProps {
   langs: ILangs;
   movie: IMovie;
   index: number;
+  setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
+  setMovieId: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const MovieAdminRow: React.FunctionComponent<MovieAdminRowProps> = (props) => {
-  const { lang, langs, movie, index } = props;
+  const { lang, langs, movie, index, setIsShow, setMovieId } = props;
 
   const renderMovieName = () => {
     switch (lang) {
@@ -140,12 +142,18 @@ const MovieAdminRow: React.FunctionComponent<MovieAdminRowProps> = (props) => {
 
       <TableCol>
         <Link
-          to={`/admin/course/editCourse/${movie.id || movie.movieId}`}
+          to={`/admin/movie/editMovie/${movie.id || movie.movieId}`}
           className="button--edit"
         >
           <i className="far fa-edit"></i>
         </Link>
-        <div className="button--delete">
+        <div
+          className="button--delete"
+          onClick={() => {
+            setMovieId(movie.id || movie.movieId || "");
+            setIsShow(true);
+          }}
+        >
           <i className="fas fa-trash-alt"></i>
         </div>
       </TableCol>

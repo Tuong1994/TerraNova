@@ -9,13 +9,14 @@ interface CourseAdminRowProps {
   lang: string;
   index: number;
   course: ICourse;
-  removeCourse: (course: ICourse) => void;
+  setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
+  setCourse: React.Dispatch<React.SetStateAction<ICourse>>;
 }
 
 const CourseAdminRow: React.FunctionComponent<CourseAdminRowProps> = (
   props
 ) => {
-  const { lang, index, course, removeCourse } = props;
+  const { lang, index, course, setIsShow, setCourse } = props;
 
   const renderCourseName = () => {
     switch (lang) {
@@ -88,7 +89,7 @@ const CourseAdminRow: React.FunctionComponent<CourseAdminRowProps> = (
       <TableCol>
         <p>{moment(course.updatedAt).format("DD/MM/YYYY")}</p>
       </TableCol>
-      
+
       <TableCol>
         <Link
           to={`/admin/course/editCourse/${course.id || course.courseId}`}
@@ -99,7 +100,8 @@ const CourseAdminRow: React.FunctionComponent<CourseAdminRowProps> = (
         <div
           className="button--delete"
           onClick={() => {
-            removeCourse(course);
+            setIsShow(true);
+            setCourse(course);
           }}
         >
           <i className="fas fa-trash-alt"></i>

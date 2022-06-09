@@ -36,6 +36,7 @@ const Ticket: React.FunctionComponent<TicketProps> = (props) => {
         langs?.toastMessages.error.remove
       )
     );
+    setIsShow(false);
   };
 
   return (

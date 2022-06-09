@@ -3,7 +3,13 @@ import * as yup from "yup";
 import { Formik, Form } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../../redux/store";
-import { createMovie } from "../../../../redux/actionCreators/MovieCreators";
+import { RouteComponentProps } from "react-router-dom";
+import { IRouteParams } from "../../../../interfaces/route";
+import {
+  getMovieDetail,
+  updateMovie,
+} from "../../../../redux/actionCreators/MovieCreators";
+import { IQueryList } from "../../../../interfaces/query";
 import ContentHeader from "../../../../components/ContentHeader";
 import Button from "../../../../components/Button";
 import ButtonLoading from "../../../../components/Loading/ButtonLoading";
@@ -15,39 +21,59 @@ import TrailerFields from "./Trailer";
 import DetailFields from "./Detail";
 import utils from "../../../../utils";
 
-const AddMovie: React.FunctionComponent<{}> = (props) => {
+const EditMovie: React.FunctionComponent<RouteComponentProps<IRouteParams>> = (
+  props
+) => {
+  const movieId = props.match.params.id;
+
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
   const { buttonLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
   );
+  const { movieDetail } = useSelector(
+    (state: ReducerState) => state.MovieReducer
+  );
 
-  const [isReset, setIsReset] = React.useState<boolean>(false);
   const [imgUpload, setImgUpload] = React.useState<any>(null);
+  const [defaultImg, setDefaultImg] = React.useState<string>("");
 
   const dispatch = useDispatch();
 
   const langs = utils.changeLang(lang);
   const options = utils.getOptionByLang(lang);
 
+  React.useEffect(() => {
+    const query: IQueryList = {
+      movieId: movieId,
+    };
+    dispatch(getMovieDetail(query));
+  }, []);
+
+  React.useEffect(() => {
+    if (movieDetail) {
+      setDefaultImg(movieDetail?.image || "");
+    }
+  }, [movieDetail]);
+
   const handleSelectedImg = (file: any) => {
     setImgUpload(file);
   };
 
   const initialValues = {
-    nameVN: "",
-    nameENG: "",
-    nameCH: "",
-    descVN: "",
-    descENG: "",
-    descCH: "",
-    duration: "",
-    trailer: "",
-    releaseDay: "",
-    actors: "",
-    director: "",
-    status: 0,
-    type: 0,
-    country: 0,
+    nameVN: movieDetail.nameVN || "",
+    nameENG: movieDetail.nameENG || "",
+    nameCH: movieDetail.nameCH || "",
+    descVN: movieDetail.descVN || "",
+    descENG: movieDetail.descENG || "",
+    descCH: movieDetail.descCH || "",
+    duration: movieDetail.duration || "",
+    trailer: movieDetail.trailer || "",
+    releaseDay: movieDetail.releaseDay || "",
+    actors: movieDetail.actors || "",
+    director: movieDetail.director || "",
+    status: movieDetail.status || "",
+    type: movieDetail.type || "",
+    country: movieDetail.country || "",
   };
 
   const validationSchema = yup.object().shape({
@@ -67,7 +93,10 @@ const AddMovie: React.FunctionComponent<{}> = (props) => {
     country: yup.number().min(1, langs?.validateMessages.choose),
   });
 
-  const handleSubmit = (values: any, action: any) => {
+  const handleSubmit = (values: any) => {
+    const query: IQueryList = {
+      movieId: movieId,
+    };
     const data = new FormData();
     for (let key in values) {
       data.append(key, values[key]);
@@ -75,32 +104,20 @@ const AddMovie: React.FunctionComponent<{}> = (props) => {
     if (imgUpload) {
       data.append("image", imgUpload);
     }
+    data.append("defaultImg", defaultImg);
 
     dispatch(
-      createMovie(
+      updateMovie(
+        query,
         data,
-        langs?.toastMessages.success.create,
-        langs?.toastMessages.error.create
+        langs?.toastMessages.success.update,
+        langs?.toastMessages.error.update
       )
     );
-
-    if (isReset) {
-      setIsReset(false);
-    }
-
-    setTimeout(() => {
-      setIsReset(true);
-      setImgUpload({});
-      action.resetForm({
-        values: {
-          ...initialValues,
-        },
-      });
-    }, 500);
   };
 
   return (
-    <div className="add-movie">
+    <div className="edit-movie">
       <Formik
         enableReinitialize={true}
         initialValues={initialValues}
@@ -112,7 +129,7 @@ const AddMovie: React.FunctionComponent<{}> = (props) => {
           return (
             <Form autoComplete="off">
               <ContentHeader
-                name={langs?.admin.pageTitle.addMovie || ""}
+                name={langs?.admin.pageTitle.editMovie || ""}
                 right={() => {
                   return !isValid ? (
                     <Button
@@ -134,11 +151,11 @@ const AddMovie: React.FunctionComponent<{}> = (props) => {
                   );
                 }}
               />
-              <div className="add-movie__wrapper">
+              <div className="edit-movie__wrapper">
                 <div className="wrapper__item">
                   <InfoFields
                     langs={langs}
-                    isReset={isReset}
+                    movie={movieDetail}
                     onSelectImg={handleSelectedImg}
                   />
                   <DescFields langs={langs} />
@@ -147,18 +164,18 @@ const AddMovie: React.FunctionComponent<{}> = (props) => {
                 <div className="wrapper__item">
                   <StatusFields
                     langs={langs}
-                    isReset={isReset}
                     options={options}
+                    movie={movieDetail}
                   />
                   <CountryFields
                     langs={langs}
-                    isReset={isReset}
                     options={options}
+                    movie={movieDetail}
                   />
                   <DetailFields
                     langs={langs}
                     options={options}
-                    isReset={isReset}
+                    movie={movieDetail}
                   />
                 </div>
               </div>
@@ -170,4 +187,4 @@ const AddMovie: React.FunctionComponent<{}> = (props) => {
   );
 };
 
-export default AddMovie;
+export default EditMovie;

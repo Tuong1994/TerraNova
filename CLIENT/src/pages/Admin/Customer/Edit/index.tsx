@@ -66,18 +66,18 @@ const EditCustomer: React.FunctionComponent<
   };
 
   const initialValues = {
-    account: userDetail?.account,
-    firstName: userDetail?.firstName,
-    lastName: userDetail?.lastName,
-    email: userDetail?.email,
-    phone: userDetail?.phone,
-    address: userDetail?.address,
-    ward: userDetail?.ward,
-    district: userDetail?.district,
-    province: userDetail?.province,
-    birthDay: userDetail?.birthDay,
-    gender: userDetail?.gender,
-    role: userDetail?.role,
+    account: userDetail.account || "",
+    firstName: userDetail.firstName || "",
+    lastName: userDetail.lastName || "",
+    email: userDetail.email || "",
+    phone: userDetail.phone || "",
+    address: userDetail.address || "",
+    ward: userDetail.ward || "",
+    district: userDetail.district || "",
+    province: userDetail.province || "",
+    birthDay: userDetail.birthDay || "",
+    gender: userDetail.gender || "",
+    role: userDetail.role || "",
   };
 
   const validationSchema = yup.object().shape({

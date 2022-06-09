@@ -11,11 +11,12 @@ import {
   getCourseList,
   removeCourse,
 } from "../../../../redux/actionCreators/CourseCreators";
+import { ICourse } from "../../../../models/Course";
 import CourseAdminRow from "../../../../components/TableRow/CourseAdminRow";
 import DataLoading from "../../../../components/Loading/DataLoading";
 import Filter from "../../../../components/Filter";
 import Pagination from "../../../../components/Pagination";
-import { ICourse } from "../../../../models/Course";
+import RemoveModal from "../../../../components/Remove";
 
 const CourseList: React.FunctionComponent<{}> = (props) => {
   const { page } = useSelector(
@@ -29,6 +30,8 @@ const CourseList: React.FunctionComponent<{}> = (props) => {
 
   const dispatch = useDispatch();
 
+  const [isShow, setIsShow] = React.useState<boolean>(false);
+  const [course, setCourse] = React.useState<ICourse>({});
   const [filter, setFilter] = React.useState<string>("all");
   const [sortBy, setSortBy] = React.useState<number>(ESortBy.newest);
   const [freeText, setFreeText] = React.useState<string>("");
@@ -60,7 +63,7 @@ const CourseList: React.FunctionComponent<{}> = (props) => {
     }, 500);
   };
 
-  const _removeCourse = (course: ICourse) => {
+  const handleRemove = () => {
     const lessonIds = course?.lessons?.map((i) => {
       return i.id;
     });
@@ -83,6 +86,7 @@ const CourseList: React.FunctionComponent<{}> = (props) => {
         data
       )
     );
+    setIsShow(false);
   };
 
   const renderCourseList = () => {
@@ -95,7 +99,8 @@ const CourseList: React.FunctionComponent<{}> = (props) => {
             lang={lang}
             index={index}
             course={course}
-            removeCourse={_removeCourse}
+            setIsShow={setIsShow}
+            setCourse={setCourse}
           />
         );
       });
@@ -164,6 +169,18 @@ const CourseList: React.FunctionComponent<{}> = (props) => {
       </Card.Wrapper>
 
       <Pagination perPage={limits} total={total} isShowContent={true} />
+      <RemoveModal
+        show={isShow}
+        content={() => {
+          return (
+            <div>
+              <p>{langs?.removeModal.courseRemove}</p>
+            </div>
+          );
+        }}
+        onHide={() => setIsShow(false)}
+        onRemove={handleRemove}
+      />
     </div>
   );
 };

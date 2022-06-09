@@ -785,6 +785,11 @@ const ChLang = {
     movieDescENG: "描述 (ENG)",
     movieDescVN: "描述 (VN)",
     movieDescCH: "描述 (CH)",
+    actors: "演员",
+    director: "导演",
+    duration: "期间",
+    releaseDay: "发布日",
+    type: "类型",
   },
 
   // ==================== TABLE HEADER ====================
@@ -860,6 +865,11 @@ const ChLang = {
     orderCancel: "您想取消订单吗?",
     courseCancel: "你想取消课程吗?",
     ticketCancel: "您想取消预订吗?",
+    orderRemove: "您要删除此订单吗？",
+    productRemove: "您要删除此产品吗？",
+    courseRemove: "您要删除此课程吗？",
+    customerRemove: "您要删除此客户吗？",
+    movieRemove: "您要删除此电影吗？",
   },
 };
 

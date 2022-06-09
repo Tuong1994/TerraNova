@@ -20,13 +20,13 @@ const Course: React.FunctionComponent<CourseProps> = (props) => {
   const { lang, langs, user } = props;
 
   const [isShow, setIsShow] = React.useState<boolean>(false);
-  const [courseId, setCourseId] = React.useState<string>("");
+  const [courseOrderId, setCourseOrderId] = React.useState<string>("");
 
   const dispatch = useDispatch();
 
   const _removeCourseOrder = () => {
     const query: IQueryList = {
-      courseOrderId: courseId,
+      courseOrderId: courseOrderId,
       userId: user?.id,
     };
     dispatch(
@@ -36,6 +36,7 @@ const Course: React.FunctionComponent<CourseProps> = (props) => {
         langs?.toastMessages.error.remove
       )
     );
+    setIsShow(false);
   };
 
   return (
@@ -73,7 +74,7 @@ const Course: React.FunctionComponent<CourseProps> = (props) => {
                     langs={langs}
                     courseOrder={course}
                     setIsShow={setIsShow}
-                    setCourseId={setCourseId}
+                    setCourseOrderId={setCourseOrderId}
                   />
                 );
               });

@@ -7,13 +7,14 @@ import moment from "moment";
 interface IProductAdminRowProps {
   product: IProduct;
   index: number;
-  handleRemove: (product: IProduct) => void;
+  setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
+  setProduct: React.Dispatch<React.SetStateAction<IProduct>>;
 }
 
 const ProductAdminRow: React.FunctionComponent<IProductAdminRowProps> = (
   props
 ) => {
-  const { product, index, handleRemove } = props;
+  const { product, index, setIsShow, setProduct } = props;
 
   return (
     <tr className="product-admin-row">
@@ -60,7 +61,8 @@ const ProductAdminRow: React.FunctionComponent<IProductAdminRowProps> = (
         <div
           className="button--delete"
           onClick={() => {
-            handleRemove(product);
+            setIsShow(true)
+            setProduct(product)
           }}
         >
           <i className="fas fa-trash-alt"></i>

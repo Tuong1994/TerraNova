@@ -55,9 +55,8 @@ const CourseCategory: React.FunctionComponent<CourseCategoryProps> = (
       <div className="category__list">
         {categoryList.map((i) => {
           return (
-            <div className="list__item">
+            <div className="list__item" key={i.id}>
               <Layer
-                key={i.id}
                 link={i.path}
                 title={i.title}
                 icon={i.icon}

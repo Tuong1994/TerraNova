@@ -99,6 +99,11 @@ export const adminRoutes: IRoute[] = [
     exact: true,
     component: Movie.Add,
   },
+  {
+    path: "/admin/movie/editMovie/:id",
+    exact: true,
+    component: Movie.Edit,
+  },
 ];
 
 export const userRoutes: IRoute[] = [

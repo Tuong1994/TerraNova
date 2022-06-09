@@ -9,11 +9,11 @@ interface CourseUserRowProps {
   langs: ILangs;
   courseOrder: ICourseOrder;
   setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
-  setCourseId: React.Dispatch<React.SetStateAction<string>>;
+  setCourseOrderId: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const CourseUserRow: React.FunctionComponent<CourseUserRowProps> = (props) => {
-  const { lang, langs, courseOrder, setCourseId, setIsShow } = props;
+  const { lang, langs, courseOrder, setCourseOrderId, setIsShow } = props;
 
   const [courseDetail, setCourseDetail] = React.useState<any>({});
   const [register, setRegister] = React.useState<any>({});
@@ -72,7 +72,7 @@ const CourseUserRow: React.FunctionComponent<CourseUserRowProps> = (props) => {
         <div
           className="button--delete"
           onClick={() => {
-            setCourseId(courseDetail?.courseId || "");
+            setCourseOrderId(courseOrder?.id || courseOrder?.courseOrderId || "");
             setIsShow(true);
           }}
         >

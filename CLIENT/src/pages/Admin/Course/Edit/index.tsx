@@ -72,15 +72,15 @@ const EditCourse: React.FunctionComponent<RouteComponentProps<IRouteParams>> = (
   };
 
   const initialValues = {
-    nameENG: courseDetail?.nameENG,
-    nameVN: courseDetail?.nameVN,
-    nameCH: courseDetail?.nameCH,
-    descENG: courseDetail?.descENG,
-    descVN: courseDetail?.descVN,
-    descCH: courseDetail?.descCH,
-    profit: courseDetail?.profit,
-    trainingTime: courseDetail?.trainingTime,
-    categoryId: courseDetail?.categoryId,
+    nameENG: courseDetail.nameENG || "",
+    nameVN: courseDetail.nameVN || "",
+    nameCH: courseDetail.nameCH || "",
+    descENG: courseDetail.descENG || "",
+    descVN: courseDetail.descVN || "",
+    descCH: courseDetail.descCH || "",
+    profit: courseDetail.profit || "",
+    trainingTime: courseDetail.trainingTime || "",
+    categoryId: courseDetail.categoryId || "",
   };
 
   const validationSchema = yup.object().shape({

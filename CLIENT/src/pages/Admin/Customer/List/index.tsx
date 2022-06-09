@@ -8,12 +8,13 @@ import {
   getUserList,
   removeUser,
 } from "../../../../redux/actionCreators/UserCreators";
-import ContentHeader from "../../../../components/ContentHeader";
 import Table from "../../../../components/Table";
+import ContentHeader from "../../../../components/ContentHeader";
 import CustomerAdminRow from "../../../../components/TableRow/CustomerAdminRow";
 import DataLoading from "../../../../components/Loading/DataLoading";
 import Pagination from "../../../../components/Pagination";
 import Filter from "../../../../components/Filter";
+import RemoveModal from "../../../../components/Remove";
 import utils from "../../../../utils";
 
 const CustomerList: React.FunctionComponent<{}> = (props) => {
@@ -26,6 +27,8 @@ const CustomerList: React.FunctionComponent<{}> = (props) => {
     (state: ReducerState) => state.LoadingReducer
   );
 
+  const [isShow, setIsShow] = React.useState<boolean>(false);
+  const [userId, setUserId] = React.useState<string>("");
   const [filter, setFilter] = React.useState<string>("all");
   const [freeText, setFreeText] = React.useState<string>("");
   const [sortBy, setSortBy] = React.useState<number>(ESortBy.newest);
@@ -61,9 +64,10 @@ const CustomerList: React.FunctionComponent<{}> = (props) => {
     }, 500);
   };
 
-  const handleRemove = (id: string) => {
+  const handleRemove = () => {
     const query: IQueryList = {
-      userId: id,
+      isPaging: true,
+      userId: userId,
     };
     dispatch(
       removeUser(
@@ -72,6 +76,7 @@ const CustomerList: React.FunctionComponent<{}> = (props) => {
         langs?.toastMessages.error.remove
       )
     );
+    setIsShow(false);
   };
 
   const renderUserList = () => {
@@ -84,7 +89,8 @@ const CustomerList: React.FunctionComponent<{}> = (props) => {
             langs={langs}
             user={user}
             index={index}
-            onRemove={handleRemove}
+            setIsShow={setIsShow}
+            setUserId={setUserId}
           />
         );
       });
@@ -155,6 +161,18 @@ const CustomerList: React.FunctionComponent<{}> = (props) => {
       </Card.Wrapper>
 
       <Pagination perPage={limits} total={total} isShowContent={true} />
+      <RemoveModal
+        show={isShow}
+        content={() => {
+          return (
+            <div>
+              <p>{langs?.removeModal.customerRemove}</p>
+            </div>
+          );
+        }}
+        onHide={() => setIsShow(false)}
+        onRemove={handleRemove}
+      />
     </div>
   );
 };

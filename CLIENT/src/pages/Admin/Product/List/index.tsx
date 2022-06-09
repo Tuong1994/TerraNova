@@ -16,6 +16,7 @@ import Pagination from "../../../../components/Pagination";
 import Filter from "../../../../components/Filter";
 import DataLoading from "../../../../components/Loading/DataLoading";
 import utils from "../../../../utils";
+import RemoveModal from "../../../../components/Remove";
 
 const ProductList: React.FunctionComponent<{}> = (props) => {
   const { productList } = useSelector(
@@ -29,6 +30,8 @@ const ProductList: React.FunctionComponent<{}> = (props) => {
     (state: ReducerState) => state.LoadingReducer
   );
 
+  const [isShow, setIsShow] = React.useState<boolean>(false);
+  const [product, setProduct] = React.useState<IProduct>({});
   const [filter, setFilter] = React.useState<string>("all");
   const [sortBy, setSortBy] = React.useState<number>(ESortBy.newest);
   const [freeText, setFreeText] = React.useState<string>("");
@@ -64,7 +67,7 @@ const ProductList: React.FunctionComponent<{}> = (props) => {
   };
 
   // Remove product
-  const handleRemoveProduct = (product: IProduct) => {
+  const handleRemove = () => {
     const descIds = product?.description?.map((i) => {
       return i.id;
     });
@@ -73,15 +76,16 @@ const ProductList: React.FunctionComponent<{}> = (props) => {
     };
     const data = {
       descIds,
-    }
+    };
     dispatch(
       removeProduct(
         query,
         langs?.toastMessages.success.remove,
         langs?.toastMessages.error.remove,
-        data,
+        data
       )
     );
+    setIsShow(false);
   };
 
   // Render product list
@@ -94,7 +98,8 @@ const ProductList: React.FunctionComponent<{}> = (props) => {
             key={product.id || product.productId}
             product={product}
             index={index}
-            handleRemove={handleRemoveProduct}
+            setIsShow={setIsShow}
+            setProduct={setProduct}
           />
         );
       });
@@ -163,6 +168,18 @@ const ProductList: React.FunctionComponent<{}> = (props) => {
       </Card.Wrapper>
 
       <Pagination perPage={limits} total={totalProduct} isShowContent={true} />
+      <RemoveModal
+        show={isShow}
+        content={() => {
+          return (
+            <div>
+              <p>{langs?.removeModal.productRemove}</p>
+            </div>
+          );
+        }}
+        onHide={() => setIsShow(false)}
+        onRemove={handleRemove}
+      />
     </div>
   );
 };

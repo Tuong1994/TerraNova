@@ -6,6 +6,7 @@ const {
   MovieSchedule,
   Rate,
 } = require("../models");
+const { domain } = require("../setting/setting");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
@@ -39,9 +40,9 @@ const getMovieList = async (req, res) => {
           include: [
             {
               model: Rate,
-              as: "rates"
-            }
-          ]
+              as: "rates",
+            },
+          ],
         });
       } else {
         movieList = await Movie.findAll({
@@ -52,9 +53,9 @@ const getMovieList = async (req, res) => {
           include: [
             {
               model: Rate,
-              as: "rates"
-            }
-          ]
+              as: "rates",
+            },
+          ],
         });
       }
     } else if (freeText) {
@@ -68,9 +69,9 @@ const getMovieList = async (req, res) => {
         include: [
           {
             model: Rate,
-            as: "rates"
-          }
-        ]
+            as: "rates",
+          },
+        ],
       });
     } else {
       movieList = await Movie.findAll({
@@ -78,9 +79,9 @@ const getMovieList = async (req, res) => {
         include: [
           {
             model: Rate,
-            as: "rates"
-          }
-        ]
+            as: "rates",
+          },
+        ],
       });
     }
 
@@ -267,6 +268,7 @@ const getMovieDetail = async (req, res) => {
 };
 
 const createMovie = async (req, res) => {
+  const { file } = req;
   const {
     nameENG,
     nameVN,
@@ -277,9 +279,19 @@ const createMovie = async (req, res) => {
     duration,
     trailer,
     releaseDay,
+    actors,
+    director,
+    status,
+    type,
+    country,
   } = req.body;
   try {
-    const movieId = "CPLEX_" + Math.floor(Math.random() * 999999999).toString();
+    let urlImg = "";
+    if (file) {
+      urlImg = `${domain}/${file.path}`;
+    }
+
+    const movieId = "M_" + Math.floor(Math.random() * 999999999).toString();
     const newMovie = await Movie.create({
       id: movieId,
       nameENG,
@@ -288,9 +300,15 @@ const createMovie = async (req, res) => {
       descENG,
       descVN,
       descCH,
+      image: urlImg,
       duration,
       trailer,
       releaseDay,
+      actors,
+      director,
+      status,
+      type,
+      country,
     });
     res.status(200).send(newMovie);
   } catch (error) {
@@ -299,6 +317,7 @@ const createMovie = async (req, res) => {
 };
 
 const updateMovie = async (req, res) => {
+  const { file } = req;
   const { movieId } = req.query;
   const {
     nameENG,
@@ -307,11 +326,23 @@ const updateMovie = async (req, res) => {
     descENG,
     descVN,
     descCH,
+    defaultImg,
     duration,
     trailer,
     releaseDay,
+    actors,
+    director,
+    status,
+    type,
   } = req.body;
   try {
+    let urlImg = ""
+    if(file) {
+      urlImg = `${domain}/${file.path}`
+    } else {
+      urlImg = defaultImg
+    }
+
     await Movie.update(
       {
         nameENG,
@@ -320,9 +351,14 @@ const updateMovie = async (req, res) => {
         descENG,
         descVN,
         descCH,
+        image: urlImg,
         duration,
         trailer,
         releaseDay,
+        actors,
+        director,
+        status,
+        type,
       },
       {
         where: {

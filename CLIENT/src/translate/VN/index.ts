@@ -795,6 +795,11 @@ const VnLang = {
     movieDescENG: "Mô tả (ENG)",
     movieDescVN: "Mô tả (VN)",
     movieDescCH: "Mô tả (CH)",
+    actors: "Diễn viên",
+    director: "Đạo diễn",
+    duration: "Thời lượng",
+    releaseDay: "Ngày phát hành",
+    type: "Thể loại",
   },
 
   // ==================== TABLE HEADER ====================
@@ -870,6 +875,11 @@ const VnLang = {
     orderCancel: "Bạn có muốn hủy đơn hàng?",
     courseCancel: "Bạn có muốn hủy khóa học?",
     ticketCancel: "Bạn có muốn hủy đặt vé?",
+    orderRemove: "Bạn có muốn xóa đơn hàng này?",
+    productRemove: "Bạn có muốn xóa sản phẩm này?",
+    courseRemove: "Bạn có muốn xóa khóa học này?",
+    customerRemove: "Bạn có muốn xóa khách hàng này?",
+    movieRemove: "Bạn có muốn xóa phim này?",
   },
 };
 

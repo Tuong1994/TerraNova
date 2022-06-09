@@ -1,4 +1,4 @@
-const { Product, Course, User } = require("../models");
+const { Product, Course, User, Movie } = require("../models");
 const { domain } = require("../setting/setting");
 
 const uploadProductImg = async (req, res) => {
@@ -39,6 +39,24 @@ const uploadCourseImg = async (req, res) => {
   }
 };
 
+const uploadMovieImg = async (req, res) => {
+  const { file } = req;
+  const { movieId } = req.query;
+  const urlImg = `${domain}/${file.path}`;
+  try {
+    const movieDetail = await Movie.findOne({
+      where: {
+        id: movieId,
+      },
+    });
+    movieDetail.image = urlImg;
+    await movieDetail.save();
+    res.status(200).send(movieDetail);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 const uploadAvatar = async (req, res) => {
   const { file } = req;
   const { userId } = req.query;
@@ -61,4 +79,5 @@ module.exports = {
   uploadProductImg,
   uploadCourseImg,
   uploadAvatar,
+  uploadMovieImg
 };

@@ -35,6 +35,7 @@ const Order: React.FunctionComponent<OrderProps> = (props) => {
         langs?.toastMessages.error.remove
       )
     );
+    setIsShow(false);
   };
 
   return (

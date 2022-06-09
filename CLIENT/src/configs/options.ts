@@ -10,14 +10,10 @@ import { EPaymentTypes, EShipmentType, EStatus } from "../models/Order";
 import { EWard, EDistrict, EProvince } from "./../models/Shipment";
 import { ESortBy } from "../interfaces/query";
 import { EGender, ERole } from "../models/User";
-import { EMovieCountry, EMovieStatus } from "../models/Movie";
+import { EMovieCountry, EMovieStatus, EMovieType } from "../models/Movie";
 
 export const optionsEng = {
-  orderStatus: [
-    { label: "PAID", value: EStatus.paid },
-    { label: "WAITING", value: EStatus.waiting },
-    { label: "DELIVERING", value: EStatus.delivering },
-  ],
+  // MOVIE
   movieStatus: [
     { label: "SHOWING", value: EMovieStatus.showing },
     { label: "COMMING", value: EMovieStatus.comming },
@@ -30,13 +26,21 @@ export const optionsEng = {
     { label: "ENGLAND", value: EMovieCountry.england },
     { label: "VIETNAM", value: EMovieCountry.vietnam },
   ],
-  role: [
-    { label: "Admin", value: ERole.admin },
-    { label: "User", value: ERole.user },
+  movieType: [
+    { label: "ACTION", value: EMovieType.action },
+    { label: "ADVENTURE", value: EMovieType.adventure },
+    { label: "COMEDY", value: EMovieType.comedy },
+    { label: "DRAMA", value: EMovieType.drama },
+    { label: "HORROR", value: EMovieType.horror },
+    { label: "SCI FI", value: EMovieType.sciFi },
+    { label: "THRILLER", value: EMovieType.thriller },
   ],
-  gender: [
-    { label: "Male", value: EGender.male },
-    { label: "Female", value: EGender.female },
+
+  // ORDER
+  orderStatus: [
+    { label: "PAID", value: EStatus.paid },
+    { label: "WAITING", value: EStatus.waiting },
+    { label: "DELIVERING", value: EStatus.delivering },
   ],
   province: [
     { label: "Ho Chi Minh", value: EProvince.HCM },
@@ -127,6 +131,18 @@ export const optionsEng = {
       icon: "/img/icon/vib.png",
     },
   ],
+
+  // USER
+  role: [
+    { label: "Admin", value: ERole.admin },
+    { label: "User", value: ERole.user },
+  ],
+  gender: [
+    { label: "Male", value: EGender.male },
+    { label: "Female", value: EGender.female },
+  ],
+
+  //  PRODUCT
   productStatus: [
     { label: "New", value: EProductStatus.new },
     { label: "90% new", value: EProductStatus.secondHand },
@@ -204,6 +220,8 @@ export const optionsEng = {
     { label: "DELL", value: EProducer.dell },
     { label: "HP", value: EProducer.hp },
   ],
+
+  // COURSE
   courseCategory: [
     { label: "MINDSET", value: ECourseCategory.mindset },
     { label: "MOBILE", value: ECourseCategory.mobile },
@@ -221,6 +239,8 @@ export const optionsEng = {
     { label: "1", value: EBranch.one },
     { label: "2", value: EBranch.two },
   ],
+
+  // COMMON
   sortBy: [
     { label: "Newest", value: ESortBy.newest },
     { label: "Oldest", value: ESortBy.oldest },
@@ -268,11 +288,7 @@ export const optionsEng = {
 };
 
 export const optionsVn = {
-  orderStatus: [
-    { label: "ĐÃ THANH TOÁN", value: EStatus.paid },
-    { label: "ĐANG XỬ LÝ", value: EStatus.waiting },
-    { label: "ĐANG GIAO", value: EStatus.delivering },
-  ],
+  // MOVIE
   movieStatus: [
     { label: "ĐANG CHIẾU", value: EMovieStatus.showing },
     { label: "SẮP CHIẾU", value: EMovieStatus.comming },
@@ -285,13 +301,21 @@ export const optionsVn = {
     { label: "ANH QUỐC", value: EMovieCountry.england },
     { label: "VIỆT NAM", value: EMovieCountry.vietnam },
   ],
-  role: [
-    { label: "Quản trị", value: ERole.admin },
-    { label: "Khách hàng", value: ERole.user },
+  movieType: [
+    { label: "HÀNH ĐỘNG", value: EMovieType.action },
+    { label: "PHIÊU LƯU", value: EMovieType.adventure },
+    { label: "HÀI HƯỚC", value: EMovieType.comedy },
+    { label: "TÂM LÝ", value: EMovieType.drama },
+    { label: "KINH DỊ", value: EMovieType.horror },
+    { label: "KHOA HỌC VIỄN TƯỞNG", value: EMovieType.sciFi },
+    { label: "GIẬT GÂN", value: EMovieType.thriller },
   ],
-  gender: [
-    { label: "Nam", value: EGender.male },
-    { label: "Nữ", value: EGender.female },
+
+  // ORDER
+  orderStatus: [
+    { label: "ĐÃ THANH TOÁN", value: EStatus.paid },
+    { label: "ĐANG XỬ LÝ", value: EStatus.waiting },
+    { label: "ĐANG GIAO", value: EStatus.delivering },
   ],
   province: [
     { label: "Hồ Chí Minh", value: EProvince.HCM },
@@ -385,6 +409,18 @@ export const optionsVn = {
       icon: "/img/icon/vib.png",
     },
   ],
+
+  // USER
+  role: [
+    { label: "Quản trị", value: ERole.admin },
+    { label: "Khách hàng", value: ERole.user },
+  ],
+  gender: [
+    { label: "Nam", value: EGender.male },
+    { label: "Nữ", value: EGender.female },
+  ],
+
+  // PRODUCT
   productStatus: [
     { label: "Mới", value: EProductStatus.new },
     { label: "Mới 90%", value: EProductStatus.secondHand },
@@ -462,6 +498,8 @@ export const optionsVn = {
     { label: "DELL", value: EProducer.dell },
     { label: "HP", value: EProducer.hp },
   ],
+
+  // COURSE
   courseCategory: [
     { label: "MINDSET", value: ECourseCategory.mindset },
     { label: "MOBILE", value: ECourseCategory.mobile },
@@ -479,6 +517,8 @@ export const optionsVn = {
     { label: "1", value: EBranch.one },
     { label: "2", value: EBranch.two },
   ],
+
+  // COMMON
   sortBy: [
     { label: "Mới nhất", value: ESortBy.newest },
     { label: "Cũ nhất", value: ESortBy.oldest },
@@ -526,11 +566,7 @@ export const optionsVn = {
 };
 
 export const optionsCh = {
-  orderStatus: [
-    { label: "支付", value: EStatus.paid },
-    { label: "等待进展", value: EStatus.waiting },
-    { label: "交货正在进行中", value: EStatus.delivering },
-  ],
+  // MOVIE
   movieStatus: [
     { label: "正在上映", value: EMovieStatus.showing },
     { label: "快来了", value: EMovieStatus.comming },
@@ -543,13 +579,21 @@ export const optionsCh = {
     { label: "英国", value: EMovieCountry.england },
     { label: "越南", value: EMovieCountry.vietnam },
   ],
-  role: [
-    { label: "管理", value: ERole.admin },
-    { label: "客户", value: ERole.user },
+  movieType: [
+    { label: "行动", value: EMovieType.action },
+    { label: "冒险", value: EMovieType.adventure },
+    { label: "喜剧", value: EMovieType.comedy },
+    { label: "戏剧", value: EMovieType.drama },
+    { label: "恐怖", value: EMovieType.horror },
+    { label: "科幻", value: EMovieType.sciFi },
+    { label: "惊悚片", value: EMovieType.thriller },
   ],
-  gender: [
-    { label: "男性", value: EGender.male },
-    { label: "女性", value: EGender.female },
+
+  // ORDER
+  orderStatus: [
+    { label: "支付", value: EStatus.paid },
+    { label: "等待进展", value: EStatus.waiting },
+    { label: "交货正在进行中", value: EStatus.delivering },
   ],
   province: [
     { label: "吴志明市", value: EProvince.HCM },
@@ -602,7 +646,6 @@ export const optionsCh = {
       { label: "考嘉", value: EWard.cauGiay },
       { label: "河东", value: EWard.haDong },
     ],
-
     district: [
       { label: "巴维", value: EDistrict.baVi },
       { label: "章美", value: EDistrict.chuongMy },
@@ -640,6 +683,18 @@ export const optionsCh = {
       icon: "/img/icon/vib.png",
     },
   ],
+
+  // USER
+  role: [
+    { label: "管理", value: ERole.admin },
+    { label: "客户", value: ERole.user },
+  ],
+  gender: [
+    { label: "男性", value: EGender.male },
+    { label: "女性", value: EGender.female },
+  ],
+
+  // PRODUCT
   productStatus: [
     { label: "全新", value: EProductStatus.new },
     { label: "90% 全新", value: EProductStatus.secondHand },
@@ -717,6 +772,8 @@ export const optionsCh = {
     { label: "DELL", value: EProducer.dell },
     { label: "HP", value: EProducer.hp },
   ],
+
+  // COURSE
   courseCategory: [
     { label: "MINDSET", value: ECourseCategory.mindset },
     { label: "MOBILE", value: ECourseCategory.mobile },
@@ -734,6 +791,8 @@ export const optionsCh = {
     { label: "一", value: EBranch.one },
     { label: "二", value: EBranch.two },
   ],
+
+  // COMMON
   sortBy: [
     { label: "最新", value: ESortBy.newest },
     { label: "最老", value: ESortBy.oldest },

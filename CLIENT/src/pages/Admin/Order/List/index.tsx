@@ -14,6 +14,7 @@ import Filter from "../../../../components/Filter";
 import OrderAdminRow from "../../../../components/TableRow/OrderAdminRow";
 import DataLoading from "../../../../components/Loading/DataLoading";
 import Pagination from "../../../../components/Pagination";
+import RemoveModal from "../../../../components/Remove";
 import utils from "../../../../utils";
 
 const OrderList: React.FunctionComponent<{}> = (props) => {
@@ -28,6 +29,8 @@ const OrderList: React.FunctionComponent<{}> = (props) => {
     (state: ReducerState) => state.LoadingReducer
   );
 
+  const [isShow, setIsShow] = React.useState<boolean>(false);
+  const [orderId, setOrderId] = React.useState<string>("");
   const [filter, setFilter] = React.useState<string>("all");
   const [freeText, setFreeText] = React.useState<string>("");
   const [sortBy, setSortBy] = React.useState<number>(ESortBy.newest);
@@ -61,9 +64,9 @@ const OrderList: React.FunctionComponent<{}> = (props) => {
     }, 500);
   };
 
-  const handleRemove = (id: string) => {
+  const handleRemove = () => {
     const query: IQueryList = {
-      orderId: id,
+      orderId: orderId,
     };
     dispatch(
       removeOrder(
@@ -72,6 +75,7 @@ const OrderList: React.FunctionComponent<{}> = (props) => {
         langs?.toastMessages.error.remove
       )
     );
+    setIsShow(false);
   };
 
   const renderOrderList = () => {
@@ -84,7 +88,8 @@ const OrderList: React.FunctionComponent<{}> = (props) => {
             index={index}
             order={order}
             langs={langs}
-            removeOrder={handleRemove}
+            setIsShow={setIsShow}
+            setOrderId={setOrderId}
           />
         );
       });
@@ -155,6 +160,18 @@ const OrderList: React.FunctionComponent<{}> = (props) => {
       </Card.Wrapper>
 
       <Pagination total={total} perPage={limits} isShowContent={true} />
+      <RemoveModal
+        show={isShow}
+        content={() => {
+          return (
+            <div>
+              <p>{langs?.removeModal.orderRemove}</p>
+            </div>
+          );
+        }}
+        onHide={() => setIsShow(false)}
+        onRemove={handleRemove}
+      />
     </div>
   );
 };

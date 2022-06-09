@@ -804,6 +804,11 @@ const EngLang = {
     movieDescENG: "Description (ENG)",
     movieDescVN: "Description (VN)",
     movieDescCH: "Description (CH)",
+    actors: "Actors",
+    director: "Director",
+    duration: "Duration",
+    releaseDay: "Release day",
+    type: "Type",
   },
 
   // ==================== TABLE HEADER ====================
@@ -879,6 +884,11 @@ const EngLang = {
     orderCancel: "Do you want to cancel this order?",
     courseCancel: "Do you want to cancel this course?",
     ticketCancel: "Do you want to cancel this ticket?",
+    orderRemove: "Do you want to remove this order?",
+    productRemove: "Do you want to remove this product?",
+    courseRemove: "Do you want to remove this course?",
+    customerRemove: "Do you want to remove this customer?",
+    movieRemove: "Do you want to remove this movie?",
   },
 };
 
