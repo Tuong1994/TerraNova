@@ -15,7 +15,7 @@ const Home: React.FunctionComponent<{}> = (props) => {
   customHook.useLoading();
 
   return (
-    <div className="home">
+    <div className="home" style={{ position: "relative" }}>
       <Carousel />
       <Categories />
       <PCBanner />

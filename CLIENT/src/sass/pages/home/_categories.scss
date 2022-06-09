@@ -2,111 +2,113 @@
   width: $w-100;
   height: $h-10 * 50;
   padding: $p-10 * 5;
-  background: url("../../../assets/img/blue-background.jpg");
+  // background: url("../../../assets/img/blue-background.jpg");
+  background: $secondary;
 
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
   -webkit-clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
   -moz-clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
   margin-bottom: -5vw;
 
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-
   position: relative;
   z-index: 9;
-  .categories__card {
-    width: $w-100 / 3.1;
-    padding: $p-10 * 4;
-    border-color: $borderBlue;
-    box-shadow: 0 10px 20px $blue-2;
-    color: $tSecondary;
-    transition: all 0.5s ease;
-    background: $secondary;
-    overflow: hidden;
-    position: relative;
-    z-index: 1;
-    &:nth-child(1) {
-      height: $h-10 * 40;
-      @include respond(laptop) {
-        height: $h-10 * 45;
+  .categories__wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    .wrapper__card {
+      width: $w-100 / 3.1;
+      padding: $p-10 * 4;
+      border-color: $borderBlue;
+      box-shadow: 0 10px 20px $blue-2;
+      color: $tSecondary;
+      background: $secondary;
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+      transition: all 0.5s ease;
+      &:nth-child(1) {
+        height: $h-10 * 40;
+        @include respond(laptop) {
+          height: $h-10 * 45;
+        }
+        @include respond(extraTablet) {
+          height: auto;
+        }
+      }
+      &:nth-child(2) {
+        height: $h-10 * 35;
+        @include respond(extraTablet) {
+          height: auto;
+        }
+      }
+      &:nth-child(3) {
+        height: $h-10 * 30;
+        @include respond(extraTablet) {
+          height: auto;
+        }
+      }
+      // &::after,
+      // &::before {
+      //   content: "";
+      //   width: $w-10 * 15;
+      //   height: $h-10 * 15;
+      //   border-radius: $circle;
+      //   position: absolute;
+      //   z-index: -1;
+      //   animation: blob 3s linear infinite;
+      // }
+      // &::after {
+      //   background: $blue-1;
+      //   top: -8%;
+      //   right: -8%;
+      // }
+      // &::before {
+      //   background: $blue-2;
+      //   bottom: -8%;
+      //   left: -8%;
+      // }
+      .card__title {
+        font-size: $h5;
+        font-weight: $medium;
+        text-align: center;
+        margin-bottom: $m-10 * 2;
+      }
+      .card__body {
+        .body__content {
+          line-height: 35px;
+          text-align: justify;
+        }
+      }
+      .card__button {
+        margin: $m-10 * 5 0;
+        .button--round {
+          display: block;
+          font-size: $subtitle;
+        }
       }
       @include respond(extraTablet) {
-        height: auto;
+        width: $w-100;
+        margin: $m-10 * 2 0;
+      }
+      @include respond(phone) {
+        width: $w-100;
+        margin: $m-10 * 2 0;
+        padding: $p-10;
       }
     }
-    &:nth-child(2) {
-      height: $h-10 * 35;
-      @include respond(extraTablet) {
-        height: auto;
-      }
-    }
-    &:nth-child(3) {
-      height: $h-10 * 30;
-      @include respond(extraTablet) {
-        height: auto;
-      }
-    }
-    &::after,
-    &::before {
-      content: "";
-      width: $w-10 * 15;
-      height: $h-10 * 15;
-      border-radius: $circle;
-      position: absolute;
-      z-index: -1;
-      animation: blob 3s linear infinite;
-    }
-    &::after {
-      background: $blue-1;
-      top: -8%;
-      right: -8%;
-    }
-    &::before {
-      background: $blue-2;
-      bottom: -8%;
-      left: -8%;
-    }
-    .card__title {
-      font-size: $h5;
-      font-weight: $medium;
-      text-align: center;
-      margin-bottom: $m-10 * 2;
-    }
-    .card__body {
-      .body__content {
-        line-height: 35px;
-        text-align: justify;
-      }
-    }
-    .card__button {
-      margin: $m-10 * 5 0;
-      .button--round {
-        display: block;
-        font-size: $subtitle;
-      }
+    @include respond(laptop) {
+      height: $h-10 * 55;
     }
     @include respond(extraTablet) {
-      width: $w-100;
-      margin: $m-10 * 2 0;
+      flex-direction: column;
+      height: auto;
     }
     @include respond(phone) {
-      width: $w-100;
-      margin: $m-10 * 2 0;
-      padding: $p-10;
+      flex-direction: column;
+      height: auto;
+      padding: $p-10 * 5 $p-10 * 2;
     }
-  }
-  @include respond(laptop) {
-    height: $h-10 * 55;
-  }
-  @include respond(extraTablet) {
-    flex-direction: column;
-    height: auto;
-  }
-  @include respond(phone) {
-    flex-direction: column;
-    height: auto;
-    padding: $p-10 * 5 $p-10 * 2;
   }
 }
 

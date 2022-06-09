@@ -6,7 +6,6 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   -moz-backdrop-filter: blur(10px);
-  box-shadow: 0 0 10px $lightGrey;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -344,4 +343,5 @@
 
 .header--active {
   background: $RGBA-blue-1;
+  box-shadow: 0 0 10px $lightGrey;
 }

@@ -66,6 +66,7 @@
       .slider__item {
         width: $w-100;
         height: $h-100-vh;
+        background: $secondary;
         background-repeat: no-repeat !important;
         background-position: center !important;
         background-size: cover !important;
@@ -78,15 +79,15 @@
           align-items: center;
           justify-content: center;
           position: relative;
-          &::after {
-            content: "";
-            width: $w-100;
-            height: $h-100;
-            background: $RGBA-dark-1;
-            position: absolute;
-            top: 0;
-            left: 0;
-          }
+          // &::after {
+          //   content: "";
+          //   width: $w-100;
+          //   height: $h-100;
+          //   background: $RGBA-dark-1;
+          //   position: absolute;
+          //   top: 0;
+          //   left: 0;
+          // }
           p {
             font-size: $h3;
             color: $tSecondary;
@@ -108,15 +109,15 @@
           }
         }
       }
-      .slider__item-one {
-        background: url("../../../assets/img/pc_accessories.jpg");
-      }
-      .slider__item-two {
-        background: url("../../../assets/img/courses.jpg");
-      }
-      .slider__item-three {
-        background: url("../../../assets/img/movie.jpg");
-      }
+      // .slider__item-one {
+      //   background: url("../../../assets/img/pc_accessories.jpg");
+      // }
+      // .slider__item-two {
+      //   background: url("../../../assets/img/courses.jpg");
+      // }
+      // .slider__item-three {
+      //   background: url("../../../assets/img/movie.jpg");
+      // }
     }
   }
 

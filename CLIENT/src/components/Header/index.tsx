@@ -30,7 +30,9 @@ const Header: React.FunctionComponent<{}> = (props) => {
   }, [props]);
 
   const styled = () => {
-    if (
+    if (document.location.pathname === "/") {
+      return { backgroundColor: "#4272d8" };
+    } else if (
       document.location.pathname !== "/" &&
       document.location.pathname !== "/movie" &&
       document.location.pathname !== `/movieDetail/${movieId}`

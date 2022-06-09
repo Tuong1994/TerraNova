@@ -31,6 +31,9 @@ const CarouselSlider: React.FunctionComponent<{}> = (props) => {
             <p>{langs?.home.carousel.slideTitle_1}</p>
             <p>{langs?.home.carousel.slideContent_1}</p>
           </div>
+          <div className="item__image">
+            <img src="/img/product_img.jpg" alt="pc" />
+          </div>
         </div>
 
         <div className="slider__item slider__item-two">
