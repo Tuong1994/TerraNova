@@ -75,49 +75,103 @@
           height: $h-100;
           padding: $p-10 * 5;
           display: flex;
-          flex-direction: column;
           align-items: center;
-          justify-content: center;
+          justify-content: space-evenly;
           position: relative;
-          // &::after {
-          //   content: "";
-          //   width: $w-100;
-          //   height: $h-100;
-          //   background: $RGBA-dark-1;
-          //   position: absolute;
-          //   top: 0;
-          //   left: 0;
-          // }
-          p {
-            font-size: $h3;
-            color: $tSecondary;
-            z-index: 1;
-            &:nth-child(1) {
-              font-size: $h1;
-              font-weight: $medium;
-              @include respond(phone) {
-                font-size: $h5;
-                margin-bottom: $m-10 * 2;
+          .wrapper__content {
+            width: $w-100 - 50;
+            text-align: justify;
+            .content__text {
+              font-size: $subtitle;
+              color: $tSecondary;
+              z-index: 1;
+              &:nth-child(1) {
+                font-size: $h1;
+                font-weight: $medium;
+                @include respond(extraTablet) {
+                  font-size: $h2;
+                }
+                @include respond(tablet) {
+                  font-size: $h6;
+                }
+              }
+              &:nth-child(2) {
+                padding: $p-10 * 2 0;
+                @include respond(tablet) {
+                  font-size: $default;
+                }
               }
             }
-            @include respond(tablet) {
-              font-size: $h6;
+            .content__action {
+              display: flex;
+              align-items: center;
+              .button--fill-white {
+                width: $w-10 * 20;
+                font-size: $body-1;
+                &:nth-child(1) {
+                  margin-right: $m-10;
+                }
+              }
             }
             @include respond(phone) {
-              font-size: $body-1;
+              width: $w-100;
             }
           }
+          .wrapper__image {
+            width: $w-100 - 70;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .image__blob {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              @include respond(laptop) {
+                width: $w-10 * 40 !important;
+                height: $h-10 * 40 !important;
+              }
+              @include respond(extraTablet) {
+                width: $w-10 * 30 !important;
+                height: $h-10 * 30 !important;
+              }
+              @include respond(tablet) {
+                width: $w-10 * 25 !important;
+                height: $h-10 * 25 !important;
+              }
+            }
+            .image {
+              width: $w-100 - 15;
+              object-fit: cover;
+              position: relative;
+              z-index: 1;
+              @include respond(extraTablet) {
+                width: $w-10 * 15;
+              }
+            }
+            @include respond(phone) {
+              width: $w-100;
+              margin-bottom: $m-10 * 10;
+            }
+          }
+          @include respond(laptop) {
+            padding: $p-10 * 5 $p-10 * 2;
+          }
+          @include respond(phone) {
+            padding: $p-10 * 5 $p-10;
+            flex-direction: column-reverse;
+          }
+        }
+        @include respond(tablet) {
+          padding-top: $p-10 * 10;
+          height: $h-10 * 40;
+        }
+        @include respond(phone) {
+          padding-top: $p-10 * 10;
+          height: $h-10 * 70;
         }
       }
-      // .slider__item-one {
-      //   background: url("../../../assets/img/pc_accessories.jpg");
-      // }
-      // .slider__item-two {
-      //   background: url("../../../assets/img/courses.jpg");
-      // }
-      // .slider__item-three {
-      //   background: url("../../../assets/img/movie.jpg");
-      // }
     }
   }
 
@@ -132,14 +186,14 @@
     left: 5%;
     color: $tPrimary;
     &::before {
-      content: "◀";
+      content: "";
     }
   }
   .slick-next {
     right: 5%;
     color: $tPrimary;
     &::before {
-      content: "▶";
+      content: "";
     }
   }
   .slick-dots {
@@ -159,5 +213,9 @@
     .slick-active {
       opacity: 1;
     }
+  }
+
+  @include respond(tablet) {
+    height: auto;
   }
 }

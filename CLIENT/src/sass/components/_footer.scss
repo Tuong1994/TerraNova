@@ -1,12 +1,17 @@
 .footer {
   padding: $p-10 * 5;
-  background: $dark;
+  background: $blue-3;
   .footer__info {
     display: flex;
-    align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid $borderWhite;
     padding: $p-10 * 5 0;
+    .info__item {
+      .item__title {
+        color: $tSecondary;
+        margin-bottom: $m-10 * 2;
+      }
+    }
     .info__logo {
       padding: 0;
       .logo__wrapper {
@@ -25,11 +30,7 @@
       }
     }
     .info__partners {
-      .partners__title {
-        color: $tSecondary;
-        margin-bottom: $m-10 * 2;
-      }
-      .partners__list {
+      .item__list {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -50,12 +51,58 @@
         margin-bottom: $m-10 * 2;
       }
     }
-    .info__socials {
-      .socials__title {
-        color: $tSecondary;
-        margin-bottom: $m-10 * 2;
+    .info__group {
+      width: $w-100 - 80;
+      display: flex;
+      justify-content: space-between;
+      .group__item {
+        .item__title {
+          color: $tSecondary;
+          margin-bottom: $m-10 * 2;
+        }
       }
-      .socials__list {
+      .group__policy {
+        .item__list {
+          .list__link {
+            padding: $p-10 0;
+            text-decoration: none;
+            color: $tSecondary;
+            font-size: $body-1;
+            display: block;
+            transition: all 0.5s ease;
+            &:hover {
+              color: $tBlue;
+            }
+          }
+        }
+        @include respond(extraTablet) {
+          width: $w-100 - 55;
+        }
+      }
+      .group__category {
+        .item__list {
+          .list__link {
+            padding: $p-10 0;
+            text-decoration: none;
+            color: $tSecondary;
+            font-size: $body-1;
+            display: block;
+            transition: all 0.5s ease;
+            &:hover {
+              color: $tBlue;
+            }
+          }
+        }
+        @include respond(extraTablet) {
+          width: $w-100 - 55;
+        }
+      }
+      @include respond(extraTablet) {
+        width: $w-100;
+      }
+    }
+    .info__socials {
+      .item__list {
         .list__logo {
           text-decoration: none;
           color: $tSecondary;

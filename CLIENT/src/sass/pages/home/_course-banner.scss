@@ -9,10 +9,10 @@
   background-position: center;
   background-attachment: fixed;
 
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
-  -moz-clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
-  margin-bottom: -5vw;
+  // clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
+  // -webkit-clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
+  // -moz-clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
+  // margin-bottom: -5vw;
 
   display: flex;
   align-items: center;
@@ -25,7 +25,8 @@
     content: "";
     width: $w-100;
     height: $h-100;
-    background: $RGBA-dark-2;
+    // background: $RGBA-dark-2;
+    background: linear-gradient(to bottom, $dark 20%, transparent 95%);
     position: absolute;
     top: 0;
     left: 0;

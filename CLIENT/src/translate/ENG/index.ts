@@ -40,6 +40,18 @@ const EngLang = {
       "Branches 1: 102 Nguyen Dinh Chinh Str, Ward 15, District Phu Nhuan, HCMC",
     address_2:
       "Branches 2: 12B Nguyen Huu Canh Str, Ward 19, District Binh Thanh, HCMC",
+    categories: {
+      title: "Categories",
+      product: "Product",
+      course: "Course",
+      movie: "Movie",
+      aboutUs: "About us",
+    },
+    policy: {
+      title: "Policy",
+      warranty: "Warranty policy",
+      reward: "Reward policy",
+    },
   },
 
   // ==================== HOME ====================
@@ -48,10 +60,13 @@ const EngLang = {
     carousel: {
       slideTitle_1: "PC ACCESSORIES",
       slideContent_1: "Build your own PC",
+      content_1: "Terra Nova is an independent brand and operation, owned by Terra Nova Trading Company. Known as the official authorized retailer in Vietnam, specializing in trading high-end Gaming Laptop products, PC graphics, components-accessories, entertainment equipment of many big brands such as Acer, Asus, Dell, HP, MSI, Gigabyte, Samsung…",
       slideTitle_2: "COURSE",
       slideContent_2: "Gain knownledge for yourself",
+      content_2: "Terra Nova exploits the demand for programmers, connects jobs with businesses, and integrates projects with the latest technology into active training methods for students to get jobs immediately after completing their studies. The curriculum is tailor-made for those of you who are programming from outside the industry or already have intense knowledge, always fine-tuned and optimized over time by the founding members and seasoned faculty. experience.",
       slideTitle_3: "MOVIES",
-      slideContent_3: "Enjoys with your family",
+      slideContent_3: "Enjoy with your family",
+      content_3: "Terra Nova brings the fascinating world of cinema to you, giving you the opportunity to see the best and latest movies. Terra Nova also provides you with information about movies and theaters near you, constantly updating the best movies that are showing.",
     },
     // CONSULTATION
     consultation: {
@@ -654,6 +669,7 @@ const EngLang = {
     bookTicket: "Book ticket",
     yes: "Yes",
     no: "No",
+    advise: "Advise",
   },
 
   // ==================== NO DATA ====================

@@ -2,9 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
 import Slider from "react-slick";
+import Blob from "../../../components/Blob";
 import utils from "../../../utils";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link } from "react-router-dom";
 
 const CarouselSlider: React.FunctionComponent<{}> = (props) => {
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
@@ -12,8 +14,8 @@ const CarouselSlider: React.FunctionComponent<{}> = (props) => {
   const langs = utils.changeLang(lang);
 
   const settings = {
-    dots: true,
-    arrows: true,
+    // dots: true,
+    // arrows: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -22,33 +24,63 @@ const CarouselSlider: React.FunctionComponent<{}> = (props) => {
     autoplaySpeed: 4000,
     className: "slider",
   };
-  
+
+  const slideArr = [
+    {
+      id: 1,
+      title: langs?.home.carousel.slideTitle_1,
+      content: langs?.home.carousel.content_1,
+      link: "/",
+      src: "/img/carousel/pc.png",
+    },
+    {
+      id: 2,
+      title: langs?.home.carousel.slideTitle_2,
+      content: langs?.home.carousel.content_2,
+      link: "/course",
+      src: "/img/carousel/course.png",
+    },
+    {
+      id: 3,
+      title: langs?.home.carousel.slideTitle_3,
+      content: langs?.home.carousel.content_3,
+      link: "/movie",
+      src: "/img/carousel/movie.jpg",
+    },
+  ];
+
   return (
     <div className="carousel__slider">
       <Slider {...settings}>
-        <div className="slider__item slider__item-one">
-          <div className="item__wrapper">
-            <p>{langs?.home.carousel.slideTitle_1}</p>
-            <p>{langs?.home.carousel.slideContent_1}</p>
-          </div>
-          <div className="item__image">
-            <img src="/img/product_img.jpg" alt="pc" />
-          </div>
-        </div>
-
-        <div className="slider__item slider__item-two">
-          <div className="item__wrapper">
-            <p>{langs?.home.carousel.slideTitle_2}</p>
-            <p>{langs?.home.carousel.slideContent_2}</p>
-          </div>
-        </div>
-
-        <div className="slider__item slider__item-three">
-          <div className="item__wrapper">
-            <p>{langs?.home.carousel.slideTitle_3}</p>
-            <p>{langs?.home.carousel.slideContent_3}</p>
-          </div>
-        </div>
+        {slideArr.map((slide) => {
+          return (
+            <div className="slider__item slider__item-one" key={slide.id}>
+              <div className="item__wrapper">
+                <div className="wrapper__content">
+                  <p className="content__text">{slide.title}</p>
+                  <p className="content__text">{slide.content}</p>
+                  <div className="content__action">
+                    <Link to={slide.link} className="button--fill-white">
+                      {langs?.button.seeMore}
+                    </Link>
+                    <Link to="/" className="button--fill-white">
+                      {langs?.button.advise}
+                    </Link>
+                  </div>
+                </div>
+                <div className="wrapper__image">
+                  <Blob
+                    width="500px"
+                    height="500px"
+                    background="#fff"
+                    className="image__blob"
+                  />
+                  <img className="image" src={slide.src} alt="image" />
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </Slider>
     </div>
   );

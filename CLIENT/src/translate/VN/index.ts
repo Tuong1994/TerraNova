@@ -40,6 +40,18 @@ const VnLang = {
       "Chi nhánh 1: 102 Nguyễn Đình Chính, Phường 15, Quận Phú Nhuận, TP.HCM",
     address_2:
       "Chi nhánh 2: 12B Nguyễn Hữu Cảnh, Phường 19, Quận Bình Thạnh, TP.HCM",
+    categories: {
+      title: "Danh mục",
+      product: "Sản phẩm",
+      course: "Khóa học",
+      movie: "Phim",
+      aboutUs: "Về chúng tôi",
+    },
+    policy: {
+      title: "Chính sách",
+      warranty: "Chính sách bảo hành",
+      reward: "Chính sách ưu đãi",
+    },
   },
 
   // ==================== HOME ====================
@@ -48,10 +60,16 @@ const VnLang = {
     carousel: {
       slideTitle_1: "LINH KIỆN MÁY TÍNH",
       slideContent_1: "Xây dựng máy tính dành riêng cho bạn",
+      content_1:
+        "Terra Nova là thương hiệu và hoạt động độc lập, thuộc sở hữu của Công Ty thương mại Terra Nova. Được biết đến là đơn vị ủy quyền bán lẻ chính thức tại Việt Nam, chuyên kinh doanh các sản phẩm Laptop Gaming cao cấp, PC đồ họa, linh-phụ kiện, thiết bị giải trí của nhiều nhãn hàng lớn như Acer, Asus, Dell, HP, MSI, Gigabyte, Samsung…",
       slideTitle_2: "KHÓA HỌC",
-      slideContent_2: "Nâng cao kiến thức cho bản thân",
+      slideContent_2: "Năng cao kiến thức cho bản thân",
+      content_2:
+        "Terra Nova khai thác nhu cầu tuyển dụng lập trình, kết nối việc làm tới doanh nghiệp và tích hợp các dự án với công nghệ mới nhất vào phương pháp đào tạo tích cực cho các học viên học xong có việc làm ngay. Chương trình giảng dạy được biên soạn may đo dành riêng cho các bạn Lập trình từ trái ngành hoặc đã có kiến thức theo cường độ cao, luôn được tinh chỉnh và tối ưu hóa theo thời gian bởi các thành viên sáng lập và giảng viên dày kinh nghiệm.",
       slideTitle_3: "PHIM",
       slideContent_3: "Tận hưởng khoảnh khắc với gia đình",
+      content_3:
+        "Terra Nova mang cả thế giới điện ảnh hấp dẫn về cho bạn, giúp bạn có cơ hội xem được những bộ phim hay nhất, mới nhất. Terra Nova còn cung cấp cho bạn các thông tin phim, rạp phim ở vị trí gần bạn, cập nhật liên tục những phim hay đang chiếu.",
     },
     // CONSULTATION
     consultation: {
@@ -369,7 +387,7 @@ const VnLang = {
         payment: "Hình thức thanh toán",
         instruct: "Vui lòng chọn ghế để hiển thị hình thức thanh toán phù hợp",
         note_1: "Vé đã mua không thể đổi hoặc hoàn tiền",
-        note_2: "Mã vé sẽ được gửi qua Email đã nhập"
+        note_2: "Mã vé sẽ được gửi qua Email đã nhập",
       },
       modal: {
         title: "Đặt vé thành công",
@@ -552,8 +570,8 @@ const VnLang = {
         title_3: "Vận chuyển",
       },
     },
-     // MOVIE
-     movie: {
+    // MOVIE
+    movie: {
       subTitle_1: "Thông tin",
       subTitle_2: "Mô tả",
       subTitle_3: "Trạng thái",
@@ -645,6 +663,7 @@ const VnLang = {
     bookTicket: "Đặt vé",
     yes: "Có",
     no: "Không",
+    advise: "Tư vấn",
   },
 
   // ==================== NO DATA ====================
