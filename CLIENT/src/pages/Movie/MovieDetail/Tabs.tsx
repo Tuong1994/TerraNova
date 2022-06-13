@@ -2,8 +2,8 @@ import React from "react";
 import { ILangs } from "../../../interfaces/lang";
 import { IMovie } from "../../../models/Movie";
 import Comment from "../../../components/Comment";
-import Detail from "./Detail";
 import ShowTimes from "./ShowTimes";
+import Detail from "./Detail";
 
 interface MovieTabsProps {
   lang: string;
@@ -77,7 +77,10 @@ const MovieTabs: React.FunctionComponent<MovieTabsProps> = (props) => {
               tabActive === 3 && "content__item--active"
             }`}
           >
-            <Comment comments={[]} />
+            <Comment
+              comments={movie.comments || []}
+              movieId={movie.id || movie.movieId}
+            />
           </div>
         </div>
       </div>

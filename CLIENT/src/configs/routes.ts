@@ -9,6 +9,7 @@ import Home from "../pages/Home";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import AboutUs from "../pages/AboutUs";
+import ProductHome from "../pages/Product/ProductHome";
 import ProductList from "../pages/Product/ProductList";
 import ProductDetail from "../pages/Product/ProductDetail";
 import ProductCarts from "../pages/Product/ProductCarts";
@@ -154,6 +155,11 @@ export const homeRoutes: IRoute[] = [
     path: "/signUp",
     exact: true,
     component: SignUp,
+  },
+  {
+    path: "/product",
+    exact: true,
+    component: ProductHome,
   },
   {
     path: "/productByCategory/:id",

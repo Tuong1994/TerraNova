@@ -20,11 +20,12 @@ interface CommentProps {
   comments: IComment[];
   productId?: string;
   courseId?: string;
+  movieId?: string;
   isTitle?: boolean;
 }
 
 const Comment: React.FunctionComponent<CommentProps> = (props) => {
-  const { comments, productId, courseId, isTitle } = props;
+  const { comments, productId, courseId, movieId, isTitle } = props;
 
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
   const { user } = useSelector((state: ReducerState) => state.UserReducer);
@@ -74,6 +75,7 @@ const Comment: React.FunctionComponent<CommentProps> = (props) => {
     const userName = (user?.firstName || "") + " " + (user?.lastName || "");
     const query: IQueryList = {
       productId: productId,
+      movieId: movieId,
     };
     const newComment = {
       body: comment,
@@ -82,6 +84,7 @@ const Comment: React.FunctionComponent<CommentProps> = (props) => {
       parentId: parentId || "",
       productId: productId || "",
       courseId: courseId || "",
+      movieId: movieId || "",
     };
     if(!localStorage.getItem(ACCOUNT)) {
       history.push("/signIn");
@@ -95,6 +98,7 @@ const Comment: React.FunctionComponent<CommentProps> = (props) => {
     const query: IQueryList = {
       commentId: comment?.id,
       productId: productId,
+      movieId: movieId
     };
     const commentUpdate = {
       ...comment,
@@ -106,8 +110,9 @@ const Comment: React.FunctionComponent<CommentProps> = (props) => {
   // Remove comment
   const handleRemove = (commentId: string) => {
     const query: IQueryList = {
-      productId: productId,
       commentId: commentId,
+      productId: productId,
+      movieId: movieId,
     };
     dispatch(removeComment(query));
   };

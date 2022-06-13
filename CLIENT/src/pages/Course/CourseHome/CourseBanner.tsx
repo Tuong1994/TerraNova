@@ -36,7 +36,7 @@ const CourseBanner: React.FunctionComponent<CourseBannerProps> = (props) => {
 
   return (
     <div className="course-home__banner">
-      <div className="banner__intro">{langs?.course.home.banner.title}</div>
+      <h3 className="banner__intro">{langs?.course.home.banner.title}</h3>
       <TypingText
         textList={getTextList() || []}
         textClassName="banner__text-dynamic"

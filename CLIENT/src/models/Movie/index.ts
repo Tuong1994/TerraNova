@@ -1,4 +1,5 @@
 import { ICineplex } from "../Cineplex";
+import { IComment } from "../Comment";
 
 export enum EMovieStatus {
   showing = 1,
@@ -43,6 +44,7 @@ export interface IMovie {
   actors?: string;
   director?: string;
   cineplexes?: ICineplex[];
+  comments?: IComment[];
   ratePoint?: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;

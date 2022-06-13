@@ -7,6 +7,7 @@ export interface IComment {
     parentId?: string;
     productId?: string;
     courseId?: string;
+    movieId?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
   }

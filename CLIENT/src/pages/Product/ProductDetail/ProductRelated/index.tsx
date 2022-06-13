@@ -64,7 +64,7 @@ const ProductRelated: React.FunctionComponent<ProducRelatedProps> = (props) => {
                   <div className="content__info">
                     <p>{product.name}</p>
                     <p>
-                      {langs?.productDetail.price} :{" "}
+                      {langs?.product.detail.price} :{" "}
                       <strong>{product.price?.toLocaleString()} VND</strong>
                     </p>
                   </div>
@@ -79,7 +79,7 @@ const ProductRelated: React.FunctionComponent<ProducRelatedProps> = (props) => {
 
   return (
     <Card.Wrapper className="content__related">
-      <h3 className="related__title">{langs?.productDetail.related}</h3>
+      <h3 className="related__title">{langs?.product.detail.related}</h3>
       {renderItem()}
     </Card.Wrapper>
   );

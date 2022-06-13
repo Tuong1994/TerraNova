@@ -60,13 +60,16 @@ const EngLang = {
     carousel: {
       slideTitle_1: "PC ACCESSORIES",
       slideContent_1: "Build your own PC",
-      content_1: "Terra Nova is an independent brand and operation, owned by Terra Nova Trading Company. Known as the official authorized retailer in Vietnam, specializing in trading high-end Gaming Laptop products, PC graphics, components-accessories, entertainment equipment of many big brands such as Acer, Asus, Dell, HP, MSI, Gigabyte, Samsung…",
+      content_1:
+        "Terra Nova is an independent brand and operation, owned by Terra Nova Trading Company. Known as the official authorized retailer in Vietnam, specializing in trading high-end Gaming Laptop products, PC graphics, components-accessories, entertainment equipment of many big brands such as Acer, Asus, Dell, HP, MSI, Gigabyte, Samsung…",
       slideTitle_2: "COURSE",
       slideContent_2: "Gain knownledge for yourself",
-      content_2: "Terra Nova exploits the demand for programmers, connects jobs with businesses, and integrates projects with the latest technology into active training methods for students to get jobs immediately after completing their studies. The curriculum is tailor-made for those of you who are programming from outside the industry or already have intense knowledge, always fine-tuned and optimized over time by the founding members and seasoned faculty. experience.",
+      content_2:
+        "Terra Nova exploits the demand for programmers, connects jobs with businesses, and integrates projects with the latest technology into active training methods for students to get jobs immediately after completing their studies. The curriculum is tailor-made for those of you who are programming from outside the industry or already have intense knowledge, always fine-tuned and optimized over time by the founding members and seasoned faculty. experience.",
       slideTitle_3: "MOVIES",
       slideContent_3: "Enjoy with your family",
-      content_3: "Terra Nova brings the fascinating world of cinema to you, giving you the opportunity to see the best and latest movies. Terra Nova also provides you with information about movies and theaters near you, constantly updating the best movies that are showing.",
+      content_3:
+        "Terra Nova brings the fascinating world of cinema to you, giving you the opportunity to see the best and latest movies. Terra Nova also provides you with information about movies and theaters near you, constantly updating the best movies that are showing.",
     },
     // CONSULTATION
     consultation: {
@@ -136,24 +139,39 @@ const EngLang = {
     },
   },
 
-  // ==================== PRODUCT LIST ====================
-  productList: {
-    title: "PRODUCT",
-  },
-
-  // ==================== PRODUCT DETAIL ====================
-  productDetail: {
-    generalInfo: "General information",
-    producer: "Producer",
-    warranty: "Warranty",
-    status: "Status",
-    price: "Price",
-    specs: "Specifications",
-    comments: "Comments",
-    related: "Related products",
-    vat: "Price does not include VAT",
-    modal: {
-      title: "Product rating",
+  // ==================== PRODUCT ====================
+  product: {
+    // HOME
+    home: {
+      banner: {
+        title: "Welcome to Terra Nova's PC Accessories Shop",
+      },
+      laptop: {
+        title: "LAPTOP GAMING",
+      },
+      set: {
+        title_1: "TERRA NOVA - PC",
+        title_2: "MONITOR",
+      },
+    },
+    // LIST
+    list: {
+      title: "PRODUCT",
+    },
+    // DETAIL
+    detail: {
+      generalInfo: "General information",
+      producer: "Producer",
+      warranty: "Warranty",
+      status: "Status",
+      price: "Price",
+      specs: "Specifications",
+      comments: "Comments",
+      related: "Related products",
+      vat: "Price does not include VAT",
+      modal: {
+        title: "Product rating",
+      },
     },
   },
 
@@ -670,6 +688,7 @@ const EngLang = {
     yes: "Yes",
     no: "No",
     advise: "Advise",
+    buy: "Buy",
   },
 
   // ==================== NO DATA ====================

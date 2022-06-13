@@ -138,24 +138,39 @@ const VnLang = {
     },
   },
 
-  // ==================== PRODUCT LIST ====================
-  productList: {
-    title: "SẢN PHẨM",
-  },
-
-  // ==================== PRODUCT DETAIL ====================
-  productDetail: {
-    generalInfo: "Thông tin chung",
-    producer: "Nhà sản xuất",
-    warranty: "Bảo hành",
-    status: "Tình trạng",
-    price: "Giá",
-    specs: "Thông số kỹ thuật",
-    comments: "Bình luận",
-    related: "Sản phẩm liên quan",
-    vat: "Giá chưa gồm VAT",
-    modal: {
-      title: "Đánh giá sản phẩm",
+  // ==================== PRODUCT ====================
+  product: {
+    // HOME
+    home: {
+      banner: {
+        title: "欢迎来到 Terra Nova 的电脑零件店",
+      },
+      laptop: {
+        title: "LAPTOP GAMING"
+      },
+      set: {
+        title_1: "TERRA NOVA - PC",
+        title_2: "MÀN HÌNH",
+      },
+    },
+    // LIST
+    list: {
+      title: "SẢN PHẨM",
+    },
+    // DETAIL
+    detail: {
+      generalInfo: "Thông tin chung",
+      producer: "Nhà sản xuất",
+      warranty: "Bảo hành",
+      status: "Tình trạng",
+      price: "Giá",
+      specs: "Thông số kỹ thuật",
+      comments: "Bình luận",
+      related: "Sản phẩm liên quan",
+      vat: "Giá chưa gồm VAT",
+      modal: {
+        title: "Đánh giá sản phẩm",
+      },
     },
   },
 
@@ -664,6 +679,7 @@ const VnLang = {
     yes: "Có",
     no: "Không",
     advise: "Tư vấn",
+    buy: "Mua",
   },
 
   // ==================== NO DATA ====================

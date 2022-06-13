@@ -62,30 +62,30 @@ const ProductInfo: React.FunctionComponent<IProductInfoProps> = (props) => {
 
   return (
     <div className="content__info">
-      <h3 className="info__title">{langs?.productDetail.generalInfo}</h3>
+      <h3 className="info__title">{langs?.product.detail.generalInfo}</h3>
 
       <div className="info__badge">{renderBadge()}</div>
 
       <ul className="info__list">
         <li className="list__content">
-          {langs?.productDetail.producer} :{" "}
+          {langs?.product.detail.producer} :{" "}
           <strong>{product.producerName}</strong>
         </li>
         <li className="list__content">
-          {langs?.productDetail.warranty} :{" "}
+          {langs?.product.detail.warranty} :{" "}
           <strong>36 {langs?.time.months}</strong>
         </li>
         <li className="list__content">
-          {langs?.productDetail.status} : <strong>{renderStatus()}</strong>
+          {langs?.product.detail.status} : <strong>{renderStatus()}</strong>
         </li>
         <li className="list__content">
-          {langs?.productDetail.price} :{" "}
+          {langs?.product.detail.price} :{" "}
           <span>{product.price?.toLocaleString()} VND</span>
         </li>
       </ul>
 
       <div className="info__note">
-        <p>{`(${langs?.productDetail.vat})`}</p>
+        <p>{`(${langs?.product.detail.vat})`}</p>
       </div>
 
       <div className="info__rate">

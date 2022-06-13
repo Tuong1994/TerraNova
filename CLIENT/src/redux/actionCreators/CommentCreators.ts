@@ -7,6 +7,7 @@ import { ACCESSTOKEN, getListQuery } from "../../configs/setting";
 import { ECommentActionTypes } from "../actionTypes/CommentActionTypes";
 import { IComment } from "../../models/Comment";
 import { getProductDetail } from "./ProductCreators";
+import { getMovieDetail } from "./MovieCreators";
 import actions from "../../configs/actions";
 
 const token = localStorage.getItem(ACCESSTOKEN) || "";
@@ -38,12 +39,15 @@ export const createComment = (
     setTimeout(async () => {
       try {
         await axiosClient.post(apiPath.commentPaths.createComment, data, token);
-        dispatch(getProductDetail(query));
+        if (query.productId) {
+          dispatch(getProductDetail(query));
+        } else if (query.movieId) {
+          dispatch(getMovieDetail(query));
+        }
         setState && setState(null);
         dispatch(actions.closeButtonLoading);
       } catch (error) {
         console.log(error);
-        setState && setState(null);
         dispatch(actions.closeButtonLoading);
       }
     }, 1000);
@@ -65,12 +69,15 @@ export const updateComment = (
           data,
           token
         );
-        dispatch(getProductDetail(query));
+        if (query.productId) {
+          dispatch(getProductDetail(query));
+        } else if (query.movieId) {
+          dispatch(getMovieDetail(query));
+        }
         setState && setState(null);
         dispatch(actions.closeButtonLoading);
       } catch (error) {
         console.log(error);
-        setState && setState(null);
         dispatch(actions.closeButtonLoading);
       }
     }, 1000);
@@ -87,7 +94,11 @@ export const removeComment = (query: IQueryList) => {
           getListQuery(query as IQueryList),
           token
         );
-        dispatch(getProductDetail(query));
+        if (query.productId) {
+          dispatch(getProductDetail(query));
+        } else if (query.movieId) {
+          dispatch(getMovieDetail(query));
+        }
         dispatch(actions.closeButtonLoading);
       } catch (error) {
         console.log(error);

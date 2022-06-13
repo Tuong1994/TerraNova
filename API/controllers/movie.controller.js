@@ -5,6 +5,7 @@ const {
   Movie,
   MovieSchedule,
   Rate,
+  Comment,
 } = require("../models");
 const { domain } = require("../setting/setting");
 const Sequelize = require("sequelize");
@@ -209,6 +210,10 @@ const getMovieDetail = async (req, res) => {
           model: Rate,
           as: "rates",
         },
+        {
+          model: Comment,
+          as: "comments",
+        },
       ],
     });
     if (movieDetail) {
@@ -255,6 +260,7 @@ const getMovieDetail = async (req, res) => {
           createdAt: movieDetail.createdAt,
           updatedAt: movieDetail.updatedAt,
           cineplexes: movieDetail.cineplexes || [],
+          comments: movieDetail.comments || [],
           ratePoint: ratePoint,
         };
         res.status(200).send(movie);
@@ -336,11 +342,11 @@ const updateMovie = async (req, res) => {
     type,
   } = req.body;
   try {
-    let urlImg = ""
-    if(file) {
-      urlImg = `${domain}/${file.path}`
+    let urlImg = "";
+    if (file) {
+      urlImg = `${domain}/${file.path}`;
     } else {
-      urlImg = defaultImg
+      urlImg = defaultImg;
     }
 
     await Movie.update(

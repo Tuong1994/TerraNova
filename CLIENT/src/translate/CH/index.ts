@@ -58,13 +58,16 @@ const ChLang = {
     carousel: {
       slideTitle_1: "电脑配件",
       slideContent_1: "构建您自己的电脑",
-      content_1: "Terra Nova 是一个独立的品牌和运营，由 Terra Nova 贸易公司拥有。被称为越南官方授权零售商，专业贸易宏基、华硕、戴尔、惠普、微星、技嘉、三星等众多大品牌的高端游戏笔记本电脑产品、PC 显卡、组件-配件、娱乐设备……",
+      content_1:
+        "Terra Nova 是一个独立的品牌和运营，由 Terra Nova 贸易公司拥有。被称为越南官方授权零售商，专业贸易宏基、华硕、戴尔、惠普、微星、技嘉、三星等众多大品牌的高端游戏笔记本电脑产品、PC 显卡、组件-配件、娱乐设备……",
       slideTitle_2: "课程",
       slideContent_2: "提高您的知识",
-      content_2: "Terra Nova挖掘对程序员的需求，将工作与企业联系起来，将最新技术的项目融入积极的培训方法中，让学生完成学业后立即找到工作。该课程是为那些从行业外编程或已经拥有丰富知识的人量身定制的，始终由创始成员和经验丰富的教师随着时间的推移进行微调和优化。",
+      content_2:
+        "Terra Nova挖掘对程序员的需求，将工作与企业联系起来，将最新技术的项目融入积极的培训方法中，让学生完成学业后立即找到工作。该课程是为那些从行业外编程或已经拥有丰富知识的人量身定制的，始终由创始成员和经验丰富的教师随着时间的推移进行微调和优化。",
       slideTitle_3: "电影",
       slideContent_3: "享受与家人的时刻",
-      content_3: "Terra Nova 为您带来迷人的电影世界，让您有机会观看最好和最新的电影。 Terra Nova 还为您提供有关您附近的电影和剧院的信息，不断更新正在放映的最佳电影。",
+      content_3:
+        "Terra Nova 为您带来迷人的电影世界，让您有机会观看最好和最新的电影。 Terra Nova 还为您提供有关您附近的电影和剧院的信息，不断更新正在放映的最佳电影。",
     },
     // CONSULTATION
     consultation: {
@@ -132,24 +135,39 @@ const ChLang = {
     },
   },
 
-  // ==================== PRODUCT LIST ====================
-  productList: {
-    title: "产品",
-  },
-
-  // ==================== PRODUCT DETAIL ====================
-  productDetail: {
-    generalInfo: "一般信息",
-    producer: "制片人",
-    warranty: "保险",
-    status: "状况",
-    price: "价格",
-    specs: "规格",
-    comments: "评论",
-    related: "相关产品",
-    vat: "价格不含增值税",
-    modal: {
-      title: "产品评论",
+  // ==================== PRODUCT ====================
+  product: {
+    // HOME
+    home: {
+      banner: {
+        title: "Welcome to Terra Nova's PC Accessories",
+      },
+      laptop: {
+        title: "LAPTOP GAMING"
+      },
+      set: {
+        title_1: "TERRA NOVA - 电脑",
+        title_2: "监视器",
+      },
+    },
+    // LIST
+    list: {
+      title: "产品",
+    },
+    // DETAIL
+    detail: {
+      generalInfo: "一般信息",
+      producer: "制片人",
+      warranty: "保险",
+      status: "状况",
+      price: "价格",
+      specs: "规格",
+      comments: "评论",
+      related: "相关产品",
+      vat: "价格不含增值税",
+      modal: {
+        title: "产品评论",
+      },
     },
   },
 
@@ -650,7 +668,8 @@ const ChLang = {
     bookTicket: "订票",
     yes: "是的",
     no: "不",
-    advise: "建议"
+    advise: "建议",
+    buy: "买",
   },
 
   // ==================== NO DATA ====================

@@ -166,11 +166,11 @@ const ProductList: React.FunctionComponent<
         return langs?.form.search;
       } else {
         if (lang === ELangs.ENG) {
-          return `${productList.producerName} ${langs?.productList.title}`;
+          return `${productList.producerName} ${langs?.product.list.title}`;
         } else if (lang === ELangs.VN) {
-          return `${langs?.productList.title} ${productList.producerName}`;
+          return `${langs?.product.list.title} ${productList.producerName}`;
         } else if (lang === ELangs.CH) {
-          return `${productList.producerName} ${langs?.productList.title}`;
+          return `${productList.producerName} ${langs?.product.list.title}`;
         }
       }
     }

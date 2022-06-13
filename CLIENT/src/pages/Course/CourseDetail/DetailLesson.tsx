@@ -37,7 +37,9 @@ const DetailLesson: React.FunctionComponent<DetailLessonProps> = (props) => {
                   className="card__image"
                 />
                 <Card.Body className="card__content">
-                  <h3 className="content__title">{renderLessonTitle(lesson)}</h3>
+                  <h3 className="content__title">
+                    {renderLessonTitle(lesson)}
+                  </h3>
                 </Card.Body>
               </Card.Wrapper>
             );

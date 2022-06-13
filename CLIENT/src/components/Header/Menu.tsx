@@ -65,13 +65,10 @@ const Menu: React.FunctionComponent<MenuProps> = (props) => {
   return (
     <div>
       <li className="menu__list" key={menu.menuId}>
-        {menu.name === langs?.headerMenu.product ? (
-          <span className="list__link">{menu.name}</span>
-        ) : (
-          <Link to={menu.path} className="list__link">
-            {menu.name}
-          </Link>
-        )}
+        <Link to={menu.path} className="list__link">
+          {menu.name}
+        </Link>
+
         {menu.name === langs?.headerMenu.home ||
         menu.name === langs?.headerMenu.aboutUs ||
         menu.name === langs?.headerMenu.movie

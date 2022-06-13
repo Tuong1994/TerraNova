@@ -14,7 +14,7 @@ const ProductSpecs: React.FunctionComponent<ProductSpecsProps> = (props) => {
   return (
     <div className="specs__wrapper">
       <div className="wrapper__title">
-        <div className="title__item">{langs?.productDetail.specs}</div>
+        <div className="title__item">{langs?.product.detail.specs}</div>
         <div className="title__line"></div>
       </div>
       <div className="wrapper__content">

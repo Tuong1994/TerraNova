@@ -10,7 +10,8 @@ const getCommentList = async (req, res) => {
 };
 
 const createComment = async (req, res) => {
-  const { body, userName, userId, parentId, productId, courseId } = req.body;
+  const { body, userName, userId, parentId, productId, courseId, movieId } =
+    req.body;
   try {
     const commentId = "COM_" + Math.floor(Math.random() * 999999999).toString();
     const newComment = await Comment.create({
@@ -21,6 +22,7 @@ const createComment = async (req, res) => {
       parentId,
       productId,
       courseId,
+      movieId,
     });
     res.status(200).send(newComment);
   } catch (error) {
@@ -30,10 +32,11 @@ const createComment = async (req, res) => {
 
 const updateComment = async (req, res) => {
   const { commentId } = req.query;
-  const { body, userName, userId, parentId, productId, courseId } = req.body;
+  const { body, userName, userId, parentId, productId, courseId, movieId } =
+    req.body;
   try {
     await Comment.update(
-      { body, userName, userId, parentId, productId, courseId },
+      { body, userName, userId, parentId, productId, courseId, movieId },
       {
         where: {
           id: commentId,
