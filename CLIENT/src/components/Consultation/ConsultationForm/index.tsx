@@ -11,7 +11,7 @@ const Consultation: React.FunctionComponent<{}> = (props) => {
   const langs = utils.changeLang(lang);
 
   return (
-    <div className="consultation">
+    <div className="consultation" id="consult">
       <ConsultationForm />
       <div className="consultation__logo">
         <Logo className="logo__inner" />

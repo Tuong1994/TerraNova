@@ -144,7 +144,7 @@ const EngLang = {
     // HOME
     home: {
       banner: {
-        title: "Welcome to Terra Nova's PC Accessories Shop",
+        title: "Welcome to Terra Nova's PC Shop",
       },
       laptop: {
         title: "LAPTOP GAMING",
@@ -152,6 +152,9 @@ const EngLang = {
       set: {
         title_1: "TERRA NOVA - PC",
         title_2: "MONITOR",
+      },
+      part: {
+        title: "ACCESSORIES",
       },
     },
     // LIST

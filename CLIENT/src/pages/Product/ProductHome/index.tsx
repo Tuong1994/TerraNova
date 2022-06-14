@@ -4,8 +4,10 @@ import { useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
 import ProductBanner from "./ProductBanner";
 import ProductLaptop from "./ProductLaptop";
-import utils from "../../../utils";
 import ProductSet from "./ProductSet";
+import ProductPart from "./ProductPart";
+import Consultation from "../../../components/Consultation/ConsultationForm";
+import utils from "../../../utils";
 
 interface ProductHomeProps {}
 
@@ -21,6 +23,8 @@ const ProductHome: React.FunctionComponent<ProductHomeProps> = (props) => {
       <ProductBanner langs={langs} />
       <ProductLaptop langs={langs} />
       <ProductSet langs={langs} />
+      <ProductPart langs={langs} />
+      <Consultation />
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import { HashLink as Link } from "react-router-hash-link";
 import { useSelector } from "react-redux";
 import { ReducerState } from "../../../redux/store";
 import Slider from "react-slick";
@@ -6,7 +7,6 @@ import Blob from "../../../components/Blob";
 import utils from "../../../utils";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Link } from "react-router-dom";
 
 const CarouselSlider: React.FunctionComponent<{}> = (props) => {
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
@@ -30,7 +30,7 @@ const CarouselSlider: React.FunctionComponent<{}> = (props) => {
       id: 1,
       title: langs?.home.carousel.slideTitle_1,
       content: langs?.home.carousel.content_1,
-      link: "/",
+      link: "/product",
       src: "/img/carousel/pc.png",
     },
     {
@@ -63,7 +63,7 @@ const CarouselSlider: React.FunctionComponent<{}> = (props) => {
                     <Link to={slide.link} className="button--fill-white">
                       {langs?.button.seeMore}
                     </Link>
-                    <Link to="/" className="button--fill-white">
+                    <Link smooth to="/#consult" className="button--fill-white">
                       {langs?.button.advise}
                     </Link>
                   </div>

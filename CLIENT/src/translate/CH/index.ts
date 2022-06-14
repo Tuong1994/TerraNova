@@ -140,7 +140,7 @@ const ChLang = {
     // HOME
     home: {
       banner: {
-        title: "Welcome to Terra Nova's PC Accessories",
+        title: "欢迎来到 Terra Nova 的电脑店",
       },
       laptop: {
         title: "LAPTOP GAMING"
@@ -148,6 +148,9 @@ const ChLang = {
       set: {
         title_1: "TERRA NOVA - 电脑",
         title_2: "监视器",
+      },
+      part: {
+        title: "零件",
       },
     },
     // LIST

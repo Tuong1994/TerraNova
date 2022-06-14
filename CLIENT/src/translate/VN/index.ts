@@ -143,7 +143,7 @@ const VnLang = {
     // HOME
     home: {
       banner: {
-        title: "欢迎来到 Terra Nova 的电脑零件店",
+        title: "Chào mừng đến với cửa hàng máy tính Terra Nova",
       },
       laptop: {
         title: "LAPTOP GAMING"
@@ -151,6 +151,9 @@ const VnLang = {
       set: {
         title_1: "TERRA NOVA - PC",
         title_2: "MÀN HÌNH",
+      },
+      part: {
+        title: "LINH KIỆN",
       },
     },
     // LIST

@@ -31,19 +31,11 @@ const ProductSet: React.FunctionComponent<ProductSetProps> = (props) => {
             <iframe
               width="853"
               height="480"
-                src="https://www.youtube.com/embed/EE-4GvjKcfs?autoplay=1&loop=1&muted=1"
+              src="https://www.youtube.com/embed/EE-4GvjKcfs?autoplay=1&loop=1&muted=1&controls=0&playlist=EE-4GvjKcfs"
               allow="autoplay"
               className="video__player"
               frameBorder="0"
             ></iframe>
-            {/* <video
-              autoPlay={true}
-              muted={true}
-              loop={true}
-              className="video__player"
-            >
-              <source src="../assets/video/god_of_war.mp4" type="video/mp4" />
-            </video> */}
           </div>
         </div>
         <div className="item__action">
