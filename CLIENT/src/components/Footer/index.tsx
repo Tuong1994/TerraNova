@@ -49,13 +49,13 @@ const Footer: React.FunctionComponent<{}> = (props) => {
     {
       id: 1,
       title: langs?.footer.policy.warranty,
-      link: "/",
+      link: "/warranty",
     },
-    {
-      id: 2,
-      title: langs?.footer.policy.reward,
-      link: "/",
-    },
+    // {
+    //   id: 2,
+    //   title: langs?.footer.policy.reward,
+    //   link: "/",
+    // },
   ];
 
   const categoryArr = [
@@ -77,7 +77,7 @@ const Footer: React.FunctionComponent<{}> = (props) => {
     {
       id: 4,
       title: langs?.footer.categories.aboutUs,
-      link: "/abouUs",
+      link: "/about",
     },
   ];
 

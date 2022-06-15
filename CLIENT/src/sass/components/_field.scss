@@ -112,30 +112,33 @@
     width: $w-100;
     background: $primary;
     border-radius: $lightRound;
-    box-shadow: 0 0 10px $darkGrey;
+    box-shadow: 0 0 10px $grey;
     position: absolute;
     top: 110%;
     left: 0;
     z-index: 9999;
-    .calendar__date {
-      padding: $p-10;
+    .calendar__week {
+      width: $w-100;
       display: flex;
-      align-items: center;
-      justify-content: space-around;
-      .date__next-btn,
-      .date__prev-btn {
-        padding: $p-5 $p-10 + 5;
-        border-radius: $lightRound;
-        font-size: $subtitle;
+      justify-content: space-between;
+      .week__day {
+        width: $w-10 * 5;
+        height: $h-10 * 5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         cursor: pointer;
-        transition: all 0.3s ease;
-        &:hover {
-          color: $tSecondary;
-          background: $secondary;
-        }
       }
-      .date__content {
-        font-size: $subtitle;
+      .week__day--selected {
+        width: $w-100 - 20;
+        height: $h-100 - 20;
+        padding: $p-10;
+        border-radius: $circle;
+        background: $secondary;
+        color: $tSecondary;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     }
   }

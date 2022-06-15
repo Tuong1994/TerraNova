@@ -22,6 +22,7 @@ import MovieHome from "../pages/Movie/MovieHome";
 import MovieDetail from "../pages/Movie/MovieDetail";
 import BookTicket from "../pages/Movie/BookTicket";
 import UserEdit from "../pages/User/Edit";
+import Warranty from "../pages/Warranty";
 
 
 export const adminRoutes: IRoute[] = [
@@ -200,5 +201,10 @@ export const homeRoutes: IRoute[] = [
     path: "/courseDetail/:id",
     exact: true,
     component: CourseDetail
+  },
+  {
+    path: "/warranty",
+    exact: true,
+    component: Warranty
   },
 ];

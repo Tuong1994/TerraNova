@@ -65,3 +65,4 @@ export const getListQuery = (query: IQueryList): string => {
   ticketId && (rs += `&ticketId=${ticketId}`)
   return rs;
 };
+
