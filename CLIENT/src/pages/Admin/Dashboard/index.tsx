@@ -94,9 +94,8 @@ const Dashboard: React.FunctionComponent<{}> = (props) => {
   const renderBox = () => {
     return boxList.map((box) => {
       return (
-        <div className="box__item">
+        <div className="box__item" key={box.id}>
           <Box
-            key={box.id}
             title={box.title}
             total={box.total}
             background={box.background}

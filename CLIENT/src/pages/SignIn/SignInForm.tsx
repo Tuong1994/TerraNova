@@ -10,7 +10,6 @@ import { signIn } from "../../redux/actionCreators/UserCreators";
 import Button from "../../components/Button";
 import ButtonLoading from "../../components/Loading/ButtonLoading";
 import utils from "../../utils";
-import DateField from "../../components/Fields/DateField";
 
 const SignInForm: React.FunctionComponent<{}> = (props) => {
   const { buttonLoading } = useSelector(
@@ -76,7 +75,6 @@ const SignInForm: React.FunctionComponent<{}> = (props) => {
                 type="password"
                 icon={<i className="fas fa-eye"></i>}
               />
-              <DateField />
 
               <div className="wrapper__link">
                 <p>

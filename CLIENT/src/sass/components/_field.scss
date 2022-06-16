@@ -116,31 +116,87 @@
     position: absolute;
     top: 110%;
     left: 0;
-    z-index: 9999;
-    .calendar__week {
-      width: $w-100;
+    z-index: 99;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+    .calendar__header {
+      padding: $p-5 0;
+      background: $secondary;
+      color: $tSecondary;
+      font-weight: $semiBold;
       display: flex;
-      justify-content: space-between;
-      .week__day {
-        width: $w-10 * 5;
-        height: $h-10 * 5;
+      .header__prev,
+      .header__next {
+        width: $w-100 - 90;
+        padding: $p-10;
+        font-size: $h6;
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
       }
-      .week__day--selected {
+      .header__content {
         width: $w-100 - 20;
-        height: $h-100 - 20;
         padding: $p-10;
-        border-radius: $circle;
-        background: $secondary;
-        color: $tSecondary;
         display: flex;
         justify-content: center;
         align-items: center;
       }
     }
+    .calendar__day-name {
+      width: $w-100;
+      padding: $p-10 0;
+      display: flex;
+      justify-content: space-between;
+      .day-name {
+        width: $w-100 / 7;
+        padding: $p-5 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .calendar__body {
+      .body__week {
+        width: $w-100;
+        display: flex;
+        justify-content: space-between;
+        .week__day {
+          width: $w-100 / 7;
+          padding: $p-5 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          .day {
+            width: $w-10 * 4;
+            height: $h-10 * 4;
+            padding: $p-5;
+            border-radius: $lightRound;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+          }
+          .day--selected {
+            background: $secondary;
+            color: $tSecondary;
+          }
+          .day--today {
+            background: $lightBlue;
+          }
+          .day--before {
+            opacity: 0.5;
+          }
+        }
+      }
+    }
+  }
+  .group__calendar--active {
+    opacity: 1;
+    visibility: visible;
   }
   .group__option {
     width: $w-100;

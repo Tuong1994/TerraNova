@@ -116,7 +116,11 @@ const UserEditForm: React.FunctionComponent<UserEditFormProps> = (props) => {
         <h5 className="info__title">{langs?.user.overview.accountInfo}</h5>
         <div className="info__content">
           <div className="content__avatar">
-            <Upload defaultImg={user?.avatar} isSave={true} onSubmit={handleUpload} />
+            <Upload
+              defaultImg={user?.avatar}
+              isSave={true}
+              onSubmit={handleUpload}
+            />
           </div>
           <div className="content__list">
             <div className="list__content">
@@ -189,10 +193,9 @@ const UserEditForm: React.FunctionComponent<UserEditFormProps> = (props) => {
                   />
                   <Field
                     name="birthday"
-                    label={langs?.form.birthday}
                     placeholder=" "
-                    type="date"
-                    component={FormControl.Input}
+                    label={langs?.form.birthday}
+                    component={FormControl.Date}
                   />
                 </div>
 

@@ -69,7 +69,7 @@ const SelectField: React.FunctionComponent<SelectFieldProps> = (props) => {
 
   // Check value is not empty => Set default value
   React.useEffect(() => {
-    if (value !== "" || utils.checkKeyNumberType(value)) {
+    if (value !== "" || utils.checkObjectEmpty(value)) {
       option?.map((item: any) => {
         if (item.value === value?.value) {
           return setNewValue(item.label);
