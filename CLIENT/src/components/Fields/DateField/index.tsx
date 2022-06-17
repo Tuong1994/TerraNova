@@ -23,10 +23,11 @@ const DateField: React.FunctionComponent<DateFieldProps> = (props) => {
     fieldClassName,
   } = props;
 
-  const { name } = field;
+  const { name, value } = field;
   const { touched, errors, setFieldValue } = form;
 
-  const [value, setValue] = React.useState<any>(moment());
+  const [date, setDate] = React.useState<any>(moment());
+  const [defaultDate, setDefaultDate] = React.useState<string>("");
   const [isDropdown, setIsDropdown] = React.useState<boolean>(false);
 
   const controlRef = React.useRef<any>(null);
@@ -34,10 +35,11 @@ const DateField: React.FunctionComponent<DateFieldProps> = (props) => {
   customHooks.useClickOutSide(controlRef, setIsDropdown);
 
   React.useEffect(() => {
-    if (value) {
-      setFieldValue(name, value.toISOString());
+    if(value) {
+      setDate(moment(value))
+      setDefaultDate(moment(value).format("DD/MM/YYYY"));
     }
-  }, []);
+  }, [])
 
   const getClassName = () => {
     if (!isDropdown) {
@@ -51,6 +53,12 @@ const DateField: React.FunctionComponent<DateFieldProps> = (props) => {
     }
   };
 
+  const getValue = () => {
+    if(defaultDate) return defaultDate
+    if(date) return date.format("DD/MM/YYYY")
+    return ""
+  }
+
   return (
     <div
       className={`form__group ${groupClassName ? groupClassName : ""}`}
@@ -62,7 +70,7 @@ const DateField: React.FunctionComponent<DateFieldProps> = (props) => {
       >
         <input
           {...field}
-          value={value.format("DD/MM/YYYY")}
+          value={getValue()}
           placeholder={placeholder || " "}
           type="text"
           disabled={true}
@@ -84,10 +92,11 @@ const DateField: React.FunctionComponent<DateFieldProps> = (props) => {
       })()}
 
       <Calendar
-        value={value}
+        value={date}
         name={name}
         isDropdown={isDropdown}
-        setValue={setValue}
+        setValue={setDate}
+        setDefaultValue={setDefaultDate}
         setFieldValue={setFieldValue}
       />
     </div>

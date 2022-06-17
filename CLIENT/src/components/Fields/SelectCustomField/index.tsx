@@ -76,7 +76,7 @@ const SelectCustomField: React.FunctionComponent<SelectCustomFieldProps> = (
 
   // Check value is not empty => Set default value
   React.useEffect(() => {
-    if (value !== "" || utils.checkKeyNumberType(value)) {
+    if (value !== "" || utils.checkObjectEmpty(value)) {
       option?.map((item: any) => {
         if (item[id] === value?.value) {
           return setNewValue(item[name]);

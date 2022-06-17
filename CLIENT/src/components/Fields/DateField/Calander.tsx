@@ -1,4 +1,6 @@
 import React from "react";
+import * as FormControl from "../../../components/Fields";
+import moment from "moment";
 
 interface CalenderProps {
   value: any;
@@ -6,15 +8,22 @@ interface CalenderProps {
   isDropdown: boolean;
   setFieldValue: (n: any, v: any) => void;
   setValue: React.Dispatch<React.SetStateAction<any>>;
+  setDefaultValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const Calendar: React.FunctionComponent<CalenderProps> = (props) => {
-  const { isDropdown, name, value, setValue, setFieldValue } = props;
+  const { isDropdown, name, value, setValue, setDefaultValue, setFieldValue } =
+    props;
 
   const [calendar, setCalendar] = React.useState<any>([]);
 
   const startDay = value.clone().startOf("month").startOf("week");
   const endDay = value.clone().endOf("month").endOf("week");
+
+  const monthArr = moment.months();
+  const optionsMonth = monthArr.map((m, index) => {
+    return { label: m, value: index + 1 };
+  });
 
   React.useEffect(() => {
     const day = startDay.clone().subtract(1, "day");
@@ -43,15 +52,9 @@ const Calendar: React.FunctionComponent<CalenderProps> = (props) => {
   };
 
   const dayStyles = (day: any) => {
-    if (beforeDay(day)) return "day--before";
-    if (isSelected(day)) {
-      if (beforeDay(day)) {
-        return "day--selected";
-      } else {
-        return "day--selected";
-      }
-    }
+    if (isSelected(day)) return "day--selected";
     if (isToday(day)) return "day--today";
+    if (beforeDay(day)) return "day--before";
     return "";
   };
 
@@ -87,6 +90,21 @@ const Calendar: React.FunctionComponent<CalenderProps> = (props) => {
 
         <div className="header__content">
           {currentMonth()} - {currentYear()}
+          {/* <FormControl.SelectCustom
+            id="value"
+            name="label"
+            groupClassName="content__month"
+            inputClassName="control"
+            iconClassName="icon"
+            defaultValue={value.format("MMMM")}
+            option={optionsMonth}
+            onChange={(value) => {}}
+          />
+          <FormControl.InputCustom
+            groupClassName="content__year"
+            inputClassName="control"
+            value={value.format("YYYY")}
+          /> */}
         </div>
 
         <div
@@ -117,7 +135,9 @@ const Calendar: React.FunctionComponent<CalenderProps> = (props) => {
                     className="week__day"
                     key={index}
                     onClick={() => {
+                      console.log(day);
                       setValue(day);
+                      setDefaultValue("");
                       setFieldValue(name, day.toISOString());
                     }}
                   >
