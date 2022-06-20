@@ -7,19 +7,22 @@ import { IUser } from "../../models/User";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../redux/store";
 import { signIn } from "../../redux/actionCreators/UserCreators";
+import { ILangs } from "../../interfaces/lang";
 import Button from "../../components/Button";
 import ButtonLoading from "../../components/Loading/ButtonLoading";
-import utils from "../../utils";
 
-const SignInForm: React.FunctionComponent<{}> = (props) => {
+interface SignInFormProps {
+  langs: ILangs;
+}
+
+const SignInForm: React.FunctionComponent<SignInFormProps> = (props) => {
+  const { langs } = props;
+
   const { buttonLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
   );
-  const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
   const dispatch = useDispatch();
-
-  const langs = utils.changeLang(lang);
 
   const initialValues = {
     account: "",
@@ -109,6 +112,16 @@ const SignInForm: React.FunctionComponent<{}> = (props) => {
           );
         }}
       </Formik>
+      <div className="form__line">
+        <div className="line__content">{langs?.form.or}</div>
+      </div>
+
+      <div className="form__social">
+        <div className="social__button social__fb">
+          <i className="fa-brands fa-facebook-f"></i>
+          <span>Facebook</span>
+        </div>
+      </div>
     </div>
   );
 };

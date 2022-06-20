@@ -49,7 +49,9 @@ const Personal: React.FunctionComponent<PersonalProps> = (props) => {
 
         <Field
           name="birthDay"
-          component={FormControl.Date}
+          type="date"
+          placeholder=" "
+          component={FormControl.Input}
           label={langs?.form.birthday}
           groupClassName="item__control"
         />

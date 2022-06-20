@@ -935,6 +935,7 @@ const VnLang = {
     duration: "Thời lượng",
     releaseDay: "Ngày phát hành",
     type: "Thể loại",
+    or: "Hoặc",
   },
 
   // ==================== TABLE HEADER ====================

@@ -945,6 +945,7 @@ const EngLang = {
     duration: "Duration",
     releaseDay: "Release day",
     type: "Type",
+    or: "Or",
   },
 
   // ==================== TABLE HEADER ====================

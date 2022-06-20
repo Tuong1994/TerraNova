@@ -69,6 +69,16 @@
       height: 2px;
       background: $grey;
       margin: $m-10 * 2 0;
+      position: relative;
+      .line__content {
+        padding: $p-5;
+        color: $tGrey;
+        background: $primary;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
     }
     .form__wrapper {
       .wrapper__link {
@@ -93,6 +103,28 @@
           padding: $p-10 $p-10 * 2;
           font-size: $subtitle;
         }
+      }
+    }
+    .form__social {
+      .social__button {
+        width: $w-100;
+        padding: $p-10 * 2;
+        border-radius: $lightRound;
+        color: $tSecondary;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        &:hover {
+          background: $blue-1;
+        }
+        i {
+          margin-right: $m-10 * 2;
+        }
+      }
+      .social__fb {
+        background: $secondary;
       }
     }
     @include respond(laptop) {
