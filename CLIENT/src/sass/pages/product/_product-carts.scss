@@ -136,6 +136,7 @@
     .payment__summary {
       width: $w-100 - 60;
       padding: $p-10;
+      overflow: unset;
       .summary__header {
         .header__title {
           width: $w-100;

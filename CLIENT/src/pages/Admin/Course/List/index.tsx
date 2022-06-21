@@ -4,9 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../../redux/store";
 import { Link } from "react-router-dom";
 import { ESortBy, IQueryList } from "../../../../interfaces/query";
-import ContentHeader from "../../../../components/ContentHeader";
-import utils from "../../../../utils";
-import Table from "../../../../components/Table";
 import {
   getCourseList,
   removeCourse,
@@ -17,6 +14,9 @@ import DataLoading from "../../../../components/Loading/DataLoading";
 import Filter from "../../../../components/Filter";
 import Pagination from "../../../../components/Pagination";
 import RemoveModal from "../../../../components/Remove";
+import ContentHeader from "../../../../components/ContentHeader";
+import Table from "../../../../components/Table";
+import utils from "../../../../utils";
 
 const CourseList: React.FunctionComponent<{}> = (props) => {
   const { page } = useSelector(

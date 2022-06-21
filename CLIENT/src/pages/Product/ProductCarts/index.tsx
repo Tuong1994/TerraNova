@@ -472,7 +472,7 @@ const ProductCarts: React.FunctionComponent<ProductCartsProps> = (props) => {
       ) : null}
 
       {/* Shipment modal */}
-      <ShipmentModal lang={lang} langs={langs} />
+      <ShipmentModal lang={lang} langs={langs} setShipmentType={setShipmentType} />
 
       {/* Order modal */}
       <OrderModal

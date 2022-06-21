@@ -70,8 +70,8 @@ const CarouselSlider: React.FunctionComponent<{}> = (props) => {
                 </div>
                 <div className="wrapper__image">
                   <Blob
-                    width="500px"
-                    height="500px"
+                    width="450px"
+                    height="450px"
                     background="#fff"
                     className="image__blob"
                   />

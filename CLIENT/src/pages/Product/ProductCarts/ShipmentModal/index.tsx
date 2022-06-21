@@ -10,6 +10,7 @@ import { EShipmentActionTypes } from "../../../../redux/actionTypes/ShipmentActi
 import { phoneRegex } from "../../../../configs/regex";
 import { ILangs } from "../../../../interfaces/lang";
 import { EModalActionTypes } from "../../../../redux/actionTypes/ModalActionTypes";
+import { EShipmentType } from "../../../../models/Order";
 import ButtonLoading from "../../../../components/Loading/ButtonLoading";
 import Button from "../../../../components/Button";
 import actions from "../../../../configs/actions";
@@ -18,10 +19,11 @@ import utils from "../../../../utils";
 interface ShipmentModalProps {
   lang: string;
   langs: ILangs;
+  setShipmentType: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
-  const { lang, langs } = props;
+  const { lang, langs, setShipmentType } = props;
 
   const { isShipment } = useSelector(
     (state: ReducerState) => state.ModalReducer
@@ -45,6 +47,7 @@ const ShipmentModal: React.FunctionComponent<ShipmentModalProps> = (props) => {
   };
 
   const handleCloseModal = () => {
+    setShipmentType(EShipmentType.noShipment)
     dispatch({
       type: EModalActionTypes.CLOSE_SHIPMENT_MODAL,
     });

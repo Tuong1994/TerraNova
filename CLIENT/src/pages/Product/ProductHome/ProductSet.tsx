@@ -31,7 +31,7 @@ const ProductSet: React.FunctionComponent<ProductSetProps> = (props) => {
             <iframe
               width="853"
               height="480"
-              src="https://www.youtube.com/embed/EE-4GvjKcfs?autoplay=1&loop=1&muted=1&controls=0&playlist=EE-4GvjKcfs"
+              src="https://www.youtube.com/embed/EE-4GvjKcfs?autoplay=1&loop=1&muted=0&controls=0&playlist=EE-4GvjKcfs"
               allow="autoplay"
               className="video__player"
               frameBorder="0"
