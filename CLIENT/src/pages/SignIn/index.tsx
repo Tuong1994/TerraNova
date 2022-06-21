@@ -35,7 +35,7 @@ const SignIn: React.FunctionComponent<ISignInProps> = (props) => {
 
       <div className="sign-in__line"></div>
 
-      <SignInForm />
+      <SignInForm langs={langs} />
     </div>
   );
 };

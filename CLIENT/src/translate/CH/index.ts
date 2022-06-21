@@ -914,6 +914,7 @@ const ChLang = {
     duration: "期间",
     releaseDay: "发布日",
     type: "类型",
+    or: "或者",
   },
 
   // ==================== TABLE HEADER ====================

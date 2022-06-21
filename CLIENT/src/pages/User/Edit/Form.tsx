@@ -194,8 +194,9 @@ const UserEditForm: React.FunctionComponent<UserEditFormProps> = (props) => {
                   <Field
                     name="birthday"
                     placeholder=" "
+                    type="date"
                     label={langs?.form.birthday}
-                    component={FormControl.Date}
+                    component={FormControl.Input}
                   />
                 </div>
 
