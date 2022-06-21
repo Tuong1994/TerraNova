@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../redux/store";
 import { signIn } from "../../redux/actionCreators/UserCreators";
 import { ILangs } from "../../interfaces/lang";
+import { domain } from "../../configs/setting";
 import Button from "../../components/Button";
 import ButtonLoading from "../../components/Loading/ButtonLoading";
 
@@ -23,6 +24,10 @@ const SignInForm: React.FunctionComponent<SignInFormProps> = (props) => {
   );
 
   const dispatch = useDispatch();
+
+  const google = () => {
+    window.open(`${domain}/api/authManagement/google`, "_self");
+  };
 
   const initialValues = {
     account: "",
@@ -120,6 +125,10 @@ const SignInForm: React.FunctionComponent<SignInFormProps> = (props) => {
         <div className="social__button social__fb">
           <i className="fa-brands fa-facebook-f"></i>
           <span>Facebook</span>
+        </div>
+        <div className="social__button social__google" onClick={google}>
+          <i className="fa-brands fa-google"></i>
+          <span>Google</span>
         </div>
       </div>
     </div>

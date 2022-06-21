@@ -109,6 +109,7 @@
       .social__button {
         width: $w-100;
         padding: $p-10 * 2;
+        margin: $m-10 0;
         border-radius: $lightRound;
         color: $tSecondary;
         display: flex;
@@ -116,15 +117,21 @@
         align-items: center;
         cursor: pointer;
         transition: all 0.3s ease;
-        &:hover {
-          background: $blue-1;
-        }
         i {
           margin-right: $m-10 * 2;
         }
       }
       .social__fb {
         background: $secondary;
+        &:hover {
+          background: $blue-1;
+        }
+      }
+      .social__google {
+        background: $red-2;
+        &:hover {
+          background: $red-1;
+        }
       }
     }
     @include respond(laptop) {

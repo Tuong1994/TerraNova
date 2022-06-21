@@ -1,41 +1,26 @@
 const express = require("express");
 const cors = require("cors");
+const session = require("express-session");
 const passport = require("passport");
-const FacebookStrategy = require("passport-facebook").Strategy;
-const cookieParser = require("cookie-parser");
-const config = require("./config");
+const passportSetup = require("./passport");
 const app = express();
 const path = require("path");
 const { rootRouter } = require("./routers/root.router");
 
-app.use(passport.initialize());
-app.use(passport.session())
-
+const PORT = process.env.PORT || 4000;
 const publicDirectlyPath = path.join(__dirname, "/");
 
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-
-passport.deserializeUser((obj, done) => {
-  done(null, obj);
-});
-
-passport.use(
-  new FacebookStrategy(
-    {
-      clientID: config.facebook_api_key,
-      clientSecret: config.facebook_api_secret,
-      callbackURL: config.callback_url,
-    },
-    function (accessToken, refreshToken, profile, done) {
-      process.nextTick(function () {
-        console.log(accessToken, refreshToken, profile, done);
-        return done(null, profile);
-      });
-    }
-  )
+app.use(
+  session({
+    secret: "prophet456",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true },
+  })
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(express.json());
 app.use(express.static(publicDirectlyPath));
@@ -47,7 +32,6 @@ app.use(
 );
 app.use("/api", rootRouter);
 
-const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`App is running in port ${PORT}`);
 });
