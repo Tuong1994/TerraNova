@@ -636,6 +636,9 @@ const EngLang = {
       course: "Course",
       addCourse: "Add course",
       editCourse: "Edit course",
+      showTime: "Showtime",
+      addShowTime: "Add showtime",
+      editShowTime: "Edit showTime",
     },
     // DASHBOARD
     dashboard: {
@@ -773,6 +776,7 @@ const EngLang = {
     addOrder: "Add order",
     addMovie: "Add movie",
     addUser: "Add user",
+    addShowTime: "Add showtime",
     update: "Update",
     payment: "Payment",
     returnCoursePage: "Return to course page",

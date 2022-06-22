@@ -9,6 +9,7 @@ interface FilterProps {
   defaultSortValue?: number;
   defaultFilterValue?: string | number;
   filterOptions?: any;
+  isFilter?: boolean;
   onSort?: (v: number) => void;
   onFilter?: (v: string) => void;
   onSearch?: (v: string) => void;
@@ -19,6 +20,7 @@ const Filter: React.FunctionComponent<FilterProps> = (props) => {
     defaultFilterValue,
     defaultSortValue,
     filterOptions,
+    isFilter,
     onSort,
     onFilter,
     onSearch,
@@ -39,10 +41,13 @@ const Filter: React.FunctionComponent<FilterProps> = (props) => {
 
   return (
     <div className="filter">
-      <div className="filter__item">
+      <div
+        className={`filter__item ${!isFilter ? "filter__search--width" : ""}`}
+      >
         <FormControl.Search
           groupClassName="item__search"
           fieldClassName="search__input"
+          iconClassName="search__icon"
           onChange={(e) => {
             const value = e.target.value;
             onSearch && onSearch(value);
@@ -50,22 +55,26 @@ const Filter: React.FunctionComponent<FilterProps> = (props) => {
           }}
         />
       </div>
-      <div className="filter__item">
-        <FormControl.SelectCustom
-          id="value"
-          name="label"
-          groupClassName="item__select"
-          option={filterOptions}
-          value={filterOptions?.find(
-            (i: any) => i.value === defaultFilterValue
-          )}
-          onChange={(value: any) => {
-            onFilter && onFilter(value);
-            handleResetPage();
-          }}
-        />
-      </div>
-      <div className="filter__item">
+
+      {isFilter && (
+        <div className="filter__item">
+          <FormControl.SelectCustom
+            id="value"
+            name="label"
+            groupClassName="item__select"
+            option={filterOptions}
+            value={filterOptions?.find(
+              (i: any) => i.value === defaultFilterValue
+            )}
+            onChange={(value: any) => {
+              onFilter && onFilter(value);
+              handleResetPage();
+            }}
+          />
+        </div>
+      )}
+
+      <div className={`filter__item ${!isFilter ? "filter__sort--width" : ""}`}>
         <FormControl.SelectCustom
           id="value"
           name="label"

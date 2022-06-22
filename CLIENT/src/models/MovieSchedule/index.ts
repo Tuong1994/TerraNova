@@ -1,3 +1,5 @@
+import { ICinema } from "../Cinema";
+import { IMovie } from "../Movie";
 import { ISeat } from "../Seat";
 
 export interface IMovieInfo {
@@ -20,6 +22,8 @@ export interface IMovieSchedule {
   theaterId?: string;
   cinemaId?: string;
   seats?: ISeat[];
+  movie?: IMovie;
+  cinema?: ICinema;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 }

@@ -39,7 +39,7 @@ const DateField: React.FunctionComponent<DateFieldProps> = (props) => {
       setDate(moment(value))
       setDefaultDate(moment(value).format("DD/MM/YYYY"));
     }
-  }, [])
+  }, [value, defaultDate])
 
   const getClassName = () => {
     if (!isDropdown) {

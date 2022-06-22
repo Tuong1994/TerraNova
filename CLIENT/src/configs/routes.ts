@@ -4,6 +4,7 @@ import * as Course from "../pages/Admin/Course";
 import * as Order from "../pages/Admin/Order";
 import * as Customer from "../pages/Admin/Customer";
 import * as Movie from "../pages/Admin/Movie";
+import * as ShowTime from "../pages/Admin/ShowTime";
 import Dashboard from "../pages/Admin/Dashboard";
 import Home from "../pages/Home";
 import SignIn from "../pages/SignIn";
@@ -24,7 +25,7 @@ import BookTicket from "../pages/Movie/BookTicket";
 import UserEdit from "../pages/User/Edit";
 import Warranty from "../pages/Warranty";
 
-
+// ADMIN
 export const adminRoutes: IRoute[] = [
   {
     path: "/admin",
@@ -106,8 +107,19 @@ export const adminRoutes: IRoute[] = [
     exact: true,
     component: Movie.Edit,
   },
+  {
+    path: "/admin/showtime",
+    exact: true,
+    component: ShowTime.List,
+  },
+  {
+    path: "/admin/showtime/addShowtime",
+    exact: true,
+    component: ShowTime.Add,
+  },
 ];
 
+// USER
 export const userRoutes: IRoute[] = [
   {
     path: "/user",
@@ -121,6 +133,7 @@ export const userRoutes: IRoute[] = [
   },
 ]
 
+// PAGE
 export const homeRoutes: IRoute[] = [
   {
     path: "/",

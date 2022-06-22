@@ -27,15 +27,33 @@
     .item__search {
       width: $w-100;
       .search__input {
+        margin: $m-10 0;
         font-size: $body-1;
         border-radius: $lightRound;
         border-color: $borderGrey;
+      }
+      .search__icon {
+        background: $primary;
+        color: $tGrey;
+        pointer-events: none;
       }
     }
     .item__select {
       @include respond(phone) {
         margin: 0;
       }
+    }
+  }
+  .filter__search--width {
+    width: $w-100 - 27 !important;
+    @include respond(phone) {
+      width: $w-100 !important;
+    }
+  }
+  .filter__sort--width {
+    width: $w-100 - 75 !important;
+    @include respond(phone) {
+      width: $w-100 !important;
     }
   }
 }

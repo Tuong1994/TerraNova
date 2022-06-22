@@ -9,6 +9,7 @@ import CartsRow from "../TableRow/CartsRow";
 import OrderUserRow from "../TableRow/OrderUserRow";
 import CourseUserRow from "../TableRow/CourseUserRow";
 import TicketUserRow from "../TableRow/TicketUserRow";
+import ShowTimeAdminRow from "../TableRow/ShowTimeAdminRow";
 export interface ITableHeader {
   title: string;
   width?: string;
@@ -23,7 +24,8 @@ type TableRowType =
   | typeof CartsRow
   | typeof OrderUserRow
   | typeof CourseUserRow
-  | typeof TicketUserRow;
+  | typeof TicketUserRow
+  | typeof ShowTimeAdminRow;
 interface ITableProps {
   headers: ITableHeader[];
   headersClassName?: string;

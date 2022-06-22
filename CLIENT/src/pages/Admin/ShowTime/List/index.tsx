@@ -1,37 +1,30 @@
 import React from "react";
 import * as Card from "../../../../components/Card";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../../redux/store";
 import { ESortBy, IQueryList } from "../../../../interfaces/query";
-import {
-  getOrderList,
-  removeOrder,
-} from "../../../../redux/actionCreators/OrderCreators";
-import { Link } from "react-router-dom";
+import { getMovieScheduleList } from "../../../../redux/actionCreators/MovieScheduleCreators";
 import ContentHeader from "../../../../components/ContentHeader";
 import Table from "../../../../components/Table";
 import Filter from "../../../../components/Filter";
-import OrderAdminRow from "../../../../components/TableRow/OrderAdminRow";
+import ShowTimeAdminRow from "../../../../components/TableRow/ShowTimeAdminRow";
 import DataLoading from "../../../../components/Loading/DataLoading";
 import Pagination from "../../../../components/Pagination";
-import RemoveModal from "../../../../components/Remove";
 import utils from "../../../../utils";
 
-const OrderList: React.FunctionComponent<{}> = (props) => {
+const ShowTimeList: React.FunctionComponent<{}> = (props) => {
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
   const { page } = useSelector(
     (state: ReducerState) => state.PaginationReducer
   );
-  const { orderList } = useSelector(
-    (state: ReducerState) => state.OrderReducer
-  );
   const { dataLoading } = useSelector(
     (state: ReducerState) => state.LoadingReducer
   );
+  const { movieScheduleList } = useSelector(
+    (state: ReducerState) => state.MovieScheduleReducer
+  );
 
-  const [isShow, setIsShow] = React.useState<boolean>(false);
-  const [orderId, setOrderId] = React.useState<string>("");
-  const [filter, setFilter] = React.useState<string>("all");
   const [freeText, setFreeText] = React.useState<string>("");
   const [sortBy, setSortBy] = React.useState<number>(ESortBy.newest);
   const typingRef = React.useRef<any>(null);
@@ -39,57 +32,38 @@ const OrderList: React.FunctionComponent<{}> = (props) => {
   const dispatch = useDispatch();
 
   const langs = utils.changeLang(lang);
-  const options = utils.getOptionByLang(lang);
 
-  const { total, limits } = orderList;
+  const { total, limits, schedules } = movieScheduleList;
 
   React.useEffect(() => {
     const query: IQueryList = {
       page: page,
       limits: 10,
-      filter: filter,
       freeText: freeText,
       sortBy: sortBy,
     };
-    dispatch(getOrderList(query));
-  }, [page, filter, freeText, sortBy]);
+
+    dispatch(getMovieScheduleList(query));
+  }, [page, freeText, sortBy]);
 
   const handleSearch = (v: string) => {
     if (typingRef.current) {
       clearTimeout(typingRef.current);
     }
-
     typingRef.current = setTimeout(() => {
       setFreeText(v);
     }, 500);
   };
 
-  const handleRemove = () => {
-    const query: IQueryList = {
-      orderId: orderId,
-    };
-    dispatch(
-      removeOrder(
-        query,
-        langs?.toastMessages.success.remove,
-        langs?.toastMessages.error.remove
-      )
-    );
-    setIsShow(false);
-  };
-
-  const renderOrderList = () => {
-    if (orderList) {
-      const { orders } = orderList;
-      return orders.map((order, index) => {
+  const renderScheduleList = () => {
+    if (schedules && schedules.length > 0) {
+      return schedules.map((schedule, index) => {
         return (
-          <OrderAdminRow
-            key={order.id}
+          <ShowTimeAdminRow
+            key={schedule.id}
+            lang={lang}
             index={index}
-            order={order}
-            langs={langs}
-            setIsShow={setIsShow}
-            setOrderId={setOrderId}
+            schedule={schedule}
           />
         );
       });
@@ -97,58 +71,48 @@ const OrderList: React.FunctionComponent<{}> = (props) => {
   };
 
   return (
-    <div className="order">
+    <div className="showTime">
       <ContentHeader
-        name={langs?.admin.pageTitle.order || ""}
+        name={langs?.admin.pageTitle.showTime || ""}
         right={() => {
           return (
-            <Link to="/admin/order/addOrder" className="button--add">
-              {langs?.button.addOrder}
+            <Link to="/admin/showtime/addShowtime" className="button--add">
+              {langs?.button.addShowTime}
             </Link>
           );
         }}
       />
-
       <Filter
-        defaultFilterValue={filter}
         defaultSortValue={sortBy}
-        filterOptions={options?.orderFilter}
-        isFilter
-        onFilter={(value) => {
-          setFilter(value);
-        }}
         onSort={(value) => {
           setSortBy(value);
         }}
         onSearch={handleSearch}
       />
-
       <Card.Wrapper>
         <Table
           headers={[
             { title: langs?.tableHeader.number || "" },
-            { title: langs?.tableHeader.orderId || "" },
-            { title: langs?.tableHeader.products || "" },
-            { title: langs?.tableHeader.orderStatus || "" },
-            { title: langs?.tableHeader.price || "" },
-            { title: langs?.tableHeader.paymentType || "" },
+            { title: langs?.tableHeader.showTime || "" },
+            { title: langs?.tableHeader.movie || "" },
+            { title: langs?.tableHeader.cinema || "" },
             { title: langs?.tableHeader.createdAt || "" },
             { title: langs?.tableHeader.updatedAt || "" },
             { title: langs?.tableHeader.features || "" },
           ]}
-          isNodata={orderList.orders || 0}
+          isNodata={schedules || 0}
           noDataTitle={langs?.noData.data || ""}
           renderNoDataLink={() => {
             return (
-              <Link to="/admin/order/addOrder" className="button--add">
-                {langs?.button.addOrder}
+              <Link to="/admin/showtime/addShowtime" className="button--add">
+                {langs?.button.addShowTime}
               </Link>
             );
           }}
         >
           {(() => {
             if (!dataLoading) {
-              return renderOrderList();
+              return renderScheduleList();
             } else {
               return (
                 <div style={{ height: "400px" }}>
@@ -160,21 +124,9 @@ const OrderList: React.FunctionComponent<{}> = (props) => {
         </Table>
       </Card.Wrapper>
 
-      <Pagination total={total} perPage={limits} isShowContent={true} />
-      <RemoveModal
-        show={isShow}
-        content={() => {
-          return (
-            <div>
-              <p>{langs?.removeModal.orderRemove}</p>
-            </div>
-          );
-        }}
-        onHide={() => setIsShow(false)}
-        onRemove={handleRemove}
-      />
+      <Pagination perPage={limits} total={total} isShowContent />
     </div>
   );
 };
 
-export default OrderList;
+export default ShowTimeList;

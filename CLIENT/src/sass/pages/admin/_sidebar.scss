@@ -28,7 +28,7 @@
     }
     .menu__link {
       display: block;
-      margin-left: $m-10;
+      margin: $m-5 0 $m-5 $m-10;
       padding: $p-10 * 2 $p-10 * 3;
       text-decoration: none;
       border-top-left-radius: $round;

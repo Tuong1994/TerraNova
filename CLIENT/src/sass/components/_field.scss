@@ -110,6 +110,7 @@
   }
   .group__calendar {
     width: $w-100;
+    font-size: $body-1;
     background: $primary;
     border-radius: $lightRound;
     box-shadow: 0 0 10px $grey;
@@ -317,6 +318,9 @@
       border-top: 1px solid $borderGrey;
       display: flex;
       justify-content: flex-end;
+    }
+    .option__wrapper--loading {
+      overflow: hidden;
     }
   }
   .group__option--active {

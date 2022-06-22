@@ -42,8 +42,7 @@ const DetailFields: React.FunctionComponent<DetailFieldsProps> = (props) => {
       <Field
         name="releaseDay"
         placeholder=" "
-        type="date"
-        component={FormControl.Input}
+        component={FormControl.Date}
         label={langs?.form.releaseDay}
       />
       <Field

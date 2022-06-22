@@ -15,6 +15,7 @@ interface SelectCustomFieldProps {
   defaultValue?: any;
   isPaging?: boolean;
   isReset?: boolean;
+  currentPage?: number;
   placeholder?: string;
   groupClassName?: string;
   labelClassName?: string;
@@ -22,7 +23,6 @@ interface SelectCustomFieldProps {
   fieldClassName?: string;
   iconClassName?: string;
   totalPage?: number;
-  selectedItems?: any;
   onChange?(item: any): void;
   onPrev?(): void;
   onNext?(): void;
@@ -41,6 +41,7 @@ const SelectCustomField: React.FunctionComponent<SelectCustomFieldProps> = (
     defaultValue,
     isPaging,
     isReset,
+    currentPage,
     placeholder,
     groupClassName,
     labelClassName,
@@ -48,19 +49,19 @@ const SelectCustomField: React.FunctionComponent<SelectCustomFieldProps> = (
     fieldClassName,
     iconClassName,
     totalPage,
-    selectedItems,
+    onNext,
+    onPrev,
     onChange,
   } = props;
 
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
-  const { page } = useSelector(
-    (state: ReducerState) => state.PaginationReducer
+  const { dataLoading } = useSelector(
+    (state: ReducerState) => state.LoadingReducer
   );
 
   const [isDropdown, setIsDropdown] = React.useState<boolean>(false);
   const [newValue, setNewValue] = React.useState<any>();
   const [freeText, setFreeText] = React.useState<string>("");
-  const [isSelected, setIsSelected] = React.useState<number>(-1);
   const controlRef = React.useRef(null);
 
   customHooks.useClickOutSide(controlRef, setIsDropdown);
@@ -173,13 +174,15 @@ const SelectCustomField: React.FunctionComponent<SelectCustomFieldProps> = (
           option={option}
           isPaging={isPaging}
           isDropdown={isDropdown}
-          isSelected={isSelected}
+          isLoading={dataLoading}
           langs={langs}
-          page={page}
+          page={currentPage}
           totalPage={totalPage}
           filter={filter}
           onChange={onChange}
           getValue={getValue}
+          onNext={onNext}
+          onPrev={onPrev}
           setIsDropdown={setIsDropdown}
           setFreeText={setFreeText}
         />

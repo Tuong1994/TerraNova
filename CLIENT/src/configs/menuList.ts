@@ -37,6 +37,12 @@ export const adminMenuENG = [
     name: "Movie",
     icon: "fa-solid fa-clapperboard",
   },
+  {
+    id: "showtime",
+    path: "/admin/showtime",
+    name: "Showtime",
+    icon: "fa-solid fa-calendar-days",
+  },
 ];
 
 export const adminMenuVN = [
@@ -76,6 +82,12 @@ export const adminMenuVN = [
     name: "Phim",
     icon: "fa-solid fa-clapperboard",
   },
+  {
+    id: "showtime",
+    path: "/admin/showtime",
+    name: "Lịch chiếu",
+    icon: "fa-solid fa-calendar-days",
+  },
 ];
 
 export const adminMenuCH = [
@@ -114,6 +126,12 @@ export const adminMenuCH = [
     path: "/admin/movie",
     name: "电影",
     icon: "fa-solid fa-clapperboard",
+  },
+  {
+    id: "showtime",
+    path: "/admin/showtime",
+    name: "放映时间",
+    icon: "fa-solid fa-calendar-days",
   },
 ];
 

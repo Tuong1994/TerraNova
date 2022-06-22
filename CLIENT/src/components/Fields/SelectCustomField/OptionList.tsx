@@ -13,8 +13,8 @@ interface OptionListProps {
   langs: ILangs;
   isPaging?: boolean;
   isDropdown: boolean;
-  isSelected: number;
-  page: number;
+  isLoading: boolean;
+  page?: number;
   totalPage?: number;
   filter: (v: any) => any;
   getValue: (v: any) => void;
@@ -36,7 +36,7 @@ const OptionList: React.FunctionComponent<OptionListProps> = (props) => {
     langs,
     isPaging,
     isDropdown,
-    isSelected,
+    isLoading,
     filter,
     getValue,
     onChange,
@@ -46,32 +46,25 @@ const OptionList: React.FunctionComponent<OptionListProps> = (props) => {
     setFreeText,
   } = props;
 
-  const dispatch = useDispatch();
-
-  const handlePrevPage = () => {
-    dispatch({
-      type: EPaginationActionTypes.CHANGE_PAGE,
-      payload: page - 1,
-    });
-  };
-
-  const handleNextPage = () => {
-    dispatch({
-      type: EPaginationActionTypes.CHANGE_PAGE,
-      payload: page + 1,
-    });
-  };
-
   return (
     <div
       className={
         isDropdown ? "group__option group__option--active" : "group__option"
       }
     >
-      <div className="option__wrapper">
+      <div
+        className={`option__wrapper ${
+          isLoading ? "option__wrapper--loading" : ""
+        }`}
+      >
         {(() => {
           if (isPaging) {
-            return <DataLoading className="wrapper__loading" spinnerClassName="loading__spinner" />;
+            return (
+              <DataLoading
+                className="wrapper__loading"
+                spinnerClassName="loading__spinner"
+              />
+            );
           } else {
             return null;
           }
@@ -97,11 +90,6 @@ const OptionList: React.FunctionComponent<OptionListProps> = (props) => {
               >
                 {item.icon && <img src={item.icon} alt="" />}
                 <span>{item[name]}</span>
-                {/* {isSelected !== -1 && (
-                  <span>
-                    <i className="fa-solid fa-check"></i>
-                  </span>
-                )} */}
               </div>
             );
           })
@@ -114,13 +102,7 @@ const OptionList: React.FunctionComponent<OptionListProps> = (props) => {
         <div className="option__pagination">
           <div
             className={`button--round ${page === 1 ? "button--disabled" : ""}`}
-            onClick={() => {
-              if(onPrev) {
-                return onPrev()
-              } else {
-                return handlePrevPage()
-              }
-            }}
+            onClick={onPrev}
           >
             <i className="fa-solid fa-angle-left"></i>
           </div>
@@ -128,13 +110,7 @@ const OptionList: React.FunctionComponent<OptionListProps> = (props) => {
             className={`button--round ${
               page === totalPage ? "button--disabled" : ""
             }`}
-            onClick={() => {
-              if(onNext) {
-                return onNext()
-              } else {
-                handleNextPage()
-              }
-            }}
+            onClick={onNext}
           >
             <i className="fa-solid fa-angle-right"></i>
           </div>

@@ -124,6 +124,7 @@ const CourseList: React.FunctionComponent<{}> = (props) => {
         defaultFilterValue={filter}
         defaultSortValue={sortBy}
         filterOptions={options?.courseFilter}
+        isFilter
         onFilter={(value: any) => {
           setFilter(value);
         }}

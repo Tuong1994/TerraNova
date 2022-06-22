@@ -605,6 +605,9 @@ const ChLang = {
       course: "课程",
       addCourse: "创建课程",
       editCourse: "更新课程",
+      showTime: "放映时间",
+      addShowTime: "创建放映时间",
+      editShowTime: "更新放映时间",
     },
     // DASHBOARD
     dashboard: {
@@ -742,6 +745,7 @@ const ChLang = {
     addOrder: "创建订单",
     addMovie: "创建电影",
     addUser: "创建客户",
+    addShowTime: "创建放映时间",
     update: "更新",
     payment: "付款",
     returnCoursePage: "返回课程页面",

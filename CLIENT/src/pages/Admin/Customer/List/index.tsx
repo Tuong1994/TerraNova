@@ -114,6 +114,7 @@ const CustomerList: React.FunctionComponent<{}> = (props) => {
         defaultFilterValue={filter}
         defaultSortValue={sortBy}
         filterOptions={options?.userFilter}
+        isFilter
         onFilter={(value) => {
           setFilter(value);
         }}

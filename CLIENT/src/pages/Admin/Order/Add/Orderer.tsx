@@ -16,7 +16,6 @@ interface OrdererFieldsProps {
 const OrdererFields: React.FunctionComponent<OrdererFieldsProps> = (props) => {
   const { langs, isReset, userList, userId, setUserId } = props;
 
-  const [orderers, setOrderers] = React.useState<any>([]);
   const [currentPage, setCurrentPage] = React.useState<number>(1);
   const dispatch = useDispatch();
 
@@ -25,21 +24,14 @@ const OrdererFields: React.FunctionComponent<OrdererFieldsProps> = (props) => {
   const totalPage = Math.ceil(total / limits);
   const start = (currentPage - 1) * limits;
   const end = start + limits;
-  const userArr = users.slice(start, end);
-
-  React.useEffect(() => {
-    if (userArr && userArr.length > 0) {
-      const newArr = userArr.map((user: any) => {
-        const userName = `${user.firstName} ${user.lastName}`;
-        return { label: userName, value: user.id };
-      });
-      setOrderers(newArr);
-    }
-  }, [users]);
+  const optionUser = users.slice(start, end).map((user: any) => {
+    const userName = `${user.firstName} ${user.lastName}`;
+    return { label: userName, value: user.id };
+  });;
 
   const handlePrev = () => {
     dispatch(actions.openDataLoading);
-    setCurrentPage((prev) => prev - 1);
+    setCurrentPage((prevValue) => prevValue - 1);
     setTimeout(() => {
       dispatch(actions.closeDataLoading);
     }, 500);
@@ -47,7 +39,7 @@ const OrdererFields: React.FunctionComponent<OrdererFieldsProps> = (props) => {
 
   const handleNext = () => {
     dispatch(actions.openDataLoading);
-    setCurrentPage((prev) => prev + 1);
+    setCurrentPage((prevValue) => prevValue + 1);
     setTimeout(() => {
       dispatch(actions.closeDataLoading);
     }, 500);
@@ -62,9 +54,10 @@ const OrdererFields: React.FunctionComponent<OrdererFieldsProps> = (props) => {
         placeholder=" "
         isReset={isReset}
         isPaging={true}
+        currentPage={currentPage}
         totalPage={totalPage}
-        option={orderers}
-        value={orderers.find((i: any) => i.value === userId)}
+        option={optionUser}
+        value={optionUser.find((i: any) => i.value === userId)}
         groupClassName="inner__control"
         onPrev={handlePrev}
         onNext={handleNext}

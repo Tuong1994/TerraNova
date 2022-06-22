@@ -113,6 +113,7 @@ const MovieList: React.FunctionComponent<{}> = (props) => {
         defaultFilterValue={filter}
         defaultSortValue={sortBy}
         filterOptions={options?.movieFilter}
+        isFilter
         onFilter={(value: any) => {
           setFilter(value);
         }}

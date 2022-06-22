@@ -124,6 +124,7 @@ const ProductList: React.FunctionComponent<{}> = (props) => {
         filterOptions={options?.productFilter}
         defaultFilterValue={filter}
         defaultSortValue={sortBy}
+        isFilter
         onFilter={(value: any) => {
           setFilter(value);
         }}

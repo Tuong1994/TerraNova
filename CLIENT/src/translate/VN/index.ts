@@ -626,6 +626,9 @@ const VnLang = {
       course: "Khóa học",
       addCourse: "Tạo khóa học",
       editCourse: "Chỉnh sửa khóa học",
+      showTime: "Lịch chiếu",
+      addShowTime: "Thêm lịch chiếu",
+      editShowTime: "Chỉnh sửa lịch chiếu",
     },
     // DASHBOARD
     dashboard: {
@@ -763,6 +766,7 @@ const VnLang = {
     addOrder: "Tạo đơn hàng",
     addMovie: "Thêm phim mới",
     addUser: "Thêm người dùng",
+    addShowTime: "Thêm lịch chiếu",
     update: "Cập nhật",
     payment: "Thanh toán",
     returnCoursePage: "Trở lại trang khóa học",

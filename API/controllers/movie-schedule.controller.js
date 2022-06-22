@@ -6,13 +6,73 @@ const {
   Seat,
   MovieSchedule_Seat,
 } = require("../models");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 const getMovieScheduleList = async (req, res) => {
+  const { page, limits, freeText, sortBy } = req.query;
+  const pageNumber = parseInt(page);
+  const itemPerPage = parseInt(limits);
   try {
-    const movieScheduleList = await MovieSchedule.findAll({
-      order: [["updatedAt", "DESC"]],
-    });
-    res.status(200).send(movieScheduleList);
+    let movieScheduleList = [];
+
+    const getSort = () => {
+      if (sortBy) {
+        if (parseInt(sortBy) === 1) {
+          return "DESC";
+        } else {
+          return "ASC";
+        }
+      }
+    };
+
+    if (freeText) {
+      movieScheduleList = await MovieSchedule.findAll({
+        order: [["updatedAt", getSort() || "DESC"]],
+        where: {
+          showtime: {
+            [Op.like]: `%${freeText}%`,
+          },
+        },
+        include: [
+          {
+            model: Movie,
+            as: "movie",
+          },
+          {
+            model: Cinema,
+            as: "cinema",
+          },
+        ],
+      });
+    } else {
+      movieScheduleList = await MovieSchedule.findAll({
+        order: [["updatedAt", "DESC"]],
+        include: [
+          {
+            model: Movie,
+            as: "movie",
+          },
+          {
+            model: Cinema,
+            as: "cinema",
+          },
+        ],
+      });
+    }
+
+    if (page) {
+      const total = movieScheduleList.length;
+      const start = (pageNumber - 1) * itemPerPage;
+      const end = start + itemPerPage;
+      const schedules = movieScheduleList.slice(start, end);
+      res.status(200).send({
+        total: total,
+        page: pageNumber,
+        limits: itemPerPage,
+        schedules: schedules,
+      });
+    }
   } catch (error) {
     res.status(500).send(error);
   }
@@ -107,7 +167,7 @@ const getMovieScheduleDetail = async (req, res) => {
 };
 
 const createMovieSchedule = async (req, res) => {
-  const { showtime, movieId } = req.body;
+  const { showtime, movieId, cinemaId, theaterId } = req.body;
   try {
     const movieScheduleId =
       "MS_" + Math.floor(Math.random() * 999999999).toString();
@@ -115,6 +175,8 @@ const createMovieSchedule = async (req, res) => {
       id: movieScheduleId,
       showtime,
       movieId,
+      cinemaId,
+      theaterId,
     });
     res.status(200).send(newMovieSchedule);
   } catch (error) {
