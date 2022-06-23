@@ -178,6 +178,21 @@ const createMovieSchedule = async (req, res) => {
       cinemaId,
       theaterId,
     });
+
+    if (newMovieSchedule) {
+      const seatList = await Seat.findAll();
+      if (seatList.length > 0) {
+        for (let i = 0; i < seatList.length; i++) {
+          const movieSheduleSeatId = "MS-S_" + Math.floor(Math.random() * 999999999).toString();
+          await MovieSchedule_Seat.create({
+            id: movieSheduleSeatId,
+            movieSchedule_id: newMovieSchedule.id,
+            seat_id: seatList[i].id,
+            isBooked: false,
+          });
+        }
+      }
+    }
     res.status(200).send(newMovieSchedule);
   } catch (error) {
     res.status(500).send(error);

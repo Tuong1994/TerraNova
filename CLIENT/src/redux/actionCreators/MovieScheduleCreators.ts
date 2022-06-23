@@ -3,8 +3,12 @@ import axiosClient from "../../axios";
 import actions from "../../configs/actions";
 import { IQueryList } from "../../interfaces/query";
 import { Dispatch } from "redux";
-import { getListQuery } from "../../configs/setting";
+import { ACCESSTOKEN, getListQuery } from "../../configs/setting";
 import { EMovieScheduleActionTypes } from "../actionTypes/MovieScheduleActionTypes";
+import { IMovieSchedule } from "../../models/MovieSchedule";
+import { toast } from "react-toastify";
+
+const token = localStorage.getItem(ACCESSTOKEN) || "";
 
 export const getMovieScheduleList = (query: IQueryList) => {
   return (dispatch: Dispatch) => {
@@ -42,5 +46,29 @@ export const getMovieScheduleDetail = (query: IQueryList) => {
     } catch (error) {
       console.log(error);
     }
+  };
+};
+
+export const createMovieSchedule = (
+  data: IMovieSchedule,
+  success?: string,
+  err?: string
+) => {
+  return (dispatch: Dispatch) => {
+    dispatch(actions.openButtonLoading);
+    setTimeout(async () => {
+      try {
+        await axiosClient.post(
+          apiPath.movieSchedulePaths.createMovieSchedule,
+          data,
+          token
+        );
+        dispatch(actions.closeButtonLoading);
+        toast.success(success);
+      } catch (error) {
+        dispatch(actions.closeButtonLoading);
+        toast.error(err);
+      }
+    }, 1000);
   };
 };

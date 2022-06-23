@@ -15,6 +15,7 @@ import { cinemaPaths } from "./Cinema";
 import { moviePaths } from "./Movie";
 import { movieSchedulePaths } from "./MovieSchedule";
 import { ticketPaths } from "./Ticket";
+import { theaterPaths } from "./Theater";
 
 export {
   productPaths,
@@ -33,5 +34,6 @@ export {
   cinemaPaths,
   moviePaths,
   movieSchedulePaths,
-  ticketPaths
+  ticketPaths,
+  theaterPaths
 };

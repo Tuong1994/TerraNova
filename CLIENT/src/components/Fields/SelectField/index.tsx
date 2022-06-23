@@ -12,9 +12,15 @@ interface IOption {
 }
 
 interface SelectFieldProps extends FieldProps {
+  data?: any;
+  total?: number;
+  limits?: number;
+  dataLabel?: string;
+  dataValue?: string;
   label?: string;
   option?: IOption[];
   isReset?: boolean;
+  isPaging?: boolean;
   defaultValue?: any;
   placeholder?: string;
   groupClassName?: string;
@@ -25,15 +31,23 @@ interface SelectFieldProps extends FieldProps {
   iconClassName?: string;
   selectClassName?: string;
   onChange?(item: any): void;
+  onPrev?(): void;
+  onNext?(): void;
 }
 
 const SelectField: React.FunctionComponent<SelectFieldProps> = (props) => {
   const {
     form,
     field,
+    data,
+    total,
+    limits,
+    dataLabel,
+    dataValue,
     label,
     option,
     isReset,
+    isPaging,
     defaultValue,
     placeholder,
     groupClassName,
@@ -44,6 +58,8 @@ const SelectField: React.FunctionComponent<SelectFieldProps> = (props) => {
     iconClassName,
     selectClassName,
     onChange,
+    onPrev,
+    onNext,
   } = props;
 
   const { value, name } = field;
@@ -51,14 +67,33 @@ const SelectField: React.FunctionComponent<SelectFieldProps> = (props) => {
 
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
 
+  const { dataLoading } = useSelector(
+    (state: ReducerState) => state.LoadingReducer
+  );
+
   const [isDropdown, setIsDropdown] = React.useState<boolean>(false);
   const [newValue, setNewValue] = React.useState<any>();
   const [freeText, setFreeText] = React.useState<string>("");
+  const [page, setPage] = React.useState<number>(1);
+  const [list, setList] = React.useState<any>([]);
   const controlRef = React.useRef(null);
 
   customHooks.useClickOutSide(controlRef, setIsDropdown);
 
   const langs = utils.changeLang(lang);
+
+  const totalData = Math.ceil((total || 0) / (limits || 0));
+  const start = ((page || 1) - 1) * (limits || 0);
+  const end = start + (limits || 0);
+  const optionData = list?.slice(start, end).map((d: any) => {
+    return { label: d[dataLabel || 0], value: d[dataValue || 0] };
+  });
+
+  React.useEffect(() => {
+    if (data && data.length > 0) {
+      setList(data);
+    }
+  }, [data]);
 
   // Reset value by lang
   React.useEffect(() => {
@@ -112,15 +147,22 @@ const SelectField: React.FunctionComponent<SelectFieldProps> = (props) => {
     }
   };
 
+  const getOption = () => {
+    if (optionData.length > 0) {
+      return optionData;
+    }
+    return option;
+  };
+
   return (
     <div
-      className={`form__group ${groupClassName ? groupClassName : ""}`}
+      className={`form__group form__group--custom ${
+        groupClassName ? groupClassName : ""
+      }`}
       ref={controlRef}
     >
       {/* Input */}
-      <div
-        className={getClassName()}
-      >
+      <div className={getClassName()}>
         <input
           {...field}
           type="text"
@@ -173,17 +215,24 @@ const SelectField: React.FunctionComponent<SelectFieldProps> = (props) => {
       <OptionList
         name={name}
         value={value}
-        option={option}
+        option={getOption()}
         langs={langs}
         isDropdown={isDropdown}
+        isLoading={dataLoading}
+        isPaging={isPaging}
+        totalPage={totalData}
+        page={page}
         optionClassName={optionClassName}
         selectClassName={selectClassName}
         filter={filter}
         getValue={getValue}
         onChange={onChange}
+        onPrev={onPrev}
+        onNext={onNext}
         setFieldValue={setFieldValue}
         setIsDropdown={setIsDropdown}
         setFreeText={setFreeText}
+        setPage={setPage}
       />
     </div>
   );

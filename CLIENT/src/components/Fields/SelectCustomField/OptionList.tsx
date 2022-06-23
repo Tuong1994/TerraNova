@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import actions from "../../../configs/actions";
 import { ILangs } from "../../../interfaces/lang";
 import { EPaginationActionTypes } from "../../../redux/actionTypes/PaginationActionTypes";
 import Button from "../../Button";
@@ -23,6 +24,7 @@ interface OptionListProps {
   onNext?: () => void;
   setIsDropdown: React.Dispatch<React.SetStateAction<boolean>>;
   setFreeText: React.Dispatch<React.SetStateAction<string>>;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const OptionList: React.FunctionComponent<OptionListProps> = (props) => {
@@ -44,7 +46,26 @@ const OptionList: React.FunctionComponent<OptionListProps> = (props) => {
     onNext,
     setIsDropdown,
     setFreeText,
+    setPage,
   } = props;
+
+  const dispatch = useDispatch();
+
+  const handlePrev = () => {
+    dispatch(actions.openDataLoading);
+    setPage((prevValue) => prevValue - 1);
+    setTimeout(() => {
+      dispatch(actions.closeDataLoading);
+    }, 500);
+  };
+
+  const handleNext = () => {
+    dispatch(actions.openDataLoading);
+    setPage((prevValue) => prevValue + 1);
+    setTimeout(() => {
+      dispatch(actions.closeDataLoading);
+    }, 500);
+  };
 
   return (
     <div
@@ -98,11 +119,17 @@ const OptionList: React.FunctionComponent<OptionListProps> = (props) => {
         )}
       </div>
 
-      {isPaging && (
+      {isPaging && (totalPage || 1) > 1 ? (
         <div className="option__pagination">
           <div
             className={`button--round ${page === 1 ? "button--disabled" : ""}`}
-            onClick={onPrev}
+            onClick={() => {
+              if (onPrev) {
+                return onPrev();
+              } else {
+                handlePrev();
+              }
+            }}
           >
             <i className="fa-solid fa-angle-left"></i>
           </div>
@@ -110,12 +137,18 @@ const OptionList: React.FunctionComponent<OptionListProps> = (props) => {
             className={`button--round ${
               page === totalPage ? "button--disabled" : ""
             }`}
-            onClick={onNext}
+            onClick={() => {
+              if (onNext) {
+                return onNext();
+              } else {
+                handleNext();
+              }
+            }}
           >
             <i className="fa-solid fa-angle-right"></i>
           </div>
         </div>
-      )}
+      ) : null}
     </div>
   );
 };

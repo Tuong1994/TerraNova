@@ -1,8 +1,11 @@
 import React from "react";
 import * as customHooks from "../../../hooks";
 import { FieldProps } from "formik";
+import { useSelector } from "react-redux";
+import { ReducerState } from "../../../redux/store";
 import Calendar from "./Calander";
 import moment from "moment";
+import utils from "../../../utils";
 
 interface DateFieldProps extends FieldProps {
   label?: string;
@@ -26,6 +29,8 @@ const DateField: React.FunctionComponent<DateFieldProps> = (props) => {
   const { name, value } = field;
   const { touched, errors, setFieldValue } = form;
 
+  const { lang } = useSelector((state: ReducerState) => state.LangReducer);
+
   const [date, setDate] = React.useState<any>(moment());
   const [defaultDate, setDefaultDate] = React.useState<string>("");
   const [isDropdown, setIsDropdown] = React.useState<boolean>(false);
@@ -34,12 +39,18 @@ const DateField: React.FunctionComponent<DateFieldProps> = (props) => {
 
   customHooks.useClickOutSide(controlRef, setIsDropdown);
 
+  const langs = utils.changeLang(lang);
+
   React.useEffect(() => {
-    if(value) {
-      setDate(moment(value))
+    setFieldValue(name, date.toISOString())
+  }, [])
+
+  React.useEffect(() => {
+    if (value) {
+      setDate(moment(value));
       setDefaultDate(moment(value).format("DD/MM/YYYY"));
     }
-  }, [value, defaultDate])
+  }, [value, defaultDate]);
 
   const getClassName = () => {
     if (!isDropdown) {
@@ -54,10 +65,10 @@ const DateField: React.FunctionComponent<DateFieldProps> = (props) => {
   };
 
   const getValue = () => {
-    if(defaultDate) return defaultDate
-    if(date) return date.format("DD/MM/YYYY")
-    return ""
-  }
+    if (defaultDate) return defaultDate;
+    if (date) return date.format("DD/MM/YYYY");
+    return "";
+  };
 
   return (
     <div
@@ -79,7 +90,7 @@ const DateField: React.FunctionComponent<DateFieldProps> = (props) => {
         <label
           className={`field__label ${labelClassName ? labelClassName : ""}`}
         >
-          {label || "Date"}
+          {label || langs?.form.date}
         </label>
       </div>
 

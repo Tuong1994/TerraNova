@@ -698,6 +698,12 @@ const VnLang = {
       subTitle_6: "Chi tiết",
       note: "VD: https://youtu.be/SskR7qaIJFE ",
     },
+    // SHOWTIME
+    showTime: {
+      subTitle_1: "Hệ thống rạp",
+      subTitle_2: "Lịch chiếu",
+      subTitle_3: "Phim",
+    },
   },
 
   // ==================== TIME ====================
@@ -940,6 +946,10 @@ const VnLang = {
     releaseDay: "Ngày phát hành",
     type: "Thể loại",
     or: "Hoặc",
+    cineplex: "Hệ thống rạp",
+    cinema: "Cụm rạp",
+    theater: "Rạp",
+    date: "Ngày",
   },
 
   // ==================== TABLE HEADER ====================

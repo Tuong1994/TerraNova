@@ -213,10 +213,10 @@
     padding: $p-5 0;
     border-radius: $lightRound;
     box-shadow: 0 0 15px $grey;
+    background: $primary;
     position: absolute;
     top: 110%;
     left: 0;
-    background: $primary;
     z-index: 999;
     overflow: auto;
     opacity: 0;
@@ -261,11 +261,16 @@
   .group__option {
     width: $w-100;
     max-height: 0;
+    padding: $p-5 0;
+    border-radius: $lightRound;
+    box-shadow: 0 0 15px $grey;
+    background: $primary;
     position: absolute;
     top: 110%;
     left: 0;
     z-index: 999;
     opacity: 0;
+    overflow: auto;
     visibility: hidden;
     transition: all 0.2s ease;
     .option__wrapper {
@@ -282,7 +287,6 @@
         margin: $m-5 0;
         color: $tPrimary;
         display: flex;
-        justify-content: space-between;
         align-items: center;
         transition: all 0.5s ease;
         cursor: pointer;

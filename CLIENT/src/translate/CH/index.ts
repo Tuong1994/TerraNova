@@ -677,6 +677,12 @@ const ChLang = {
       subTitle_6: "细节",
       note: "假如: https://youtu.be/SskR7qaIJFE ",
     },
+    // SHOWTIME
+    showTime: {
+      subTitle_1: "剧院系统",
+      subTitle_2: "放映时间",
+      subTitle_3: "电影",
+    },
   },
 
   // ==================== TIME ====================
@@ -919,6 +925,10 @@ const ChLang = {
     releaseDay: "发布日",
     type: "类型",
     or: "或者",
+    cineplex: "剧院系统",
+    cinema: "剧院集群",
+    theater: "剧院",
+    date: "日"
   },
 
   // ==================== TABLE HEADER ====================

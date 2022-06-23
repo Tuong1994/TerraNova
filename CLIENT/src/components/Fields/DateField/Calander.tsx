@@ -135,7 +135,6 @@ const Calendar: React.FunctionComponent<CalenderProps> = (props) => {
                     className="week__day"
                     key={index}
                     onClick={() => {
-                      console.log(day);
                       setValue(day);
                       setDefaultValue("");
                       setFieldValue(name, day.toISOString());

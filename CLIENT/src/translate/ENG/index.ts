@@ -708,6 +708,12 @@ const EngLang = {
       subTitle_6: "Detail",
       note: "Exp: https://youtu.be/SskR7qaIJFE ",
     },
+    // SHOWTIME
+    showTime: {
+      subTitle_1: "Cineplex",
+      subTitle_2: "Showtime",
+      subTitle_3: "Movie",
+    },
   },
 
   // ==================== TIME ====================
@@ -950,6 +956,10 @@ const EngLang = {
     releaseDay: "Release day",
     type: "Type",
     or: "Or",
+    cineplex: "Cineplex",
+    cinema: "Cinema",
+    theater: "Theater",
+    date: "Date",
   },
 
   // ==================== TABLE HEADER ====================

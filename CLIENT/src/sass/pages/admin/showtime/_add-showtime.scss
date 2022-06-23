@@ -1,35 +1,35 @@
 .add-showtime {
-    .add-showtime__wrapper {
-      width: $w-100;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      .wrapper__item {
-        &:nth-child(1) {
-          width: $w-100 - 32;
-          @include respond(tablet) {
-            width: $w-100;
-            margin-bottom: $m-10 * 2;
-          }
+  .add-showtime__wrapper {
+    width: $w-100;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .wrapper__item {
+      &:nth-child(1) {
+        width: $w-100 - 45;
+        @include respond(tablet) {
+          width: $w-100;
+          margin-bottom: $m-10 * 2;
         }
-        &:nth-child(2) {
-          width: $w-100 - 70;
-          @include respond(tablet) {
-            width: $w-100;
-          }
+      }
+      &:nth-child(2) {
+        width: $w-100 - 58;
+        @include respond(tablet) {
+          width: $w-100;
         }
-        .item__inner {
-          padding: $p-10 * 2;
-          overflow: unset;
-          .inner__title {
-            font-weight: $semiBold;
-            margin-bottom: $m-10;
-          }
-          .inner__control {
-            margin: $m-10 0;
-          }
+      }
+      .item__inner {
+        margin-bottom: $m-10;
+        padding: $p-10 * 2;
+        overflow: unset;
+        .inner__title {
+          font-weight: $semiBold;
+          margin-bottom: $m-10;
+        }
+        .inner__control {
+          margin: $m-10 0;
         }
       }
     }
   }
-  
+}
