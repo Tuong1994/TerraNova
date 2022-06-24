@@ -1030,6 +1030,7 @@ const VnLang = {
     courseRemove: "Bạn có muốn xóa khóa học này?",
     customerRemove: "Bạn có muốn xóa khách hàng này?",
     movieRemove: "Bạn có muốn xóa phim này?",
+    showTimeRemove: "Bạn có muốn xóa lịch chiếu này?",
   },
 };
 

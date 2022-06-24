@@ -1040,6 +1040,7 @@ const EngLang = {
     courseRemove: "Do you want to remove this course?",
     customerRemove: "Do you want to remove this customer?",
     movieRemove: "Do you want to remove this movie?",
+    showTimeRemove: "Do you want to remove this showtime?",
   },
 };
 

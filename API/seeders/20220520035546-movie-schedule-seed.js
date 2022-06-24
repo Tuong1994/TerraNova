@@ -20,6 +20,7 @@ module.exports = {
         theaterId: i.theaterId,
         movieId: i.movieId,
         cinemaId: i.cinemaId,
+        cineplexId: i.cineplexId,
         createdAt: new Date(),
         updatedAt: new Date(),
       };

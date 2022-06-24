@@ -13,10 +13,13 @@ module.exports = {
       movieId: {
         type: Sequelize.STRING
       },
+      theaterId: {
+        type: Sequelize.STRING
+      },
       cinemaId: {
         type: Sequelize.STRING
       },
-      theaterId: {
+      cineplexId: {
         type: Sequelize.STRING
       },
       createdAt: {

@@ -31,8 +31,9 @@ module.exports = (sequelize, DataTypes) => {
     {
       showTime: DataTypes.STRING,
       movieId: DataTypes.STRING,
-      cinemaId: DataTypes.STRING,
       theaterId: DataTypes.STRING,
+      cinemaId: DataTypes.STRING,
+      cineplexId: DataTypes.STRING,
     },
     {
       sequelize,

@@ -12,6 +12,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
+
     const arr = [];
     const movieScheduleList = await MovieSchedule.findAll();
     const seatList = await Seat.findAll();
@@ -22,7 +23,7 @@ module.exports = {
         for (let j = 0; j < seatList.length; j++) {
           let seatId = seatList[j].id;
           arr.push({
-            id: "MS-S_" + Math.floor(Math.random() * 999999999).toString(),
+            // id: "MS-S_" + Math.floor(Math.random() * 999999999).toString(),
             movieSchedule_id: movieScheduleId,
             seat_id: seatId,
             isBooked: false,

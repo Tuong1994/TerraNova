@@ -9,12 +9,14 @@ interface ShowTimeAdminRowProps {
   lang: string;
   index: number;
   schedule: IMovieSchedule;
+  setScheduleId: React.Dispatch<React.SetStateAction<string>>;
+  setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ShowTimeAdminRow: React.FunctionComponent<ShowTimeAdminRowProps> = (
   props
 ) => {
-  const { lang, index, schedule } = props;
+  const { lang, index, schedule, setScheduleId, setIsShow } = props;
 
   const renderMovieName = () => {
     switch (lang) {
@@ -54,7 +56,13 @@ const ShowTimeAdminRow: React.FunctionComponent<ShowTimeAdminRowProps> = (
         <Link to={`/admin/product/editProduct`} className="button--edit">
           <i className="far fa-edit"></i>
         </Link>
-        <div className="button--delete">
+        <div
+          className="button--delete"
+          onClick={() => {
+            setIsShow(true);
+            setScheduleId(schedule.id || "");
+          }}
+        >
           <i className="fas fa-trash-alt"></i>
         </div>
       </TableCol>

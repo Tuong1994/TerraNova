@@ -27,7 +27,7 @@ module.exports = {
         for (let j = 0; j < movieList.length; j++) {
           let movieId = movieList[j].id;
           arr.push({
-            id: `CX-M_${Math.floor(Math.random() * 999999999).toString()}`,
+            // id: `CX-M_${Math.floor(Math.random() * 999999999).toString()}`,
             cineplex_id: cineplexId,
             movie_id: movieId,
             createdAt: new Date(),

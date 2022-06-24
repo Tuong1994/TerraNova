@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerState } from "../../../../redux/store";
 import { ESortBy, IQueryList } from "../../../../interfaces/query";
-import { getMovieScheduleList } from "../../../../redux/actionCreators/MovieScheduleCreators";
+import {
+  getMovieScheduleList,
+  removeMovieSchedule,
+} from "../../../../redux/actionCreators/MovieScheduleCreators";
 import ContentHeader from "../../../../components/ContentHeader";
 import Table from "../../../../components/Table";
 import Filter from "../../../../components/Filter";
@@ -12,6 +15,7 @@ import ShowTimeAdminRow from "../../../../components/TableRow/ShowTimeAdminRow";
 import DataLoading from "../../../../components/Loading/DataLoading";
 import Pagination from "../../../../components/Pagination";
 import utils from "../../../../utils";
+import RemoveModal from "../../../../components/Remove";
 
 const ShowTimeList: React.FunctionComponent<{}> = (props) => {
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
@@ -25,6 +29,8 @@ const ShowTimeList: React.FunctionComponent<{}> = (props) => {
     (state: ReducerState) => state.MovieScheduleReducer
   );
 
+  const [isShow, setIsShow] = React.useState<boolean>(false);
+  const [scheduleId, setScheduleId] = React.useState<string>("");
   const [freeText, setFreeText] = React.useState<string>("");
   const [sortBy, setSortBy] = React.useState<number>(ESortBy.newest);
   const typingRef = React.useRef<any>(null);
@@ -55,6 +61,20 @@ const ShowTimeList: React.FunctionComponent<{}> = (props) => {
     }, 500);
   };
 
+  const handleRemove = () => {
+    const query: IQueryList = {
+      movieScheduleId: scheduleId,
+    };
+    dispatch(
+      removeMovieSchedule(
+        query,
+        langs?.toastMessages.success.remove,
+        langs?.toastMessages.error.remove
+      )
+    );
+    setIsShow(false)
+  };
+
   const renderScheduleList = () => {
     if (schedules && schedules.length > 0) {
       return schedules.map((schedule, index) => {
@@ -64,6 +84,8 @@ const ShowTimeList: React.FunctionComponent<{}> = (props) => {
             lang={lang}
             index={index}
             schedule={schedule}
+            setScheduleId={setScheduleId}
+            setIsShow={setIsShow}
           />
         );
       });
@@ -125,6 +147,18 @@ const ShowTimeList: React.FunctionComponent<{}> = (props) => {
       </Card.Wrapper>
 
       <Pagination perPage={limits} total={total} isShowContent />
+      <RemoveModal
+        show={isShow}
+        content={() => {
+          return (
+            <div>
+              <p>{langs?.removeModal.showTimeRemove}</p>
+            </div>
+          );
+        }}
+        onHide={() => setIsShow(false)}
+        onRemove={handleRemove}
+      />
     </div>
   );
 };

@@ -72,3 +72,23 @@ export const createMovieSchedule = (
     }, 1000);
   };
 };
+
+export const removeMovieSchedule = (
+  query: IQueryList,
+  success?: string,
+  err?: string
+) => {
+  return async (dispatch: any) => {
+    try {
+      await axiosClient.delete(
+        apiPath.movieSchedulePaths.removeMovieSchedule,
+        getListQuery(query as IQueryList),
+        token
+      );
+      dispatch(getMovieScheduleList(query));
+      toast.success(success);
+    } catch (error) {
+      toast.error(err);
+    }
+  };
+};

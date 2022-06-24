@@ -20,6 +20,7 @@ export interface IMovieSchedule {
   showTime?: Date | string;
   movieId?: string;
   theaterId?: string;
+  cineplexId?: string;
   cinemaId?: string;
   seats?: ISeat[];
   movie?: IMovie;

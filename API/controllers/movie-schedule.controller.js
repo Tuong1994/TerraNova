@@ -5,6 +5,9 @@ const {
   Theater,
   Seat,
   MovieSchedule_Seat,
+  Cineplex_Movie,
+  Cinema_Movie,
+  Theater_Movie,
 } = require("../models");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
@@ -167,14 +170,15 @@ const getMovieScheduleDetail = async (req, res) => {
 };
 
 const createMovieSchedule = async (req, res) => {
-  const { showtime, movieId, cinemaId, theaterId } = req.body;
+  const { showTime, movieId, cineplexId, cinemaId, theaterId } = req.body;
   try {
     const movieScheduleId =
       "MS_" + Math.floor(Math.random() * 999999999).toString();
     const newMovieSchedule = await MovieSchedule.create({
       id: movieScheduleId,
-      showtime,
+      showTime,
       movieId,
+      cineplexId,
       cinemaId,
       theaterId,
     });
@@ -183,17 +187,32 @@ const createMovieSchedule = async (req, res) => {
       const seatList = await Seat.findAll();
       if (seatList.length > 0) {
         for (let i = 0; i < seatList.length; i++) {
-          const movieSheduleSeatId = "MS-S_" + Math.floor(Math.random() * 999999999).toString();
           await MovieSchedule_Seat.create({
-            id: movieSheduleSeatId,
+            // id: "MS-S_" + Math.floor(Math.random() * 999999999).toString(),
             movieSchedule_id: newMovieSchedule.id,
             seat_id: seatList[i].id,
             isBooked: false,
           });
         }
       }
+      await Cineplex_Movie.create({
+        // id: `CX-M_${Math.floor(Math.random() * 999999999).toString()}`,
+        cineplex_id: cineplexId,
+        movie_id: movieId,
+      });
+      await Cinema_Movie.create({
+        // id: "C-M_" + Math.floor(Math.random() * 999999999).toString(),
+        cinema_id: cinemaId,
+        movie_id: movieId,
+      });
+      await Theater_Movie.create({
+        // id: "T-M_" + Math.floor(Math.random() * 999999999).toString(),
+        theater_id: theaterId,
+        movie_id: movieId,
+      });
     }
     res.status(200).send(newMovieSchedule);
+    res.send(arr);
   } catch (error) {
     res.status(500).send(error);
   }
@@ -201,10 +220,10 @@ const createMovieSchedule = async (req, res) => {
 
 const updateMovieSchedule = async (req, res) => {
   const { movieScheduleId } = req.query;
-  const { showtime, movieId } = req.body;
+  const { showTime, movieId, cineplexId, cinemaId, theaterId } = req.body;
   try {
     await MovieSchedule.update(
-      { showtime, movieId },
+      { showTime, movieId, cineplexId, cinemaId, theaterId },
       {
         where: {
           id: movieScheduleId,

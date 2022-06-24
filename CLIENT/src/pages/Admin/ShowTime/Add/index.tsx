@@ -67,15 +67,17 @@ const AddShowTime: React.FunctionComponent<{}> = (props) => {
   const initialValues = {
     showTime: "",
     movieId: "",
-    theaterId: "",
+    cineplexId: "",
     cinemaId: "",
+    theaterId: "",
   };
 
   const validationSchema = yup.object().shape({
     showTime: yup.string().required(langs?.validateMessages.date),
     movieId: yup.string().required(langs?.validateMessages.required),
-    theaterId: yup.string().required(langs?.validateMessages.required),
+    cineplexId: yup.string().required(langs?.validateMessages.required),
     cinemaId: yup.string().required(langs?.validateMessages.required),
+    theaterId: yup.string().required(langs?.validateMessages.required),
   });
 
   const handleSubmit = (values: any, action: any) => {
@@ -139,7 +141,6 @@ const AddShowTime: React.FunctionComponent<{}> = (props) => {
                 <div className="wrapper__item">
                   <CineplexFields
                     langs={langs}
-                    cineplexId={cineplexId}
                     cineplexes={cineplexes}
                     cinemas={cineplexDetail?.cinemas || []}
                     theaters={theaterList}

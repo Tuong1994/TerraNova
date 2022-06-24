@@ -1009,6 +1009,7 @@ const ChLang = {
     courseRemove: "您要删除此课程吗？",
     customerRemove: "您要删除此客户吗？",
     movieRemove: "您要删除此电影吗？",
+    showTimeRemove: "您要删除此放映时间吗？"
   },
 };
 

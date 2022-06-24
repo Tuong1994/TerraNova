@@ -40,9 +40,11 @@ const ShowTimes: React.FunctionComponent<ShowTimesProps> = (props) => {
     // Remove duplicate date in array
     flatArr?.forEach((i: any) => {
       const date = new Date(i.showTime);
-      const newDate = `${date.getFullYear()}-${date.getMonth() + 1}-${
-        date.getDate() < 10 ? "0" + date.getDate() : date.getDate()
-      }`;
+      const newDate = `${date.getFullYear()}-${
+        date.getMonth() + 1 < 10
+          ? "0" + (date.getMonth() + 1)
+          : date.getMonth() + 1
+      }-${date.getDate() < 10 ? "0" + date.getDate() : date.getDate()}`;
       if (!newArr.includes(newDate)) {
         newArr.push(newDate);
       }
@@ -108,25 +110,33 @@ const ShowTimes: React.FunctionComponent<ShowTimesProps> = (props) => {
       <div className="showtimes__content">
         {/* Date */}
         <div className="content__date">
-          {dateArr.slice(0, dateArr.length - 1).map((date, index) => {
-            return (
-              <div
-                key={index}
-                className={`date__title ${
-                  dateActive === index && "date__title--active"
-                }`}
-                onClick={() => {
-                  setDateActive(index);
-                  setDateSelected(date);
-                }}
-              >
-                <p>
-                  {new Date(date).getDate()}/{new Date(date).getMonth() + 1}
-                </p>
-                <p>{renderDay(new Date(date).getDay())}</p>
-              </div>
-            );
-          })}
+          {(() => {
+            let arr: any = [];
+            if (dateArr.length === 1) {
+              arr = dateArr;
+            } else if (dateArr.length > 0) {
+              arr = dateArr.slice(0, dateArr.length);
+            }
+            return arr.map((date: any, index: number) => {
+              return (
+                <div
+                  key={index}
+                  className={`date__title ${
+                    dateActive === index && "date__title--active"
+                  }`}
+                  onClick={() => {
+                    setDateActive(index);
+                    setDateSelected(date);
+                  }}
+                >
+                  <p>
+                    {new Date(date).getDate()}/{new Date(date).getMonth() + 1}
+                  </p>
+                  <p>{renderDay(new Date(date).getDay())}</p>
+                </div>
+              );
+            });
+          })()}
         </div>
 
         <div className="content__inner">
@@ -154,7 +164,7 @@ const ShowTimes: React.FunctionComponent<ShowTimesProps> = (props) => {
                             <p>{cinema.address}</p>
                           </div>
                         </div>
-                        
+
                         {/* Theater */}
                         <div className="item__theater">
                           {cinema.theaters?.map((theater) => {
@@ -166,11 +176,11 @@ const ShowTimes: React.FunctionComponent<ShowTimesProps> = (props) => {
 
                                 <div className="item__schedule">
                                   {theater.schedules
-                                    ?.filter((schedule) =>
-                                      schedule.showTime
-                                        ?.toString()
-                                        .includes(dateSelected)
-                                    )
+                                    ?.filter((schedule) => {
+                                      return moment(schedule.showTime)
+                                        .format("YYYY-MM-DD")
+                                        .includes(dateSelected);
+                                    })
                                     .slice(0, 10)
                                     .map((schedule: any) => {
                                       return (
