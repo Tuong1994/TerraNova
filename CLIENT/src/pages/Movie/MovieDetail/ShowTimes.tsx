@@ -40,11 +40,17 @@ const ShowTimes: React.FunctionComponent<ShowTimesProps> = (props) => {
     // Remove duplicate date in array
     flatArr?.forEach((i: any) => {
       const date = new Date(i.showTime);
-      const newDate = `${date.getFullYear()}-${
+      
+      const year = date.getFullYear();
+
+      const month =
         date.getMonth() + 1 < 10
           ? "0" + (date.getMonth() + 1)
-          : date.getMonth() + 1
-      }-${date.getDate() < 10 ? "0" + date.getDate() : date.getDate()}`;
+          : date.getMonth() + 1;
+
+      const day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+
+      const newDate = `${year}-${month}-${day}`;
       if (!newArr.includes(newDate)) {
         newArr.push(newDate);
       }

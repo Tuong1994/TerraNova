@@ -51,10 +51,10 @@ const CineplexFields: React.FunctionComponent<CineplexFieldsProps> = (
         component={FormControl.Select}
         label={langs?.form.cinema}
         data={cinemas}
+        isReset={isReset}
         dataLabel="name"
         dataValue="id"
         groupClassName="inner__control"
-        isReset={isReset}
         isPaging
         total={cinemas?.length}
         limits={10}
@@ -64,10 +64,10 @@ const CineplexFields: React.FunctionComponent<CineplexFieldsProps> = (
         component={FormControl.Select}
         label={langs?.form.theater}
         data={theaters}
+        isReset={isReset}
         dataLabel="name"
         dataValue="id"
         groupClassName="inner__control"
-        isReset={isReset}
         isPaging
         total={theaters?.length}
         limits={10}

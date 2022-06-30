@@ -6,7 +6,7 @@ const productUpload = () => {
       cb(null, "./public/img/product");
     },
     filename: (req, file, cb) => {
-      cb(null, `${Date.now()}_${file.originalname}`);
+      cb(null, `${Date.now()}_${file.originalname.replace(/\\/g, "/")}`);
     },
   });
   const upload = multer({
@@ -21,7 +21,7 @@ const courseUpload = () => {
       cb(null, "./public/img/course");
     },
     filename: (req, file, cb) => {
-      cb(null, `${Date.now()}_${file.originalname}`);
+      cb(null, `${Date.now()}_${file.originalname.replace(/\\/g, "/")}`);
     },
   });
   const upload = multer({
@@ -36,7 +36,7 @@ const movieUpload = () => {
       cb(null, "./public/img/movie");
     },
     filename: (req, file, cb) => {
-      cb(null, `${Date.now()}_${file.originalname}`);
+      cb(null, `${Date.now()}_${file.originalname.replace(/\\/g, "/")}`);
     },
   });
   const upload = multer({ storage });
@@ -49,7 +49,7 @@ const userUpload = () => {
       cb(null, "./public/img/user");
     },
     filename: (req, file, cb) => {
-      cb(null, `${Date.now()}_${file.originalname}`);
+      cb(null, `${Date.now()}_${file.originalname.replace(/\\/g, "/")}`);
     },
   });
   const upload = multer({

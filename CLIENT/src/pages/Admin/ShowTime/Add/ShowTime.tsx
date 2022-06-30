@@ -18,7 +18,8 @@ const ShowTimeFields: React.FunctionComponent<ShowTimeFieldsProps> = (
       <h3 className="inner__title">{langs?.admin.showTime.subTitle_2}</h3>
       <Field
         name="showTime"
-        component={FormControl.Date}
+        type="datetime-local"
+        component={FormControl.Input}
         groupClassName="inner__control"
       />
     </Card.Wrapper>

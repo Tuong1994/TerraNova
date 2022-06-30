@@ -38,6 +38,7 @@ const MovieFields: React.FunctionComponent<MovieFieldsProps> = (props) => {
         dataLabel={getMovieName()}
         dataValue="id"
         groupClassName="inner__control"
+        isReset={isReset}
         data={movies}
         isPaging
         total={movies?.length}
