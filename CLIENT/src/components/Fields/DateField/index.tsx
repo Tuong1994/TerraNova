@@ -10,6 +10,7 @@ import utils from "../../../utils";
 interface DateFieldProps extends FieldProps {
   label?: string;
   placeholder?: string;
+  enableTime?: boolean;
   groupClassName?: string;
   labelClassName?: string;
   fieldClassName?: string;
@@ -21,6 +22,7 @@ const DateField: React.FunctionComponent<DateFieldProps> = (props) => {
     field,
     label,
     placeholder,
+    enableTime,
     groupClassName,
     labelClassName,
     fieldClassName,
@@ -106,6 +108,7 @@ const DateField: React.FunctionComponent<DateFieldProps> = (props) => {
         value={date}
         name={name}
         isDropdown={isDropdown}
+        enableTime={enableTime}
         setValue={setDate}
         setDefaultValue={setDefaultDate}
         setFieldValue={setFieldValue}

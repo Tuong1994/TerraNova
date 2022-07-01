@@ -188,9 +188,6 @@ const getMovieDetail = async (req, res) => {
                   model: Theater,
                   as: "theaters",
                   attributes: ["id", "name"],
-                  through: {
-                    attributes: [],
-                  },
                   include: [
                     {
                       model: MovieSchedule,
@@ -216,6 +213,9 @@ const getMovieDetail = async (req, res) => {
         },
       ],
     });
+
+    console.log(movieDetail)
+
     if (movieDetail) {
       if (movieDetail.rates.length > 0) {
         const ratePoint = calRatePoint(movieDetail.rates);

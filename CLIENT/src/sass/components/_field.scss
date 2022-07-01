@@ -201,6 +201,22 @@
           }
         }
       }
+      .body__time {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .time__input {
+          width: $w-100 - 80;
+          &:nth-child(3) {
+            margin-right: $m-10;
+          }
+        }
+        .time__text {
+          margin: 0 $m-10;
+          font-size: $subtitle;
+          font-weight: $semiBold;
+        }
+      }
     }
   }
   .group__calendar--active {

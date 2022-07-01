@@ -6,14 +6,22 @@ interface CalenderProps {
   value: any;
   name: string;
   isDropdown: boolean;
+  enableTime?: boolean;
   setFieldValue: (n: any, v: any) => void;
   setValue: React.Dispatch<React.SetStateAction<any>>;
   setDefaultValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const Calendar: React.FunctionComponent<CalenderProps> = (props) => {
-  const { isDropdown, name, value, setValue, setDefaultValue, setFieldValue } =
-    props;
+  const {
+    isDropdown,
+    enableTime,
+    name,
+    value,
+    setValue,
+    setDefaultValue,
+    setFieldValue,
+  } = props;
 
   const [calendar, setCalendar] = React.useState<any>([]);
 
@@ -149,6 +157,15 @@ const Calendar: React.FunctionComponent<CalenderProps> = (props) => {
             </div>
           );
         })}
+
+        {enableTime && (
+          <div className="body__time">
+            <FormControl.InputCustom groupClassName="time__input" />
+            <div className="time__text">:</div>
+            <FormControl.InputCustom groupClassName="time__input" />
+            <FormControl.InputCustom groupClassName="time__input" />
+          </div>
+        )}
       </div>
     </div>
   );

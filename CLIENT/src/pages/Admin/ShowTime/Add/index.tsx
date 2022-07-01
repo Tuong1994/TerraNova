@@ -10,6 +10,7 @@ import {
 } from "../../../../redux/actionCreators/CineplexCreators";
 import { getTheaterList } from "../../../../redux/actionCreators/TheaterCreators";
 import { getMovieList } from "../../../../redux/actionCreators/MovieCreators";
+import { createMovieSchedule } from "../../../../redux/actionCreators/MovieScheduleCreators";
 import ContentHeader from "../../../../components/ContentHeader";
 import ButtonLoading from "../../../../components/Loading/ButtonLoading";
 import Button from "../../../../components/Button";
@@ -17,7 +18,6 @@ import CineplexFields from "./Cineplex";
 import ShowTimeFields from "./ShowTime";
 import MovieFields from "./Movie";
 import utils from "../../../../utils";
-import { createMovieSchedule } from "../../../../redux/actionCreators/MovieScheduleCreators";
 
 const AddShowTime: React.FunctionComponent<{}> = (props) => {
   const { lang } = useSelector((state: ReducerState) => state.LangReducer);
