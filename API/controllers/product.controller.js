@@ -1,5 +1,5 @@
 const { Producer, Product, Description, Comment, Rate } = require("../models");
-const { domain } = require("../setting/setting");
+const { domain, calRatePoint } = require("../setting/setting");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
@@ -231,61 +231,33 @@ const getProductDetail = async (req, res) => {
         },
       });
       if (producerDetail) {
-        let ratePoint = 0;
         if (productDetail.rates.length > 0) {
-          const fivePointRes = productDetail.rates.filter(
-            (i) => i.ratePoint === 5
-          );
-          const fourPointRes = productDetail.rates.filter(
-            (i) => i.ratePoint === 4
-          );
-          const threePointRes = productDetail.rates.filter(
-            (i) => i.ratePoint === 3
-          );
-          const twoPointRes = productDetail.rates.filter(
-            (i) => i.ratePoint === 2
-          );
-          const onePointRes = productDetail.rates.filter(
-            (i) => i.ratePoint === 1
-          );
-          const totalScores =
-            fivePointRes.length * 5 +
-            fourPointRes.length * 4 +
-            threePointRes.length * 3 +
-            twoPointRes.length * 2 +
-            onePointRes.length * 1;
-          const totalRes =
-            fivePointRes.length +
-            fourPointRes.length +
-            threePointRes.length +
-            twoPointRes.length +
-            onePointRes.length;
-          ratePoint = Math.ceil(totalScores / totalRes);
-        }
+          const ratePoint = calRatePoint(productDetail.rates)
 
-        const product = {
-          id: productDetail.id,
-          name: productDetail.name,
-          image: productDetail.image,
-          cost: productDetail.cost,
-          profit: productDetail.profit,
-          price: productDetail.price,
-          status: productDetail.status,
-          inventoryStatus: productDetail.inventoryStatus,
-          stockAmount: productDetail.stockAmount,
-          categoryId: productDetail.categoryId,
-          producerId: productDetail.producerId,
-          producerName: producerDetail.name,
-          createdAt: productDetail.createdAt,
-          updatedAt: productDetail.updatedAt,
-          description: productDetail.description || [],
-          comments: productDetail.comments || [],
-          rates: productDetail.rates || [],
-          ratePoint: ratePoint,
-        };
-        res.status(200).send(product);
-      } else {
-        res.status(200).send(productDetail);
+          const product = {
+            id: productDetail.id,
+            name: productDetail.name,
+            image: productDetail.image,
+            cost: productDetail.cost,
+            profit: productDetail.profit,
+            price: productDetail.price,
+            status: productDetail.status,
+            inventoryStatus: productDetail.inventoryStatus,
+            stockAmount: productDetail.stockAmount,
+            categoryId: productDetail.categoryId,
+            producerId: productDetail.producerId,
+            producerName: producerDetail.name,
+            createdAt: productDetail.createdAt,
+            updatedAt: productDetail.updatedAt,
+            description: productDetail.description || [],
+            comments: productDetail.comments || [],
+            rates: productDetail.rates || [],
+            ratePoint: ratePoint,
+          };
+          res.status(200).send(product);
+        } else {
+          res.status(200).send(productDetail);
+        }
       }
     }
   } catch (error) {

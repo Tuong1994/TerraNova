@@ -7,7 +7,7 @@ const {
   Rate,
   Comment,
 } = require("../models");
-const { domain } = require("../setting/setting");
+const { domain, calRatePoint } = require("../setting/setting");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
@@ -182,7 +182,7 @@ const getMovieDetail = async (req, res) => {
             {
               model: Cinema,
               as: "cinemas",
-              attributes: ["id", "name", "address", "image"],
+              attributes: ["id", "name", "address", "image"],  
               include: [
                 {
                   model: Theater,
@@ -217,29 +217,8 @@ const getMovieDetail = async (req, res) => {
       ],
     });
     if (movieDetail) {
-      let ratePoint = 0;
       if (movieDetail.rates.length > 0) {
-        const fivePointRes = movieDetail.rates.filter((i) => i.ratePoint === 5);
-        const fourPointRes = movieDetail.rates.filter((i) => i.ratePoint === 4);
-        const threePointRes = movieDetail.rates.filter(
-          (i) => i.ratePoint === 3
-        );
-        const twoPointRes = movieDetail.rates.filter((i) => i.ratePoint === 2);
-        const onePointRes = movieDetail.rates.filter((i) => i.ratePoint === 1);
-        const totalScores =
-          fivePointRes.length * 5 +
-          fourPointRes.length * 4 +
-          threePointRes.length * 3 +
-          twoPointRes.length * 2 +
-          onePointRes.length * 1;
-        const totalRes =
-          fivePointRes.length +
-          fourPointRes.length +
-          threePointRes.length +
-          twoPointRes.length +
-          onePointRes.length;
-        ratePoint = Math.ceil(totalScores / totalRes);
-
+        const ratePoint = calRatePoint(movieDetail.rates);
         const movie = {
           id: movieDetail.id,
           nameENG: movieDetail.nameENG,
