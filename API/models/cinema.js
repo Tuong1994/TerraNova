@@ -18,8 +18,8 @@ module.exports = (sequelize, DataTypes) => {
         as: "movieList",
       });
       this.belongsToMany(Theater, {
-        foreignKey: "cinema_id",
         through: Cinema_Theater,
+        foreignKey: "cinema_id",
         as: "theaters"
       });
       this.hasMany(MovieSchedule, {

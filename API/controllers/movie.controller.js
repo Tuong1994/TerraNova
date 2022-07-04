@@ -6,6 +6,7 @@ const {
   MovieSchedule,
   Rate,
   Comment,
+  Cinema_Movie,
 } = require("../models");
 const { domain, calRatePoint } = require("../setting/setting");
 const Sequelize = require("sequelize");
@@ -182,7 +183,7 @@ const getMovieDetail = async (req, res) => {
             {
               model: Cinema,
               as: "cinemas",
-              attributes: ["id", "name", "address", "image"],  
+              attributes: ["id", "name", "address", "image"], 
               include: [
                 {
                   model: Theater,
@@ -213,8 +214,6 @@ const getMovieDetail = async (req, res) => {
         },
       ],
     });
-
-    console.log(movieDetail)
 
     if (movieDetail) {
       if (movieDetail.rates.length > 0) {
