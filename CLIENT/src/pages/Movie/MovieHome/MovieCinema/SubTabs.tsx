@@ -30,9 +30,7 @@ const SubTabs: React.FunctionComponent<SubTabsProps> = (props) => {
   };
 
   return (
-    <div
-      className="content__subtabs"
-    >
+    <div className="content__subtabs">
       <div className="subtabs__title">
         {cineplex?.cinemas?.map((cinema, index) => {
           return (

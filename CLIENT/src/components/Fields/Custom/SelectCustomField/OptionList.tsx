@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import actions from "../../../configs/actions";
-import { ILangs } from "../../../interfaces/lang";
-import { EPaginationActionTypes } from "../../../redux/actionTypes/PaginationActionTypes";
-import Button from "../../Button";
-import DataLoading from "../../Loading/DataLoading";
+import actions from "../../../../configs/actions";
+import { ILangs } from "../../../../interfaces/lang";
+import { EPaginationActionTypes } from "../../../../redux/actionTypes/PaginationActionTypes";
+import Button from "../../../Button";
+import DataLoading from "../../../Loading/DataLoading";
 
 interface OptionListProps {
   id: any;

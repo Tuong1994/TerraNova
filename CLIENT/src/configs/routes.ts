@@ -117,6 +117,11 @@ export const adminRoutes: IRoute[] = [
     exact: true,
     component: ShowTime.Add,
   },
+  {
+    path: "/admin/showtime/editShowtime/:id",
+    exact: true,
+    component: ShowTime.Edit,
+  },
 ];
 
 // USER

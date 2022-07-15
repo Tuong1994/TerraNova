@@ -1,10 +1,10 @@
 import React from "react";
-import * as customHooks from "../../../hooks";
+import * as customHooks from "../../../../hooks";
 import { useSelector } from "react-redux";
-import { ReducerState } from "../../../redux/store";
+import { ReducerState } from "../../../../redux/store";
 import { FieldProps } from "formik";
-import utils from "../../../utils";
 import OptionList from "./OptionList";
+import utils from "../../../../utils";
 
 interface IOption {
   label?: string;
@@ -82,6 +82,7 @@ const SelectField: React.FunctionComponent<SelectFieldProps> = (props) => {
 
   const langs = utils.changeLang(lang);
 
+  // Calculate pagination
   const totalData = Math.ceil((total || 0) / (limits || 0));
   const start = ((page || 1) - 1) * (limits || 0);
   const end = start + (limits || 0);

@@ -92,24 +92,7 @@ const getMovieList = async (req, res) => {
       movies = movieList.map((m) => {
         let ratePoint = 0;
         if (m.rates.length > 0) {
-          const fivePointRes = m.rates.filter((i) => i.ratePoint === 5);
-          const fourPointRes = m.rates.filter((i) => i.ratePoint === 4);
-          const threePointRes = m.rates.filter((i) => i.ratePoint === 3);
-          const twoPointRes = m.rates.filter((i) => i.ratePoint === 2);
-          const onePointRes = m.rates.filter((i) => i.ratePoint === 1);
-          const totalScores =
-            fivePointRes.length * 5 +
-            fourPointRes.length * 4 +
-            threePointRes.length * 3 +
-            twoPointRes.length * 2 +
-            onePointRes.length * 1;
-          const totalRes =
-            fivePointRes.length +
-            fourPointRes.length +
-            threePointRes.length +
-            twoPointRes.length +
-            onePointRes.length;
-          ratePoint = Math.ceil(totalScores / totalRes);
+          ratePoint = calRatePoint(m.rates);
         }
         return {
           id: m.id,
@@ -164,45 +147,96 @@ const getMovieList = async (req, res) => {
 const getMovieDetail = async (req, res) => {
   const { movieId } = req.query;
   try {
+    // const movieDetail = await Movie.findOne({
+    //   where: {
+    //     id: movieId,
+    //   },
+    //   include: [
+    //     {
+    //       model: Cineplex,
+    //       as: "cineplexes",
+    //       attributes: ["id", "name", "logo"],
+    //       through: {
+    //         attributes: [],
+    //         where: {
+    //           movie_id: movieId,
+    //         },
+    //       },
+    //       include: [
+    //         {
+    //           model: Cinema,
+    //           as: "cinemas",
+    //           attributes: ["id", "name", "address", "image"],
+    //           include: [
+    //             {
+    //               model: Theater,
+    //               as: "theaters",
+    //               attributes: ["id", "name"],
+    //               include: [
+    //                 {
+    //                   model: MovieSchedule,
+    //                   as: "schedules",
+    //                   attributes: ["id", "showTime", "movieId", "theaterId"],
+    //                   where: {
+    //                     movieId: movieId,
+    //                   },
+    //                 },
+    //               ],
+    //             },
+    //           ],
+    //         },
+    //       ],
+    //     },
+    //     {
+    //       model: Rate,
+    //       as: "rates",
+    //     },
+    //     {
+    //       model: Comment,
+    //       as: "comments",
+    //     },
+    //   ],
+    // });
+
+    // if (movieDetail) {
+    //   if (movieDetail.rates.length > 0) {
+    //     const ratePoint = calRatePoint(movieDetail.rates);
+    //     const movie = {
+    //       id: movieDetail.id,
+    //       nameENG: movieDetail.nameENG,
+    //       nameVN: movieDetail.nameVN,
+    //       nameCH: movieDetail.nameCH,
+    //       descENG: movieDetail.descENG,
+    //       descVN: movieDetail.descVN,
+    //       descCH: movieDetail.descCH,
+    //       image: movieDetail.image,
+    //       duration: movieDetail.duration,
+    //       trailer: movieDetail.trailer,
+    //       releaseDay: movieDetail.releaseDay,
+    //       status: movieDetail.status,
+    //       type: movieDetail.type,
+    //       actors: movieDetail.actors,
+    //       director: movieDetail.director,
+    //       country: movieDetail.country,
+    //       createdAt: movieDetail.createdAt,
+    //       updatedAt: movieDetail.updatedAt,
+    //       cineplexes: movieDetail.cineplexes || [],
+    //       comments: movieDetail.comments || [],
+    //       ratePoint: ratePoint,
+    //     };
+    //     res.status(200).send(movie);
+    //   } else {
+    //     res.status(200).send(movieDetail);
+    //   }
+    // }
     const movieDetail = await Movie.findOne({
       where: {
         id: movieId,
       },
       include: [
         {
-          model: Cineplex,
-          as: "cineplexes",
-          attributes: ["id", "name", "logo"],
-          through: {
-            attributes: [],
-            where: {
-              movie_id: movieId,
-            },
-          },
-          include: [
-            {
-              model: Cinema,
-              as: "cinemas",
-              attributes: ["id", "name", "address", "image"], 
-              include: [
-                {
-                  model: Theater,
-                  as: "theaters",
-                  attributes: ["id", "name"],
-                  include: [
-                    {
-                      model: MovieSchedule,
-                      as: "schedules",
-                      attributes: ["id", "showTime", "movieId", "theaterId"],
-                      where: {
-                        movieId: movieId,
-                      },
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
+          model: MovieSchedule,
+          as: "schedules",
         },
         {
           model: Rate,
@@ -216,35 +250,114 @@ const getMovieDetail = async (req, res) => {
     });
 
     if (movieDetail) {
-      if (movieDetail.rates.length > 0) {
-        const ratePoint = calRatePoint(movieDetail.rates);
-        const movie = {
-          id: movieDetail.id,
-          nameENG: movieDetail.nameENG,
-          nameVN: movieDetail.nameVN,
-          nameCH: movieDetail.nameCH,
-          descENG: movieDetail.descENG,
-          descVN: movieDetail.descVN,
-          descCH: movieDetail.descCH,
-          image: movieDetail.image,
-          duration: movieDetail.duration,
-          trailer: movieDetail.trailer,
-          releaseDay: movieDetail.releaseDay,
-          status: movieDetail.status,
-          type: movieDetail.type,
-          actors: movieDetail.actors,
-          director: movieDetail.director,
-          country: movieDetail.country,
-          createdAt: movieDetail.createdAt,
-          updatedAt: movieDetail.updatedAt,
-          cineplexes: movieDetail.cineplexes || [],
-          comments: movieDetail.comments || [],
-          ratePoint: ratePoint,
-        };
-        res.status(200).send(movie);
-      } else {
-        res.status(200).send(movieDetail);
+      let cineplexes = [];
+      if (movieDetail.schedules.length > 0) {
+        for (let i = 0; i < movieDetail.schedules.length; i++) {
+          const result = await Cineplex.findOne({
+            where: {
+              id: movieDetail.schedules[i].cineplexId,
+            },
+            include: [
+              {
+                model: Cinema,
+                as: "cinemas",
+                where: {
+                  id: movieDetail.schedules[i].cinemaId,
+                },
+                include: [
+                  {
+                    model: Theater,
+                    as: "theaters",
+                    where: {
+                      id: movieDetail.schedules[i].theaterId,
+                    },
+                    through: {
+                      attributes: [],
+                    },
+                    include: [
+                      {
+                        model: MovieSchedule,
+                        as: "schedules",
+                        where: {
+                          id: movieDetail.schedules[i].id,
+                        },
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          });
+          cineplexes = [...cineplexes, result];
+        }
       }
+
+      function duplicateSearch(
+        obj,
+        fields,
+        key,
+        list = [],
+        duplicate_found = false
+      ) {
+        if (fields.length == 0) {
+          return false;
+        } else if (fields.length > 1) {
+          for (let row of obj[fields[0]]) {
+            duplicate_found = duplicateSearch(
+              row,
+              fields.slice(1),
+              key,
+              list,
+              duplicate_found
+            );
+          }
+        } else {
+          for (let row of obj[fields[0]]) {
+            if (list.indexOf(row[key]) == -1) {
+              list.push(row[key]);
+            } else {
+              return true;
+            }
+          }
+        }
+
+        return duplicate_found;
+      }
+
+      const ratePoint = calRatePoint(movieDetail.rates);
+      const movie = {
+        id: movieDetail.id,
+        nameENG: movieDetail.nameENG,
+        nameVN: movieDetail.nameVN,
+        nameCH: movieDetail.nameCH,
+        descENG: movieDetail.descENG,
+        descVN: movieDetail.descVN,
+        descCH: movieDetail.descCH,
+        image: movieDetail.image,
+        duration: movieDetail.duration,
+        trailer: movieDetail.trailer,
+        releaseDay: movieDetail.releaseDay,
+        status: movieDetail.status,
+        type: movieDetail.type,
+        actors: movieDetail.actors,
+        director: movieDetail.director,
+        country: movieDetail.country,
+        createdAt: movieDetail.createdAt,
+        updatedAt: movieDetail.updatedAt,
+        cineplexes: cineplexes || [],
+        comments: movieDetail.comments || [],
+        ratePoint: ratePoint,
+      };
+
+      console.log(
+        duplicateSearch(
+          movie,
+          ["cineplexes", "cinemas", "theaters"],
+          "id"
+        )
+      );
+
+      res.status(200).send(movie);
     }
   } catch (error) {
     res.status(500).send(error);

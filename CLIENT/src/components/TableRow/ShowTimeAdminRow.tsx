@@ -53,7 +53,7 @@ const ShowTimeAdminRow: React.FunctionComponent<ShowTimeAdminRowProps> = (
         <p>{moment(schedule.updatedAt).format("DD/MM/YYYY")}</p>
       </TableCol>
       <TableCol>
-        <Link to={`/admin/product/editProduct`} className="button--edit">
+        <Link to={`/admin/showtime/editShowtime/${schedule.id}`} className="button--edit">
           <i className="far fa-edit"></i>
         </Link>
         <div

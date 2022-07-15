@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { ReducerState } from "../../../redux/store";
-import utils from "../../../utils";
+import { ReducerState } from "../../../../redux/store";
+import utils from "../../../../utils";
 
 interface SearchInputProps {
   groupClassName?: string;

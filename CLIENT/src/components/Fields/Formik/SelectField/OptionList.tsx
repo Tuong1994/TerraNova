@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import actions from "../../../configs/actions";
-import { ILangs } from "../../../interfaces/lang";
-import DataLoading from "../../Loading/DataLoading";
+import actions from "../../../../configs/actions";
+import { ILangs } from "../../../../interfaces/lang";
+import DataLoading from "../../../Loading/DataLoading";
 
 interface OptionListProps {
   name: any;
@@ -84,6 +84,7 @@ const OptionList: React.FunctionComponent<OptionListProps> = (props) => {
           isLoading ? "option__wrapper--loading" : ""
         }`}
       >
+        {/* Loading */}
         {(() => {
           if (isPaging) {
             return (
@@ -96,6 +97,8 @@ const OptionList: React.FunctionComponent<OptionListProps> = (props) => {
             return null;
           }
         })()}
+
+        {/* Option Items */}
         {option && option?.length > 0 ? (
           filter(option).map((item: any) => {
             return (
@@ -125,6 +128,8 @@ const OptionList: React.FunctionComponent<OptionListProps> = (props) => {
           <div className="option__nodata">{langs?.form.noOption}</div>
         )}
         </div>
+
+        {/* Pagination */}
         {isPaging && (totalPage || 1) > 1 ? (
         <div className="option__pagination">
           <div

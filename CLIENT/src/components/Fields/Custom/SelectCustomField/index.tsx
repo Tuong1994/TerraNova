@@ -1,9 +1,9 @@
 import React from "react";
-import * as customHooks from "../../../hooks";
+import * as customHooks from "../../../../hooks";
 import { useSelector } from "react-redux";
-import { ReducerState } from "../../../redux/store";
+import { ReducerState } from "../../../../redux/store";
 import OptionList from "./OptionList";
-import utils from "../../../utils";
+import utils from "../../../../utils";
 
 interface SelectCustomFieldProps {
   id?: any;

@@ -1,5 +1,6 @@
 const {
   MovieSchedule,
+  Cineplex,
   Cinema,
   Movie,
   Theater,
@@ -99,6 +100,11 @@ const getMovieScheduleDetail = async (req, res) => {
       ],
     });
     if (movieScheduleDetail) {
+      const cineplexDetail = await Cineplex.findOne({
+        where: {
+          id: movieScheduleDetail.cineplexId,
+        }
+      })
       const cinemaDetail = await Cinema.findOne({
         where: {
           id: movieScheduleDetail.cinemaId,
@@ -138,6 +144,7 @@ const getMovieScheduleDetail = async (req, res) => {
 
       if (cinemaDetail && theaterDetail && movieDetail) {
         const movieInfo = {
+          cineplexId: cineplexDetail.id,
           cinemaId: cinemaDetail.id,
           cinemaName: cinemaDetail.name,
           address: cinemaDetail.address,
